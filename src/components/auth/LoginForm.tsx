@@ -101,7 +101,7 @@ export function LoginForm() {
         pricingDetails: "Competitive rates for all listed NDT services. Bulk project discounts available. Contact for detailed quotes.",
         procedureInfo: "All NDT procedures adhere strictly to ASNT SNT-TC-1A, ASME, API, and other relevant industry standards. Client-specific procedures can be developed and followed upon request.",
         acceptanceCriteriaInfo: "Standard industry acceptance criteria (e.g., API 1104, ASME B31.3, AWS D1.1) are applied unless specific client requirements dictate otherwise.",
-        companyLogoUrl: "https://placehold.co/150x50.png?text=Houston+NDT",
+        companyLogoUrl: "https://placehold.co/150x50.png", // Updated placeholder
         baseRate: 95, // Example base rate
       };
       demoUserDetails = {
