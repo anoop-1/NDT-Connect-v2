@@ -3,8 +3,8 @@
 "use client";
 
 import { useAuth } from "@/hooks/useAuth";
-import { useRouter, useSearchParams } from "next/navigation"; // Added useSearchParams
-import { useEffect, useState, Suspense } from "react"; // Added Suspense
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState, Suspense } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,9 +12,9 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { CalendarIcon, Activity, Send, DollarSign, UserCheck } from "lucide-react";
+import { CalendarIcon, Activity, Send, DollarSign, UserCheck, UploadCloud } from "lucide-react";
+import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 
@@ -24,6 +24,8 @@ const NDT_SERVICES = [
   "Leak Testing (LT)", "Acoustic Emission Testing (AET)", "Phased Array UT (PAUT)",
   "Time-of-Flight Diffraction (TOFD)", "Other", "General Inquiry"
 ];
+
+const ACCEPTED_FILE_TYPES = "application/pdf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/jpeg,image/png";
 
 function RequestServiceFormContent() {
   const { user, loading } = useAuth();
@@ -39,6 +41,7 @@ function RequestServiceFormContent() {
   const [providerId, setProviderId] = useState<string | null>(null);
   const [providerName, setProviderName] = useState<string | null>(null);
   const [estimatedCost, setEstimatedCost] = useState<number | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
 
   useEffect(() => {
@@ -51,12 +54,11 @@ function RequestServiceFormContent() {
         setLocation(user.clientProfile?.primaryLocation || "");
     }
 
-    // Pre-fill from query parameters
     const queryProviderId = searchParams.get("providerId");
     const queryProviderName = searchParams.get("providerName");
     const queryServiceType = searchParams.get("serviceType");
     const queryBaseRate = searchParams.get("baseRate");
-    const queryAiRecommendationId = searchParams.get("aiRecommendationId"); // Check for AI rec
+    const queryAiRecommendationId = searchParams.get("aiRecommendationId");
 
     if (queryProviderId) setProviderId(queryProviderId);
     if (queryProviderName) setProviderName(queryProviderName);
@@ -66,16 +68,27 @@ function RequestServiceFormContent() {
       if (!isNaN(rate)) {
         setEstimatedCost(parseFloat((rate * 1.15).toFixed(2)));
       }
-    } else if (queryAiRecommendationId && !queryBaseRate) { // AI Rec might not have base rate initially
-        // If it's an AI rec and no base rate, we might not show cost, or a placeholder
-        // For now, let's assume AI recs pre-selected from /recommendations might not have a queryBaseRate
-        // unless the Recommendation type and flow are updated to include it.
-        // If AI recs *should* have a cost, the AI flow/data needs to provide that.
+    } else if (queryAiRecommendationId && !queryBaseRate) {
+        // Placeholder for AI recs without explicit base rate
     }
-
 
   }, [user, loading, router, searchParams]);
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      // Basic file type validation (optional, browser does some with `accept`)
+      // const file = e.target.files[0];
+      // if (file.size > 5 * 1024 * 1024) { // Example: 5MB limit
+      //   toast({ title: "File too large", description: "Please select a file smaller than 5MB.", variant: "destructive" });
+      //   setSelectedFile(null);
+      //   e.target.value = ""; // Reset file input
+      //   return;
+      // }
+      setSelectedFile(e.target.files[0]);
+    } else {
+      setSelectedFile(null);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -91,12 +104,22 @@ function RequestServiceFormContent() {
     await new Promise(resolve => setTimeout(resolve, 1500));
     const newRequestId = `req-${Date.now()}`;
 
+    let fileDetailsMessage = "";
+    if (selectedFile) {
+      console.log("Selected file details:", {
+        name: selectedFile.name,
+        type: selectedFile.type,
+        size: selectedFile.size,
+      });
+      fileDetailsMessage = ` File attached: ${selectedFile.name}`;
+    }
+
     toast({
       title: "Service Request Submitted",
-      description: `Your request for ${serviceType} has been submitted. ${providerName ? `Provider ${providerName} will be notified.` : 'We will find a suitable provider.'}`,
+      description: `Your request for ${serviceType} has been submitted. ${providerName ? `Provider ${providerName} will be notified.` : 'We will find a suitable provider.'}${fileDetailsMessage}`,
     });
 
-    router.push(`/my-requests`); // Redirect to a page where they can see this new request
+    router.push(`/my-requests`);
     setIsLoading(false);
   };
 
@@ -174,7 +197,7 @@ function RequestServiceFormContent() {
                     selected={requestedDate}
                     onSelect={setRequestedDate}
                     initialFocus
-                    disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() -1))} // Disable past dates
+                    disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() -1))}
                   />
                 </PopoverContent>
               </Popover>
@@ -191,6 +214,41 @@ function RequestServiceFormContent() {
                 required
               />
             </div>
+            
+            <div>
+              <Label htmlFor="fileUpload" className="flex items-center">
+                <UploadCloud className="h-4 w-4 mr-2 text-muted-foreground"/> Attach Drawings/Documents (Optional)
+              </Label>
+              <Input
+                id="fileUpload"
+                type="file"
+                onChange={handleFileChange}
+                accept={ACCEPTED_FILE_TYPES}
+                className="mt-1"
+              />
+              <p className="text-xs text-muted-foreground mt-1">Accepted: PDF, Excel, JPG, PNG. Max 5MB (conceptual).</p>
+              {selectedFile && (
+                <div className="mt-2 text-sm text-muted-foreground bg-muted/50 p-2 rounded-md flex items-center justify-between">
+                  <span>
+                    Selected: {selectedFile.name} ({ (selectedFile.size / 1024).toFixed(2) } KB)
+                  </span>
+                  <Button 
+                    variant="ghost" 
+                    size="sm" 
+                    onClick={() => {
+                      setSelectedFile(null);
+                      // Reset the file input visually
+                      const fileInput = document.getElementById('fileUpload') as HTMLInputElement;
+                      if (fileInput) fileInput.value = "";
+                    }} 
+                    className="text-xs h-auto p-1"
+                  >
+                    Clear
+                  </Button>
+                </div>
+              )}
+            </div>
+
 
             {estimatedCost !== null && (
               <div className="p-3 bg-primary/10 rounded-md border border-primary/30">
@@ -223,4 +281,3 @@ export default function RequestServicePage() {
     </Suspense>
   );
 }
-
