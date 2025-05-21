@@ -70,7 +70,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         baseRate: (details.profileData as ProviderProfileData).baseRate || 0,
         certifications: (details.profileData as ProviderProfileData).certifications || [],
         personnelQualifications: (details.profileData as ProviderProfileData).personnelQualifications || [],
-        isVerified: (details.profileData as ProviderProfileData).isVerified || false, // Default to false
+        isVerified: (details.profileData as ProviderProfileData).isVerified || false,
+        availableDocuments: (details.profileData as ProviderProfileData).availableDocuments || [], // Added
       };
       newUser.providerProfile = providerProfile;
     }

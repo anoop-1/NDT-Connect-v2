@@ -12,7 +12,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Activity, Save, Building, Phone, Mail, Globe, Image as ImageIcon, DollarSign, Award, Users2, ShieldCheck, ShieldAlert } from "lucide-react";
+import { Activity, Save, Building, Phone, Mail, Globe, Image as ImageIcon, DollarSign, Award, Users2, ShieldCheck, ShieldAlert, BookOpen } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 const ALL_NDT_SERVICES = [
@@ -35,8 +35,9 @@ export default function ProviderProfilePage() {
     address: "",
     bio: "",
     servicesOffered: [] as string[],
-    certifications: [] as string[], // Stored as array, edited as string
-    personnelQualifications: [] as string[], // Stored as array, edited as string
+    certifications: [] as string[],
+    personnelQualifications: [] as string[],
+    availableDocuments: [] as string[], // Added
     serviceRadius: "",
     companyLogoUrl: "",
     baseRate: 0,
@@ -46,9 +47,9 @@ export default function ProviderProfilePage() {
     isVerified: false,
   });
 
-  // State for text area inputs for certifications and qualifications
   const [certsText, setCertsText] = useState("");
   const [qualsText, setQualsText] = useState("");
+  const [docsText, setDocsText] = useState(""); // Added
 
   useEffect(() => {
     if (!loading && !user) {
@@ -60,13 +61,14 @@ export default function ProviderProfilePage() {
         companyName: user.name || "",
         contactEmail: user.email,
         phone: user.providerProfile.contactNumber || "",
-        website: user.providerProfile.companyLogoUrl ? "" : "https://example.com", // A bit unclear mapping here, assuming website is separate
+        website: user.providerProfile.companyLogoUrl ? "" : "https://example.com", 
         address: user.providerProfile.location || "",
-        bio: "Update company bio here.", // Placeholder if not set
+        bio: user.providerProfile.procedureInfo || "Update company bio here.", // Mapped bio to procedureInfo for now
         servicesOffered: user.providerProfile.servicesOffered || [],
         certifications: user.providerProfile.certifications || [],
         personnelQualifications: user.providerProfile.personnelQualifications || [],
-        serviceRadius: "", // Placeholder for now
+        availableDocuments: user.providerProfile.availableDocuments || [], // Added
+        serviceRadius: "", 
         companyLogoUrl: user.providerProfile.companyLogoUrl || "",
         baseRate: user.providerProfile.baseRate || 0,
         pricingDetails: user.providerProfile.pricingDetails || "",
@@ -76,6 +78,7 @@ export default function ProviderProfilePage() {
       });
       setCertsText((user.providerProfile.certifications || []).join(", "));
       setQualsText((user.providerProfile.personnelQualifications || []).join(", "));
+      setDocsText((user.providerProfile.availableDocuments || []).join(", ")); // Added
     }
   }, [user, loading, router]);
 
@@ -102,13 +105,14 @@ export default function ProviderProfilePage() {
     
     const updatedCerts = certsText.split(',').map(s => s.trim()).filter(Boolean);
     const updatedQuals = qualsText.split(',').map(s => s.trim()).filter(Boolean);
+    const updatedDocs = docsText.split(',').map(s => s.trim()).filter(Boolean); // Added
 
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     if (user) {
       const updatedUser = {
         ...user,
-        name: profileData.companyName, // Assuming companyName from form updates user's display name
+        name: profileData.companyName, 
         providerProfile: {
           ...user.providerProfile,
           location: profileData.address,
@@ -121,8 +125,8 @@ export default function ProviderProfilePage() {
           acceptanceCriteriaInfo: profileData.acceptanceCriteriaInfo,
           certifications: updatedCerts,
           personnelQualifications: updatedQuals,
-          isVerified: profileData.isVerified, // This normally wouldn't be editable by user
-          // website is not explicitly in ProviderProfileData, mapping address to location
+          availableDocuments: updatedDocs, // Added
+          isVerified: profileData.isVerified, 
         },
       };
       setUser(updatedUser);
@@ -230,22 +234,23 @@ export default function ProviderProfilePage() {
               <p className="text-xs text-muted-foreground mt-1">List key personnel qualifications, separated by commas.</p>
             </div>
 
+            <div>
+              <Label htmlFor="docsText" className="flex items-center"><BookOpen className="h-4 w-4 mr-2 text-muted-foreground"/>Available Technical Documents</Label>
+              <Textarea id="docsText" name="docsText" value={docsText} onChange={(e) => setDocsText(e.target.value)} rows={3} placeholder="e.g., General Procedures Manual, ISO 9001 Certificate, Sample Technician Cert. Separate with commas." />
+              <p className="text-xs text-muted-foreground mt-1">List types of technical documents you can provide (procedures, company certs, etc.), separated by commas.</p>
+            </div>
 
              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div> {/* This input was already here, keeping it */}
-                  <Label htmlFor="certifications_old_input">Certifications & Qualifications (Legacy - to be removed)</Label>
-                  <Input id="certifications_old_input" name="certifications_old_input_name" value={(profileData.certifications || []).join(", ") + (profileData.personnelQualifications || []).join(", ")} disabled placeholder="e.g., ASNT Level III, ISO 9001" />
-                </div>
-                 <div>
+                <div> 
                   <Label htmlFor="serviceRadius">Service Radius</Label>
                   <Input id="serviceRadius" name="serviceRadius" value={profileData.serviceRadius} onChange={handleInputChange} placeholder="e.g., 50 miles, National" />
                 </div>
-            </div>
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
+                 <div>
                   <Label htmlFor="baseRate" className="flex items-center"><DollarSign className="h-4 w-4 mr-2 text-muted-foreground"/>Base Rate (e.g., per hour, optional)</Label>
                   <Input id="baseRate" name="baseRate" type="number" value={profileData.baseRate} onChange={handleInputChange} placeholder="e.g., 75" />
                 </div>
+            </div>
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                  <div>
                     <Label htmlFor="pricingDetails">Pricing Details</Label>
                     <Textarea id="pricingDetails" name="pricingDetails" value={profileData.pricingDetails} onChange={handleInputChange} rows={2} placeholder="Describe your general pricing structure, e.g., per hour, per inspection, project-based." />

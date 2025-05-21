@@ -7,8 +7,9 @@ import type { ServiceProvider } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Star, CheckSquare, DollarSign, ShieldCheck, Award, Users2, Briefcase } from 'lucide-react';
+import { MapPin, Star, CheckSquare, DollarSign, ShieldCheck, Award, Users2, Briefcase, BookOpen, FileQuestion } from 'lucide-react';
 import { useRouter } from 'next/navigation'; 
+import { useToast } from "@/hooks/use-toast";
 
 interface ProviderCardProps {
   provider: ServiceProvider;
@@ -16,6 +17,7 @@ interface ProviderCardProps {
 
 export function ProviderCard({ provider }: ProviderCardProps) {
   const router = useRouter(); 
+  const { toast } = useToast();
 
   const handleRequestService = () => {
     const queryParams = new URLSearchParams({
@@ -29,6 +31,15 @@ export function ProviderCard({ provider }: ProviderCardProps) {
     router.push(`/request-service?${queryParams.toString()}`);
   };
 
+  const handleRequestDocuments = () => {
+    // In a real app, this would trigger a backend request or a notification to the provider
+    toast({
+      title: "Document Request Sent",
+      description: `Your request for technical documents from ${provider.name} has been noted. The provider will be notified.`,
+    });
+  };
+
+
   const clientPrice = provider.baseRate ? (provider.baseRate * 1.15).toFixed(2) : null;
   const fallbackImageSrc = '/images/default-provider-graphic.png';
 
@@ -37,7 +48,7 @@ export function ProviderCard({ provider }: ProviderCardProps) {
       <div className="relative w-full h-48 bg-muted">
         <Image
           src={provider.imageUrl || fallbackImageSrc}
-          alt={provider.specialization || "NDT Provider"} 
+          alt={provider.name || "NDT Provider"} 
           fill={true}
           style={{ objectFit: 'cover' }}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -52,9 +63,9 @@ export function ProviderCard({ provider }: ProviderCardProps) {
         )}
       </div>
       <CardHeader>
-        <CardTitle className="text-xl">{provider.specialization} Specialist</CardTitle> 
+        <CardTitle className="text-xl">{provider.name}</CardTitle> 
         <CardDescription className="flex items-center text-sm">
-          <MapPin className="h-4 w-4 mr-1 text-muted-foreground" /> {provider.location}
+          <MapPin className="h-4 w-4 mr-1 text-muted-foreground" /> {provider.location} ({provider.specialization})
         </CardDescription>
       </CardHeader>
       <CardContent className="flex-grow space-y-3">
@@ -107,9 +118,26 @@ export function ProviderCard({ provider }: ProviderCardProps) {
             </div>
           </div>
         )}
+        
+        {provider.availableDocuments && provider.availableDocuments.length > 0 && (
+           <div>
+            <h4 className="text-sm font-semibold mb-1 flex items-center"><BookOpen className="h-4 w-4 mr-1 text-primary"/>Available Documents:</h4>
+            <div className="flex flex-wrap gap-1">
+              {provider.availableDocuments.slice(0, 2).map((doc) => (
+                <Badge key={doc} variant="outline" className="text-xs bg-teal-50 border-teal-200 text-teal-700">{doc}</Badge>
+              ))}
+              {provider.availableDocuments.length > 2 && <Badge variant="outline" className="text-xs">...</Badge>}
+            </div>
+          </div>
+        )}
 
       </CardContent>
       <CardFooter className="flex flex-col sm:flex-row sm:justify-end items-stretch sm:items-center gap-2 pt-4 border-t">
+        {(provider.availableDocuments && provider.availableDocuments.length > 0) || provider.isVerified ? (
+            <Button variant="outline" size="sm" className="w-full sm:w-auto" onClick={handleRequestDocuments}>
+              <FileQuestion className="h-4 w-4 mr-2" /> Request Documents
+            </Button>
+        ) : null}
         <Button size="sm" className="w-full sm:w-auto" onClick={handleRequestService}>
           <Briefcase className="h-4 w-4 mr-2" /> Request Service
         </Button>

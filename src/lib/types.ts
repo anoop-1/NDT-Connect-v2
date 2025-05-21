@@ -18,6 +18,7 @@ export type ProviderProfileData = {
   certifications?: string[]; 
   personnelQualifications?: string[]; 
   isVerified?: boolean; 
+  availableDocuments?: string[]; // Added for technical documents
 };
 
 export type User = {
@@ -44,6 +45,7 @@ export type ServiceProvider = {
   certifications?: string[]; 
   personnelQualifications?: string[]; 
   isVerified?: boolean; 
+  availableDocuments?: string[]; // Added for technical documents
 };
 
 // Input for the AI recommendation flow for clients
@@ -56,7 +58,7 @@ export type OptimizeServiceProviderRecommendationsInput = {
 };
 
 export type Recommendation = {
-  referenceId: string; // Added referenceId
+  referenceId: string; 
   providerName: string;
   contactInfo: string;
   rating: number;

@@ -25,7 +25,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import type { ClientProfileData, ProviderProfileData } from "@/lib/types";
-import { ImageIcon, DollarSign, FileText, Award, Users2 } from "lucide-react";
+import { ImageIcon, DollarSign, FileText, Award, Users2, BookOpen } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 const ALL_NDT_SERVICES = [
@@ -68,20 +68,21 @@ Welcome to NDT Connect!
 NDT Connect ("Platform", "we", "us", "our") provides a platform to connect NDT service providers ("Service Provider", "you", "your") with clients seeking Non-Destructive Testing (NDT) services ("Clients"). By registering an account as a Service Provider on NDT Connect, you agree to these Terms of Service.
 
 1. Account and Profile Information:
-   a. Accuracy: You are responsible for providing accurate, current, and complete information in your profile, including but not limited to your business details, location, services offered, qualifications, certifications, contact information, pricing indications, procedure outlines, and acceptance criteria information.
+   a. Accuracy: You are responsible for providing accurate, current, and complete information in your profile, including but not limited to your business details, location, services offered, qualifications, certifications, available technical documents, contact information, pricing indications, procedure outlines, and acceptance criteria information.
    b. Updates: You agree to maintain and promptly update your profile information to keep it accurate, current, and complete.
 
 2. Service Provision and Responsibilities:
    a. Fulfillment of Requirements: You commit to fulfilling all agreed-upon client requirements to the best of your ability. This includes strict adherence to any client-specific procedures, acceptance criteria, and qualification standards communicated by the Client.
    b. Professional Standards: You will conduct all NDT services in a professional manner and in accordance with recognized industry standards (e.g., SNT-TC-1A for personnel qualification, relevant ASME, API, ISO, or other applicable codes and standards for testing procedures and acceptance criteria), or any other client-specified requirements which may be more stringent.
    c. Qualification: You warrant that you and your personnel possess the necessary qualifications, certifications (e.g., SNT-TC-1A, ISO 9712, or equivalent), and experience to perform the NDT services you offer and undertake.
-   d. Direct Agreements: Any service agreement or contract is strictly between you and the Client. NDT Connect is not a party to such agreements. You are responsible for negotiating terms, scope, deliverables, and payment directly with the Client.
+   d. Document Availability: You agree to make available, upon reasonable request from a client with whom you are engaged or discussing an engagement, copies of relevant technical documents as listed in your profile, such as procedures, certifications, and qualification records. The mechanism and timing of sharing will be agreed upon directly with the client.
+   e. Direct Agreements: Any service agreement or contract is strictly between you and the Client. NDT Connect is not a party to such agreements. You are responsible for negotiating terms, scope, deliverables, and payment directly with the Client.
 
 3. Role of NDT Connect:
 NDT Connect acts SOLELY AS A FACILITATOR platform. We do not guarantee work, projects, or income. We are not responsible for Client actions, payment failures, or disputes.
 
 4. Service Fees:
-NDT Connect may charge a service fee for utilizing the Platform or for successful engagements facilitated through the Platform. Any applicable fees and payment terms will be communicated to you separately or as part of specific feature usage. You agree to these fees as a condition of using such services. (Note: This platform currently has a 15% commission on provider's rate shown to client, and a conceptual 10% fee to providers for facilitation).
+NDT Connect may charge a service fee for utilizing the Platform or for successful engagements facilitated through the Platform. Any applicable fees and payment terms will be communicated to you separately or as part of specific feature usage. (Note: This platform currently has a 15% commission on provider's rate shown to client, and a conceptual 10% fee to providers for facilitation).
 
 5. Limitation of Liability:
 To the fullest extent permitted by law, NDT Connect shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising from your use of the Platform, interactions with Clients, or the provision of your services.
@@ -121,6 +122,7 @@ const providerSchema = baseSchema.extend({
   ),
   certifications: z.string().optional(), // Textarea for comma-separated list
   personnelQualifications: z.string().optional(), // Textarea for comma-separated list
+  availableDocuments: z.string().optional(), // Textarea for comma-separated list
 });
 
 const formSchema = z.union([clientSchema, providerSchema])
@@ -184,6 +186,7 @@ export function RegisterForm() {
       baseRate: undefined,
       certifications: "",
       personnelQualifications: "",
+      availableDocuments: "",
     },
   });
 
@@ -213,11 +216,11 @@ export function RegisterForm() {
         baseRate: values.baseRate,
         certifications: values.certifications?.split(',').map(s => s.trim()).filter(Boolean) || [],
         personnelQualifications: values.personnelQualifications?.split(',').map(s => s.trim()).filter(Boolean) || [],
-        isVerified: false, // Default to not verified on registration
+        availableDocuments: values.availableDocuments?.split(',').map(s => s.trim()).filter(Boolean) || [],
+        isVerified: false, 
       };
     }
 
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
 
     login({
@@ -498,6 +501,20 @@ export function RegisterForm() {
                     <Textarea placeholder="e.g., SNT-TC-1A Level II UT, NAS 410 Certified Inspectors. Separate with commas." {...field} rows={2}/>
                   </FormControl>
                   <FormDescription>List key personnel qualifications. Separate multiple items with a comma.</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="availableDocuments"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="flex items-center"><BookOpen className="h-4 w-4 mr-2 text-muted-foreground"/>Available Technical Documents</FormLabel>
+                  <FormControl>
+                    <Textarea placeholder="e.g., General NDT Procedures Manual, ISO 9001 Certificate, Sample Technician Cert. Separate with commas." {...field} rows={3}/>
+                  </FormControl>
+                  <FormDescription>List types of technical documents you can provide upon engagement (e.g., procedures, company certs, technician qualifications). Separate with commas.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}

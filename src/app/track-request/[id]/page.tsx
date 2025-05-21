@@ -8,22 +8,20 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ArrowLeft, MessageSquare, Phone, Activity, CheckCircle, Clock, AlertTriangle, CalendarDays, MapPinIcon, FileTextIcon, ShieldCheck, FileArchive } from "lucide-react";
-import type { ServiceRequest, ServiceProvider } from "@/lib/types"; // Added ServiceProvider
+import { ArrowLeft, MessageSquare, Phone, Activity, CheckCircle, Clock, AlertTriangle, CalendarDays, MapPinIcon, FileTextIcon, ShieldCheck, FileArchive, BookOpen } from "lucide-react";
+import type { ServiceRequest, ServiceProvider } from "@/lib/types"; 
 import { Badge } from "@/components/ui/badge";
 
-// Extended mock data to simulate finding a specific request
 const mockRequests: ServiceRequest[] = [
   { id: 'req1', clientId: 'user1', providerId: 'prov1', providerName: 'Advanced NDT Solutions', serviceType: 'Ultrasonic Testing', location: 'Main Plant, Area 5', description: 'Inspect critical weld points on pressure vessel. Ensure all safety protocols are followed. Report needed by end of week.', requestedDate: '2024-08-15', status: 'Confirmed' },
   { id: 'req2', clientId: 'user1', serviceType: 'Magnetic Particle Testing', location: 'Storage Tank 3B', description: 'Surface crack detection on tank shell, focusing on welded seams. Provide photographic evidence.', requestedDate: '2024-08-20', status: 'Pending' },
   { id: 'req3', clientId: 'user1', providerId: 'prov2', providerName: 'Precision Inspections Inc.', serviceType: 'Radiographic Testing', location: 'Fabrication Shop, Bay 2', description: 'Full weld inspection for new pipeline section. Compliance with ASME Section IX required.', requestedDate: '2024-07-10', status: 'Completed' },
-  { id: 'req4', clientId: 'user1', serviceType: 'Visual Testing', location: 'Bridge Section A1', description: 'Routine visual checkup of structural integrity. Look for corrosion or damage.', requestedDate: '2024-08-01', status: 'In Progress' },
+  { id: 'req4', clientId: 'user1', serviceType: 'Visual Testing', location: 'Bridge Section A1', description: 'Routine visual checkup of structural integrity. Look for corrosion or damage.', requestedDate: '2024-08-01', status: 'In Progress', providerId: 'prov1', providerName: 'Advanced NDT Solutions' },
 ];
 
-// Mock provider data - in a real app, this would be fetched based on providerId
 const mockProvidersDB: ServiceProvider[] = [
-    { id: 'prov1', name: 'Advanced NDT Solutions', location: 'Houston, TX', services: ['Ultrasonic Testing'], specialization: 'Oil & Gas', rating: 4.8, contactInfo: '(111) 222-3333', isVerified: true, certifications: ["ISO 9001", "API Monogram"], personnelQualifications: ["ASNT Level III", "PCN Level II"] },
-    { id: 'prov2', name: 'Precision Inspections Inc.', location: 'Los Angeles, CA', services: ['Radiographic Testing'], specialization: 'Aerospace', rating: 4.5, contactInfo: '(444) 555-6666', isVerified: true, certifications: ["Nadcap", "AS9100"], personnelQualifications: ["NAS 410 Level III"] },
+    { id: 'prov1', name: 'Advanced NDT Solutions', location: 'Houston, TX', services: ['Ultrasonic Testing'], specialization: 'Oil & Gas', rating: 4.8, contactInfo: '(111) 222-3333', isVerified: true, certifications: ["ISO 9001", "API Monogram"], personnelQualifications: ["ASNT Level III", "PCN Level II"], availableDocuments: ["General Procedures Manual", "ISO 9001 Certificate", "Sample Technician Level III Cert"] },
+    { id: 'prov2', name: 'Precision Inspections Inc.', location: 'Los Angeles, CA', services: ['Radiographic Testing'], specialization: 'Aerospace', rating: 4.5, contactInfo: '(444) 555-6666', isVerified: true, certifications: ["Nadcap", "AS9100"], personnelQualifications: ["NAS 410 Level III"], availableDocuments: ["Nadcap Approval Documents", "Safety Plan"] },
 ];
 
 
@@ -67,12 +65,14 @@ export default function TrackRequestPage() {
 
   useEffect(() => {
     if (user && requestId) {
-      const foundRequest = mockRequests.find(r => r.id === requestId && (r.clientId === user.id || true)); // Allow any client for mock
+      const foundRequest = mockRequests.find(r => r.id === requestId && (r.clientId === user.id || true)); 
       if (foundRequest) {
         setRequest(foundRequest);
         if (foundRequest.providerId) {
           const foundProvider = mockProvidersDB.find(p => p.id === foundRequest.providerId);
           setProviderDetails(foundProvider || null);
+        } else {
+          setProviderDetails(null); // Ensure providerDetails is null if no providerId
         }
       } else {
         setFetchError("Service request not found or access denied.");
@@ -80,7 +80,7 @@ export default function TrackRequestPage() {
     }
   }, [user, requestId]);
 
-  if (loading || (!request && !fetchError && !providerDetails && request?.providerId)) {
+  if (loading || (!request && !fetchError)) { // Simplified loading condition
     return <div className="flex justify-center items-center min-h-[calc(100vh-10rem)]"><Activity className="h-8 w-8 animate-spin text-primary" /> <span className="ml-2">Loading request details...</span></div>;
   }
 
@@ -108,7 +108,7 @@ export default function TrackRequestPage() {
 
   const timelineDescriptions = {
     'Pending': 'Your request has been submitted and is awaiting provider confirmation.',
-    'Confirmed': `Service Provider ${request.providerName || 'N/A'} has confirmed. They will contact you.`,
+    'Confirmed': `Service Provider ${request.providerName || providerDetails?.name || 'N/A'} has confirmed. They will contact you.`,
     'In Progress': 'The NDT service is currently being performed.',
     'Completed': 'The service has been completed. Check for reports or follow-ups.',
     'Cancelled': 'This service request has been cancelled.',
@@ -144,7 +144,7 @@ export default function TrackRequestPage() {
               <h4 className="font-semibold text-sm text-muted-foreground flex items-center mb-1"><FileTextIcon className="h-4 w-4 mr-2"/>Description</h4>
               <p className="text-sm whitespace-pre-wrap bg-muted/50 p-3 rounded-md">{request.description}</p>
             </div>
-            {request.providerId && providerDetails && (
+            {providerDetails && (
                <div>
                 <h4 className="font-semibold text-sm text-muted-foreground mb-1">Assigned Provider</h4>
                 <p className="font-medium">{providerDetails.name}</p>
@@ -155,11 +155,20 @@ export default function TrackRequestPage() {
                 )}
               </div>
             )}
-             {request.providerId && providerDetails && providerDetails.isVerified && (
+            {(request.status === 'Confirmed' || request.status === 'In Progress') && providerDetails?.availableDocuments && providerDetails.availableDocuments.length > 0 && (
               <div className="p-3 border border-dashed rounded-md bg-blue-50 text-blue-700">
-                <h5 className="font-semibold text-sm flex items-center mb-1"><FileArchive className="h-4 w-4 mr-2"/>Provider Documentation</h5>
+                <h5 className="font-semibold text-sm flex items-center mb-2"><BookOpen className="h-4 w-4 mr-2"/>Technical Documents from Provider</h5>
+                <ul className="list-disc list-inside text-xs space-y-1">
+                    {providerDetails.availableDocuments.map(doc => <li key={doc}>{doc}</li>)}
+                </ul>
+                <p className="text-xs mt-2 italic">(These documents are notionally shared. In a full system, download links or viewable documents would appear here.)</p>
+              </div>
+            )}
+             {request.providerId && providerDetails && providerDetails.isVerified && request.status !== 'Pending' && request.status !== 'Cancelled' && (
+              <div className="p-3 border border-dashed rounded-md bg-green-50 text-green-700 mt-2">
+                <h5 className="font-semibold text-sm flex items-center mb-1"><FileArchive className="h-4 w-4 mr-2"/>Provider Documentation Note</h5>
                 <p className="text-xs">
-                  As this is a verified provider, relevant company approvals, procedures, and technician qualification certifications are notionally considered submitted/available for this engagement.
+                  As this is a verified provider and the request is active, relevant company approvals, procedures, and technician qualification certifications are notionally considered submitted/available for this engagement.
                 </p>
               </div>
             )}

@@ -1,3 +1,4 @@
+
 // src/app/provider-requests/page.tsx
 "use client";
 
@@ -10,6 +11,7 @@ import Link from "next/link";
 import { Briefcase, Eye, Check, X, Activity, Users } from "lucide-react";
 import type { ServiceRequest } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
+import { useToast } from "@/hooks/use-toast";
 
 const mockProviderRequests: ServiceRequest[] = [
   { id: 'req1_prov', clientId: 'clientA', providerId: 'thisProvider', serviceType: 'Ultrasonic Testing', location: 'Main Plant, Area 5', description: 'Inspect critical weld points on pressure vessel. Client needs report by EOW.', requestedDate: '2024-08-15', status: 'Confirmed' },
@@ -21,9 +23,9 @@ const StatusBadge = ({ status }: { status: ServiceRequest['status'] }) => {
   let variant: "default" | "secondary" | "destructive" | "outline" = "default";
   switch (status) {
     case 'Pending': variant = 'outline'; break;
-    case 'Confirmed': variant = 'default'; break; // Consider a 'success' or 'blue' variant from theme
+    case 'Confirmed': variant = 'default'; break; 
     case 'In Progress': variant = 'secondary'; break;
-    case 'Completed': variant = 'default'; break; // Consider a 'success' variant
+    case 'Completed': variant = 'default'; break; 
     case 'Cancelled': variant = 'destructive'; break;
   }
   return <Badge variant={variant}>{status}</Badge>;
@@ -32,6 +34,7 @@ const StatusBadge = ({ status }: { status: ServiceRequest['status'] }) => {
 export default function ProviderRequestsPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
+  const { toast } = useToast();
   const [requests, setRequests] = useState<ServiceRequest[]>([]);
 
   useEffect(() => {
@@ -40,15 +43,25 @@ export default function ProviderRequestsPage() {
     } else if (user && user.role !== 'provider') {
       router.push("/dashboard");
     } else if (user) {
-      // Simulate fetching requests assigned to this provider
-      setRequests(mockProviderRequests.filter(req => req.providerId === user.id || mockProviderRequests)); // Fallback if ID mismatch
+      setRequests(mockProviderRequests.filter(req => req.providerId === user.id || mockProviderRequests)); 
     }
   }, [user, loading, router]);
 
   const handleUpdateRequest = (requestId: string, newStatus: ServiceRequest['status']) => {
-    // Mock update
     setRequests(prev => prev.map(r => r.id === requestId ? {...r, status: newStatus} : r));
-    alert(`Request ${requestId} status updated to ${newStatus}. (Mock update)`);
+    toast({
+      title: `Request ${requestId} Status Updated`,
+      description: `Status changed to ${newStatus}.`,
+    });
+
+    if (newStatus === 'Confirmed' || newStatus === 'In Progress') {
+        const currentRequest = requests.find(r => r.id === requestId);
+        toast({
+            title: "Client Notified",
+            description: `Client ${currentRequest?.clientId || 'N/A'} has been notified. Technical documents (if available and applicable) are now notionally shared.`,
+            duration: 5000,
+        });
+    }
   };
 
   if (loading) {
