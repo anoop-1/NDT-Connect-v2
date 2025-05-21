@@ -12,15 +12,16 @@ import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { MapPlaceholder } from "@/components/shared/MapPlaceholder";
+// import { MapPlaceholder } from "@/components/shared/MapPlaceholder"; // Replaced by InteractiveMap
+import { InteractiveMap } from "@/components/shared/InteractiveMap";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 const mockProviders: ServiceProvider[] = [
-  { id: '1', name: 'Advanced NDT Solutions', location: 'Houston, TX', services: ['Ultrasonic Testing', 'Magnetic Particle Testing', 'Radiographic Testing'], specialization: 'Oil & Gas Pipelines', rating: 4.8, contactInfo: '(123) 456-7890', description: 'Leading provider of NDT services for the energy sector.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "industrial site", baseRate: 85, certifications: ["ISO 9001", "API Q1"], personnelQualifications: ["ASNT NDT Level III UT, MT, PT", "AWS CWI"], isVerified: true, availableDocuments: ["General Procedures Manual", "ISO 9001 Certificate", "Technician Level III Certs"] },
-  { id: '2', name: 'Precision Inspections Inc.', location: 'Los Angeles, CA', services: ['Eddy Current Testing', 'Liquid Penetrant Testing'], specialization: 'Aerospace Components', rating: 4.5, contactInfo: '(987) 654-3210', description: 'Specialized in high-precision aerospace inspections.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "factory interior", baseRate: 120, certifications: ["Nadcap NDT", "AS9100"], personnelQualifications: ["NAS 410 Level II ET, PT"], isVerified: true, availableDocuments: ["Nadcap Approval Docs", "AS9100 Cert", "Safety Manual"] },
-  { id: '3', name: 'InfraTest Group', location: 'New York, NY', services: ['Visual Testing', 'Leak Testing', 'Acoustic Emission Testing'], specialization: 'Civil Infrastructure', rating: 4.2, contactInfo: '(555) 123-4567', description: 'Ensuring the safety and integrity of critical infrastructure.', imageUrl: "", dataAiHint: "bridge structure", baseRate: 70, certifications: ["ISO/IEC 17025"], personnelQualifications: ["ASNT NDT Level II VT"], isVerified: false, availableDocuments: ["Sample VT Procedure"] },
-  { id: '4', name: 'TechScan NDT', location: 'Chicago, IL', services: ['Phased Array UT', 'Time-of-Flight Diffraction'], specialization: 'Manufacturing Quality Control', rating: 4.9, contactInfo: '(312) 555-0011', description: 'Cutting-edge NDT for manufacturing excellence.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "modern factory", baseRate: 110, certifications: ["ISO 9001"], personnelQualifications: ["ASNT NDT Level III PAUT, TOFD"], isVerified: true, availableDocuments: ["PAUT Procedure Example", "Level III Cert (PAUT)"] },
-  { id: '5', name: 'Coastal Integrity Checks', location: 'Houston, TX', services: ['Magnetic Particle Testing', 'Visual Testing'], specialization: 'Maritime & Offshore', rating: 4.3, contactInfo: '(281) 555-9000', description: 'Specialized NDT for offshore structures and vessels.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "offshore platform", baseRate: 95, certifications: ["DNV Approved", "ABS Certified"], personnelQualifications: ["ASNT NDT Level II MT, VT", "API QUTE"], isVerified: false, availableDocuments: [] },
+  { id: '1', name: 'Advanced NDT Solutions', location: 'Houston, TX', lat: 29.7604, lng: -95.3698, services: ['Ultrasonic Testing', 'Magnetic Particle Testing', 'Radiographic Testing'], specialization: 'Oil & Gas Pipelines', rating: 4.8, contactInfo: '(123) 456-7890', description: 'Leading provider of NDT services for the energy sector.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "industrial site", baseRate: 85, certifications: ["ISO 9001", "API Q1"], personnelQualifications: ["ASNT NDT Level III UT, MT, PT", "AWS CWI"], isVerified: true, availableDocuments: ["General Procedures Manual", "ISO 9001 Certificate", "Technician Level III Certs"] },
+  { id: '2', name: 'Precision Inspections Inc.', location: 'Los Angeles, CA', lat: 34.0522, lng: -118.2437, services: ['Eddy Current Testing', 'Liquid Penetrant Testing'], specialization: 'Aerospace Components', rating: 4.5, contactInfo: '(987) 654-3210', description: 'Specialized in high-precision aerospace inspections.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "factory interior", baseRate: 120, certifications: ["Nadcap NDT", "AS9100"], personnelQualifications: ["NAS 410 Level II ET, PT"], isVerified: true, availableDocuments: ["Nadcap Approval Docs", "AS9100 Cert", "Safety Manual"] },
+  { id: '3', name: 'InfraTest Group', location: 'New York, NY', lat: 40.7128, lng: -74.0060, services: ['Visual Testing', 'Leak Testing', 'Acoustic Emission Testing'], specialization: 'Civil Infrastructure', rating: 4.2, contactInfo: '(555) 123-4567', description: 'Ensuring the safety and integrity of critical infrastructure.', imageUrl: "", dataAiHint: "bridge structure", baseRate: 70, certifications: ["ISO/IEC 17025"], personnelQualifications: ["ASNT NDT Level II VT"], isVerified: false, availableDocuments: ["Sample VT Procedure"] },
+  { id: '4', name: 'TechScan NDT', location: 'Chicago, IL', lat: 41.8781, lng: -87.6298, services: ['Phased Array UT', 'Time-of-Flight Diffraction'], specialization: 'Manufacturing Quality Control', rating: 4.9, contactInfo: '(312) 555-0011', description: 'Cutting-edge NDT for manufacturing excellence.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "modern factory", baseRate: 110, certifications: ["ISO 9001"], personnelQualifications: ["ASNT NDT Level III PAUT, TOFD"], isVerified: true, availableDocuments: ["PAUT Procedure Example", "Level III Cert (PAUT)"] },
+  { id: '5', name: 'Coastal Integrity Checks', location: 'Houston, TX', lat: 29.749907, lng: -95.358421, services: ['Magnetic Particle Testing', 'Visual Testing'], specialization: 'Maritime & Offshore', rating: 4.3, contactInfo: '(281) 555-9000', description: 'Specialized NDT for offshore structures and vessels.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "offshore platform", baseRate: 95, certifications: ["DNV Approved", "ABS Certified"], personnelQualifications: ["ASNT NDT Level II MT, VT", "API QUTE"], isVerified: false, availableDocuments: [] },
 ];
 
 type ViewMode = "list" | "map";
@@ -134,16 +135,16 @@ export default function FindProvidersPage() {
 
       {viewMode === "map" && (
         <div className="space-y-6">
-          <MapPlaceholder />
+          <InteractiveMap providers={filteredProviders} />
           {filteredProviders.length > 0 ? (
-            <div>
-              <h2 className="text-xl font-semibold mb-4">Filtered Providers ({filteredProviders.length})</h2>
+            <div className="mt-4">
+              <h2 className="text-xl font-semibold mb-4">Filtered Providers ({filteredProviders.length}) visible on map</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {filteredProviders.slice(0, 4).map((provider) => ( 
                   <ProviderCard key={provider.id} provider={provider} />
                 ))}
               </div>
-              {filteredProviders.length > 4 && <p className="text-sm text-muted-foreground mt-2">And {filteredProviders.length - 4} more providers...</p>}
+              {filteredProviders.length > 4 && <p className="text-sm text-muted-foreground mt-2">And {filteredProviders.length - 4} more providers shown as markers on the map.</p>}
             </div>
           ) : (
             <div className="text-center py-10">

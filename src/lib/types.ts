@@ -8,6 +8,8 @@ export type ClientProfileData = {
 
 export type ProviderProfileData = {
   location?: string;
+  lat?: number; // Added for latitude
+  lng?: number; // Added for longitude
   servicesOffered?: string[];
   contactNumber?: string;
   pricingDetails?: string;
@@ -18,7 +20,7 @@ export type ProviderProfileData = {
   certifications?: string[]; 
   personnelQualifications?: string[]; 
   isVerified?: boolean; 
-  availableDocuments?: string[]; // Added for technical documents
+  availableDocuments?: string[];
 };
 
 export type User = {
@@ -34,6 +36,8 @@ export type ServiceProvider = {
   id:string;
   name: string;
   location: string;
+  lat?: number; // Added for latitude
+  lng?: number; // Added for longitude
   services: string[];
   specialization: string;
   rating: number;
@@ -45,7 +49,7 @@ export type ServiceProvider = {
   certifications?: string[]; 
   personnelQualifications?: string[]; 
   isVerified?: boolean; 
-  availableDocuments?: string[]; // Added for technical documents
+  availableDocuments?: string[];
 };
 
 // Input for the AI recommendation flow for clients
@@ -77,4 +81,3 @@ export type ServiceRequest = {
   estimatedCost?: number;
   status: 'Pending' | 'Confirmed' | 'In Progress' | 'Completed' | 'Cancelled';
 };
-
