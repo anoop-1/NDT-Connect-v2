@@ -25,7 +25,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import type { ClientProfileData, ProviderProfileData } from "@/lib/types";
-import { ImageIcon, DollarSign, FileText } from "lucide-react";
+import { ImageIcon, DollarSign, FileText, Award, Users2 } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 const ALL_NDT_SERVICES = [
@@ -81,7 +81,7 @@ NDT Connect ("Platform", "we", "us", "our") provides a platform to connect NDT s
 NDT Connect acts SOLELY AS A FACILITATOR platform. We do not guarantee work, projects, or income. We are not responsible for Client actions, payment failures, or disputes.
 
 4. Service Fees:
-NDT Connect may charge a service fee for utilizing the Platform or for successful engagements facilitated through the Platform. Any applicable fees and payment terms will be communicated to you separately or as part of specific feature usage. You agree to these fees as a condition of using such services.
+NDT Connect may charge a service fee for utilizing the Platform or for successful engagements facilitated through the Platform. Any applicable fees and payment terms will be communicated to you separately or as part of specific feature usage. You agree to these fees as a condition of using such services. (Note: This platform currently has a 15% commission on provider's rate shown to client, and a conceptual 10% fee to providers for facilitation).
 
 5. Limitation of Liability:
 To the fullest extent permitted by law, NDT Connect shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising from your use of the Platform, interactions with Clients, or the provision of your services.
@@ -119,6 +119,8 @@ const providerSchema = baseSchema.extend({
     (val) => (val === "" ? undefined : parseFloat(String(val))),
     z.number({ invalid_type_error: "Base rate must be a number." }).min(0, "Base rate cannot be negative.").optional()
   ),
+  certifications: z.string().optional(), // Textarea for comma-separated list
+  personnelQualifications: z.string().optional(), // Textarea for comma-separated list
 });
 
 const formSchema = z.union([clientSchema, providerSchema])
@@ -144,6 +146,8 @@ const formSchema = z.union([clientSchema, providerSchema])
     return true;
   }, {
     message: "Please fill all required fields for your role.",
+    // It's hard to point path to a specific conditional field with union schemas,
+    // so this general message appears at the top or bottom of the form.
   });
 
 
@@ -178,6 +182,8 @@ export function RegisterForm() {
       acceptanceCriteriaInfo: "",
       companyLogoUrl: "",
       baseRate: undefined,
+      certifications: "",
+      personnelQualifications: "",
     },
   });
 
@@ -205,6 +211,9 @@ export function RegisterForm() {
         acceptanceCriteriaInfo: values.acceptanceCriteriaInfo,
         companyLogoUrl: values.companyLogoUrl,
         baseRate: values.baseRate,
+        certifications: values.certifications?.split(',').map(s => s.trim()).filter(Boolean) || [],
+        personnelQualifications: values.personnelQualifications?.split(',').map(s => s.trim()).filter(Boolean) || [],
+        isVerified: false, // Default to not verified on registration
       };
     }
 
@@ -465,6 +474,34 @@ export function RegisterForm() {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="certifications"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="flex items-center"><Award className="h-4 w-4 mr-2 text-muted-foreground"/>Certifications & Accreditations</FormLabel>
+                  <FormControl>
+                    <Textarea placeholder="e.g., ISO 9001, DNV Approval, ABS Certified. Separate with commas." {...field} rows={2}/>
+                  </FormControl>
+                  <FormDescription>List company certifications. Separate multiple items with a comma.</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="personnelQualifications"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="flex items-center"><Users2 className="h-4 w-4 mr-2 text-muted-foreground"/>Personnel Qualifications</FormLabel>
+                  <FormControl>
+                    <Textarea placeholder="e.g., SNT-TC-1A Level II UT, NAS 410 Certified Inspectors. Separate with commas." {...field} rows={2}/>
+                  </FormControl>
+                  <FormDescription>List key personnel qualifications. Separate multiple items with a comma.</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
              <FormField
               control={form.control}
               name="baseRate"
@@ -559,4 +596,3 @@ export function RegisterForm() {
     </Form>
   );
 }
-

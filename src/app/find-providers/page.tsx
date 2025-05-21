@@ -6,20 +6,24 @@ import { ProviderCard } from "@/components/client/ProviderCard";
 import type { ServiceProvider } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, Filter } from "lucide-react";
+import { Search, Filter, ShieldCheck } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 
 const mockProviders: ServiceProvider[] = [
-  { id: '1', name: 'Advanced NDT Solutions', location: 'Houston, TX', services: ['Ultrasonic Testing', 'Magnetic Particle Testing', 'Radiographic Testing'], specialization: 'Oil & Gas Pipelines', rating: 4.8, contactInfo: '(123) 456-7890', description: 'Leading provider of NDT services for the energy sector.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "industrial site", baseRate: 85 },
-  { id: '2', name: 'Precision Inspections Inc.', location: 'Los Angeles, CA', services: ['Eddy Current Testing', 'Liquid Penetrant Testing'], specialization: 'Aerospace Components', rating: 4.5, contactInfo: '(987) 654-3210', description: 'Specialized in high-precision aerospace inspections.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "factory interior", baseRate: 120 },
-  { id: '3', name: 'InfraTest Group', location: 'New York, NY', services: ['Visual Testing', 'Leak Testing', 'Acoustic Emission Testing'], specialization: 'Civil Infrastructure', rating: 4.2, contactInfo: '(555) 123-4567', description: 'Ensuring the safety and integrity of critical infrastructure.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "bridge structure", baseRate: 70 },
-  { id: '4', name: 'TechScan NDT', location: 'Chicago, IL', services: ['Phased Array UT', 'Time-of-Flight Diffraction'], specialization: 'Manufacturing Quality Control', rating: 4.9, contactInfo: '(312) 555-0011', description: 'Cutting-edge NDT for manufacturing excellence.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "modern factory", baseRate: 110},
+  { id: '1', name: 'Advanced NDT Solutions', location: 'Houston, TX', services: ['Ultrasonic Testing', 'Magnetic Particle Testing', 'Radiographic Testing'], specialization: 'Oil & Gas Pipelines', rating: 4.8, contactInfo: '(123) 456-7890', description: 'Leading provider of NDT services for the energy sector.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "industrial site", baseRate: 85, certifications: ["ISO 9001", "API Q1"], personnelQualifications: ["ASNT NDT Level III UT, MT, PT", "AWS CWI"], isVerified: true },
+  { id: '2', name: 'Precision Inspections Inc.', location: 'Los Angeles, CA', services: ['Eddy Current Testing', 'Liquid Penetrant Testing'], specialization: 'Aerospace Components', rating: 4.5, contactInfo: '(987) 654-3210', description: 'Specialized in high-precision aerospace inspections.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "factory interior", baseRate: 120, certifications: ["Nadcap NDT", "AS9100"], personnelQualifications: ["NAS 410 Level II ET, PT"], isVerified: true },
+  { id: '3', name: 'InfraTest Group', location: 'New York, NY', services: ['Visual Testing', 'Leak Testing', 'Acoustic Emission Testing'], specialization: 'Civil Infrastructure', rating: 4.2, contactInfo: '(555) 123-4567', description: 'Ensuring the safety and integrity of critical infrastructure.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "bridge structure", baseRate: 70, certifications: ["ISO/IEC 17025"], personnelQualifications: ["ASNT NDT Level II VT"], isVerified: false },
+  { id: '4', name: 'TechScan NDT', location: 'Chicago, IL', services: ['Phased Array UT', 'Time-of-Flight Diffraction'], specialization: 'Manufacturing Quality Control', rating: 4.9, contactInfo: '(312) 555-0011', description: 'Cutting-edge NDT for manufacturing excellence.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "modern factory", baseRate: 110, certifications: ["ISO 9001"], personnelQualifications: ["ASNT NDT Level III PAUT, TOFD"], isVerified: true},
+  { id: '5', name: 'Coastal Integrity Checks', location: 'Houston, TX', services: ['Magnetic Particle Testing', 'Visual Testing'], specialization: 'Maritime & Offshore', rating: 4.3, contactInfo: '(281) 555-9000', description: 'Specialized NDT for offshore structures and vessels.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "offshore platform", baseRate: 95, certifications: ["DNV Approved", "ABS Certified"], personnelQualifications: ["ASNT NDT Level II MT, VT", "API QUTE"], isVerified: false },
 ];
 
 export default function FindProvidersPage() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [filterVerifiedOnly, setFilterVerifiedOnly] = useState(false);
   const [filteredProviders, setFilteredProviders] = useState<ServiceProvider[]>(mockProviders);
   const { user, loading } = useAuth();
   const router = useRouter();
@@ -35,14 +39,22 @@ export default function FindProvidersPage() {
   useEffect(() => {
     const lowerSearchTerm = searchTerm.toLowerCase();
     setFilteredProviders(
-      mockProviders.filter(provider =>
-        provider.name.toLowerCase().includes(lowerSearchTerm) ||
-        provider.location.toLowerCase().includes(lowerSearchTerm) ||
-        provider.specialization.toLowerCase().includes(lowerSearchTerm) ||
-        provider.services.some(service => service.toLowerCase().includes(lowerSearchTerm))
+      mockProviders.filter(provider => {
+        const matchesSearchTerm =
+          provider.name.toLowerCase().includes(lowerSearchTerm) ||
+          provider.location.toLowerCase().includes(lowerSearchTerm) ||
+          provider.specialization.toLowerCase().includes(lowerSearchTerm) ||
+          provider.services.some(service => service.toLowerCase().includes(lowerSearchTerm)) ||
+          (provider.certifications || []).some(cert => cert.toLowerCase().includes(lowerSearchTerm)) ||
+          (provider.personnelQualifications || []).some(qual => qual.toLowerCase().includes(lowerSearchTerm));
+        
+        const matchesVerificationFilter = filterVerifiedOnly ? provider.isVerified === true : true;
+
+        return matchesSearchTerm && matchesVerificationFilter;
+      }
       )
     );
-  }, [searchTerm]);
+  }, [searchTerm, filterVerifiedOnly]);
 
   if (loading || (!user && !loading)) {
     return <div className="flex justify-center items-center min-h-[calc(100vh-10rem)]">Loading...</div>;
@@ -59,20 +71,30 @@ export default function FindProvidersPage() {
         <p className="text-muted-foreground mb-6">
           Browse and connect with qualified Non-Destructive Testing professionals.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex flex-col sm:flex-row gap-4 mb-4">
           <div className="relative flex-grow">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
             <Input
               type="search"
-              placeholder="Search by name, location, service, or specialization..."
+              placeholder="Search by name, location, service, specialization, certification..."
               className="pl-10 w-full"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          <Button variant="outline">
+          <Button variant="outline"> {/* Placeholder for more complex filters */}
             <Filter className="h-4 w-4 mr-2" /> Filters
           </Button>
+        </div>
+        <div className="flex items-center space-x-2">
+          <Checkbox 
+            id="verifiedOnly" 
+            checked={filterVerifiedOnly} 
+            onCheckedChange={(checked) => setFilterVerifiedOnly(checked as boolean)}
+          />
+          <Label htmlFor="verifiedOnly" className="flex items-center text-sm font-medium">
+            <ShieldCheck className="h-4 w-4 mr-1 text-green-600" /> Show Verified Providers Only
+          </Label>
         </div>
       </section>
 

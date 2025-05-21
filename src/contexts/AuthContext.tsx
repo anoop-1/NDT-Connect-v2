@@ -68,6 +68,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         acceptanceCriteriaInfo: (details.profileData as ProviderProfileData).acceptanceCriteriaInfo || "",
         companyLogoUrl: (details.profileData as ProviderProfileData).companyLogoUrl || "",
         baseRate: (details.profileData as ProviderProfileData).baseRate || 0,
+        certifications: (details.profileData as ProviderProfileData).certifications || [],
+        personnelQualifications: (details.profileData as ProviderProfileData).personnelQualifications || [],
+        isVerified: (details.profileData as ProviderProfileData).isVerified || false, // Default to false
       };
       newUser.providerProfile = providerProfile;
     }
@@ -84,7 +87,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(null);
     try {
      localStorage.removeItem('ndt-user');
-    } catch (error) { // Added curly braces here
+    } catch (error) { 
       console.error("Failed to remove user from localStorage", error);
     }
   };
@@ -101,4 +104,3 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     </AuthContext.Provider>
   );
 }
-

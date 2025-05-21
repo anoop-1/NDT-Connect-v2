@@ -1,3 +1,4 @@
+
 // src/app/track-request/[id]/page.tsx
 "use client";
 
@@ -7,16 +8,22 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ArrowLeft, MessageSquare, Phone, Activity, CheckCircle, Clock, AlertTriangle, CalendarDays, MapPinIcon, FileTextIcon } from "lucide-react";
-import type { ServiceRequest } from "@/lib/types";
+import { ArrowLeft, MessageSquare, Phone, Activity, CheckCircle, Clock, AlertTriangle, CalendarDays, MapPinIcon, FileTextIcon, ShieldCheck, FileArchive } from "lucide-react";
+import type { ServiceRequest, ServiceProvider } from "@/lib/types"; // Added ServiceProvider
 import { Badge } from "@/components/ui/badge";
 
 // Extended mock data to simulate finding a specific request
 const mockRequests: ServiceRequest[] = [
-  { id: 'req1', clientId: 'user1', providerId: 'prov1', serviceType: 'Ultrasonic Testing', location: 'Main Plant, Area 5', description: 'Inspect critical weld points on pressure vessel. Ensure all safety protocols are followed. Report needed by end of week.', requestedDate: '2024-08-15', status: 'Confirmed' },
+  { id: 'req1', clientId: 'user1', providerId: 'prov1', providerName: 'Advanced NDT Solutions', serviceType: 'Ultrasonic Testing', location: 'Main Plant, Area 5', description: 'Inspect critical weld points on pressure vessel. Ensure all safety protocols are followed. Report needed by end of week.', requestedDate: '2024-08-15', status: 'Confirmed' },
   { id: 'req2', clientId: 'user1', serviceType: 'Magnetic Particle Testing', location: 'Storage Tank 3B', description: 'Surface crack detection on tank shell, focusing on welded seams. Provide photographic evidence.', requestedDate: '2024-08-20', status: 'Pending' },
-  { id: 'req3', clientId: 'user1', providerId: 'prov2', serviceType: 'Radiographic Testing', location: 'Fabrication Shop, Bay 2', description: 'Full weld inspection for new pipeline section. Compliance with ASME Section IX required.', requestedDate: '2024-07-10', status: 'Completed' },
+  { id: 'req3', clientId: 'user1', providerId: 'prov2', providerName: 'Precision Inspections Inc.', serviceType: 'Radiographic Testing', location: 'Fabrication Shop, Bay 2', description: 'Full weld inspection for new pipeline section. Compliance with ASME Section IX required.', requestedDate: '2024-07-10', status: 'Completed' },
   { id: 'req4', clientId: 'user1', serviceType: 'Visual Testing', location: 'Bridge Section A1', description: 'Routine visual checkup of structural integrity. Look for corrosion or damage.', requestedDate: '2024-08-01', status: 'In Progress' },
+];
+
+// Mock provider data - in a real app, this would be fetched based on providerId
+const mockProvidersDB: ServiceProvider[] = [
+    { id: 'prov1', name: 'Advanced NDT Solutions', location: 'Houston, TX', services: ['Ultrasonic Testing'], specialization: 'Oil & Gas', rating: 4.8, contactInfo: '(111) 222-3333', isVerified: true, certifications: ["ISO 9001", "API Monogram"], personnelQualifications: ["ASNT Level III", "PCN Level II"] },
+    { id: 'prov2', name: 'Precision Inspections Inc.', location: 'Los Angeles, CA', services: ['Radiographic Testing'], specialization: 'Aerospace', rating: 4.5, contactInfo: '(444) 555-6666', isVerified: true, certifications: ["Nadcap", "AS9100"], personnelQualifications: ["NAS 410 Level III"] },
 ];
 
 
@@ -47,6 +54,7 @@ export default function TrackRequestPage() {
   const params = useParams();
   const requestId = params.id as string;
   const [request, setRequest] = useState<ServiceRequest | null>(null);
+  const [providerDetails, setProviderDetails] = useState<ServiceProvider | null>(null);
   const [fetchError, setFetchError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -59,17 +67,20 @@ export default function TrackRequestPage() {
 
   useEffect(() => {
     if (user && requestId) {
-      // Simulate fetching the specific request
       const foundRequest = mockRequests.find(r => r.id === requestId && (r.clientId === user.id || true)); // Allow any client for mock
       if (foundRequest) {
         setRequest(foundRequest);
+        if (foundRequest.providerId) {
+          const foundProvider = mockProvidersDB.find(p => p.id === foundRequest.providerId);
+          setProviderDetails(foundProvider || null);
+        }
       } else {
         setFetchError("Service request not found or access denied.");
       }
     }
   }, [user, requestId]);
 
-  if (loading || (!request && !fetchError)) {
+  if (loading || (!request && !fetchError && !providerDetails && request?.providerId)) {
     return <div className="flex justify-center items-center min-h-[calc(100vh-10rem)]"><Activity className="h-8 w-8 animate-spin text-primary" /> <span className="ml-2">Loading request details...</span></div>;
   }
 
@@ -89,7 +100,7 @@ export default function TrackRequestPage() {
      return <div className="text-center py-10">Access Denied.</div>;
   }
   
-  if (!request) return null; // Should be covered by loading/error states
+  if (!request) return null; 
 
   const statuses: ServiceRequest['status'][] = ['Pending', 'Confirmed', 'In Progress', 'Completed'];
   const currentStatusIndex = statuses.indexOf(request.status);
@@ -97,12 +108,11 @@ export default function TrackRequestPage() {
 
   const timelineDescriptions = {
     'Pending': 'Your request has been submitted and is awaiting provider confirmation.',
-    'Confirmed': 'A service provider has confirmed your request and will contact you shortly.',
-    'In Progress': 'The NDT service is currently being performed by the assigned provider.',
+    'Confirmed': `Service Provider ${request.providerName || 'N/A'} has confirmed. They will contact you.`,
+    'In Progress': 'The NDT service is currently being performed.',
     'Completed': 'The service has been completed. Check for reports or follow-ups.',
     'Cancelled': 'This service request has been cancelled.',
   };
-
 
   return (
     <div className="space-y-8">
@@ -113,31 +123,44 @@ export default function TrackRequestPage() {
       <Card className="shadow-xl">
         <CardHeader>
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
-            <CardTitle className="text-2xl md:text-3xl mb-2 sm:mb-0">Request Details: {request.serviceType}</CardTitle>
+            <CardTitle className="text-2xl md:text-3xl mb-2 sm:mb-0">Request: {request.serviceType}</CardTitle>
             <Badge variant={isCancelled ? "destructive" : "default"} className="text-base px-3 py-1">
               Status: {request.status}
             </Badge>
           </div>
           <CardDescription>Request ID: {request.id}</CardDescription>
         </CardHeader>
-        <CardContent className="grid md:grid-cols-2 gap-6">
-          <div className="space-y-3">
+        <CardContent className="grid md:grid-cols-2 gap-x-8 gap-y-6">
+          <div className="space-y-4">
             <div>
-              <h4 className="font-semibold text-sm text-muted-foreground flex items-center"><MapPinIcon className="h-4 w-4 mr-2"/>Location</h4>
+              <h4 className="font-semibold text-sm text-muted-foreground flex items-center mb-1"><MapPinIcon className="h-4 w-4 mr-2"/>Location</h4>
               <p>{request.location}</p>
             </div>
             <div>
-              <h4 className="font-semibold text-sm text-muted-foreground flex items-center"><CalendarDays className="h-4 w-4 mr-2"/>Requested Date</h4>
+              <h4 className="font-semibold text-sm text-muted-foreground flex items-center mb-1"><CalendarDays className="h-4 w-4 mr-2"/>Requested Date</h4>
               <p>{new Date(request.requestedDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
             </div>
             <div>
-              <h4 className="font-semibold text-sm text-muted-foreground flex items-center"><FileTextIcon className="h-4 w-4 mr-2"/>Description</h4>
-              <p className="text-sm whitespace-pre-wrap">{request.description}</p>
+              <h4 className="font-semibold text-sm text-muted-foreground flex items-center mb-1"><FileTextIcon className="h-4 w-4 mr-2"/>Description</h4>
+              <p className="text-sm whitespace-pre-wrap bg-muted/50 p-3 rounded-md">{request.description}</p>
             </div>
-            {request.providerId && (
+            {request.providerId && providerDetails && (
                <div>
-                <h4 className="font-semibold text-sm text-muted-foreground">Assigned Provider ID</h4>
-                <p>{request.providerId} (Contact details placeholder)</p>
+                <h4 className="font-semibold text-sm text-muted-foreground mb-1">Assigned Provider</h4>
+                <p className="font-medium">{providerDetails.name}</p>
+                {providerDetails.isVerified && (
+                  <Badge variant="default" className="mt-1 bg-green-100 text-green-700 border-green-300">
+                    <ShieldCheck className="h-4 w-4 mr-1"/> Verified Provider
+                  </Badge>
+                )}
+              </div>
+            )}
+             {request.providerId && providerDetails && providerDetails.isVerified && (
+              <div className="p-3 border border-dashed rounded-md bg-blue-50 text-blue-700">
+                <h5 className="font-semibold text-sm flex items-center mb-1"><FileArchive className="h-4 w-4 mr-2"/>Provider Documentation</h5>
+                <p className="text-xs">
+                  As this is a verified provider, relevant company approvals, procedures, and technician qualification certifications are notionally considered submitted/available for this engagement.
+                </p>
               </div>
             )}
           </div>
@@ -165,11 +188,13 @@ export default function TrackRequestPage() {
           <Button variant="outline" onClick={() => alert('Contact support placeholder')}>
             <MessageSquare className="h-4 w-4 mr-2" /> Contact Support
           </Button>
-          {request.providerId && !isCancelled && request.status !== 'Completed' && (
-            <Button onClick={() => alert(`Contacting provider ${request.providerId}`)}>
+          {providerDetails && !isCancelled && request.status !== 'Completed' && (
+            <Button onClick={() => alert(`Contacting provider ${providerDetails.name} via ${providerDetails.contactInfo}`)}>
               <Phone className="h-4 w-4 mr-2" /> Contact Provider
             </Button>
           )}
         </CardFooter>
       </Card>
     </div>
+  );
+}

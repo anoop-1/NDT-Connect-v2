@@ -10,18 +10,21 @@ export type ProviderProfileData = {
   location?: string;
   servicesOffered?: string[];
   contactNumber?: string;
-  pricingDetails?: string; // For textual description
+  pricingDetails?: string;
   procedureInfo?: string;
   acceptanceCriteriaInfo?: string;
-  companyLogoUrl?: string; // New: For provider's logo
-  baseRate?: number; // New: For a base service rate (e.g., hourly)
+  companyLogoUrl?: string;
+  baseRate?: number;
+  certifications?: string[]; // New: List of certifications (e.g., "ISO 9001", "DNV Certified")
+  personnelQualifications?: string[]; // New: List of personnel qualifications (e.g., "SNT-TC-1A Level II", "NAS 410")
+  isVerified?: boolean; // New: Admin-controlled verification status
 };
 
 export type User = {
   id: string;
   email: string;
   role: 'client' | 'provider';
-  name?: string; // Full name of the person registering
+  name?: string;
   clientProfile?: ClientProfileData;
   providerProfile?: ProviderProfileData;
 };
@@ -33,11 +36,14 @@ export type ServiceProvider = {
   services: string[];
   specialization: string;
   rating: number;
-  contactInfo: string; // This can be phone or email from profile
+  contactInfo: string;
   description?: string;
-  imageUrl?: string; // Will use this for companyLogoUrl
+  imageUrl?: string;
   dataAiHint?: string;
-  baseRate?: number; // New: To pass provider's base rate for display
+  baseRate?: number;
+  certifications?: string[]; // New
+  personnelQualifications?: string[]; // New
+  isVerified?: boolean; // New
 };
 
 // Input for the AI recommendation flow for clients
@@ -60,12 +66,11 @@ export type ServiceRequest = {
   id: string;
   clientId: string;
   providerId?: string;
-  providerName?: string; // New: To store provider name for the request
+  providerName?: string;
   serviceType: string;
-  location: string; // Location of service, can be pre-filled from client profile or provider coverage
+  location: string;
   description: string;
   requestedDate: string;
-  estimatedCost?: number; // New: To store estimated cost
+  estimatedCost?: number;
   status: 'Pending' | 'Confirmed' | 'In Progress' | 'Completed' | 'Cancelled';
 };
-

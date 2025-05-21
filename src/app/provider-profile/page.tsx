@@ -12,7 +12,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Activity, Save, Building, Phone, Mail, Globe, Image as ImageIcon, DollarSign } from "lucide-react";
+import { Activity, Save, Building, Phone, Mail, Globe, Image as ImageIcon, DollarSign, Award, Users2, ShieldCheck, ShieldAlert } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 const ALL_NDT_SERVICES = [
   "Ultrasonic Testing (UT)", "Magnetic Particle Testing (MT)", "Liquid Penetrant Testing (PT)",
@@ -21,51 +22,60 @@ const ALL_NDT_SERVICES = [
 ];
 
 export default function ProviderProfilePage() {
-  const { user, loading, setUser } = useAuth(); // Added setUser to update context
+  const { user, loading, setUser } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [profileData, setProfileData] = useState({
-    companyName: user?.providerProfile?.location || user?.name || "NDT Experts LLC", // Use existing or default
-    contactEmail: user?.email || "",
-    phone: user?.providerProfile?.contactNumber || "(555) 123-4567",
-    website: "https://ndtexperts.example.com",
-    address: user?.providerProfile?.location || "123 Innovation Drive, Tech City, TX 77001",
-    bio: "Providing top-tier NDT services for over 10 years. Specializing in aerospace and manufacturing sectors. Certified and experienced professionals.",
-    servicesOffered: user?.providerProfile?.servicesOffered || ["Ultrasonic Testing (UT)", "Radiographic Testing (RT)"],
-    certifications: "ASNT Level III, ISO 9001",
-    serviceRadius: "100 miles",
-    companyLogoUrl: user?.providerProfile?.companyLogoUrl || "",
-    baseRate: user?.providerProfile?.baseRate || 0,
-    pricingDetails: user?.providerProfile?.pricingDetails || "Contact for detailed quotes.",
-    procedureInfo: user?.providerProfile?.procedureInfo || "Procedures follow industry best practices.",
-    acceptanceCriteriaInfo: user?.providerProfile?.acceptanceCriteriaInfo || "Standard industry acceptance criteria applied.",
+    companyName: "",
+    contactEmail: "",
+    phone: "",
+    website: "",
+    address: "",
+    bio: "",
+    servicesOffered: [] as string[],
+    certifications: [] as string[], // Stored as array, edited as string
+    personnelQualifications: [] as string[], // Stored as array, edited as string
+    serviceRadius: "",
+    companyLogoUrl: "",
+    baseRate: 0,
+    pricingDetails: "",
+    procedureInfo: "",
+    acceptanceCriteriaInfo: "",
+    isVerified: false,
   });
+
+  // State for text area inputs for certifications and qualifications
+  const [certsText, setCertsText] = useState("");
+  const [qualsText, setQualsText] = useState("");
 
   useEffect(() => {
     if (!loading && !user) {
       router.push("/login?redirect=/provider-profile");
     } else if (user && user.role !== 'provider') {
       router.push("/dashboard");
-    } else if (user) {
-      // Pre-fill form with existing profile data from AuthContext
+    } else if (user && user.providerProfile) {
       setProfileData({
-        companyName: user.providerProfile?.location || user.name || "NDT Company", // companyName for profile often is user's name or a registered company
+        companyName: user.name || "",
         contactEmail: user.email,
-        phone: user.providerProfile?.contactNumber || "",
-        website: user.providerProfile?.companyLogoUrl ? "" : "https://example.com", // Placeholder if not available
-        address: user.providerProfile?.location || "",
-        bio: "Enter company bio here.", // Placeholder
-        servicesOffered: user.providerProfile?.servicesOffered || [],
-        certifications: "", // Placeholder
-        serviceRadius: "", // Placeholder
-        companyLogoUrl: user.providerProfile?.companyLogoUrl || "",
-        baseRate: user.providerProfile?.baseRate || 0,
-        pricingDetails: user.providerProfile?.pricingDetails || "",
-        procedureInfo: user.providerProfile?.procedureInfo || "",
-        acceptanceCriteriaInfo: user.providerProfile?.acceptanceCriteriaInfo || "",
+        phone: user.providerProfile.contactNumber || "",
+        website: user.providerProfile.companyLogoUrl ? "" : "https://example.com", // A bit unclear mapping here, assuming website is separate
+        address: user.providerProfile.location || "",
+        bio: "Update company bio here.", // Placeholder if not set
+        servicesOffered: user.providerProfile.servicesOffered || [],
+        certifications: user.providerProfile.certifications || [],
+        personnelQualifications: user.providerProfile.personnelQualifications || [],
+        serviceRadius: "", // Placeholder for now
+        companyLogoUrl: user.providerProfile.companyLogoUrl || "",
+        baseRate: user.providerProfile.baseRate || 0,
+        pricingDetails: user.providerProfile.pricingDetails || "",
+        procedureInfo: user.providerProfile.procedureInfo || "",
+        acceptanceCriteriaInfo: user.providerProfile.acceptanceCriteriaInfo || "",
+        isVerified: user.providerProfile.isVerified || false,
       });
+      setCertsText((user.providerProfile.certifications || []).join(", "));
+      setQualsText((user.providerProfile.personnelQualifications || []).join(", "));
     }
   }, [user, loading, router]);
 
@@ -89,15 +99,19 @@ export default function ProviderProfilePage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
+    
+    const updatedCerts = certsText.split(',').map(s => s.trim()).filter(Boolean);
+    const updatedQuals = qualsText.split(',').map(s => s.trim()).filter(Boolean);
+
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     if (user) {
       const updatedUser = {
         ...user,
+        name: profileData.companyName, // Assuming companyName from form updates user's display name
         providerProfile: {
           ...user.providerProfile,
-          location: profileData.address, // Using address as location
+          location: profileData.address,
           servicesOffered: profileData.servicesOffered,
           contactNumber: profileData.phone,
           companyLogoUrl: profileData.companyLogoUrl,
@@ -105,12 +119,14 @@ export default function ProviderProfilePage() {
           pricingDetails: profileData.pricingDetails,
           procedureInfo: profileData.procedureInfo,
           acceptanceCriteriaInfo: profileData.acceptanceCriteriaInfo,
-          // Potentially update user.name if companyName in form is meant to be the primary name
+          certifications: updatedCerts,
+          personnelQualifications: updatedQuals,
+          isVerified: profileData.isVerified, // This normally wouldn't be editable by user
+          // website is not explicitly in ProviderProfileData, mapping address to location
         },
-        name: profileData.companyName // Assuming companyName field updates user's display name if it's a company
       };
-      setUser(updatedUser); // Update AuthContext
-      localStorage.setItem('ndt-user', JSON.stringify(updatedUser)); // Update localStorage
+      setUser(updatedUser);
+      localStorage.setItem('ndt-user', JSON.stringify(updatedUser));
     }
 
     toast({
@@ -132,8 +148,21 @@ export default function ProviderProfilePage() {
     <div className="max-w-3xl mx-auto">
       <Card className="shadow-xl">
         <CardHeader>
-          <CardTitle className="text-3xl">Manage Your Provider Profile</CardTitle>
-          <CardDescription>Keep your information up-to-date to attract clients and showcase your expertise.</CardDescription>
+          <div className="flex justify-between items-start">
+            <div>
+              <CardTitle className="text-3xl">Manage Your Provider Profile</CardTitle>
+              <CardDescription>Keep your information up-to-date to attract clients and showcase your expertise.</CardDescription>
+            </div>
+            {profileData.isVerified ? (
+              <Badge variant="default" className="bg-green-500 hover:bg-green-600 text-white">
+                <ShieldCheck className="h-4 w-4 mr-2" /> Verified Provider
+              </Badge>
+            ) : (
+              <Badge variant="destructive">
+                <ShieldAlert className="h-4 w-4 mr-2" /> Not Verified
+              </Badge>
+            )}
+          </div>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -188,10 +217,24 @@ export default function ProviderProfilePage() {
                 ))}
               </div>
             </div>
+
+            <div>
+              <Label htmlFor="certsText" className="flex items-center"><Award className="h-4 w-4 mr-2 text-muted-foreground"/>Certifications & Accreditations</Label>
+              <Textarea id="certsText" name="certsText" value={certsText} onChange={(e) => setCertsText(e.target.value)} rows={3} placeholder="e.g., ISO 9001, DNV Approval, ABS Certified. Separate with commas." />
+              <p className="text-xs text-muted-foreground mt-1">List company certifications, separated by commas.</p>
+            </div>
+
+            <div>
+              <Label htmlFor="qualsText" className="flex items-center"><Users2 className="h-4 w-4 mr-2 text-muted-foreground"/>Personnel Qualifications</Label>
+              <Textarea id="qualsText" name="qualsText" value={qualsText} onChange={(e) => setQualsText(e.target.value)} rows={3} placeholder="e.g., SNT-TC-1A Level II UT, NAS 410 Certified. Separate with commas." />
+              <p className="text-xs text-muted-foreground mt-1">List key personnel qualifications, separated by commas.</p>
+            </div>
+
+
              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <Label htmlFor="certifications">Certifications & Qualifications</Label>
-                  <Input id="certifications" name="certifications" value={profileData.certifications} onChange={handleInputChange} placeholder="e.g., ASNT Level III, ISO 9001" />
+                <div> {/* This input was already here, keeping it */}
+                  <Label htmlFor="certifications_old_input">Certifications & Qualifications (Legacy - to be removed)</Label>
+                  <Input id="certifications_old_input" name="certifications_old_input_name" value={(profileData.certifications || []).join(", ") + (profileData.personnelQualifications || []).join(", ")} disabled placeholder="e.g., ASNT Level III, ISO 9001" />
                 </div>
                  <div>
                   <Label htmlFor="serviceRadius">Service Radius</Label>
