@@ -15,11 +15,13 @@ export function ProviderCard({ provider }: ProviderCardProps) {
     <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
       <div className="relative w-full h-48">
         <Image
-          src={provider.imageUrl || `https://placehold.co/600x400.png?text=${encodeURIComponent(provider.name)}`}
+          src={provider.imageUrl || `https://placehold.co/600x400.png`}
           alt={provider.name}
-          layout="fill"
-          objectFit="cover"
-          data-ai-hint="company building"
+          fill={true}
+          style={{ objectFit: 'cover' }}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority={false} // Only set true for LCP images
+          data-ai-hint={provider.dataAiHint || "company building"}
         />
       </div>
       <CardHeader>

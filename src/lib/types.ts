@@ -6,7 +6,7 @@ export type User = {
 };
 
 export type ServiceProvider = {
-  id: string;
+  id:string;
   name: string;
   location: string;
   services: string[];
@@ -15,6 +15,7 @@ export type ServiceProvider = {
   contactInfo: string;
   description?: string;
   imageUrl?: string;
+  dataAiHint?: string; // Added for AI hint consistency
 };
 
 export type Recommendation = {
@@ -31,4 +32,6 @@ export type ServiceRequest = {
   serviceType: string;
   location: string;
   description: string;
-  requested
+  requestedDate: string; // Assuming string for simplicity, could be Date
+  status: 'Pending' | 'Confirmed' | 'In Progress' | 'Completed' | 'Cancelled';
+};
