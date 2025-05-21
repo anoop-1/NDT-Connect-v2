@@ -25,10 +25,11 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import type { ClientProfileData, ProviderProfileData } from "@/lib/types";
+import { ImageIcon, DollarSign } from "lucide-react";
 
 const ALL_NDT_SERVICES = [
-  "Ultrasonic Testing (UT)", "Magnetic Particle Testing (MT)", "Liquid Penetrant Testing (PT)", 
-  "Radiographic Testing (RT)", "Eddy Current Testing (ET)", "Visual Testing (VT)", 
+  "Ultrasonic Testing (UT)", "Magnetic Particle Testing (MT)", "Liquid Penetrant Testing (PT)",
+  "Radiographic Testing (RT)", "Eddy Current Testing (ET)", "Visual Testing (VT)",
   "Leak Testing (LT)", "Acoustic Emission Testing (AET)", "Phased Array UT (PAUT)", "Time-of-Flight Diffraction (TOFD)"
 ];
 
@@ -51,20 +52,24 @@ const providerSchema = baseSchema.extend({
   locationProvider: z.string().min(2, { message: "Location is required." }),
   servicesOffered: z.array(z.string()).min(1, { message: "At least one service must be selected." }),
   contactNumberProvider: z.string().min(7, {message: "Contact number is required."}),
-  pricingDetails: z.string().min(10, { message: "Pricing details are required." }),
+  pricingDetails: z.string().min(10, { message: "Pricing details (text description) are required." }),
   procedureInfo: z.string().min(10, { message: "Procedure information is required." }),
   acceptanceCriteriaInfo: z.string().min(10, { message: "Acceptance criteria are required." }),
+  companyLogoUrl: z.string().url({ message: "Please enter a valid URL for the company logo." }).optional().or(z.literal("")),
+  baseRate: z.preprocess(
+    (val) => (val === "" ? undefined : parseFloat(String(val))),
+    z.number({ invalid_type_error: "Base rate must be a number." }).min(0, "Base rate cannot be negative.").optional()
+  ),
 });
 
-// Combined schema using refine for conditional validation
 const formSchema = z.union([clientSchema, providerSchema])
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don't match",
     path: ["confirmPassword"],
   })
-  .refine(data => { // Ensure role-specific fields are present
+  .refine(data => {
     if (data.role === 'client') {
-        return 'companyName' in data && data.companyName && 
+        return 'companyName' in data && data.companyName &&
                'industry' in data && data.industry &&
                'primaryLocation' in data && data.primaryLocation &&
                'contactNumberClient' in data && data.contactNumberClient;
@@ -78,9 +83,8 @@ const formSchema = z.union([clientSchema, providerSchema])
                'acceptanceCriteriaInfo' in data && data.acceptanceCriteriaInfo;
     }
     return true;
-  }, { 
+  }, {
     message: "Please fill all required fields for your role.",
-    // No specific path, general error or could try to target 'role'
   });
 
 
@@ -112,6 +116,8 @@ export function RegisterForm() {
       pricingDetails: "",
       procedureInfo: "",
       acceptanceCriteriaInfo: "",
+      companyLogoUrl: "",
+      baseRate: undefined,
     },
   });
 
@@ -119,7 +125,7 @@ export function RegisterForm() {
 
   async function onSubmit(values: FormSchemaType) {
     setIsLoading(true);
-    
+
     let profileData: Partial<ClientProfileData & ProviderProfileData> = {};
 
     if (values.role === "client" && "companyName" in values) {
@@ -137,19 +143,21 @@ export function RegisterForm() {
         pricingDetails: values.pricingDetails,
         procedureInfo: values.procedureInfo,
         acceptanceCriteriaInfo: values.acceptanceCriteriaInfo,
+        companyLogoUrl: values.companyLogoUrl,
+        baseRate: values.baseRate,
       };
     }
 
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
-    
+
     login({
       email: values.email,
       role: values.role,
       name: values.name,
       profileData: profileData
     });
-    
+
     toast({
       title: "Registration Successful",
       description: `Welcome, ${values.name}! Your account as a ${values.role} has been created.`,
@@ -223,8 +231,6 @@ export function RegisterForm() {
                 <RadioGroup
                   onValueChange={(value) => {
                     field.onChange(value);
-                    // Optional: Reset other role's fields when role changes to ensure clean state
-                    // form.reset({...form.getValues(), companyName: "", industry: "", ... etc.}); // Be careful with this
                   }}
                   defaultValue={field.value}
                   className="flex space-x-4"
@@ -321,6 +327,20 @@ export function RegisterForm() {
               )}
             />
             <FormField
+              control={form.control}
+              name="companyLogoUrl"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="flex items-center"><ImageIcon className="h-4 w-4 mr-2 text-muted-foreground"/>Company Logo URL (Optional)</FormLabel>
+                  <FormControl>
+                    <Input type="url" placeholder="https://example.com/logo.png" {...field} />
+                  </FormControl>
+                  <FormDescription>Direct link to an image of your company logo.</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
                 control={form.control}
                 name="servicesOffered"
                 render={() => (
@@ -383,6 +403,20 @@ export function RegisterForm() {
                 </FormItem>
               )}
             />
+             <FormField
+              control={form.control}
+              name="baseRate"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel className="flex items-center"><DollarSign className="h-4 w-4 mr-2 text-muted-foreground"/>Base Rate (e.g., per hour, optional)</FormLabel>
+                  <FormControl>
+                    <Input type="number" placeholder="75" {...field} onChange={e => field.onChange(e.target.value === '' ? undefined : parseFloat(e.target.value))} />
+                  </FormControl>
+                  <FormDescription>Enter a numeric base rate if applicable. Used for estimated pricing.</FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name="pricingDetails"
@@ -390,7 +424,7 @@ export function RegisterForm() {
                 <FormItem>
                   <FormLabel>Pricing Details</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="Describe your pricing structure, e.g., per hour, per inspection, etc." {...field} />
+                    <Textarea placeholder="Describe your pricing structure, e.g., per hour, per inspection, project-based estimates available upon request." {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -403,7 +437,7 @@ export function RegisterForm() {
                 <FormItem>
                   <FormLabel>Procedure Information</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="Briefly describe your general procedures or link to detailed documents." {...field} />
+                    <Textarea placeholder="Briefly describe your general procedures or mention adherence to specific standards (e.g., ASNT, ISO)." {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -416,7 +450,7 @@ export function RegisterForm() {
                 <FormItem>
                   <FormLabel>Acceptance Criteria</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="General acceptance criteria you adhere to or common standards used." {...field} />
+                    <Textarea placeholder="General acceptance criteria you adhere to or common standards used (e.g., API 1104, ASME B31.3)." {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -431,4 +465,3 @@ export function RegisterForm() {
     </Form>
   );
 }
-

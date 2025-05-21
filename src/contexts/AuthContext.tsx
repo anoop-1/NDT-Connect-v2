@@ -15,7 +15,7 @@ interface LoginDetails {
 
 interface AuthContextType {
   user: User | null;
-  setUser: Dispatch<SetStateAction<User | null>>;
+  setUser: Dispatch<SetStateAction<User | null>>; // Expose setUser for profile updates
   loading: boolean;
   login: (details: LoginDetails) => void;
   logout: () => void;
@@ -48,19 +48,30 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const login = (details: LoginDetails) => {
-    const newUser: User = { 
-      id: Date.now().toString(), 
-      email: details.email, 
-      role: details.role, 
-      name: details.name 
+    const newUser: User = {
+      id: Date.now().toString(), // Simple unique ID for mock
+      email: details.email,
+      role: details.role,
+      name: details.name
     };
 
     if (details.role === 'client') {
       newUser.clientProfile = details.profileData as ClientProfileData;
     } else if (details.role === 'provider') {
-      newUser.providerProfile = details.profileData as ProviderProfileData;
+      // Ensure all expected fields for ProviderProfileData are handled
+      const providerProfile: ProviderProfileData = {
+        location: (details.profileData as ProviderProfileData).location || "",
+        servicesOffered: (details.profileData as ProviderProfileData).servicesOffered || [],
+        contactNumber: (details.profileData as ProviderProfileData).contactNumber || "",
+        pricingDetails: (details.profileData as ProviderProfileData).pricingDetails || "",
+        procedureInfo: (details.profileData as ProviderProfileData).procedureInfo || "",
+        acceptanceCriteriaInfo: (details.profileData as ProviderProfileData).acceptanceCriteriaInfo || "",
+        companyLogoUrl: (details.profileData as ProviderProfileData).companyLogoUrl || "",
+        baseRate: (details.profileData as ProviderProfileData).baseRate || 0,
+      };
+      newUser.providerProfile = providerProfile;
     }
-    
+
     setUser(newUser);
     try {
       localStorage.setItem('ndt-user', JSON.stringify(newUser));
@@ -73,15 +84,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(null);
     try {
      localStorage.removeItem('ndt-user');
-    } catch (error) {
+    } catch (error) { // Added curly braces here
       console.error("Failed to remove user from localStorage", error);
     }
   };
-  
+
+  // Update loading state when user changes, ensuring it becomes false once user is set (either from localStorage or login)
   useEffect(() => {
-    if (user !== null) { 
-      setLoading(false);
-    }
+    setLoading(false);
   }, [user]);
 
 
@@ -91,3 +101,4 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     </AuthContext.Provider>
   );
 }
+

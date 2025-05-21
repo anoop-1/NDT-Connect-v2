@@ -1,3 +1,4 @@
+
 // src/app/find-providers/page.tsx
 "use client";
 
@@ -11,10 +12,10 @@ import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 
 const mockProviders: ServiceProvider[] = [
-  { id: '1', name: 'Advanced NDT Solutions', location: 'Houston, TX', services: ['Ultrasonic Testing', 'Magnetic Particle Testing', 'Radiographic Testing'], specialization: 'Oil & Gas Pipelines', rating: 4.8, contactInfo: '(123) 456-7890', description: 'Leading provider of NDT services for the energy sector.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "industrial site" },
-  { id: '2', name: 'Precision Inspections Inc.', location: 'Los Angeles, CA', services: ['Eddy Current Testing', 'Liquid Penetrant Testing'], specialization: 'Aerospace Components', rating: 4.5, contactInfo: '(987) 654-3210', description: 'Specialized in high-precision aerospace inspections.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "factory interior" },
-  { id: '3', name: 'InfraTest Group', location: 'New York, NY', services: ['Visual Testing', 'Leak Testing', 'Acoustic Emission Testing'], specialization: 'Civil Infrastructure', rating: 4.2, contactInfo: '(555) 123-4567', description: 'Ensuring the safety and integrity of critical infrastructure.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "bridge structure" },
-  { id: '4', name: 'TechScan NDT', location: 'Chicago, IL', services: ['Phased Array UT', 'Time-of-Flight Diffraction'], specialization: 'Manufacturing Quality Control', rating: 4.9, contactInfo: '(312) 555-0011', description: 'Cutting-edge NDT for manufacturing excellence.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "modern factory"},
+  { id: '1', name: 'Advanced NDT Solutions', location: 'Houston, TX', services: ['Ultrasonic Testing', 'Magnetic Particle Testing', 'Radiographic Testing'], specialization: 'Oil & Gas Pipelines', rating: 4.8, contactInfo: '(123) 456-7890', description: 'Leading provider of NDT services for the energy sector.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "industrial site", baseRate: 85 },
+  { id: '2', name: 'Precision Inspections Inc.', location: 'Los Angeles, CA', services: ['Eddy Current Testing', 'Liquid Penetrant Testing'], specialization: 'Aerospace Components', rating: 4.5, contactInfo: '(987) 654-3210', description: 'Specialized in high-precision aerospace inspections.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "factory interior", baseRate: 120 },
+  { id: '3', name: 'InfraTest Group', location: 'New York, NY', services: ['Visual Testing', 'Leak Testing', 'Acoustic Emission Testing'], specialization: 'Civil Infrastructure', rating: 4.2, contactInfo: '(555) 123-4567', description: 'Ensuring the safety and integrity of critical infrastructure.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "bridge structure", baseRate: 70 },
+  { id: '4', name: 'TechScan NDT', location: 'Chicago, IL', services: ['Phased Array UT', 'Time-of-Flight Diffraction'], specialization: 'Manufacturing Quality Control', rating: 4.9, contactInfo: '(312) 555-0011', description: 'Cutting-edge NDT for manufacturing excellence.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "modern factory", baseRate: 110},
 ];
 
 export default function FindProvidersPage() {
@@ -27,8 +28,7 @@ export default function FindProvidersPage() {
     if (!loading && !user) {
       router.push("/login?redirect=/find-providers");
     } else if (user && user.role !== 'client') {
-      // If user is a provider, redirect to their dashboard or home
-      router.push("/dashboard"); 
+      router.push("/dashboard");
     }
   }, [user, loading, router]);
 
@@ -44,10 +44,10 @@ export default function FindProvidersPage() {
     );
   }, [searchTerm]);
 
-  if (loading || (!user && !loading)) { // Show loading if auth is loading or if redirect hasn't happened yet
+  if (loading || (!user && !loading)) {
     return <div className="flex justify-center items-center min-h-[calc(100vh-10rem)]">Loading...</div>;
   }
-  
+
   if (user && user.role !== 'client') {
     return <div className="text-center py-10">Access denied. This page is for clients.</div>;
   }
