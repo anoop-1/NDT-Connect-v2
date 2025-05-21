@@ -1,3 +1,4 @@
+
 // src/components/shared/MapPlaceholder.tsx
 "use client";
 
@@ -28,6 +29,17 @@ export function MapPlaceholder() {
               Interactive Map Feature Coming Soon!
             </p>
           </div>
+           {/* Conceptual pins - purely visual */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 800 450">
+            <circle cx="200" cy="150" r="8" fill="hsl(var(--primary))" opacity="0.7" />
+            <circle cx="210" cy="160" r="4" fill="hsl(var(--primary-foreground))" opacity="0.9" />
+            <circle cx="400" cy="225" r="8" fill="hsl(var(--primary))" opacity="0.7" />
+            <circle cx="410" cy="235" r="4" fill="hsl(var(--primary-foreground))" opacity="0.9" />
+            <circle cx="600" cy="300" r="8" fill="hsl(var(--primary))" opacity="0.7" />
+            <circle cx="610" cy="310" r="4" fill="hsl(var(--primary-foreground))" opacity="0.9" />
+             <circle cx="300" cy="350" r="8" fill="hsl(var(--accent))" opacity="0.7" />
+            <circle cx="310" cy="360" r="4" fill="hsl(var(--accent-foreground))" opacity="0.9" />
+          </svg>
         </div>
         <p className="text-sm text-muted-foreground mt-4">
           This area will display an interactive map showing provider locations.

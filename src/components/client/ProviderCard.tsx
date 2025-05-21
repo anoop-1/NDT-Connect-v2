@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { MapPin, Star, CheckSquare, DollarSign, ShieldCheck, Award, Users2, Briefcase, BookOpen, FileQuestion } from 'lucide-react';
-import { useRouter } from 'next/navigation'; 
+import { useRouter } from 'next/navigation';
 import { useToast } from "@/hooks/use-toast";
 
 interface ProviderCardProps {
@@ -16,14 +16,14 @@ interface ProviderCardProps {
 }
 
 export function ProviderCard({ provider }: ProviderCardProps) {
-  const router = useRouter(); 
+  const router = useRouter();
   const { toast } = useToast();
 
   const handleRequestService = () => {
     const queryParams = new URLSearchParams({
       providerId: provider.id,
-      providerName: provider.name,
-      serviceType: provider.services.length > 0 ? provider.services[0] : "General Inquiry", 
+      providerName: provider.name, // Use actual provider name here
+      serviceType: provider.services.length > 0 ? provider.services[0] : "General Inquiry",
     });
     if (provider.baseRate) {
       queryParams.append("baseRate", provider.baseRate.toString());
@@ -32,13 +32,11 @@ export function ProviderCard({ provider }: ProviderCardProps) {
   };
 
   const handleRequestDocuments = () => {
-    // In a real app, this would trigger a backend request or a notification to the provider
     toast({
       title: "Document Request Sent",
       description: `Your request for technical documents from ${provider.name} has been noted. The provider will be notified.`,
     });
   };
-
 
   const clientPrice = provider.baseRate ? (provider.baseRate * 1.15).toFixed(2) : null;
   const fallbackImageSrc = '/images/default-provider-graphic.png';
@@ -48,7 +46,7 @@ export function ProviderCard({ provider }: ProviderCardProps) {
       <div className="relative w-full h-48 bg-muted">
         <Image
           src={provider.imageUrl || fallbackImageSrc}
-          alt={provider.name || "NDT Provider"} 
+          alt={provider.name || "NDT Provider"}
           fill={true}
           style={{ objectFit: 'cover' }}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -63,7 +61,8 @@ export function ProviderCard({ provider }: ProviderCardProps) {
         )}
       </div>
       <CardHeader>
-        <CardTitle className="text-xl">{provider.name}</CardTitle> 
+        {/* Display provider's specialization or a generic title if name is to be hidden initially */}
+        <CardTitle className="text-xl">{provider.name || "NDT Service Provider"}</CardTitle>
         <CardDescription className="flex items-center text-sm">
           <MapPin className="h-4 w-4 mr-1 text-muted-foreground" /> {provider.location} ({provider.specialization})
         </CardDescription>
@@ -79,12 +78,12 @@ export function ProviderCard({ provider }: ProviderCardProps) {
           <div className="flex items-center font-semibold">
             <DollarSign className="h-5 w-5 text-primary mr-1" />
             Est. Rate: ${clientPrice}
-            <span className="text-xs text-muted-foreground ml-1">(incl. 15% fee)</span>
+            {/* Removed: <span className="text-xs text-muted-foreground ml-1">(incl. 15% fee)</span> */}
           </div>
         )}
 
         {provider.description && <p className="text-sm text-muted-foreground line-clamp-2">{provider.description}</p>}
-        
+
         <div>
           <h4 className="text-sm font-semibold mb-1 flex items-center"><CheckSquare className="h-4 w-4 mr-1 text-primary"/>Services:</h4>
           <div className="flex flex-wrap gap-1">
@@ -94,7 +93,7 @@ export function ProviderCard({ provider }: ProviderCardProps) {
             {provider.services.length > 3 && <Badge variant="outline" className="text-xs">...</Badge>}
           </div>
         </div>
-        
+
         {provider.certifications && provider.certifications.length > 0 && (
            <div>
             <h4 className="text-sm font-semibold mb-1 flex items-center"><Award className="h-4 w-4 mr-1 text-primary"/>Certifications:</h4>
@@ -118,7 +117,7 @@ export function ProviderCard({ provider }: ProviderCardProps) {
             </div>
           </div>
         )}
-        
+
         {provider.availableDocuments && provider.availableDocuments.length > 0 && (
            <div>
             <h4 className="text-sm font-semibold mb-1 flex items-center"><BookOpen className="h-4 w-4 mr-1 text-primary"/>Available Documents:</h4>
