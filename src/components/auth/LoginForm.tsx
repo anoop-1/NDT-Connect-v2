@@ -1,3 +1,4 @@
+
 // src/components/auth/LoginForm.tsx
 "use client";
 
@@ -27,13 +28,15 @@ const formSchema = z.object({
   role: z.enum(["client", "provider"], { required_error: "You must select a role." }),
 });
 
+type FormSchemaType = z.infer<typeof formSchema>;
+
 export function LoginForm() {
   const { login } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
 
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
@@ -42,12 +45,18 @@ export function LoginForm() {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: FormSchemaType) {
     setIsLoading(true);
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    login(values.email, values.role);
+    login({ 
+      email: values.email, 
+      role: values.role, 
+      name: values.email, // Placeholder for name, ideally fetched
+      profileData: {} // Placeholder, ideally fetched
+    });
+
     toast({
       title: "Login Successful",
       description: `Welcome back, ${values.email}!`,
@@ -117,4 +126,8 @@ export function LoginForm() {
         />
         <Button type="submit" className="w-full" disabled={isLoading}>
           {isLoading ? "Logging in..." : "Login"}
-        
+        </Button>
+      </form>
+    </Form>
+  );
+}
