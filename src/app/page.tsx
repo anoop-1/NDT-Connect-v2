@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -89,7 +90,7 @@ export default function HomePage() {
             width={600}
             height={400}
             className="rounded-lg shadow-xl"
-            data-ai-hint="inspection technology"
+            data-ai-hint="NDT inspection"
           />
         </div>
       </section>
