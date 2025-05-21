@@ -15,9 +15,9 @@ export type ProviderProfileData = {
   acceptanceCriteriaInfo?: string;
   companyLogoUrl?: string;
   baseRate?: number;
-  certifications?: string[]; // New: List of certifications (e.g., "ISO 9001", "DNV Certified")
-  personnelQualifications?: string[]; // New: List of personnel qualifications (e.g., "SNT-TC-1A Level II", "NAS 410")
-  isVerified?: boolean; // New: Admin-controlled verification status
+  certifications?: string[]; 
+  personnelQualifications?: string[]; 
+  isVerified?: boolean; 
 };
 
 export type User = {
@@ -41,9 +41,9 @@ export type ServiceProvider = {
   imageUrl?: string;
   dataAiHint?: string;
   baseRate?: number;
-  certifications?: string[]; // New
-  personnelQualifications?: string[]; // New
-  isVerified?: boolean; // New
+  certifications?: string[]; 
+  personnelQualifications?: string[]; 
+  isVerified?: boolean; 
 };
 
 // Input for the AI recommendation flow for clients
@@ -56,6 +56,7 @@ export type OptimizeServiceProviderRecommendationsInput = {
 };
 
 export type Recommendation = {
+  referenceId: string; // Added referenceId
   providerName: string;
   contactInfo: string;
   rating: number;
@@ -74,3 +75,4 @@ export type ServiceRequest = {
   estimatedCost?: number;
   status: 'Pending' | 'Confirmed' | 'In Progress' | 'Completed' | 'Cancelled';
 };
+

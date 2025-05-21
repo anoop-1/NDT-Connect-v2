@@ -1,15 +1,19 @@
+
 // src/components/client/RecommendationResults.tsx
 import type { Recommendation } from "@/lib/types";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Phone, Star, Info } from "lucide-react";
+import { Star, Info, Briefcase } from "lucide-react"; // Removed Phone
+import { useRouter } from "next/navigation";
 
 interface RecommendationResultsProps {
   recommendations: Recommendation[];
 }
 
 export function RecommendationResults({ recommendations }: RecommendationResultsProps) {
+  const router = useRouter();
+
   if (recommendations.length === 0) {
     return (
       <div className="text-center py-8">
@@ -20,31 +24,52 @@ export function RecommendationResults({ recommendations }: RecommendationResults
     );
   }
 
+  const handleRequestServiceFromRecommendation = (rec: Recommendation) => {
+    const queryParams = new URLSearchParams({
+      // providerId: rec.referenceId, // This is a mock ID, not a real one from ServiceProvider list
+      providerName: rec.providerName, // Pass the name from AI
+      serviceType: rec.description.substring(0, 50) + "...", // Use description as a proxy for service type
+      // baseRate could be added if AI provided it.
+      aiRecommendationId: rec.referenceId, // Keep track that this came from AI
+    });
+    router.push(`/request-service?${queryParams.toString()}`);
+  };
+
+
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-semibold">Recommended Service Providers</h2>
+      <h2 className="text-2xl font-semibold">AI Recommended Service Providers</h2>
       <div className="grid md:grid-cols-2 gap-6">
-        {recommendations.map((rec, index) => (
-          <Card key={index} className="shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+        {recommendations.map((rec) => (
+          <Card key={rec.referenceId} className="shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
             <CardHeader>
-              <CardTitle className="text-xl">{rec.providerName}</CardTitle>
-              <div className="flex items-center text-sm text-muted-foreground">
-                <Star className="h-4 w-4 mr-1 text-yellow-400" /> {rec.rating.toFixed(1)} Rating
+              {/* Provider name hidden, using description or generic title */}
+              <CardTitle className="text-xl">AI Recommendation</CardTitle> 
+              <CardDescription className="flex items-center text-sm text-muted-foreground">
+                Ref: {rec.referenceId}
+              </CardDescription>
+              <div className="flex items-center text-sm text-muted-foreground pt-1">
+                <Star className="h-4 w-4 mr-1 text-yellow-400" /> {rec.rating.toFixed(1)} Estimated Rating
               </div>
             </CardHeader>
             <CardContent className="flex-grow">
               <p className="text-sm text-muted-foreground mb-3">{rec.description}</p>
-              <Badge variant="secondary">AI Recommended</Badge>
+              {/* Contact info hidden */}
+              {/* <p className="text-xs text-muted-foreground">Contact: {rec.contactInfo}</p> */}
+              <Badge variant="secondary">AI Generated Profile</Badge>
             </CardContent>
-            <CardFooter className="flex-col sm:flex-row items-stretch sm:items-center sm:justify-between gap-2">
-               <Button variant="outline" size="sm" className="w-full sm:w-auto">
-                <Phone className="h-4 w-4 mr-2" /> {rec.contactInfo}
+            <CardFooter className="flex-col sm:flex-row items-stretch sm:items-center sm:justify-end gap-2">
+               {/* Contact info button removed */}
+              <Button size="sm" className="w-full sm:w-auto" onClick={() => handleRequestServiceFromRecommendation(rec)}>
+                <Briefcase className="h-4 w-4 mr-2"/> Request Service
               </Button>
-              <Button size="sm" className="w-full sm:w-auto" onClick={() => alert(`Contacting ${rec.providerName}`)}>Contact Provider</Button>
             </CardFooter>
           </Card>
         ))}
       </div>
+       <p className="text-xs text-muted-foreground text-center">
+        Note: AI recommendations are based on the information you provide. Company names and contact details are revealed upon initiating a service request.
+      </p>
     </div>
   );
 }

@@ -62,10 +62,10 @@ const prompt = ai.definePrompt({
 
   Provide a detailed recommendation with specific details for each provider, that will be used directly in the application.
   The output must be a JSON formatted string. The key "providerRecommendations" should contain an array of provider objects.
-  Each provider object should have "providerName", "contactInfo", "rating" (a number between 3.5 and 5.0), and "description".
+  Each provider object should have "referenceId" (a unique mock ID like "ai-rec-1", "ai-rec-2"), "providerName", "contactInfo", "rating" (a number between 3.5 and 5.0), and "description".
   Example:
   {
-    "providerRecommendations": "[{\"providerName\": \"Advanced NDT Experts\", \"contactInfo\": \"(555) 123-4567\", \"rating\": 4.7, \"description\": \"Specializes in {{{serviceType}}} for {{{specialization}}} adhering to {{{standard}}} standards.\"}, {\"providerName\": \"Precision Integrity Services\", \"contactInfo\": \"(555) 987-6543\", \"rating\": 4.3, \"description\": \"Expert in {{{serviceType}}} for inspecting {{{assetToBeInspected}}} in the {{{specialization}}} sector.\"}]"
+    "providerRecommendations": "[{\"referenceId\": \"ai-rec-1\", \"providerName\": \"Advanced NDT Experts\", \"contactInfo\": \"(555) 123-4567\", \"rating\": 4.7, \"description\": \"Specializes in {{{serviceType}}} for {{{specialization}}} adhering to {{{standard}}} standards.\"}, {\"referenceId\": \"ai-rec-2\", \"providerName\": \"Precision Integrity Services\", \"contactInfo\": \"(555) 987-6543\", \"rating\": 4.3, \"description\": \"Expert in {{{serviceType}}} for inspecting {{{assetToBeInspected}}} in the {{{specialization}}} sector.\"}]"
   }
   Ensure the response is a valid JSON string. The service providers should be different and sound plausible for the given inputs. Generate 2 to 3 recommendations.
   `,
@@ -84,7 +84,12 @@ const optimizeServiceProviderRecommendationsFlow = ai.defineFlow(
     }
     // Ensure the output is valid by trying to parse it, though the final return is the string
     try {
-      JSON.parse(output.providerRecommendations);
+      const parsedRecs = JSON.parse(output.providerRecommendations);
+      // Basic validation for referenceId in the first recommendation if it exists
+      if (Array.isArray(parsedRecs) && parsedRecs.length > 0 && typeof parsedRecs[0].referenceId === 'undefined') {
+        console.warn("Generated recommendations are missing 'referenceId'.");
+        // Potentially throw error or adjust data if referenceId is critical for all use cases
+      }
     } catch (e) {
       console.error("Generated invalid JSON for recommendations:", output.providerRecommendations);
       throw new Error("AI generated invalid JSON. Please try again.");
@@ -92,3 +97,4 @@ const optimizeServiceProviderRecommendationsFlow = ai.defineFlow(
     return output;
   }
 );
+

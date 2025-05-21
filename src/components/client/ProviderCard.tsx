@@ -7,7 +7,7 @@ import type { ServiceProvider } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Phone, Star, CheckSquare, DollarSign, ShieldCheck, Award, Users2 } from 'lucide-react';
+import { MapPin, Star, CheckSquare, DollarSign, ShieldCheck, Award, Users2, Briefcase } from 'lucide-react'; // Removed Phone
 import { useRouter } from 'next/navigation'; 
 
 interface ProviderCardProps {
@@ -20,7 +20,7 @@ export function ProviderCard({ provider }: ProviderCardProps) {
   const handleRequestService = () => {
     const queryParams = new URLSearchParams({
       providerId: provider.id,
-      providerName: provider.name,
+      providerName: provider.name, // Name is still passed for pre-filling form
       serviceType: provider.services.length > 0 ? provider.services[0] : "General Inquiry", 
     });
     if (provider.baseRate) {
@@ -36,7 +36,7 @@ export function ProviderCard({ provider }: ProviderCardProps) {
       <div className="relative w-full h-48 bg-muted">
         <Image
           src={provider.imageUrl || `https://placehold.co/600x400.png`}
-          alt={provider.name}
+          alt={provider.specialization || "NDT Provider"} // Use specialization or generic alt
           fill={true}
           style={{ objectFit: 'cover' }}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -51,7 +51,8 @@ export function ProviderCard({ provider }: ProviderCardProps) {
         )}
       </div>
       <CardHeader>
-        <CardTitle className="text-xl">{provider.name}</CardTitle>
+        {/* Provider name is hidden, using specialization or a generic title */}
+        <CardTitle className="text-xl">{provider.specialization} Specialist</CardTitle> 
         <CardDescription className="flex items-center text-sm">
           <MapPin className="h-4 w-4 mr-1 text-muted-foreground" /> {provider.location}
         </CardDescription>
@@ -83,10 +84,11 @@ export function ProviderCard({ provider }: ProviderCardProps) {
           </div>
         </div>
         
-        <div>
+        {/* Specialization is already in the title, could be removed or kept for consistency */}
+        {/* <div>
           <h4 className="text-sm font-semibold mb-1 flex items-center"><Award className="h-4 w-4 mr-1 text-primary"/>Specialization:</h4>
           <Badge variant="secondary">{provider.specialization}</Badge>
-        </div>
+        </div> */}
 
         {provider.certifications && provider.certifications.length > 0 && (
            <div>
@@ -113,16 +115,13 @@ export function ProviderCard({ provider }: ProviderCardProps) {
         )}
 
       </CardContent>
-      <CardFooter className="flex flex-col sm:flex-row sm:justify-between items-stretch sm:items-center gap-2 pt-4 border-t">
-        <Button variant="outline" size="sm" className="w-full sm:w-auto" asChild>
-            <a href={`tel:${provider.contactInfo}`}>
-                <Phone className="h-4 w-4 mr-2" /> {provider.contactInfo}
-            </a>
-        </Button>
+      <CardFooter className="flex flex-col sm:flex-row sm:justify-end items-stretch sm:items-center gap-2 pt-4 border-t">
+        {/* Phone button removed from card view */}
         <Button size="sm" className="w-full sm:w-auto" onClick={handleRequestService}>
-          Request Service
+          <Briefcase className="h-4 w-4 mr-2" /> Request Service
         </Button>
       </CardFooter>
     </Card>
   );
 }
+
