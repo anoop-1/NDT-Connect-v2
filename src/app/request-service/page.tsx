@@ -56,6 +56,7 @@ function RequestServiceFormContent() {
     const queryProviderName = searchParams.get("providerName");
     const queryServiceType = searchParams.get("serviceType");
     const queryBaseRate = searchParams.get("baseRate");
+    const queryAiRecommendationId = searchParams.get("aiRecommendationId"); // Check for AI rec
 
     if (queryProviderId) setProviderId(queryProviderId);
     if (queryProviderName) setProviderName(queryProviderName);
@@ -65,7 +66,13 @@ function RequestServiceFormContent() {
       if (!isNaN(rate)) {
         setEstimatedCost(parseFloat((rate * 1.15).toFixed(2)));
       }
+    } else if (queryAiRecommendationId && !queryBaseRate) { // AI Rec might not have base rate initially
+        // If it's an AI rec and no base rate, we might not show cost, or a placeholder
+        // For now, let's assume AI recs pre-selected from /recommendations might not have a queryBaseRate
+        // unless the Recommendation type and flow are updated to include it.
+        // If AI recs *should* have a cost, the AI flow/data needs to provide that.
     }
+
 
   }, [user, loading, router, searchParams]);
 
@@ -191,7 +198,7 @@ function RequestServiceFormContent() {
                   <DollarSign className="h-5 w-5 mr-2"/> Estimated Cost
                 </Label>
                 <p className="text-lg font-bold text-primary">${estimatedCost.toFixed(2)}</p>
-                <p className="text-xs text-muted-foreground">(Based on provider's base rate + 15% platform fee. Final price may vary.)</p>
+                <p className="text-xs text-muted-foreground mt-1">(Final price may vary based on final scope)</p>
               </div>
             )}
 
@@ -216,3 +223,4 @@ export default function RequestServicePage() {
     </Suspense>
   );
 }
+
