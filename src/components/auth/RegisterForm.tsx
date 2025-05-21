@@ -25,7 +25,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import type { ClientProfileData, ProviderProfileData } from "@/lib/types";
-import { ImageIcon, DollarSign } from "lucide-react";
+import { ImageIcon, DollarSign, FileText } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const ALL_NDT_SERVICES = [
   "Ultrasonic Testing (UT)", "Magnetic Particle Testing (MT)", "Liquid Penetrant Testing (PT)",
@@ -33,12 +34,70 @@ const ALL_NDT_SERVICES = [
   "Leak Testing (LT)", "Acoustic Emission Testing (AET)", "Phased Array UT (PAUT)", "Time-of-Flight Diffraction (TOFD)"
 ];
 
+const CLIENT_AGREEMENT_TEXT = `
+Terms of Service for Clients
+
+Welcome to NDT Connect!
+
+NDT Connect ("Platform", "we", "us", "our") provides a platform to connect clients seeking Non-Destructive Testing (NDT) services with NDT service providers ("Service Providers"). By registering an account as a Client on NDT Connect, you ("Client", "you", "your") agree to these Terms of Service.
+
+1. Role of NDT Connect:
+NDT Connect acts SOLELY AS A FACILITATOR to help Clients find and connect with Service Providers. We are not a party to any agreement, contract, or transaction between you and any Service Provider.
+
+2. Client Responsibilities:
+   a. Due Diligence: You are solely responsible for conducting your own due diligence and for selecting an appropriate Service Provider. This includes verifying the Service Provider's qualifications, certifications, insurance, experience, and suitability for your specific NDT requirements.
+   b. Service Agreement: Any work engagement or service agreement is strictly between you and the Service Provider. You are responsible for negotiating the terms of service, including scope, deliverables, timelines, and payment, directly with the Service Provider.
+   c. Requirements Definition: You are responsible for clearly defining your NDT service requirements, including any specific procedures, acceptance criteria, and applicable industry standards or client-specific requirements that the Service Provider must adhere to.
+   d. Fulfillment and Disputes: NDT Connect is not responsible for the quality, legality, or outcome of services provided by Service Providers. Any disputes, issues, or claims related to the services must be resolved directly between you and the Service Provider.
+
+3. No Endorsement or Guarantee:
+NDT Connect does not endorse, recommend, or guarantee any Service Provider or their services. Information about Service Providers on the Platform is provided by the Service Providers themselves or gathered from publicly available sources and is for informational purposes only.
+
+4. Limitation of Liability:
+To the fullest extent permitted by law, NDT Connect shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or inability to access or use the Platform; (ii) any conduct or content of any Service Provider or third party on the Platform; or (iii) any services provided by a Service Provider.
+
+5. Acceptance of Terms:
+By checking the "I agree" box and completing the registration process, you affirm that you have read, understood, and agree to be bound by these Terms of Service.
+`;
+
+const PROVIDER_AGREEMENT_TEXT = `
+Terms of Service for Service Providers
+
+Welcome to NDT Connect!
+
+NDT Connect ("Platform", "we", "us", "our") provides a platform to connect NDT service providers ("Service Provider", "you", "your") with clients seeking Non-Destructive Testing (NDT) services ("Clients"). By registering an account as a Service Provider on NDT Connect, you agree to these Terms of Service.
+
+1. Account and Profile Information:
+   a. Accuracy: You are responsible for providing accurate, current, and complete information in your profile, including but not limited to your business details, location, services offered, qualifications, certifications, contact information, pricing indications, procedure outlines, and acceptance criteria information.
+   b. Updates: You agree to maintain and promptly update your profile information to keep it accurate, current, and complete.
+
+2. Service Provision and Responsibilities:
+   a. Fulfillment of Requirements: You commit to fulfilling all agreed-upon client requirements to the best of your ability. This includes strict adherence to any client-specific procedures, acceptance criteria, and qualification standards communicated by the Client.
+   b. Professional Standards: You will conduct all NDT services in a professional manner and in accordance with recognized industry standards (e.g., SNT-TC-1A for personnel qualification, relevant ASME, API, ISO, or other applicable codes and standards for testing procedures and acceptance criteria), or any other client-specified requirements which may be more stringent.
+   c. Qualification: You warrant that you and your personnel possess the necessary qualifications, certifications (e.g., SNT-TC-1A, ISO 9712, or equivalent), and experience to perform the NDT services you offer and undertake.
+   d. Direct Agreements: Any service agreement or contract is strictly between you and the Client. NDT Connect is not a party to such agreements. You are responsible for negotiating terms, scope, deliverables, and payment directly with the Client.
+
+3. Role of NDT Connect:
+NDT Connect acts SOLELY AS A FACILITATOR platform. We do not guarantee work, projects, or income. We are not responsible for Client actions, payment failures, or disputes.
+
+4. Service Fees:
+NDT Connect may charge a service fee for utilizing the Platform or for successful engagements facilitated through the Platform. Any applicable fees and payment terms will be communicated to you separately or as part of specific feature usage. You agree to these fees as a condition of using such services.
+
+5. Limitation of Liability:
+To the fullest extent permitted by law, NDT Connect shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising from your use of the Platform, interactions with Clients, or the provision of your services.
+
+6. Acceptance of Terms:
+By checking the "I agree" box and completing the registration process, you affirm that you have read, understood, and agree to be bound by these Terms of Service.
+`;
+
+
 const baseSchema = z.object({
   name: z.string().min(2, { message: "Full name must be at least 2 characters." }),
   email: z.string().email({ message: "Invalid email address." }),
   password: z.string().min(6, { message: "Password must be at least 6 characters." }),
   confirmPassword: z.string(),
   role: z.enum(["client", "provider"], { required_error: "You must select a role." }),
+  acceptTerms: z.boolean().refine(val => val === true, { message: "You must accept the terms and conditions to register." }),
 });
 
 const clientSchema = baseSchema.extend({
@@ -52,9 +111,9 @@ const providerSchema = baseSchema.extend({
   locationProvider: z.string().min(2, { message: "Location is required." }),
   servicesOffered: z.array(z.string()).min(1, { message: "At least one service must be selected." }),
   contactNumberProvider: z.string().min(7, {message: "Contact number is required."}),
-  pricingDetails: z.string().min(10, { message: "Pricing details (text description) are required." }),
-  procedureInfo: z.string().min(10, { message: "Procedure information is required." }),
-  acceptanceCriteriaInfo: z.string().min(10, { message: "Acceptance criteria are required." }),
+  pricingDetails: z.string().min(10, { message: "Pricing details (text description) are required." }).max(500, {message: "Pricing details cannot exceed 500 characters."}),
+  procedureInfo: z.string().min(10, { message: "Procedure information is required." }).max(500, {message: "Procedure information cannot exceed 500 characters."}),
+  acceptanceCriteriaInfo: z.string().min(10, { message: "Acceptance criteria are required." }).max(500, {message: "Acceptance criteria cannot exceed 500 characters."}),
   companyLogoUrl: z.string().url({ message: "Please enter a valid URL for the company logo." }).optional().or(z.literal("")),
   baseRate: z.preprocess(
     (val) => (val === "" ? undefined : parseFloat(String(val))),
@@ -104,6 +163,7 @@ export function RegisterForm() {
       password: "",
       confirmPassword: "",
       role: "client",
+      acceptTerms: false,
       // Client fields
       companyName: "",
       industry: "",
@@ -345,47 +405,49 @@ export function RegisterForm() {
                 name="servicesOffered"
                 render={() => (
                     <FormItem>
-                    <div className="mb-4">
+                    <div className="mb-1">
                         <FormLabel className="text-base">Services Offered</FormLabel>
                         <FormDescription>
                         Select all NDT services you provide.
                         </FormDescription>
                     </div>
-                    <div className="grid grid-cols-2 gap-2 p-2 border rounded-md">
-                    {ALL_NDT_SERVICES.map((service) => (
-                        <FormField
-                        key={service}
-                        control={form.control}
-                        name="servicesOffered"
-                        render={({ field }) => {
-                            return (
-                            <FormItem
-                                key={service}
-                                className="flex flex-row items-start space-x-3 space-y-0"
-                            >
-                                <FormControl>
-                                <Checkbox
-                                    checked={field.value?.includes(service)}
-                                    onCheckedChange={(checked) => {
-                                    return checked
-                                        ? field.onChange([...(field.value || []), service])
-                                        : field.onChange(
-                                            (field.value || []).filter(
-                                            (value) => value !== service
-                                            )
-                                        );
-                                    }}
-                                />
-                                </FormControl>
-                                <FormLabel className="text-sm font-normal">
-                                {service}
-                                </FormLabel>
-                            </FormItem>
-                            );
-                        }}
-                        />
-                    ))}
-                    </div>
+                    <ScrollArea className="h-32 w-full rounded-md border p-2">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                      {ALL_NDT_SERVICES.map((service) => (
+                          <FormField
+                          key={service}
+                          control={form.control}
+                          name="servicesOffered"
+                          render={({ field }) => {
+                              return (
+                              <FormItem
+                                  key={service}
+                                  className="flex flex-row items-start space-x-3 space-y-0"
+                              >
+                                  <FormControl>
+                                  <Checkbox
+                                      checked={field.value?.includes(service)}
+                                      onCheckedChange={(checked) => {
+                                      return checked
+                                          ? field.onChange([...(field.value || []), service])
+                                          : field.onChange(
+                                              (field.value || []).filter(
+                                              (value) => value !== service
+                                              )
+                                          );
+                                      }}
+                                  />
+                                  </FormControl>
+                                  <FormLabel className="text-sm font-normal">
+                                  {service}
+                                  </FormLabel>
+                              </FormItem>
+                              );
+                          }}
+                          />
+                      ))}
+                      </div>
+                    </ScrollArea>
                     <FormMessage />
                     </FormItem>
                 )}
@@ -424,7 +486,7 @@ export function RegisterForm() {
                 <FormItem>
                   <FormLabel>Pricing Details</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="Describe your pricing structure, e.g., per hour, per inspection, project-based estimates available upon request." {...field} />
+                    <Textarea placeholder="Describe your pricing structure, e.g., per hour, per inspection, project-based estimates available upon request." {...field} rows={3}/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -437,7 +499,7 @@ export function RegisterForm() {
                 <FormItem>
                   <FormLabel>Procedure Information</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="Briefly describe your general procedures or mention adherence to specific standards (e.g., ASNT, ISO)." {...field} />
+                    <Textarea placeholder="Briefly describe your general procedures or mention adherence to specific standards (e.g., ASNT, ISO)." {...field} rows={3}/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -450,7 +512,7 @@ export function RegisterForm() {
                 <FormItem>
                   <FormLabel>Acceptance Criteria</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="General acceptance criteria you adhere to or common standards used (e.g., API 1104, ASME B31.3)." {...field} />
+                    <Textarea placeholder="General acceptance criteria you adhere to or common standards used (e.g., API 1104, ASME B31.3)." {...field} rows={3}/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -458,10 +520,43 @@ export function RegisterForm() {
             />
           </>
         )}
-        <Button type="submit" className="w-full" disabled={isLoading}>
+
+        {(currentRole === "client" || currentRole === "provider") && (
+          <div className="space-y-3 pt-4">
+            <Label className="text-lg font-semibold flex items-center"><FileText className="mr-2 h-5 w-5 text-primary" />NDT Connect User Agreement</Label>
+            <ScrollArea className="h-48 w-full rounded-md border p-4 text-sm bg-muted/30">
+              <pre className="whitespace-pre-wrap font-sans">
+                {currentRole === "client" ? CLIENT_AGREEMENT_TEXT : PROVIDER_AGREEMENT_TEXT}
+              </pre>
+            </ScrollArea>
+            <FormField
+              control={form.control}
+              name="acceptTerms"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-3 shadow-sm bg-background">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel className="font-normal">
+                      I have read and agree to the NDT Connect User Agreement.
+                    </FormLabel>
+                    <FormMessage />
+                  </div>
+                </FormItem>
+              )}
+            />
+          </div>
+        )}
+
+        <Button type="submit" className="w-full" disabled={isLoading || !form.formState.isValid}>
           {isLoading ? "Registering..." : "Create Account"}
         </Button>
       </form>
     </Form>
   );
 }
+
