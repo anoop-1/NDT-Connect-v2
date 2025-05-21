@@ -1,3 +1,4 @@
+
 // src/components/client/RecommendationForm.tsx
 "use client";
 
@@ -15,9 +16,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import type { OptimizeServiceProviderRecommendationsInput } from "@/ai/flows/optimize-service-provider-recommendations";
+import type { OptimizeServiceProviderRecommendationsInput } from "@/lib/types"; // Ensure this matches the type from lib/types
 import { Sparkles } from "lucide-react";
 
 const NDT_SERVICES = [
@@ -37,7 +37,9 @@ const NDT_SERVICES = [
 const formSchema = z.object({
   location: z.string().min(2, { message: "Location must be at least 2 characters." }),
   serviceType: z.string().min(1, { message: "Please select a service type." }),
-  specialization: z.string().min(3, { message: "Specialization must be at least 3 characters." }),
+  specialization: z.string().min(3, { message: "Specialization/Industry must be at least 3 characters." }),
+  standard: z.string().optional(),
+  assetToBeInspected: z.string().optional(),
 });
 
 interface RecommendationFormProps {
@@ -52,11 +54,20 @@ export function RecommendationForm({ onSubmit, isLoading }: RecommendationFormPr
       location: "",
       serviceType: "",
       specialization: "",
+      standard: "",
+      assetToBeInspected: "",
     },
   });
 
   function handleFormSubmit(values: z.infer<typeof formSchema>) {
-    onSubmit(values);
+    const submissionData: OptimizeServiceProviderRecommendationsInput = {
+        location: values.location,
+        serviceType: values.serviceType,
+        specialization: values.specialization,
+        standard: values.standard || undefined, // Ensure optional fields are undefined if empty
+        assetToBeInspected: values.assetToBeInspected || undefined, // Ensure optional fields are undefined if empty
+    };
+    onSubmit(submissionData);
   }
 
   return (
@@ -123,6 +134,40 @@ export function RecommendationForm({ onSubmit, isLoading }: RecommendationFormPr
             </FormItem>
           )}
         />
+
+        <FormField
+          control={form.control}
+          name="standard"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Applicable Standard (Optional)</FormLabel>
+              <FormControl>
+                <Input placeholder="e.g., ASME Sec V, API 1104, ISO 9712" {...field} />
+              </FormControl>
+              <FormDescription>
+                If a specific inspection standard needs to be followed.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="assetToBeInspected"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Asset to be Inspected (Optional)</FormLabel>
+              <FormControl>
+                <Input placeholder="e.g., Pressure Vessel, Pipeline Weld, Bridge Girder" {...field} />
+              </FormControl>
+              <FormDescription>
+                Describe the item or component requiring inspection.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         
         <Button type="submit" disabled={isLoading} className="w-full sm:w-auto">
           {isLoading ? (
@@ -133,3 +178,11 @@ export function RecommendationForm({ onSubmit, isLoading }: RecommendationFormPr
           ) : (
             <>
               <Sparkles className="mr-2 h-4 w-4" />
+              Get AI Recommendations
+            </>
+          )}
+        </Button>
+      </form>
+    </Form>
+  );
+}

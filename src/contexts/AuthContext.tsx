@@ -1,15 +1,23 @@
+
 // src/contexts/AuthContext.tsx
 "use client";
 
-import type { User } from '@/lib/types';
+import type { User, ClientProfileData, ProviderProfileData } from '@/lib/types';
 import type { Dispatch, ReactNode, SetStateAction } from 'react';
 import { createContext, useState, useEffect } from 'react';
+
+interface LoginDetails {
+  email: string;
+  role: 'client' | 'provider';
+  name: string;
+  profileData: Partial<ClientProfileData & ProviderProfileData>;
+}
 
 interface AuthContextType {
   user: User | null;
   setUser: Dispatch<SetStateAction<User | null>>;
   loading: boolean;
-  login: (email: string, role: 'client' | 'provider') => void;
+  login: (details: LoginDetails) => void;
   logout: () => void;
 }
 
@@ -20,11 +28,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Try to load user from localStorage (very basic persistence)
+    // Try to load user from localStorage
     try {
       const storedUser = localStorage.getItem('ndt-user');
       if (storedUser) {
-        setUser(JSON.parse(storedUser));
+        const parsedUser: User = JSON.parse(storedUser);
+        // Basic validation of stored user structure
+        if (parsedUser && parsedUser.id && parsedUser.email && parsedUser.role) {
+            setUser(parsedUser);
+        } else {
+            localStorage.removeItem('ndt-user'); // Clear invalid stored user
+        }
       }
     } catch (error) {
       console.error("Failed to load user from localStorage", error);
@@ -33,8 +47,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setLoading(false);
   }, []);
 
-  const login = (email: string, role: 'client' | 'provider') => {
-    const newUser: User = { id: Date.now().toString(), email, role, name: email.split('@')[0] };
+  const login = (details: LoginDetails) => {
+    const newUser: User = { 
+      id: Date.now().toString(), 
+      email: details.email, 
+      role: details.role, 
+      name: details.name 
+    };
+
+    if (details.role === 'client') {
+      newUser.clientProfile = details.profileData as ClientProfileData;
+    } else if (details.role === 'provider') {
+      newUser.providerProfile = details.profileData as ProviderProfileData;
+    }
+    
     setUser(newUser);
     try {
       localStorage.setItem('ndt-user', JSON.stringify(newUser));
@@ -52,9 +78,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
   
-  // Ensure loading state reflects initial check
   useEffect(() => {
-    if (user !== null) { // if user is loaded (either from storage or login)
+    if (user !== null) { 
       setLoading(false);
     }
   }, [user]);
