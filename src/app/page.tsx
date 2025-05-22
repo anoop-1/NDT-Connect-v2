@@ -1,11 +1,23 @@
 
+"use client";
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle, Search, Users, ShieldCheck } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 export default function HomePage() {
+  const [currentHomepageImage, setCurrentHomepageImage] = useState("https://placehold.co/600x400.png");
+
+  useEffect(() => {
+    // This code runs only on the client, after hydration
+    const adminSetImageUrl = localStorage.getItem('customHomepageImageUrl');
+    if (adminSetImageUrl) {
+      setCurrentHomepageImage(adminSetImageUrl);
+    }
+  }, []);
+
   return (
     <div className="space-y-12">
       <section className="text-center py-16 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg shadow-sm">
@@ -85,12 +97,13 @@ export default function HomePage() {
         </div>
         <div>
           <Image
-            src="https://placehold.co/600x400.png"
+            src={currentHomepageImage}
             alt="NDT Inspection Process"
             width={600}
             height={400}
-            className="rounded-lg shadow-xl"
+            className="rounded-lg shadow-xl object-cover"
             data-ai-hint="NDT inspection"
+            key={currentHomepageImage} // Add key to force re-render if URL changes
           />
         </div>
       </section>

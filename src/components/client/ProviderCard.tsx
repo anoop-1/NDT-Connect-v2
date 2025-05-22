@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { MapPin, Star, CheckSquare, DollarSign, ShieldCheck, Award, Users2, Briefcase, BookOpen, FileQuestion } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useToast } from "@/hooks/use-toast";
+import { useEffect, useState } from 'react';
 
 interface ProviderCardProps {
   provider: ServiceProvider;
@@ -18,11 +19,33 @@ interface ProviderCardProps {
 export function ProviderCard({ provider }: ProviderCardProps) {
   const router = useRouter();
   const { toast } = useToast();
+  const [finalImageUrl, setFinalImageUrl] = useState(provider.imageUrl || '');
+  const [imageHint, setImageHint] = useState(provider.dataAiHint || "company building");
+
+  useEffect(() => {
+    let determinedImageUrl = provider.imageUrl;
+    let determinedHint = provider.dataAiHint || "company building";
+
+    if (!determinedImageUrl) {
+      // This code runs only on the client, after hydration
+      const adminSetDefaultProviderUrl = localStorage.getItem('defaultProviderImageUrl');
+      if (adminSetDefaultProviderUrl) {
+        determinedImageUrl = adminSetDefaultProviderUrl;
+        determinedHint = "default provider logo"; // Or a hint specific to the admin-set default
+      } else {
+        determinedImageUrl = '/images/default-provider-graphic.png';
+        determinedHint = "NDT Connect";
+      }
+    }
+    setFinalImageUrl(determinedImageUrl);
+    setImageHint(determinedHint);
+  }, [provider.imageUrl, provider.dataAiHint]);
+
 
   const handleRequestService = () => {
     const queryParams = new URLSearchParams({
       providerId: provider.id,
-      providerName: provider.name, // Use actual provider name here
+      providerName: provider.name,
       serviceType: provider.services.length > 0 ? provider.services[0] : "General Inquiry",
     });
     if (provider.baseRate) {
@@ -39,21 +62,23 @@ export function ProviderCard({ provider }: ProviderCardProps) {
   };
 
   const clientPrice = provider.baseRate ? (provider.baseRate * 1.15).toFixed(2) : null;
-  const fallbackImageSrc = '/images/default-provider-graphic.png';
-
+  
   return (
     <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
       <div className="relative w-full h-48 bg-muted">
-        <Image
-          src={provider.imageUrl || fallbackImageSrc}
-          alt={provider.name || "NDT Provider"}
-          fill={true}
-          style={{ objectFit: 'cover' }}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          priority={false}
-          data-ai-hint={provider.imageUrl ? (provider.dataAiHint || "company building") : "NDT Connect"}
-          className="rounded-t-lg"
-        />
+        {finalImageUrl && (
+          <Image
+            src={finalImageUrl}
+            alt={provider.name || "NDT Provider"}
+            fill={true}
+            style={{ objectFit: 'cover' }}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority={false}
+            data-ai-hint={imageHint}
+            className="rounded-t-lg"
+            key={finalImageUrl} // Add key to help React re-render if src changes
+          />
+        )}
         {provider.isVerified && (
           <Badge className="absolute top-2 right-2 bg-green-500 hover:bg-green-600 text-white">
             <ShieldCheck className="h-4 w-4 mr-1" /> Verified
@@ -61,7 +86,6 @@ export function ProviderCard({ provider }: ProviderCardProps) {
         )}
       </div>
       <CardHeader>
-        {/* Display provider's specialization or a generic title if name is to be hidden initially */}
         <CardTitle className="text-xl">{provider.name || "NDT Service Provider"}</CardTitle>
         <CardDescription className="flex items-center text-sm">
           <MapPin className="h-4 w-4 mr-1 text-muted-foreground" /> {provider.location} ({provider.specialization})
@@ -78,7 +102,6 @@ export function ProviderCard({ provider }: ProviderCardProps) {
           <div className="flex items-center font-semibold">
             <DollarSign className="h-5 w-5 text-primary mr-1" />
             Est. Rate: ${clientPrice}
-            {/* Removed: <span className="text-xs text-muted-foreground ml-1">(incl. 15% fee)</span> */}
           </div>
         )}
 
@@ -144,3 +167,4 @@ export function ProviderCard({ provider }: ProviderCardProps) {
     </Card>
   );
 }
+
