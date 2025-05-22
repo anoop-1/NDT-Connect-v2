@@ -38,6 +38,9 @@ const ALL_NDT_SERVICES_DEMO = [ // Define for demo provider
   "Leak Testing (LT)", "Acoustic Emission Testing (AET)", "Phased Array UT (PAUT)", "Time-of-Flight Diffraction (TOFD)"
 ];
 
+// Admin credentials (for mock purposes)
+const ADMIN_EMAIL = "admin@example.com";
+const ADMIN_PASSWORD = "adminpassword";
 
 export function LoginForm() {
   const { login } = useAuth();
@@ -56,27 +59,39 @@ export function LoginForm() {
 
   async function onSubmit(values: FormSchemaType) {
     setIsLoading(true);
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    login({ 
-      email: values.email, 
-      role: values.role, 
-      name: values.email.split('@')[0], // Basic name from email
-      profileData: {} // Minimal profile data for manual login
-    });
-
-    toast({
-      title: "Login Successful",
-      description: `Welcome back, ${values.email}!`,
-    });
-    router.push("/dashboard");
+    if (values.email === ADMIN_EMAIL && values.password === ADMIN_PASSWORD) {
+      login({ 
+        email: values.email, 
+        role: 'admin', 
+        name: "Admin User",
+        // No specific client/provider profileData for admin
+      });
+      toast({
+        title: "Admin Login Successful",
+        description: "Welcome, Administrator!",
+      });
+      router.push("/admin/dashboard");
+    } else {
+      login({ 
+        email: values.email, 
+        role: values.role, 
+        name: values.email.split('@')[0], // Basic name from email
+        profileData: {} // Minimal profile data for manual login
+      });
+      toast({
+        title: "Login Successful",
+        description: `Welcome back, ${values.email}!`,
+      });
+      router.push("/dashboard");
+    }
     setIsLoading(false);
   }
 
   const handleDemoLogin = async (role: 'client' | 'provider') => {
     setIsLoading(true);
-    await new Promise(resolve => setTimeout(resolve, 500)); // Brief delay
+    await new Promise(resolve => setTimeout(resolve, 500)); 
 
     let demoUserDetails;
 
@@ -93,16 +108,20 @@ export function LoginForm() {
         name: "Demo Client User",
         profileData: clientProfile
       };
-    } else { // provider
+    } else { 
       const providerProfile: ProviderProfileData = {
-        location: "Houston, TX",
+        location: "Houston, TX", lat: 29.7604, lng: -95.3698,
         servicesOffered: ALL_NDT_SERVICES_DEMO,
         contactNumber: "(713) 555-PROVIDER",
         pricingDetails: "Competitive rates for all listed NDT services. Bulk project discounts available. Contact for detailed quotes.",
         procedureInfo: "All NDT procedures adhere strictly to ASNT SNT-TC-1A, ASME, API, and other relevant industry standards. Client-specific procedures can be developed and followed upon request.",
         acceptanceCriteriaInfo: "Standard industry acceptance criteria (e.g., API 1104, ASME B31.3, AWS D1.1) are applied unless specific client requirements dictate otherwise.",
-        companyLogoUrl: "https://placehold.co/150x50.png", // Updated placeholder
-        baseRate: 95, // Example base rate
+        companyLogoUrl: "https://placehold.co/150x50.png", 
+        baseRate: 95, 
+        certifications: ["ISO 9001:2015", "API Q1"],
+        personnelQualifications: ["ASNT NDT Level III (Multiple Methods)", "AWS CWI"],
+        isVerified: true,
+        availableDocuments: ["General NDT Procedures Manual", "ISO 9001 Certificate PDF", "Sample Technician Certs"],
       };
       demoUserDetails = {
         email: "provider.houston.demo@example.com",
@@ -152,36 +171,39 @@ export function LoginForm() {
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name="role"
-            render={({ field }) => (
-              <FormItem className="space-y-3">
-                <FormLabel>Login as</FormLabel>
-                <FormControl>
-                  <RadioGroup
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                    className="flex space-x-4"
-                  >
-                    <FormItem className="flex items-center space-x-2 space-y-0">
-                      <FormControl>
-                        <RadioGroupItem value="client" id="role-client" />
-                      </FormControl>
-                      <Label htmlFor="role-client" className="font-normal">Client</Label>
-                    </FormItem>
-                    <FormItem className="flex items-center space-x-2 space-y-0">
-                      <FormControl>
-                        <RadioGroupItem value="provider" id="role-provider" />
-                      </FormControl>
-                      <Label htmlFor="role-provider" className="font-normal">Service Provider</Label>
-                    </FormItem>
-                  </RadioGroup>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          {/* Hide role selection if admin email is entered, or keep it simple as admin login is a special case */}
+          {form.getValues("email") !== ADMIN_EMAIL && (
+            <FormField
+              control={form.control}
+              name="role"
+              render={({ field }) => (
+                <FormItem className="space-y-3">
+                  <FormLabel>Login as</FormLabel>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                      className="flex space-x-4"
+                    >
+                      <FormItem className="flex items-center space-x-2 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="client" id="role-client" />
+                        </FormControl>
+                        <Label htmlFor="role-client" className="font-normal">Client</Label>
+                      </FormItem>
+                      <FormItem className="flex items-center space-x-2 space-y-0">
+                        <FormControl>
+                          <RadioGroupItem value="provider" id="role-provider" />
+                        </FormControl>
+                        <Label htmlFor="role-provider" className="font-normal">Service Provider</Label>
+                      </FormItem>
+                    </RadioGroup>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
           <Button type="submit" className="w-full" disabled={isLoading}>
             {isLoading ? "Logging in..." : "Login"}
           </Button>

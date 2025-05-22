@@ -8,9 +8,9 @@ import { createContext, useState, useEffect } from 'react';
 
 interface LoginDetails {
   email: string;
-  role: 'client' | 'provider';
+  role: 'client' | 'provider' | 'admin';
   name: string;
-  profileData: Partial<ClientProfileData & ProviderProfileData>;
+  profileData?: Partial<ClientProfileData & ProviderProfileData>; // Optional for admin
 }
 
 interface AuthContextType {
@@ -55,10 +55,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       name: details.name
     };
 
-    if (details.role === 'client') {
+    if (details.role === 'client' && details.profileData) {
       newUser.clientProfile = details.profileData as ClientProfileData;
-    } else if (details.role === 'provider') {
-      // Ensure all expected fields for ProviderProfileData are handled
+    } else if (details.role === 'provider' && details.profileData) {
       const providerProfile: ProviderProfileData = {
         location: (details.profileData as ProviderProfileData).location || "",
         servicesOffered: (details.profileData as ProviderProfileData).servicesOffered || [],
@@ -71,10 +70,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         certifications: (details.profileData as ProviderProfileData).certifications || [],
         personnelQualifications: (details.profileData as ProviderProfileData).personnelQualifications || [],
         isVerified: (details.profileData as ProviderProfileData).isVerified || false,
-        availableDocuments: (details.profileData as ProviderProfileData).availableDocuments || [], // Added
+        availableDocuments: (details.profileData as ProviderProfileData).availableDocuments || [],
       };
       newUser.providerProfile = providerProfile;
     }
+    // Admin users typically don't have client/provider specific profiles in this context
 
     setUser(newUser);
     try {

@@ -26,7 +26,7 @@ export type ProviderProfileData = {
 export type User = {
   id: string;
   email: string;
-  role: 'client' | 'provider';
+  role: 'client' | 'provider' | 'admin'; // Added 'admin'
   name?: string;
   clientProfile?: ClientProfileData;
   providerProfile?: ProviderProfileData;
@@ -81,3 +81,4 @@ export type ServiceRequest = {
   estimatedCost?: number;
   status: 'Pending' | 'Confirmed' | 'In Progress' | 'Completed' | 'Cancelled';
 };
+

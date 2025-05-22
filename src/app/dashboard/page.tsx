@@ -1,3 +1,4 @@
+
 // src/app/dashboard/page.tsx
 "use client";
 
@@ -7,7 +8,7 @@ import { useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Activity, Briefcase, Search, Sparkles, UserCircle } from "lucide-react";
+import { Activity, Briefcase, Search, Sparkles, UserCircle, Shield, Settings } from "lucide-react";
 
 export default function DashboardPage() {
   const { user, loading } = useAuth();
@@ -16,6 +17,8 @@ export default function DashboardPage() {
   useEffect(() => {
     if (!loading && !user) {
       router.push("/login?redirect=/dashboard");
+    } else if (!loading && user && user.role === 'admin') {
+      router.push("/admin/dashboard");
     }
   }, [user, loading, router]);
 
@@ -24,10 +27,26 @@ export default function DashboardPage() {
   }
 
   if (!user) {
-    // This case should ideally be handled by the useEffect redirect,
-    // but as a fallback:
     return <div className="text-center py-10">Redirecting to login...</div>;
   }
+  
+  // If admin somehow lands here before redirect effect, show a generic message.
+  if (user.role === 'admin') {
+    return (
+      <div className="space-y-8">
+        <Card className="shadow-lg">
+          <CardHeader>
+            <CardTitle className="text-3xl">Admin Portal</CardTitle>
+            <CardDescription>Redirecting to Admin Dashboard...</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Activity className="h-8 w-8 animate-spin text-primary" />
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
 
   return (
     <div className="space-y-8">
@@ -69,14 +88,20 @@ export default function DashboardPage() {
           <DashboardActionCard
             title="View Service Requests"
             description="Manage incoming service requests from clients."
-            href="/provider-requests" // Will be a placeholder page
+            href="/provider-requests" 
             icon={<Briefcase className="h-8 w-8 text-primary" />}
           />
           <DashboardActionCard
             title="Manage Profile"
             description="Update your service offerings and company details."
-            href="/provider-profile" // Placeholder
+            href="/provider-profile" 
             icon={<UserCircle className="h-8 w-8 text-primary" />}
+          />
+           <DashboardActionCard
+            title="Account Settings"
+            description="Manage your account and notification preferences."
+            href="/settings" // Placeholder general settings page
+            icon={<Settings className="h-8 w-8 text-primary" />}
           />
         </div>
       )}

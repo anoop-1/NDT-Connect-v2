@@ -1,9 +1,10 @@
+
 // src/components/layout/Header.tsx
 "use client";
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Home, LogIn, LogOut, UserPlus, LayoutDashboard, Search, Sparkles, Briefcase, Settings } from 'lucide-react';
+import { Home, LogIn, LogOut, UserPlus, LayoutDashboard, Search, Sparkles, Briefcase, Settings, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
@@ -61,7 +62,14 @@ export function Header() {
            {user?.role === 'provider' && (
             <>
               <Link href="/provider-dashboard" className={navLinkClasses("/provider-dashboard")}>
-                <LayoutDashboard className="h-4 w-4 inline-block mr-1" /> Dashboard
+                <LayoutDashboard className="h-4 w-4 inline-block mr-1" /> Provider Dashboard
+              </Link>
+            </>
+          )}
+           {user?.role === 'admin' && (
+            <>
+              <Link href="/admin/dashboard" className={navLinkClasses("/admin/dashboard")}>
+                <Shield className="h-4 w-4 inline-block mr-1" /> Admin Dashboard
               </Link>
             </>
           )}
@@ -90,10 +98,25 @@ export function Header() {
                   </div>
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => router.push('/dashboard')}>
-                  <LayoutDashboard className="mr-2 h-4 w-4" />
-                  <span>Dashboard</span>
-                </DropdownMenuItem>
+                {user.role === 'admin' ? (
+                  <DropdownMenuItem onClick={() => router.push('/admin/dashboard')}>
+                    <Shield className="mr-2 h-4 w-4" />
+                    <span>Admin Dashboard</span>
+                  </DropdownMenuItem>
+                ) : (
+                  <DropdownMenuItem onClick={() => router.push('/dashboard')}>
+                    <LayoutDashboard className="mr-2 h-4 w-4" />
+                    <span>Dashboard</span>
+                  </DropdownMenuItem>
+                )}
+                
+                {user.role === 'provider' && (
+                    <DropdownMenuItem onClick={() => router.push('/provider-profile')}>
+                        <UserCircle className="mr-2 h-4 w-4" />
+                        <span>My Profile</span>
+                    </DropdownMenuItem>
+                )}
+
                 <DropdownMenuItem onClick={() => alert('Settings page placeholder')}>
                   <Settings className="mr-2 h-4 w-4" />
                   <span>Settings</span>

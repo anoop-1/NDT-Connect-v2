@@ -1,3 +1,4 @@
+
 // src/app/provider-dashboard/page.tsx
 "use client";
 
@@ -17,7 +18,7 @@ export default function ProviderDashboardPage() {
     if (!loading && !user) {
       router.push("/login?redirect=/provider-dashboard");
     } else if (user && user.role !== 'provider') {
-      // If user is not a provider, redirect to their dashboard or home
+      // If user is not a provider (e.g., client or admin), redirect to their main dashboard
       router.push("/dashboard"); 
     }
   }, [user, loading, router]);
@@ -26,8 +27,10 @@ export default function ProviderDashboardPage() {
     return <div className="flex justify-center items-center min-h-[calc(100vh-10rem)]"><Activity className="h-8 w-8 animate-spin text-primary" /> <span className="ml-2">Loading provider dashboard...</span></div>;
   }
 
+  // This condition handles the case where the user is loaded but is not a provider.
+  // The useEffect above should handle the redirect, but this is a fallback.
   if (!user || user.role !== 'provider') {
-    return <div className="text-center py-10">Access Denied. This page is for service providers.</div>;
+    return <div className="text-center py-10">Access Denied. This page is for service providers. Redirecting...</div>;
   }
 
   return (
@@ -52,7 +55,7 @@ export default function ProviderDashboardPage() {
         <DashboardActionCard
           title="Manage Profile"
           description="Update your company details, services offered, and availability."
-          href="/provider-profile" // Placeholder
+          href="/provider-profile" 
           icon={<UserCircle className="h-8 w-8 text-primary" />}
         />
         <DashboardActionCard
