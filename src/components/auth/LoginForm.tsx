@@ -39,8 +39,8 @@ const ALL_NDT_SERVICES_DEMO = [ // Define for demo provider
 ];
 
 // Admin credentials (for mock purposes)
-const ADMIN_EMAIL = "admin@example.com";
-const ADMIN_PASSWORD = "adminpassword";
+const ADMIN_EMAIL = "anoop@atlantisinspection.com";
+const ADMIN_PASSWORD = "Atlantis9$";
 
 export function LoginForm() {
   const { login } = useAuth();
@@ -65,7 +65,7 @@ export function LoginForm() {
       login({ 
         email: values.email, 
         role: 'admin', 
-        name: "Admin User",
+        name: "Admin User", // Or derive a name from email if preferred
         // No specific client/provider profileData for admin
       });
       toast({
@@ -74,6 +74,10 @@ export function LoginForm() {
       });
       router.push("/admin/dashboard");
     } else {
+      // For regular client/provider login, we still need to ensure profileData is passed,
+      // even if it's minimal or based on localStorage if that user existed before.
+      // The current simplified login doesn't re-fetch or merge localStorage data here,
+      // it just creates a new session based on form input.
       login({ 
         email: values.email, 
         role: values.role, 
@@ -172,7 +176,7 @@ export function LoginForm() {
             )}
           />
           {/* Hide role selection if admin email is entered, or keep it simple as admin login is a special case */}
-          {form.getValues("email") !== ADMIN_EMAIL && (
+          {form.getValues("email").toLowerCase() !== ADMIN_EMAIL.toLowerCase() && (
             <FormField
               control={form.control}
               name="role"
