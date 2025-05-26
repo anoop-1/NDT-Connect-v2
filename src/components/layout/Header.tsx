@@ -4,7 +4,7 @@
 
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { Home, LogIn, LogOut, UserPlus, LayoutDashboard, Search, Sparkles, Briefcase, Settings, Shield } from 'lucide-react';
+import { Home, LogIn, LogOut, UserPlus, LayoutDashboard, Search, Sparkles, Briefcase, Settings, Shield, UserCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
