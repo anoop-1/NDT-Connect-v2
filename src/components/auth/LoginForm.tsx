@@ -56,17 +56,19 @@ export function LoginForm() {
       role: "client",
     },
   });
+  
+  const watchEmail = form.watch("email"); // Watch email field for changes
 
   async function onSubmit(values: FormSchemaType) {
     setIsLoading(true);
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    if (values.email === ADMIN_EMAIL && values.password === ADMIN_PASSWORD) {
+    if (values.email.toLowerCase() === ADMIN_EMAIL.toLowerCase() && values.password === ADMIN_PASSWORD) {
       login({ 
         email: values.email, 
         role: 'admin', 
-        name: "Admin User", // Or derive a name from email if preferred
-        // No specific client/provider profileData for admin
+        name: "Admin User",
+        isDemo: false,
       });
       toast({
         title: "Admin Login Successful",
@@ -74,15 +76,12 @@ export function LoginForm() {
       });
       router.push("/admin/dashboard");
     } else {
-      // For regular client/provider login, we still need to ensure profileData is passed,
-      // even if it's minimal or based on localStorage if that user existed before.
-      // The current simplified login doesn't re-fetch or merge localStorage data here,
-      // it just creates a new session based on form input.
       login({ 
         email: values.email, 
         role: values.role, 
-        name: values.email.split('@')[0], // Basic name from email
-        profileData: {} // Minimal profile data for manual login
+        name: values.email.split('@')[0], 
+        isDemo: false, // Regular login is not a demo user
+        profileData: {} 
       });
       toast({
         title: "Login Successful",
@@ -110,6 +109,7 @@ export function LoginForm() {
         email: "client.demo@example.com",
         role: "client" as const,
         name: "Demo Client User",
+        isDemo: true, // Mark as demo user
         profileData: clientProfile
       };
     } else { 
@@ -131,6 +131,7 @@ export function LoginForm() {
         email: "provider.houston.demo@example.com",
         role: "provider" as const,
         name: "Houston NDT Experts (Demo)",
+        isDemo: true, // Mark as demo user
         profileData: providerProfile
       };
     }
@@ -175,8 +176,7 @@ export function LoginForm() {
               </FormItem>
             )}
           />
-          {/* Hide role selection if admin email is entered, or keep it simple as admin login is a special case */}
-          {form.getValues("email").toLowerCase() !== ADMIN_EMAIL.toLowerCase() && (
+          {watchEmail.toLowerCase() !== ADMIN_EMAIL.toLowerCase() && (
             <FormField
               control={form.control}
               name="role"

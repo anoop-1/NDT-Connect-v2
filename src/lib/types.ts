@@ -28,6 +28,7 @@ export type User = {
   email: string;
   role: 'client' | 'provider' | 'admin'; // Added 'admin'
   name?: string;
+  isDemo?: boolean; // Flag to identify demo users
   clientProfile?: ClientProfileData;
   providerProfile?: ProviderProfileData;
 };
@@ -81,4 +82,3 @@ export type ServiceRequest = {
   estimatedCost?: number;
   status: 'Pending' | 'Confirmed' | 'In Progress' | 'Completed' | 'Cancelled';
 };
-

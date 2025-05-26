@@ -6,13 +6,12 @@ import { ProviderCard } from "@/components/client/ProviderCard";
 import type { ServiceProvider } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, Filter, ShieldCheck, List, Map as MapIcon } from "lucide-react";
+import { Search, Filter, ShieldCheck, List, Map as MapIcon, AlertTriangle } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-// import { MapPlaceholder } from "@/components/shared/MapPlaceholder"; // Replaced by InteractiveMap
 import { InteractiveMap } from "@/components/shared/InteractiveMap";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
@@ -24,12 +23,19 @@ const mockProviders: ServiceProvider[] = [
   { id: '5', name: 'Coastal Integrity Checks', location: 'Houston, TX', lat: 29.749907, lng: -95.358421, services: ['Magnetic Particle Testing', 'Visual Testing'], specialization: 'Maritime & Offshore', rating: 4.3, contactInfo: '(281) 555-9000', description: 'Specialized NDT for offshore structures and vessels.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "offshore platform", baseRate: 95, certifications: ["DNV Approved", "ABS Certified"], personnelQualifications: ["ASNT NDT Level II MT, VT", "API QUTE"], isVerified: false, availableDocuments: [] },
 ];
 
+// Smaller, distinct list for registered (non-demo) users
+const registeredUserMockProviders: ServiceProvider[] = [
+  { id: 'reg1', name: 'Registered NDT Premium', location: 'Dallas, TX', lat: 32.7767, lng: -96.7970, services: ['Advanced UT', 'Thermography'], specialization: 'Power Generation', rating: 4.9, contactInfo: '(REG) 555-0001', description: 'Premium NDT services for registered clients.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "power plant", baseRate: 150, certifications: ["ISO 17025", "EPRI Certified"], personnelQualifications: ["ASNT NDT Level III (UT, IR)"], isVerified: true, availableDocuments: ["Premium Service Brochure", "EPRI Cert Copy"] },
+  { id: 'reg2', name: 'Specialized Inspection Co.', location: 'Atlanta, GA', lat: 33.7490, lng: -84.3880, services: ['Eddy Current Array', 'Laser Shearography'], specialization: 'Composite Materials', rating: 4.7, contactInfo: '(REG) 555-0002', description: 'High-tech inspections for advanced materials.', imageUrl: 'https://placehold.co/600x400.png', dataAiHint: "composite material", baseRate: 180, certifications: ["Nadcap Composites", "AS9100"], personnelQualifications: ["NAS 410 Level III (ET)"], isVerified: true, availableDocuments: ["Composite Inspection Manual", "Nadcap Cert"] },
+];
+
+
 type ViewMode = "list" | "map";
 
 export default function FindProvidersPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterVerifiedOnly, setFilterVerifiedOnly] = useState(false);
-  const [filteredProviders, setFilteredProviders] = useState<ServiceProvider[]>(mockProviders);
+  const [displayedProviders, setDisplayedProviders] = useState<ServiceProvider[]>([]);
   const [viewMode, setViewMode] = useState<ViewMode>("list");
   const { user, loading } = useAuth();
   const router = useRouter();
@@ -41,11 +47,18 @@ export default function FindProvidersPage() {
       router.push("/dashboard");
     }
   }, [user, loading, router]);
-
+  
   useEffect(() => {
+    let currentProviderList: ServiceProvider[];
+    if (user?.isDemo) {
+      currentProviderList = mockProviders;
+    } else {
+      currentProviderList = registeredUserMockProviders;
+    }
+
     const lowerSearchTerm = searchTerm.toLowerCase();
-    setFilteredProviders(
-      mockProviders.filter(provider => {
+    setDisplayedProviders(
+      currentProviderList.filter(provider => {
         const matchesSearchTerm =
           provider.name.toLowerCase().includes(lowerSearchTerm) ||
           provider.location.toLowerCase().includes(lowerSearchTerm) ||
@@ -60,7 +73,7 @@ export default function FindProvidersPage() {
         return matchesSearchTerm && matchesVerificationFilter;
       })
     );
-  }, [searchTerm, filterVerifiedOnly]);
+  }, [searchTerm, filterVerifiedOnly, user]);
 
   if (loading || (!user && !loading)) {
     return <div className="flex justify-center items-center min-h-[calc(100vh-10rem)]">Loading...</div>;
@@ -76,6 +89,7 @@ export default function FindProvidersPage() {
         <h1 className="text-3xl font-bold mb-2">Find NDT Service Providers</h1>
         <p className="text-muted-foreground mb-6">
           Browse and connect with qualified Non-Destructive Testing professionals.
+          {user?.isDemo ? " (Showing Demo Provider List)" : " (Showing Registered Provider List)"}
         </p>
         <div className="flex flex-col md:flex-row gap-4 mb-4 items-center">
           <div className="relative flex-grow w-full md:w-auto">
@@ -120,34 +134,39 @@ export default function FindProvidersPage() {
       </section>
 
       {viewMode === "list" && (
-        filteredProviders.length > 0 ? (
+        displayedProviders.length > 0 ? (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProviders.map((provider) => (
+            {displayedProviders.map((provider) => (
               <ProviderCard key={provider.id} provider={provider} />
             ))}
           </div>
         ) : (
           <div className="text-center py-10">
+            <AlertTriangle className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
             <p className="text-xl text-muted-foreground">No providers found matching your criteria.</p>
+            <p className="text-sm text-muted-foreground">
+              {user?.isDemo ? "Try adjusting your search for demo providers." : "Try adjusting your search or check back later for more registered providers."}
+            </p>
           </div>
         )
       )}
 
       {viewMode === "map" && (
         <div className="space-y-6">
-          <InteractiveMap providers={filteredProviders} />
-          {filteredProviders.length > 0 ? (
+          <InteractiveMap providers={displayedProviders} />
+          {displayedProviders.length > 0 ? (
             <div className="mt-4">
-              <h2 className="text-xl font-semibold mb-4">Filtered Providers ({filteredProviders.length}) visible on map</h2>
+              <h2 className="text-xl font-semibold mb-4">Filtered Providers ({displayedProviders.length}) visible on map</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {filteredProviders.slice(0, 4).map((provider) => ( 
+                {displayedProviders.slice(0, 4).map((provider) => ( 
                   <ProviderCard key={provider.id} provider={provider} />
                 ))}
               </div>
-              {filteredProviders.length > 4 && <p className="text-sm text-muted-foreground mt-2">And {filteredProviders.length - 4} more providers shown as markers on the map.</p>}
+              {displayedProviders.length > 4 && <p className="text-sm text-muted-foreground mt-2">And {displayedProviders.length - 4} more providers shown as markers on the map.</p>}
             </div>
           ) : (
-            <div className="text-center py-10">
+             <div className="text-center py-10">
+              <AlertTriangle className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
               <p className="text-xl text-muted-foreground">No providers found matching your criteria to display on map.</p>
             </div>
           )}

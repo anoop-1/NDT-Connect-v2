@@ -10,6 +10,7 @@ interface LoginDetails {
   email: string;
   role: 'client' | 'provider' | 'admin';
   name: string;
+  isDemo?: boolean; // Added isDemo flag
   profileData?: Partial<ClientProfileData & ProviderProfileData>; // Optional for admin
 }
 
@@ -52,7 +53,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       id: Date.now().toString(), // Simple unique ID for mock
       email: details.email,
       role: details.role,
-      name: details.name
+      name: details.name,
+      isDemo: details.isDemo || false, // Set isDemo flag
     };
 
     if (details.role === 'client' && details.profileData) {
