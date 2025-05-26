@@ -227,14 +227,16 @@ export function RegisterForm() {
       email: values.email,
       role: values.role,
       name: values.name,
+      isDemo: false, // Regular registration is not a demo user
       profileData: profileData
     });
 
     toast({
-      title: "Registration Successful",
-      description: `Welcome, ${values.name}! Your account as a ${values.role} has been created.`,
+      title: "Registration Successful!",
+      description: `Please 'verify' your email on the login page to activate your account for ${values.email}.`,
+      duration: 7000, // Give user more time to read
     });
-    router.push("/dashboard");
+    router.push(`/login?status=verification_pending&email=${encodeURIComponent(values.email)}`);
     setIsLoading(false);
   }
 
@@ -613,3 +615,5 @@ export function RegisterForm() {
     </Form>
   );
 }
+
+    
