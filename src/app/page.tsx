@@ -8,7 +8,7 @@ import { CheckCircle, Search, Users, ShieldCheck } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export default function HomePage() {
-  const [currentHomepageImage, setCurrentHomepageImage] = useState("https://placehold.co/600x400.png");
+  const [currentHomepageImage, setCurrentHomepageImage] = useState("https://placehold.co/700x450.png"); // Updated default URL
 
   useEffect(() => {
     // This code runs only on the client, after hydration
@@ -99,8 +99,8 @@ export default function HomePage() {
           <Image
             src={currentHomepageImage}
             alt="NDT Inspection Process"
-            width={600}
-            height={400}
+            width={700} // Updated width
+            height={450} // Updated height
             className="rounded-lg shadow-xl object-cover"
             data-ai-hint="NDT inspection"
             key={currentHomepageImage} // Add key to force re-render if URL changes
