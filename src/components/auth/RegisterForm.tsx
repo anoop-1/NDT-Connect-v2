@@ -3,7 +3,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray, Controller } from "react-hook-form";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,16 +24,33 @@ import { useToast } from "@/hooks/use-toast";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
-import type { ClientProfileData, ProviderProfileData, ServiceOffering, PersonnelQualification } from "@/lib/types";
-import { ImageIcon, DollarSign, FileText, Award, Users2, BookOpen, ListChecks } from "lucide-react";
+import type { ClientProfileData, ProviderProfileData, ServiceOffering } from "@/lib/types";
+import { ImageIcon, DollarSign, FileText, Award, Users2, BookOpen, ListChecks, PlusCircle, Trash2 } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-// Simplified PREDEFINED_NDT_SERVICES for checkbox selection in registration
-const PREDEFINED_NDT_SERVICES_SIMPLE = [
-  "Ultrasonic Testing (UT)", "Magnetic Particle Testing (MT)", "Liquid Penetrant Testing (PT)",
-  "Radiographic Testing (RT)", "Eddy Current Testing (ET)", "Visual Testing (VT)",
-  "Leak Testing (LT)", "Acoustic Emission Testing (AET)", "Phased Array UT (PAUT)", "Time-of-Flight Diffraction (TOFD)"
+const PREDEFINED_NDT_SERVICES_TABLE = [
+  "Radiographic Testing", "Ultrasonic Testing", "Magnetic Particle Testing",
+  "Liquid Penetrant Testing", "Visual Testing", "Eddy Current Testing",
+  "Magnetic Flux Leakage", "Internal Rotary Inspection System",
+  "Surface Eddy Current Testing", "Pulsed Eddy Current Testing",
+  "Phased Array Ultrasonic Testing", "Long Range Ultrasonic Testing",
+  "Vacuum Box Testing"
 ];
+
+const SERVICE_UNITS_REGISTER = [
+  "per hour", "per day", "per month", "per meter", "per mm of thickness", "per inch of thickness"
+];
+
+const generateUniqueId = () => Date.now().toString(36) + Math.random().toString(36).substring(2);
+
+const defaultServiceOfferingRow = (): ServiceOffering => ({
+  id: generateUniqueId(),
+  name: PREDEFINED_NDT_SERVICES_TABLE[0],
+  rate: '',
+  unit: SERVICE_UNITS_REGISTER[0]
+});
 
 
 const CLIENT_AGREEMENT_TEXT = `
@@ -110,9 +127,19 @@ const clientSchema = baseSchema.extend({
   contactNumberClient: z.string().min(7, {message: "Contact number is required."}),
 });
 
+const serviceOfferingSchema = z.object({
+  id: z.string(),
+  name: z.string().min(1, "Service name is required."),
+  rate: z.string()
+    .refine(val => val === '' || (!isNaN(parseFloat(val)) && parseFloat(val) >= 0), {
+      message: "Rate must be a non-negative number or empty.",
+    }),
+  unit: z.string().min(1, "Unit is required."),
+});
+
 const providerSchema = baseSchema.extend({
   locationProvider: z.string().min(2, { message: "Location is required." }),
-  selectedServices: z.array(z.string()).min(1, { message: "At least one service category must be selected." }), // Stores initial categories
+  servicesOffered: z.array(serviceOfferingSchema).min(1, "At least one service must be offered."),
   contactNumberProvider: z.string().min(7, {message: "Contact number is required."}),
   pricingDetails: z.string().min(10, { message: "Pricing details (text description) are required." }).max(500, {message: "Pricing details cannot exceed 500 characters."}),
   procedureInfo: z.string().min(10, { message: "Procedure information is required." }).max(500, {message: "Procedure information cannot exceed 500 characters."}),
@@ -122,9 +149,9 @@ const providerSchema = baseSchema.extend({
     (val) => (val === "" ? undefined : parseFloat(String(val))),
     z.number({ invalid_type_error: "Base rate must be a number." }).min(0, "Base rate cannot be negative.").optional()
   ),
-  certificationsText: z.string().optional(), // Comma-separated list of certifications
-  personnelQualificationsText: z.string().optional(), // Comma-separated list of qualifications
-  availableDocumentsText: z.string().optional(), // Comma-separated list of documents
+  certificationsText: z.string().optional(), 
+  personnelQualificationsText: z.string().optional(), 
+  availableDocumentsText: z.string().optional(),
 });
 
 const formSchema = z.union([clientSchema, providerSchema])
@@ -141,7 +168,7 @@ const formSchema = z.union([clientSchema, providerSchema])
     }
     if (data.role === 'provider') {
         return 'locationProvider' in data && data.locationProvider &&
-               'selectedServices' in data && data.selectedServices && data.selectedServices.length > 0 &&
+               'servicesOffered' in data && data.servicesOffered && data.servicesOffered.length > 0 &&
                'contactNumberProvider' in data && data.contactNumberProvider &&
                'pricingDetails' in data && data.pricingDetails &&
                'procedureInfo' in data && data.procedureInfo &&
@@ -150,8 +177,6 @@ const formSchema = z.union([clientSchema, providerSchema])
     return true;
   }, {
     message: "Please fill all required fields for your role.",
-    // This path helps pinpoint where the error message should ideally appear,
-    // though for complex union/refine, it might show at the form level.
     path: ["role"], 
   });
 
@@ -180,7 +205,7 @@ export function RegisterForm() {
       contactNumberClient: "",
       // Provider fields
       locationProvider: "",
-      selectedServices: [], // Will store initial service categories
+      servicesOffered: [defaultServiceOfferingRow()], 
       contactNumberProvider: "",
       pricingDetails: "",
       procedureInfo: "",
@@ -195,6 +220,26 @@ export function RegisterForm() {
 
   const currentRole = form.watch("role");
 
+  const { fields, append, remove } = useFieldArray({
+    control: form.control,
+    name: "servicesOffered" as any, // Type assertion needed for conditional field
+  });
+  
+  // Reset servicesOffered when role changes
+  const previousRole = React.useRef(currentRole);
+  React.useEffect(() => {
+    if (previousRole.current !== currentRole) {
+      if (currentRole === 'provider') {
+        form.setValue('servicesOffered' as any, [defaultServiceOfferingRow()]);
+      } else {
+         // Clear or reset servicesOffered if switching away from provider
+         // form.setValue('servicesOffered' as any, []); // Or handle as needed
+      }
+      previousRole.current = currentRole;
+    }
+  }, [currentRole, form]);
+
+
   async function onSubmit(values: FormSchemaType) {
     setIsLoading(true);
 
@@ -208,25 +253,22 @@ export function RegisterForm() {
         contactNumber: values.contactNumberClient,
       };
     } else if (values.role === "provider" && "locationProvider" in values) {
+      const providerValues = values as Extract<FormSchemaType, { role: 'provider' }>; // Type assertion
       profileData = {
-        location: values.locationProvider,
-        // servicesOffered will be configured in detail on the profile page,
-        // starting empty or with one default row.
-        servicesOffered: [], 
-        // personnelQualifications will also start empty for detailed setup on profile page.
+        location: providerValues.locationProvider,
+        servicesOffered: providerValues.servicesOffered.map(s => ({
+            ...s,
+            rate: s.rate === '' ? '0' : s.rate // Ensure rate is string for type consistency
+        })),
         personnelQualifications: [], 
-        contactNumber: values.contactNumberProvider,
-        pricingDetails: values.pricingDetails,
-        procedureInfo: values.procedureInfo,
-        acceptanceCriteriaInfo: values.acceptanceCriteriaInfo,
-        companyLogoUrl: values.companyLogoUrl,
-        baseRate: values.baseRate,
-        // These text fields can be parsed on the profile management page
-        certifications: values.certificationsText?.split(',').map(s => s.trim()).filter(Boolean) || [],
-        // For personnelQualificationsText, it's better to handle parsing on profile page
-        // due to its more complex structure (quantity, body, level).
-        // For now, we're initializing personnelQualifications as an empty array.
-        availableDocuments: values.availableDocumentsText?.split(',').map(s => s.trim()).filter(Boolean) || [],
+        contactNumber: providerValues.contactNumberProvider,
+        pricingDetails: providerValues.pricingDetails,
+        procedureInfo: providerValues.procedureInfo,
+        acceptanceCriteriaInfo: providerValues.acceptanceCriteriaInfo,
+        companyLogoUrl: providerValues.companyLogoUrl,
+        baseRate: providerValues.baseRate,
+        certifications: providerValues.certificationsText?.split(',').map(s => s.trim()).filter(Boolean) || [],
+        availableDocuments: providerValues.availableDocumentsText?.split(',').map(s => s.trim()).filter(Boolean) || [],
         isVerified: false, 
       };
     }
@@ -424,58 +466,88 @@ export function RegisterForm() {
                 </FormItem>
               )}
             />
-            <FormField
-                control={form.control}
-                name="selectedServices"
-                render={() => (
-                    <FormItem>
-                    <div className="mb-1">
-                        <FormLabel className="text-base flex items-center"><ListChecks className="h-4 w-4 mr-2 text-primary"/>Initial Service Categories Offered</FormLabel>
-                        <FormDescription>
-                        Select primary NDT service categories you offer. Detailed services, rates, and units can be configured in your profile.
-                        </FormDescription>
+
+            {/* Services Offered Section */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center"><ListChecks className="h-5 w-5 mr-2 text-primary"/>Services Offered & Pricing</CardTitle>
+                <FormDescription>Define each NDT service you provide along with its rate and unit. You can add multiple services.</FormDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {fields.map((item, index) => (
+                  <Card key={item.id} className="p-3 shadow-sm">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-3 items-end">
+                      <FormField
+                        control={form.control}
+                        name={`servicesOffered.${index}.name` as const}
+                        render={({ field }) => (
+                          <FormItem className="md:col-span-2">
+                            <FormLabel>Service Name</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                              <FormControl>
+                                <SelectTrigger><SelectValue placeholder="Select Service" /></SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                {PREDEFINED_NDT_SERVICES_TABLE.map(service => (
+                                  <SelectItem key={service} value={service}>{service}</SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name={`servicesOffered.${index}.rate` as const}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Rate</FormLabel>
+                            <FormControl>
+                              <Input type="text" placeholder="e.g., 100" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name={`servicesOffered.${index}.unit` as const}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Unit</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                              <FormControl>
+                                <SelectTrigger><SelectValue placeholder="Select Unit" /></SelectTrigger>
+                              </FormControl>
+                              <SelectContent>
+                                {SERVICE_UNITS_REGISTER.map(unit => (
+                                  <SelectItem key={unit} value={unit}>{unit}</SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
                     </div>
-                    <ScrollArea className="h-32 w-full rounded-md border p-2">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {PREDEFINED_NDT_SERVICES_SIMPLE.map((service) => (
-                          <FormField
-                          key={service}
-                          control={form.control}
-                          name="selectedServices"
-                          render={({ field }) => {
-                              return (
-                              <FormItem
-                                  key={service}
-                                  className="flex flex-row items-start space-x-3 space-y-0"
-                              >
-                                  <FormControl>
-                                  <Checkbox
-                                      checked={field.value?.includes(service)}
-                                      onCheckedChange={(checked) => {
-                                      return checked
-                                          ? field.onChange([...(field.value || []), service])
-                                          : field.onChange(
-                                              (field.value || []).filter(
-                                              (value) => value !== service
-                                              )
-                                          );
-                                      }}
-                                  />
-                                  </FormControl>
-                                  <FormLabel className="text-sm font-normal">
-                                  {service}
-                                  </FormLabel>
-                              </FormItem>
-                              );
-                          }}
-                          />
-                      ))}
+                    {fields.length > 1 && (
+                      <div className="mt-2 text-right">
+                        <Button type="button" variant="ghost" size="sm" onClick={() => remove(index)} className="text-destructive hover:bg-destructive/10">
+                          <Trash2 className="h-4 w-4 mr-1" /> Remove
+                        </Button>
                       </div>
-                    </ScrollArea>
-                    <FormMessage />
-                    </FormItem>
-                )}
-            />
+                    )}
+                  </Card>
+                ))}
+                <Button type="button" variant="outline" onClick={() => append(defaultServiceOfferingRow())} className="w-full">
+                  <PlusCircle className="h-4 w-4 mr-2"/> Add Service Offering
+                </Button>
+                <FormMessage>{form.formState.errors.servicesOffered?.root?.message || form.formState.errors.servicesOffered?.message}</FormMessage>
+              </CardContent>
+            </Card>
+
+
             <FormField
               control={form.control}
               name="contactNumberProvider"
@@ -621,4 +693,3 @@ export function RegisterForm() {
     </Form>
   );
 }
-

@@ -30,7 +30,7 @@ const PREDEFINED_NDT_SERVICES_TABLE = [
 
 
 const SERVICE_UNITS = [
-  "per hour", "per day", "per month", "per meter", "per mm of thickness", "per inch of thickness", "per item", "per weld", "per project", "Lump Sum"
+  "per hour", "per day", "per month", "per meter", "per mm of thickness", "per inch of thickness"
 ];
 
 const COMPANY_CERTIFICATIONS = [
@@ -106,10 +106,10 @@ export default function ProviderProfilePage() {
         ? providerProfile.servicesOffered.map(s => ({
             id: (s && typeof s.id === 'string' && s.id.trim() !== "") ? s.id : generateUniqueId(),
             name: (s && s.name) || PREDEFINED_NDT_SERVICES_TABLE[0],
-            rate: String((s && s.rate) || ''), // Ensure rate is string
+            rate: String((s && s.rate) || ''), 
             unit: (s && s.unit) || SERVICE_UNITS[0],
           }))
-        : [defaultServiceOffering()]; // Initialize with one default row if empty
+        : [defaultServiceOffering()];
 
       const loadedQualifications = (Array.isArray(providerProfile.personnelQualifications) && providerProfile.personnelQualifications.length > 0)
         ? providerProfile.personnelQualifications.map(q => ({
@@ -118,7 +118,7 @@ export default function ProviderProfilePage() {
             certificationBody: (q && q.certificationBody) || QUALIFICATION_BODIES[0],
             level: (q && q.level) || QUALIFICATION_LEVELS[0],
           }))
-        : [defaultPersonnelQualification()]; // Initialize with one default row if empty
+        : [defaultPersonnelQualification()];
 
       setProfileData({
         companyName: user.name || "",
@@ -135,13 +135,12 @@ export default function ProviderProfilePage() {
         companyLogoUrl: providerProfile.companyLogoUrl || "",
         baseRate: providerProfile.baseRate || 0,
         pricingDetails: providerProfile.pricingDetails || "",
-        procedureInfo: providerProfile.procedureInfo || "", // Note: bio also uses this, clarify which is primary
+        procedureInfo: providerProfile.procedureInfo || "", 
         acceptanceCriteriaInfo: providerProfile.acceptanceCriteriaInfo || "",
         isVerified: providerProfile.isVerified || false,
       });
       setDocsText((providerProfile.availableDocuments || []).join(", "));
     } else if (user && !user.providerProfile) { 
-        // Fresh provider profile, initialize with one default for services and qualifications
         setProfileData(prev => ({
             ...prev,
             companyName: user.name || "",
@@ -234,15 +233,14 @@ export default function ProviderProfilePage() {
     
     const updatedDocs = docsText.split(',').map(s => s.trim()).filter(Boolean);
 
-    // Ensure rates are numbers or handle appropriately if they need to remain strings
     const finalServicesOffered = profileData.servicesOffered.map(s => ({
       ...s,
-      rate: s.rate // Keep as string for flexibility, or parseFloat if strict number needed
+      rate: s.rate 
     }));
     
     const finalPersonnelQualifications = profileData.personnelQualifications.map(q => ({
         ...q,
-        quantity: typeof q.quantity === 'string' ? parseInt(q.quantity, 10) || 1 : q.quantity // Default to 1 if parsing fails
+        quantity: typeof q.quantity === 'string' ? parseInt(q.quantity, 10) || 1 : q.quantity 
     }));
 
 
@@ -251,7 +249,7 @@ export default function ProviderProfilePage() {
     if (user) {
       const updatedUser = {
         ...user,
-        name: profileData.companyName, // Assuming user.name is the company name for providers
+        name: profileData.companyName, 
         providerProfile: {
           ...(user.providerProfile || {}), 
           location: profileData.address,
@@ -266,7 +264,7 @@ export default function ProviderProfilePage() {
           certifications: profileData.certifications,
           personnelQualifications: finalPersonnelQualifications,
           availableDocuments: updatedDocs,
-          isVerified: profileData.isVerified, // This should ideally be admin-controlled
+          isVerified: profileData.isVerified, 
           serviceRadius: profileData.serviceRadius,
         },
       };
@@ -552,4 +550,3 @@ export default function ProviderProfilePage() {
     </div>
   );
 }
-
