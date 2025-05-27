@@ -78,32 +78,46 @@ export default function ProviderProfilePage() {
   
   const [docsText, setDocsText] = useState("");
 
+  const defaultServiceOffering = (): ServiceOffering => ({
+    id: Date.now().toString() + Math.random().toString(),
+    name: PREDEFINED_NDT_SERVICES_TABLE[0],
+    rate: '',
+    unit: SERVICE_UNITS[0]
+  });
+
+  const defaultPersonnelQualification = (): PersonnelQualification => ({
+    id: Date.now().toString() + Math.random().toString(),
+    quantity: 1,
+    certificationBody: QUALIFICATION_BODIES[0],
+    level: QUALIFICATION_LEVELS[0]
+  });
+
   useEffect(() => {
     if (!loading && !user) {
       router.push("/login?redirect=/provider-profile");
     } else if (user && user.role !== 'provider') {
       router.push("/dashboard");
     } else if (user && user.providerProfile) {
-      // Ensure servicesOffered and personnelQualifications are arrays
-      const providerServices = Array.isArray(user.providerProfile.servicesOffered) 
+      const providerServices = Array.isArray(user.providerProfile.servicesOffered) && user.providerProfile.servicesOffered.length > 0
           ? user.providerProfile.servicesOffered.map(s => ({...s, id: s.id || (s.name + Date.now())})) 
-          : [];
-      const providerPersonnel = Array.isArray(user.providerProfile.personnelQualifications) 
+          : [defaultServiceOffering()];
+
+      const providerPersonnel = Array.isArray(user.providerProfile.personnelQualifications) && user.providerProfile.personnelQualifications.length > 0
           ? user.providerProfile.personnelQualifications.map(q => ({...q, id: q.id || (Date.now().toString() + Math.random())})) 
-          : [];
+          : [defaultPersonnelQualification()];
 
       setProfileData({
         companyName: user.name || "",
         contactEmail: user.email,
         phone: user.providerProfile.contactNumber || "",
-        website: user.providerProfile.companyLogoUrl ? "" : "https://example.com", 
+        website: user.providerProfile.companyLogoUrl ? user.providerProfile.website || "" : "https://example.com", 
         address: user.providerProfile.location || "",
         bio: user.providerProfile.procedureInfo || "Update company bio here.", 
         servicesOffered: providerServices,
         certifications: user.providerProfile.certifications || [],
         personnelQualifications: providerPersonnel,
         availableDocuments: user.providerProfile.availableDocuments || [],
-        serviceRadius: "", 
+        serviceRadius: user.providerProfile.serviceRadius || "", 
         companyLogoUrl: user.providerProfile.companyLogoUrl || "",
         baseRate: user.providerProfile.baseRate || 0,
         pricingDetails: user.providerProfile.pricingDetails || "",
@@ -117,7 +131,10 @@ export default function ProviderProfilePage() {
             ...prev,
             companyName: user.name || "",
             contactEmail: user.email,
-            servicesOffered: [] // Start with an empty list for new providers
+            servicesOffered: [defaultServiceOffering()],
+            personnelQualifications: [defaultPersonnelQualification()],
+            certifications: [],
+            availableDocuments: [],
         }));
     }
   }, [user, loading, router]);
@@ -145,12 +162,7 @@ export default function ProviderProfilePage() {
       ...prev,
       servicesOffered: [
         ...prev.servicesOffered,
-        { 
-          id: Date.now().toString() + Math.random().toString(), // Unique ID
-          name: PREDEFINED_NDT_SERVICES_TABLE[0], // Default to first service
-          rate: '', 
-          unit: SERVICE_UNITS[0] // Default to first unit
-        }
+        defaultServiceOffering()
       ]
     }));
   };
@@ -178,7 +190,7 @@ export default function ProviderProfilePage() {
      setProfileData(prev => ({
       ...prev,
       personnelQualifications: prev.personnelQualifications.map(qual => 
-        qual.id === id ? { ...qual, [field]: value } : qual
+        qual.id === id ? { ...qual, [field]: field === 'quantity' ? (parseInt(value,10) || 0) : value } : qual
       )
     }));
   };
@@ -188,12 +200,7 @@ export default function ProviderProfilePage() {
       ...prev,
       personnelQualifications: [
         ...prev.personnelQualifications,
-        { 
-          id: Date.now().toString() + Math.random().toString(), 
-          quantity: 1, 
-          certificationBody: QUALIFICATION_BODIES[0], 
-          level: QUALIFICATION_LEVELS[0] 
-        }
+        defaultPersonnelQualification()
       ]
     }));
   };
@@ -214,7 +221,7 @@ export default function ProviderProfilePage() {
 
     const finalServicesOffered = profileData.servicesOffered.map(s => ({
       ...s,
-      rate: s.rate // Rate is already string, can be parsed later if needed for calculations
+      rate: s.rate 
     }));
     
     const finalPersonnelQualifications = profileData.personnelQualifications.map(q => ({
@@ -230,19 +237,21 @@ export default function ProviderProfilePage() {
         ...user,
         name: profileData.companyName,
         providerProfile: {
-          ...user.providerProfile,
+          ...(user.providerProfile || {}), // Ensure existing fields are preserved if any
           location: profileData.address,
           servicesOffered: finalServicesOffered,
           contactNumber: profileData.phone,
+          website: profileData.website,
           companyLogoUrl: profileData.companyLogoUrl,
           baseRate: profileData.baseRate,
           pricingDetails: profileData.pricingDetails,
-          procedureInfo: profileData.procedureInfo,
+          procedureInfo: profileData.procedureInfo || profileData.bio, // Use bio if procedureInfo is empty
           acceptanceCriteriaInfo: profileData.acceptanceCriteriaInfo,
           certifications: profileData.certifications,
           personnelQualifications: finalPersonnelQualifications,
           availableDocuments: updatedDocs,
           isVerified: profileData.isVerified,
+          serviceRadius: profileData.serviceRadius,
         },
       };
       setUser(updatedUser); 
@@ -327,70 +336,65 @@ export default function ProviderProfilePage() {
             <CardDescription>Define each NDT service you provide along with its rate and unit.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            {profileData.servicesOffered?.length > 0 && (
-              <div className="space-y-3">
-                {profileData.servicesOffered.map((service) => (
-                  <Card key={service.id} className="p-4 shadow-sm">
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-3 items-end">
-                      <div className="md:col-span-2">
-                        <Label htmlFor={`service-name-${service.id}`}>Service Name</Label>
-                        <Select
-                          value={service.name}
-                          onValueChange={(value) => handleServiceOfferingChange(service.id, 'name', value)}
-                        >
-                          <SelectTrigger id={`service-name-${service.id}`}>
-                            <SelectValue placeholder="Select Service" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {PREDEFINED_NDT_SERVICES_TABLE.map(ndtService => (
-                              <SelectItem key={ndtService} value={ndtService}>{ndtService}</SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div>
-                        <Label htmlFor={`service-rate-${service.id}`}>Rate</Label>
-                        <Input
-                          id={`service-rate-${service.id}`}
-                          type="text" // Use text to allow various numeric inputs
-                          placeholder="e.g., 100 or 50.50"
-                          value={service.rate}
-                          onChange={(e) => handleServiceOfferingChange(service.id, 'rate', e.target.value)}
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor={`service-unit-${service.id}`}>Unit</Label>
-                         <Select
-                            value={service.unit}
-                            onValueChange={(value) => handleServiceOfferingChange(service.id, 'unit', value)}
-                          >
-                            <SelectTrigger id={`service-unit-${service.id}`}>
-                              <SelectValue placeholder="Select Unit" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {SERVICE_UNITS.map(unit => <SelectItem key={unit} value={unit}>{unit}</SelectItem>)}
-                            </SelectContent>
-                          </Select>
-                      </div>
-                    </div>
-                    <div className="mt-2 text-right">
-                      <Button 
-                        type="button" 
-                        variant="ghost" 
-                        size="sm" 
-                        onClick={() => handleRemoveServiceOfferingRow(service.id)} 
-                        className="text-destructive hover:bg-destructive/10"
+            {(profileData.servicesOffered || []).map((service) => (
+              <Card key={service.id} className="p-4 shadow-sm">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-3 items-end">
+                  <div className="md:col-span-2">
+                    <Label htmlFor={`service-name-${service.id}`}>Service Name</Label>
+                    <Select
+                      value={service.name}
+                      onValueChange={(value) => handleServiceOfferingChange(service.id, 'name', value)}
+                    >
+                      <SelectTrigger id={`service-name-${service.id}`}>
+                        <SelectValue placeholder="Select Service" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {PREDEFINED_NDT_SERVICES_TABLE.map(ndtService => (
+                          <SelectItem key={ndtService} value={ndtService}>{ndtService}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label htmlFor={`service-rate-${service.id}`}>Rate</Label>
+                    <Input
+                      id={`service-rate-${service.id}`}
+                      type="text" 
+                      placeholder="e.g., 100 or 50.50"
+                      value={service.rate}
+                      onChange={(e) => handleServiceOfferingChange(service.id, 'rate', e.target.value)}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor={`service-unit-${service.id}`}>Unit</Label>
+                      <Select
+                        value={service.unit}
+                        onValueChange={(value) => handleServiceOfferingChange(service.id, 'unit', value)}
                       >
-                        <Trash2 className="h-4 w-4 mr-1" /> Remove Service
-                      </Button>
-                    </div>
-                  </Card>
-                ))}
-              </div>
-            )}
-             {profileData.servicesOffered?.length === 0 && (
-                <p className="text-sm text-muted-foreground text-center py-4">No services added yet. Click below to add your first service offering.</p>
-            )}
+                        <SelectTrigger id={`service-unit-${service.id}`}>
+                          <SelectValue placeholder="Select Unit" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {SERVICE_UNITS.map(unit => <SelectItem key={unit} value={unit}>{unit}</SelectItem>)}
+                        </SelectContent>
+                      </Select>
+                  </div>
+                </div>
+                {(profileData.servicesOffered || []).length > 1 && (
+                  <div className="mt-2 text-right">
+                    <Button 
+                      type="button" 
+                      variant="ghost" 
+                      size="sm" 
+                      onClick={() => handleRemoveServiceOfferingRow(service.id)} 
+                      className="text-destructive hover:bg-destructive/10"
+                    >
+                      <Trash2 className="h-4 w-4 mr-1" /> Remove Service
+                    </Button>
+                  </div>
+                )}
+              </Card>
+            ))}
             <Button type="button" onClick={handleAddServiceOfferingRow} variant="outline" className="w-full">
               <PlusCircle className="h-4 w-4 mr-2"/> Add Service Offering
             </Button>
@@ -429,7 +433,6 @@ export default function ProviderProfilePage() {
             <CardDescription>List the qualifications of your technical personnel. Add one row per qualification type.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            {profileData.personnelQualifications?.length > 0 && (
             <Table>
               <TableHeader>
                 <TableRow>
@@ -440,7 +443,7 @@ export default function ProviderProfilePage() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {profileData.personnelQualifications.map((qual) => (
+                {(profileData.personnelQualifications || []).map((qual) => (
                   <TableRow key={qual.id}>
                     <TableCell>
                       <Input
@@ -462,7 +465,7 @@ export default function ProviderProfilePage() {
                       </Select>
                     </TableCell>
                     <TableCell>
-                       <Select
+                        <Select
                         value={qual.level}
                         onValueChange={(value) => handlePersonnelQualificationChange(qual.id, 'level', value)}
                       >
@@ -473,18 +476,16 @@ export default function ProviderProfilePage() {
                       </Select>
                     </TableCell>
                     <TableCell className="text-right">
-                      <Button type="button" variant="ghost" size="icon" onClick={() => handleRemovePersonnelQualification(qual.id)} className="text-destructive">
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
+                      {(profileData.personnelQualifications || []).length > 1 && (
+                        <Button type="button" variant="ghost" size="icon" onClick={() => handleRemovePersonnelQualification(qual.id)} className="text-destructive">
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      )}
                     </TableCell>
                   </TableRow>
                 ))}
               </TableBody>
             </Table>
-            )}
-            {profileData.personnelQualifications?.length === 0 && (
-                <p className="text-sm text-muted-foreground text-center py-4">No personnel qualifications added yet.</p>
-            )}
             <Button type="button" variant="outline" onClick={handleAddPersonnelQualification} className="w-full">
               <PlusCircle className="h-4 w-4 mr-2"/> Add Personnel Qualification
             </Button>
@@ -535,3 +536,6 @@ export default function ProviderProfilePage() {
     </div>
   );
 }
+
+
+    
