@@ -19,11 +19,15 @@ import type { ServiceOffering, PersonnelQualification } from "@/lib/types";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 
-const PREDEFINED_NDT_SERVICES = [
-  "Ultrasonic Testing (UT)", "Magnetic Particle Testing (MT)", "Liquid Penetrant Testing (PT)",
-  "Radiographic Testing (RT)", "Eddy Current Testing (ET)", "Visual Testing (VT)",
-  "Leak Testing (LT)", "Acoustic Emission Testing (AET)", "Phased Array UT (PAUT)", "Time-of-Flight Diffraction (TOFD)"
+const PREDEFINED_NDT_SERVICES_TABLE = [
+  "Radiographic Testing", "Ultrasonic Testing", "Magnetic Particle Testing",
+  "Liquid Penetrant Testing", "Visual Testing", "Eddy Current Testing",
+  "Magnetic Flux Leakage", "Internal Rotary Inspection System",
+  "Surface Eddy Current Testing", "Pulsed Eddy Current Testing",
+  "Phased Array Ultrasonic Testing", "Long Range Ultrasonic Testing",
+  "Vacuum Box Testing"
 ];
+
 
 const SERVICE_UNITS = [
   "per hour", "per day", "per month", "per meter", "per mm of thickness", "per inch of thickness", "per item", "per weld", "per project", "Lump Sum"
@@ -58,21 +62,20 @@ export default function ProviderProfilePage() {
     phone: "",
     website: "",
     address: "",
-    bio: "", // General company bio
+    bio: "", 
     servicesOffered: [] as ServiceOffering[],
-    certifications: [] as string[], // For company certs
+    certifications: [] as string[], 
     personnelQualifications: [] as PersonnelQualification[],
     availableDocuments: [] as string[],
     serviceRadius: "",
     companyLogoUrl: "",
-    baseRate: 0, // General base rate, maybe not used if all services have specific rates
-    pricingDetails: "", // General pricing text
-    procedureInfo: "", // General procedure info
-    acceptanceCriteriaInfo: "", // General acceptance criteria
+    baseRate: 0, 
+    pricingDetails: "", 
+    procedureInfo: "", 
+    acceptanceCriteriaInfo: "", 
     isVerified: false,
   });
   
-  const [customServiceInput, setCustomServiceInput] = useState("");
   const [docsText, setDocsText] = useState("");
 
   useEffect(() => {
@@ -81,18 +84,26 @@ export default function ProviderProfilePage() {
     } else if (user && user.role !== 'provider') {
       router.push("/dashboard");
     } else if (user && user.providerProfile) {
+      // Ensure servicesOffered and personnelQualifications are arrays
+      const providerServices = Array.isArray(user.providerProfile.servicesOffered) 
+          ? user.providerProfile.servicesOffered.map(s => ({...s, id: s.id || (s.name + Date.now())})) 
+          : [];
+      const providerPersonnel = Array.isArray(user.providerProfile.personnelQualifications) 
+          ? user.providerProfile.personnelQualifications.map(q => ({...q, id: q.id || (Date.now().toString() + Math.random())})) 
+          : [];
+
       setProfileData({
         companyName: user.name || "",
         contactEmail: user.email,
         phone: user.providerProfile.contactNumber || "",
-        website: user.providerProfile.companyLogoUrl ? "" : "https://example.com", // This logic for website might need review based on actual data
+        website: user.providerProfile.companyLogoUrl ? "" : "https://example.com", 
         address: user.providerProfile.location || "",
-        bio: user.providerProfile.procedureInfo || "Update company bio here.", // Temp mapping, might need a dedicated bio field in types
-        servicesOffered: user.providerProfile.servicesOffered?.map(s => ({...s, id: s.id || s.name + Date.now()})) || PREDEFINED_NDT_SERVICES.map(s => ({id: s, name: s, rate: '', unit: SERVICE_UNITS[0], isCustom: false })),
+        bio: user.providerProfile.procedureInfo || "Update company bio here.", 
+        servicesOffered: providerServices,
         certifications: user.providerProfile.certifications || [],
-        personnelQualifications: user.providerProfile.personnelQualifications?.map(q => ({...q, id: q.id || Date.now().toString() + Math.random() })) || [],
+        personnelQualifications: providerPersonnel,
         availableDocuments: user.providerProfile.availableDocuments || [],
-        serviceRadius: "", // Placeholder, needs a field in types if it's to be saved
+        serviceRadius: "", 
         companyLogoUrl: user.providerProfile.companyLogoUrl || "",
         baseRate: user.providerProfile.baseRate || 0,
         pricingDetails: user.providerProfile.pricingDetails || "",
@@ -101,12 +112,12 @@ export default function ProviderProfilePage() {
         isVerified: user.providerProfile.isVerified || false,
       });
       setDocsText((user.providerProfile.availableDocuments || []).join(", "));
-    } else if (user && !user.providerProfile) { // Initialize for new provider
+    } else if (user && !user.providerProfile) { 
         setProfileData(prev => ({
             ...prev,
             companyName: user.name || "",
             contactEmail: user.email,
-            servicesOffered: PREDEFINED_NDT_SERVICES.map(s => ({id: s, name: s, rate: '', unit: SERVICE_UNITS[0], isCustom: false }))
+            servicesOffered: [] // Start with an empty list for new providers
         }));
     }
   }, [user, loading, router]);
@@ -120,35 +131,37 @@ export default function ProviderProfilePage() {
     }));
   };
 
-  const handleServiceOfferingChange = (index: number, field: keyof ServiceOffering, value: any) => {
-    const updatedServices = [...profileData.servicesOffered];
-    const serviceToUpdate = { ...updatedServices[index] };
-    (serviceToUpdate[field] as any) = value;
-    updatedServices[index] = serviceToUpdate;
-    setProfileData(prev => ({ ...prev, servicesOffered: updatedServices }));
-  };
-  
-  const handleAddCustomService = () => {
-    if (customServiceInput.trim() && !profileData.servicesOffered.find(s => s.name === customServiceInput.trim())) {
-      setProfileData(prev => ({
-        ...prev,
-        servicesOffered: [
-          ...prev.servicesOffered,
-          { id: customServiceInput.trim() + Date.now(), name: customServiceInput.trim(), rate: '', unit: SERVICE_UNITS[0], isCustom: true }
-        ]
-      }));
-      setCustomServiceInput("");
-    } else {
-      toast({ title: "Invalid Service", description: "Service name cannot be empty or duplicate.", variant: "destructive" });
-    }
-  };
-
-  const handleRemoveService = (serviceId: string) => {
+  const handleServiceOfferingChange = (id: string, field: keyof ServiceOffering, value: any) => {
     setProfileData(prev => ({
       ...prev,
-      servicesOffered: prev.servicesOffered.filter(s => s.id !== serviceId)
+      servicesOffered: prev.servicesOffered.map(service => 
+        service.id === id ? { ...service, [field]: value } : service
+      )
     }));
   };
+  
+  const handleAddServiceOfferingRow = () => {
+    setProfileData(prev => ({
+      ...prev,
+      servicesOffered: [
+        ...prev.servicesOffered,
+        { 
+          id: Date.now().toString() + Math.random().toString(), // Unique ID
+          name: PREDEFINED_NDT_SERVICES_TABLE[0], // Default to first service
+          rate: '', 
+          unit: SERVICE_UNITS[0] // Default to first unit
+        }
+      ]
+    }));
+  };
+
+  const handleRemoveServiceOfferingRow = (id: string) => {
+    setProfileData(prev => ({
+      ...prev,
+      servicesOffered: prev.servicesOffered.filter(s => s.id !== id)
+    }));
+  };
+
 
   const handleCertificationChange = (certificationName: string, checked: boolean) => {
     setProfileData(prev => {
@@ -161,12 +174,13 @@ export default function ProviderProfilePage() {
     });
   };
   
-  const handlePersonnelQualificationChange = (index: number, field: keyof PersonnelQualification, value: any) => {
-    const updatedQuals = [...profileData.personnelQualifications];
-    const qualToUpdate = { ...updatedQuals[index] };
-    (qualToUpdate[field] as any) = value;
-    updatedQuals[index] = qualToUpdate;
-    setProfileData(prev => ({ ...prev, personnelQualifications: updatedQuals }));
+  const handlePersonnelQualificationChange = (id: string, field: keyof PersonnelQualification, value: any) => {
+     setProfileData(prev => ({
+      ...prev,
+      personnelQualifications: prev.personnelQualifications.map(qual => 
+        qual.id === id ? { ...qual, [field]: value } : qual
+      )
+    }));
   };
 
   const handleAddPersonnelQualification = () => {
@@ -174,7 +188,12 @@ export default function ProviderProfilePage() {
       ...prev,
       personnelQualifications: [
         ...prev.personnelQualifications,
-        { id: Date.now().toString() + Math.random().toString(), quantity: 1, certificationBody: QUALIFICATION_BODIES[0], level: QUALIFICATION_LEVELS[0] }
+        { 
+          id: Date.now().toString() + Math.random().toString(), 
+          quantity: 1, 
+          certificationBody: QUALIFICATION_BODIES[0], 
+          level: QUALIFICATION_LEVELS[0] 
+        }
       ]
     }));
   };
@@ -193,11 +212,16 @@ export default function ProviderProfilePage() {
     
     const updatedDocs = docsText.split(',').map(s => s.trim()).filter(Boolean);
 
-    // Clean up service offerings: parse rate to number
     const finalServicesOffered = profileData.servicesOffered.map(s => ({
-        ...s,
-        rate: s.rate === '' ? undefined : (typeof s.rate === 'string' ? parseFloat(s.rate) : s.rate)
+      ...s,
+      rate: s.rate // Rate is already string, can be parsed later if needed for calculations
     }));
+    
+    const finalPersonnelQualifications = profileData.personnelQualifications.map(q => ({
+        ...q,
+        quantity: typeof q.quantity === 'string' ? parseInt(q.quantity, 10) || 0 : q.quantity
+    }));
+
 
     await new Promise(resolve => setTimeout(resolve, 1500));
 
@@ -216,14 +240,13 @@ export default function ProviderProfilePage() {
           procedureInfo: profileData.procedureInfo,
           acceptanceCriteriaInfo: profileData.acceptanceCriteriaInfo,
           certifications: profileData.certifications,
-          personnelQualifications: profileData.personnelQualifications.map(q => ({...q, quantity: typeof q.quantity === 'string' ? parseInt(q.quantity) || 0 : q.quantity })),
+          personnelQualifications: finalPersonnelQualifications,
           availableDocuments: updatedDocs,
           isVerified: profileData.isVerified,
-          // serviceRadius is not saved yet, needs to be added to ProviderProfileData type and here if needed
         },
       };
-      setUser(updatedUser); // This updates context and triggers localStorage save via AuthContext's useEffect
-      localStorage.setItem('ndt-user', JSON.stringify(updatedUser)); // Explicit save to ensure immediate effect
+      setUser(updatedUser); 
+      localStorage.setItem('ndt-user', JSON.stringify(updatedUser)); 
     }
 
     toast({
@@ -301,63 +324,79 @@ export default function ProviderProfilePage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center"><ListChecks className="h-5 w-5 mr-2 text-primary"/>Services Offered & Pricing</CardTitle>
-            <CardDescription>Specify the NDT services you provide and their unit rates.</CardDescription>
+            <CardDescription>Define each NDT service you provide along with its rate and unit.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="space-y-2">
-              {profileData.servicesOffered?.map((service, index) => (
-                <Card key={service.id} className="p-4">
-                  <div className="flex flex-col md:flex-row md:items-center gap-4">
-                    <div className="flex-grow">
-                      <Label htmlFor={`service-name-${service.id}`}>{service.name} {service.isCustom && "(Custom)"}</Label>
+            {profileData.servicesOffered?.length > 0 && (
+              <div className="space-y-3">
+                {profileData.servicesOffered.map((service) => (
+                  <Card key={service.id} className="p-4 shadow-sm">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-3 items-end">
+                      <div className="md:col-span-2">
+                        <Label htmlFor={`service-name-${service.id}`}>Service Name</Label>
+                        <Select
+                          value={service.name}
+                          onValueChange={(value) => handleServiceOfferingChange(service.id, 'name', value)}
+                        >
+                          <SelectTrigger id={`service-name-${service.id}`}>
+                            <SelectValue placeholder="Select Service" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {PREDEFINED_NDT_SERVICES_TABLE.map(ndtService => (
+                              <SelectItem key={ndtService} value={ndtService}>{ndtService}</SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div>
+                        <Label htmlFor={`service-rate-${service.id}`}>Rate</Label>
+                        <Input
+                          id={`service-rate-${service.id}`}
+                          type="text" // Use text to allow various numeric inputs
+                          placeholder="e.g., 100 or 50.50"
+                          value={service.rate}
+                          onChange={(e) => handleServiceOfferingChange(service.id, 'rate', e.target.value)}
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor={`service-unit-${service.id}`}>Unit</Label>
+                         <Select
+                            value={service.unit}
+                            onValueChange={(value) => handleServiceOfferingChange(service.id, 'unit', value)}
+                          >
+                            <SelectTrigger id={`service-unit-${service.id}`}>
+                              <SelectValue placeholder="Select Unit" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {SERVICE_UNITS.map(unit => <SelectItem key={unit} value={unit}>{unit}</SelectItem>)}
+                            </SelectContent>
+                          </Select>
+                      </div>
                     </div>
-                    <div className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
-                      <Input
-                        id={`service-rate-${service.id}`}
-                        type="number"
-                        placeholder="Rate"
-                        value={service.rate ?? ''}
-                        onChange={(e) => handleServiceOfferingChange(index, 'rate', e.target.value)}
-                        className="w-full sm:w-24"
-                        step="0.01"
-                      />
-                      <Select
-                        value={service.unit}
-                        onValueChange={(value) => handleServiceOfferingChange(index, 'unit', value)}
+                    <div className="mt-2 text-right">
+                      <Button 
+                        type="button" 
+                        variant="ghost" 
+                        size="sm" 
+                        onClick={() => handleRemoveServiceOfferingRow(service.id)} 
+                        className="text-destructive hover:bg-destructive/10"
                       >
-                        <SelectTrigger className="w-full sm:w-[180px]">
-                          <SelectValue placeholder="Select Unit" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {SERVICE_UNITS.map(unit => <SelectItem key={unit} value={unit}>{unit}</SelectItem>)}
-                        </SelectContent>
-                      </Select>
+                        <Trash2 className="h-4 w-4 mr-1" /> Remove Service
+                      </Button>
                     </div>
-                     {service.isCustom && (
-                        <Button type="button" variant="ghost" size="icon" onClick={() => handleRemoveService(service.id)} className="text-destructive shrink-0">
-                            <Trash2 className="h-4 w-4" />
-                        </Button>
-                    )}
-                  </div>
-                </Card>
-              ))}
-            </div>
-            <div className="flex gap-2 items-end pt-2">
-              <div className="flex-grow">
-                <Label htmlFor="customServiceInput">Add Custom Service</Label>
-                <Input 
-                  id="customServiceInput"
-                  placeholder="Enter custom service name" 
-                  value={customServiceInput} 
-                  onChange={(e) => setCustomServiceInput(e.target.value)}
-                />
+                  </Card>
+                ))}
               </div>
-              <Button type="button" onClick={handleAddCustomService} variant="outline">
-                <PlusCircle className="h-4 w-4 mr-2"/> Add Service
-              </Button>
-            </div>
+            )}
+             {profileData.servicesOffered?.length === 0 && (
+                <p className="text-sm text-muted-foreground text-center py-4">No services added yet. Click below to add your first service offering.</p>
+            )}
+            <Button type="button" onClick={handleAddServiceOfferingRow} variant="outline" className="w-full">
+              <PlusCircle className="h-4 w-4 mr-2"/> Add Service Offering
+            </Button>
           </CardContent>
         </Card>
+
 
         {/* Company Certifications */}
         <Card>
@@ -387,9 +426,10 @@ export default function ProviderProfilePage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center"><Users2 className="h-5 w-5 mr-2 text-primary"/>Personnel Qualifications</CardTitle>
-            <CardDescription>List the qualifications of your technical personnel.</CardDescription>
+            <CardDescription>List the qualifications of your technical personnel. Add one row per qualification type.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
+            {profileData.personnelQualifications?.length > 0 && (
             <Table>
               <TableHeader>
                 <TableRow>
@@ -400,20 +440,20 @@ export default function ProviderProfilePage() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {profileData.personnelQualifications?.map((qual, index) => (
+                {profileData.personnelQualifications.map((qual) => (
                   <TableRow key={qual.id}>
                     <TableCell>
                       <Input
                         type="number"
                         value={qual.quantity}
-                        onChange={(e) => handlePersonnelQualificationChange(index, 'quantity', e.target.value)}
+                        onChange={(e) => handlePersonnelQualificationChange(qual.id, 'quantity', e.target.value)}
                         min="1"
                       />
                     </TableCell>
                     <TableCell>
                       <Select
                         value={qual.certificationBody}
-                        onValueChange={(value) => handlePersonnelQualificationChange(index, 'certificationBody', value)}
+                        onValueChange={(value) => handlePersonnelQualificationChange(qual.id, 'certificationBody', value)}
                       >
                         <SelectTrigger><SelectValue placeholder="Select Body" /></SelectTrigger>
                         <SelectContent>
@@ -424,7 +464,7 @@ export default function ProviderProfilePage() {
                     <TableCell>
                        <Select
                         value={qual.level}
-                        onValueChange={(value) => handlePersonnelQualificationChange(index, 'level', value)}
+                        onValueChange={(value) => handlePersonnelQualificationChange(qual.id, 'level', value)}
                       >
                         <SelectTrigger><SelectValue placeholder="Select Level" /></SelectTrigger>
                         <SelectContent>
@@ -441,8 +481,12 @@ export default function ProviderProfilePage() {
                 ))}
               </TableBody>
             </Table>
-            <Button type="button" variant="outline" onClick={handleAddPersonnelQualification}>
-              <PlusCircle className="h-4 w-4 mr-2"/> Add Qualification
+            )}
+            {profileData.personnelQualifications?.length === 0 && (
+                <p className="text-sm text-muted-foreground text-center py-4">No personnel qualifications added yet.</p>
+            )}
+            <Button type="button" variant="outline" onClick={handleAddPersonnelQualification} className="w-full">
+              <PlusCircle className="h-4 w-4 mr-2"/> Add Personnel Qualification
             </Button>
           </CardContent>
         </Card>
