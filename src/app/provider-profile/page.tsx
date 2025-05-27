@@ -49,6 +49,21 @@ const QUALIFICATION_BODIES = [
 
 const QUALIFICATION_LEVELS = ["Level I", "Level II", "Level III", "Technician", "Inspector", "Engineer", "Assistant", "Senior", "Other"];
 
+const generateUniqueId = () => Date.now().toString() + Math.random().toString();
+
+const defaultServiceOffering = (): ServiceOffering => ({
+  id: generateUniqueId(),
+  name: PREDEFINED_NDT_SERVICES_TABLE[0],
+  rate: '',
+  unit: SERVICE_UNITS[0]
+});
+
+const defaultPersonnelQualification = (): PersonnelQualification => ({
+  id: generateUniqueId(),
+  quantity: 1,
+  certificationBody: QUALIFICATION_BODIES[0],
+  level: QUALIFICATION_LEVELS[0]
+});
 
 export default function ProviderProfilePage() {
   const { user, loading, setUser } = useAuth();
@@ -78,19 +93,6 @@ export default function ProviderProfilePage() {
   
   const [docsText, setDocsText] = useState("");
 
-  const defaultServiceOffering = (): ServiceOffering => ({
-    id: Date.now().toString() + Math.random().toString(),
-    name: PREDEFINED_NDT_SERVICES_TABLE[0],
-    rate: '',
-    unit: SERVICE_UNITS[0]
-  });
-
-  const defaultPersonnelQualification = (): PersonnelQualification => ({
-    id: Date.now().toString() + Math.random().toString(),
-    quantity: 1,
-    certificationBody: QUALIFICATION_BODIES[0],
-    level: QUALIFICATION_LEVELS[0]
-  });
 
   useEffect(() => {
     if (!loading && !user) {
@@ -98,13 +100,30 @@ export default function ProviderProfilePage() {
     } else if (user && user.role !== 'provider') {
       router.push("/dashboard");
     } else if (user && user.providerProfile) {
-      const providerServices = Array.isArray(user.providerProfile.servicesOffered) && user.providerProfile.servicesOffered.length > 0
-          ? user.providerProfile.servicesOffered.map(s => ({...s, id: s.id || (s.name + Date.now())})) 
-          : [defaultServiceOffering()];
+      
+      const loadedProviderServices = (Array.isArray(user.providerProfile.servicesOffered) ? user.providerProfile.servicesOffered : [])
+        .map(s => ({
+          id: (s && typeof s.id === 'string' && s.id.trim() !== "") ? s.id : generateUniqueId(),
+          name: (s && s.name) || PREDEFINED_NDT_SERVICES_TABLE[0],
+          rate: String((s && s.rate) || ''),
+          unit: (s && s.unit) || SERVICE_UNITS[0],
+        }));
+      
+      if (loadedProviderServices.length === 0) {
+        loadedProviderServices.push(defaultServiceOffering());
+      }
 
-      const providerPersonnel = Array.isArray(user.providerProfile.personnelQualifications) && user.providerProfile.personnelQualifications.length > 0
-          ? user.providerProfile.personnelQualifications.map(q => ({...q, id: q.id || (Date.now().toString() + Math.random())})) 
-          : [defaultPersonnelQualification()];
+      const loadedPersonnelQualifications = (Array.isArray(user.providerProfile.personnelQualifications) ? user.providerProfile.personnelQualifications : [])
+        .map(q => ({
+          id: (q && typeof q.id === 'string' && q.id.trim() !== "") ? q.id : generateUniqueId(),
+          quantity: (q && q.quantity) || 1,
+          certificationBody: (q && q.certificationBody) || QUALIFICATION_BODIES[0],
+          level: (q && q.level) || QUALIFICATION_LEVELS[0],
+        }));
+
+      if (loadedPersonnelQualifications.length === 0) {
+        loadedPersonnelQualifications.push(defaultPersonnelQualification());
+      }
 
       setProfileData({
         companyName: user.name || "",
@@ -113,9 +132,9 @@ export default function ProviderProfilePage() {
         website: user.providerProfile.companyLogoUrl ? user.providerProfile.website || "" : "https://example.com", 
         address: user.providerProfile.location || "",
         bio: user.providerProfile.procedureInfo || "Update company bio here.", 
-        servicesOffered: providerServices,
+        servicesOffered: loadedProviderServices,
         certifications: user.providerProfile.certifications || [],
-        personnelQualifications: providerPersonnel,
+        personnelQualifications: loadedPersonnelQualifications,
         availableDocuments: user.providerProfile.availableDocuments || [],
         serviceRadius: user.providerProfile.serviceRadius || "", 
         companyLogoUrl: user.providerProfile.companyLogoUrl || "",
@@ -170,7 +189,7 @@ export default function ProviderProfilePage() {
   const handleRemoveServiceOfferingRow = (id: string) => {
     setProfileData(prev => ({
       ...prev,
-      servicesOffered: prev.servicesOffered.filter(s => s.id !== id)
+      servicesOffered: prev.servicesOffered.length > 1 ? prev.servicesOffered.filter(s => s.id !== id) : prev.servicesOffered
     }));
   };
 
@@ -208,7 +227,7 @@ export default function ProviderProfilePage() {
   const handleRemovePersonnelQualification = (id: string) => {
     setProfileData(prev => ({
       ...prev,
-      personnelQualifications: prev.personnelQualifications.filter(q => q.id !== id)
+      personnelQualifications: prev.personnelQualifications.length > 1 ? prev.personnelQualifications.filter(q => q.id !== id) : prev.personnelQualifications
     }));
   };
 
@@ -221,7 +240,7 @@ export default function ProviderProfilePage() {
 
     const finalServicesOffered = profileData.servicesOffered.map(s => ({
       ...s,
-      rate: s.rate 
+      rate: s.rate // rate is already a string, ensure it's what you expect
     }));
     
     const finalPersonnelQualifications = profileData.personnelQualifications.map(q => ({
@@ -237,7 +256,7 @@ export default function ProviderProfilePage() {
         ...user,
         name: profileData.companyName,
         providerProfile: {
-          ...(user.providerProfile || {}), // Ensure existing fields are preserved if any
+          ...(user.providerProfile || {}), 
           location: profileData.address,
           servicesOffered: finalServicesOffered,
           contactNumber: profileData.phone,
@@ -245,7 +264,7 @@ export default function ProviderProfilePage() {
           companyLogoUrl: profileData.companyLogoUrl,
           baseRate: profileData.baseRate,
           pricingDetails: profileData.pricingDetails,
-          procedureInfo: profileData.procedureInfo || profileData.bio, // Use bio if procedureInfo is empty
+          procedureInfo: profileData.procedureInfo || profileData.bio, 
           acceptanceCriteriaInfo: profileData.acceptanceCriteriaInfo,
           certifications: profileData.certifications,
           personnelQualifications: finalPersonnelQualifications,
@@ -536,6 +555,3 @@ export default function ProviderProfilePage() {
     </div>
   );
 }
-
-
-    
