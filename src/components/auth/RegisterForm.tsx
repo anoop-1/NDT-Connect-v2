@@ -2,6 +2,7 @@
 // src/components/auth/RegisterForm.tsx
 "use client";
 
+import * as React from "react"; // Added React import
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import * as z from "zod";
