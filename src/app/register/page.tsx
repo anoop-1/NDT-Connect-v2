@@ -1,3 +1,4 @@
+
 import { RegisterForm } from "@/components/auth/RegisterForm";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
@@ -6,7 +7,7 @@ import { Button } from "@/components/ui/button";
 export default function RegisterPage() {
   return (
     <div className="flex min-h-[calc(100vh-10rem)] items-center justify-center py-8">
-      <Card className="w-full max-w-md shadow-xl">
+      <Card className="w-full max-w-3xl shadow-xl">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl">Create an Account</CardTitle>
           <CardDescription>Join NDT Connect to find or offer NDT services.</CardDescription>
