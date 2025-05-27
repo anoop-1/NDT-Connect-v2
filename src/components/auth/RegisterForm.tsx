@@ -261,7 +261,7 @@ export function RegisterForm() {
             ...s,
             rate: s.rate === '' ? '0' : s.rate // Ensure rate is string for type consistency
         })),
-        personnelQualifications: [], 
+        personnelQualifications: [], // Initialized as empty, configured on profile page
         contactNumber: providerValues.contactNumberProvider,
         pricingDetails: providerValues.pricingDetails,
         procedureInfo: providerValues.procedureInfo,
@@ -498,20 +498,7 @@ export function RegisterForm() {
                           </FormItem>
                         )}
                       />
-                      <FormField
-                        control={form.control}
-                        name={`servicesOffered.${index}.rate` as const}
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Rate</FormLabel>
-                            <FormControl>
-                              <Input type="text" placeholder="e.g., 100" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
+                       <FormField
                         control={form.control}
                         name={`servicesOffered.${index}.unit` as const}
                         render={({ field }) => (
@@ -527,6 +514,19 @@ export function RegisterForm() {
                                 ))}
                               </SelectContent>
                             </Select>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name={`servicesOffered.${index}.rate` as const}
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Rate</FormLabel>
+                            <FormControl>
+                              <Input type="text" placeholder="e.g., 100" {...field} />
+                            </FormControl>
                             <FormMessage />
                           </FormItem>
                         )}
