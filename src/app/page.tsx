@@ -7,14 +7,18 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { CheckCircle, Search, Users, ShieldCheck } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
+const DEFAULT_HOMEPAGE_IMAGE = "/images/ndt-connect-hero.png"; // New default image
+
 export default function HomePage() {
-  const [currentHomepageImage, setCurrentHomepageImage] = useState("https://placehold.co/700x450.png"); // Updated default URL
+  const [currentHomepageImage, setCurrentHomepageImage] = useState(DEFAULT_HOMEPAGE_IMAGE);
 
   useEffect(() => {
     // This code runs only on the client, after hydration
     const adminSetImageUrl = localStorage.getItem('customHomepageImageUrl');
     if (adminSetImageUrl) {
       setCurrentHomepageImage(adminSetImageUrl);
+    } else {
+      setCurrentHomepageImage(DEFAULT_HOMEPAGE_IMAGE); // Ensure default if nothing in localStorage
     }
   }, []);
 
@@ -98,12 +102,13 @@ export default function HomePage() {
         <div>
           <Image
             src={currentHomepageImage}
-            alt="NDT Inspection Process"
-            width={700} // Updated width
-            height={450} // Updated height
+            alt="NDT Connect Platform"
+            width={700}
+            height={450}
             className="rounded-lg shadow-xl object-cover"
-            data-ai-hint="NDT inspection"
+            data-ai-hint="NDT global connection"
             key={currentHomepageImage} // Add key to force re-render if URL changes
+            priority // Added priority as it's likely a key visual element
           />
         </div>
       </section>
