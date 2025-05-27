@@ -2,9 +2,9 @@
 // src/components/auth/RegisterForm.tsx
 "use client";
 
-import * as React from "react"; // Added React import
+import * as React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, useFieldArray, Controller } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form"; // Removed Controller as it's not directly used now for services
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import {
@@ -46,11 +46,12 @@ const SERVICE_UNITS_REGISTER = [
 
 const generateUniqueId = () => Date.now().toString(36) + Math.random().toString(36).substring(2);
 
-const defaultServiceOfferingRow = (): ServiceOffering => ({
+const defaultServiceOfferingRow = (isCustom: boolean = false): ServiceOffering => ({
   id: generateUniqueId(),
-  name: PREDEFINED_NDT_SERVICES_TABLE[0],
+  name: isCustom ? "" : PREDEFINED_NDT_SERVICES_TABLE[0],
   rate: '',
-  unit: SERVICE_UNITS_REGISTER[0]
+  unit: isCustom ? "" : SERVICE_UNITS_REGISTER[0],
+  isCustom: isCustom,
 });
 
 
@@ -136,6 +137,7 @@ const serviceOfferingSchema = z.object({
       message: "Rate must be a non-negative number or empty.",
     }),
   unit: z.string().min(1, "Unit is required."),
+  isCustom: z.boolean().optional(),
 });
 
 const providerSchema = baseSchema.extend({
@@ -150,8 +152,8 @@ const providerSchema = baseSchema.extend({
     (val) => (val === "" ? undefined : parseFloat(String(val))),
     z.number({ invalid_type_error: "Base rate must be a number." }).min(0, "Base rate cannot be negative.").optional()
   ),
-  certificationsText: z.string().optional(), 
-  personnelQualificationsText: z.string().optional(), 
+  certificationsText: z.string().optional(),
+  personnelQualificationsText: z.string().optional(),
   availableDocumentsText: z.string().optional(),
 });
 
@@ -178,7 +180,7 @@ const formSchema = z.union([clientSchema, providerSchema])
     return true;
   }, {
     message: "Please fill all required fields for your role.",
-    path: ["role"], 
+    path: ["role"],
   });
 
 
@@ -206,7 +208,7 @@ export function RegisterForm() {
       contactNumberClient: "",
       // Provider fields
       locationProvider: "",
-      servicesOffered: [defaultServiceOfferingRow()], 
+      servicesOffered: [defaultServiceOfferingRow()],
       contactNumberProvider: "",
       pricingDetails: "",
       procedureInfo: "",
@@ -225,7 +227,7 @@ export function RegisterForm() {
     control: form.control,
     name: "servicesOffered" as any, // Type assertion needed for conditional field
   });
-  
+
   // Reset servicesOffered when role changes
   const previousRole = React.useRef(currentRole);
   React.useEffect(() => {
@@ -233,8 +235,7 @@ export function RegisterForm() {
       if (currentRole === 'provider') {
         form.setValue('servicesOffered' as any, [defaultServiceOfferingRow()]);
       } else {
-         // Clear or reset servicesOffered if switching away from provider
-         // form.setValue('servicesOffered' as any, []); // Or handle as needed
+         form.setValue('servicesOffered' as any, []);
       }
       previousRole.current = currentRole;
     }
@@ -254,14 +255,15 @@ export function RegisterForm() {
         contactNumber: values.contactNumberClient,
       };
     } else if (values.role === "provider" && "locationProvider" in values) {
-      const providerValues = values as Extract<FormSchemaType, { role: 'provider' }>; // Type assertion
+      const providerValues = values as Extract<FormSchemaType, { role: 'provider' }>;
       profileData = {
         location: providerValues.locationProvider,
         servicesOffered: providerValues.servicesOffered.map(s => ({
             ...s,
-            rate: s.rate === '' ? '0' : s.rate // Ensure rate is string for type consistency
+            rate: s.rate === '' ? '0' : s.rate, // Ensure rate is string for type consistency
+            isCustom: s.isCustom || false,
         })),
-        personnelQualifications: [], // Initialized as empty, configured on profile page
+        personnelQualifications: [],
         contactNumber: providerValues.contactNumberProvider,
         pricingDetails: providerValues.pricingDetails,
         procedureInfo: providerValues.procedureInfo,
@@ -270,7 +272,7 @@ export function RegisterForm() {
         baseRate: providerValues.baseRate,
         certifications: providerValues.certificationsText?.split(',').map(s => s.trim()).filter(Boolean) || [],
         availableDocuments: providerValues.availableDocumentsText?.split(',').map(s => s.trim()).filter(Boolean) || [],
-        isVerified: false, 
+        isVerified: false,
       };
     }
 
@@ -468,32 +470,37 @@ export function RegisterForm() {
               )}
             />
 
-            {/* Services Offered Section */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center"><ListChecks className="h-5 w-5 mr-2 text-primary"/>Services Offered & Pricing</CardTitle>
-                <FormDescription>Define each NDT service you provide along with its rate and unit. You can add multiple services.</FormDescription>
+                <FormDescription>Define each NDT service you provide.</FormDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 {fields.map((item, index) => (
                   <Card key={item.id} className="p-3 shadow-sm">
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-3 items-end">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 items-end">
                       <FormField
                         control={form.control}
                         name={`servicesOffered.${index}.name` as const}
                         render={({ field }) => (
-                          <FormItem className="md:col-span-2">
+                          <FormItem>
                             <FormLabel>Service Name</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            {item.isCustom ? (
                               <FormControl>
-                                <SelectTrigger><SelectValue placeholder="Select Service" /></SelectTrigger>
+                                <Input placeholder="Enter custom service name" {...field} />
                               </FormControl>
-                              <SelectContent>
-                                {PREDEFINED_NDT_SERVICES_TABLE.map(service => (
-                                  <SelectItem key={service} value={service}>{service}</SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
+                            ) : (
+                              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                <FormControl>
+                                  <SelectTrigger><SelectValue placeholder="Select Service" /></SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                  {PREDEFINED_NDT_SERVICES_TABLE.map(service => (
+                                    <SelectItem key={service} value={service}>{service}</SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                            )}
                             <FormMessage />
                           </FormItem>
                         )}
@@ -504,16 +511,22 @@ export function RegisterForm() {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>Unit</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                             {item.isCustom ? (
                               <FormControl>
-                                <SelectTrigger><SelectValue placeholder="Select Unit" /></SelectTrigger>
+                                <Input placeholder="Enter custom unit" {...field} />
                               </FormControl>
-                              <SelectContent>
-                                {SERVICE_UNITS_REGISTER.map(unit => (
-                                  <SelectItem key={unit} value={unit}>{unit}</SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
+                            ) : (
+                              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                <FormControl>
+                                  <SelectTrigger><SelectValue placeholder="Select Unit" /></SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                  {SERVICE_UNITS_REGISTER.map(unit => (
+                                    <SelectItem key={unit} value={unit}>{unit}</SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                            )}
                             <FormMessage />
                           </FormItem>
                         )}
@@ -541,13 +554,17 @@ export function RegisterForm() {
                     )}
                   </Card>
                 ))}
-                <Button type="button" variant="outline" onClick={() => append(defaultServiceOfferingRow())} className="w-full">
-                  <PlusCircle className="h-4 w-4 mr-2"/> Add Service Offering
-                </Button>
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <Button type="button" variant="outline" onClick={() => append(defaultServiceOfferingRow(false))} className="w-full sm:w-auto">
+                    <PlusCircle className="h-4 w-4 mr-2"/> Add Predefined Service
+                  </Button>
+                  <Button type="button" variant="outline" onClick={() => append(defaultServiceOfferingRow(true))} className="w-full sm:w-auto">
+                    <PlusCircle className="h-4 w-4 mr-2"/> Add Custom Service
+                  </Button>
+                </div>
                 <FormMessage>{form.formState.errors.servicesOffered?.root?.message || form.formState.errors.servicesOffered?.message}</FormMessage>
               </CardContent>
             </Card>
-
 
             <FormField
               control={form.control}
@@ -694,5 +711,3 @@ export function RegisterForm() {
     </Form>
   );
 }
-
-    
