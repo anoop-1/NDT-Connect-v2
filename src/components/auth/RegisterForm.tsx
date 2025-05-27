@@ -4,7 +4,7 @@
 
 import * as React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, useFieldArray } from "react-hook-form"; // Removed Controller as it's not directly used now for services
+import { useForm, useFieldArray } from "react-hook-form";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import {
@@ -25,11 +25,12 @@ import { useToast } from "@/hooks/use-toast";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
-import type { ClientProfileData, ProviderProfileData, ServiceOffering } from "@/lib/types";
+import type { ClientProfileData, ProviderProfileData, ServiceOffering, PersonnelQualification } from "@/lib/types";
 import { ImageIcon, DollarSign, FileText, Award, Users2, BookOpen, ListChecks, PlusCircle, Trash2 } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 const PREDEFINED_NDT_SERVICES_TABLE = [
   "Radiographic Testing", "Ultrasonic Testing", "Magnetic Particle Testing",
@@ -44,6 +45,15 @@ const SERVICE_UNITS_REGISTER = [
   "per hour", "per day", "per month", "per meter", "per mm of thickness", "per inch of thickness"
 ];
 
+const QUALIFICATION_BODIES_REGISTER = [
+  "ASNT (American Society for Nondestructive Testing)", "PCN (Personnel Certification in Non-Destructive Testing)",
+  "ISO 9712", "CSWIP (Certification Scheme for Welding Inspection Personnel)",
+  "CGSB (Canadian General Standards Board)", "AWS (American Welding Society)", "CWI (Certified Welding Inspector)",
+  "ISNT (Indian Society for Non-Destructive Testing)", "AINDT (Australian Institute for NDT)", "BINDT (British Institute of Non-Destructive Testing)", "Other"
+];
+
+const QUALIFICATION_LEVELS_REGISTER = ["Level I", "Level II", "Level III", "Technician", "Inspector", "Engineer", "Assistant", "Senior", "Other"];
+
 const generateUniqueId = () => Date.now().toString(36) + Math.random().toString(36).substring(2);
 
 const defaultServiceOfferingRow = (isCustom: boolean = false): ServiceOffering => ({
@@ -52,6 +62,13 @@ const defaultServiceOfferingRow = (isCustom: boolean = false): ServiceOffering =
   rate: '',
   unit: isCustom ? "" : SERVICE_UNITS_REGISTER[0],
   isCustom: isCustom,
+});
+
+const defaultPersonnelQualificationRow = (): PersonnelQualification => ({
+  id: generateUniqueId(),
+  quantity: 1,
+  certificationBody: QUALIFICATION_BODIES_REGISTER[0],
+  level: QUALIFICATION_LEVELS_REGISTER[0],
 });
 
 
@@ -140,10 +157,22 @@ const serviceOfferingSchema = z.object({
   isCustom: z.boolean().optional(),
 });
 
+const personnelQualificationSchema = z.object({
+  id: z.string(),
+  quantity: z.preprocess(
+    (val) => (val === "" || val === null || val === undefined ? 0 : parseInt(String(val), 10)),
+    z.number({invalid_type_error: "Quantity must be a number."}).min(1, "Quantity must be at least 1.")
+  ),
+  certificationBody: z.string().min(1, "Certification body is required."),
+  level: z.string().min(1, "Level is required."),
+});
+
+
 const providerSchema = baseSchema.extend({
   locationProvider: z.string().min(2, { message: "Location is required." }),
   servicesOffered: z.array(serviceOfferingSchema).min(1, "At least one service must be offered."),
   contactNumberProvider: z.string().min(7, {message: "Contact number is required."}),
+  personnelQualifications: z.array(personnelQualificationSchema).min(1, "At least one personnel qualification must be listed."),
   pricingDetails: z.string().min(10, { message: "Pricing details (text description) are required." }).max(500, {message: "Pricing details cannot exceed 500 characters."}),
   procedureInfo: z.string().min(10, { message: "Procedure information is required." }).max(500, {message: "Procedure information cannot exceed 500 characters."}),
   acceptanceCriteriaInfo: z.string().min(10, { message: "Acceptance criteria are required." }).max(500, {message: "Acceptance criteria cannot exceed 500 characters."}),
@@ -153,7 +182,6 @@ const providerSchema = baseSchema.extend({
     z.number({ invalid_type_error: "Base rate must be a number." }).min(0, "Base rate cannot be negative.").optional()
   ),
   certificationsText: z.string().optional(),
-  personnelQualificationsText: z.string().optional(),
   availableDocumentsText: z.string().optional(),
 });
 
@@ -173,6 +201,7 @@ const formSchema = z.union([clientSchema, providerSchema])
         return 'locationProvider' in data && data.locationProvider &&
                'servicesOffered' in data && data.servicesOffered && data.servicesOffered.length > 0 &&
                'contactNumberProvider' in data && data.contactNumberProvider &&
+               'personnelQualifications' in data && data.personnelQualifications && data.personnelQualifications.length > 0 &&
                'pricingDetails' in data && data.pricingDetails &&
                'procedureInfo' in data && data.procedureInfo &&
                'acceptanceCriteriaInfo' in data && data.acceptanceCriteriaInfo;
@@ -210,32 +239,38 @@ export function RegisterForm() {
       locationProvider: "",
       servicesOffered: [defaultServiceOfferingRow()],
       contactNumberProvider: "",
+      personnelQualifications: [defaultPersonnelQualificationRow()],
       pricingDetails: "",
       procedureInfo: "",
       acceptanceCriteriaInfo: "",
       companyLogoUrl: "",
       baseRate: undefined,
       certificationsText: "",
-      personnelQualificationsText: "",
       availableDocumentsText: "",
     },
   });
 
   const currentRole = form.watch("role");
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields: serviceFields, append: appendService, remove: removeService } = useFieldArray({
     control: form.control,
-    name: "servicesOffered" as any, // Type assertion needed for conditional field
+    name: "servicesOffered" as any,
   });
 
-  // Reset servicesOffered when role changes
+  const { fields: personnelFields, append: appendPersonnel, remove: removePersonnel } = useFieldArray({
+    control: form.control,
+    name: "personnelQualifications" as any,
+  });
+
   const previousRole = React.useRef(currentRole);
   React.useEffect(() => {
     if (previousRole.current !== currentRole) {
       if (currentRole === 'provider') {
         form.setValue('servicesOffered' as any, [defaultServiceOfferingRow()]);
+        form.setValue('personnelQualifications' as any, [defaultPersonnelQualificationRow()]);
       } else {
          form.setValue('servicesOffered' as any, []);
+         form.setValue('personnelQualifications' as any, []);
       }
       previousRole.current = currentRole;
     }
@@ -260,10 +295,13 @@ export function RegisterForm() {
         location: providerValues.locationProvider,
         servicesOffered: providerValues.servicesOffered.map(s => ({
             ...s,
-            rate: s.rate === '' ? '0' : s.rate, // Ensure rate is string for type consistency
+            rate: s.rate === '' ? '0' : s.rate,
             isCustom: s.isCustom || false,
         })),
-        personnelQualifications: [],
+        personnelQualifications: providerValues.personnelQualifications.map(pq => ({
+            ...pq,
+            quantity: typeof pq.quantity === 'string' ? parseInt(pq.quantity, 10) : pq.quantity,
+        })),
         contactNumber: providerValues.contactNumberProvider,
         pricingDetails: providerValues.pricingDetails,
         procedureInfo: providerValues.procedureInfo,
@@ -476,7 +514,7 @@ export function RegisterForm() {
                 <FormDescription>Define each NDT service you provide.</FormDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                {fields.map((item, index) => (
+                {serviceFields.map((item, index) => (
                   <Card key={item.id} className="p-3 shadow-sm">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-3 items-end">
                       <FormField
@@ -545,9 +583,9 @@ export function RegisterForm() {
                         )}
                       />
                     </div>
-                    {fields.length > 1 && (
+                    {serviceFields.length > 1 && (
                       <div className="mt-2 text-right">
-                        <Button type="button" variant="ghost" size="sm" onClick={() => remove(index)} className="text-destructive hover:bg-destructive/10">
+                        <Button type="button" variant="ghost" size="sm" onClick={() => removeService(index)} className="text-destructive hover:bg-destructive/10">
                           <Trash2 className="h-4 w-4 mr-1" /> Remove
                         </Button>
                       </div>
@@ -555,16 +593,105 @@ export function RegisterForm() {
                   </Card>
                 ))}
                 <div className="flex flex-col sm:flex-row gap-2">
-                  <Button type="button" variant="outline" onClick={() => append(defaultServiceOfferingRow(false))} className="w-full sm:w-auto">
+                  <Button type="button" variant="outline" onClick={() => appendService(defaultServiceOfferingRow(false))} className="w-full sm:w-auto">
                     <PlusCircle className="h-4 w-4 mr-2"/> Add Predefined Service
                   </Button>
-                  <Button type="button" variant="outline" onClick={() => append(defaultServiceOfferingRow(true))} className="w-full sm:w-auto">
+                  <Button type="button" variant="outline" onClick={() => appendService(defaultServiceOfferingRow(true))} className="w-full sm:w-auto">
                     <PlusCircle className="h-4 w-4 mr-2"/> Add Custom Service
                   </Button>
                 </div>
                 <FormMessage>{form.formState.errors.servicesOffered?.root?.message || form.formState.errors.servicesOffered?.message}</FormMessage>
               </CardContent>
             </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center"><Users2 className="h-5 w-5 mr-2 text-primary"/>Personnel Qualifications</CardTitle>
+                <FormDescription>List your technical personnel's qualifications.</FormDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead className="w-[80px]">Qty</TableHead>
+                      <TableHead>Cert. Body</TableHead>
+                      <TableHead>Level</TableHead>
+                      <TableHead className="text-right w-[50px]">Action</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {personnelFields.map((item, index) => (
+                      <TableRow key={item.id}>
+                        <TableCell>
+                          <FormField
+                            control={form.control}
+                            name={`personnelQualifications.${index}.quantity`}
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormControl>
+                                  <Input type="number" placeholder="1" {...field} onChange={e => field.onChange(parseInt(e.target.value,10) || 0)} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </TableCell>
+                        <TableCell>
+                          <FormField
+                            control={form.control}
+                            name={`personnelQualifications.${index}.certificationBody`}
+                            render={({ field }) => (
+                              <FormItem>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                  <FormControl>
+                                    <SelectTrigger><SelectValue placeholder="Select Body" /></SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent>
+                                    {QUALIFICATION_BODIES_REGISTER.map(body => <SelectItem key={body} value={body}>{body}</SelectItem>)}
+                                  </SelectContent>
+                                </Select>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </TableCell>
+                        <TableCell>
+                          <FormField
+                            control={form.control}
+                            name={`personnelQualifications.${index}.level`}
+                            render={({ field }) => (
+                              <FormItem>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                  <FormControl>
+                                    <SelectTrigger><SelectValue placeholder="Select Level" /></SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent>
+                                    {QUALIFICATION_LEVELS_REGISTER.map(level => <SelectItem key={level} value={level}>{level}</SelectItem>)}
+                                  </SelectContent>
+                                </Select>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </TableCell>
+                        <TableCell className="text-right">
+                          {personnelFields.length > 1 && (
+                            <Button type="button" variant="ghost" size="icon" onClick={() => removePersonnel(index)} className="text-destructive">
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          )}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+                <Button type="button" variant="outline" onClick={() => appendPersonnel(defaultPersonnelQualificationRow())} className="w-full">
+                  <PlusCircle className="h-4 w-4 mr-2"/> Add Personnel Qualification
+                </Button>
+                 <FormMessage>{form.formState.errors.personnelQualifications?.root?.message || form.formState.errors.personnelQualifications?.message}</FormMessage>
+              </CardContent>
+            </Card>
+
 
             <FormField
               control={form.control}
@@ -592,19 +719,7 @@ export function RegisterForm() {
                 </FormItem>
               )}
             />
-            <FormField
-              control={form.control}
-              name="personnelQualificationsText"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="flex items-center"><Users2 className="h-4 w-4 mr-2 text-muted-foreground"/>Key Personnel Qualifications (comma-separated general summary)</FormLabel>
-                  <FormControl>
-                    <Textarea placeholder="e.g., ASNT Level III UT, AWS CWI. Detailed list on profile page." {...field} rows={2}/>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            {/* Removed personnelQualificationsText as it's now structured */}
              <FormField
               control={form.control}
               name="availableDocumentsText"
@@ -711,3 +826,6 @@ export function RegisterForm() {
     </Form>
   );
 }
+
+
+    
