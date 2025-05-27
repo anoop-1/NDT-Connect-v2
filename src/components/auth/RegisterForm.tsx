@@ -112,7 +112,7 @@ const clientSchema = baseSchema.extend({
 
 const providerSchema = baseSchema.extend({
   locationProvider: z.string().min(2, { message: "Location is required." }),
-  selectedServices: z.array(z.string()).min(1, { message: "At least one service must be selected." }), // For initial selection
+  selectedServices: z.array(z.string()).min(1, { message: "At least one service category must be selected." }), // Stores initial categories
   contactNumberProvider: z.string().min(7, {message: "Contact number is required."}),
   pricingDetails: z.string().min(10, { message: "Pricing details (text description) are required." }).max(500, {message: "Pricing details cannot exceed 500 characters."}),
   procedureInfo: z.string().min(10, { message: "Procedure information is required." }).max(500, {message: "Procedure information cannot exceed 500 characters."}),
@@ -122,9 +122,9 @@ const providerSchema = baseSchema.extend({
     (val) => (val === "" ? undefined : parseFloat(String(val))),
     z.number({ invalid_type_error: "Base rate must be a number." }).min(0, "Base rate cannot be negative.").optional()
   ),
-  certificationsText: z.string().optional(),
-  personnelQualificationsText: z.string().optional(),
-  availableDocumentsText: z.string().optional(),
+  certificationsText: z.string().optional(), // Comma-separated list of certifications
+  personnelQualificationsText: z.string().optional(), // Comma-separated list of qualifications
+  availableDocumentsText: z.string().optional(), // Comma-separated list of documents
 });
 
 const formSchema = z.union([clientSchema, providerSchema])
@@ -150,6 +150,9 @@ const formSchema = z.union([clientSchema, providerSchema])
     return true;
   }, {
     message: "Please fill all required fields for your role.",
+    // This path helps pinpoint where the error message should ideally appear,
+    // though for complex union/refine, it might show at the form level.
+    path: ["role"], 
   });
 
 
@@ -177,7 +180,7 @@ export function RegisterForm() {
       contactNumberClient: "",
       // Provider fields
       locationProvider: "",
-      selectedServices: [],
+      selectedServices: [], // Will store initial service categories
       contactNumberProvider: "",
       pricingDetails: "",
       procedureInfo: "",
@@ -205,28 +208,26 @@ export function RegisterForm() {
         contactNumber: values.contactNumberClient,
       };
     } else if (values.role === "provider" && "locationProvider" in values) {
-      // Initialize servicesOffered from selectedServices
-      const initialServicesOffered: ServiceOffering[] = values.selectedServices.map(serviceName => ({
-        id: serviceName + Date.now(), // Simple unique ID
-        name: serviceName,
-        rate: values.baseRate, // Apply general base rate if provided
-        unit: "per hour", // Default unit
-        isCustom: !PREDEFINED_NDT_SERVICES_SIMPLE.includes(serviceName),
-      }));
-
       profileData = {
         location: values.locationProvider,
-        servicesOffered: initialServicesOffered,
+        // servicesOffered will be configured in detail on the profile page,
+        // starting empty or with one default row.
+        servicesOffered: [], 
+        // personnelQualifications will also start empty for detailed setup on profile page.
+        personnelQualifications: [], 
         contactNumber: values.contactNumberProvider,
         pricingDetails: values.pricingDetails,
         procedureInfo: values.procedureInfo,
         acceptanceCriteriaInfo: values.acceptanceCriteriaInfo,
         companyLogoUrl: values.companyLogoUrl,
         baseRate: values.baseRate,
+        // These text fields can be parsed on the profile management page
         certifications: values.certificationsText?.split(',').map(s => s.trim()).filter(Boolean) || [],
-        personnelQualifications: [], // Initialize as empty, to be detailed in profile management
+        // For personnelQualificationsText, it's better to handle parsing on profile page
+        // due to its more complex structure (quantity, body, level).
+        // For now, we're initializing personnelQualifications as an empty array.
         availableDocuments: values.availableDocumentsText?.split(',').map(s => s.trim()).filter(Boolean) || [],
-        isVerified: false,
+        isVerified: false, 
       };
     }
 
@@ -429,9 +430,9 @@ export function RegisterForm() {
                 render={() => (
                     <FormItem>
                     <div className="mb-1">
-                        <FormLabel className="text-base flex items-center"><ListChecks className="h-4 w-4 mr-2 text-primary"/>Initial Services Offered</FormLabel>
+                        <FormLabel className="text-base flex items-center"><ListChecks className="h-4 w-4 mr-2 text-primary"/>Initial Service Categories Offered</FormLabel>
                         <FormDescription>
-                        Select primary NDT services you provide. More details can be added in your profile.
+                        Select primary NDT service categories you offer. Detailed services, rates, and units can be configured in your profile.
                         </FormDescription>
                     </div>
                     <ScrollArea className="h-32 w-full rounded-md border p-2">
@@ -506,9 +507,9 @@ export function RegisterForm() {
               name="personnelQualificationsText"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="flex items-center"><Users2 className="h-4 w-4 mr-2 text-muted-foreground"/>Key Personnel Qualifications (comma-separated)</FormLabel>
+                  <FormLabel className="flex items-center"><Users2 className="h-4 w-4 mr-2 text-muted-foreground"/>Key Personnel Qualifications (comma-separated general summary)</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="e.g., ASNT Level III UT, AWS CWI" {...field} rows={2}/>
+                    <Textarea placeholder="e.g., ASNT Level III UT, AWS CWI. Detailed list on profile page." {...field} rows={2}/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -620,3 +621,4 @@ export function RegisterForm() {
     </Form>
   );
 }
+

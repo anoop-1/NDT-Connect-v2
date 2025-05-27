@@ -49,7 +49,7 @@ const QUALIFICATION_BODIES = [
 
 const QUALIFICATION_LEVELS = ["Level I", "Level II", "Level III", "Technician", "Inspector", "Engineer", "Assistant", "Senior", "Other"];
 
-const generateUniqueId = () => Date.now().toString() + Math.random().toString();
+const generateUniqueId = () => Date.now().toString(36) + Math.random().toString(36).substring(2);
 
 const defaultServiceOffering = (): ServiceOffering => ({
   id: generateUniqueId(),
@@ -100,52 +100,48 @@ export default function ProviderProfilePage() {
     } else if (user && user.role !== 'provider') {
       router.push("/dashboard");
     } else if (user && user.providerProfile) {
+      const { providerProfile } = user;
       
-      const loadedProviderServices = (Array.isArray(user.providerProfile.servicesOffered) ? user.providerProfile.servicesOffered : [])
-        .map(s => ({
-          id: (s && typeof s.id === 'string' && s.id.trim() !== "") ? s.id : generateUniqueId(),
-          name: (s && s.name) || PREDEFINED_NDT_SERVICES_TABLE[0],
-          rate: String((s && s.rate) || ''),
-          unit: (s && s.unit) || SERVICE_UNITS[0],
-        }));
-      
-      if (loadedProviderServices.length === 0) {
-        loadedProviderServices.push(defaultServiceOffering());
-      }
+      const loadedServices = (Array.isArray(providerProfile.servicesOffered) && providerProfile.servicesOffered.length > 0)
+        ? providerProfile.servicesOffered.map(s => ({
+            id: (s && typeof s.id === 'string' && s.id.trim() !== "") ? s.id : generateUniqueId(),
+            name: (s && s.name) || PREDEFINED_NDT_SERVICES_TABLE[0],
+            rate: String((s && s.rate) || ''), // Ensure rate is string
+            unit: (s && s.unit) || SERVICE_UNITS[0],
+          }))
+        : [defaultServiceOffering()]; // Initialize with one default row if empty
 
-      const loadedPersonnelQualifications = (Array.isArray(user.providerProfile.personnelQualifications) ? user.providerProfile.personnelQualifications : [])
-        .map(q => ({
-          id: (q && typeof q.id === 'string' && q.id.trim() !== "") ? q.id : generateUniqueId(),
-          quantity: (q && q.quantity) || 1,
-          certificationBody: (q && q.certificationBody) || QUALIFICATION_BODIES[0],
-          level: (q && q.level) || QUALIFICATION_LEVELS[0],
-        }));
-
-      if (loadedPersonnelQualifications.length === 0) {
-        loadedPersonnelQualifications.push(defaultPersonnelQualification());
-      }
+      const loadedQualifications = (Array.isArray(providerProfile.personnelQualifications) && providerProfile.personnelQualifications.length > 0)
+        ? providerProfile.personnelQualifications.map(q => ({
+            id: (q && typeof q.id === 'string' && q.id.trim() !== "") ? q.id : generateUniqueId(),
+            quantity: (q && (typeof q.quantity === 'number' || (typeof q.quantity === 'string' && q.quantity.trim() !== ''))) ? q.quantity : 1,
+            certificationBody: (q && q.certificationBody) || QUALIFICATION_BODIES[0],
+            level: (q && q.level) || QUALIFICATION_LEVELS[0],
+          }))
+        : [defaultPersonnelQualification()]; // Initialize with one default row if empty
 
       setProfileData({
         companyName: user.name || "",
         contactEmail: user.email,
-        phone: user.providerProfile.contactNumber || "",
-        website: user.providerProfile.companyLogoUrl ? user.providerProfile.website || "" : "https://example.com", 
-        address: user.providerProfile.location || "",
-        bio: user.providerProfile.procedureInfo || "Update company bio here.", 
-        servicesOffered: loadedProviderServices,
-        certifications: user.providerProfile.certifications || [],
-        personnelQualifications: loadedPersonnelQualifications,
-        availableDocuments: user.providerProfile.availableDocuments || [],
-        serviceRadius: user.providerProfile.serviceRadius || "", 
-        companyLogoUrl: user.providerProfile.companyLogoUrl || "",
-        baseRate: user.providerProfile.baseRate || 0,
-        pricingDetails: user.providerProfile.pricingDetails || "",
-        procedureInfo: user.providerProfile.procedureInfo || "",
-        acceptanceCriteriaInfo: user.providerProfile.acceptanceCriteriaInfo || "",
-        isVerified: user.providerProfile.isVerified || false,
+        phone: providerProfile.contactNumber || "",
+        website: providerProfile.companyLogoUrl ? providerProfile.website || "" : "https://example.com", 
+        address: providerProfile.location || "",
+        bio: providerProfile.procedureInfo || "Update company bio here.", 
+        servicesOffered: loadedServices,
+        certifications: providerProfile.certifications || [],
+        personnelQualifications: loadedQualifications,
+        availableDocuments: providerProfile.availableDocuments || [],
+        serviceRadius: providerProfile.serviceRadius || "", 
+        companyLogoUrl: providerProfile.companyLogoUrl || "",
+        baseRate: providerProfile.baseRate || 0,
+        pricingDetails: providerProfile.pricingDetails || "",
+        procedureInfo: providerProfile.procedureInfo || "", // Note: bio also uses this, clarify which is primary
+        acceptanceCriteriaInfo: providerProfile.acceptanceCriteriaInfo || "",
+        isVerified: providerProfile.isVerified || false,
       });
-      setDocsText((user.providerProfile.availableDocuments || []).join(", "));
+      setDocsText((providerProfile.availableDocuments || []).join(", "));
     } else if (user && !user.providerProfile) { 
+        // Fresh provider profile, initialize with one default for services and qualifications
         setProfileData(prev => ({
             ...prev,
             companyName: user.name || "",
@@ -238,14 +234,15 @@ export default function ProviderProfilePage() {
     
     const updatedDocs = docsText.split(',').map(s => s.trim()).filter(Boolean);
 
+    // Ensure rates are numbers or handle appropriately if they need to remain strings
     const finalServicesOffered = profileData.servicesOffered.map(s => ({
       ...s,
-      rate: s.rate // rate is already a string, ensure it's what you expect
+      rate: s.rate // Keep as string for flexibility, or parseFloat if strict number needed
     }));
     
     const finalPersonnelQualifications = profileData.personnelQualifications.map(q => ({
         ...q,
-        quantity: typeof q.quantity === 'string' ? parseInt(q.quantity, 10) || 0 : q.quantity
+        quantity: typeof q.quantity === 'string' ? parseInt(q.quantity, 10) || 1 : q.quantity // Default to 1 if parsing fails
     }));
 
 
@@ -254,7 +251,7 @@ export default function ProviderProfilePage() {
     if (user) {
       const updatedUser = {
         ...user,
-        name: profileData.companyName,
+        name: profileData.companyName, // Assuming user.name is the company name for providers
         providerProfile: {
           ...(user.providerProfile || {}), 
           location: profileData.address,
@@ -269,7 +266,7 @@ export default function ProviderProfilePage() {
           certifications: profileData.certifications,
           personnelQualifications: finalPersonnelQualifications,
           availableDocuments: updatedDocs,
-          isVerified: profileData.isVerified,
+          isVerified: profileData.isVerified, // This should ideally be admin-controlled
           serviceRadius: profileData.serviceRadius,
         },
       };
@@ -555,3 +552,4 @@ export default function ProviderProfilePage() {
     </div>
   );
 }
+

@@ -60,24 +60,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } else if (details.role === 'provider' && details.profileData) {
       const providerProfile: ProviderProfileData = {
         location: (details.profileData as ProviderProfileData).location || "",
-        // Ensure servicesOffered is initialized as an array if not provided or in old format
-        servicesOffered: Array.isArray((details.profileData as ProviderProfileData).servicesOffered) 
-          ? (details.profileData as ProviderProfileData).servicesOffered 
-          : [],
+        // Initialize servicesOffered as an empty array. Detailed configuration on profile page.
+        servicesOffered: Array.isArray(details.profileData.servicesOffered) ? details.profileData.servicesOffered : [],
         contactNumber: (details.profileData as ProviderProfileData).contactNumber || "",
         pricingDetails: (details.profileData as ProviderProfileData).pricingDetails || "",
         procedureInfo: (details.profileData as ProviderProfileData).procedureInfo || "",
         acceptanceCriteriaInfo: (details.profileData as ProviderProfileData).acceptanceCriteriaInfo || "",
         companyLogoUrl: (details.profileData as ProviderProfileData).companyLogoUrl || "",
         baseRate: (details.profileData as ProviderProfileData).baseRate || 0,
-        // Ensure certifications is initialized as an array
         certifications: Array.isArray((details.profileData as ProviderProfileData).certifications)
           ? (details.profileData as ProviderProfileData).certifications
           : [],
-        // Ensure personnelQualifications is initialized as an array
-        personnelQualifications: Array.isArray((details.profileData as ProviderProfileData).personnelQualifications)
-          ? (details.profileData as ProviderProfileData).personnelQualifications
-          : [],
+        // Initialize personnelQualifications as an empty array. Detailed configuration on profile page.
+        personnelQualifications: Array.isArray(details.profileData.personnelQualifications) ? details.profileData.personnelQualifications : [],
         isVerified: (details.profileData as ProviderProfileData).isVerified || false,
         availableDocuments: Array.isArray((details.profileData as ProviderProfileData).availableDocuments)
           ? (details.profileData as ProviderProfileData).availableDocuments
@@ -114,3 +109,4 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     </AuthContext.Provider>
   );
 }
+
