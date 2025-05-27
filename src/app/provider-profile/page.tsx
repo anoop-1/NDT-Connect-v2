@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Activity, Save, Building, Phone, Mail, Globe, Image as ImageIcon, DollarSign, Award, Users2, ShieldCheck, ShieldAlert, BookOpen, ListChecks, PlusCircle, Trash2, Tool } from "lucide-react";
+import { Activity, Save, Building, Phone, Mail, Globe, Image as ImageIcon, DollarSign, Award, Users2, ShieldCheck, ShieldAlert, BookOpen, ListChecks, PlusCircle, Trash2, PenTool } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { ServiceOffering, PersonnelQualification } from "@/lib/types";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -73,7 +73,6 @@ export default function ProviderProfilePage() {
   });
   
   const [customServiceInput, setCustomServiceInput] = useState("");
-  const [certsText, setCertsText] = useState(""); // For existing comma-separated input, to be phased out if fully checkbox
   const [docsText, setDocsText] = useState("");
 
   useEffect(() => {
@@ -86,14 +85,14 @@ export default function ProviderProfilePage() {
         companyName: user.name || "",
         contactEmail: user.email,
         phone: user.providerProfile.contactNumber || "",
-        website: user.providerProfile.companyLogoUrl ? "" : "https://example.com",
+        website: user.providerProfile.companyLogoUrl ? "" : "https://example.com", // This logic for website might need review based on actual data
         address: user.providerProfile.location || "",
-        bio: user.providerProfile.procedureInfo || "Update company bio here.", // Temp mapping
+        bio: user.providerProfile.procedureInfo || "Update company bio here.", // Temp mapping, might need a dedicated bio field in types
         servicesOffered: user.providerProfile.servicesOffered?.map(s => ({...s, id: s.id || s.name + Date.now()})) || PREDEFINED_NDT_SERVICES.map(s => ({id: s, name: s, rate: '', unit: SERVICE_UNITS[0], isCustom: false })),
         certifications: user.providerProfile.certifications || [],
         personnelQualifications: user.providerProfile.personnelQualifications?.map(q => ({...q, id: q.id || Date.now().toString() + Math.random() })) || [],
         availableDocuments: user.providerProfile.availableDocuments || [],
-        serviceRadius: "", // Placeholder
+        serviceRadius: "", // Placeholder, needs a field in types if it's to be saved
         companyLogoUrl: user.providerProfile.companyLogoUrl || "",
         baseRate: user.providerProfile.baseRate || 0,
         pricingDetails: user.providerProfile.pricingDetails || "",
@@ -101,7 +100,6 @@ export default function ProviderProfilePage() {
         acceptanceCriteriaInfo: user.providerProfile.acceptanceCriteriaInfo || "",
         isVerified: user.providerProfile.isVerified || false,
       });
-      // setCertsText((user.providerProfile.certifications || []).join(", "));
       setDocsText((user.providerProfile.availableDocuments || []).join(", "));
     } else if (user && !user.providerProfile) { // Initialize for new provider
         setProfileData(prev => ({
@@ -176,7 +174,7 @@ export default function ProviderProfilePage() {
       ...prev,
       personnelQualifications: [
         ...prev.personnelQualifications,
-        { id: Date.now().toString(), quantity: 1, certificationBody: QUALIFICATION_BODIES[0], level: QUALIFICATION_LEVELS[0] }
+        { id: Date.now().toString() + Math.random().toString(), quantity: 1, certificationBody: QUALIFICATION_BODIES[0], level: QUALIFICATION_LEVELS[0] }
       ]
     }));
   };
@@ -221,6 +219,7 @@ export default function ProviderProfilePage() {
           personnelQualifications: profileData.personnelQualifications.map(q => ({...q, quantity: typeof q.quantity === 'string' ? parseInt(q.quantity) || 0 : q.quantity })),
           availableDocuments: updatedDocs,
           isVerified: profileData.isVerified,
+          // serviceRadius is not saved yet, needs to be added to ProviderProfileData type and here if needed
         },
       };
       setUser(updatedUser); // This updates context and triggers localStorage save via AuthContext's useEffect
@@ -450,7 +449,7 @@ export default function ProviderProfilePage() {
 
         {/* Other Details */}
         <Card>
-            <CardHeader><CardTitle className="flex items-center"><Tool className="h-5 w-5 mr-2 text-primary"/>Additional Information</CardTitle></CardHeader>
+            <CardHeader><CardTitle className="flex items-center"><PenTool className="h-5 w-5 mr-2 text-primary"/>Additional Information</CardTitle></CardHeader>
             <CardContent className="space-y-6">
                 <div>
                 <Label htmlFor="docsText" className="flex items-center"><BookOpen className="h-4 w-4 mr-2 text-muted-foreground"/>Available Technical Documents</Label>
