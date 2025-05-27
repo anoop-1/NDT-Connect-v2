@@ -102,7 +102,7 @@ NDT Connect ("Platform", "we", "us", "our") provides a platform to connect NDT s
 NDT Connect acts SOLELY AS A FACILITATOR platform. We do not guarantee work, projects, or income. We are not responsible for Client actions, payment failures, or disputes.
 
 4. Service Fees:
-NDT Connect may charge a service fee for utilizing the Platform or for successful engagements facilitated through the Platform. Any applicable fees and payment terms will be communicated to you separately or as part of specific feature usage. (Note: This platform currently has a 15% commission on provider's rate shown to client, and a conceptual 10% fee to providers for facilitation).
+NDT Connect may charge a service fee for utilizing the Platform or for successful engagements facilitated through the Platform. Any applicable fees and payment terms will be communicated to you separately or as part of specific feature usage. (Note: This platform may operate on a commission basis or charge a conceptual fee for facilitation).
 
 5. Limitation of Liability:
 To the fullest extent permitted by law, NDT Connect shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising from your use of the Platform, interactions with Clients, or the provision of your services.
@@ -694,3 +694,5 @@ export function RegisterForm() {
     </Form>
   );
 }
+
+    
