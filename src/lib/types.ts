@@ -6,29 +6,44 @@ export type ClientProfileData = {
   contactNumber?: string;
 };
 
+export type ServiceOffering = {
+  id: string; // For unique key in UI lists
+  name: string;
+  rate?: number | string; // Allow string for flexible input, parse to number on save
+  unit?: string;
+  isCustom?: boolean;
+};
+
+export type PersonnelQualification = {
+  id: string; // For unique key
+  quantity: number | string; // Allow string for flexible input
+  certificationBody: string;
+  level: string;
+};
+
 export type ProviderProfileData = {
   location?: string;
-  lat?: number; // Added for latitude
-  lng?: number; // Added for longitude
-  servicesOffered?: string[];
+  lat?: number;
+  lng?: number;
+  servicesOffered?: ServiceOffering[]; // Updated
   contactNumber?: string;
-  pricingDetails?: string;
+  pricingDetails?: string; // General pricing text
   procedureInfo?: string;
   acceptanceCriteriaInfo?: string;
   companyLogoUrl?: string;
-  baseRate?: number;
-  certifications?: string[]; 
-  personnelQualifications?: string[]; 
-  isVerified?: boolean; 
+  baseRate?: number; // Could be a general base rate, servicesOffered will have specific rates
+  certifications?: string[]; // For company/classification society certs (checklist)
+  personnelQualifications?: PersonnelQualification[]; // Updated
+  isVerified?: boolean;
   availableDocuments?: string[];
 };
 
 export type User = {
   id: string;
   email: string;
-  role: 'client' | 'provider' | 'admin'; // Added 'admin'
+  role: 'client' | 'provider' | 'admin';
   name?: string;
-  isDemo?: boolean; // Flag to identify demo users
+  isDemo?: boolean;
   clientProfile?: ClientProfileData;
   providerProfile?: ProviderProfileData;
 };
@@ -37,23 +52,22 @@ export type ServiceProvider = {
   id:string;
   name: string;
   location: string;
-  lat?: number; // Added for latitude
-  lng?: number; // Added for longitude
-  services: string[];
+  lat?: number;
+  lng?: number;
+  services: ServiceOffering[]; // Updated from string[]
   specialization: string;
   rating: number;
   contactInfo: string;
   description?: string;
   imageUrl?: string;
   dataAiHint?: string;
-  baseRate?: number;
-  certifications?: string[]; 
-  personnelQualifications?: string[]; 
-  isVerified?: boolean; 
+  baseRate?: number; // General base rate, specific rates in services
+  certifications?: string[];
+  personnelQualifications?: PersonnelQualification[];
+  isVerified?: boolean;
   availableDocuments?: string[];
 };
 
-// Input for the AI recommendation flow for clients
 export type OptimizeServiceProviderRecommendationsInput = {
   location: string;
   serviceType: string;
@@ -63,7 +77,7 @@ export type OptimizeServiceProviderRecommendationsInput = {
 };
 
 export type Recommendation = {
-  referenceId: string; 
+  referenceId: string;
   providerName: string;
   contactInfo: string;
   rating: number;

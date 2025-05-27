@@ -2,7 +2,7 @@
 // src/contexts/AuthContext.tsx
 "use client";
 
-import type { User, ClientProfileData, ProviderProfileData } from '@/lib/types';
+import type { User, ClientProfileData, ProviderProfileData, ServiceOffering, PersonnelQualification } from '@/lib/types';
 import type { Dispatch, ReactNode, SetStateAction } from 'react';
 import { createContext, useState, useEffect } from 'react';
 
@@ -10,13 +10,13 @@ interface LoginDetails {
   email: string;
   role: 'client' | 'provider' | 'admin';
   name: string;
-  isDemo?: boolean; // Added isDemo flag
-  profileData?: Partial<ClientProfileData & ProviderProfileData>; // Optional for admin
+  isDemo?: boolean;
+  profileData?: Partial<ClientProfileData & ProviderProfileData>;
 }
 
 interface AuthContextType {
   user: User | null;
-  setUser: Dispatch<SetStateAction<User | null>>; // Expose setUser for profile updates
+  setUser: Dispatch<SetStateAction<User | null>>;
   loading: boolean;
   login: (details: LoginDetails) => void;
   logout: () => void;
@@ -29,16 +29,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Try to load user from localStorage
     try {
       const storedUser = localStorage.getItem('ndt-user');
       if (storedUser) {
         const parsedUser: User = JSON.parse(storedUser);
-        // Basic validation of stored user structure
         if (parsedUser && parsedUser.id && parsedUser.email && parsedUser.role) {
             setUser(parsedUser);
         } else {
-            localStorage.removeItem('ndt-user'); // Clear invalid stored user
+            localStorage.removeItem('ndt-user');
         }
       }
     } catch (error) {
@@ -50,11 +48,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = (details: LoginDetails) => {
     const newUser: User = {
-      id: Date.now().toString(), // Simple unique ID for mock
+      id: Date.now().toString(),
       email: details.email,
       role: details.role,
       name: details.name,
-      isDemo: details.isDemo || false, // Set isDemo flag
+      isDemo: details.isDemo || false,
     };
 
     if (details.role === 'client' && details.profileData) {
@@ -62,21 +60,31 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } else if (details.role === 'provider' && details.profileData) {
       const providerProfile: ProviderProfileData = {
         location: (details.profileData as ProviderProfileData).location || "",
-        servicesOffered: (details.profileData as ProviderProfileData).servicesOffered || [],
+        // Ensure servicesOffered is initialized as an array if not provided or in old format
+        servicesOffered: Array.isArray((details.profileData as ProviderProfileData).servicesOffered) 
+          ? (details.profileData as ProviderProfileData).servicesOffered 
+          : [],
         contactNumber: (details.profileData as ProviderProfileData).contactNumber || "",
         pricingDetails: (details.profileData as ProviderProfileData).pricingDetails || "",
         procedureInfo: (details.profileData as ProviderProfileData).procedureInfo || "",
         acceptanceCriteriaInfo: (details.profileData as ProviderProfileData).acceptanceCriteriaInfo || "",
         companyLogoUrl: (details.profileData as ProviderProfileData).companyLogoUrl || "",
         baseRate: (details.profileData as ProviderProfileData).baseRate || 0,
-        certifications: (details.profileData as ProviderProfileData).certifications || [],
-        personnelQualifications: (details.profileData as ProviderProfileData).personnelQualifications || [],
+        // Ensure certifications is initialized as an array
+        certifications: Array.isArray((details.profileData as ProviderProfileData).certifications)
+          ? (details.profileData as ProviderProfileData).certifications
+          : [],
+        // Ensure personnelQualifications is initialized as an array
+        personnelQualifications: Array.isArray((details.profileData as ProviderProfileData).personnelQualifications)
+          ? (details.profileData as ProviderProfileData).personnelQualifications
+          : [],
         isVerified: (details.profileData as ProviderProfileData).isVerified || false,
-        availableDocuments: (details.profileData as ProviderProfileData).availableDocuments || [],
+        availableDocuments: Array.isArray((details.profileData as ProviderProfileData).availableDocuments)
+          ? (details.profileData as ProviderProfileData).availableDocuments
+          : [],
       };
       newUser.providerProfile = providerProfile;
     }
-    // Admin users typically don't have client/provider specific profiles in this context
 
     setUser(newUser);
     try {
@@ -95,7 +103,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  // Update loading state when user changes, ensuring it becomes false once user is set (either from localStorage or login)
   useEffect(() => {
     setLoading(false);
   }, [user]);

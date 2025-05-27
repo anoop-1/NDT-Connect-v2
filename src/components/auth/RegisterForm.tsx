@@ -24,15 +24,17 @@ import { useToast } from "@/hooks/use-toast";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
-import type { ClientProfileData, ProviderProfileData } from "@/lib/types";
-import { ImageIcon, DollarSign, FileText, Award, Users2, BookOpen } from "lucide-react";
+import type { ClientProfileData, ProviderProfileData, ServiceOffering, PersonnelQualification } from "@/lib/types";
+import { ImageIcon, DollarSign, FileText, Award, Users2, BookOpen, ListChecks } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-const ALL_NDT_SERVICES = [
+// Simplified PREDEFINED_NDT_SERVICES for checkbox selection in registration
+const PREDEFINED_NDT_SERVICES_SIMPLE = [
   "Ultrasonic Testing (UT)", "Magnetic Particle Testing (MT)", "Liquid Penetrant Testing (PT)",
   "Radiographic Testing (RT)", "Eddy Current Testing (ET)", "Visual Testing (VT)",
   "Leak Testing (LT)", "Acoustic Emission Testing (AET)", "Phased Array UT (PAUT)", "Time-of-Flight Diffraction (TOFD)"
 ];
+
 
 const CLIENT_AGREEMENT_TEXT = `
 Terms of Service for Clients
@@ -110,7 +112,7 @@ const clientSchema = baseSchema.extend({
 
 const providerSchema = baseSchema.extend({
   locationProvider: z.string().min(2, { message: "Location is required." }),
-  servicesOffered: z.array(z.string()).min(1, { message: "At least one service must be selected." }),
+  selectedServices: z.array(z.string()).min(1, { message: "At least one service must be selected." }), // For initial selection
   contactNumberProvider: z.string().min(7, {message: "Contact number is required."}),
   pricingDetails: z.string().min(10, { message: "Pricing details (text description) are required." }).max(500, {message: "Pricing details cannot exceed 500 characters."}),
   procedureInfo: z.string().min(10, { message: "Procedure information is required." }).max(500, {message: "Procedure information cannot exceed 500 characters."}),
@@ -120,9 +122,9 @@ const providerSchema = baseSchema.extend({
     (val) => (val === "" ? undefined : parseFloat(String(val))),
     z.number({ invalid_type_error: "Base rate must be a number." }).min(0, "Base rate cannot be negative.").optional()
   ),
-  certifications: z.string().optional(), // Textarea for comma-separated list
-  personnelQualifications: z.string().optional(), // Textarea for comma-separated list
-  availableDocuments: z.string().optional(), // Textarea for comma-separated list
+  certificationsText: z.string().optional(),
+  personnelQualificationsText: z.string().optional(),
+  availableDocumentsText: z.string().optional(),
 });
 
 const formSchema = z.union([clientSchema, providerSchema])
@@ -139,7 +141,7 @@ const formSchema = z.union([clientSchema, providerSchema])
     }
     if (data.role === 'provider') {
         return 'locationProvider' in data && data.locationProvider &&
-               'servicesOffered' in data && data.servicesOffered && data.servicesOffered.length > 0 &&
+               'selectedServices' in data && data.selectedServices && data.selectedServices.length > 0 &&
                'contactNumberProvider' in data && data.contactNumberProvider &&
                'pricingDetails' in data && data.pricingDetails &&
                'procedureInfo' in data && data.procedureInfo &&
@@ -148,8 +150,6 @@ const formSchema = z.union([clientSchema, providerSchema])
     return true;
   }, {
     message: "Please fill all required fields for your role.",
-    // It's hard to point path to a specific conditional field with union schemas,
-    // so this general message appears at the top or bottom of the form.
   });
 
 
@@ -177,16 +177,16 @@ export function RegisterForm() {
       contactNumberClient: "",
       // Provider fields
       locationProvider: "",
-      servicesOffered: [],
+      selectedServices: [],
       contactNumberProvider: "",
       pricingDetails: "",
       procedureInfo: "",
       acceptanceCriteriaInfo: "",
       companyLogoUrl: "",
       baseRate: undefined,
-      certifications: "",
-      personnelQualifications: "",
-      availableDocuments: "",
+      certificationsText: "",
+      personnelQualificationsText: "",
+      availableDocumentsText: "",
     },
   });
 
@@ -205,19 +205,28 @@ export function RegisterForm() {
         contactNumber: values.contactNumberClient,
       };
     } else if (values.role === "provider" && "locationProvider" in values) {
+      // Initialize servicesOffered from selectedServices
+      const initialServicesOffered: ServiceOffering[] = values.selectedServices.map(serviceName => ({
+        id: serviceName + Date.now(), // Simple unique ID
+        name: serviceName,
+        rate: values.baseRate, // Apply general base rate if provided
+        unit: "per hour", // Default unit
+        isCustom: !PREDEFINED_NDT_SERVICES_SIMPLE.includes(serviceName),
+      }));
+
       profileData = {
         location: values.locationProvider,
-        servicesOffered: values.servicesOffered,
+        servicesOffered: initialServicesOffered,
         contactNumber: values.contactNumberProvider,
         pricingDetails: values.pricingDetails,
         procedureInfo: values.procedureInfo,
         acceptanceCriteriaInfo: values.acceptanceCriteriaInfo,
         companyLogoUrl: values.companyLogoUrl,
         baseRate: values.baseRate,
-        certifications: values.certifications?.split(',').map(s => s.trim()).filter(Boolean) || [],
-        personnelQualifications: values.personnelQualifications?.split(',').map(s => s.trim()).filter(Boolean) || [],
-        availableDocuments: values.availableDocuments?.split(',').map(s => s.trim()).filter(Boolean) || [],
-        isVerified: false, 
+        certifications: values.certificationsText?.split(',').map(s => s.trim()).filter(Boolean) || [],
+        personnelQualifications: [], // Initialize as empty, to be detailed in profile management
+        availableDocuments: values.availableDocumentsText?.split(',').map(s => s.trim()).filter(Boolean) || [],
+        isVerified: false,
       };
     }
 
@@ -227,14 +236,14 @@ export function RegisterForm() {
       email: values.email,
       role: values.role,
       name: values.name,
-      isDemo: false, // Regular registration is not a demo user
+      isDemo: false,
       profileData: profileData
     });
 
     toast({
       title: "Registration Successful!",
       description: `Please 'verify' your email on the login page to activate your account for ${values.email}.`,
-      duration: 7000, // Give user more time to read
+      duration: 7000,
     });
     router.push(`/login?status=verification_pending&email=${encodeURIComponent(values.email)}`);
     setIsLoading(false);
@@ -416,22 +425,22 @@ export function RegisterForm() {
             />
             <FormField
                 control={form.control}
-                name="servicesOffered"
+                name="selectedServices"
                 render={() => (
                     <FormItem>
                     <div className="mb-1">
-                        <FormLabel className="text-base">Services Offered</FormLabel>
+                        <FormLabel className="text-base flex items-center"><ListChecks className="h-4 w-4 mr-2 text-primary"/>Initial Services Offered</FormLabel>
                         <FormDescription>
-                        Select all NDT services you provide.
+                        Select primary NDT services you provide. More details can be added in your profile.
                         </FormDescription>
                     </div>
                     <ScrollArea className="h-32 w-full rounded-md border p-2">
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {ALL_NDT_SERVICES.map((service) => (
+                      {PREDEFINED_NDT_SERVICES_SIMPLE.map((service) => (
                           <FormField
                           key={service}
                           control={form.control}
-                          name="servicesOffered"
+                          name="selectedServices"
                           render={({ field }) => {
                               return (
                               <FormItem
@@ -481,42 +490,39 @@ export function RegisterForm() {
             />
             <FormField
               control={form.control}
-              name="certifications"
+              name="certificationsText"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="flex items-center"><Award className="h-4 w-4 mr-2 text-muted-foreground"/>Certifications & Accreditations</FormLabel>
+                  <FormLabel className="flex items-center"><Award className="h-4 w-4 mr-2 text-muted-foreground"/>Company Certifications (comma-separated)</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="e.g., ISO 9001, DNV Approval, ABS Certified. Separate with commas." {...field} rows={2}/>
+                    <Textarea placeholder="e.g., ISO 9001, DNV Approval" {...field} rows={2}/>
                   </FormControl>
-                  <FormDescription>List company certifications. Separate multiple items with a comma.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <FormField
               control={form.control}
-              name="personnelQualifications"
+              name="personnelQualificationsText"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="flex items-center"><Users2 className="h-4 w-4 mr-2 text-muted-foreground"/>Personnel Qualifications</FormLabel>
+                  <FormLabel className="flex items-center"><Users2 className="h-4 w-4 mr-2 text-muted-foreground"/>Key Personnel Qualifications (comma-separated)</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="e.g., SNT-TC-1A Level II UT, NAS 410 Certified Inspectors. Separate with commas." {...field} rows={2}/>
+                    <Textarea placeholder="e.g., ASNT Level III UT, AWS CWI" {...field} rows={2}/>
                   </FormControl>
-                  <FormDescription>List key personnel qualifications. Separate multiple items with a comma.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <FormField
+             <FormField
               control={form.control}
-              name="availableDocuments"
+              name="availableDocumentsText"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="flex items-center"><BookOpen className="h-4 w-4 mr-2 text-muted-foreground"/>Available Technical Documents</FormLabel>
+                  <FormLabel className="flex items-center"><BookOpen className="h-4 w-4 mr-2 text-muted-foreground"/>Available Docs (comma-separated)</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="e.g., General NDT Procedures Manual, ISO 9001 Certificate, Sample Technician Cert. Separate with commas." {...field} rows={3}/>
+                    <Textarea placeholder="e.g., Procedures Manual, ISO Cert" {...field} rows={2}/>
                   </FormControl>
-                  <FormDescription>List types of technical documents you can provide upon engagement (e.g., procedures, company certs, technician qualifications). Separate with commas.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -526,11 +532,10 @@ export function RegisterForm() {
               name="baseRate"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="flex items-center"><DollarSign className="h-4 w-4 mr-2 text-muted-foreground"/>Base Rate (e.g., per hour, optional)</FormLabel>
+                  <FormLabel className="flex items-center"><DollarSign className="h-4 w-4 mr-2 text-muted-foreground"/>General Base Rate (e.g., per hour, optional)</FormLabel>
                   <FormControl>
                     <Input type="number" placeholder="75" {...field} onChange={e => field.onChange(e.target.value === '' ? undefined : parseFloat(e.target.value))} />
                   </FormControl>
-                  <FormDescription>Enter a numeric base rate if applicable. Used for estimated pricing.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -540,9 +545,9 @@ export function RegisterForm() {
               name="pricingDetails"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Pricing Details</FormLabel>
+                  <FormLabel>General Pricing Overview</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="Describe your pricing structure, e.g., per hour, per inspection, project-based estimates available upon request." {...field} rows={3}/>
+                    <Textarea placeholder="Describe your general pricing structure..." {...field} rows={3}/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -553,9 +558,9 @@ export function RegisterForm() {
               name="procedureInfo"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Procedure Information</FormLabel>
+                  <FormLabel>General Procedure Overview</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="Briefly describe your general procedures or mention adherence to specific standards (e.g., ASNT, ISO)." {...field} rows={3}/>
+                    <Textarea placeholder="Briefly describe your general procedures..." {...field} rows={3}/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -566,9 +571,9 @@ export function RegisterForm() {
               name="acceptanceCriteriaInfo"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Acceptance Criteria</FormLabel>
+                  <FormLabel>General Acceptance Criteria Overview</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="General acceptance criteria you adhere to or common standards used (e.g., API 1104, ASME B31.3)." {...field} rows={3}/>
+                    <Textarea placeholder="General acceptance criteria you adhere to..." {...field} rows={3}/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -615,5 +620,3 @@ export function RegisterForm() {
     </Form>
   );
 }
-
-    
