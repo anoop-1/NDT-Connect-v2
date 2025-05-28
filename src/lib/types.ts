@@ -19,7 +19,14 @@ export type PersonnelQualification = {
   quantity: number | string; // Allow string for flexible input
   certificationBody: string;
   level: string;
-  expiryDate?: Date; // Added expiryDate field
+  expiryDate?: Date; 
+};
+
+export type CompanyCertification = {
+  id: string;
+  name: string;
+  category?: string;
+  expiryDate?: Date;
 };
 
 export type ProviderProfileData = {
@@ -34,7 +41,7 @@ export type ProviderProfileData = {
   companyLogoUrl?: string;
   dataAiHint?: string;
   baseRate?: number;
-  certifications?: string[];
+  certifications?: CompanyCertification[]; // Changed from string[]
   personnelQualifications?: PersonnelQualification[];
   isVerified?: boolean;
   availableDocuments?: string[];
@@ -65,7 +72,7 @@ export type ServiceProvider = {
   imageUrl?: string;
   dataAiHint?: string;
   baseRate?: number;
-  certifications?: string[];
+  certifications?: CompanyCertification[]; // Changed from string[]
   personnelQualifications?: PersonnelQualification[];
   isVerified?: boolean;
   availableDocuments?: string[];

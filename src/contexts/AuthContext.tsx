@@ -2,7 +2,7 @@
 // src/contexts/AuthContext.tsx
 "use client";
 
-import type { User, ClientProfileData, ProviderProfileData, ServiceOffering, PersonnelQualification } from '@/lib/types';
+import type { User, ClientProfileData, ProviderProfileData, ServiceOffering, PersonnelQualification, CompanyCertification } from '@/lib/types';
 import type { Dispatch, ReactNode, SetStateAction } from 'react';
 import { createContext, useState, useEffect } from 'react';
 
@@ -60,7 +60,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } else if (details.role === 'provider' && details.profileData) {
       const providerProfile: ProviderProfileData = {
         location: (details.profileData as ProviderProfileData).location || "",
-        // Initialize servicesOffered as an empty array. Detailed configuration on profile page.
         servicesOffered: Array.isArray(details.profileData.servicesOffered) ? details.profileData.servicesOffered : [],
         contactNumber: (details.profileData as ProviderProfileData).contactNumber || "",
         pricingDetails: (details.profileData as ProviderProfileData).pricingDetails || "",
@@ -70,8 +69,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         baseRate: (details.profileData as ProviderProfileData).baseRate || 0,
         certifications: Array.isArray((details.profileData as ProviderProfileData).certifications)
           ? (details.profileData as ProviderProfileData).certifications
-          : [],
-        // Initialize personnelQualifications as an empty array. Detailed configuration on profile page.
+          : [], // Ensure certifications is an array
         personnelQualifications: Array.isArray(details.profileData.personnelQualifications) ? details.profileData.personnelQualifications : [],
         isVerified: (details.profileData as ProviderProfileData).isVerified || false,
         availableDocuments: Array.isArray((details.profileData as ProviderProfileData).availableDocuments)
@@ -109,4 +107,3 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     </AuthContext.Provider>
   );
 }
-

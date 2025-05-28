@@ -25,7 +25,7 @@ import { useToast } from "@/hooks/use-toast";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
-import type { ClientProfileData, ProviderProfileData, ServiceOffering, PersonnelQualification } from "@/lib/types";
+import type { ClientProfileData, ProviderProfileData, ServiceOffering, PersonnelQualification, CompanyCertification } from "@/lib/types";
 import { ImageIcon, DollarSign, FileText, Award, Users2, BookOpen, ListChecks, PlusCircle, Trash2, CalendarIcon } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -63,7 +63,7 @@ const COMPANY_CERTIFICATIONS_REGISTER = [
   "ISO 9001", "ISO 14001", "ISO 17020", "ISO 17024", "ISO 17025", "ISO 45001",
   "ABS (American Bureau of Shipping)", "DNV (Det Norske Veritas)", "LR (Lloyd's Register)",
   "BV (Bureau Veritas)", "NKK (Nippon Kaiji Kyokai)", "IRS (Indian Register of Shipping)",
-  "RINA (Registro Italiano Navale)", "CCS (China Classification Society)", "KR (Korean Register of Shipping)"
+  "RINA (Registro Italiano Navale)", "CCS (China Classification Society)", "KR (Korean Register of Shipping)", "Other"
 ];
 
 const generateUniqueId = () => Date.now().toString(36) + Math.random().toString(36).substring(2);
@@ -81,6 +81,13 @@ const defaultPersonnelQualificationRow = (): PersonnelQualification => ({
   quantity: 1,
   certificationBody: QUALIFICATION_BODIES_REGISTER[0],
   level: QUALIFICATION_LEVELS_REGISTER[0],
+  expiryDate: undefined,
+});
+
+const defaultCompanyCertificationRow = (): CompanyCertification => ({
+  id: generateUniqueId(),
+  name: COMPANY_CERTIFICATIONS_REGISTER[0],
+  category: "",
   expiryDate: undefined,
 });
 
@@ -133,7 +140,7 @@ NDT Connect ("Platform", "we", "us", "our") provides a platform to connect NDT s
 NDT Connect acts SOLELY AS A FACILITATOR platform. We do not guarantee work, projects, or income. We are not responsible for Client actions, payment failures, or disputes.
 
 4. Service Fees:
-NDT Connect may charge a service fee for utilizing the Platform or for successful engagements facilitated through the Platform. Any applicable fees (such as commission or conceptual fee) and payment terms will be communicated to you separately or as part of specific feature usage.
+NDT Connect may charge a service fee for utilizing the Platform or for successful engagements facilitated through the Platform. Any applicable commission or conceptual fee and payment terms will be communicated to you separately or as part of specific feature usage.
 
 5. Limitation of Liability:
 To the fullest extent permitted by law, NDT Connect shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising from your use of the Platform, interactions with Clients, or the provision of your services.
@@ -181,12 +188,20 @@ const personnelQualificationSchema = z.object({
   expiryDate: z.date().optional(),
 });
 
+const companyCertificationSchema = z.object({
+  id: z.string(),
+  name: z.string().min(1, "Certification name is required."),
+  category: z.string().optional(),
+  expiryDate: z.date().optional(),
+});
+
 
 const providerSchema = baseSchema.extend({
   locationProvider: z.string().min(2, { message: "Location is required." }),
   servicesOffered: z.array(serviceOfferingSchema).min(1, "At least one service must be offered."),
   contactNumberProvider: z.string().min(7, {message: "Contact number is required."}),
   personnelQualifications: z.array(personnelQualificationSchema).min(1, "At least one personnel qualification must be listed."),
+  certifications: z.array(companyCertificationSchema).optional(), // Changed from string[]
   pricingDetails: z.string().min(10, { message: "Pricing details (text description) are required." }).max(500, {message: "Pricing details cannot exceed 500 characters."}),
   procedureInfo: z.string().min(10, { message: "Procedure information is required." }).max(500, {message: "Procedure information cannot exceed 500 characters."}),
   acceptanceCriteriaInfo: z.string().min(10, { message: "Acceptance criteria are required." }).max(500, {message: "Acceptance criteria cannot exceed 500 characters."}),
@@ -195,7 +210,6 @@ const providerSchema = baseSchema.extend({
     (val) => (val === "" ? undefined : parseFloat(String(val))),
     z.number({ invalid_type_error: "Base rate must be a number." }).min(0, "Base rate cannot be negative.").optional()
   ),
-  certifications: z.array(z.string()).optional(),
   availableDocumentsText: z.string().optional(),
 });
 
@@ -254,12 +268,12 @@ export function RegisterForm() {
       servicesOffered: [defaultServiceOfferingRow()],
       contactNumberProvider: "",
       personnelQualifications: [defaultPersonnelQualificationRow()],
+      certifications: [defaultCompanyCertificationRow()], // Initialize with one row
       pricingDetails: "",
       procedureInfo: "",
       acceptanceCriteriaInfo: "",
       companyLogoUrl: "",
       baseRate: undefined,
-      certifications: [],
       availableDocumentsText: "",
     },
   });
@@ -276,6 +290,11 @@ export function RegisterForm() {
     name: "personnelQualifications" as any, 
   });
 
+  const { fields: certificationFields, append: appendCertification, remove: removeCertification } = useFieldArray({
+    control: form.control,
+    name: "certifications" as any,
+  });
+
   
   const previousRole = React.useRef(currentRole);
   React.useEffect(() => {
@@ -283,7 +302,7 @@ export function RegisterForm() {
       if (currentRole === 'provider') {
         form.setValue('servicesOffered' as any, [defaultServiceOfferingRow()]);
         form.setValue('personnelQualifications' as any, [defaultPersonnelQualificationRow()]);
-        form.setValue('certifications' as any, []);
+        form.setValue('certifications' as any, [defaultCompanyCertificationRow()]);
       } else { 
          form.setValue('servicesOffered' as any, []);
          form.setValue('personnelQualifications' as any, []);
@@ -328,13 +347,13 @@ export function RegisterForm() {
             quantity: typeof pq.quantity === 'string' ? parseInt(pq.quantity, 10) || 1 : pq.quantity,
             expiryDate: pq.expiryDate,
         })),
+        certifications: providerValues.certifications?.map(c => ({...c})) || [], // Ensure certifications are mapped
         contactNumber: providerValues.contactNumberProvider,
         pricingDetails: providerValues.pricingDetails,
         procedureInfo: providerValues.procedureInfo,
         acceptanceCriteriaInfo: providerValues.acceptanceCriteriaInfo,
         companyLogoUrl: providerValues.companyLogoUrl,
         baseRate: providerValues.baseRate,
-        certifications: providerValues.certifications || [],
         availableDocuments: providerValues.availableDocumentsText?.split(',').map(s => s.trim()).filter(Boolean) || [],
         isVerified: false,
       };
@@ -751,6 +770,115 @@ export function RegisterForm() {
               </CardContent>
             </Card>
 
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center text-lg font-semibold"><Award className="h-5 w-5 mr-2 text-primary"/>Company Certifications & Accreditations</CardTitle>
+                <FormDescription>List your company's certifications. Add at least one if applicable.</FormDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Certification Name</TableHead>
+                      <TableHead>Category/Details</TableHead>
+                      <TableHead>Expiry Date</TableHead>
+                      <TableHead className="text-right w-[50px]">Action</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {certificationFields.map((item, index) => (
+                      <TableRow key={item.id}>
+                        <TableCell>
+                          <FormField
+                            control={form.control}
+                            name={`certifications.${index}.name`}
+                            render={({ field }) => (
+                              <FormItem>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                  <FormControl>
+                                    <SelectTrigger><SelectValue placeholder="Select Certification" /></SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent>
+                                    {COMPANY_CERTIFICATIONS_REGISTER.map(certName => <SelectItem key={certName} value={certName}>{certName}</SelectItem>)}
+                                  </SelectContent>
+                                </Select>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </TableCell>
+                        <TableCell>
+                          <FormField
+                            control={form.control}
+                            name={`certifications.${index}.category`}
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormControl>
+                                  <Input placeholder="e.g., Standard No., Scope" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </TableCell>
+                        <TableCell>
+                          <FormField
+                            control={form.control}
+                            name={`certifications.${index}.expiryDate`}
+                            render={({ field }) => (
+                              <FormItem className="flex flex-col">
+                                <Popover>
+                                  <PopoverTrigger asChild>
+                                    <FormControl>
+                                      <Button
+                                        variant={"outline"}
+                                        className={cn(
+                                          "w-full pl-3 text-left font-normal",
+                                          !field.value && "text-muted-foreground"
+                                        )}
+                                      >
+                                        {field.value ? (
+                                          format(field.value, "PPP")
+                                        ) : (
+                                          <span>Pick a date</span>
+                                        )}
+                                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                      </Button>
+                                    </FormControl>
+                                  </PopoverTrigger>
+                                  <PopoverContent className="w-auto p-0" align="start">
+                                    <Calendar
+                                      mode="single"
+                                      selected={field.value}
+                                      onSelect={field.onChange}
+                                      disabled={(date) => date < new Date("1900-01-01")}
+                                      initialFocus
+                                    />
+                                  </PopoverContent>
+                                </Popover>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </TableCell>
+                        <TableCell className="text-right">
+                          {certificationFields.length > 1 && (
+                            <Button type="button" variant="ghost" size="icon" onClick={() => removeCertification(index)} className="text-destructive">
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          )}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+                <Button type="button" variant="outline" onClick={() => appendCertification(defaultCompanyCertificationRow())} className="w-full">
+                  <PlusCircle className="h-4 w-4 mr-2"/> Add Certification
+                </Button>
+                <FormMessage>{form.formState.errors.certifications?.root?.message || form.formState.errors.certifications?.message}</FormMessage>
+              </CardContent>
+            </Card>
+
 
             <FormField
               control={form.control}
@@ -761,40 +889,6 @@ export function RegisterForm() {
                   <FormControl>
                     <Input placeholder="(555) 987-6543" {...field} />
                   </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="certifications"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="flex items-center text-lg font-semibold"><Award className="h-5 w-5 mr-2 text-primary"/>Company Certifications & Accreditations</FormLabel>
-                  <FormDescription>Select all relevant company and classification society certifications.</FormDescription>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-2 p-4 border rounded-md bg-muted/20">
-                    {COMPANY_CERTIFICATIONS_REGISTER.map((certName) => (
-                      <FormItem key={certName} className="flex flex-row items-center space-x-3 space-y-0">
-                        <FormControl>
-                          <Checkbox
-                            checked={field.value?.includes(certName)}
-                            onCheckedChange={(checked) => {
-                              return checked
-                                ? field.onChange([...(field.value || []), certName])
-                                : field.onChange(
-                                    (field.value || []).filter(
-                                      (value) => value !== certName
-                                    )
-                                  );
-                            }}
-                          />
-                        </FormControl>
-                        <FormLabel className="font-normal text-sm">
-                          {certName}
-                        </FormLabel>
-                      </FormItem>
-                    ))}
-                  </div>
                   <FormMessage />
                 </FormItem>
               )}
