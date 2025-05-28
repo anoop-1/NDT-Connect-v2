@@ -19,6 +19,7 @@ export type PersonnelQualification = {
   quantity: number | string; // Allow string for flexible input
   certificationBody: string;
   level: string;
+  expiryDate?: Date; // Added expiryDate field
 };
 
 export type ProviderProfileData = {
@@ -37,7 +38,7 @@ export type ProviderProfileData = {
   personnelQualifications?: PersonnelQualification[];
   isVerified?: boolean;
   availableDocuments?: string[];
-  serviceRadius?: string; // Added from provider-profile page
+  serviceRadius?: string; 
 };
 
 export type User = {
@@ -56,7 +57,7 @@ export type ServiceProvider = {
   location: string;
   lat?: number;
   lng?: number;
-  services: ServiceOffering[]; // Updated to use the detailed ServiceOffering type
+  services: ServiceOffering[]; 
   specialization: string;
   rating: number;
   contactInfo: string;
@@ -98,3 +99,4 @@ export type ServiceRequest = {
   estimatedCost?: number;
   status: 'Pending' | 'Confirmed' | 'In Progress' | 'Completed' | 'Cancelled';
 };
+

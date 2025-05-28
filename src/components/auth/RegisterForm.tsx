@@ -26,11 +26,16 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import type { ClientProfileData, ProviderProfileData, ServiceOffering, PersonnelQualification } from "@/lib/types";
-import { ImageIcon, DollarSign, FileText, Award, Users2, BookOpen, ListChecks, PlusCircle, Trash2 } from "lucide-react";
+import { ImageIcon, DollarSign, FileText, Award, Users2, BookOpen, ListChecks, PlusCircle, Trash2, CalendarIcon } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { format } from "date-fns";
+import { cn } from "@/lib/utils";
+
 
 const PREDEFINED_NDT_SERVICES_TABLE = [
   "Radiographic Testing", "Ultrasonic Testing", "Magnetic Particle Testing",
@@ -69,6 +74,7 @@ const defaultPersonnelQualificationRow = (): PersonnelQualification => ({
   quantity: 1,
   certificationBody: QUALIFICATION_BODIES_REGISTER[0],
   level: QUALIFICATION_LEVELS_REGISTER[0],
+  expiryDate: undefined,
 });
 
 
@@ -165,6 +171,7 @@ const personnelQualificationSchema = z.object({
   ),
   certificationBody: z.string().min(1, "Certification body is required."),
   level: z.string().min(1, "Level is required."),
+  expiryDate: z.date().optional(),
 });
 
 
@@ -254,14 +261,16 @@ export function RegisterForm() {
 
   const { fields: serviceFields, append: appendService, remove: removeService } = useFieldArray({
     control: form.control,
-    name: "servicesOffered" as any,
+    name: "servicesOffered" as any, // Type assertion to avoid issues with union type
   });
 
   const { fields: personnelFields, append: appendPersonnel, remove: removePersonnel } = useFieldArray({
     control: form.control,
-    name: "personnelQualifications" as any,
+    name: "personnelQualifications" as any, // Type assertion
   });
 
+  
+  // Reset servicesOffered and personnelQualifications when role changes
   const previousRole = React.useRef(currentRole);
   React.useEffect(() => {
     if (previousRole.current !== currentRole) {
@@ -269,8 +278,18 @@ export function RegisterForm() {
         form.setValue('servicesOffered' as any, [defaultServiceOfferingRow()]);
         form.setValue('personnelQualifications' as any, [defaultPersonnelQualificationRow()]);
       } else {
+         // Clear provider specific fields if switching to client
          form.setValue('servicesOffered' as any, []);
          form.setValue('personnelQualifications' as any, []);
+         form.setValue('locationProvider', '');
+         form.setValue('contactNumberProvider', '');
+         form.setValue('pricingDetails', '');
+         form.setValue('procedureInfo', '');
+         form.setValue('acceptanceCriteriaInfo', '');
+         form.setValue('companyLogoUrl', '');
+         form.setValue('baseRate', undefined);
+         form.setValue('certificationsText', '');
+         form.setValue('availableDocumentsText', '');
       }
       previousRole.current = currentRole;
     }
@@ -295,12 +314,13 @@ export function RegisterForm() {
         location: providerValues.locationProvider,
         servicesOffered: providerValues.servicesOffered.map(s => ({
             ...s,
-            rate: s.rate === '' ? '0' : s.rate, // Default rate to '0' if empty, or keep existing logic
+            rate: s.rate === '' ? '0' : s.rate,
             isCustom: s.isCustom || false,
         })),
         personnelQualifications: providerValues.personnelQualifications.map(pq => ({
             ...pq,
-            quantity: typeof pq.quantity === 'string' ? parseInt(pq.quantity, 10) : pq.quantity,
+            quantity: typeof pq.quantity === 'string' ? parseInt(pq.quantity, 10) || 1 : pq.quantity,
+            expiryDate: pq.expiryDate,
         })),
         contactNumber: providerValues.contactNumberProvider,
         pricingDetails: providerValues.pricingDetails,
@@ -616,7 +636,8 @@ export function RegisterForm() {
                       <TableHead className="w-[80px]">Qty</TableHead>
                       <TableHead className="w-[200px]">Cert. Body</TableHead>
                       <TableHead className="w-[150px]">Level</TableHead>
-                      <TableHead className="text-right w-[50px]">Action</TableHead>
+                      <TableHead>Expiry Date</TableHead>
+                      <TableHead className="text-right w-[80px]">Action</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -669,6 +690,46 @@ export function RegisterForm() {
                                     {QUALIFICATION_LEVELS_REGISTER.map(level => <SelectItem key={level} value={level}>{level}</SelectItem>)}
                                   </SelectContent>
                                 </Select>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </TableCell>
+                        <TableCell>
+                          <FormField
+                            control={form.control}
+                            name={`personnelQualifications.${index}.expiryDate`}
+                            render={({ field }) => (
+                              <FormItem className="flex flex-col">
+                                <Popover>
+                                  <PopoverTrigger asChild>
+                                    <FormControl>
+                                      <Button
+                                        variant={"outline"}
+                                        className={cn(
+                                          "w-full pl-3 text-left font-normal",
+                                          !field.value && "text-muted-foreground"
+                                        )}
+                                      >
+                                        {field.value ? (
+                                          format(field.value, "PPP")
+                                        ) : (
+                                          <span>Pick a date</span>
+                                        )}
+                                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                      </Button>
+                                    </FormControl>
+                                  </PopoverTrigger>
+                                  <PopoverContent className="w-auto p-0" align="start">
+                                    <Calendar
+                                      mode="single"
+                                      selected={field.value}
+                                      onSelect={field.onChange}
+                                      disabled={(date) => date < new Date("1900-01-01")}
+                                      initialFocus
+                                    />
+                                  </PopoverContent>
+                                </Popover>
                                 <FormMessage />
                               </FormItem>
                             )}
