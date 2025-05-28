@@ -120,7 +120,7 @@ NDT Connect ("Platform", "we", "us", "our") provides a platform to connect NDT s
 NDT Connect acts SOLELY AS A FACILITATOR platform. We do not guarantee work, projects, or income. We are not responsible for Client actions, payment failures, or disputes.
 
 4. Service Fees:
-NDT Connect may charge a service fee for utilizing the Platform or for successful engagements facilitated through the Platform. Any applicable fees and payment terms will be communicated to you separately or as part of specific feature usage. (Note: This platform may operate on a commission basis or charge a conceptual fee for facilitation).
+NDT Connect may charge a service fee for utilizing the Platform or for successful engagements facilitated through the Platform. Any applicable fees (such as commission or conceptual fee) and payment terms will be communicated to you separately or as part of specific feature usage.
 
 5. Limitation of Liability:
 To the fullest extent permitted by law, NDT Connect shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising from your use of the Platform, interactions with Clients, or the provision of your services.
@@ -295,7 +295,7 @@ export function RegisterForm() {
         location: providerValues.locationProvider,
         servicesOffered: providerValues.servicesOffered.map(s => ({
             ...s,
-            rate: s.rate === '' ? '0' : s.rate,
+            rate: s.rate === '' ? '0' : s.rate, // Default rate to '0' if empty, or keep existing logic
             isCustom: s.isCustom || false,
         })),
         personnelQualifications: providerValues.personnelQualifications.map(pq => ({
@@ -521,7 +521,7 @@ export function RegisterForm() {
                         control={form.control}
                         name={`servicesOffered.${index}.name` as const}
                         render={({ field }) => (
-                          <FormItem>
+                          <FormItem className={item.isCustom ? "md:col-span-1" : "md:col-span-1"}>
                             <FormLabel>Service Name</FormLabel>
                             {item.isCustom ? (
                               <FormControl>
@@ -547,7 +547,7 @@ export function RegisterForm() {
                         control={form.control}
                         name={`servicesOffered.${index}.unit` as const}
                         render={({ field }) => (
-                          <FormItem>
+                          <FormItem className={item.isCustom ? "md:col-span-1" : "md:col-span-1"}>
                             <FormLabel>Unit</FormLabel>
                              {item.isCustom ? (
                               <FormControl>
@@ -573,7 +573,7 @@ export function RegisterForm() {
                         control={form.control}
                         name={`servicesOffered.${index}.rate` as const}
                         render={({ field }) => (
-                          <FormItem>
+                          <FormItem className="md:col-span-1">
                             <FormLabel>Rate</FormLabel>
                             <FormControl>
                               <Input type="text" placeholder="e.g., 100" {...field} />
@@ -614,8 +614,8 @@ export function RegisterForm() {
                   <TableHeader>
                     <TableRow>
                       <TableHead className="w-[80px]">Qty</TableHead>
-                      <TableHead>Cert. Body</TableHead>
-                      <TableHead>Level</TableHead>
+                      <TableHead className="w-[200px]">Cert. Body</TableHead>
+                      <TableHead className="w-[150px]">Level</TableHead>
                       <TableHead className="text-right w-[50px]">Action</TableHead>
                     </TableRow>
                   </TableHeader>
@@ -719,7 +719,6 @@ export function RegisterForm() {
                 </FormItem>
               )}
             />
-            {/* Removed personnelQualificationsText as it's now structured */}
              <FormField
               control={form.control}
               name="availableDocumentsText"
@@ -826,6 +825,3 @@ export function RegisterForm() {
     </Form>
   );
 }
-
-
-    
