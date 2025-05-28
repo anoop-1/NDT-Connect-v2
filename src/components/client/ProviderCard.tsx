@@ -16,6 +16,9 @@ interface ProviderCardProps {
   provider: ServiceProvider;
 }
 
+const NEW_DEFAULT_PROVIDER_IMAGE_URL = "https://images.unsplash.com/photo-1582489853490-cd3a53eb4530?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8aW5kdXN0cnl8ZW58MHx8fHwxNzQ4NDM3Nzc5fDA&ixlib=rb-4.1.0&q=80&w=1080";
+const NEW_DEFAULT_PROVIDER_IMAGE_HINT = "NDT Connect default provider";
+
 export function ProviderCard({ provider }: ProviderCardProps) {
   const router = useRouter();
   const { toast } = useToast();
@@ -30,11 +33,10 @@ export function ProviderCard({ provider }: ProviderCardProps) {
       const adminSetDefaultProviderUrl = typeof window !== 'undefined' ? localStorage.getItem('defaultProviderImageUrl') : null;
       if (adminSetDefaultProviderUrl) {
         determinedImageUrl = adminSetDefaultProviderUrl;
-        determinedHint = "default provider logo";
+        determinedHint = "default provider logo"; // Or perhaps keep it generic if admin changes it
       } else {
-        // Use the new user-provided image as the default fallback
-        determinedImageUrl = '/images/new-default-provider-image.png'; 
-        determinedHint = "NDT Connect default provider";
+        determinedImageUrl = NEW_DEFAULT_PROVIDER_IMAGE_URL; 
+        determinedHint = NEW_DEFAULT_PROVIDER_IMAGE_HINT;
       }
     }
     setFinalImageUrl(determinedImageUrl);
@@ -89,10 +91,10 @@ export function ProviderCard({ provider }: ProviderCardProps) {
             priority={false}
             data-ai-hint={imageHint}
             className="rounded-t-lg"
-            key={finalImageUrl}
-            onError={() => { // Fallback if the determinedImageUrl itself errors
-              setFinalImageUrl('/images/new-default-provider-image.png');
-              setImageHint("NDT Connect default provider");
+            key={finalImageUrl} // Force re-render if URL changes
+            onError={() => { 
+              setFinalImageUrl(NEW_DEFAULT_PROVIDER_IMAGE_URL);
+              setImageHint(NEW_DEFAULT_PROVIDER_IMAGE_HINT);
             }}
           />
         )}
