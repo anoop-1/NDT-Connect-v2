@@ -7,19 +7,19 @@ export type ClientProfileData = {
 };
 
 export type ServiceOffering = {
-  id: string; 
-  name: string; 
-  rate: string; 
-  unit: string; 
-  isCustom?: boolean; 
+  id: string;
+  name: string;
+  rate: string; // Keep as string for input flexibility, parse on submission/use
+  unit: string;
+  isCustom?: boolean;
 };
 
 export type PersonnelQualification = {
-  id: string; 
-  quantity: number | string; 
+  id: string;
+  quantity: number | string; // Keep as string for input flexibility
   certificationBody: string;
   level: string;
-  expiryDate?: Date; 
+  expiryDate?: Date;
 };
 
 export type CompanyCertification = {
@@ -35,17 +35,15 @@ export type ProviderProfileData = {
   lng?: number;
   servicesOffered?: ServiceOffering[];
   contactNumber?: string;
-  // pricingDetails?: string; // Removed as per previous request
   procedureInfoUrl?: string; // Changed from procedureInfo
-  acceptanceCriteriaInfo?: string;
+  // acceptanceCriteriaInfo?: string; // Removed
   companyLogoUrl?: string;
   dataAiHint?: string;
-  // baseRate?: number; // Removed as per previous request
-  certifications?: CompanyCertification[]; 
+  certifications?: CompanyCertification[];
   personnelQualifications?: PersonnelQualification[];
   isVerified?: boolean;
   availableDocuments?: string[];
-  serviceRadius?: string; 
+  serviceRadius?: string;
 };
 
 export type User = {
@@ -64,7 +62,7 @@ export type ServiceProvider = {
   location: string;
   lat?: number;
   lng?: number;
-  services: ServiceOffering[]; 
+  services: ServiceOffering[];
   specialization: string;
   rating: number;
   contactInfo: string;
@@ -72,7 +70,7 @@ export type ServiceProvider = {
   imageUrl?: string;
   dataAiHint?: string;
   baseRate?: number; // This is used by ProviderCard to calculate client price
-  certifications?: CompanyCertification[]; 
+  certifications?: CompanyCertification[];
   personnelQualifications?: PersonnelQualification[];
   isVerified?: boolean;
   availableDocuments?: string[];
@@ -106,4 +104,3 @@ export type ServiceRequest = {
   estimatedCost?: number;
   status: 'Pending' | 'Confirmed' | 'In Progress' | 'Completed' | 'Cancelled';
 };
-

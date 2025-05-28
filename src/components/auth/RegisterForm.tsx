@@ -202,8 +202,8 @@ const providerSchema = baseSchema.extend({
   contactNumberProvider: z.string().min(7, {message: "Contact number is required."}),
   personnelQualifications: z.array(personnelQualificationSchema).min(1, "At least one personnel qualification must be listed."),
   certifications: z.array(companyCertificationSchema).optional(),
-  procedureInfoUrl: z.string().url({ message: "Please enter a valid URL for procedures." }).optional().or(z.literal("")),
-  acceptanceCriteriaInfo: z.string().min(10, { message: "Acceptance criteria are required." }).max(500, {message: "Acceptance criteria cannot exceed 500 characters."}),
+  procedureInfoUrl: z.string().url({ message: "Please enter a valid URL." }).optional().or(z.literal("")),
+  // acceptanceCriteriaInfo: z.string().min(10, { message: "Acceptance criteria are required." }).max(500, {message: "Acceptance criteria cannot exceed 500 characters."}), // Removed
   companyLogoUrl: z.string().url({ message: "Please enter a valid URL for the company logo." }).optional().or(z.literal("")),
 });
 
@@ -224,8 +224,8 @@ const formSchema = z.union([clientSchema, providerSchema])
                'servicesOffered' in data && data.servicesOffered && data.servicesOffered.length > 0 &&
                'contactNumberProvider' in data && data.contactNumberProvider &&
                'personnelQualifications' in data && data.personnelQualifications && data.personnelQualifications.length > 0 &&
-               'procedureInfoUrl' in data && 
-               'acceptanceCriteriaInfo' in data && data.acceptanceCriteriaInfo;
+               'procedureInfoUrl' in data;
+               // 'acceptanceCriteriaInfo' in data && data.acceptanceCriteriaInfo; // Removed
     }
     return true;
   }, {
@@ -263,7 +263,7 @@ export function RegisterForm() {
       personnelQualifications: [defaultPersonnelQualificationRow()],
       certifications: [defaultCompanyCertificationRow()],
       procedureInfoUrl: "",
-      acceptanceCriteriaInfo: "",
+      // acceptanceCriteriaInfo: "", // Removed
       companyLogoUrl: "",
     },
   });
@@ -272,12 +272,12 @@ export function RegisterForm() {
 
   const { fields: serviceFields, append: appendService, remove: removeService } = useFieldArray({
     control: form.control,
-    name: "servicesOffered" as any, 
+    name: "servicesOffered" as any,
   });
 
   const { fields: personnelFields, append: appendPersonnel, remove: removePersonnel } = useFieldArray({
     control: form.control,
-    name: "personnelQualifications" as any, 
+    name: "personnelQualifications" as any,
   });
 
   const { fields: certificationFields, append: appendCertification, remove: removeCertification } = useFieldArray({
@@ -285,22 +285,29 @@ export function RegisterForm() {
     name: "certifications" as any,
   });
 
-  
+
+  // Reset fields when role changes
   const previousRole = React.useRef(currentRole);
   React.useEffect(() => {
     if (previousRole.current !== currentRole) {
+      // Clear client fields if switching to provider
       if (currentRole === 'provider') {
+        form.setValue('companyName', '');
+        form.setValue('industry', '');
+        form.setValue('primaryLocation', '');
+        form.setValue('contactNumberClient', '');
+        // Initialize provider fields
         form.setValue('servicesOffered' as any, [defaultServiceOfferingRow()]);
         form.setValue('personnelQualifications' as any, [defaultPersonnelQualificationRow()]);
         form.setValue('certifications' as any, [defaultCompanyCertificationRow()]);
-      } else { 
+      } else { // Clear provider fields if switching to client
          form.setValue('servicesOffered' as any, []);
          form.setValue('personnelQualifications' as any, []);
          form.setValue('certifications' as any, []);
          form.setValue('locationProvider', '');
          form.setValue('contactNumberProvider', '');
          form.setValue('procedureInfoUrl', '');
-         form.setValue('acceptanceCriteriaInfo', '');
+         // form.setValue('acceptanceCriteriaInfo', ''); // Removed
          form.setValue('companyLogoUrl', '');
       }
       previousRole.current = currentRole;
@@ -326,7 +333,7 @@ export function RegisterForm() {
         location: providerValues.locationProvider,
         servicesOffered: providerValues.servicesOffered.map(s => ({
             ...s,
-            rate: s.rate === '' ? '0' : s.rate, 
+            rate: s.rate === '' ? '0' : s.rate,
             isCustom: s.isCustom || false,
         })),
         personnelQualifications: providerValues.personnelQualifications.map(pq => ({
@@ -337,9 +344,9 @@ export function RegisterForm() {
         certifications: providerValues.certifications?.map(c => ({...c, id: c.id || generateUniqueId() })) || [],
         contactNumber: providerValues.contactNumberProvider,
         procedureInfoUrl: providerValues.procedureInfoUrl,
-        acceptanceCriteriaInfo: providerValues.acceptanceCriteriaInfo,
+        // acceptanceCriteriaInfo: providerValues.acceptanceCriteriaInfo, // Removed
         companyLogoUrl: providerValues.companyLogoUrl,
-        availableDocuments: [], 
+        availableDocuments: [],
         isVerified: false,
       };
     }
@@ -379,7 +386,7 @@ export function RegisterForm() {
             </FormItem>
           )}
         />
-        
+
         {currentRole === "client" && (
             <FormField
             control={form.control}
@@ -665,7 +672,6 @@ export function RegisterForm() {
                       <TableHead className="w-[200px]">Cert. Body</TableHead>
                       <TableHead className="w-[150px]">Level</TableHead>
                       <TableHead>Expiry Date</TableHead>
-                      {/* Action column removed as per previous request */}
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -866,7 +872,7 @@ export function RegisterForm() {
                           />
                         </TableCell>
                         <TableCell className="text-right">
-                          {(certificationFields.length > 1 || (certificationFields.length === 1 && (form.getValues(`certifications.${index}.name`) || form.getValues(`certifications.${index}.category`)))) && ( // Allow removing if more than 1, or if it's the only one but has content
+                          {(certificationFields.length > 1 || (certificationFields.length === 1 && (form.getValues(`certifications.${index}.name`) || form.getValues(`certifications.${index}.category`)))) && ( 
                             <Button type="button" variant="ghost" size="icon" onClick={() => certificationFields.length > 1 ? removeCertification(index) : form.resetField(`certifications.${index}` as any) } className="text-destructive">
                               <Trash2 className="h-4 w-4" />
                             </Button>
@@ -882,30 +888,17 @@ export function RegisterForm() {
                 <FormMessage>{form.formState.errors.certifications?.root?.message || form.formState.errors.certifications?.message}</FormMessage>
               </CardContent>
             </Card>
-            
+
             <FormField
               control={form.control}
               name="procedureInfoUrl"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="flex items-center"><LinkIcon className="h-4 w-4 mr-2 text-muted-foreground"/>Link to General Procedures (Optional)</FormLabel>
+                  <FormLabel className="flex items-center"><LinkIcon className="h-4 w-4 mr-2 text-muted-foreground"/>Link to General Procedures</FormLabel>
                   <FormControl>
                     <Input type="url" placeholder="https://example.com/ndt-procedures.pdf" {...field} />
                   </FormControl>
                   <FormDescription>URL to your company's general NDT procedures document.</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="acceptanceCriteriaInfo"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>General Acceptance Criteria Overview</FormLabel>
-                  <FormControl>
-                    <Textarea placeholder="Briefly describe the general acceptance criteria you adhere to (e.g., API 1104, ASME B31.3)..." {...field} rows={3}/>
-                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
@@ -951,4 +944,3 @@ export function RegisterForm() {
     </Form>
   );
 }
-
