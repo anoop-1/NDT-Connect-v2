@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { CheckCircle, Search, Users, ShieldCheck } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
-const DEFAULT_HOMEPAGE_IMAGE = "/images/ndt-connect-hero.png"; // New default image
+const DEFAULT_HOMEPAGE_IMAGE = "https://images.unsplash.com/photo-1632395627760-72e6eca7f9c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxN3x8ZWFydGh8ZW58MHx8fHwxNzQ4NDM3Mjc0fDA&ixlib=rb-4.1.0&q=80&w=1080";
 
 export default function HomePage() {
   const [currentHomepageImage, setCurrentHomepageImage] = useState(DEFAULT_HOMEPAGE_IMAGE);
