@@ -59,6 +59,13 @@ const QUALIFICATION_BODIES_REGISTER = [
 
 const QUALIFICATION_LEVELS_REGISTER = ["Level I", "Level II", "Level III", "Technician", "Inspector", "Engineer", "Assistant", "Senior", "Other"];
 
+const COMPANY_CERTIFICATIONS_REGISTER = [
+  "ISO 9001", "ISO 14001", "ISO 17020", "ISO 17024", "ISO 17025", "ISO 45001",
+  "ABS (American Bureau of Shipping)", "DNV (Det Norske Veritas)", "LR (Lloyd's Register)",
+  "BV (Bureau Veritas)", "NKK (Nippon Kaiji Kyokai)", "IRS (Indian Register of Shipping)",
+  "RINA (Registro Italiano Navale)", "CCS (China Classification Society)", "KR (Korean Register of Shipping)"
+];
+
 const generateUniqueId = () => Date.now().toString(36) + Math.random().toString(36).substring(2);
 
 const defaultServiceOfferingRow = (isCustom: boolean = false): ServiceOffering => ({
@@ -188,7 +195,7 @@ const providerSchema = baseSchema.extend({
     (val) => (val === "" ? undefined : parseFloat(String(val))),
     z.number({ invalid_type_error: "Base rate must be a number." }).min(0, "Base rate cannot be negative.").optional()
   ),
-  certificationsText: z.string().optional(),
+  certifications: z.array(z.string()).optional(),
   availableDocumentsText: z.string().optional(),
 });
 
@@ -252,7 +259,7 @@ export function RegisterForm() {
       acceptanceCriteriaInfo: "",
       companyLogoUrl: "",
       baseRate: undefined,
-      certificationsText: "",
+      certifications: [],
       availableDocumentsText: "",
     },
   });
@@ -276,9 +283,11 @@ export function RegisterForm() {
       if (currentRole === 'provider') {
         form.setValue('servicesOffered' as any, [defaultServiceOfferingRow()]);
         form.setValue('personnelQualifications' as any, [defaultPersonnelQualificationRow()]);
+        form.setValue('certifications' as any, []);
       } else { 
          form.setValue('servicesOffered' as any, []);
          form.setValue('personnelQualifications' as any, []);
+         form.setValue('certifications' as any, []);
          form.setValue('locationProvider', '');
          form.setValue('contactNumberProvider', '');
          form.setValue('pricingDetails', '');
@@ -286,7 +295,6 @@ export function RegisterForm() {
          form.setValue('acceptanceCriteriaInfo', '');
          form.setValue('companyLogoUrl', '');
          form.setValue('baseRate', undefined);
-         form.setValue('certificationsText', '');
          form.setValue('availableDocumentsText', '');
       }
       previousRole.current = currentRole;
@@ -326,7 +334,7 @@ export function RegisterForm() {
         acceptanceCriteriaInfo: providerValues.acceptanceCriteriaInfo,
         companyLogoUrl: providerValues.companyLogoUrl,
         baseRate: providerValues.baseRate,
-        certifications: providerValues.certificationsText?.split(',').map(s => s.trim()).filter(Boolean) || [],
+        certifications: providerValues.certifications || [],
         availableDocuments: providerValues.availableDocumentsText?.split(',').map(s => s.trim()).filter(Boolean) || [],
         isVerified: false,
       };
@@ -528,18 +536,18 @@ export function RegisterForm() {
 
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center"><ListChecks className="h-5 w-5 mr-2 text-primary"/>Services Offered & Pricing</CardTitle>
-                <FormDescription>Define each NDT service you provide.</FormDescription>
+                <CardTitle className="flex items-center text-lg font-semibold"><ListChecks className="h-5 w-5 mr-2 text-primary"/>Services Offered & Pricing</CardTitle>
+                <FormDescription>Define each NDT service you provide. Add at least one.</FormDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 {serviceFields.map((item, index) => (
-                  <Card key={item.id} className="p-3 shadow-sm">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 items-end">
-                      <FormField
+                  <Card key={item.id} className="p-3 shadow-sm bg-muted/20">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-3 items-end">
+                       <FormField
                         control={form.control}
                         name={`servicesOffered.${index}.name` as const}
                         render={({ field }) => (
-                          <FormItem>
+                          <FormItem className="md:col-span-2">
                             <FormLabel>Service Name</FormLabel>
                             {(item as ServiceOffering).isCustom ? (
                               <FormControl>
@@ -587,7 +595,7 @@ export function RegisterForm() {
                           </FormItem>
                         )}
                       />
-                      <FormField
+                       <FormField
                         control={form.control}
                         name={`servicesOffered.${index}.rate` as const}
                         render={({ field }) => (
@@ -604,7 +612,7 @@ export function RegisterForm() {
                     {serviceFields.length > 1 && (
                       <div className="mt-2 text-right">
                         <Button type="button" variant="ghost" size="sm" onClick={() => removeService(index)} className="text-destructive hover:bg-destructive/10">
-                          <Trash2 className="h-4 w-4 mr-1" /> Remove
+                          <Trash2 className="h-4 w-4 mr-1" /> Remove Service
                         </Button>
                       </div>
                     )}
@@ -624,8 +632,8 @@ export function RegisterForm() {
 
             <Card>
               <CardHeader>
-                <CardTitle className="flex items-center"><Users2 className="h-5 w-5 mr-2 text-primary"/>Personnel Qualifications</CardTitle>
-                <FormDescription>List your technical personnel's qualifications.</FormDescription>
+                <CardTitle className="flex items-center text-lg font-semibold"><Users2 className="h-5 w-5 mr-2 text-primary"/>Personnel Qualifications</CardTitle>
+                <FormDescription>List your technical personnel's qualifications. Add at least one.</FormDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <Table>
@@ -759,13 +767,34 @@ export function RegisterForm() {
             />
             <FormField
               control={form.control}
-              name="certificationsText"
+              name="certifications"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="flex items-center"><Award className="h-4 w-4 mr-2 text-muted-foreground"/>Company Certifications (comma-separated)</FormLabel>
-                  <FormControl>
-                    <Textarea placeholder="e.g., ISO 9001, DNV Approval" {...field} rows={2}/>
-                  </FormControl>
+                  <FormLabel className="flex items-center text-lg font-semibold"><Award className="h-5 w-5 mr-2 text-primary"/>Company Certifications & Accreditations</FormLabel>
+                  <FormDescription>Select all relevant company and classification society certifications.</FormDescription>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-2 p-4 border rounded-md bg-muted/20">
+                    {COMPANY_CERTIFICATIONS_REGISTER.map((certName) => (
+                      <FormItem key={certName} className="flex flex-row items-center space-x-3 space-y-0">
+                        <FormControl>
+                          <Checkbox
+                            checked={field.value?.includes(certName)}
+                            onCheckedChange={(checked) => {
+                              return checked
+                                ? field.onChange([...(field.value || []), certName])
+                                : field.onChange(
+                                    (field.value || []).filter(
+                                      (value) => value !== certName
+                                    )
+                                  );
+                            }}
+                          />
+                        </FormControl>
+                        <FormLabel className="font-normal text-sm">
+                          {certName}
+                        </FormLabel>
+                      </FormItem>
+                    ))}
+                  </div>
                   <FormMessage />
                 </FormItem>
               )}
@@ -876,4 +905,3 @@ export function RegisterForm() {
     </Form>
   );
 }
-
