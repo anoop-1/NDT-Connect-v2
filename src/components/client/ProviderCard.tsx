@@ -134,7 +134,7 @@ export function ProviderCard({ provider }: ProviderCardProps) {
             <h4 className="text-sm font-semibold mb-1 flex items-center"><Award className="h-4 w-4 mr-1 text-primary"/>Company Certs:</h4>
             <div className="flex flex-wrap gap-1">
               {provider.certifications.slice(0, 2).map((cert) => (
-                <Badge key={cert} variant="outline" className="text-xs bg-blue-50 border-blue-200 text-blue-700">{cert}</Badge>
+                <Badge key={cert.id} variant="outline" className="text-xs bg-blue-50 border-blue-200 text-blue-700">{cert.name}</Badge>
               ))}
               {provider.certifications.length > 2 && <Badge variant="outline" className="text-xs">...</Badge>}
             </div>
