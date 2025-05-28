@@ -27,13 +27,14 @@ export function ProviderCard({ provider }: ProviderCardProps) {
     let determinedHint = provider.dataAiHint || "company building";
 
     if (!determinedImageUrl) {
-      const adminSetDefaultProviderUrl = localStorage.getItem('defaultProviderImageUrl');
+      const adminSetDefaultProviderUrl = typeof window !== 'undefined' ? localStorage.getItem('defaultProviderImageUrl') : null;
       if (adminSetDefaultProviderUrl) {
         determinedImageUrl = adminSetDefaultProviderUrl;
         determinedHint = "default provider logo";
       } else {
-        determinedImageUrl = '/images/default-provider-graphic.png';
-        determinedHint = "NDT Connect";
+        // Use the new user-provided image as the default fallback
+        determinedImageUrl = '/images/new-default-provider-image.png'; 
+        determinedHint = "NDT Connect default provider";
       }
     }
     setFinalImageUrl(determinedImageUrl);
@@ -45,14 +46,14 @@ export function ProviderCard({ provider }: ProviderCardProps) {
     const queryParams = new URLSearchParams({
       providerId: provider.id,
       providerName: "NDT Service Provider", // Mask name initially
-      serviceType: provider.services.length > 0 ? provider.services[0].name : "General Inquiry",
+      serviceType: provider.services.length > 0 && provider.services[0].name ? provider.services[0].name : "General Inquiry",
     });
     // Use the first service's rate if available, otherwise provider's baseRate
     const primaryServiceRate = provider.services.length > 0 && provider.services[0].rate ? 
                                 parseFloat(provider.services[0].rate.toString()) : 
                                 provider.baseRate;
 
-    if (primaryServiceRate) {
+    if (primaryServiceRate && !isNaN(primaryServiceRate)) {
       queryParams.append("baseRate", primaryServiceRate.toString());
     }
     router.push(`/request-service?${queryParams.toString()}`);
@@ -70,7 +71,7 @@ export function ProviderCard({ provider }: ProviderCardProps) {
                       ? provider.services[0].rate 
                       : provider.baseRate;
   
-  const clientPrice = displayRate ? (parseFloat(displayRate.toString()) * 1.15).toFixed(2) : null;
+  const clientPrice = displayRate && !isNaN(parseFloat(displayRate.toString())) ? (parseFloat(displayRate.toString()) * 1.15).toFixed(2) : null;
   const displayUnit = provider.services.length > 0 && provider.services[0].unit 
                       ? provider.services[0].unit 
                       : (displayRate ? "per hour (default)" : null);
@@ -81,7 +82,7 @@ export function ProviderCard({ provider }: ProviderCardProps) {
         {finalImageUrl && (
           <Image
             src={finalImageUrl}
-            alt={"NDT Service Provider " + provider.specialization} // Generic alt
+            alt={"NDT Service Provider: " + provider.specialization} // Generic alt
             fill={true}
             style={{ objectFit: 'cover' }}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -89,6 +90,10 @@ export function ProviderCard({ provider }: ProviderCardProps) {
             data-ai-hint={imageHint}
             className="rounded-t-lg"
             key={finalImageUrl}
+            onError={() => { // Fallback if the determinedImageUrl itself errors
+              setFinalImageUrl('/images/new-default-provider-image.png');
+              setImageHint("NDT Connect default provider");
+            }}
           />
         )}
         {provider.isVerified && (
