@@ -261,24 +261,22 @@ export function RegisterForm() {
 
   const { fields: serviceFields, append: appendService, remove: removeService } = useFieldArray({
     control: form.control,
-    name: "servicesOffered" as any, // Type assertion to avoid issues with union type
+    name: "servicesOffered" as any, 
   });
 
   const { fields: personnelFields, append: appendPersonnel, remove: removePersonnel } = useFieldArray({
     control: form.control,
-    name: "personnelQualifications" as any, // Type assertion
+    name: "personnelQualifications" as any, 
   });
 
   
-  // Reset servicesOffered and personnelQualifications when role changes
   const previousRole = React.useRef(currentRole);
   React.useEffect(() => {
     if (previousRole.current !== currentRole) {
       if (currentRole === 'provider') {
         form.setValue('servicesOffered' as any, [defaultServiceOfferingRow()]);
         form.setValue('personnelQualifications' as any, [defaultPersonnelQualificationRow()]);
-      } else {
-         // Clear provider specific fields if switching to client
+      } else { 
          form.setValue('servicesOffered' as any, []);
          form.setValue('personnelQualifications' as any, []);
          form.setValue('locationProvider', '');
@@ -314,7 +312,7 @@ export function RegisterForm() {
         location: providerValues.locationProvider,
         servicesOffered: providerValues.servicesOffered.map(s => ({
             ...s,
-            rate: s.rate === '' ? '0' : s.rate,
+            rate: s.rate === '' ? '0' : s.rate, 
             isCustom: s.isCustom || false,
         })),
         personnelQualifications: providerValues.personnelQualifications.map(pq => ({
@@ -541,9 +539,9 @@ export function RegisterForm() {
                         control={form.control}
                         name={`servicesOffered.${index}.name` as const}
                         render={({ field }) => (
-                          <FormItem className={item.isCustom ? "md:col-span-1" : "md:col-span-1"}>
+                          <FormItem>
                             <FormLabel>Service Name</FormLabel>
-                            {item.isCustom ? (
+                            {(item as ServiceOffering).isCustom ? (
                               <FormControl>
                                 <Input placeholder="Enter custom service name" {...field} />
                               </FormControl>
@@ -563,13 +561,13 @@ export function RegisterForm() {
                           </FormItem>
                         )}
                       />
-                       <FormField
+                      <FormField
                         control={form.control}
                         name={`servicesOffered.${index}.unit` as const}
                         render={({ field }) => (
-                          <FormItem className={item.isCustom ? "md:col-span-1" : "md:col-span-1"}>
+                          <FormItem>
                             <FormLabel>Unit</FormLabel>
-                             {item.isCustom ? (
+                             {(item as ServiceOffering).isCustom ? (
                               <FormControl>
                                 <Input placeholder="Enter custom unit" {...field} />
                               </FormControl>
@@ -593,7 +591,7 @@ export function RegisterForm() {
                         control={form.control}
                         name={`servicesOffered.${index}.rate` as const}
                         render={({ field }) => (
-                          <FormItem className="md:col-span-1">
+                          <FormItem>
                             <FormLabel>Rate</FormLabel>
                             <FormControl>
                               <Input type="text" placeholder="e.g., 100" {...field} />
@@ -637,7 +635,6 @@ export function RegisterForm() {
                       <TableHead className="w-[200px]">Cert. Body</TableHead>
                       <TableHead className="w-[150px]">Level</TableHead>
                       <TableHead>Expiry Date</TableHead>
-                      <TableHead className="text-right w-[80px]">Action</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -734,13 +731,6 @@ export function RegisterForm() {
                               </FormItem>
                             )}
                           />
-                        </TableCell>
-                        <TableCell className="text-right">
-                          {personnelFields.length > 1 && (
-                            <Button type="button" variant="ghost" size="icon" onClick={() => removePersonnel(index)} className="text-destructive">
-                              <Trash2 className="h-4 w-4" />
-                            </Button>
-                          )}
                         </TableCell>
                       </TableRow>
                     ))}
@@ -886,3 +876,4 @@ export function RegisterForm() {
     </Form>
   );
 }
+
