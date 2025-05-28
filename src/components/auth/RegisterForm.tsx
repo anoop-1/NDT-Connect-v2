@@ -26,7 +26,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import type { ClientProfileData, ProviderProfileData, ServiceOffering, PersonnelQualification, CompanyCertification } from "@/lib/types";
-import { ImageIcon, DollarSign, FileText, Award, Users2, BookOpen, ListChecks, PlusCircle, Trash2, CalendarIcon } from "lucide-react";
+import { ImageIcon, DollarSign, FileText, Award, Users2, BookOpen, ListChecks, PlusCircle, Trash2, CalendarIcon, Link as LinkIcon } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -202,7 +202,7 @@ const providerSchema = baseSchema.extend({
   contactNumberProvider: z.string().min(7, {message: "Contact number is required."}),
   personnelQualifications: z.array(personnelQualificationSchema).min(1, "At least one personnel qualification must be listed."),
   certifications: z.array(companyCertificationSchema).optional(),
-  procedureInfo: z.string().min(10, { message: "Procedure information is required." }).max(500, {message: "Procedure information cannot exceed 500 characters."}),
+  procedureInfoUrl: z.string().url({ message: "Please enter a valid URL for procedures." }).optional().or(z.literal("")),
   acceptanceCriteriaInfo: z.string().min(10, { message: "Acceptance criteria are required." }).max(500, {message: "Acceptance criteria cannot exceed 500 characters."}),
   companyLogoUrl: z.string().url({ message: "Please enter a valid URL for the company logo." }).optional().or(z.literal("")),
 });
@@ -224,7 +224,7 @@ const formSchema = z.union([clientSchema, providerSchema])
                'servicesOffered' in data && data.servicesOffered && data.servicesOffered.length > 0 &&
                'contactNumberProvider' in data && data.contactNumberProvider &&
                'personnelQualifications' in data && data.personnelQualifications && data.personnelQualifications.length > 0 &&
-               'procedureInfo' in data && data.procedureInfo &&
+               'procedureInfoUrl' in data && 
                'acceptanceCriteriaInfo' in data && data.acceptanceCriteriaInfo;
     }
     return true;
@@ -262,7 +262,7 @@ export function RegisterForm() {
       contactNumberProvider: "",
       personnelQualifications: [defaultPersonnelQualificationRow()],
       certifications: [defaultCompanyCertificationRow()],
-      procedureInfo: "",
+      procedureInfoUrl: "",
       acceptanceCriteriaInfo: "",
       companyLogoUrl: "",
     },
@@ -299,7 +299,7 @@ export function RegisterForm() {
          form.setValue('certifications' as any, []);
          form.setValue('locationProvider', '');
          form.setValue('contactNumberProvider', '');
-         form.setValue('procedureInfo', '');
+         form.setValue('procedureInfoUrl', '');
          form.setValue('acceptanceCriteriaInfo', '');
          form.setValue('companyLogoUrl', '');
       }
@@ -334,9 +334,9 @@ export function RegisterForm() {
             quantity: typeof pq.quantity === 'string' ? parseInt(pq.quantity, 10) || 1 : pq.quantity,
             expiryDate: pq.expiryDate,
         })),
-        certifications: providerValues.certifications?.map(c => ({...c})) || [],
+        certifications: providerValues.certifications?.map(c => ({...c, id: c.id || generateUniqueId() })) || [],
         contactNumber: providerValues.contactNumberProvider,
-        procedureInfo: providerValues.procedureInfo,
+        procedureInfoUrl: providerValues.procedureInfoUrl,
         acceptanceCriteriaInfo: providerValues.acceptanceCriteriaInfo,
         companyLogoUrl: providerValues.companyLogoUrl,
         availableDocuments: [], 
@@ -665,6 +665,7 @@ export function RegisterForm() {
                       <TableHead className="w-[200px]">Cert. Body</TableHead>
                       <TableHead className="w-[150px]">Level</TableHead>
                       <TableHead>Expiry Date</TableHead>
+                      {/* Action column removed as per previous request */}
                     </TableRow>
                   </TableHeader>
                   <TableBody>
@@ -776,7 +777,7 @@ export function RegisterForm() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center text-lg font-semibold"><Award className="h-5 w-5 mr-2 text-primary"/>Company Certifications & Accreditations</CardTitle>
-                <FormDescription>List your company's certifications.</FormDescription>
+                <FormDescription>List your company's certifications (Optional).</FormDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <Table>
@@ -865,8 +866,8 @@ export function RegisterForm() {
                           />
                         </TableCell>
                         <TableCell className="text-right">
-                          {certificationFields.length > 1 && (
-                            <Button type="button" variant="ghost" size="icon" onClick={() => removeCertification(index)} className="text-destructive">
+                          {(certificationFields.length > 1 || (certificationFields.length === 1 && (form.getValues(`certifications.${index}.name`) || form.getValues(`certifications.${index}.category`)))) && ( // Allow removing if more than 1, or if it's the only one but has content
+                            <Button type="button" variant="ghost" size="icon" onClick={() => certificationFields.length > 1 ? removeCertification(index) : form.resetField(`certifications.${index}` as any) } className="text-destructive">
                               <Trash2 className="h-4 w-4" />
                             </Button>
                           )}
@@ -881,15 +882,17 @@ export function RegisterForm() {
                 <FormMessage>{form.formState.errors.certifications?.root?.message || form.formState.errors.certifications?.message}</FormMessage>
               </CardContent>
             </Card>
+            
             <FormField
               control={form.control}
-              name="procedureInfo"
+              name="procedureInfoUrl"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>General Procedure Overview</FormLabel>
+                  <FormLabel className="flex items-center"><LinkIcon className="h-4 w-4 mr-2 text-muted-foreground"/>Link to General Procedures (Optional)</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="Briefly describe your general procedures..." {...field} rows={3}/>
+                    <Input type="url" placeholder="https://example.com/ndt-procedures.pdf" {...field} />
                   </FormControl>
+                  <FormDescription>URL to your company's general NDT procedures document.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -901,7 +904,7 @@ export function RegisterForm() {
                 <FormItem>
                   <FormLabel>General Acceptance Criteria Overview</FormLabel>
                   <FormControl>
-                    <Textarea placeholder="General acceptance criteria you adhere to..." {...field} rows={3}/>
+                    <Textarea placeholder="Briefly describe the general acceptance criteria you adhere to (e.g., API 1104, ASME B31.3)..." {...field} rows={3}/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

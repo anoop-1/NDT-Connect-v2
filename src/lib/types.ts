@@ -7,16 +7,16 @@ export type ClientProfileData = {
 };
 
 export type ServiceOffering = {
-  id: string; // Unique key for UI lists
-  name: string; // Selected from a predefined list OR custom text
-  rate: string; // Stored as string for input flexibility
-  unit: string; // Selected from predefined list OR custom text
-  isCustom?: boolean; // Flag to indicate if the service name/unit is custom
+  id: string; 
+  name: string; 
+  rate: string; 
+  unit: string; 
+  isCustom?: boolean; 
 };
 
 export type PersonnelQualification = {
-  id: string; // For unique key
-  quantity: number | string; // Allow string for flexible input
+  id: string; 
+  quantity: number | string; 
   certificationBody: string;
   level: string;
   expiryDate?: Date; 
@@ -35,13 +35,13 @@ export type ProviderProfileData = {
   lng?: number;
   servicesOffered?: ServiceOffering[];
   contactNumber?: string;
-  pricingDetails?: string;
-  procedureInfo?: string;
+  // pricingDetails?: string; // Removed as per previous request
+  procedureInfoUrl?: string; // Changed from procedureInfo
   acceptanceCriteriaInfo?: string;
   companyLogoUrl?: string;
   dataAiHint?: string;
-  baseRate?: number;
-  certifications?: CompanyCertification[]; // Changed from string[]
+  // baseRate?: number; // Removed as per previous request
+  certifications?: CompanyCertification[]; 
   personnelQualifications?: PersonnelQualification[];
   isVerified?: boolean;
   availableDocuments?: string[];
@@ -71,8 +71,8 @@ export type ServiceProvider = {
   description?: string;
   imageUrl?: string;
   dataAiHint?: string;
-  baseRate?: number;
-  certifications?: CompanyCertification[]; // Changed from string[]
+  baseRate?: number; // This is used by ProviderCard to calculate client price
+  certifications?: CompanyCertification[]; 
   personnelQualifications?: PersonnelQualification[];
   isVerified?: boolean;
   availableDocuments?: string[];
