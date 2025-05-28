@@ -205,10 +205,6 @@ const providerSchema = baseSchema.extend({
   procedureInfo: z.string().min(10, { message: "Procedure information is required." }).max(500, {message: "Procedure information cannot exceed 500 characters."}),
   acceptanceCriteriaInfo: z.string().min(10, { message: "Acceptance criteria are required." }).max(500, {message: "Acceptance criteria cannot exceed 500 characters."}),
   companyLogoUrl: z.string().url({ message: "Please enter a valid URL for the company logo." }).optional().or(z.literal("")),
-  baseRate: z.preprocess(
-    (val) => (val === "" ? undefined : parseFloat(String(val))),
-    z.number({ invalid_type_error: "Base rate must be a number." }).min(0, "Base rate cannot be negative.").optional()
-  ),
 });
 
 const formSchema = z.union([clientSchema, providerSchema])
@@ -269,7 +265,6 @@ export function RegisterForm() {
       procedureInfo: "",
       acceptanceCriteriaInfo: "",
       companyLogoUrl: "",
-      baseRate: undefined,
     },
   });
 
@@ -307,7 +302,6 @@ export function RegisterForm() {
          form.setValue('procedureInfo', '');
          form.setValue('acceptanceCriteriaInfo', '');
          form.setValue('companyLogoUrl', '');
-         form.setValue('baseRate', undefined);
       }
       previousRole.current = currentRole;
     }
@@ -345,7 +339,6 @@ export function RegisterForm() {
         procedureInfo: providerValues.procedureInfo,
         acceptanceCriteriaInfo: providerValues.acceptanceCriteriaInfo,
         companyLogoUrl: providerValues.companyLogoUrl,
-        baseRate: providerValues.baseRate,
         availableDocuments: [], 
         isVerified: false,
       };
@@ -888,19 +881,6 @@ export function RegisterForm() {
                 <FormMessage>{form.formState.errors.certifications?.root?.message || form.formState.errors.certifications?.message}</FormMessage>
               </CardContent>
             </Card>
-             <FormField
-              control={form.control}
-              name="baseRate"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="flex items-center"><DollarSign className="h-4 w-4 mr-2 text-muted-foreground"/>General Base Rate (e.g., per hour, optional)</FormLabel>
-                  <FormControl>
-                    <Input type="number" placeholder="75" {...field} onChange={e => field.onChange(e.target.value === '' ? undefined : parseFloat(e.target.value))} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             <FormField
               control={form.control}
               name="procedureInfo"
@@ -968,3 +948,4 @@ export function RegisterForm() {
     </Form>
   );
 }
+
