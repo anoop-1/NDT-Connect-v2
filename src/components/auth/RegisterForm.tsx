@@ -169,11 +169,11 @@ const clientSchema = baseSchema.extend({
 const serviceOfferingSchema = z.object({
   id: z.string(),
   name: z.string().min(1, "Service name is required."),
+  unit: z.string().min(1, "Unit is required."),
   rate: z.string()
     .refine(val => val === '' || (!isNaN(parseFloat(val)) && parseFloat(val) >= 0), {
       message: "Rate must be a non-negative number or empty.",
     }),
-  unit: z.string().min(1, "Unit is required."),
   isCustom: z.boolean().optional(),
 });
 
@@ -202,7 +202,6 @@ const providerSchema = baseSchema.extend({
   contactNumberProvider: z.string().min(7, {message: "Contact number is required."}),
   personnelQualifications: z.array(personnelQualificationSchema).min(1, "At least one personnel qualification must be listed."),
   certifications: z.array(companyCertificationSchema).optional(),
-  pricingDetails: z.string().min(10, { message: "Pricing details (text description) are required." }).max(500, {message: "Pricing details cannot exceed 500 characters."}),
   procedureInfo: z.string().min(10, { message: "Procedure information is required." }).max(500, {message: "Procedure information cannot exceed 500 characters."}),
   acceptanceCriteriaInfo: z.string().min(10, { message: "Acceptance criteria are required." }).max(500, {message: "Acceptance criteria cannot exceed 500 characters."}),
   companyLogoUrl: z.string().url({ message: "Please enter a valid URL for the company logo." }).optional().or(z.literal("")),
@@ -229,7 +228,6 @@ const formSchema = z.union([clientSchema, providerSchema])
                'servicesOffered' in data && data.servicesOffered && data.servicesOffered.length > 0 &&
                'contactNumberProvider' in data && data.contactNumberProvider &&
                'personnelQualifications' in data && data.personnelQualifications && data.personnelQualifications.length > 0 &&
-               'pricingDetails' in data && data.pricingDetails &&
                'procedureInfo' in data && data.procedureInfo &&
                'acceptanceCriteriaInfo' in data && data.acceptanceCriteriaInfo;
     }
@@ -268,7 +266,6 @@ export function RegisterForm() {
       contactNumberProvider: "",
       personnelQualifications: [defaultPersonnelQualificationRow()],
       certifications: [defaultCompanyCertificationRow()],
-      pricingDetails: "",
       procedureInfo: "",
       acceptanceCriteriaInfo: "",
       companyLogoUrl: "",
@@ -307,7 +304,6 @@ export function RegisterForm() {
          form.setValue('certifications' as any, []);
          form.setValue('locationProvider', '');
          form.setValue('contactNumberProvider', '');
-         form.setValue('pricingDetails', '');
          form.setValue('procedureInfo', '');
          form.setValue('acceptanceCriteriaInfo', '');
          form.setValue('companyLogoUrl', '');
@@ -346,12 +342,11 @@ export function RegisterForm() {
         })),
         certifications: providerValues.certifications?.map(c => ({...c})) || [],
         contactNumber: providerValues.contactNumberProvider,
-        pricingDetails: providerValues.pricingDetails,
         procedureInfo: providerValues.procedureInfo,
         acceptanceCriteriaInfo: providerValues.acceptanceCriteriaInfo,
         companyLogoUrl: providerValues.companyLogoUrl,
         baseRate: providerValues.baseRate,
-        availableDocuments: [], // Explicitly setting to empty array
+        availableDocuments: [], 
         isVerified: false,
       };
     }
@@ -689,7 +684,7 @@ export function RegisterForm() {
                             render={({ field }) => (
                               <FormItem>
                                 <FormControl>
-                                  <Input type="number" placeholder="1" {...field} onChange={e => field.onChange(parseInt(e.target.value,10) || 0)} />
+                                  <Input type="number" placeholder="1" {...field} onChange={e => field.onChange(parseInt(e.target.value,10) || 0)} min="1" />
                                 </FormControl>
                                 <FormMessage />
                               </FormItem>
@@ -788,7 +783,7 @@ export function RegisterForm() {
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center text-lg font-semibold"><Award className="h-5 w-5 mr-2 text-primary"/>Company Certifications & Accreditations</CardTitle>
-                <FormDescription>List your company's certifications. Add at least one if applicable.</FormDescription>
+                <FormDescription>List your company's certifications.</FormDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <Table>
@@ -901,19 +896,6 @@ export function RegisterForm() {
                   <FormLabel className="flex items-center"><DollarSign className="h-4 w-4 mr-2 text-muted-foreground"/>General Base Rate (e.g., per hour, optional)</FormLabel>
                   <FormControl>
                     <Input type="number" placeholder="75" {...field} onChange={e => field.onChange(e.target.value === '' ? undefined : parseFloat(e.target.value))} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="pricingDetails"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>General Pricing Overview</FormLabel>
-                  <FormControl>
-                    <Textarea placeholder="Describe your general pricing structure..." {...field} rows={3}/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
