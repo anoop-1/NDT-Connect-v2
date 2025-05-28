@@ -210,7 +210,6 @@ const providerSchema = baseSchema.extend({
     (val) => (val === "" ? undefined : parseFloat(String(val))),
     z.number({ invalid_type_error: "Base rate must be a number." }).min(0, "Base rate cannot be negative.").optional()
   ),
-  availableDocumentsText: z.string().optional(),
 });
 
 const formSchema = z.union([clientSchema, providerSchema])
@@ -274,7 +273,6 @@ export function RegisterForm() {
       acceptanceCriteriaInfo: "",
       companyLogoUrl: "",
       baseRate: undefined,
-      availableDocumentsText: "",
     },
   });
 
@@ -314,7 +312,6 @@ export function RegisterForm() {
          form.setValue('acceptanceCriteriaInfo', '');
          form.setValue('companyLogoUrl', '');
          form.setValue('baseRate', undefined);
-         form.setValue('availableDocumentsText', '');
       }
       previousRole.current = currentRole;
     }
@@ -354,7 +351,7 @@ export function RegisterForm() {
         acceptanceCriteriaInfo: providerValues.acceptanceCriteriaInfo,
         companyLogoUrl: providerValues.companyLogoUrl,
         baseRate: providerValues.baseRate,
-        availableDocuments: providerValues.availableDocumentsText?.split(',').map(s => s.trim()).filter(Boolean) || [],
+        availableDocuments: [], // Explicitly setting to empty array
         isVerified: false,
       };
     }
@@ -394,7 +391,7 @@ export function RegisterForm() {
             </FormItem>
           )}
         />
-
+        
         {currentRole === "client" && (
             <FormField
             control={form.control}
@@ -425,6 +422,7 @@ export function RegisterForm() {
                 )}
             />
         )}
+
 
         <FormField
           control={form.control}
@@ -580,12 +578,12 @@ export function RegisterForm() {
               <CardContent className="space-y-4">
                 {serviceFields.map((item, index) => (
                   <Card key={item.id} className="p-3 shadow-sm bg-muted/20">
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-3 items-end">
+                    <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_auto] gap-3 items-end">
                        <FormField
                         control={form.control}
                         name={`servicesOffered.${index}.name` as const}
                         render={({ field }) => (
-                          <FormItem className="md:col-span-2">
+                          <FormItem>
                             <FormLabel>Service Name</FormLabel>
                             {(item as ServiceOffering).isCustom ? (
                               <FormControl>
@@ -646,14 +644,12 @@ export function RegisterForm() {
                           </FormItem>
                         )}
                       />
+                        {serviceFields.length > 1 && (
+                          <Button type="button" variant="ghost" size="icon" onClick={() => removeService(index)} className="text-destructive hover:bg-destructive/10 self-end mb-1">
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        )}
                     </div>
-                    {serviceFields.length > 1 && (
-                      <div className="mt-2 text-right">
-                        <Button type="button" variant="ghost" size="sm" onClick={() => removeService(index)} className="text-destructive hover:bg-destructive/10">
-                          <Trash2 className="h-4 w-4 mr-1" /> Remove Service
-                        </Button>
-                      </div>
-                    )}
                   </Card>
                 ))}
                 <div className="flex flex-col sm:flex-row gap-2">
@@ -778,7 +774,6 @@ export function RegisterForm() {
                             )}
                           />
                         </TableCell>
-                         {/* Action column removed based on previous request */}
                       </TableRow>
                     ))}
                   </TableBody>
@@ -898,19 +893,6 @@ export function RegisterForm() {
                 <FormMessage>{form.formState.errors.certifications?.root?.message || form.formState.errors.certifications?.message}</FormMessage>
               </CardContent>
             </Card>
-            <FormField
-              control={form.control}
-              name="availableDocumentsText"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="flex items-center"><BookOpen className="h-4 w-4 mr-2 text-muted-foreground"/>Available Docs (comma-separated)</FormLabel>
-                  <FormControl>
-                    <Textarea placeholder="e.g., Procedures Manual, ISO Cert" {...field} rows={2}/>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
              <FormField
               control={form.control}
               name="baseRate"
@@ -1004,4 +986,3 @@ export function RegisterForm() {
     </Form>
   );
 }
-
