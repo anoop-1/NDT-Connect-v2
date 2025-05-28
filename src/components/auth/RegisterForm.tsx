@@ -201,7 +201,7 @@ const providerSchema = baseSchema.extend({
   servicesOffered: z.array(serviceOfferingSchema).min(1, "At least one service must be offered."),
   contactNumberProvider: z.string().min(7, {message: "Contact number is required."}),
   personnelQualifications: z.array(personnelQualificationSchema).min(1, "At least one personnel qualification must be listed."),
-  certifications: z.array(companyCertificationSchema).optional(), // Changed from string[]
+  certifications: z.array(companyCertificationSchema).optional(),
   pricingDetails: z.string().min(10, { message: "Pricing details (text description) are required." }).max(500, {message: "Pricing details cannot exceed 500 characters."}),
   procedureInfo: z.string().min(10, { message: "Procedure information is required." }).max(500, {message: "Procedure information cannot exceed 500 characters."}),
   acceptanceCriteriaInfo: z.string().min(10, { message: "Acceptance criteria are required." }).max(500, {message: "Acceptance criteria cannot exceed 500 characters."}),
@@ -268,7 +268,7 @@ export function RegisterForm() {
       servicesOffered: [defaultServiceOfferingRow()],
       contactNumberProvider: "",
       personnelQualifications: [defaultPersonnelQualificationRow()],
-      certifications: [defaultCompanyCertificationRow()], // Initialize with one row
+      certifications: [defaultCompanyCertificationRow()],
       pricingDetails: "",
       procedureInfo: "",
       acceptanceCriteriaInfo: "",
@@ -347,7 +347,7 @@ export function RegisterForm() {
             quantity: typeof pq.quantity === 'string' ? parseInt(pq.quantity, 10) || 1 : pq.quantity,
             expiryDate: pq.expiryDate,
         })),
-        certifications: providerValues.certifications?.map(c => ({...c})) || [], // Ensure certifications are mapped
+        certifications: providerValues.certifications?.map(c => ({...c})) || [],
         contactNumber: providerValues.contactNumberProvider,
         pricingDetails: providerValues.pricingDetails,
         procedureInfo: providerValues.procedureInfo,
@@ -394,6 +394,38 @@ export function RegisterForm() {
             </FormItem>
           )}
         />
+
+        {currentRole === "client" && (
+            <FormField
+            control={form.control}
+            name="contactNumberClient"
+            render={({ field }) => (
+                <FormItem>
+                <FormLabel>Contact Number</FormLabel>
+                <FormControl>
+                    <Input placeholder="(555) 123-4567" {...field} />
+                </FormControl>
+                <FormMessage />
+                </FormItem>
+            )}
+            />
+        )}
+        {currentRole === "provider" && (
+            <FormField
+                control={form.control}
+                name="contactNumberProvider"
+                render={({ field }) => (
+                    <FormItem>
+                    <FormLabel>Contact Number</FormLabel>
+                    <FormControl>
+                        <Input placeholder="(555) 987-6543" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                    </FormItem>
+                )}
+            />
+        )}
+
         <FormField
           control={form.control}
           name="email"
@@ -502,19 +534,6 @@ export function RegisterForm() {
                   <FormLabel>Primary Location</FormLabel>
                   <FormControl>
                     <Input placeholder="City, State" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-             <FormField
-              control={form.control}
-              name="contactNumberClient"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Contact Number</FormLabel>
-                  <FormControl>
-                    <Input placeholder="(555) 123-4567" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -759,6 +778,7 @@ export function RegisterForm() {
                             )}
                           />
                         </TableCell>
+                         {/* Action column removed based on previous request */}
                       </TableRow>
                     ))}
                   </TableBody>
@@ -878,22 +898,7 @@ export function RegisterForm() {
                 <FormMessage>{form.formState.errors.certifications?.root?.message || form.formState.errors.certifications?.message}</FormMessage>
               </CardContent>
             </Card>
-
-
             <FormField
-              control={form.control}
-              name="contactNumberProvider"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Contact Number</FormLabel>
-                  <FormControl>
-                    <Input placeholder="(555) 987-6543" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-             <FormField
               control={form.control}
               name="availableDocumentsText"
               render={({ field }) => (
@@ -999,3 +1004,4 @@ export function RegisterForm() {
     </Form>
   );
 }
+
