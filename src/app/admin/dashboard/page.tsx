@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Users, Briefcase, Settings, Shield, Activity, BarChart, Image as ImageIcon, Save } from "lucide-react";
+import { Users, Briefcase, Settings, Shield, Activity, BarChart, Image as ImageIcon, Save, ListChecks } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
@@ -67,7 +67,7 @@ export default function AdminDashboardPage() {
         </CardHeader>
         <CardContent>
           <p>Welcome, {user.name || user.email}! Use this panel to manage the platform.</p>
-          <p className="text-xs text-muted-foreground mt-1">Note: Image URL changes are saved locally in your browser.</p>
+          <p className="text-xs text-muted-foreground mt-1">Note: Image URL and fee changes are saved locally in your browser.</p>
         </CardContent>
       </Card>
 
@@ -95,6 +95,12 @@ export default function AdminDashboardPage() {
           description="Access platform usage statistics and reports."
           href="/admin/analytics"
           icon={<BarChart className="h-8 w-8 text-primary" />}
+        />
+        <AdminActionCard
+          title="Manage Predefined Lists"
+          description="View lists used for dropdowns and selections (e.g., NDT services, certifications)."
+          href="/admin/manage-predefined-lists"
+          icon={<ListChecks className="h-8 w-8 text-primary" />}
         />
       </div>
       
