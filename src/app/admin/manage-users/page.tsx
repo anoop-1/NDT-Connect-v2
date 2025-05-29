@@ -8,12 +8,23 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Users, ArrowLeft, CheckCircle, XCircle, Shield } from "lucide-react";
+import { Users, ArrowLeft, CheckCircle, XCircle, Shield, Trash2, AlertTriangle } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import type { User } from "@/lib/types";
 import { useToast } from "@/hooks/use-toast";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 const initialMockClients: User[] = [
   { id: 'client1', name: 'Client Alpha Corp', email: 'alpha@example.com', role: 'client', isActive: true, clientProfile: { companyName: 'Alpha Corp', industry: 'Manufacturing', primaryLocation: 'New York, NY' } },
@@ -32,15 +43,42 @@ const initialMockAdmins: User[] = [
   { id: 'admin2', name: 'Support Admin', email: 'support@ndtconnect.com', role: 'admin', isActive: true },
 ];
 
+const LOCALSTORAGE_KEY_CLIENTS = "adminManaged_clients";
+const LOCALSTORAGE_KEY_PROVIDERS = "adminManaged_providers";
+const LOCALSTORAGE_KEY_ADMINS = "adminManaged_admins";
+
 
 export default function ManageUsersPage() {
   const { user: currentUser, loading } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
 
-  const [clients, setClients] = useState<User[]>(initialMockClients);
-  const [providers, setProviders] = useState<User[]>(initialMockProviders);
-  const [admins, setAdmins] = useState<User[]>(initialMockAdmins);
+  const [clients, setClients] = useState<User[]>([]);
+  const [providers, setProviders] = useState<User[]>([]);
+  const [admins, setAdmins] = useState<User[]>([]);
+
+  // Load users from localStorage or use initial mocks
+  useEffect(() => {
+    const loadUsers = <T extends User>(key: string, defaultUsers: T[]): T[] => {
+      try {
+        const storedUsers = localStorage.getItem(key);
+        if (storedUsers) {
+          const parsed = JSON.parse(storedUsers);
+          if (Array.isArray(parsed) && parsed.every(u => u.id && u.email && u.role)) {
+            return parsed;
+          }
+        }
+      } catch (e) {
+        console.error(`Error loading users from localStorage key ${key}:`, e);
+      }
+      localStorage.setItem(key, JSON.stringify(defaultUsers)); // Seed if empty or error
+      return defaultUsers;
+    };
+
+    setClients(loadUsers(LOCALSTORAGE_KEY_CLIENTS, initialMockClients));
+    setProviders(loadUsers(LOCALSTORAGE_KEY_PROVIDERS, initialMockProviders));
+    setAdmins(loadUsers(LOCALSTORAGE_KEY_ADMINS, initialMockAdmins));
+  }, []);
 
   useEffect(() => {
     if (!loading && !currentUser) {
@@ -50,25 +88,43 @@ export default function ManageUsersPage() {
     }
   }, [currentUser, loading, router]);
 
+  const saveUsersToLocalStorage = <T extends User>(key: string, users: T[]) => {
+    try {
+      localStorage.setItem(key, JSON.stringify(users));
+    } catch (e) {
+      console.error(`Error saving users to localStorage key ${key}:`, e);
+      toast({
+        title: "Storage Error",
+        description: "Could not save user changes to local storage.",
+        variant: "destructive",
+      });
+    }
+  };
+
   const toggleUserStatus = (userId: string, userType: 'client' | 'provider' | 'admin') => {
-    let userListUpdater;
-    let userList;
+    let userList: User[];
+    let userListUpdater: React.Dispatch<React.SetStateAction<User[]>>;
+    let storageKey: string;
 
     if (userType === 'client') {
       userList = clients;
       userListUpdater = setClients;
+      storageKey = LOCALSTORAGE_KEY_CLIENTS;
     } else if (userType === 'provider') {
       userList = providers;
       userListUpdater = setProviders;
+      storageKey = LOCALSTORAGE_KEY_PROVIDERS;
     } else {
       userList = admins;
       userListUpdater = setAdmins;
+      storageKey = LOCALSTORAGE_KEY_ADMINS;
     }
 
     const updatedList = userList.map(u =>
       u.id === userId ? { ...u, isActive: !u.isActive } : u
     );
     userListUpdater(updatedList);
+    saveUsersToLocalStorage(storageKey, updatedList);
     
     const targetUser = updatedList.find(u => u.id === userId);
     toast({
@@ -76,6 +132,50 @@ export default function ManageUsersPage() {
       description: `${targetUser?.name || targetUser?.email}'s status changed to ${targetUser?.isActive ? 'Active' : 'Inactive'}.`,
     });
   };
+
+  const deleteUser = (userId: string, userType: 'client' | 'provider' | 'admin') => {
+    let userList: User[];
+    let userListUpdater: React.Dispatch<React.SetStateAction<User[]>>;
+    let storageKey: string;
+
+    if (userType === 'client') {
+      userList = clients;
+      userListUpdater = setClients;
+      storageKey = LOCALSTORAGE_KEY_CLIENTS;
+    } else if (userType === 'provider') {
+      userList = providers;
+      userListUpdater = setProviders;
+      storageKey = LOCALSTORAGE_KEY_PROVIDERS;
+    } else {
+      userList = admins;
+      userListUpdater = setAdmins;
+      storageKey = LOCALSTORAGE_KEY_ADMINS;
+    }
+
+    const targetUser = userList.find(u => u.id === userId);
+    if (!targetUser) return;
+
+    // Prevent deletion of the current admin if they are the only active admin
+    if (userType === 'admin' && targetUser.id === currentUser?.id && admins.filter(a => a.isActive && a.id !== targetUser.id).length === 0) {
+      toast({
+        title: "Action Not Allowed",
+        description: "Cannot delete the last active administrator.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+
+    const updatedList = userList.filter(u => u.id !== userId);
+    userListUpdater(updatedList);
+    saveUsersToLocalStorage(storageKey, updatedList);
+
+    toast({
+      title: "User Deleted",
+      description: `${targetUser.name || targetUser.email} has been removed.`,
+    });
+  };
+
 
   if (loading) {
     return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
@@ -108,19 +208,45 @@ export default function ManageUsersPage() {
                 {u.isActive ? 'Active' : 'Inactive'}
               </Badge>
             </TableCell>
-            <TableCell className="text-right">
-              {/* Prevent current admin from deactivating themselves, unless it's another admin */}
+            <TableCell className="text-right space-x-2">
               {!(u.role === 'admin' && u.id === currentUser.id && admins.filter(a => a.isActive).length <=1 ) ? (
                 <Button
-                  variant={u.isActive ? "destructive" : "default"}
+                  variant={u.isActive ? "outline" : "default"}
                   size="sm"
                   onClick={() => toggleUserStatus(u.id, userType)}
+                  className={u.isActive ? 'border-yellow-500 text-yellow-700 hover:bg-yellow-100 hover:text-yellow-800' : ''}
                 >
                   {u.isActive ? 'Deactivate' : 'Activate'}
                 </Button>
               ) : (
                 <Button variant="outline" size="sm" disabled>Locked</Button>
               )}
+               <AlertDialog>
+                <AlertDialogTrigger asChild>
+                   {!(u.role === 'admin' && u.id === currentUser.id && admins.length <=1 ) ? (
+                    <Button variant="destructive" size="sm">
+                      <Trash2 className="mr-1 h-4 w-4" /> Delete
+                    </Button>
+                   ) : (
+                     <Button variant="outline" size="sm" disabled>Locked</Button>
+                   )}
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle className="flex items-center"><AlertTriangle className="mr-2 h-5 w-5 text-destructive"/>Are you sure?</AlertDialogTitle>
+                    <AlertDialogDescription>
+                      This action cannot be undone. This will permanently delete the user 
+                      <span className="font-semibold"> {u.name || u.email}</span> and remove their data from local storage.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Cancel</AlertDialogCancel>
+                    <AlertDialogAction onClick={() => deleteUser(u.id, userType)} className={buttonVariants({variant: "destructive"})}>
+                      Yes, delete user
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </TableCell>
           </TableRow>
         ))}
@@ -143,7 +269,7 @@ export default function ManageUsersPage() {
             Manage Users
           </CardTitle>
           <CardDescription>
-            View, activate, or deactivate client, service provider, and admin accounts.
+            View, activate, deactivate, or delete client, service provider, and admin accounts. Changes are saved to your browser's local storage.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -173,11 +299,11 @@ export default function ManageUsersPage() {
             </TabsContent>
           </Tabs>
           <div className="mt-6 p-4 border border-dashed rounded-lg text-center text-sm text-muted-foreground">
-            Note: User data and status changes are part of a mock implementation and will reset on page refresh.
-            Full user management requires backend integration.
+            User data and status changes are persisted in your browser's local storage.
           </div>
         </CardContent>
       </Card>
     </div>
   );
 }
+
