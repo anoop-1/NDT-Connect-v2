@@ -9,14 +9,14 @@ export type ClientProfileData = {
 export type ServiceOffering = {
   id: string;
   name: string;
-  rate: string; // Keep as string for input flexibility, parse on submission/use
+  rate: string;
   unit: string;
   isCustom?: boolean;
 };
 
 export type PersonnelQualification = {
   id: string;
-  quantity: number | string; // Keep as string for input flexibility
+  quantity: number | string;
   certificationBody: string;
   level: string;
   expiryDate?: Date;
@@ -35,8 +35,7 @@ export type ProviderProfileData = {
   lng?: number;
   servicesOffered?: ServiceOffering[];
   contactNumber?: string;
-  procedureInfoUrl?: string; // Changed from procedureInfo
-  // acceptanceCriteriaInfo?: string; // Removed
+  procedureInfoUrl?: string;
   companyLogoUrl?: string;
   dataAiHint?: string;
   certifications?: CompanyCertification[];
@@ -44,6 +43,7 @@ export type ProviderProfileData = {
   isVerified?: boolean;
   availableDocuments?: string[];
   serviceRadius?: string;
+  baseRate?: number;
 };
 
 export type User = {
@@ -52,6 +52,7 @@ export type User = {
   role: 'client' | 'provider' | 'admin';
   name?: string;
   isDemo?: boolean;
+  isActive?: boolean; // Added for user status management
   clientProfile?: ClientProfileData;
   providerProfile?: ProviderProfileData;
 };
@@ -69,7 +70,7 @@ export type ServiceProvider = {
   description?: string;
   imageUrl?: string;
   dataAiHint?: string;
-  baseRate?: number; // This is used by ProviderCard to calculate client price
+  baseRate?: number;
   certifications?: CompanyCertification[];
   personnelQualifications?: PersonnelQualification[];
   isVerified?: boolean;
