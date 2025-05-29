@@ -33,25 +33,30 @@ const DEFAULT_NDT_SERVICE_TYPES_PROVIDER_PROFILE = [
   "Vacuum Box Testing"
 ];
 
+const DEFAULT_COMPANY_CERTIFICATIONS = [
+  "ISO 9001", "ISO 14001", "ISO 17020", "ISO 17024", "ISO 17025", "ISO 45001",
+  "ABS", "DNV", "LR", "BV", "NKK", "IRS", "RINA", "CCS", "KR", "Other"
+];
 
-const OTHER_PREDEFINED_LISTS_INFO = [
-  {
-    name: "Company Certifications (for Provider Profile & Registration - Currently Hardcoded)",
-    details: "ISO 9001, ISO 14001, ISO 17020, ISO 17024, ISO 17025, ISO 45001, ABS, DNV, LR, BV, NKK, IRS, RINA, CCS, KR, Other."
-  },
-  {
-    name: "Personnel Qualification Bodies (for Provider Profile & Registration - Currently Hardcoded)",
-    details: "ASNT, PCN, ISO 9712, CSWIP, CGSB, AWS, CWI, ISNT, AINDT, BINDT, Other."
-  },
-  {
-    name: "Personnel Qualification Levels (for Provider Profile & Registration - Currently Hardcoded)",
-    details: "Level I, Level II, Level III, Technician, Inspector, Engineer, Assistant, Senior, Other."
-  },
+const DEFAULT_PERSONNEL_QUALIFICATION_BODIES = [
+  "ASNT", "PCN", "ISO 9712", "CSWIP", "CGSB", "AWS", "CWI", "ISNT", "AINDT", "BINDT", "Other"
+];
+
+const DEFAULT_PERSONNEL_QUALIFICATION_LEVELS = [
+  "Level I", "Level II", "Level III", "Technician", "Inspector", "Engineer", "Assistant", "Senior", "Other"
+];
+
+const OTHER_PREDEFINED_LISTS_INFO: { name: string; details: string }[] = [
+  // Items moved to editable sections
 ];
 
 const LOCALSTORAGE_KEY_CLIENT_NDT_SERVICES = "adminManaged_clientNdtServices";
 const LOCALSTORAGE_KEY_ADMIN_SERVICE_UNITS = "adminManaged_serviceUnits";
 const LOCALSTORAGE_KEY_PROVIDER_PROFILE_NDT_SERVICES = "adminManaged_providerProfileNdtServices";
+const LOCALSTORAGE_KEY_COMPANY_CERTIFICATIONS = "adminManaged_companyCertifications";
+const LOCALSTORAGE_KEY_PERSONNEL_QUALIFICATION_BODIES = "adminManaged_personnelQualificationBodies";
+const LOCALSTORAGE_KEY_PERSONNEL_QUALIFICATION_LEVELS = "adminManaged_personnelQualificationLevels";
+
 
 export default function ManagePredefinedListsPage() {
   const { user, loading } = useAuth();
@@ -67,6 +72,14 @@ export default function ManagePredefinedListsPage() {
   const [providerProfileNdtServices, setProviderProfileNdtServices] = useState<string[]>(DEFAULT_NDT_SERVICE_TYPES_PROVIDER_PROFILE);
   const [newProviderProfileNdtServiceText, setNewProviderProfileNdtServiceText] = useState("");
 
+  const [companyCertifications, setCompanyCertifications] = useState<string[]>(DEFAULT_COMPANY_CERTIFICATIONS);
+  const [newCompanyCertificationText, setNewCompanyCertificationText] = useState("");
+
+  const [personnelQualificationBodies, setPersonnelQualificationBodies] = useState<string[]>(DEFAULT_PERSONNEL_QUALIFICATION_BODIES);
+  const [newPersonnelQualificationBodyText, setNewPersonnelQualificationBodyText] = useState("");
+
+  const [personnelQualificationLevels, setPersonnelQualificationLevels] = useState<string[]>(DEFAULT_PERSONNEL_QUALIFICATION_LEVELS);
+  const [newPersonnelQualificationLevelText, setNewPersonnelQualificationLevelText] = useState("");
 
   useEffect(() => {
     if (!loading && !user) {
@@ -75,136 +88,87 @@ export default function ManagePredefinedListsPage() {
       router.push("/dashboard");
     } else {
       // Load Client NDT Services
-      const storedClientNdtServices = localStorage.getItem(LOCALSTORAGE_KEY_CLIENT_NDT_SERVICES);
-      if (storedClientNdtServices) {
-        try {
-          const parsedServices = JSON.parse(storedClientNdtServices);
-          if (Array.isArray(parsedServices) && parsedServices.every(item => typeof item === 'string')) {
-            setClientNdtServices(parsedServices);
-          } else {
-            setClientNdtServices(DEFAULT_NDT_SERVICE_TYPES_CLIENT_FORM);
-          }
-        } catch (e) {
-          console.error("Error parsing stored client NDT services:", e);
-          setClientNdtServices(DEFAULT_NDT_SERVICE_TYPES_CLIENT_FORM);
-        }
-      } else {
-        setClientNdtServices(DEFAULT_NDT_SERVICE_TYPES_CLIENT_FORM);
-      }
-
+      loadListFromLocalStorage(LOCALSTORAGE_KEY_CLIENT_NDT_SERVICES, DEFAULT_NDT_SERVICE_TYPES_CLIENT_FORM, setClientNdtServices, "client NDT services");
       // Load Service Units
-      const storedServiceUnits = localStorage.getItem(LOCALSTORAGE_KEY_ADMIN_SERVICE_UNITS);
-      if (storedServiceUnits) {
-        try {
-          const parsedUnits = JSON.parse(storedServiceUnits);
-          if (Array.isArray(parsedUnits) && parsedUnits.every(item => typeof item === 'string')) {
-            setServiceUnits(parsedUnits);
-          } else {
-            setServiceUnits(DEFAULT_SERVICE_UNITS);
-          }
-        } catch (e) {
-          console.error("Error parsing stored service units:", e);
-          setServiceUnits(DEFAULT_SERVICE_UNITS);
-        }
-      } else {
-        setServiceUnits(DEFAULT_SERVICE_UNITS);
-      }
-
+      loadListFromLocalStorage(LOCALSTORAGE_KEY_ADMIN_SERVICE_UNITS, DEFAULT_SERVICE_UNITS, setServiceUnits, "service units");
       // Load Provider Profile NDT Services
-      const storedProviderProfileNdtServices = localStorage.getItem(LOCALSTORAGE_KEY_PROVIDER_PROFILE_NDT_SERVICES);
-      if (storedProviderProfileNdtServices) {
-        try {
-          const parsedServices = JSON.parse(storedProviderProfileNdtServices);
-          if (Array.isArray(parsedServices) && parsedServices.every(item => typeof item === 'string')) {
-            setProviderProfileNdtServices(parsedServices);
-          } else {
-            setProviderProfileNdtServices(DEFAULT_NDT_SERVICE_TYPES_PROVIDER_PROFILE);
-          }
-        } catch (e) {
-          console.error("Error parsing stored provider profile NDT services:", e);
-          setProviderProfileNdtServices(DEFAULT_NDT_SERVICE_TYPES_PROVIDER_PROFILE);
-        }
-      } else {
-        setProviderProfileNdtServices(DEFAULT_NDT_SERVICE_TYPES_PROVIDER_PROFILE);
-      }
+      loadListFromLocalStorage(LOCALSTORAGE_KEY_PROVIDER_PROFILE_NDT_SERVICES, DEFAULT_NDT_SERVICE_TYPES_PROVIDER_PROFILE, setProviderProfileNdtServices, "provider profile NDT services");
+      // Load Company Certifications
+      loadListFromLocalStorage(LOCALSTORAGE_KEY_COMPANY_CERTIFICATIONS, DEFAULT_COMPANY_CERTIFICATIONS, setCompanyCertifications, "company certifications");
+      // Load Personnel Qualification Bodies
+      loadListFromLocalStorage(LOCALSTORAGE_KEY_PERSONNEL_QUALIFICATION_BODIES, DEFAULT_PERSONNEL_QUALIFICATION_BODIES, setPersonnelQualificationBodies, "personnel qualification bodies");
+      // Load Personnel Qualification Levels
+      loadListFromLocalStorage(LOCALSTORAGE_KEY_PERSONNEL_QUALIFICATION_LEVELS, DEFAULT_PERSONNEL_QUALIFICATION_LEVELS, setPersonnelQualificationLevels, "personnel qualification levels");
     }
   }, [user, loading, router]);
-
-  const saveClientNdtServices = (services: string[]) => {
-    localStorage.setItem(LOCALSTORAGE_KEY_CLIENT_NDT_SERVICES, JSON.stringify(services));
-    setClientNdtServices(services);
-    toast({ title: "List Updated", description: "Client NDT Service Types list saved locally." });
+  
+  const loadListFromLocalStorage = (key: string, defaultList: string[], setter: (list: string[]) => void, listName: string) => {
+    const storedList = localStorage.getItem(key);
+    if (storedList) {
+      try {
+        const parsedList = JSON.parse(storedList);
+        if (Array.isArray(parsedList) && parsedList.every(item => typeof item === 'string')) {
+          setter(parsedList);
+        } else {
+          setter(defaultList);
+        }
+      } catch (e) {
+        console.error(`Error parsing stored ${listName}:`, e);
+        setter(defaultList);
+      }
+    } else {
+      setter(defaultList);
+    }
   };
 
-  const handleAddClientNdtServiceItem = () => {
-    if (newClientNdtServiceText.trim() === "") {
-      toast({ title: "Cannot Add Empty Item", variant: "destructive" });
+  const saveListToLocalStorage = (key: string, list: string[], setter: (list: string[]) => void, toastMessage: string) => {
+    localStorage.setItem(key, JSON.stringify(list));
+    setter(list);
+    toast({ title: "List Updated", description: `${toastMessage} list saved locally.` });
+  };
+
+  const handleAddItem = (newItemText: string, currentList: string[], setter: (list: string[]) => void, setNewItemText: (text: string) => void, listKey: string, toastMessage: string, itemTypeName: string) => {
+    if (newItemText.trim() === "") {
+      toast({ title: `Cannot Add Empty ${itemTypeName}`, variant: "destructive" });
       return;
     }
-    if (clientNdtServices.includes(newClientNdtServiceText.trim())) {
-      toast({ title: "Item Already Exists", description: `${newClientNdtServiceText.trim()} is already in the list.`, variant: "destructive" });
+    if (currentList.includes(newItemText.trim())) {
+      toast({ title: `${itemTypeName} Already Exists`, description: `${newItemText.trim()} is already in the list.`, variant: "destructive" });
       return;
     }
-    const updatedServices = [...clientNdtServices, newClientNdtServiceText.trim()];
-    saveClientNdtServices(updatedServices);
-    setNewClientNdtServiceText("");
+    const updatedList = [...currentList, newItemText.trim()];
+    saveListToLocalStorage(listKey, updatedList, setter, toastMessage);
+    setNewItemText("");
   };
 
-  const handleRemoveClientNdtServiceItem = (itemToRemove: string) => {
-    const updatedServices = clientNdtServices.filter(item => item !== itemToRemove);
-    saveClientNdtServices(updatedServices);
+  const handleRemoveItem = (itemToRemove: string, currentList: string[], setter: (list: string[]) => void, listKey: string, toastMessage: string) => {
+    const updatedList = currentList.filter(item => item !== itemToRemove);
+    saveListToLocalStorage(listKey, updatedList, setter, toastMessage);
   };
 
-  const saveServiceUnits = (units: string[]) => {
-    localStorage.setItem(LOCALSTORAGE_KEY_ADMIN_SERVICE_UNITS, JSON.stringify(units));
-    setServiceUnits(units);
-    toast({ title: "List Updated", description: "Service Units list saved locally." });
-  };
+  // Client NDT Services handlers
+  const handleAddClientNdtServiceItem = () => handleAddItem(newClientNdtServiceText, clientNdtServices, setClientNdtServices, setNewClientNdtServiceText, LOCALSTORAGE_KEY_CLIENT_NDT_SERVICES, "Client NDT Service Types", "Service Type");
+  const handleRemoveClientNdtServiceItem = (item: string) => handleRemoveItem(item, clientNdtServices, setClientNdtServices, LOCALSTORAGE_KEY_CLIENT_NDT_SERVICES, "Client NDT Service Types");
 
-  const handleAddServiceUnitItem = () => {
-    if (newServiceUnitText.trim() === "") {
-      toast({ title: "Cannot Add Empty Item", variant: "destructive" });
-      return;
-    }
-    if (serviceUnits.includes(newServiceUnitText.trim())) {
-      toast({ title: "Item Already Exists", description: `${newServiceUnitText.trim()} is already in the list.`, variant: "destructive" });
-      return;
-    }
-    const updatedUnits = [...serviceUnits, newServiceUnitText.trim()];
-    saveServiceUnits(updatedUnits);
-    setNewServiceUnitText("");
-  };
+  // Service Units handlers
+  const handleAddServiceUnitItem = () => handleAddItem(newServiceUnitText, serviceUnits, setServiceUnits, setNewServiceUnitText, LOCALSTORAGE_KEY_ADMIN_SERVICE_UNITS, "Service Units", "Service Unit");
+  const handleRemoveServiceUnitItem = (item: string) => handleRemoveItem(item, serviceUnits, setServiceUnits, LOCALSTORAGE_KEY_ADMIN_SERVICE_UNITS, "Service Units");
 
-  const handleRemoveServiceUnitItem = (itemToRemove: string) => {
-    const updatedUnits = serviceUnits.filter(item => item !== itemToRemove);
-    saveServiceUnits(updatedUnits);
-  };
+  // Provider Profile NDT Services handlers
+  const handleAddProviderProfileNdtServiceItem = () => handleAddItem(newProviderProfileNdtServiceText, providerProfileNdtServices, setProviderProfileNdtServices, setNewProviderProfileNdtServiceText, LOCALSTORAGE_KEY_PROVIDER_PROFILE_NDT_SERVICES, "Provider Profile NDT Service Types", "Service Type");
+  const handleRemoveProviderProfileNdtServiceItem = (item: string) => handleRemoveItem(item, providerProfileNdtServices, setProviderProfileNdtServices, LOCALSTORAGE_KEY_PROVIDER_PROFILE_NDT_SERVICES, "Provider Profile NDT Service Types");
 
-  const saveProviderProfileNdtServices = (services: string[]) => {
-    localStorage.setItem(LOCALSTORAGE_KEY_PROVIDER_PROFILE_NDT_SERVICES, JSON.stringify(services));
-    setProviderProfileNdtServices(services);
-    toast({ title: "List Updated", description: "Provider Profile NDT Service Types list saved locally." });
-  };
+  // Company Certifications handlers
+  const handleAddCompanyCertificationItem = () => handleAddItem(newCompanyCertificationText, companyCertifications, setCompanyCertifications, setNewCompanyCertificationText, LOCALSTORAGE_KEY_COMPANY_CERTIFICATIONS, "Company Certifications", "Certification");
+  const handleRemoveCompanyCertificationItem = (item: string) => handleRemoveItem(item, companyCertifications, setCompanyCertifications, LOCALSTORAGE_KEY_COMPANY_CERTIFICATIONS, "Company Certifications");
 
-  const handleAddProviderProfileNdtServiceItem = () => {
-    if (newProviderProfileNdtServiceText.trim() === "") {
-      toast({ title: "Cannot Add Empty Item", variant: "destructive" });
-      return;
-    }
-    if (providerProfileNdtServices.includes(newProviderProfileNdtServiceText.trim())) {
-      toast({ title: "Item Already Exists", description: `${newProviderProfileNdtServiceText.trim()} is already in the list.`, variant: "destructive" });
-      return;
-    }
-    const updatedServices = [...providerProfileNdtServices, newProviderProfileNdtServiceText.trim()];
-    saveProviderProfileNdtServices(updatedServices);
-    setNewProviderProfileNdtServiceText("");
-  };
+  // Personnel Qualification Bodies handlers
+  const handleAddPersonnelQualificationBodyItem = () => handleAddItem(newPersonnelQualificationBodyText, personnelQualificationBodies, setPersonnelQualificationBodies, setNewPersonnelQualificationBodyText, LOCALSTORAGE_KEY_PERSONNEL_QUALIFICATION_BODIES, "Personnel Qualification Bodies", "Body");
+  const handleRemovePersonnelQualificationBodyItem = (item: string) => handleRemoveItem(item, personnelQualificationBodies, setPersonnelQualificationBodies, LOCALSTORAGE_KEY_PERSONNEL_QUALIFICATION_BODIES, "Personnel Qualification Bodies");
 
-  const handleRemoveProviderProfileNdtServiceItem = (itemToRemove: string) => {
-    const updatedServices = providerProfileNdtServices.filter(item => item !== itemToRemove);
-    saveProviderProfileNdtServices(updatedServices);
-  };
-
+  // Personnel Qualification Levels handlers
+  const handleAddPersonnelQualificationLevelItem = () => handleAddItem(newPersonnelQualificationLevelText, personnelQualificationLevels, setPersonnelQualificationLevels, setNewPersonnelQualificationLevelText, LOCALSTORAGE_KEY_PERSONNEL_QUALIFICATION_LEVELS, "Personnel Qualification Levels", "Level");
+  const handleRemovePersonnelQualificationLevelItem = (item: string) => handleRemoveItem(item, personnelQualificationLevels, setPersonnelQualificationLevels, LOCALSTORAGE_KEY_PERSONNEL_QUALIFICATION_LEVELS, "Personnel Qualification Levels");
 
   if (loading) {
     return <div className="flex justify-center items-center min-h-screen">Loading...</div>;
@@ -213,6 +177,59 @@ export default function ManagePredefinedListsPage() {
   if (!user || user.role !== 'admin') {
     return <div className="text-center py-10">Access Denied. Redirecting...</div>;
   }
+
+  const renderEditableList = (
+    title: string,
+    description: string,
+    list: string[],
+    newItemText: string,
+    setNewItemText: (text: string) => void,
+    addItemHandler: () => void,
+    removeItemHandler: (item: string) => void,
+    itemTypeName: string,
+    newItemPlaceholder: string
+  ) => (
+    <Card className="bg-muted/30">
+      <CardHeader>
+        <CardTitle className="text-xl">{title}</CardTitle>
+        <CardDescription>{description}</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div className="space-y-2">
+          <Label className="font-semibold">Current Items:</Label>
+          {list.length > 0 ? (
+            <ul className="list-disc list-inside pl-4 space-y-1 text-sm">
+              {list.map((item, index) => (
+                <li key={index} className="flex items-center justify-between">
+                  <span>{item}</span>
+                  <Button variant="ghost" size="sm" onClick={() => removeItemHandler(item)} className="text-destructive hover:text-destructive">
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-sm text-muted-foreground">No items in the list.</p>
+          )}
+        </div>
+        <div className="flex gap-2 items-end">
+          <div className="flex-grow">
+            <Label htmlFor={`new-${itemTypeName.toLowerCase().replace(/\s/g, '-')}`}>{`Add New ${itemTypeName}`}</Label>
+            <Input
+              id={`new-${itemTypeName.toLowerCase().replace(/\s/g, '-')}`}
+              value={newItemText}
+              onChange={(e) => setNewItemText(e.target.value)}
+              placeholder={newItemPlaceholder}
+            />
+          </div>
+          <Button onClick={addItemHandler} size="sm">
+            <PlusCircle className="h-4 w-4 mr-2" /> Add Item
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
+  );
+
 
   return (
     <div className="space-y-6">
@@ -229,8 +246,8 @@ export default function ManagePredefinedListsPage() {
             Manage Predefined Lists
           </CardTitle>
           <CardDescription>
-            This section outlines predefined lists used across NDT Connect. 
-            Some lists below are hardcoded; edits to managed lists are stored in your browser and do not affect other users or forms directly without code changes.
+            This section allows management of predefined lists used across NDT Connect.
+            Edits are stored in your browser and do not affect other users or forms directly without code changes.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-8">
@@ -248,143 +265,96 @@ export default function ManagePredefinedListsPage() {
             </div>
           </div>
 
-          {/* Editable NDT Services List for Client Forms */}
-          <Card className="bg-muted/30">
-            <CardHeader>
-              <CardTitle className="text-xl">NDT Service Types (for Client Request Forms & AI Recommendations)</CardTitle>
-              <CardDescription>Admin can add or remove items from this list (changes stored locally).</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <Label className="font-semibold">Current Items:</Label>
-                {clientNdtServices.length > 0 ? (
-                  <ul className="list-disc list-inside pl-4 space-y-1 text-sm">
-                    {clientNdtServices.map((item, index) => (
-                      <li key={index} className="flex items-center justify-between">
-                        <span>{item}</span>
-                        <Button variant="ghost" size="sm" onClick={() => handleRemoveClientNdtServiceItem(item)} className="text-destructive hover:text-destructive">
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="text-sm text-muted-foreground">No items in the list.</p>
-                )}
-              </div>
-              <div className="flex gap-2 items-end">
-                <div className="flex-grow">
-                  <Label htmlFor="newClientNdtServiceText">Add New Service Type</Label>
-                  <Input
-                    id="newClientNdtServiceText"
-                    value={newClientNdtServiceText}
-                    onChange={(e) => setNewClientNdtServiceText(e.target.value)}
-                    placeholder="e.g., Neutron Radiography"
-                  />
-                </div>
-                <Button onClick={handleAddClientNdtServiceItem} size="sm">
-                  <PlusCircle className="h-4 w-4 mr-2" /> Add Item
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+          {renderEditableList(
+            "NDT Service Types (for Client Request Forms & AI Recommendations)",
+            "Admin can add or remove items from this list (changes stored locally).",
+            clientNdtServices,
+            newClientNdtServiceText,
+            setNewClientNdtServiceText,
+            handleAddClientNdtServiceItem,
+            handleRemoveClientNdtServiceItem,
+            "Service Type",
+            "e.g., Neutron Radiography"
+          )}
 
-          {/* Editable NDT Services List for Provider Profile */}
-          <Card className="bg-muted/30">
-            <CardHeader>
-              <CardTitle className="text-xl">NDT Service Types (for Provider Profile & Registration)</CardTitle>
-              <CardDescription>Admin can add or remove items from this list (changes stored locally).</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <Label className="font-semibold">Current Items:</Label>
-                {providerProfileNdtServices.length > 0 ? (
-                  <ul className="list-disc list-inside pl-4 space-y-1 text-sm">
-                    {providerProfileNdtServices.map((item, index) => (
-                      <li key={index} className="flex items-center justify-between">
-                        <span>{item}</span>
-                        <Button variant="ghost" size="sm" onClick={() => handleRemoveProviderProfileNdtServiceItem(item)} className="text-destructive hover:text-destructive">
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="text-sm text-muted-foreground">No items in the list.</p>
-                )}
-              </div>
-              <div className="flex gap-2 items-end">
-                <div className="flex-grow">
-                  <Label htmlFor="newProviderProfileNdtServiceText">Add New Service Type</Label>
-                  <Input
-                    id="newProviderProfileNdtServiceText"
-                    value={newProviderProfileNdtServiceText}
-                    onChange={(e) => setNewProviderProfileNdtServiceText(e.target.value)}
-                    placeholder="e.g., Guided Wave Testing"
-                  />
-                </div>
-                <Button onClick={handleAddProviderProfileNdtServiceItem} size="sm">
-                  <PlusCircle className="h-4 w-4 mr-2" /> Add Item
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+          {renderEditableList(
+            "NDT Service Types (for Provider Profile & Registration)",
+            "Admin can add or remove items from this list (changes stored locally).",
+            providerProfileNdtServices,
+            newProviderProfileNdtServiceText,
+            setNewProviderProfileNdtServiceText,
+            handleAddProviderProfileNdtServiceItem,
+            handleRemoveProviderProfileNdtServiceItem,
+            "Service Type",
+            "e.g., Guided Wave Testing"
+          )}
+          
+          {renderEditableList(
+            "Service Units",
+            "Admin can add or remove items from this list (changes stored locally). Used in Provider Profile & Registration.",
+            serviceUnits,
+            newServiceUnitText,
+            setNewServiceUnitText,
+            handleAddServiceUnitItem,
+            handleRemoveServiceUnitItem,
+            "Service Unit",
+            "e.g., per item"
+          )}
 
-          {/* Editable Service Units List */}
-          <Card className="bg-muted/30">
-            <CardHeader>
-              <CardTitle className="text-xl">Service Units</CardTitle>
-              <CardDescription>Admin can add or remove items from this list (changes stored locally). Used in Provider Profile & Registration.</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <Label className="font-semibold">Current Items:</Label>
-                {serviceUnits.length > 0 ? (
-                  <ul className="list-disc list-inside pl-4 space-y-1 text-sm">
-                    {serviceUnits.map((item, index) => (
-                      <li key={index} className="flex items-center justify-between">
-                        <span>{item}</span>
-                        <Button variant="ghost" size="sm" onClick={() => handleRemoveServiceUnitItem(item)} className="text-destructive hover:text-destructive">
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="text-sm text-muted-foreground">No items in the list.</p>
-                )}
-              </div>
-              <div className="flex gap-2 items-end">
-                <div className="flex-grow">
-                  <Label htmlFor="newServiceUnitText">Add New Service Unit</Label>
-                  <Input
-                    id="newServiceUnitText"
-                    value={newServiceUnitText}
-                    onChange={(e) => setNewServiceUnitText(e.target.value)}
-                    placeholder="e.g., per item"
-                  />
-                </div>
-                <Button onClick={handleAddServiceUnitItem} size="sm">
-                  <PlusCircle className="h-4 w-4 mr-2" /> Add Item
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+          {renderEditableList(
+            "Company Certifications",
+            "Admin can add or remove items from this list (changes stored locally). Used in Provider Profile & Registration dropdowns.",
+            companyCertifications,
+            newCompanyCertificationText,
+            setNewCompanyCertificationText,
+            handleAddCompanyCertificationItem,
+            handleRemoveCompanyCertificationItem,
+            "Company Certification",
+            "e.g., API Monogram"
+          )}
 
+          {renderEditableList(
+            "Personnel Qualification Bodies",
+            "Admin can add or remove items from this list (changes stored locally). Used in Provider Profile & Registration dropdowns.",
+            personnelQualificationBodies,
+            newPersonnelQualificationBodyText,
+            setNewPersonnelQualificationBodyText,
+            handleAddPersonnelQualificationBodyItem,
+            handleRemovePersonnelQualificationBodyItem,
+            "Qualification Body",
+            "e.g., ACCP"
+          )}
+
+          {renderEditableList(
+            "Personnel Qualification Levels",
+            "Admin can add or remove items from this list (changes stored locally). Used in Provider Profile & Registration dropdowns.",
+            personnelQualificationLevels,
+            newPersonnelQualificationLevelText,
+            setNewPersonnelQualificationLevelText,
+            handleAddPersonnelQualificationLevelItem,
+            handleRemovePersonnelQualificationLevelItem,
+            "Qualification Level",
+            "e.g., Trainee"
+          )}
+          
           <hr/>
           <h3 className="text-xl font-semibold pt-4">Other Predefined Lists (Currently Display-Only):</h3>
-          <div className="space-y-4">
-            {OTHER_PREDEFINED_LISTS_INFO.map((list) => (
-              <Card key={list.name} className="bg-muted/30">
-                <CardHeader>
-                  <CardTitle className="text-lg">{list.name}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">{list.details}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          {OTHER_PREDEFINED_LISTS_INFO.length > 0 ? (
+            <div className="space-y-4">
+              {OTHER_PREDEFINED_LISTS_INFO.map((list) => (
+                <Card key={list.name} className="bg-muted/30">
+                  <CardHeader>
+                    <CardTitle className="text-lg">{list.name}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground">{list.details}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          ) : (
+             <p className="text-sm text-muted-foreground">All lists are now manageable above.</p>
+          )}
           
           <div className="mt-6 p-6 border border-dashed rounded-lg text-center">
             [Full UI for managing all lists (add/edit/remove) is a future enhancement that would typically require backend integration for global application updates.]
@@ -394,6 +364,8 @@ export default function ManagePredefinedListsPage() {
     </div>
   );
 }
+    
+    
     
 
     
