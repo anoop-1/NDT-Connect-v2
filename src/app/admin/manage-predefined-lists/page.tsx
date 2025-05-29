@@ -20,14 +20,14 @@ const DEFAULT_NDT_SERVICE_TYPES_CLIENT_FORM = [
   "Time-of-Flight Diffraction (TOFD)", "Other"
 ];
 
+const DEFAULT_SERVICE_UNITS = [
+  "per hour", "per day", "per month", "per meter", "per mm of thickness", "per inch of thickness"
+];
+
 const OTHER_PREDEFINED_LISTS_INFO = [
   {
     name: "NDT Service Types (for Provider Profile & Registration - Currently Hardcoded)",
     details: "Radiographic Testing, Ultrasonic Testing, Magnetic Particle Testing, Liquid Penetrant Testing, Visual Testing, Eddy Current Testing, Magnetic Flux Leakage, Internal Rotary Inspection System, Surface Eddy Current Testing, Pulsed Eddy Current Testing, Phased Array Ultrasonic Testing, Long Range Ultrasonic Testing, Vacuum Box Testing."
-  },
-  {
-    name: "Service Units (for Provider Profile & Registration - Currently Hardcoded)",
-    details: "per hour, per day, per month, per meter, per mm of thickness, per inch of thickness."
   },
   {
     name: "Company Certifications (for Provider Profile & Registration - Currently Hardcoded)",
@@ -44,6 +44,7 @@ const OTHER_PREDEFINED_LISTS_INFO = [
 ];
 
 const LOCALSTORAGE_KEY_CLIENT_NDT_SERVICES = "adminManaged_clientNdtServices";
+const LOCALSTORAGE_KEY_ADMIN_SERVICE_UNITS = "adminManaged_serviceUnits";
 
 export default function ManagePredefinedListsPage() {
   const { user, loading } = useAuth();
@@ -51,7 +52,10 @@ export default function ManagePredefinedListsPage() {
   const { toast } = useToast();
 
   const [clientNdtServices, setClientNdtServices] = useState<string[]>(DEFAULT_NDT_SERVICE_TYPES_CLIENT_FORM);
-  const [newItemText, setNewItemText] = useState("");
+  const [newNdtServiceText, setNewNdtServiceText] = useState("");
+
+  const [serviceUnits, setServiceUnits] = useState<string[]>(DEFAULT_SERVICE_UNITS);
+  const [newServiceUnitText, setNewServiceUnitText] = useState("");
 
   useEffect(() => {
     if (!loading && !user) {
@@ -59,21 +63,40 @@ export default function ManagePredefinedListsPage() {
     } else if (!loading && user && user.role !== 'admin') {
       router.push("/dashboard");
     } else {
-      const storedServices = localStorage.getItem(LOCALSTORAGE_KEY_CLIENT_NDT_SERVICES);
-      if (storedServices) {
+      // Load NDT Services
+      const storedNdtServices = localStorage.getItem(LOCALSTORAGE_KEY_CLIENT_NDT_SERVICES);
+      if (storedNdtServices) {
         try {
-          const parsedServices = JSON.parse(storedServices);
+          const parsedServices = JSON.parse(storedNdtServices);
           if (Array.isArray(parsedServices) && parsedServices.every(item => typeof item === 'string')) {
             setClientNdtServices(parsedServices);
           } else {
-            setClientNdtServices(DEFAULT_NDT_SERVICE_TYPES_CLIENT_FORM); // Fallback if stored data is malformed
+            setClientNdtServices(DEFAULT_NDT_SERVICE_TYPES_CLIENT_FORM);
           }
         } catch (e) {
           console.error("Error parsing stored client NDT services:", e);
-          setClientNdtServices(DEFAULT_NDT_SERVICE_TYPES_CLIENT_FORM); // Fallback on error
+          setClientNdtServices(DEFAULT_NDT_SERVICE_TYPES_CLIENT_FORM);
         }
       } else {
-        setClientNdtServices(DEFAULT_NDT_SERVICE_TYPES_CLIENT_FORM); // Initialize if nothing in localStorage
+        setClientNdtServices(DEFAULT_NDT_SERVICE_TYPES_CLIENT_FORM);
+      }
+
+      // Load Service Units
+      const storedServiceUnits = localStorage.getItem(LOCALSTORAGE_KEY_ADMIN_SERVICE_UNITS);
+      if (storedServiceUnits) {
+        try {
+          const parsedUnits = JSON.parse(storedServiceUnits);
+          if (Array.isArray(parsedUnits) && parsedUnits.every(item => typeof item === 'string')) {
+            setServiceUnits(parsedUnits);
+          } else {
+            setServiceUnits(DEFAULT_SERVICE_UNITS);
+          }
+        } catch (e) {
+          console.error("Error parsing stored service units:", e);
+          setServiceUnits(DEFAULT_SERVICE_UNITS);
+        }
+      } else {
+        setServiceUnits(DEFAULT_SERVICE_UNITS);
       }
     }
   }, [user, loading, router]);
@@ -84,23 +107,48 @@ export default function ManagePredefinedListsPage() {
     toast({ title: "List Updated", description: "Client NDT Service Types list saved locally." });
   };
 
-  const handleAddItem = () => {
-    if (newItemText.trim() === "") {
+  const handleAddNdtServiceItem = () => {
+    if (newNdtServiceText.trim() === "") {
       toast({ title: "Cannot Add Empty Item", variant: "destructive" });
       return;
     }
-    if (clientNdtServices.includes(newItemText.trim())) {
-      toast({ title: "Item Already Exists", description: `${newItemText.trim()} is already in the list.`, variant: "destructive" });
+    if (clientNdtServices.includes(newNdtServiceText.trim())) {
+      toast({ title: "Item Already Exists", description: `${newNdtServiceText.trim()} is already in the list.`, variant: "destructive" });
       return;
     }
-    const updatedServices = [...clientNdtServices, newItemText.trim()];
+    const updatedServices = [...clientNdtServices, newNdtServiceText.trim()];
     saveClientNdtServices(updatedServices);
-    setNewItemText("");
+    setNewNdtServiceText("");
   };
 
-  const handleRemoveItem = (itemToRemove: string) => {
+  const handleRemoveNdtServiceItem = (itemToRemove: string) => {
     const updatedServices = clientNdtServices.filter(item => item !== itemToRemove);
     saveClientNdtServices(updatedServices);
+  };
+
+  const saveServiceUnits = (units: string[]) => {
+    localStorage.setItem(LOCALSTORAGE_KEY_ADMIN_SERVICE_UNITS, JSON.stringify(units));
+    setServiceUnits(units);
+    toast({ title: "List Updated", description: "Service Units list saved locally." });
+  };
+
+  const handleAddServiceUnitItem = () => {
+    if (newServiceUnitText.trim() === "") {
+      toast({ title: "Cannot Add Empty Item", variant: "destructive" });
+      return;
+    }
+    if (serviceUnits.includes(newServiceUnitText.trim())) {
+      toast({ title: "Item Already Exists", description: `${newServiceUnitText.trim()} is already in the list.`, variant: "destructive" });
+      return;
+    }
+    const updatedUnits = [...serviceUnits, newServiceUnitText.trim()];
+    saveServiceUnits(updatedUnits);
+    setNewServiceUnitText("");
+  };
+
+  const handleRemoveServiceUnitItem = (itemToRemove: string) => {
+    const updatedUnits = serviceUnits.filter(item => item !== itemToRemove);
+    saveServiceUnits(updatedUnits);
   };
 
 
@@ -128,7 +176,7 @@ export default function ManagePredefinedListsPage() {
           </CardTitle>
           <CardDescription>
             This section outlines predefined lists used across NDT Connect. 
-            Some lists below are hardcoded; edits to the "Client NDT Services" list are stored in your browser and do not affect other users or forms directly without code changes.
+            Some lists below are hardcoded; edits to managed lists are stored in your browser and do not affect other users or forms directly without code changes.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-8">
@@ -138,15 +186,15 @@ export default function ManagePredefinedListsPage() {
               <div>
                 <h4 className="font-semibold text-amber-700">Important Note on Editing</h4>
                 <p className="text-sm text-amber-600">
-                  Changes made to the "NDT Service Types (for Client Request Forms & AI Recommendations)" list below are saved only in **your current browser's local storage**.
-                  They demonstrate how an admin might manage these lists. However, these local changes **do not automatically update the dropdowns or selections used in actual client forms or AI recommendations across the application for all users.**
+                  Changes made to the lists below are saved only in **your current browser's local storage**.
+                  They demonstrate how an admin might manage these lists. However, these local changes **do not automatically update the dropdowns or selections used in actual forms or AI recommendations across the application for all users.**
                   Modifying the globally used lists still requires code changes.
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Editable List Example */}
+          {/* Editable NDT Services List */}
           <Card className="bg-muted/30">
             <CardHeader>
               <CardTitle className="text-xl">NDT Service Types (for Client Request Forms & AI Recommendations)</CardTitle>
@@ -160,7 +208,7 @@ export default function ManagePredefinedListsPage() {
                     {clientNdtServices.map((item, index) => (
                       <li key={index} className="flex items-center justify-between">
                         <span>{item}</span>
-                        <Button variant="ghost" size="sm" onClick={() => handleRemoveItem(item)} className="text-destructive hover:text-destructive">
+                        <Button variant="ghost" size="sm" onClick={() => handleRemoveNdtServiceItem(item)} className="text-destructive hover:text-destructive">
                           <Trash2 className="h-4 w-4" />
                         </Button>
                       </li>
@@ -172,15 +220,56 @@ export default function ManagePredefinedListsPage() {
               </div>
               <div className="flex gap-2 items-end">
                 <div className="flex-grow">
-                  <Label htmlFor="newItemText">Add New Service Type</Label>
+                  <Label htmlFor="newNdtServiceText">Add New Service Type</Label>
                   <Input
-                    id="newItemText"
-                    value={newItemText}
-                    onChange={(e) => setNewItemText(e.target.value)}
+                    id="newNdtServiceText"
+                    value={newNdtServiceText}
+                    onChange={(e) => setNewNdtServiceText(e.target.value)}
                     placeholder="e.g., Neutron Radiography"
                   />
                 </div>
-                <Button onClick={handleAddItem} size="sm">
+                <Button onClick={handleAddNdtServiceItem} size="sm">
+                  <PlusCircle className="h-4 w-4 mr-2" /> Add Item
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Editable Service Units List */}
+          <Card className="bg-muted/30">
+            <CardHeader>
+              <CardTitle className="text-xl">Service Units</CardTitle>
+              <CardDescription>Admin can add or remove items from this list (changes stored locally). Used in Provider Profile & Registration.</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label className="font-semibold">Current Items:</Label>
+                {serviceUnits.length > 0 ? (
+                  <ul className="list-disc list-inside pl-4 space-y-1 text-sm">
+                    {serviceUnits.map((item, index) => (
+                      <li key={index} className="flex items-center justify-between">
+                        <span>{item}</span>
+                        <Button variant="ghost" size="sm" onClick={() => handleRemoveServiceUnitItem(item)} className="text-destructive hover:text-destructive">
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-sm text-muted-foreground">No items in the list.</p>
+                )}
+              </div>
+              <div className="flex gap-2 items-end">
+                <div className="flex-grow">
+                  <Label htmlFor="newServiceUnitText">Add New Service Unit</Label>
+                  <Input
+                    id="newServiceUnitText"
+                    value={newServiceUnitText}
+                    onChange={(e) => setNewServiceUnitText(e.target.value)}
+                    placeholder="e.g., per item"
+                  />
+                </div>
+                <Button onClick={handleAddServiceUnitItem} size="sm">
                   <PlusCircle className="h-4 w-4 mr-2" /> Add Item
                 </Button>
               </div>
@@ -210,5 +299,6 @@ export default function ManagePredefinedListsPage() {
     </div>
   );
 }
+    
 
     
