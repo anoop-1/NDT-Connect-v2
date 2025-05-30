@@ -4,7 +4,7 @@ import type { Recommendation } from "@/lib/types";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Star, Info, Briefcase } from "lucide-react"; // Removed Phone
+import { Star, Info, Briefcase } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 interface RecommendationResultsProps {
@@ -26,12 +26,14 @@ export function RecommendationResults({ recommendations }: RecommendationResults
 
   const handleRequestServiceFromRecommendation = (rec: Recommendation) => {
     const queryParams = new URLSearchParams({
-      // providerId: rec.referenceId, // This is a mock ID, not a real one from ServiceProvider list
-      providerName: rec.providerName, // Pass the name from AI
-      serviceType: rec.description.substring(0, 50) + "...", // Use description as a proxy for service type
-      // baseRate could be added if AI provided it.
-      aiRecommendationId: rec.referenceId, // Keep track that this came from AI
+      providerName: rec.providerName, 
+      serviceType: rec.description.substring(0, 50) + "...",
+      aiRecommendationId: rec.referenceId, 
     });
+    // If AI provided a numeric rating that could be used as a base rate proxy:
+    // if (rec.rating && !isNaN(rec.rating)) {
+    //   queryParams.append("baseRate", rec.rating.toString()); // Example: using rating as a placeholder for a rate
+    // }
     router.push(`/request-service?${queryParams.toString()}`);
   };
 
@@ -43,7 +45,6 @@ export function RecommendationResults({ recommendations }: RecommendationResults
         {recommendations.map((rec) => (
           <Card key={rec.referenceId} className="shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
             <CardHeader>
-              {/* Provider name hidden, using description or generic title */}
               <CardTitle className="text-xl">AI Recommendation</CardTitle> 
               <CardDescription className="flex items-center text-sm text-muted-foreground">
                 Ref: {rec.referenceId}
@@ -54,12 +55,9 @@ export function RecommendationResults({ recommendations }: RecommendationResults
             </CardHeader>
             <CardContent className="flex-grow">
               <p className="text-sm text-muted-foreground mb-3">{rec.description}</p>
-              {/* Contact info hidden */}
-              {/* <p className="text-xs text-muted-foreground">Contact: {rec.contactInfo}</p> */}
               <Badge variant="secondary">AI Generated Profile</Badge>
             </CardContent>
             <CardFooter className="flex-col sm:flex-row items-stretch sm:items-center sm:justify-end gap-2">
-               {/* Contact info button removed */}
               <Button size="sm" className="w-full sm:w-auto" onClick={() => handleRequestServiceFromRecommendation(rec)}>
                 <Briefcase className="h-4 w-4 mr-2"/> Request Service
               </Button>

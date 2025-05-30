@@ -33,7 +33,7 @@ export function ProviderCard({ provider }: ProviderCardProps) {
       const adminSetDefaultProviderUrl = typeof window !== 'undefined' ? localStorage.getItem('defaultProviderImageUrl') : null;
       if (adminSetDefaultProviderUrl) {
         determinedImageUrl = adminSetDefaultProviderUrl;
-        determinedHint = "default provider logo"; // Or perhaps keep it generic if admin changes it
+        determinedHint = "default provider logo";
       } else {
         determinedImageUrl = NEW_DEFAULT_PROVIDER_IMAGE_URL; 
         determinedHint = NEW_DEFAULT_PROVIDER_IMAGE_HINT;
@@ -47,13 +47,12 @@ export function ProviderCard({ provider }: ProviderCardProps) {
   const handleRequestService = () => {
     const queryParams = new URLSearchParams({
       providerId: provider.id,
-      providerName: "NDT Service Provider", // Mask name initially
+      providerName: provider.name, // Pass actual name when requesting service
       serviceType: provider.services.length > 0 && provider.services[0].name ? provider.services[0].name : "General Inquiry",
     });
-    // Use the first service's rate if available, otherwise provider's baseRate
-    const primaryServiceRate = provider.services.length > 0 && provider.services[0].rate ? 
-                                parseFloat(provider.services[0].rate.toString()) : 
-                                provider.baseRate;
+    const primaryServiceRate = provider.services.length > 0 && provider.services[0].rate 
+                                ? parseFloat(provider.services[0].rate.toString()) 
+                                : (provider.baseRate || 0);
 
     if (primaryServiceRate && !isNaN(primaryServiceRate)) {
       queryParams.append("baseRate", primaryServiceRate.toString());
@@ -63,12 +62,11 @@ export function ProviderCard({ provider }: ProviderCardProps) {
 
   const handleRequestDocuments = () => {
     toast({
-      title: "Document Request Sent",
-      description: `Your request for technical documents from ${"a listed provider"} has been noted. The provider will be notified.`,
+      title: "Document Request Noted",
+      description: `A request for technical documents from provider specializing in ${provider.specialization} has been noted. The provider will be notified upon service engagement.`,
     });
   };
 
-  // Calculate client price based on the first service's rate or general base rate
   const displayRate = provider.services.length > 0 && provider.services[0].rate 
                       ? provider.services[0].rate 
                       : provider.baseRate;
@@ -84,14 +82,14 @@ export function ProviderCard({ provider }: ProviderCardProps) {
         {finalImageUrl && (
           <Image
             src={finalImageUrl}
-            alt={"NDT Service Provider: " + provider.specialization} // Generic alt
+            alt={"NDT Services for " + provider.specialization} 
             fill={true}
             style={{ objectFit: 'cover' }}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             priority={false}
             data-ai-hint={imageHint}
             className="rounded-t-lg"
-            key={finalImageUrl} // Force re-render if URL changes
+            key={finalImageUrl}
             onError={() => { 
               setFinalImageUrl(NEW_DEFAULT_PROVIDER_IMAGE_URL);
               setImageHint(NEW_DEFAULT_PROVIDER_IMAGE_HINT);
