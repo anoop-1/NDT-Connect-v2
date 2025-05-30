@@ -80,6 +80,12 @@ export default function DashboardPage() {
             href="/my-requests"
             icon={<Briefcase className="h-8 w-8 text-primary" />}
           />
+           <DashboardActionCard
+            title="Account Settings"
+            description="Manage your account details and preferences."
+            href="/settings"
+            icon={<Settings className="h-8 w-8 text-primary" />}
+          />
         </div>
       )}
 
@@ -134,3 +140,4 @@ function DashboardActionCard({ title, description, href, icon }: DashboardAction
     </Card>
   );
 }
+
