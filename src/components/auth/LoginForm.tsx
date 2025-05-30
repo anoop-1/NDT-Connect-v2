@@ -22,7 +22,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { Separator } from "@/components/ui/separator";
-import type { ClientProfileData, ProviderProfileData } from "@/lib/types";
+import type { ClientProfileData, ProviderProfileData, ServiceOffering, PersonnelQualification, CompanyCertification } from "@/lib/types";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
@@ -32,11 +32,29 @@ const formSchema = z.object({
 
 type FormSchemaType = z.infer<typeof formSchema>;
 
-const ALL_NDT_SERVICES_DEMO = [ // Define for demo provider
-  "Ultrasonic Testing (UT)", "Magnetic Particle Testing (MT)", "Liquid Penetrant Testing (PT)",
-  "Radiographic Testing (RT)", "Eddy Current Testing (ET)", "Visual Testing (VT)",
-  "Leak Testing (LT)", "Acoustic Emission Testing (AET)", "Phased Array UT (PAUT)", "Time-of-Flight Diffraction (TOFD)"
+const ALL_NDT_SERVICES_DEMO: ServiceOffering[] = [ // Define for demo provider
+  { id: "s1", name: "Ultrasonic Testing (UT)", rate: "120", unit: "per hour" },
+  { id: "s2", name: "Magnetic Particle Testing (MT)", rate: "110", unit: "per hour" },
+  { id: "s3", name: "Liquid Penetrant Testing (PT)", rate: "100", unit: "per hour" },
+  { id: "s4", name: "Radiographic Testing (RT)", rate: "180", unit: "per film" },
+  { id: "s5", name: "Eddy Current Testing (ET)", rate: "150", unit: "per hour" },
+  { id: "s6", name: "Visual Testing (VT)", rate: "90", unit: "per hour" },
+  { id: "s7", name: "Leak Testing (LT)", rate: "130", unit: "per location" },
+  { id: "s8", name: "Acoustic Emission Testing (AET)", rate: "200", unit: "per setup" },
+  { id: "s9", name: "Phased Array UT (PAUT)", rate: "250", unit: "per hour" },
+  { id: "s10", name: "Time-of-Flight Diffraction (TOFD)", rate: "280", unit: "per hour" }
 ];
+
+const DEMO_PROVIDER_QUALIFICATIONS: PersonnelQualification[] = [
+  { id: "pq1", quantity: 5, certificationBody: "ASNT (American Society for Nondestructive Testing)", level: "Level II", expiryDate: new Date("2026-12-31") },
+  { id: "pq2", quantity: 2, certificationBody: "PCN (Personnel Certification in Non-Destructive Testing)", level: "Level III", expiryDate: new Date("2027-06-30") }
+];
+
+const DEMO_PROVIDER_CERTIFICATIONS: CompanyCertification[] = [
+  { id: "cc1", name: "ISO 9001", category: "Quality Management", expiryDate: new Date("2025-08-01") },
+  { id: "cc2", name: "API Q1", category: "Oil & Gas Specific", expiryDate: new Date("2026-01-15") }
+];
+
 
 // Admin credentials (for mock purposes)
 const ADMIN_EMAIL = "anoop@atlantisinspection.com";
@@ -67,7 +85,7 @@ export function LoginForm() {
       login({ 
         email: values.email, 
         role: 'admin', 
-        name: "Admin User",
+        name: "Admin User", // Or a specific admin name
         isDemo: false,
       });
       toast({
@@ -79,9 +97,9 @@ export function LoginForm() {
       login({ 
         email: values.email, 
         role: values.role, 
-        name: values.email.split('@')[0], 
+        name: values.email.split('@')[0], // Placeholder name
         isDemo: false, // Regular login is not a demo user
-        profileData: {} 
+        profileData: {} // Empty profile data for regular login
       });
       toast({
         title: "Login Successful",
@@ -117,15 +135,13 @@ export function LoginForm() {
         location: "Houston, TX", lat: 29.7604, lng: -95.3698,
         servicesOffered: ALL_NDT_SERVICES_DEMO,
         contactNumber: "(713) 555-PROVIDER",
-        pricingDetails: "Competitive rates for all listed NDT services. Bulk project discounts available. Contact for detailed quotes.",
-        procedureInfo: "All NDT procedures adhere strictly to ASNT SNT-TC-1A, ASME, API, and other relevant industry standards. Client-specific procedures can be developed and followed upon request.",
-        acceptanceCriteriaInfo: "Standard industry acceptance criteria (e.g., API 1104, ASME B31.3, AWS D1.1) are applied unless specific client requirements dictate otherwise.",
+        procedureInfoUrl: "https://example.com/ndt-procedures.pdf",
         companyLogoUrl: "https://placehold.co/150x50.png", 
-        baseRate: 95, 
-        certifications: ["ISO 9001:2015", "API Q1"],
-        personnelQualifications: ["ASNT NDT Level III (Multiple Methods)", "AWS CWI"],
+        certifications: DEMO_PROVIDER_CERTIFICATIONS,
+        personnelQualifications: DEMO_PROVIDER_QUALIFICATIONS,
         isVerified: true,
         availableDocuments: ["General NDT Procedures Manual", "ISO 9001 Certificate PDF", "Sample Technician Certs"],
+        baseRate: 95, // This can be an average or omitted if services have individual rates
       };
       demoUserDetails = {
         email: "provider.houston.demo@example.com",
@@ -232,7 +248,7 @@ export function LoginForm() {
           onClick={() => handleDemoLogin('provider')}
           disabled={isLoading}
         >
-          {isLoading ? "Loading..." : "Login as Demo Provider (Houston)"}
+          {isLoading ? "Loading..." : "Login as Demo Vendor"}
         </Button>
       </div>
     </>
