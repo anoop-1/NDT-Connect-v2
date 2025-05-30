@@ -85,7 +85,7 @@ export function LoginForm() {
       login({ 
         email: values.email, 
         role: 'admin', 
-        name: "Admin User", // Or a specific admin name
+        name: "Anoop R", 
         isDemo: false,
       });
       toast({
@@ -98,8 +98,8 @@ export function LoginForm() {
         email: values.email, 
         role: values.role, 
         name: values.email.split('@')[0], // Placeholder name
-        isDemo: false, // Regular login is not a demo user
-        profileData: {} // Empty profile data for regular login
+        isDemo: false, 
+        profileData: {} 
       });
       toast({
         title: "Login Successful",
@@ -127,7 +127,7 @@ export function LoginForm() {
         email: "client.demo@example.com",
         role: "client" as const,
         name: "Demo Client User",
-        isDemo: true, // Mark as demo user
+        isDemo: true, 
         profileData: clientProfile
       };
     } else { 
@@ -141,13 +141,13 @@ export function LoginForm() {
         personnelQualifications: DEMO_PROVIDER_QUALIFICATIONS,
         isVerified: true,
         availableDocuments: ["General NDT Procedures Manual", "ISO 9001 Certificate PDF", "Sample Technician Certs"],
-        baseRate: 95, // This can be an average or omitted if services have individual rates
+        baseRate: 95, 
       };
       demoUserDetails = {
         email: "provider.houston.demo@example.com",
         role: "provider" as const,
         name: "Houston NDT Experts (Demo)",
-        isDemo: true, // Mark as demo user
+        isDemo: true, 
         profileData: providerProfile
       };
     }
@@ -155,7 +155,7 @@ export function LoginForm() {
     login(demoUserDetails);
     toast({
       title: "Demo Login Successful",
-      description: `Logged in as ${demoUserDetails.name}.`,
+      description: role === 'provider' ? "Logged in as Demo Vendor." : `Logged in as ${demoUserDetails.name}.`,
     });
     router.push("/dashboard");
     setIsLoading(false);
