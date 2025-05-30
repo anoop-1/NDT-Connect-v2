@@ -11,12 +11,15 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Activity, Save, Building, Phone, Mail, Globe, Image as ImageIcon, DollarSign, Award, Users2, ShieldCheck, ShieldAlert, BookOpen, ListChecks, PlusCircle, Trash2, PenTool } from "lucide-react";
+import { Activity, Save, Building, Phone, Mail, Globe, Image as ImageIcon, DollarSign, Award, Users2, ShieldCheck, ShieldAlert, BookOpen, ListChecks, PlusCircle, Trash2, PenTool, CalendarIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import type { ServiceOffering, PersonnelQualification } from "@/lib/types";
+import type { ServiceOffering, PersonnelQualification, CompanyCertification } from "@/lib/types";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { format } from "date-fns";
+import { cn } from "@/lib/utils";
 
 
 const PREDEFINED_NDT_SERVICES_TABLE = [
@@ -37,7 +40,7 @@ const COMPANY_CERTIFICATIONS = [
   "ISO 9001", "ISO 14001", "ISO 17020", "ISO 17024", "ISO 17025", "ISO 45001",
   "ABS (American Bureau of Shipping)", "DNV (Det Norske Veritas)", "LR (Lloyd's Register)", "BV (Bureau Veritas)",
   "NKK (Nippon Kaiji Kyokai)", "IRS (Indian Register of Shipping)", "RINA (Registro Italiano Navale)",
-  "CCS (China Classification Society)", "KR (Korean Register of Shipping)"
+  "CCS (China Classification Society)", "KR (Korean Register of Shipping)", "Other"
 ];
 
 const QUALIFICATION_BODIES = [
@@ -62,8 +65,17 @@ const defaultPersonnelQualification = (): PersonnelQualification => ({
   id: generateUniqueId(),
   quantity: 1,
   certificationBody: QUALIFICATION_BODIES[0],
-  level: QUALIFICATION_LEVELS[0]
+  level: QUALIFICATION_LEVELS[0],
+  expiryDate: undefined,
 });
+
+const defaultCompanyCertification = (): CompanyCertification => ({
+  id: generateUniqueId(),
+  name: COMPANY_CERTIFICATIONS[0],
+  category: "",
+  expiryDate: undefined,
+});
+
 
 export default function ProviderProfilePage() {
   const { user, loading, setUser } = useAuth();
@@ -79,15 +91,14 @@ export default function ProviderProfilePage() {
     address: "",
     bio: "", 
     servicesOffered: [] as ServiceOffering[],
-    certifications: [] as string[], 
+    certifications: [] as CompanyCertification[], 
     personnelQualifications: [] as PersonnelQualification[],
     availableDocuments: [] as string[],
     serviceRadius: "",
     companyLogoUrl: "",
     baseRate: 0, 
     pricingDetails: "", 
-    procedureInfo: "", 
-    acceptanceCriteriaInfo: "", 
+    procedureInfoUrl: "", 
     isVerified: false,
   });
   
@@ -117,8 +128,18 @@ export default function ProviderProfilePage() {
             quantity: (q && (typeof q.quantity === 'number' || (typeof q.quantity === 'string' && q.quantity.trim() !== ''))) ? q.quantity : 1,
             certificationBody: (q && q.certificationBody) || QUALIFICATION_BODIES[0],
             level: (q && q.level) || QUALIFICATION_LEVELS[0],
+            expiryDate: q.expiryDate ? new Date(q.expiryDate) : undefined,
           }))
         : [defaultPersonnelQualification()];
+
+      const loadedCompanyCertifications = (Array.isArray(providerProfile.certifications) && providerProfile.certifications.length > 0 && typeof providerProfile.certifications[0] === 'object')
+        ? providerProfile.certifications.map(c => ({
+            id: (c && typeof c.id === 'string' && c.id.trim() !== "") ? c.id : generateUniqueId(),
+            name: (c && c.name) || COMPANY_CERTIFICATIONS[0],
+            category: (c && c.category) || "",
+            expiryDate: c.expiryDate ? new Date(c.expiryDate) : undefined,
+          }))
+        : [defaultCompanyCertification()];
 
       setProfileData({
         companyName: user.name || "",
@@ -126,17 +147,16 @@ export default function ProviderProfilePage() {
         phone: providerProfile.contactNumber || "",
         website: providerProfile.companyLogoUrl ? providerProfile.website || "" : "https://example.com", 
         address: providerProfile.location || "",
-        bio: providerProfile.procedureInfo || "Update company bio here.", 
+        bio: providerProfile.procedureInfoUrl || "Update company bio here.", 
         servicesOffered: loadedServices,
-        certifications: providerProfile.certifications || [],
+        certifications: loadedCompanyCertifications,
         personnelQualifications: loadedQualifications,
         availableDocuments: providerProfile.availableDocuments || [],
         serviceRadius: providerProfile.serviceRadius || "", 
         companyLogoUrl: providerProfile.companyLogoUrl || "",
         baseRate: providerProfile.baseRate || 0,
         pricingDetails: providerProfile.pricingDetails || "",
-        procedureInfo: providerProfile.procedureInfo || "", 
-        acceptanceCriteriaInfo: providerProfile.acceptanceCriteriaInfo || "",
+        procedureInfoUrl: providerProfile.procedureInfoUrl || "", 
         isVerified: providerProfile.isVerified || false,
       });
       setDocsText((providerProfile.availableDocuments || []).join(", "));
@@ -147,7 +167,7 @@ export default function ProviderProfilePage() {
             contactEmail: user.email,
             servicesOffered: [defaultServiceOffering()],
             personnelQualifications: [defaultPersonnelQualification()],
-            certifications: [],
+            certifications: [defaultCompanyCertification()],
             availableDocuments: [],
         }));
     }
@@ -187,19 +207,33 @@ export default function ProviderProfilePage() {
       servicesOffered: prev.servicesOffered.length > 1 ? prev.servicesOffered.filter(s => s.id !== id) : prev.servicesOffered
     }));
   };
-
-
-  const handleCertificationChange = (certificationName: string, checked: boolean) => {
-    setProfileData(prev => {
-      const currentCerts = prev.certifications || [];
-      if (checked) {
-        return { ...prev, certifications: [...currentCerts, certificationName] };
-      } else {
-        return { ...prev, certifications: currentCerts.filter(c => c !== certificationName) };
-      }
-    });
-  };
   
+  const handleCompanyCertificationChange = (id: string, field: keyof CompanyCertification, value: any) => {
+    setProfileData(prev => ({
+      ...prev,
+      certifications: prev.certifications.map(cert =>
+        cert.id === id ? { ...cert, [field]: value } : cert
+      )
+    }));
+  };
+
+  const handleAddCompanyCertificationRow = () => {
+    setProfileData(prev => ({
+      ...prev,
+      certifications: [
+        ...prev.certifications,
+        defaultCompanyCertification()
+      ]
+    }));
+  };
+
+  const handleRemoveCompanyCertificationRow = (id: string) => {
+    setProfileData(prev => ({
+      ...prev,
+      certifications: prev.certifications.length > 1 ? prev.certifications.filter(c => c.id !== id) : prev.certifications
+    }));
+  };
+
   const handlePersonnelQualificationChange = (id: string, field: keyof PersonnelQualification, value: any) => {
      setProfileData(prev => ({
       ...prev,
@@ -259,8 +293,7 @@ export default function ProviderProfilePage() {
           companyLogoUrl: profileData.companyLogoUrl,
           baseRate: profileData.baseRate,
           pricingDetails: profileData.pricingDetails,
-          procedureInfo: profileData.procedureInfo || profileData.bio, 
-          acceptanceCriteriaInfo: profileData.acceptanceCriteriaInfo,
+          procedureInfoUrl: profileData.procedureInfoUrl, 
           certifications: profileData.certifications,
           personnelQualifications: finalPersonnelQualifications,
           availableDocuments: updatedDocs,
@@ -420,23 +453,74 @@ export default function ProviderProfilePage() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center"><Award className="h-5 w-5 mr-2 text-primary"/>Company Certifications & Accreditations</CardTitle>
-            <CardDescription>Select relevant company and classification society certifications.</CardDescription>
+            <CardDescription>List your company and classification society certifications.</CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-2 p-4 border rounded-md">
-              {COMPANY_CERTIFICATIONS.map(cert => (
-                <div key={cert} className="flex items-center space-x-2">
-                  <Checkbox
-                    id={`cert-${cert.replace(/[^a-zA-Z0-9]/g, "")}`}
-                    checked={(profileData.certifications || []).includes(cert)}
-                    onCheckedChange={(checked) => handleCertificationChange(cert, !!checked)}
-                  />
-                  <label htmlFor={`cert-${cert.replace(/[^a-zA-Z0-9]/g, "")}`} className="text-sm font-medium leading-none">
-                    {cert}
-                  </label>
-                </div>
-              ))}
-            </div>
+          <CardContent className="space-y-4">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-[40%]">Certification Name</TableHead>
+                  <TableHead className="w-[30%]">Category/Details</TableHead>
+                  <TableHead className="w-[20%]">Expiry Date</TableHead>
+                  <TableHead className="text-right w-[10%]">Action</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {(profileData.certifications || []).map((cert) => (
+                  <TableRow key={cert.id}>
+                    <TableCell>
+                      <Select
+                        value={cert.name}
+                        onValueChange={(value) => handleCompanyCertificationChange(cert.id, 'name', value)}
+                      >
+                        <SelectTrigger><SelectValue placeholder="Select Certification" /></SelectTrigger>
+                        <SelectContent>
+                          {COMPANY_CERTIFICATIONS.map(cName => <SelectItem key={cName} value={cName}>{cName}</SelectItem>)}
+                        </SelectContent>
+                      </Select>
+                    </TableCell>
+                    <TableCell>
+                      <Input
+                        placeholder="e.g., Standard No., Scope"
+                        value={cert.category || ""}
+                        onChange={(e) => handleCompanyCertificationChange(cert.id, 'category', e.target.value)}
+                      />
+                    </TableCell>
+                    <TableCell>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button
+                            variant={"outline"}
+                            className={cn("w-full justify-start text-left font-normal", !cert.expiryDate && "text-muted-foreground")}
+                          >
+                            <CalendarIcon className="mr-2 h-4 w-4" />
+                            {cert.expiryDate ? format(cert.expiryDate, "PPP") : <span>Pick a date</span>}
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0">
+                          <Calendar
+                            mode="single"
+                            selected={cert.expiryDate}
+                            onSelect={(date) => handleCompanyCertificationChange(cert.id, 'expiryDate', date)}
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
+                    </TableCell>
+                    <TableCell className="text-right">
+                      {(profileData.certifications || []).length > 1 && (
+                        <Button type="button" variant="ghost" size="icon" onClick={() => handleRemoveCompanyCertificationRow(cert.id)} className="text-destructive">
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      )}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+            <Button type="button" variant="outline" onClick={handleAddCompanyCertificationRow} className="w-full">
+              <PlusCircle className="h-4 w-4 mr-2"/> Add Certification
+            </Button>
           </CardContent>
         </Card>
         
@@ -453,6 +537,7 @@ export default function ProviderProfilePage() {
                   <TableHead className="w-[100px]">Quantity</TableHead>
                   <TableHead>Certification Body</TableHead>
                   <TableHead>Level</TableHead>
+                  <TableHead>Expiry Date</TableHead>
                   <TableHead className="text-right w-[50px]">Action</TableHead>
                 </TableRow>
               </TableHeader>
@@ -488,6 +573,27 @@ export default function ProviderProfilePage() {
                           {QUALIFICATION_LEVELS.map(level => <SelectItem key={level} value={level}>{level}</SelectItem>)}
                         </SelectContent>
                       </Select>
+                    </TableCell>
+                     <TableCell>
+                        <Popover>
+                            <PopoverTrigger asChild>
+                            <Button
+                                variant={"outline"}
+                                className={cn("w-full justify-start text-left font-normal", !qual.expiryDate && "text-muted-foreground")}
+                            >
+                                <CalendarIcon className="mr-2 h-4 w-4" />
+                                {qual.expiryDate ? format(qual.expiryDate, "PPP") : <span>Pick a date</span>}
+                            </Button>
+                            </PopoverTrigger>
+                            <PopoverContent className="w-auto p-0">
+                            <Calendar
+                                mode="single"
+                                selected={qual.expiryDate}
+                                onSelect={(date) => handlePersonnelQualificationChange(qual.id, 'expiryDate', date)}
+                                initialFocus
+                            />
+                            </PopoverContent>
+                        </Popover>
                     </TableCell>
                     <TableCell className="text-right">
                       {(profileData.personnelQualifications || []).length > 1 && (
@@ -527,12 +633,8 @@ export default function ProviderProfilePage() {
                     <Textarea id="pricingDetails" name="pricingDetails" value={profileData.pricingDetails} onChange={handleInputChange} rows={2} placeholder="Describe your general pricing structure if not covered by specific service rates." />
                 </div>
                 <div>
-                    <Label htmlFor="procedureInfo">General Procedure Information</Label>
-                    <Textarea id="procedureInfo" name="procedureInfo" value={profileData.procedureInfo} onChange={handleInputChange} rows={2} placeholder="Briefly describe your general procedures or mention adherence to specific standards." />
-                </div>
-                <div>
-                    <Label htmlFor="acceptanceCriteriaInfo">General Acceptance Criteria</Label>
-                    <Textarea id="acceptanceCriteriaInfo" name="acceptanceCriteriaInfo" value={profileData.acceptanceCriteriaInfo} onChange={handleInputChange} rows={2} placeholder="General acceptance criteria you adhere to (e.g., API 1104, ASME B31.3)." />
+                    <Label htmlFor="procedureInfoUrl">Link to General Procedures</Label>
+                    <Input id="procedureInfoUrl" name="procedureInfoUrl" type="url" value={profileData.procedureInfoUrl} onChange={handleInputChange} placeholder="https://example.com/your-procedures.pdf" />
                 </div>
             </CardContent>
         </Card>
