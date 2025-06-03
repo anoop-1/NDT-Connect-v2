@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Briefcase, Eye, Check, X, Activity, Users } from "lucide-react";
+import { Briefcase, Eye, Check, X, Activity, Users, MessageSquare } from "lucide-react";
 import type { ServiceRequest } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
@@ -111,9 +111,16 @@ export default function ProviderRequestsPage() {
                   </>
                 )}
                  {request.status === 'Confirmed' && (
-                     <Button size="sm" onClick={() => handleUpdateRequest(request.id, 'In Progress')}>
-                        <Activity className="h-4 w-4 mr-2" /> Start Work
-                    </Button>
+                    <>
+                      <Button size="sm" onClick={() => handleUpdateRequest(request.id, 'In Progress')}>
+                          <Activity className="h-4 w-4 mr-2" /> Start Work
+                      </Button>
+                      <Button variant="outline" size="sm" asChild>
+                        <Link href={`/provider-dashboard/requests/${request.id}`}>
+                          <MessageSquare className="h-4 w-4 mr-2" /> Chat with Client
+                        </Link>
+                      </Button>
+                    </>
                  )}
                  {request.status === 'In Progress' && (
                      <Button size="sm" onClick={() => handleUpdateRequest(request.id, 'Completed')}>
@@ -141,5 +148,4 @@ export default function ProviderRequestsPage() {
     </div>
   );
 }
-
     
