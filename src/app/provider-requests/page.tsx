@@ -23,9 +23,9 @@ const StatusBadge = ({ status }: { status: ServiceRequest['status'] }) => {
   let variant: "default" | "secondary" | "destructive" | "outline" = "default";
   switch (status) {
     case 'Pending': variant = 'outline'; break;
-    case 'Confirmed': variant = 'default'; break; 
+    case 'Confirmed': variant = 'default'; break;
     case 'In Progress': variant = 'secondary'; break;
-    case 'Completed': variant = 'default'; break; 
+    case 'Completed': variant = 'default'; break;
     case 'Cancelled': variant = 'destructive'; break;
   }
   return <Badge variant={variant}>{status}</Badge>;
@@ -43,7 +43,7 @@ export default function ProviderRequestsPage() {
     } else if (user && user.role !== 'provider') {
       router.push("/dashboard");
     } else if (user) {
-      setRequests(mockProviderRequests.filter(req => req.providerId === user.id || mockProviderRequests)); 
+      setRequests(mockProviderRequests.filter(req => req.providerId === user.id || mockProviderRequests));
     }
   }, [user, loading, router]);
 
@@ -58,7 +58,7 @@ export default function ProviderRequestsPage() {
         const currentRequest = requests.find(r => r.id === requestId);
         toast({
             title: "Client Notified",
-            description: `Client ${currentRequest?.clientId || 'N/A'} has been notified. Technical documents (if available and applicable) are now notionally shared.`,
+            description: `Client ${currentRequest?.clientId || 'N/A'} has been notionally notified.`,
             duration: 5000,
         });
     }
@@ -95,8 +95,10 @@ export default function ProviderRequestsPage() {
                 <p className="text-xs text-muted-foreground">Requested Date: {new Date(request.requestedDate).toLocaleDateString()}</p>
               </CardContent>
               <CardFooter className="flex flex-wrap gap-2 justify-end">
-                <Button variant="outline" size="sm" onClick={() => alert(`Viewing details for ${request.id}`)}>
-                  <Eye className="h-4 w-4 mr-2" /> View Details
+                <Button variant="outline" size="sm" asChild>
+                  <Link href={`/provider-dashboard/requests/${request.id}`}>
+                    <Eye className="h-4 w-4 mr-2" /> View Details
+                  </Link>
                 </Button>
                 {request.status === 'Pending' && (
                   <>
@@ -139,3 +141,5 @@ export default function ProviderRequestsPage() {
     </div>
   );
 }
+
+    
