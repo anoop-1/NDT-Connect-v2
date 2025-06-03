@@ -1,4 +1,5 @@
 
+
 export type ClientProfileData = {
   companyName?: string;
   industry?: string;
@@ -66,7 +67,7 @@ export type ServiceProvider = {
   services: ServiceOffering[];
   specialization: string;
   rating: number;
-  contactInfo: string;
+  // contactInfo: string; // Removed as per privacy requirement
   description?: string;
   imageUrl?: string;
   dataAiHint?: string;
@@ -87,8 +88,8 @@ export type OptimizeServiceProviderRecommendationsInput = {
 
 export type Recommendation = {
   referenceId: string;
-  providerName: string;
-  contactInfo: string;
+  providerName: string; // AI will still generate this, but we won't show contactInfo from it
+  // contactInfo: string; // Removed from direct display
   rating: number;
   description:string;
 };
@@ -104,4 +105,11 @@ export type ServiceRequest = {
   requestedDate: string;
   estimatedCost?: number;
   status: 'Pending' | 'Confirmed' | 'In Progress' | 'Completed' | 'Cancelled';
+};
+
+export type ChatMessage = {
+  id: string;
+  senderId: string; // User ID or "system" or "provider-simulated"
+  text: string;
+  timestamp: string; // ISO string
 };

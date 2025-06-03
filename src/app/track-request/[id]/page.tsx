@@ -1,4 +1,5 @@
 
+
 // src/app/track-request/[id]/page.tsx
 "use client";
 
@@ -8,9 +9,10 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ArrowLeft, MessageSquare, Phone, Activity, CheckCircle, Clock, AlertTriangle, CalendarDays, MapPinIcon, FileTextIcon, ShieldCheck, FileArchive, BookOpen } from "lucide-react";
-import type { ServiceRequest, ServiceProvider } from "@/lib/types"; 
+import { ArrowLeft, Phone, Activity, CheckCircle, Clock, AlertTriangle, CalendarDays, MapPinIcon, FileTextIcon, ShieldCheck, FileArchive, BookOpen, MessageSquare } from "lucide-react";
+import type { ServiceRequest, ServiceProvider, User } from "@/lib/types"; 
 import { Badge } from "@/components/ui/badge";
+import { ChatWindow } from "@/components/shared/chat/ChatWindow";
 
 const mockRequests: ServiceRequest[] = [
   { id: 'req1', clientId: 'user1', providerId: 'prov1', providerName: 'Advanced NDT Solutions', serviceType: 'Ultrasonic Testing', location: 'Main Plant, Area 5', description: 'Inspect critical weld points on pressure vessel. Ensure all safety protocols are followed. Report needed by end of week.', requestedDate: '2024-08-15', status: 'Confirmed' },
@@ -20,8 +22,8 @@ const mockRequests: ServiceRequest[] = [
 ];
 
 const mockProvidersDB: ServiceProvider[] = [
-    { id: 'prov1', name: 'Advanced NDT Solutions', location: 'Houston, TX', services: ['Ultrasonic Testing'], specialization: 'Oil & Gas', rating: 4.8, contactInfo: '(111) 222-3333', isVerified: true, certifications: ["ISO 9001", "API Monogram"], personnelQualifications: ["ASNT Level III", "PCN Level II"], availableDocuments: ["General Procedures Manual", "ISO 9001 Certificate", "Sample Technician Level III Cert"] },
-    { id: 'prov2', name: 'Precision Inspections Inc.', location: 'Los Angeles, CA', services: ['Radiographic Testing'], specialization: 'Aerospace', rating: 4.5, contactInfo: '(444) 555-6666', isVerified: true, certifications: ["Nadcap", "AS9100"], personnelQualifications: ["NAS 410 Level III"], availableDocuments: ["Nadcap Approval Documents", "Safety Plan"] },
+    { id: 'prov1', name: 'Advanced NDT Solutions', location: 'Houston, TX', services: [{id: "UT", name:"Ultrasonic Testing", rate: "100", unit: "per hour"}], specialization: 'Oil & Gas', rating: 4.8, /* contactInfo: '(111) 222-3333', */ isVerified: true, certifications: [{id:"c1", name:"ISO 9001", category:"QM"},{id:"c2",name:"API Monogram", category:"OG"}], personnelQualifications: [{id:"p1", quantity: 5, certificationBody:"ASNT Level III", level: "III"}, {id:"p2", quantity:10, certificationBody:"PCN Level II", level:"II"}], availableDocuments: ["General Procedures Manual", "ISO 9001 Certificate", "Sample Technician Level III Cert"] },
+    { id: 'prov2', name: 'Precision Inspections Inc.', location: 'Los Angeles, CA', services: [{id:"RT", name:"Radiographic Testing", rate: "150", unit:"per film"}], specialization: 'Aerospace', rating: 4.5, /* contactInfo: '(444) 555-6666', */ isVerified: true, certifications: [{id:"c3", name:"Nadcap", category:"Aero"}, {id:"c4", name:"AS9100", category:"Aero"}], personnelQualifications: [{id:"p3", quantity:3, certificationBody:"NAS 410 Level III", level:"III"}], availableDocuments: ["Nadcap Approval Documents", "Safety Plan"] },
 ];
 
 
@@ -54,6 +56,7 @@ export default function TrackRequestPage() {
   const [request, setRequest] = useState<ServiceRequest | null>(null);
   const [providerDetails, setProviderDetails] = useState<ServiceProvider | null>(null);
   const [fetchError, setFetchError] = useState<string | null>(null);
+  const [showChat, setShowChat] = useState(false);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -80,8 +83,12 @@ export default function TrackRequestPage() {
     }
   }, [user, requestId]);
 
-  if (loading || (!request && !fetchError)) { // Simplified loading condition
+  if (loading || (!request && !fetchError && !user)) { 
     return <div className="flex justify-center items-center min-h-[calc(100vh-10rem)]"><Activity className="h-8 w-8 animate-spin text-primary" /> <span className="ml-2">Loading request details...</span></div>;
+  }
+  
+  if (!user || user.role !== 'client') { // Early exit if user is not client after loading
+     return <div className="text-center py-10">Access Denied. This page is for clients.</div>;
   }
 
   if (fetchError) {
@@ -96,15 +103,14 @@ export default function TrackRequestPage() {
     );
   }
   
-  if (!user || user.role !== 'client') {
-     return <div className="text-center py-10">Access Denied.</div>;
-  }
-  
-  if (!request) return null; 
+  if (!request) return <div className="flex justify-center items-center min-h-[calc(100vh-10rem)]">No request data found.</div>;
+
 
   const statuses: ServiceRequest['status'][] = ['Pending', 'Confirmed', 'In Progress', 'Completed'];
   const currentStatusIndex = statuses.indexOf(request.status);
   const isCancelled = request.status === 'Cancelled';
+  const canChat = (request.status === 'Confirmed' || request.status === 'In Progress') && providerDetails;
+
 
   const timelineDescriptions = {
     'Pending': 'Your request has been submitted and is awaiting provider confirmation.',
@@ -116,7 +122,7 @@ export default function TrackRequestPage() {
 
   return (
     <div className="space-y-8">
-      <Button variant="outline" onClick={() => router.back()} className="mb-6">
+      <Button variant="outline" onClick={() => router.push('/my-requests')} className="mb-6">
         <ArrowLeft className="h-4 w-4 mr-2" /> Back to My Requests
       </Button>
 
@@ -194,16 +200,31 @@ export default function TrackRequestPage() {
           </div>
         </CardContent>
         <CardFooter className="flex flex-col sm:flex-row gap-2 justify-end pt-6 border-t">
-          <Button variant="outline" onClick={() => alert('Contact support placeholder')}>
+          <Button variant="outline" onClick={() => alert('Feature under development: Contact NDT Connect Support.')}>
             <MessageSquare className="h-4 w-4 mr-2" /> Contact Support
           </Button>
           {providerDetails && !isCancelled && request.status !== 'Completed' && (
-            <Button onClick={() => alert(`Contacting provider ${providerDetails.name} via ${providerDetails.contactInfo}`)}>
+            <Button onClick={() => alert(`Feature under development: Contact Provider ${providerDetails.name}.`)}>
               <Phone className="h-4 w-4 mr-2" /> Contact Provider
+            </Button>
+          )}
+          {canChat && (
+            <Button onClick={() => setShowChat(prev => !prev)} variant={showChat ? "secondary" : "default"}>
+              <MessageSquare className="h-4 w-4 mr-2" /> {showChat ? "Hide Chat" : "Chat with Provider"}
             </Button>
           )}
         </CardFooter>
       </Card>
+
+      {canChat && showChat && providerDetails && (
+        <ChatWindow
+          currentUser={user}
+          otherPartyName={providerDetails.name}
+          otherPartyRole="provider"
+          requestId={request.id}
+        />
+      )}
     </div>
   );
 }
+
