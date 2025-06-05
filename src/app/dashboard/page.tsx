@@ -17,37 +17,29 @@ export default function DashboardPage() {
   useEffect(() => {
     if (!loading && !user) {
       router.push("/login?redirect=/dashboard");
-    } else if (!loading && user && user.role === 'admin') {
-      router.push("/admin/dashboard");
+    } else if (!loading && user) {
+      if (user.role === 'admin') {
+        router.push("/admin/dashboard");
+      } else if (user.role === 'provider') {
+        router.push("/provider-dashboard");
+      }
+      // Clients will remain on this page
     }
   }, [user, loading, router]);
 
-  if (loading) {
+  if (loading || (!user && !loading)) {
     return <div className="flex justify-center items-center min-h-[calc(100vh-10rem)]"><Activity className="h-8 w-8 animate-spin text-primary" /> <span className="ml-2">Loading dashboard...</span></div>;
   }
 
-  if (!user) {
-    return <div className="text-center py-10">Redirecting to login...</div>;
+  // If user is not a client at this point (e.g. admin/provider still rendering before redirect effect fully processes), show a generic loading or access denied.
+  // Or, more specifically, ensure this content only shows for clients.
+  if (!user || user.role !== 'client') {
+    // This message might briefly appear for admin/provider before redirect.
+    // Or, if redirect logic is robust, it might only appear if user somehow gets here without a role.
+    return <div className="flex justify-center items-center min-h-[calc(100vh-10rem)]"><Activity className="h-8 w-8 animate-spin text-primary" /> <span className="ml-2">Accessing dashboard...</span></div>;
   }
   
-  // If admin somehow lands here before redirect effect, show a generic message.
-  if (user.role === 'admin') {
-    return (
-      <div className="space-y-8">
-        <Card className="shadow-lg">
-          <CardHeader>
-            <CardTitle className="text-3xl">Admin Portal</CardTitle>
-            <CardDescription>Redirecting to Admin Dashboard...</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Activity className="h-8 w-8 animate-spin text-primary" />
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
-
-
+  // Content below is now only for clients
   return (
     <div className="space-y-8">
       <Card className="shadow-lg">
@@ -88,29 +80,6 @@ export default function DashboardPage() {
           />
         </div>
       )}
-
-      {user.role === 'provider' && (
-         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <DashboardActionCard
-            title="View Service Requests"
-            description="Manage incoming service requests from clients."
-            href="/provider-requests" 
-            icon={<Briefcase className="h-8 w-8 text-primary" />}
-          />
-          <DashboardActionCard
-            title="Manage Profile"
-            description="Update your service offerings and company details."
-            href="/provider-profile" 
-            icon={<UserCircle className="h-8 w-8 text-primary" />}
-          />
-           <DashboardActionCard
-            title="Account Settings"
-            description="Manage your account and notification preferences."
-            href="/settings" // Placeholder general settings page
-            icon={<Settings className="h-8 w-8 text-primary" />}
-          />
-        </div>
-      )}
     </div>
   );
 }
@@ -140,4 +109,3 @@ function DashboardActionCard({ title, description, href, icon }: DashboardAction
     </Card>
   );
 }
-
