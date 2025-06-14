@@ -7,15 +7,16 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Briefcase, PlusCircle, FileText, Activity, AlertTriangle, CheckCircle, Clock } from "lucide-react";
+import { Briefcase, PlusCircle, FileText, Activity, AlertTriangle, CheckCircle, Clock, MessageSquare } from "lucide-react";
 import type { ServiceRequest } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
+import { ChatWindow } from "@/components/shared/chat/ChatWindow"; // Import ChatWindow
 
 const mockRequests: ServiceRequest[] = [
-  { id: 'req1', clientId: 'user1', providerId: 'prov1', serviceType: 'Ultrasonic Testing', location: 'Main Plant, Area 5', description: 'Inspect critical weld points on pressure vessel.', requestedDate: '2024-08-15', status: 'Confirmed' },
+  { id: 'req1', clientId: 'user1', providerId: 'prov1', providerName: 'Advanced NDT Solutions', serviceType: 'Ultrasonic Testing', location: 'Main Plant, Area 5', description: 'Inspect critical weld points on pressure vessel.', requestedDate: '2024-08-15', status: 'Confirmed' },
   { id: 'req2', clientId: 'user1', serviceType: 'Magnetic Particle Testing', location: 'Storage Tank 3B', description: 'Surface crack detection on tank shell.', requestedDate: '2024-08-20', status: 'Pending' },
-  { id: 'req3', clientId: 'user1', providerId: 'prov2', serviceType: 'Radiographic Testing', location: 'Fabrication Shop, Bay 2', description: 'Full weld inspection for new pipeline section.', requestedDate: '2024-07-10', status: 'Completed' },
-  { id: 'req4', clientId: 'user1', serviceType: 'Visual Testing', location: 'Bridge Section A1', description: 'Routine visual checkup.', requestedDate: '2024-08-01', status: 'In Progress' },
+  { id: 'req3', clientId: 'user1', providerId: 'prov2', providerName: 'Precision Inspections Inc.', serviceType: 'Radiographic Testing', location: 'Fabrication Shop, Bay 2', description: 'Full weld inspection for new pipeline section.', requestedDate: '2024-07-10', status: 'Completed' },
+  { id: 'req4', clientId: 'user1', providerId: 'prov1', providerName: 'Advanced NDT Solutions', serviceType: 'Visual Testing', location: 'Bridge Section A1', description: 'Routine visual checkup.', requestedDate: '2024-08-01', status: 'In Progress' },
 ];
 
 
@@ -30,14 +31,14 @@ const StatusBadge = ({ status }: { status: ServiceRequest['status'] }) => {
       break;
     case 'Confirmed':
       variant = 'default';
-      icon = <CheckCircle className="h-3 w-3 mr-1 text-green-500" />; // Custom color here
+      icon = <CheckCircle className="h-3 w-3 mr-1 text-green-500" />;
       break;
     case 'In Progress':
       variant = 'secondary';
       icon = <Activity className="h-3 w-3 mr-1 animate-pulse" />;
       break;
     case 'Completed':
-      variant = 'default'; // Or a specific 'success' variant if defined
+      variant = 'default'; 
       icon = <CheckCircle className="h-3 w-3 mr-1" />;
       break;
     case 'Cancelled':
@@ -45,9 +46,6 @@ const StatusBadge = ({ status }: { status: ServiceRequest['status'] }) => {
       icon = <AlertTriangle className="h-3 w-3 mr-1" />;
       break;
   }
-  // For CheckCircle with green color on Confirmed, Tailwind classes won't directly apply to Lucide icons within Badge.
-  // A slight workaround for 'Confirmed' or custom styling might be needed if strict theme adherence is required.
-  // For now, this setup should work.
   
   return (
     <Badge variant={variant} className="flex items-center">
@@ -62,6 +60,8 @@ export default function MyRequestsPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
   const [requests, setRequests] = useState<ServiceRequest[]>([]);
+  const [selectedChatRequestId, setSelectedChatRequestId] = useState<string | null>(null);
+  const [showChat, setShowChat] = useState(false);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -70,9 +70,30 @@ export default function MyRequestsPage() {
       router.push("/dashboard");
     } else if (user) {
       // Simulate fetching user-specific requests
-      setRequests(mockRequests.filter(req => req.clientId === user.id || mockRequests)); // Fallback to all mock if ID mismatch
+      // For demo, ensure the demo client (client.demo@example.com) can see these requests.
+      // Typically, you'd filter by user.id. For the demo user, we might show all or a specific set.
+      if (user.isDemo) {
+        // Assuming demo client should see all mockRequests for now
+        setRequests(mockRequests.map(r => ({...r, clientId: user.id }))); // Assign demo client id for consistency
+      } else {
+         setRequests(mockRequests.filter(req => req.clientId === user.id));
+      }
     }
   }, [user, loading, router]);
+
+  const handleToggleChat = (requestId: string) => {
+    if (selectedChatRequestId === requestId && showChat) {
+      setShowChat(false); // Toggle off if same chat is already open
+    } else {
+      setSelectedChatRequestId(requestId);
+      setShowChat(true);
+    }
+  };
+  
+  const getSelectedRequestForChat = () => {
+    return requests.find(r => r.id === selectedChatRequestId);
+  };
+
 
   if (loading) {
     return <div className="flex justify-center items-center min-h-[calc(100vh-10rem)]"><Activity className="h-8 w-8 animate-spin text-primary" /> <span className="ml-2">Loading your requests...</span></div>;
@@ -98,28 +119,38 @@ export default function MyRequestsPage() {
 
       {requests.length > 0 ? (
         <div className="grid gap-6 md:grid-cols-2">
-          {requests.map(request => (
-            <Card key={request.id} className="shadow-md hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="flex justify-between items-start">
-                  <CardTitle>{request.serviceType}</CardTitle>
-                  <StatusBadge status={request.status} />
-                </div>
-                <CardDescription>Location: {request.location}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground mb-2 line-clamp-2">{request.description}</p>
-                <p className="text-xs text-muted-foreground">Requested Date: {new Date(request.requestedDate).toLocaleDateString()}</p>
-              </CardContent>
-              <CardFooter>
-                <Button variant="outline" size="sm" asChild>
-                  <Link href={`/track-request/${request.id}`}>
-                    <FileText className="h-4 w-4 mr-2" /> View Details
-                  </Link>
-                </Button>
-              </CardFooter>
-            </Card>
-          ))}
+          {requests.map(request => {
+            const canChat = request.providerId && request.providerName && (request.status === 'Confirmed' || request.status === 'In Progress');
+            return (
+              <Card key={request.id} className="shadow-md hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex justify-between items-start">
+                    <CardTitle>{request.serviceType}</CardTitle>
+                    <StatusBadge status={request.status} />
+                  </div>
+                  <CardDescription>Location: {request.location}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground mb-2 line-clamp-2">{request.description}</p>
+                  <p className="text-xs text-muted-foreground">Requested Date: {new Date(request.requestedDate).toLocaleDateString()}</p>
+                  {request.providerName && <p className="text-xs text-muted-foreground mt-1">Provider: {request.providerName}</p>}
+                </CardContent>
+                <CardFooter className="flex flex-wrap gap-2 justify-end">
+                  <Button variant="outline" size="sm" asChild>
+                    <Link href={`/track-request/${request.id}`}>
+                      <FileText className="h-4 w-4 mr-2" /> View Details
+                    </Link>
+                  </Button>
+                  {canChat && (
+                    <Button variant="default" size="sm" onClick={() => handleToggleChat(request.id)}>
+                      <MessageSquare className="h-4 w-4 mr-2" /> 
+                      {showChat && selectedChatRequestId === request.id ? "Hide Chat" : "Chat with Provider"}
+                    </Button>
+                  )}
+                </CardFooter>
+              </Card>
+            );
+          })}
         </div>
       ) : (
         <Card className="text-center py-12">
@@ -134,6 +165,17 @@ export default function MyRequestsPage() {
             </Button>
           </CardContent>
         </Card>
+      )}
+
+      {showChat && selectedChatRequestId && getSelectedRequestForChat() && user && (
+        <div className="mt-8">
+          <ChatWindow
+            currentUser={user}
+            otherPartyName={getSelectedRequestForChat()?.providerName || "Provider"}
+            otherPartyRole="provider"
+            requestId={selectedChatRequestId}
+          />
+        </div>
       )}
     </div>
   );
