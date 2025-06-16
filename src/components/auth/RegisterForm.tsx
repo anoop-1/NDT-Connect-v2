@@ -35,8 +35,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
-import { db } from '@/lib/firebase'; // Import db
-import { doc, getDoc, collection } from 'firebase/firestore'; // Import Firestore functions
+import { db } from '@/lib/firebase';
+import { doc, getDoc } from 'firebase/firestore';
 
 
 const PREDEFINED_NDT_SERVICES_TABLE = [
@@ -48,7 +48,6 @@ const PREDEFINED_NDT_SERVICES_TABLE = [
   "Vacuum Box Testing"
 ];
 
-// SERVICE_UNITS_REGISTER removed, will be fetched from Firestore
 
 const QUALIFICATION_BODIES_REGISTER = [
   "ASNT (American Society for Nondestructive Testing)", "PCN (Personnel Certification in Non-Destructive Testing)",
@@ -72,7 +71,7 @@ const defaultServiceOfferingRow = (isCustom: boolean = false): ServiceOffering =
   id: generateUniqueId(),
   name: isCustom ? "" : PREDEFINED_NDT_SERVICES_TABLE[0],
   rate: '',
-  unit: "", // Initialize unit as empty; user must select from fetched list or enter custom
+  unit: "",
   isCustom: isCustom,
 });
 
@@ -169,7 +168,7 @@ const clientSchema = baseSchema.extend({
 const serviceOfferingSchema = z.object({
   id: z.string(),
   name: z.string().min(1, "Service name is required."),
-  unit: z.string().min(1, "Unit is required."), // Ensure a unit is selected from the fetched list or entered if custom
+  unit: z.string().min(1, "Unit is required."),
   rate: z.string()
     .refine(val => val === '' || (!isNaN(parseFloat(val)) && parseFloat(val) >= 0), {
       message: "Rate must be a non-negative number or empty.",
@@ -290,20 +289,21 @@ export function RegisterForm() {
       setIsLoadingUnits(true);
       setUnitFetchError(null);
       try {
-        const predefinedListsCollection = collection(db, "predefinedLists");
-        const serviceUnitsDocRef = doc(predefinedListsCollection, "serviceUnitsProviderForm");
+        // Path based on user's image: predefinedunits/Units/Units-Quotation/Units-Quotation
+        // The document containing the 'options' array is 'Units-Quotation' within the 'Units-Quotation' subcollection.
+        const serviceUnitsDocRef = doc(db, "predefinedunits", "Units", "Units-Quotation", "Units-Quotation");
         const docSnap = await getDoc(serviceUnitsDocRef);
 
-        if (docSnap.exists() && docSnap.data()?.items && Array.isArray(docSnap.data()?.items)) {
-          setServiceUnits(docSnap.data()?.items as string[]);
+        if (docSnap.exists() && docSnap.data()?.options && Array.isArray(docSnap.data()?.options)) {
+          setServiceUnits(docSnap.data()?.options as string[]);
         } else {
-          console.warn("Service units document 'serviceUnitsProviderForm' not found or 'items' field missing/invalid in Firestore.");
-          setUnitFetchError("Units list unavailable. Contact admin.");
+          console.warn("Service units document 'predefinedunits/Units/Units-Quotation/Units-Quotation' not found or 'options' field missing/invalid in Firestore.");
+          setUnitFetchError("Units list unavailable. Check DB structure.");
           setServiceUnits([]);
         }
       } catch (error) {
         console.error("Error fetching service units from Firestore:", error);
-        setUnitFetchError("Failed to load units. Check connection.");
+        setUnitFetchError("Failed to load units. Check connection/rules.");
         setServiceUnits([]);
       }
       setIsLoadingUnits(false);
@@ -312,7 +312,6 @@ export function RegisterForm() {
     if (currentRole === 'provider') {
       fetchServiceUnits();
     } else {
-      // If not provider, reset units related states
       setServiceUnits([]);
       setIsLoadingUnits(false);
       setUnitFetchError(null);
@@ -320,7 +319,6 @@ export function RegisterForm() {
   }, [currentRole]);
 
 
-  // Reset fields when role changes
   const previousRole = React.useRef(currentRole);
   React.useEffect(() => {
     if (previousRole.current !== currentRole) {
@@ -977,3 +975,4 @@ export function RegisterForm() {
     </Form>
   );
 }
+
