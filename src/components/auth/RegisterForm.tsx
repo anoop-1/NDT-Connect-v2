@@ -35,8 +35,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
-import { db } from '@/lib/firebase';
-import { doc, getDoc } from 'firebase/firestore';
+// Removed Firestore import: import { db } from '@/lib/firebase';
+// Removed Firestore import: import { doc, getDoc } from 'firebase/firestore';
 
 
 const PREDEFINED_NDT_SERVICES_TABLE = [
@@ -46,6 +46,11 @@ const PREDEFINED_NDT_SERVICES_TABLE = [
   "Surface Eddy Current Testing", "Pulsed Eddy Current Testing",
   "Phased Array Ultrasonic Testing", "Long Range Ultrasonic Testing",
   "Vacuum Box Testing"
+];
+
+// Restored hardcoded service units
+const SERVICE_UNITS_REGISTER = [
+  "per hour", "per day", "per month", "per meter", "per mm of thickness", "per inch of thickness", "per project"
 ];
 
 
@@ -71,7 +76,7 @@ const defaultServiceOfferingRow = (isCustom: boolean = false): ServiceOffering =
   id: generateUniqueId(),
   name: isCustom ? "" : PREDEFINED_NDT_SERVICES_TABLE[0],
   rate: '',
-  unit: "",
+  unit: SERVICE_UNITS_REGISTER[0], // Default to first item in hardcoded list
   isCustom: isCustom,
 });
 
@@ -238,9 +243,10 @@ export function RegisterForm() {
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
-  const [serviceUnits, setServiceUnits] = useState<string[]>([]);
-  const [isLoadingUnits, setIsLoadingUnits] = useState(true);
-  const [unitFetchError, setUnitFetchError] = useState<string | null>(null);
+  // Removed Firestore-related state for units
+  // const [serviceUnits, setServiceUnits] = useState<string[]>([]);
+  // const [isLoadingUnits, setIsLoadingUnits] = useState(true);
+  // const [unitFetchError, setUnitFetchError] = useState<string | null>(null);
 
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
@@ -284,39 +290,38 @@ export function RegisterForm() {
     name: "certifications" as any,
   });
 
-  useEffect(() => {
-    const fetchServiceUnits = async () => {
-      setIsLoadingUnits(true);
-      setUnitFetchError(null);
-      try {
-        // Path based on user's image: predefinedunits/Units/Units-Quotation/Units-Quotation
-        // The document containing the 'options' array is 'Units-Quotation' within the 'Units-Quotation' subcollection.
-        const serviceUnitsDocRef = doc(db, "predefinedunits", "Units", "Units-Quotation", "Units-Quotation");
-        const docSnap = await getDoc(serviceUnitsDocRef);
+  // Removed useEffect for fetching units from Firestore
+  // useEffect(() => {
+  //   const fetchServiceUnits = async () => {
+  //     setIsLoadingUnits(true);
+  //     setUnitFetchError(null);
+  //     try {
+  //       const serviceUnitsDocRef = doc(db, "predefinedunits", "Units", "Units-Quotation", "Units-Quotation");
+  //       const docSnap = await getDoc(serviceUnitsDocRef);
 
-        if (docSnap.exists() && docSnap.data()?.options && Array.isArray(docSnap.data()?.options)) {
-          setServiceUnits(docSnap.data()?.options as string[]);
-        } else {
-          console.warn("Service units document 'predefinedunits/Units/Units-Quotation/Units-Quotation' not found or 'options' field missing/invalid in Firestore.");
-          setUnitFetchError("Units list unavailable. Check DB structure.");
-          setServiceUnits([]);
-        }
-      } catch (error) {
-        console.error("Error fetching service units from Firestore:", error);
-        setUnitFetchError("Failed to load units. Check connection/rules.");
-        setServiceUnits([]);
-      }
-      setIsLoadingUnits(false);
-    };
+  //       if (docSnap.exists() && docSnap.data()?.options && Array.isArray(docSnap.data()?.options)) {
+  //         setServiceUnits(docSnap.data()?.options as string[]);
+  //       } else {
+  //         console.warn("Service units document 'predefinedunits/Units/Units-Quotation/Units-Quotation' not found or 'options' field missing/invalid in Firestore.");
+  //         setUnitFetchError("Units list unavailable. Check DB structure.");
+  //         setServiceUnits([]);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching service units from Firestore:", error);
+  //       setUnitFetchError("Failed to load units. Check connection/rules.");
+  //       setServiceUnits([]);
+  //     }
+  //     setIsLoadingUnits(false);
+  //   };
 
-    if (currentRole === 'provider') {
-      fetchServiceUnits();
-    } else {
-      setServiceUnits([]);
-      setIsLoadingUnits(false);
-      setUnitFetchError(null);
-    }
-  }, [currentRole]);
+  //   if (currentRole === 'provider') {
+  //     fetchServiceUnits();
+  //   } else {
+  //     setServiceUnits([]);
+  //     setIsLoadingUnits(false);
+  //     setUnitFetchError(null);
+  //   }
+  // }, [currentRole]);
 
 
   const previousRole = React.useRef(currentRole);
@@ -644,10 +649,8 @@ export function RegisterForm() {
                                   <SelectTrigger><SelectValue placeholder="Select Unit" /></SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                                  {isLoadingUnits && <SelectItem value="loading" disabled>Loading units...</SelectItem>}
-                                  {!isLoadingUnits && unitFetchError && <SelectItem value="error" disabled>{unitFetchError}</SelectItem>}
-                                  {!isLoadingUnits && !unitFetchError && serviceUnits.length === 0 && <SelectItem value="no-units" disabled>No units available</SelectItem>}
-                                  {!isLoadingUnits && !unitFetchError && serviceUnits.map((unit) => (
+                                  {/* Use hardcoded SERVICE_UNITS_REGISTER directly */}
+                                  {SERVICE_UNITS_REGISTER.map((unit) => (
                                     <SelectItem key={unit} value={unit}>{unit}</SelectItem>
                                   ))}
                                 </SelectContent>
