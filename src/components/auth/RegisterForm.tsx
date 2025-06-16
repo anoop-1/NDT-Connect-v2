@@ -24,7 +24,7 @@ import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { ClientProfileData, ProviderProfileData, ServiceOffering, PersonnelQualification, CompanyCertification } from "@/lib/types";
 import { ImageIcon, DollarSign, FileText, Award, Users2, BookOpen, ListChecks, PlusCircle, Trash2, CalendarIcon, Link as LinkIcon } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -35,6 +35,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
+import { db } from '@/lib/firebase'; // Import db
+import { doc, getDoc, collection } from 'firebase/firestore'; // Import Firestore functions
 
 
 const PREDEFINED_NDT_SERVICES_TABLE = [
@@ -46,9 +48,7 @@ const PREDEFINED_NDT_SERVICES_TABLE = [
   "Vacuum Box Testing"
 ];
 
-const SERVICE_UNITS_REGISTER = [
-  "per hour", "per day", "per month", "per meter", "per mm of thickness", "per inch of thickness"
-];
+// SERVICE_UNITS_REGISTER removed, will be fetched from Firestore
 
 const QUALIFICATION_BODIES_REGISTER = [
   "ASNT (American Society for Nondestructive Testing)", "PCN (Personnel Certification in Non-Destructive Testing)",
@@ -72,7 +72,7 @@ const defaultServiceOfferingRow = (isCustom: boolean = false): ServiceOffering =
   id: generateUniqueId(),
   name: isCustom ? "" : PREDEFINED_NDT_SERVICES_TABLE[0],
   rate: '',
-  unit: isCustom ? "" : SERVICE_UNITS_REGISTER[0],
+  unit: "", // Initialize unit as empty; user must select from fetched list or enter custom
   isCustom: isCustom,
 });
 
@@ -169,7 +169,7 @@ const clientSchema = baseSchema.extend({
 const serviceOfferingSchema = z.object({
   id: z.string(),
   name: z.string().min(1, "Service name is required."),
-  unit: z.string().min(1, "Unit is required."),
+  unit: z.string().min(1, "Unit is required."), // Ensure a unit is selected from the fetched list or entered if custom
   rate: z.string()
     .refine(val => val === '' || (!isNaN(parseFloat(val)) && parseFloat(val) >= 0), {
       message: "Rate must be a non-negative number or empty.",
@@ -203,7 +203,6 @@ const providerSchema = baseSchema.extend({
   personnelQualifications: z.array(personnelQualificationSchema).min(1, "At least one personnel qualification must be listed."),
   certifications: z.array(companyCertificationSchema).optional(),
   procedureInfoUrl: z.string().url({ message: "Please enter a valid URL." }).optional().or(z.literal("")),
-  // acceptanceCriteriaInfo: z.string().min(10, { message: "Acceptance criteria are required." }).max(500, {message: "Acceptance criteria cannot exceed 500 characters."}), // Removed
   companyLogoUrl: z.string().url({ message: "Please enter a valid URL for the company logo." }).optional().or(z.literal("")),
 });
 
@@ -221,11 +220,10 @@ const formSchema = z.union([clientSchema, providerSchema])
     }
     if (data.role === 'provider') {
         return 'locationProvider' in data && data.locationProvider &&
-               'servicesOffered' in data && data.servicesOffered && data.servicesOffered.length > 0 &&
+               'servicesOffered' in data && data.servicesOffered.length > 0 &&
                'contactNumberProvider' in data && data.contactNumberProvider &&
                'personnelQualifications' in data && data.personnelQualifications && data.personnelQualifications.length > 0 &&
                'procedureInfoUrl' in data;
-               // 'acceptanceCriteriaInfo' in data && data.acceptanceCriteriaInfo; // Removed
     }
     return true;
   }, {
@@ -241,6 +239,9 @@ export function RegisterForm() {
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const [serviceUnits, setServiceUnits] = useState<string[]>([]);
+  const [isLoadingUnits, setIsLoadingUnits] = useState(true);
+  const [unitFetchError, setUnitFetchError] = useState<string | null>(null);
 
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
@@ -263,7 +264,6 @@ export function RegisterForm() {
       personnelQualifications: [defaultPersonnelQualificationRow()],
       certifications: [defaultCompanyCertificationRow()],
       procedureInfoUrl: "",
-      // acceptanceCriteriaInfo: "", // Removed
       companyLogoUrl: "",
     },
   });
@@ -285,29 +285,60 @@ export function RegisterForm() {
     name: "certifications" as any,
   });
 
+  useEffect(() => {
+    const fetchServiceUnits = async () => {
+      setIsLoadingUnits(true);
+      setUnitFetchError(null);
+      try {
+        const predefinedListsCollection = collection(db, "predefinedLists");
+        const serviceUnitsDocRef = doc(predefinedListsCollection, "serviceUnitsProviderForm");
+        const docSnap = await getDoc(serviceUnitsDocRef);
+
+        if (docSnap.exists() && docSnap.data()?.items && Array.isArray(docSnap.data()?.items)) {
+          setServiceUnits(docSnap.data()?.items as string[]);
+        } else {
+          console.warn("Service units document 'serviceUnitsProviderForm' not found or 'items' field missing/invalid in Firestore.");
+          setUnitFetchError("Units list unavailable. Contact admin.");
+          setServiceUnits([]);
+        }
+      } catch (error) {
+        console.error("Error fetching service units from Firestore:", error);
+        setUnitFetchError("Failed to load units. Check connection.");
+        setServiceUnits([]);
+      }
+      setIsLoadingUnits(false);
+    };
+
+    if (currentRole === 'provider') {
+      fetchServiceUnits();
+    } else {
+      // If not provider, reset units related states
+      setServiceUnits([]);
+      setIsLoadingUnits(false);
+      setUnitFetchError(null);
+    }
+  }, [currentRole]);
+
 
   // Reset fields when role changes
   const previousRole = React.useRef(currentRole);
   React.useEffect(() => {
     if (previousRole.current !== currentRole) {
-      // Clear client fields if switching to provider
       if (currentRole === 'provider') {
         form.setValue('companyName', '');
         form.setValue('industry', '');
         form.setValue('primaryLocation', '');
         form.setValue('contactNumberClient', '');
-        // Initialize provider fields
         form.setValue('servicesOffered' as any, [defaultServiceOfferingRow()]);
         form.setValue('personnelQualifications' as any, [defaultPersonnelQualificationRow()]);
         form.setValue('certifications' as any, [defaultCompanyCertificationRow()]);
-      } else { // Clear provider fields if switching to client
+      } else {
          form.setValue('servicesOffered' as any, []);
          form.setValue('personnelQualifications' as any, []);
          form.setValue('certifications' as any, []);
          form.setValue('locationProvider', '');
          form.setValue('contactNumberProvider', '');
          form.setValue('procedureInfoUrl', '');
-         // form.setValue('acceptanceCriteriaInfo', ''); // Removed
          form.setValue('companyLogoUrl', '');
       }
       previousRole.current = currentRole;
@@ -344,7 +375,6 @@ export function RegisterForm() {
         certifications: providerValues.certifications?.map(c => ({...c, id: c.id || generateUniqueId() })) || [],
         contactNumber: providerValues.contactNumberProvider,
         procedureInfoUrl: providerValues.procedureInfoUrl,
-        // acceptanceCriteriaInfo: providerValues.acceptanceCriteriaInfo, // Removed
         companyLogoUrl: providerValues.companyLogoUrl,
         availableDocuments: [],
         isVerified: false,
@@ -611,12 +641,15 @@ export function RegisterForm() {
                                 <Input placeholder="Enter custom unit" {...field} />
                               </FormControl>
                             ) : (
-                              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                              <Select onValueChange={field.onChange} value={field.value} defaultValue={field.value} >
                                 <FormControl>
                                   <SelectTrigger><SelectValue placeholder="Select Unit" /></SelectTrigger>
                                 </FormControl>
                                 <SelectContent>
-                                  {SERVICE_UNITS_REGISTER.map(unit => (
+                                  {isLoadingUnits && <SelectItem value="loading" disabled>Loading units...</SelectItem>}
+                                  {!isLoadingUnits && unitFetchError && <SelectItem value="error" disabled>{unitFetchError}</SelectItem>}
+                                  {!isLoadingUnits && !unitFetchError && serviceUnits.length === 0 && <SelectItem value="no-units" disabled>No units available</SelectItem>}
+                                  {!isLoadingUnits && !unitFetchError && serviceUnits.map((unit) => (
                                     <SelectItem key={unit} value={unit}>{unit}</SelectItem>
                                   ))}
                                 </SelectContent>
