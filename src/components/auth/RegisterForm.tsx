@@ -403,6 +403,26 @@ export function RegisterForm() {
                         <Button type="button" variant="outline" onClick={() => appendPersonnel(defaultPersonnelQualificationRow())} className="mt-2"><PlusCircle className="h-4 w-4 mr-2"/>Add Qualification</Button>
                     </CardContent>
                 </Card>
+
+                 {/* Company Certifications */}
+                <Card>
+                    <CardHeader><CardTitle className="flex items-center text-lg font-semibold"><Award className="h-5 w-5 mr-2 text-primary"/>Company Certifications (Optional)</CardTitle></CardHeader>
+                    <CardContent>
+                        {certificationFields.map((item, index) => (
+                            <div key={item.id} className="grid grid-cols-[1fr_auto] gap-2 items-start mb-2">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                    <FormField control={form.control} name={`certifications.${index}.name`} render={({ field }) => (<FormItem><FormLabel>Cert. Name</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue/></SelectTrigger></FormControl><SelectContent>{companyCertifications.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)}/>
+                                    <FormField control={form.control} name={`certifications.${index}.category`} render={({ field }) => (<FormItem><FormLabel>Category/Ref</FormLabel><FormControl><Input placeholder="e.g., Quality Mgmt" {...field} /></FormControl><FormMessage/></FormItem>)}/>
+                                </div>
+                                <div className="pt-8"><Button type="button" variant="ghost" size="icon" onClick={() => removeCertification(index)} className="text-destructive"><Trash2 className="h-4 w-4"/></Button></div>
+                            </div>
+                        ))}
+                        <Button type="button" variant="outline" onClick={() => appendCertification(defaultCompanyCertificationRow())} className="mt-2"><PlusCircle className="h-4 w-4 mr-2"/>Add Certification</Button>
+                    </CardContent>
+                </Card>
+
+                <FormField control={form.control} name="procedureInfoUrl" render={({ field }) => (<FormItem><FormLabel>Bio / Procedures URL (Optional)</FormLabel><FormControl><Input placeholder="https://example.com/about-us" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                <FormField control={form.control} name="companyLogoUrl" render={({ field }) => (<FormItem><FormLabel>Company Logo URL (Optional)</FormLabel><FormControl><Input placeholder="https://example.com/logo.png" {...field} /></FormControl><FormMessage /></FormItem>)} />
               </>
             )}
           </div>
