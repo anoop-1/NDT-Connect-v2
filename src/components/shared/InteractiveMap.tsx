@@ -1,33 +1,41 @@
-
 // src/components/shared/InteractiveMap.tsx
 "use client";
 
 import L from 'leaflet';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import type { ServiceProvider } from '@/lib/types';
 import { useEffect } from 'react';
 
 // --- LEAFLET ICON FIX ---
 // This is a common workaround for a known issue with Leaflet and Webpack/Next.js
 // where the default marker icons do not appear correctly.
-// We are manually importing the icon images and setting them on Leaflet's default icon prototype.
+import iconRetina from 'leaflet/dist/images/marker-icon-2x.png';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-import iconRetina from 'leaflet/dist/images/marker-icon-2x.png';
-
-const DefaultIcon = L.icon({
-  iconUrl: icon.src,
-  iconRetinaUrl: iconRetina.src,
-  shadowUrl: iconShadow.src,
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  tooltipAnchor: [16, -28],
-  shadowSize: [41, 41]
-});
 
 // A default center (e.g., center of the US)
 const defaultCenter: L.LatLngExpression = [39.8283, -98.5795];
+const defaultZoom = 4;
+
+// This component programmatically updates the map view when props change.
+function MapUpdater({ providers }: { providers: ServiceProvider[] }) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (providers && providers.length > 0) {
+      const providerWithCoords = providers.find(p => p.lat && p.lng);
+      if (providerWithCoords) {
+        // Fly to the first provider in the list.
+        map.flyTo([providerWithCoords.lat!, providerWithCoords.lng!], 8);
+      }
+    } else {
+        // If no providers, fly back to the default view.
+        map.flyTo(defaultCenter, defaultZoom);
+    }
+  }, [providers, map]);
+
+  return null; // This component does not render anything itself.
+}
 
 interface InteractiveMapProps {
   providers: ServiceProvider[];
@@ -35,21 +43,23 @@ interface InteractiveMapProps {
 
 export function InteractiveMap({ providers }: InteractiveMapProps) {
   
-  // This effect ensures the default icon is set on the client side.
   useEffect(() => {
-    L.Marker.prototype.options.icon = DefaultIcon;
+    // This effect sets up the default icon paths for Leaflet to prevent rendering issues with Webpack.
+    // It runs once on the client-side after the component mounts.
+    delete (L.Icon.Default.prototype as any)._getIconUrl;
+    L.Icon.Default.mergeOptions({
+      iconRetinaUrl: iconRetina.src,
+      iconUrl: icon.src,
+      shadowUrl: iconShadow.src,
+    });
   }, []);
 
   const mapProviders = providers.filter(p => p.lat && p.lng);
 
-  const mapCenter = mapProviders.length > 0 && mapProviders[0].lat && mapProviders[0].lng
-    ? [mapProviders[0].lat, mapProviders[0].lng] as L.LatLngExpression
-    : defaultCenter;
-  
-  const zoomLevel = mapProviders.length > 0 ? 8 : 4;
-  
+  // By keeping center and zoom props static on MapContainer, we prevent it from re-initializing.
+  // The MapUpdater component handles dynamic view changes.
   return (
-    <MapContainer center={mapCenter} zoom={zoomLevel} scrollWheelZoom={true} style={{ height: '450px', width: '100%', borderRadius: '0.5rem', zIndex: 0 }}>
+    <MapContainer center={defaultCenter} zoom={defaultZoom} scrollWheelZoom={true} style={{ height: '450px', width: '100%', borderRadius: '0.5rem', zIndex: 0 }}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -67,6 +77,7 @@ export function InteractiveMap({ providers }: InteractiveMapProps) {
           </Popup>
         </Marker>
       ))}
+      <MapUpdater providers={mapProviders} />
     </MapContainer>
   );
 }
