@@ -1,4 +1,3 @@
-
 // src/app/find-providers/page.tsx
 "use client";
 
@@ -19,21 +18,16 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { useToast } from "@/hooks/use-toast";
 import { MOCK_PROVIDERS } from "@/lib/mockData";
 import { cn } from "@/lib/utils";
-import L from 'leaflet';
-import iconRetina from 'leaflet/dist/images/marker-icon-2x.png';
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
 
 type ViewMode = "list" | "map";
 
-// Define the dynamic component outside of the main component function.
-// This ensures it is only created once and prevents re-initialization errors.
+// This is the correct way to dynamically load a client-side component.
 const InteractiveMap = dynamic(
     () => import('@/components/shared/InteractiveMap').then((mod) => mod.InteractiveMap),
     { 
       loading: () => <div className="flex justify-center items-center h-[450px] w-full rounded-lg bg-muted"><Activity className="h-8 w-8 animate-spin text-primary" /><span className="ml-2">Loading Map...</span></div>,
-      ssr: false 
+      ssr: false // This is crucial to prevent server-side rendering
     }
   );
 
@@ -49,17 +43,9 @@ export default function FindProvidersPage() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  
-  useEffect(() => {
-    // This effect runs once on the client-side after the component mounts.
-    // It sets up the default icon paths for Leaflet to prevent rendering issues.
-    delete (L.Icon.Default.prototype as any)._getIconUrl;
-    L.Icon.Default.mergeOptions({
-      iconRetinaUrl: iconRetina.src,
-      iconUrl: icon.src,
-      shadowUrl: iconShadow.src,
-    });
-  }, []);
+
+  // The Leaflet icon setup is now correctly placed within the InteractiveMap component.
+  // No Leaflet-related code should be here.
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -274,5 +260,3 @@ export default function FindProvidersPage() {
     </div>
   );
 }
-
-    

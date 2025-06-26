@@ -4,6 +4,13 @@
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import type { ServiceProvider } from '@/lib/types';
 import { useEffect } from 'react';
+import L from 'leaflet';
+
+// Import marker icons
+import iconRetina from 'leaflet/dist/images/marker-icon-2x.png';
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+
 
 // A default center (e.g., center of the US)
 const defaultCenter: L.LatLngExpression = [39.8283, -98.5795];
@@ -34,10 +41,19 @@ interface InteractiveMapProps {
 }
 
 export function InteractiveMap({ providers }: InteractiveMapProps) {
+  // This is the correct place for the one-time icon setup.
+  // It runs once when this client component mounts.
+  useEffect(() => {
+    delete (L.Icon.Default.prototype as any)._getIconUrl;
+    L.Icon.Default.mergeOptions({
+      iconRetinaUrl: iconRetina.src,
+      iconUrl: icon.src,
+      shadowUrl: iconShadow.src,
+    });
+  }, []);
+
   const mapProviders = providers.filter(p => p.lat && p.lng);
 
-  // By keeping center and zoom props static on MapContainer, we prevent it from re-initializing.
-  // The MapUpdater component handles dynamic view changes.
   return (
     <MapContainer center={defaultCenter} zoom={defaultZoom} scrollWheelZoom={true} style={{ height: '450px', width: '100%', borderRadius: '0.5rem', zIndex: 0 }}>
       <TileLayer
