@@ -15,6 +15,7 @@ import { db } from "@/lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const StatusTimelineStep = ({ status, isActive, isCompleted, title, description }: { status: string, isActive: boolean, isCompleted: boolean, title: string, description: string }) => {
   let IconComponent = Clock;
@@ -64,7 +65,8 @@ export default function TrackRequestPage() {
         }
 
         const requestData = requestDoc.data() as ServiceRequest;
-        setRequest({ ...requestData, id: requestDoc.id });
+        const requestedDate = requestData.requestedDate?.toDate ? requestData.requestedDate.toDate().toISOString() : requestData.requestedDate;
+        setRequest({ ...requestData, id: requestDoc.id, requestedDate });
 
         if (requestData.providerId) {
             const providerDocRef = doc(db, "users", requestData.providerId);
@@ -119,7 +121,7 @@ export default function TrackRequestPage() {
   const isCancelled = request.status === 'Cancelled';
   const canChat = (request.status === 'Confirmed' || request.status === 'In Progress') && providerDetails;
   
-  const displayDate = request.requestedDate?.toDate ? request.requestedDate.toDate().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : (request.requestedDate ? new Date(request.requestedDate).toLocaleDateString() : 'N/A');
+  const displayDate = request.requestedDate ? new Date(request.requestedDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'N/A';
 
   const timelineDescriptions = {
     'Pending': 'Your request has been submitted and is awaiting provider confirmation.',
@@ -132,115 +134,129 @@ export default function TrackRequestPage() {
   const providerDocs = providerDetails?.providerProfile?.availableDocuments;
 
   return (
-    <div className="space-y-8">
-      <Button variant="outline" onClick={() => router.push('/my-requests')} className="mb-6">
-        <ArrowLeft className="h-4 w-4 mr-2" /> Back to My Requests
-      </Button>
+    <>
+      <div className="space-y-8">
+        <Button variant="outline" onClick={() => router.push('/my-requests')} className="mb-6">
+          <ArrowLeft className="h-4 w-4 mr-2" /> Back to My Requests
+        </Button>
 
-      <Card className="shadow-xl">
-        <CardHeader>
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
-            <CardTitle className="text-2xl md:text-3xl mb-2 sm:mb-0">Request: {request.serviceType}</CardTitle>
-            <Badge variant={isCancelled ? "destructive" : "default"} className="text-base px-3 py-1">
-              Status: {request.status}
-            </Badge>
-          </div>
-          <CardDescription>Request ID: {request.id}</CardDescription>
-        </CardHeader>
-        <CardContent className="grid md:grid-cols-2 gap-x-8 gap-y-6">
-          <div className="space-y-4">
-            <div>
-              <h4 className="font-semibold text-sm text-muted-foreground flex items-center mb-1"><MapPinIcon className="h-4 w-4 mr-2"/>Location</h4>
-              <p>{request.location}</p>
+        <Card className="shadow-xl">
+          <CardHeader>
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+              <CardTitle className="text-2xl md:text-3xl mb-2 sm:mb-0">Request: {request.serviceType}</CardTitle>
+              <Badge variant={isCancelled ? "destructive" : "default"} className="text-base px-3 py-1">
+                Status: {request.status}
+              </Badge>
             </div>
-            <div>
-              <h4 className="font-semibold text-sm text-muted-foreground flex items-center mb-1"><CalendarDays className="h-4 w-4 mr-2"/>Requested Date</h4>
-              <p>{displayDate}</p>
-            </div>
-            <div>
-              <h4 className="font-semibold text-sm text-muted-foreground flex items-center mb-1"><FileTextIcon className="h-4 w-4 mr-2"/>Description</h4>
-              <p className="text-sm whitespace-pre-wrap bg-muted/50 p-3 rounded-md">{request.description}</p>
-            </div>
-            {providerDetails && (
-               <div>
-                <h4 className="font-semibold text-sm text-muted-foreground mb-1">Assigned Provider</h4>
-                <p className="font-medium">{providerDetails.name}</p>
-                {providerDetails.providerProfile?.isVerified && (
-                  <Badge variant="default" className="mt-1 bg-green-100 text-green-700 border-green-300">
-                    <ShieldCheck className="h-4 w-4 mr-1"/> Verified Provider
-                  </Badge>
-                )}
+            <CardDescription>Request ID: {request.id}</CardDescription>
+          </CardHeader>
+          <CardContent className="grid md:grid-cols-2 gap-x-8 gap-y-6">
+            <div className="space-y-4">
+              <div>
+                <h4 className="font-semibold text-sm text-muted-foreground flex items-center mb-1"><MapPinIcon className="h-4 w-4 mr-2"/>Location</h4>
+                <p>{request.location}</p>
               </div>
-            )}
-            {request.fileAttachmentUrl && (
-                 <div className="p-3 border border-dashed rounded-md bg-blue-50 text-blue-700">
-                    <h5 className="font-semibold text-sm flex items-center mb-2"><Download className="h-4 w-4 mr-2"/>Your Attached Document</h5>
-                    <p className="text-xs truncate">{request.fileAttachmentUrl.split('/').pop()}</p>
-                 </div>
-            )}
-            {providerDocs && providerDocs.length > 0 && (
-              <div className="p-3 border border-dashed rounded-md bg-blue-50 text-blue-700">
-                <h5 className="font-semibold text-sm flex items-center mb-2"><BookOpen className="h-4 w-4 mr-2"/>Technical Documents from Provider</h5>
-                <ul className="list-disc list-inside text-xs space-y-1">
-                    {providerDocs.map(doc => <li key={doc}>{doc}</li>)}
-                </ul>
-                <p className="text-xs mt-2 italic">(These documents are notionally shared. In a full system, download links or viewable documents would appear here.)</p>
+              <div>
+                <h4 className="font-semibold text-sm text-muted-foreground flex items-center mb-1"><CalendarDays className="h-4 w-4 mr-2"/>Requested Date</h4>
+                <p>{displayDate}</p>
               </div>
-            )}
-             {providerDetails?.providerProfile?.isVerified && request.status !== 'Pending' && request.status !== 'Cancelled' && (
-              <div className="p-3 border border-dashed rounded-md bg-green-50 text-green-700 mt-2">
-                <h5 className="font-semibold text-sm flex items-center mb-1"><FileArchive className="h-4 w-4 mr-2"/>Provider Documentation Note</h5>
-                <p className="text-xs">
-                  As this is a verified provider and the request is active, relevant company approvals, procedures, and technician qualification certifications are notionally considered submitted/available for this engagement.
-                </p>
+              <div>
+                <h4 className="font-semibold text-sm text-muted-foreground flex items-center mb-1"><FileTextIcon className="h-4 w-4 mr-2"/>Description</h4>
+                <p className="text-sm whitespace-pre-wrap bg-muted/50 p-3 rounded-md">{request.description}</p>
               </div>
-            )}
-          </div>
-          <div>
-            <h4 className="font-semibold text-lg mb-3">Request Timeline</h4>
-            <ol className="relative border-s border-border ms-3">
-              {isCancelled ? (
-                 <StatusTimelineStep status="Cancelled" isActive={true} isCompleted={false} title="Cancelled" description={timelineDescriptions['Cancelled']} />
-              ) : (
-                statuses.map((status, index) => (
-                  <StatusTimelineStep 
-                    key={status}
-                    status={status}
-                    isActive={index === currentStatusIndex}
-                    isCompleted={index < currentStatusIndex}
-                    title={status}
-                    description={timelineDescriptions[status as keyof typeof timelineDescriptions] || "Status details unavailable."}
-                  />
-                ))
+              {providerDetails && (
+                 <div>
+                  <h4 className="font-semibold text-sm text-muted-foreground mb-1">Assigned Provider</h4>
+                  <p className="font-medium">{providerDetails.name}</p>
+                  {providerDetails.providerProfile?.isVerified && (
+                    <Badge variant="default" className="mt-1 bg-green-100 text-green-700 border-green-300">
+                      <ShieldCheck className="h-4 w-4 mr-1"/> Verified Provider
+                    </Badge>
+                  )}
+                </div>
               )}
-            </ol>
-          </div>
-        </CardContent>
-        <CardFooter className="flex flex-col sm:flex-row gap-2 justify-end pt-6 border-t">
-          <Button variant="outline" onClick={() => alert('Feature under development: Contact NDT Connect Support.')}>
-            <MessageSquare className="h-4 w-4 mr-2" /> Contact Support
-          </Button>
-          {providerDetails && !isCancelled && request.status !== 'Completed' && (
-            <Button onClick={() => alert(`Feature under development: Contact Provider ${providerDetails.name}.`)}>
-              <Phone className="h-4 w-4 mr-2" /> Contact Provider
+              {request.fileAttachmentUrl && (
+                   <div className="p-3 border border-dashed rounded-md bg-blue-50 text-blue-700">
+                      <h5 className="font-semibold text-sm flex items-center mb-2"><Download className="h-4 w-4 mr-2"/>Your Attached Document</h5>
+                      <p className="text-xs truncate">{request.fileAttachmentUrl.split('/').pop()}</p>
+                   </div>
+              )}
+              {providerDocs && providerDocs.length > 0 && (
+                <div className="p-3 border border-dashed rounded-md bg-blue-50 text-blue-700">
+                  <h5 className="font-semibold text-sm flex items-center mb-2"><BookOpen className="h-4 w-4 mr-2"/>Technical Documents from Provider</h5>
+                  <ul className="list-disc list-inside text-xs space-y-1">
+                      {providerDocs.map(doc => <li key={doc}>{doc}</li>)}
+                  </ul>
+                  <p className="text-xs mt-2 italic">(These documents are notionally shared. In a full system, download links or viewable documents would appear here.)</p>
+                </div>
+              )}
+               {providerDetails?.providerProfile?.isVerified && request.status !== 'Pending' && request.status !== 'Cancelled' && (
+                <div className="p-3 border border-dashed rounded-md bg-green-50 text-green-700 mt-2">
+                  <h5 className="font-semibold text-sm flex items-center mb-1"><FileArchive className="h-4 w-4 mr-2"/>Provider Documentation Note</h5>
+                  <p className="text-xs">
+                    As this is a verified provider and the request is active, relevant company approvals, procedures, and technician qualification certifications are notionally considered submitted/available for this engagement.
+                  </p>
+                </div>
+              )}
+            </div>
+            <div>
+              <h4 className="font-semibold text-lg mb-3">Request Timeline</h4>
+              <ol className="relative border-s border-border ms-3">
+                {isCancelled ? (
+                   <StatusTimelineStep status="Cancelled" isActive={true} isCompleted={false} title="Cancelled" description={timelineDescriptions['Cancelled']} />
+                ) : (
+                  statuses.map((status, index) => (
+                    <StatusTimelineStep 
+                      key={status}
+                      status={status}
+                      isActive={index === currentStatusIndex}
+                      isCompleted={index < currentStatusIndex}
+                      title={status}
+                      description={timelineDescriptions[status as keyof typeof timelineDescriptions] || "Status details unavailable."}
+                    />
+                  ))
+                )}
+              </ol>
+            </div>
+          </CardContent>
+          <CardFooter className="flex flex-col sm:flex-row gap-2 justify-end pt-6 border-t">
+            <Button variant="outline" onClick={() => alert('Feature under development: Contact NDT Connect Support.')}>
+              <MessageSquare className="h-4 w-4 mr-2" /> Contact Support
             </Button>
-          )}
-          {canChat && (
-            <Button onClick={() => setShowChat(prev => !prev)} variant={showChat ? "secondary" : "default"}>
-              <MessageSquare className="h-4 w-4 mr-2" /> {showChat ? "Hide Chat" : "Chat with Provider"}
-            </Button>
-          )}
-        </CardFooter>
-      </Card>
+            {providerDetails && !isCancelled && request.status !== 'Completed' && (
+              <Button onClick={() => alert(`Feature under development: Contact Provider ${providerDetails.name}.`)}>
+                <Phone className="h-4 w-4 mr-2" /> Contact Provider
+              </Button>
+            )}
+            {canChat && (
+              <Button onClick={() => setShowChat(true)} variant="default">
+                <MessageSquare className="h-4 w-4 mr-2" /> Chat with Provider
+              </Button>
+            )}
+          </CardFooter>
+        </Card>
+      </div>
 
-      {canChat && showChat && providerDetails && (
-        <ChatWindow
-          currentUser={user}
-          otherPartyName={providerDetails.name || "Provider"}
-          otherPartyRole="provider"
-          requestId={request.id}
-        />
-      )}
-    </div>
+      <Dialog open={showChat} onOpenChange={setShowChat}>
+        <DialogContent className="max-w-lg h-[70vh] flex flex-col p-0 gap-0">
+          {canChat && providerDetails && user && (
+            <>
+              <DialogHeader className="p-4 border-b">
+                <DialogTitle className="flex items-center">
+                  <MessageSquare className="h-5 w-5 mr-2 text-primary" />
+                  Chat with {providerDetails.name || "Provider"}
+                </DialogTitle>
+              </DialogHeader>
+              <ChatWindow
+                currentUser={user}
+                otherPartyName={providerDetails.name || "Provider"}
+                otherPartyRole="provider"
+                requestId={request.id}
+              />
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }
