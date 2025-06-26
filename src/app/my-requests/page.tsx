@@ -3,20 +3,24 @@
 
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Briefcase, PlusCircle, FileText, Activity, AlertTriangle, CheckCircle, Clock, MessageSquare } from "lucide-react";
 import type { ServiceRequest } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
-import { ChatWindow } from "@/components/shared/chat/ChatWindow"; // Import ChatWindow
+import { ChatWindow } from "@/components/shared/chat/ChatWindow";
+import { db } from "@/lib/firebase";
+import { collection, query, where, getDocs, orderBy } from "firebase/firestore";
+import { useToast } from "@/hooks/use-toast";
 
+// Mock data remains for demo purposes, but the page will try to fetch from Firestore first.
 const mockRequests: ServiceRequest[] = [
-  { id: 'req1', clientId: 'user1', providerId: 'prov1', providerName: 'Advanced NDT Solutions', serviceType: 'Ultrasonic Testing', location: 'Main Plant, Area 5', description: 'Inspect critical weld points on pressure vessel.', requestedDate: '2024-08-15', status: 'Confirmed' },
-  { id: 'req2', clientId: 'user1', serviceType: 'Magnetic Particle Testing', location: 'Storage Tank 3B', description: 'Surface crack detection on tank shell.', requestedDate: '2024-08-20', status: 'Pending' },
-  { id: 'req3', clientId: 'user1', providerId: 'prov2', providerName: 'Precision Inspections Inc.', serviceType: 'Radiographic Testing', location: 'Fabrication Shop, Bay 2', description: 'Full weld inspection for new pipeline section.', requestedDate: '2024-07-10', status: 'Completed' },
-  { id: 'req4', clientId: 'user1', providerId: 'prov1', providerName: 'Advanced NDT Solutions', serviceType: 'Visual Testing', location: 'Bridge Section A1', description: 'Routine visual checkup.', requestedDate: '2024-08-01', status: 'In Progress' },
+  { id: 'req1', clientId: 'client.demo@example.com', providerId: 'prov1', providerName: 'Advanced NDT Solutions', serviceType: 'Ultrasonic Testing', location: 'Main Plant, Area 5', description: 'Inspect critical weld points on pressure vessel.', requestedDate: '2024-08-15', status: 'Confirmed' },
+  { id: 'req2', clientId: 'client.demo@example.com', serviceType: 'Magnetic Particle Testing', location: 'Storage Tank 3B', description: 'Surface crack detection on tank shell.', requestedDate: '2024-08-20', status: 'Pending' },
+  { id: 'req3', clientId: 'client.demo@example.com', providerId: 'prov2', providerName: 'Precision Inspections Inc.', serviceType: 'Radiographic Testing', location: 'Fabrication Shop, Bay 2', description: 'Full weld inspection for new pipeline section.', requestedDate: '2024-07-10', status: 'Completed' },
+  { id: 'req4', clientId: 'client.demo@example.com', providerId: 'prov1', providerName: 'Advanced NDT Solutions', serviceType: 'Visual Testing', location: 'Bridge Section A1', description: 'Routine visual checkup.', requestedDate: '2024-08-01', status: 'In Progress' },
 ];
 
 
@@ -57,33 +61,61 @@ const StatusBadge = ({ status }: { status: ServiceRequest['status'] }) => {
 
 
 export default function MyRequestsPage() {
-  const { user, loading } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const router = useRouter();
+  const { toast } = useToast();
+
   const [requests, setRequests] = useState<ServiceRequest[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedChatRequestId, setSelectedChatRequestId] = useState<string | null>(null);
   const [showChat, setShowChat] = useState(false);
 
+  const fetchRequests = useCallback(async (userId: string, isDemo: boolean) => {
+    setIsLoading(true);
+    // For demo user, we show the mock requests to ensure they have content to see.
+    if (isDemo) {
+      setRequests(mockRequests);
+      setIsLoading(false);
+      return;
+    }
+    
+    try {
+      const requestsCollectionRef = collection(db, "serviceRequests");
+      const q = query(requestsCollectionRef, where("clientId", "==", userId), orderBy("createdAt", "desc"));
+      const querySnapshot = await getDocs(q);
+      const fetchedRequests: ServiceRequest[] = [];
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        // Convert Firestore Timestamps to strings for state compatibility
+        const requestedDate = data.requestedDate?.toDate ? data.requestedDate.toDate().toISOString() : data.requestedDate;
+        fetchedRequests.push({ id: doc.id, ...data, requestedDate } as ServiceRequest);
+      });
+      setRequests(fetchedRequests);
+    } catch (error) {
+      console.error("Error fetching service requests:", error);
+      toast({
+        title: "Error",
+        description: "Failed to fetch your service requests from the database.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  }, [toast]);
+
   useEffect(() => {
-    if (!loading && !user) {
+    if (!authLoading && !user) {
       router.push("/login?redirect=/my-requests");
     } else if (user && user.role !== 'client') {
       router.push("/dashboard");
     } else if (user) {
-      // Simulate fetching user-specific requests
-      // For demo, ensure the demo client (client.demo@example.com) can see these requests.
-      // Typically, you'd filter by user.id. For the demo user, we might show all or a specific set.
-      if (user.isDemo) {
-        // Assuming demo client should see all mockRequests for now
-        setRequests(mockRequests.map(r => ({...r, clientId: user.id }))); // Assign demo client id for consistency
-      } else {
-         setRequests(mockRequests.filter(req => req.clientId === user.id));
-      }
+      fetchRequests(user.id, user.isDemo || false);
     }
-  }, [user, loading, router]);
+  }, [user, authLoading, router, fetchRequests]);
 
   const handleToggleChat = (requestId: string) => {
     if (selectedChatRequestId === requestId && showChat) {
-      setShowChat(false); // Toggle off if same chat is already open
+      setShowChat(false);
     } else {
       setSelectedChatRequestId(requestId);
       setShowChat(true);
@@ -95,7 +127,7 @@ export default function MyRequestsPage() {
   };
 
 
-  if (loading) {
+  if (authLoading || isLoading) {
     return <div className="flex justify-center items-center min-h-[calc(100vh-10rem)]"><Activity className="h-8 w-8 animate-spin text-primary" /> <span className="ml-2">Loading your requests...</span></div>;
   }
 
@@ -121,6 +153,7 @@ export default function MyRequestsPage() {
         <div className="grid gap-6 md:grid-cols-2">
           {requests.map(request => {
             const canChat = request.providerId && request.providerName && (request.status === 'Confirmed' || request.status === 'In Progress');
+            const displayDate = request.requestedDate ? new Date(request.requestedDate).toLocaleDateString() : "Date not set";
             return (
               <Card key={request.id} className="shadow-md hover:shadow-lg transition-shadow">
                 <CardHeader>
@@ -132,7 +165,7 @@ export default function MyRequestsPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground mb-2 line-clamp-2">{request.description}</p>
-                  <p className="text-xs text-muted-foreground">Requested Date: {new Date(request.requestedDate).toLocaleDateString()}</p>
+                  <p className="text-xs text-muted-foreground">Requested Date: {displayDate}</p>
                   {request.providerName && <p className="text-xs text-muted-foreground mt-1">Provider: {request.providerName}</p>}
                 </CardContent>
                 <CardFooter className="flex flex-wrap gap-2 justify-end">
@@ -157,7 +190,7 @@ export default function MyRequestsPage() {
           <CardContent className="flex flex-col items-center gap-4">
             <Briefcase className="h-16 w-16 text-muted-foreground" />
             <h3 className="text-xl font-semibold">No service requests yet.</h3>
-            <p className="text-muted-foreground">Ready to get started? Make your first service request now.</p>
+            <p className="text-muted-foreground">Make your first request to see it here.</p>
             <Button asChild>
               <Link href="/request-service">
                 <PlusCircle className="h-4 w-4 mr-2" /> Request a Service

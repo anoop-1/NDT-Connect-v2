@@ -1,5 +1,3 @@
-
-
 export type ClientProfileData = {
   companyName?: string;
   industry?: string;
@@ -69,7 +67,6 @@ export type ServiceProvider = {
   services: ServiceOffering[];
   specialization: string;
   rating: number;
-  // contactInfo: string; // Removed as per privacy requirement
   description?: string;
   imageUrl?: string;
   dataAiHint?: string;
@@ -90,23 +87,27 @@ export type OptimizeServiceProviderRecommendationsInput = {
 
 export type Recommendation = {
   referenceId: string;
-  providerName: string; // AI will still generate this, but we won't show contactInfo from it
-  // contactInfo: string; // Removed from direct display
+  providerName: string; 
   rating: number;
   description:string;
 };
 
 export type ServiceRequest = {
-  id: string;
+  id: string; // Firestore document ID
   clientId: string;
+  clientName?: string; // Denormalized for display
+  clientEmail?: string; // Denormalized for display
   providerId?: string;
   providerName?: string;
   serviceType: string;
   location: string;
   description: string;
-  requestedDate: string;
+  requestedDate: any; // Can be string (from mock) or Firestore Timestamp
   estimatedCost?: number;
   status: 'Pending' | 'Confirmed' | 'In Progress' | 'Completed' | 'Cancelled';
+  createdAt?: any; // Firestore serverTimestamp
+  updatedAt?: any; // Firestore serverTimestamp
+  fileAttachmentUrl?: string; // URL to file in Firebase Storage
 };
 
 export type ChatMessage = {

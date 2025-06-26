@@ -1,18 +1,20 @@
-
-
 // src/app/track-request/[id]/page.tsx
 "use client";
 
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter, useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { ArrowLeft, Phone, Activity, CheckCircle, Clock, AlertTriangle, CalendarDays, MapPinIcon, FileTextIcon, ShieldCheck, FileArchive, BookOpen, MessageSquare } from "lucide-react";
-import type { ServiceRequest, ServiceProvider, User } from "@/lib/types"; 
+import { ArrowLeft, Phone, Activity, CheckCircle, Clock, AlertTriangle, CalendarDays, MapPinIcon, FileTextIcon, ShieldCheck, FileArchive, BookOpen, MessageSquare, Download } from "lucide-react";
+import type { ServiceRequest, User } from "@/lib/types"; 
 import { Badge } from "@/components/ui/badge";
 import { ChatWindow } from "@/components/shared/chat/ChatWindow";
+import { db } from "@/lib/firebase";
+import { doc, getDoc } from "firebase/firestore";
+import { useToast } from "@/hooks/use-toast";
+import { cn } from "@/lib/utils";
 
 const mockRequests: ServiceRequest[] = [
   { id: 'req1', clientId: 'user1', providerId: 'prov1', providerName: 'Advanced NDT Solutions', serviceType: 'Ultrasonic Testing', location: 'Main Plant, Area 5', description: 'Inspect critical weld points on pressure vessel. Ensure all safety protocols are followed. Report needed by end of week.', requestedDate: '2024-08-15', status: 'Confirmed' },
@@ -21,9 +23,9 @@ const mockRequests: ServiceRequest[] = [
   { id: 'req4', clientId: 'user1', serviceType: 'Visual Testing', location: 'Bridge Section A1', description: 'Routine visual checkup of structural integrity. Look for corrosion or damage.', requestedDate: '2024-08-01', status: 'In Progress', providerId: 'prov1', providerName: 'Advanced NDT Solutions' },
 ];
 
-const mockProvidersDB: ServiceProvider[] = [
-    { id: 'prov1', name: 'Advanced NDT Solutions', location: 'Houston, TX', services: [{id: "UT", name:"Ultrasonic Testing", rate: "100", unit: "per hour"}], specialization: 'Oil & Gas', rating: 4.8, /* contactInfo: '(111) 222-3333', */ isVerified: true, certifications: [{id:"c1", name:"ISO 9001", category:"QM"},{id:"c2",name:"API Monogram", category:"OG"}], personnelQualifications: [{id:"p1", quantity: 5, certificationBody:"ASNT Level III", level: "III"}, {id:"p2", quantity:10, certificationBody:"PCN Level II", level:"II"}], availableDocuments: ["General Procedures Manual", "ISO 9001 Certificate", "Sample Technician Level III Cert"] },
-    { id: 'prov2', name: 'Precision Inspections Inc.', location: 'Los Angeles, CA', services: [{id:"RT", name:"Radiographic Testing", rate: "150", unit:"per film"}], specialization: 'Aerospace', rating: 4.5, /* contactInfo: '(444) 555-6666', */ isVerified: true, certifications: [{id:"c3", name:"Nadcap", category:"Aero"}, {id:"c4", name:"AS9100", category:"Aero"}], personnelQualifications: [{id:"p3", quantity:3, certificationBody:"NAS 410 Level III", level:"III"}], availableDocuments: ["Nadcap Approval Documents", "Safety Plan"] },
+const mockProvidersDB: Partial<User>[] = [
+    { id: 'prov1', name: 'Advanced NDT Solutions', providerProfile: { location: 'Houston, TX', isVerified: true, availableDocuments: ["General Procedures Manual", "ISO 9001 Certificate", "Sample Technician Level III Cert"] } },
+    { id: 'prov2', name: 'Precision Inspections Inc.', providerProfile: { location: 'Los Angeles, CA', isVerified: true, availableDocuments: ["Nadcap Approval Documents", "Safety Plan"] } },
 ];
 
 
@@ -49,45 +51,81 @@ const StatusTimelineStep = ({ status, isActive, isCompleted, title, description 
 
 
 export default function TrackRequestPage() {
-  const { user, loading } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const router = useRouter();
   const params = useParams();
+  const { toast } = useToast();
   const requestId = params.id as string;
+  
   const [request, setRequest] = useState<ServiceRequest | null>(null);
-  const [providerDetails, setProviderDetails] = useState<ServiceProvider | null>(null);
+  const [providerDetails, setProviderDetails] = useState<Partial<User> | null>(null);
   const [fetchError, setFetchError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [showChat, setShowChat] = useState(false);
 
+  const fetchRequestAndProvider = useCallback(async (reqId: string, isDemo: boolean) => {
+    setIsLoading(true);
+    setFetchError(null);
+
+    // Use mock data for demo user
+    if (isDemo) {
+        const foundRequest = mockRequests.find(r => r.id === reqId);
+        if (foundRequest) {
+            setRequest(foundRequest);
+            if (foundRequest.providerId) {
+                const foundProvider = mockProvidersDB.find(p => p.id === foundRequest.providerId);
+                setProviderDetails(foundProvider || null);
+            }
+        } else {
+            setFetchError("Demo service request not found.");
+        }
+        setIsLoading(false);
+        return;
+    }
+    
+    // Fetch from Firestore for real users
+    try {
+        const requestDocRef = doc(db, "serviceRequests", reqId);
+        const requestDoc = await getDoc(requestDocRef);
+
+        if (!requestDoc.exists()) {
+            throw new Error("Service request not found or access denied.");
+        }
+
+        const requestData = requestDoc.data() as ServiceRequest;
+        setRequest({ ...requestData, id: requestDoc.id });
+
+        if (requestData.providerId) {
+            const providerDocRef = doc(db, "users", requestData.providerId);
+            const providerDoc = await getDoc(providerDocRef);
+            if (providerDoc.exists()) {
+                setProviderDetails({ id: providerDoc.id, ...providerDoc.data() } as User);
+            }
+        }
+    } catch (error: any) {
+        console.error("Error fetching request:", error);
+        setFetchError(error.message || "Failed to load request details from the database.");
+    } finally {
+        setIsLoading(false);
+    }
+  }, []);
+
+
   useEffect(() => {
-    if (!loading && !user) {
+    if (!authLoading && !user) {
       router.push(`/login?redirect=/track-request/${requestId}`);
     } else if (user && user.role !== 'client') {
       router.push("/dashboard");
+    } else if (user && requestId) {
+        fetchRequestAndProvider(requestId, user.isDemo || false);
     }
-  }, [user, loading, router, requestId]);
+  }, [user, authLoading, router, requestId, fetchRequestAndProvider]);
 
-  useEffect(() => {
-    if (user && requestId) {
-      const foundRequest = mockRequests.find(r => r.id === requestId && (r.clientId === user.id || true)); 
-      if (foundRequest) {
-        setRequest(foundRequest);
-        if (foundRequest.providerId) {
-          const foundProvider = mockProvidersDB.find(p => p.id === foundRequest.providerId);
-          setProviderDetails(foundProvider || null);
-        } else {
-          setProviderDetails(null); // Ensure providerDetails is null if no providerId
-        }
-      } else {
-        setFetchError("Service request not found or access denied.");
-      }
-    }
-  }, [user, requestId]);
-
-  if (loading || (!request && !fetchError && !user)) { 
+  if (isLoading || authLoading) { 
     return <div className="flex justify-center items-center min-h-[calc(100vh-10rem)]"><Activity className="h-8 w-8 animate-spin text-primary" /> <span className="ml-2">Loading request details...</span></div>;
   }
   
-  if (!user || user.role !== 'client') { // Early exit if user is not client after loading
+  if (!user || user.role !== 'client') {
      return <div className="text-center py-10">Access Denied. This page is for clients.</div>;
   }
 
@@ -105,20 +143,22 @@ export default function TrackRequestPage() {
   
   if (!request) return <div className="flex justify-center items-center min-h-[calc(100vh-10rem)]">No request data found.</div>;
 
-
   const statuses: ServiceRequest['status'][] = ['Pending', 'Confirmed', 'In Progress', 'Completed'];
   const currentStatusIndex = statuses.indexOf(request.status);
   const isCancelled = request.status === 'Cancelled';
   const canChat = (request.status === 'Confirmed' || request.status === 'In Progress') && providerDetails;
-
+  
+  const displayDate = request.requestedDate?.toDate ? request.requestedDate.toDate().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : (request.requestedDate ? new Date(request.requestedDate).toLocaleDateString() : 'N/A');
 
   const timelineDescriptions = {
     'Pending': 'Your request has been submitted and is awaiting provider confirmation.',
-    'Confirmed': `Service Provider ${request.providerName || providerDetails?.name || 'N/A'} has confirmed. They will contact you.`,
+    'Confirmed': `Provider ${request.providerName || 'N/A'} has confirmed. They will contact you.`,
     'In Progress': 'The NDT service is currently being performed.',
     'Completed': 'The service has been completed. Check for reports or follow-ups.',
     'Cancelled': 'This service request has been cancelled.',
   };
+  
+  const providerDocs = providerDetails?.providerProfile?.availableDocuments;
 
   return (
     <div className="space-y-8">
@@ -144,7 +184,7 @@ export default function TrackRequestPage() {
             </div>
             <div>
               <h4 className="font-semibold text-sm text-muted-foreground flex items-center mb-1"><CalendarDays className="h-4 w-4 mr-2"/>Requested Date</h4>
-              <p>{new Date(request.requestedDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+              <p>{displayDate}</p>
             </div>
             <div>
               <h4 className="font-semibold text-sm text-muted-foreground flex items-center mb-1"><FileTextIcon className="h-4 w-4 mr-2"/>Description</h4>
@@ -154,23 +194,29 @@ export default function TrackRequestPage() {
                <div>
                 <h4 className="font-semibold text-sm text-muted-foreground mb-1">Assigned Provider</h4>
                 <p className="font-medium">{providerDetails.name}</p>
-                {providerDetails.isVerified && (
+                {providerDetails.providerProfile?.isVerified && (
                   <Badge variant="default" className="mt-1 bg-green-100 text-green-700 border-green-300">
                     <ShieldCheck className="h-4 w-4 mr-1"/> Verified Provider
                   </Badge>
                 )}
               </div>
             )}
-            {(request.status === 'Confirmed' || request.status === 'In Progress') && providerDetails?.availableDocuments && providerDetails.availableDocuments.length > 0 && (
+            {request.fileAttachmentUrl && (
+                 <div className="p-3 border border-dashed rounded-md bg-blue-50 text-blue-700">
+                    <h5 className="font-semibold text-sm flex items-center mb-2"><Download className="h-4 w-4 mr-2"/>Your Attached Document</h5>
+                    <p className="text-xs truncate">{request.fileAttachmentUrl.split('/').pop()}</p>
+                 </div>
+            )}
+            {providerDocs && providerDocs.length > 0 && (
               <div className="p-3 border border-dashed rounded-md bg-blue-50 text-blue-700">
                 <h5 className="font-semibold text-sm flex items-center mb-2"><BookOpen className="h-4 w-4 mr-2"/>Technical Documents from Provider</h5>
                 <ul className="list-disc list-inside text-xs space-y-1">
-                    {providerDetails.availableDocuments.map(doc => <li key={doc}>{doc}</li>)}
+                    {providerDocs.map(doc => <li key={doc}>{doc}</li>)}
                 </ul>
                 <p className="text-xs mt-2 italic">(These documents are notionally shared. In a full system, download links or viewable documents would appear here.)</p>
               </div>
             )}
-             {request.providerId && providerDetails && providerDetails.isVerified && request.status !== 'Pending' && request.status !== 'Cancelled' && (
+             {providerDetails?.providerProfile?.isVerified && request.status !== 'Pending' && request.status !== 'Cancelled' && (
               <div className="p-3 border border-dashed rounded-md bg-green-50 text-green-700 mt-2">
                 <h5 className="font-semibold text-sm flex items-center mb-1"><FileArchive className="h-4 w-4 mr-2"/>Provider Documentation Note</h5>
                 <p className="text-xs">
@@ -219,7 +265,7 @@ export default function TrackRequestPage() {
       {canChat && showChat && providerDetails && (
         <ChatWindow
           currentUser={user}
-          otherPartyName={providerDetails.name}
+          otherPartyName={providerDetails.name || "Provider"}
           otherPartyRole="provider"
           requestId={request.id}
         />
@@ -227,4 +273,3 @@ export default function TrackRequestPage() {
     </div>
   );
 }
-

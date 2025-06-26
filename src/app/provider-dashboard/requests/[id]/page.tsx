@@ -1,10 +1,9 @@
-
 // src/app/provider-dashboard/requests/[id]/page.tsx
 "use client";
 
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter, useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -12,14 +11,17 @@ import { ArrowLeft, Phone, Activity, CheckCircle, Clock, AlertTriangle, Calendar
 import type { ServiceRequest, User } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { ChatWindow } from "@/components/shared/chat/ChatWindow";
+import { db } from "@/lib/firebase";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { useToast } from "@/hooks/use-toast";
 
+// Mock data remains for demo vendor fallback
 const mockProviderRequests: ServiceRequest[] = [
-  { id: 'req1_prov', clientId: 'clientA', providerId: 'thisProvider', serviceType: 'Ultrasonic Testing', location: 'Main Plant, Area 5', description: 'Inspect critical weld points on pressure vessel. Client needs report by EOW.', requestedDate: '2024-08-15', status: 'Confirmed' },
-  { id: 'req2_prov', clientId: 'clientB', providerId: 'thisProvider', serviceType: 'Visual Testing', location: 'Assembly Line 2', description: 'Urgent visual inspection of 50 units. High priority.', requestedDate: '2024-08-10', status: 'Pending' },
-  { id: 'req3_prov', clientId: 'clientC', providerId: 'thisProvider', serviceType: 'Magnetic Particle Testing', location: 'Warehouse Sector D', description: 'Surface crack detection for large components.', requestedDate: '2024-08-22', status: 'Pending' },
+  { id: 'req1_prov', clientId: 'clientA', providerId: 'thisProvider', clientName: 'Client Alpha Corp', clientEmail: 'alpha@example.com', serviceType: 'Ultrasonic Testing', location: 'Main Plant, Area 5', description: 'Inspect critical weld points on pressure vessel. Client needs report by EOW.', requestedDate: '2024-08-15', status: 'Confirmed' },
+  { id: 'req2_prov', clientId: 'clientB', providerId: 'thisProvider', clientName: 'Client Beta LLC', clientEmail: 'beta@example.com', serviceType: 'Visual Testing', location: 'Assembly Line 2', description: 'Urgent visual inspection of 50 units. High priority.', requestedDate: '2024-08-10', status: 'Pending' },
+  { id: 'req3_prov', clientId: 'clientC', providerId: 'thisProvider', clientName: 'Client Gamma Inc', clientEmail: 'gamma@example.com', serviceType: 'Magnetic Particle Testing', location: 'Warehouse Sector D', description: 'Surface crack detection for large components.', requestedDate: '2024-08-22', status: 'Pending' },
 ];
 
-// Mock client data for chat purposes
 const mockClientsDB: Partial<User>[] = [
   { id: 'clientA', name: 'Client Alpha Corp', email: 'alpha@example.com', role: 'client' },
   { id: 'clientB', name: 'Client Beta LLC', email: 'beta@example.com', role: 'client' },
@@ -48,36 +50,81 @@ export default function ProviderRequestDetailPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
   const params = useParams();
+  const { toast } = useToast();
   const requestId = params.id as string;
+
   const [request, setRequest] = useState<ServiceRequest | null>(null);
-  const [clientDetails, setClientDetails] = useState<Partial<User> | null>(null);
   const [fetchError, setFetchError] = useState<string | null>(null);
   const [showChat, setShowChat] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
+
+
+  const fetchRequestDetails = useCallback(async (reqId: string, isDemo: boolean) => {
+    if (isDemo) {
+        const foundRequest = mockProviderRequests.find(r => r.id === reqId);
+        if (foundRequest) {
+            setRequest(foundRequest);
+        } else {
+            setFetchError("Demo service request not found.");
+        }
+        return;
+    }
+
+    try {
+      const requestDocRef = doc(db, "serviceRequests", reqId);
+      const requestDoc = await getDoc(requestDocRef);
+
+      if (requestDoc.exists()) {
+        const data = requestDoc.data();
+        const requestedDate = data.requestedDate?.toDate ? data.requestedDate.toDate().toISOString() : data.requestedDate;
+        const requestData = { id: requestDoc.id, ...data, requestedDate } as ServiceRequest;
+
+        // In a real app, you'd verify `requestData.providerId === user.id` here
+        setRequest(requestData);
+
+      } else {
+        setFetchError("Service request not found.");
+      }
+    } catch (error) {
+      console.error("Error fetching request details:", error);
+      setFetchError("Failed to load request from database.");
+    }
+  }, []);
 
   useEffect(() => {
     if (!loading && !user) {
       router.push(`/login?redirect=/provider-dashboard/requests/${requestId}`);
     } else if (user && user.role !== 'provider') {
       router.push("/dashboard");
+    } else if (user && requestId) {
+      fetchRequestDetails(requestId, user.isDemo || false);
     }
-  }, [user, loading, router, requestId]);
+  }, [user, loading, router, requestId, fetchRequestDetails]);
 
-  useEffect(() => {
-    if (user && user.role === 'provider' && requestId) {
-      const foundRequest = mockProviderRequests.find(r => r.id === requestId && (r.providerId === user.id || true)); // `|| true` for demo vendor
-      if (foundRequest) {
-        setRequest(foundRequest);
-        if (foundRequest.clientId) {
-          const foundClient = mockClientsDB.find(c => c.id === foundRequest.clientId);
-          setClientDetails(foundClient || null);
-        }
-      } else {
-        setFetchError("Service request not found or not assigned to you.");
-      }
+  const handleUpdateStatus = async (newStatus: ServiceRequest['status']) => {
+    if (!request || (user && user.isDemo)) {
+        // Handle mock data update for demo user
+        setRequest(prev => prev ? { ...prev, status: newStatus } : null);
+        toast({ title: "Status Updated (Demo)", description: `Request status changed to ${newStatus}.`});
+        return;
     }
-  }, [user, requestId]);
 
-  if (loading || (!request && !fetchError && !user)) {
+    setIsUpdating(true);
+    try {
+      const requestDocRef = doc(db, "serviceRequests", request.id);
+      await updateDoc(requestDocRef, { status: newStatus });
+      setRequest(prev => prev ? { ...prev, status: newStatus } : null);
+      toast({ title: "Status Updated", description: `Request status successfully changed to ${newStatus}.`});
+    } catch (error) {
+        console.error("Error updating status:", error);
+        toast({ title: "Update Failed", description: "Could not update status in the database.", variant: "destructive" });
+    } finally {
+        setIsUpdating(false);
+    }
+  };
+
+
+  if (loading || (!request && !fetchError)) {
     return <div className="flex justify-center items-center min-h-[calc(100vh-10rem)]"><Activity className="h-8 w-8 animate-spin text-primary" /> <span className="ml-2">Loading request details...</span></div>;
   }
 
@@ -102,15 +149,17 @@ export default function ProviderRequestDetailPage() {
   const statuses: ServiceRequest['status'][] = ['Pending', 'Confirmed', 'In Progress', 'Completed'];
   const currentStatusIndex = statuses.indexOf(request.status);
   const isCancelled = request.status === 'Cancelled';
-  const canChat = (request.status === 'Confirmed' || request.status === 'In Progress') && clientDetails;
+  const canChat = (request.status === 'Confirmed' || request.status === 'In Progress') && request.clientId;
 
   const timelineDescriptions = {
-    'Pending': `Request submitted by Client ${clientDetails?.name || request.clientId}. Awaiting your confirmation.`,
-    'Confirmed': `You have confirmed this request. Client ${clientDetails?.name || request.clientId} has been notified.`,
-    'In Progress': `The NDT service is currently being performed for Client ${clientDetails?.name || request.clientId}.`,
-    'Completed': `The service for Client ${clientDetails?.name || request.clientId} has been completed.`,
+    'Pending': `Request submitted by Client ${request.clientName || request.clientId}. Awaiting your confirmation.`,
+    'Confirmed': `You have confirmed this request. Client ${request.clientName || request.clientId} has been notified.`,
+    'In Progress': `The NDT service is currently being performed for Client ${request.clientName || request.clientId}.`,
+    'Completed': `The service for Client ${request.clientName || request.clientId} has been completed.`,
     'Cancelled': 'This service request has been cancelled.',
   };
+  
+  const displayDate = request.requestedDate ? new Date(request.requestedDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : "Not specified";
 
   return (
     <div className="space-y-8">
@@ -130,11 +179,11 @@ export default function ProviderRequestDetailPage() {
         </CardHeader>
         <CardContent className="grid md:grid-cols-2 gap-x-8 gap-y-6">
           <div className="space-y-4">
-             {clientDetails && (
+             {request.clientId && (
                <div>
                 <h4 className="font-semibold text-sm text-muted-foreground flex items-center mb-1"><UserCircle className="h-4 w-4 mr-2"/>Client</h4>
-                <p className="font-medium">{clientDetails.name || request.clientId}</p>
-                {clientDetails.email && <p className="text-xs text-muted-foreground">{clientDetails.email}</p>}
+                <p className="font-medium">{request.clientName || `ID: ${request.clientId}`}</p>
+                {request.clientEmail && <p className="text-xs text-muted-foreground">{request.clientEmail}</p>}
               </div>
             )}
             <div>
@@ -143,7 +192,7 @@ export default function ProviderRequestDetailPage() {
             </div>
             <div>
               <h4 className="font-semibold text-sm text-muted-foreground flex items-center mb-1"><CalendarDays className="h-4 w-4 mr-2"/>Requested Date</h4>
-              <p>{new Date(request.requestedDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+              <p>{displayDate}</p>
             </div>
             <div>
               <h4 className="font-semibold text-sm text-muted-foreground flex items-center mb-1"><FileTextIcon className="h-4 w-4 mr-2"/>Description from Client</h4>
@@ -176,14 +225,25 @@ export default function ProviderRequestDetailPage() {
               <MessageSquare className="h-4 w-4 mr-2" /> {showChat ? "Hide Chat" : "Chat with Client"}
             </Button>
           )}
-           {/* Add other provider actions here, e.g., mark as in-progress, complete */}
+           {request.status === 'Pending' && (
+            <>
+                <Button onClick={() => handleUpdateStatus('Confirmed')} disabled={isUpdating}>{isUpdating ? "Confirming...": "Confirm Request"}</Button>
+                <Button variant="destructive" onClick={() => handleUpdateStatus('Cancelled')} disabled={isUpdating}>{isUpdating ? "Cancelling...": "Cancel Request"}</Button>
+            </>
+           )}
+           {request.status === 'Confirmed' && (
+                <Button onClick={() => handleUpdateStatus('In Progress')} disabled={isUpdating}>{isUpdating ? "Updating...": "Start Work"}</Button>
+           )}
+           {request.status === 'In Progress' && (
+                <Button onClick={() => handleUpdateStatus('Completed')} disabled={isUpdating}>{isUpdating ? "Updating...": "Mark as Completed"}</Button>
+           )}
         </CardFooter>
       </Card>
 
-      {canChat && showChat && clientDetails && (
+      {canChat && showChat && (
         <ChatWindow
           currentUser={user}
-          otherPartyName={clientDetails.name || "Client"}
+          otherPartyName={request.clientName || "Client"}
           otherPartyRole="client"
           requestId={request.id}
         />
@@ -191,5 +251,3 @@ export default function ProviderRequestDetailPage() {
     </div>
   );
 }
-
-    

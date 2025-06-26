@@ -1,4 +1,3 @@
-
 // src/app/request-service/page.tsx
 "use client";
 
@@ -17,6 +16,10 @@ import { CalendarIcon, Activity, Send, DollarSign, UserCheck, UploadCloud } from
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
+import { db } from "@/lib/firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import type { ServiceRequest } from "@/lib/types";
+
 
 const NDT_SERVICES = [
   "Ultrasonic Testing (UT)", "Magnetic Particle Testing (MT)", "Liquid Penetrant Testing (PT)",
@@ -66,7 +69,9 @@ function RequestServiceFormContent() {
     if (queryBaseRate) {
       const rate = parseFloat(queryBaseRate);
       if (!isNaN(rate)) {
-        setEstimatedCost(parseFloat((rate * 1.15).toFixed(2)));
+        // Retrieve commission from localStorage or use default
+        const commissionRate = parseFloat(localStorage.getItem('clientCommissionRate') || '15') / 100;
+        setEstimatedCost(parseFloat((rate * (1 + commissionRate)).toFixed(2)));
       }
     } else if (queryAiRecommendationId && !queryBaseRate) {
         // Placeholder for AI recs without explicit base rate
@@ -76,14 +81,8 @@ function RequestServiceFormContent() {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      // Basic file type validation (optional, browser does some with `accept`)
-      // const file = e.target.files[0];
-      // if (file.size > 5 * 1024 * 1024) { // Example: 5MB limit
-      //   toast({ title: "File too large", description: "Please select a file smaller than 5MB.", variant: "destructive" });
-      //   setSelectedFile(null);
-      //   e.target.value = ""; // Reset file input
-      //   return;
-      // }
+      // In a real app, you would upload this file to Firebase Storage here
+      // and get a download URL to save in Firestore.
       setSelectedFile(e.target.files[0]);
     } else {
       setSelectedFile(null);
@@ -92,35 +91,60 @@ function RequestServiceFormContent() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!user) {
+        toast({ title: "Not Logged In", description: "You must be logged in to make a request.", variant: "destructive" });
+        return;
+    }
     setIsLoading(true);
 
     if (!serviceType || !location || !description || !requestedDate) {
-      toast({ title: "Missing Information", description: "Please fill out all fields.", variant: "destructive" });
+      toast({ title: "Missing Information", description: "Please fill out all required fields.", variant: "destructive" });
       setIsLoading(false);
       return;
     }
 
-    // Simulate API call for service request
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    const newRequestId = `req-${Date.now()}`;
-
-    let fileDetailsMessage = "";
+    // In a real app, you'd upload the file first, get the URL, then create the document.
+    let fileAttachmentUrl = "";
     if (selectedFile) {
-      console.log("Selected file details:", {
-        name: selectedFile.name,
-        type: selectedFile.type,
-        size: selectedFile.size,
-      });
-      fileDetailsMessage = ` File attached: ${selectedFile.name}`;
+        // This is a placeholder for the upload logic
+        fileAttachmentUrl = `uploads/placeholder/${selectedFile.name}`;
+        console.log(`Conceptual file upload: ${selectedFile.name}`);
     }
 
-    toast({
-      title: "Service Request Submitted",
-      description: `Your request for ${serviceType} has been submitted. ${providerName ? `Provider ${providerName} will be notified.` : 'We will find a suitable provider.'}${fileDetailsMessage}`,
-    });
+    const newRequest: Omit<ServiceRequest, 'id'> = {
+        clientId: user.id,
+        clientName: user.name || user.email,
+        clientEmail: user.email,
+        providerId: providerId || undefined,
+        providerName: providerName || undefined,
+        serviceType,
+        location,
+        description,
+        requestedDate,
+        status: providerId ? 'Pending' : 'Pending', // Or 'Unassigned' if you have such a status
+        estimatedCost: estimatedCost || undefined,
+        fileAttachmentUrl: fileAttachmentUrl || undefined,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+    };
 
-    router.push(`/my-requests`);
-    setIsLoading(false);
+    try {
+        const docRef = await addDoc(collection(db, "serviceRequests"), newRequest);
+        console.log("Service request document written with ID: ", docRef.id);
+        toast({
+            title: "Service Request Submitted",
+            description: `Your request has been successfully submitted to the database.`,
+        });
+        router.push(`/track-request/${docRef.id}`);
+    } catch (error) {
+        console.error("Error adding document: ", error);
+        toast({
+            title: "Submission Failed",
+            description: "Could not save your service request to the database.",
+            variant: "destructive",
+        });
+        setIsLoading(false);
+    }
   };
 
   if (loading) {
@@ -217,7 +241,7 @@ function RequestServiceFormContent() {
             
             <div>
               <Label htmlFor="fileUpload" className="flex items-center">
-                <UploadCloud className="h-4 w-4 mr-2 text-muted-foreground"/> Attach Drawings/Documents (Optional)
+                <UploadCloud className="h-4 w-4 mr-2 text-muted-foreground"/> Attach Drawings/Documents (Conceptual)
               </Label>
               <Input
                 id="fileUpload"
@@ -226,7 +250,7 @@ function RequestServiceFormContent() {
                 accept={ACCEPTED_FILE_TYPES}
                 className="mt-1"
               />
-              <p className="text-xs text-muted-foreground mt-1">Accepted: PDF, Excel, JPG, PNG. Max 5MB (conceptual).</p>
+              <p className="text-xs text-muted-foreground mt-1">Accepted: PDF, Excel, JPG, PNG. Note: File is not actually uploaded in this demo.</p>
               {selectedFile && (
                 <div className="mt-2 text-sm text-muted-foreground bg-muted/50 p-2 rounded-md flex items-center justify-between">
                   <span>
@@ -237,7 +261,6 @@ function RequestServiceFormContent() {
                     size="sm" 
                     onClick={() => {
                       setSelectedFile(null);
-                      // Reset the file input visually
                       const fileInput = document.getElementById('fileUpload') as HTMLInputElement;
                       if (fileInput) fileInput.value = "";
                     }} 
@@ -256,7 +279,7 @@ function RequestServiceFormContent() {
                   <DollarSign className="h-5 w-5 mr-2"/> Estimated Cost
                 </Label>
                 <p className="text-lg font-bold text-primary">${estimatedCost.toFixed(2)}</p>
-                <p className="text-xs text-muted-foreground mt-1">(Final price may vary based on final scope)</p>
+                <p className="text-xs text-muted-foreground mt-1">(Includes conceptual service commission. Final price may vary.)</p>
               </div>
             )}
 
