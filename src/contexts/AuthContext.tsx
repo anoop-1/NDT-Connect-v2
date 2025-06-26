@@ -2,7 +2,7 @@
 // src/contexts/AuthContext.tsx
 "use client";
 
-import type { User, ClientProfileData, ProviderProfileData, ServiceOffering, PersonnelQualification, CompanyCertification } from '@/lib/types';
+import type { User, ClientProfileData, ProviderProfileData } from '@/lib/types';
 import type { Dispatch, ReactNode, SetStateAction } from 'react';
 import { createContext, useState, useEffect } from 'react';
 
@@ -58,25 +58,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (details.role === 'client' && details.profileData) {
       newUser.clientProfile = details.profileData as ClientProfileData;
     } else if (details.role === 'provider' && details.profileData) {
-      const providerProfile: ProviderProfileData = {
-        location: (details.profileData as ProviderProfileData).location || "",
-        servicesOffered: Array.isArray(details.profileData.servicesOffered) ? details.profileData.servicesOffered : [],
-        contactNumber: (details.profileData as ProviderProfileData).contactNumber || "",
-        pricingDetails: (details.profileData as ProviderProfileData).pricingDetails || "",
-        procedureInfo: (details.profileData as ProviderProfileData).procedureInfo || "",
-        acceptanceCriteriaInfo: (details.profileData as ProviderProfileData).acceptanceCriteriaInfo || "",
-        companyLogoUrl: (details.profileData as ProviderProfileData).companyLogoUrl || "",
-        baseRate: (details.profileData as ProviderProfileData).baseRate || 0,
-        certifications: Array.isArray((details.profileData as ProviderProfileData).certifications)
-          ? (details.profileData as ProviderProfileData).certifications
-          : [], // Ensure certifications is an array
-        personnelQualifications: Array.isArray(details.profileData.personnelQualifications) ? details.profileData.personnelQualifications : [],
-        isVerified: (details.profileData as ProviderProfileData).isVerified || false,
-        availableDocuments: Array.isArray((details.profileData as ProviderProfileData).availableDocuments)
-          ? (details.profileData as ProviderProfileData).availableDocuments
-          : [],
+      const providerProfileData = details.profileData as ProviderProfileData;
+      newUser.providerProfile = {
+        location: providerProfileData.location || "",
+        servicesOffered: providerProfileData.servicesOffered || [],
+        contactNumber: providerProfileData.contactNumber || "",
+        procedureInfoUrl: providerProfileData.procedureInfoUrl || "",
+        companyLogoUrl: providerProfileData.companyLogoUrl || "",
+        certifications: providerProfileData.certifications || [],
+        personnelQualifications: providerProfileData.personnelQualifications || [],
+        isVerified: providerProfileData.isVerified || false,
+        availableDocuments: providerProfileData.availableDocuments || [],
+        baseRate: providerProfileData.baseRate || 0,
+        serviceRadius: providerProfileData.serviceRadius || "",
       };
-      newUser.providerProfile = providerProfile;
     }
 
     setUser(newUser);

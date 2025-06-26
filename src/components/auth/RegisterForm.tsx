@@ -24,9 +24,9 @@ import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import type { ClientProfileData, ProviderProfileData, ServiceOffering, PersonnelQualification, CompanyCertification } from "@/lib/types";
-import { ImageIcon, DollarSign, FileText, Award, Users2, BookOpen, ListChecks, PlusCircle, Trash2, CalendarIcon, Link as LinkIcon } from "lucide-react";
+import { ImageIcon, DollarSign, FileText, Award, Users2, BookOpen, ListChecks, PlusCircle, Trash2, CalendarIcon, Link as LinkIcon, Activity, AlertCircle } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -35,123 +35,34 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
-// Removed Firestore import: import { db } from '@/lib/firebase';
-// Removed Firestore import: import { doc, getDoc } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
+import { doc, getDoc } from 'firebase/firestore';
 
-
-const PREDEFINED_NDT_SERVICES_TABLE = [
-  "Radiographic Testing", "Ultrasonic Testing", "Magnetic Particle Testing",
-  "Liquid Penetrant Testing", "Visual Testing", "Eddy Current Testing",
-  "Magnetic Flux Leakage", "Internal Rotary Inspection System",
-  "Surface Eddy Current Testing", "Pulsed Eddy Current Testing",
-  "Phased Array Ultrasonic Testing", "Long Range Ultrasonic Testing",
-  "Vacuum Box Testing"
-];
-
-// Restored hardcoded service units
-const SERVICE_UNITS_REGISTER = [
-  "per hour", "per day", "per month", "per meter", "per mm of thickness", "per inch of thickness", "per project"
-];
-
-
-const QUALIFICATION_BODIES_REGISTER = [
-  "ASNT (American Society for Nondestructive Testing)", "PCN (Personnel Certification in Non-Destructive Testing)",
-  "ISO 9712", "CSWIP (Certification Scheme for Welding Inspection Personnel)",
-  "CGSB (Canadian General Standards Board)", "AWS (American Welding Society)", "CWI (Certified Welding Inspector)",
-  "ISNT (Indian Society for Non-Destructive Testing)", "AINDT (Australian Institute for NDT)", "BINDT (British Institute of Non-Destructive Testing)", "Other"
-];
-
-const QUALIFICATION_LEVELS_REGISTER = ["Level I", "Level II", "Level III", "Technician", "Inspector", "Engineer", "Assistant", "Senior", "Other"];
-
-const COMPANY_CERTIFICATIONS_REGISTER = [
-  "ISO 9001", "ISO 14001", "ISO 17020", "ISO 17024", "ISO 17025", "ISO 45001",
-  "ABS (American Bureau of Shipping)", "DNV (Det Norske Veritas)", "LR (Lloyd's Register)",
-  "BV (Bureau Veritas)", "NKK (Nippon Kaiji Kyokai)", "IRS (Indian Register of Shipping)",
-  "RINA (Registro Italiano Navale)", "CCS (China Classification Society)", "KR (Korean Register of Shipping)", "Other"
-];
 
 const generateUniqueId = () => Date.now().toString(36) + Math.random().toString(36).substring(2);
 
 const defaultServiceOfferingRow = (isCustom: boolean = false): ServiceOffering => ({
   id: generateUniqueId(),
-  name: isCustom ? "" : PREDEFINED_NDT_SERVICES_TABLE[0],
+  name: isCustom ? "" : "",
   rate: '',
-  unit: SERVICE_UNITS_REGISTER[0], // Default to first item in hardcoded list
+  unit: "",
   isCustom: isCustom,
 });
 
 const defaultPersonnelQualificationRow = (): PersonnelQualification => ({
   id: generateUniqueId(),
   quantity: 1,
-  certificationBody: QUALIFICATION_BODIES_REGISTER[0],
-  level: QUALIFICATION_LEVELS_REGISTER[0],
+  certificationBody: "",
+  level: "",
   expiryDate: undefined,
 });
 
 const defaultCompanyCertificationRow = (): CompanyCertification => ({
   id: generateUniqueId(),
-  name: COMPANY_CERTIFICATIONS_REGISTER[0],
+  name: "",
   category: "",
   expiryDate: undefined,
 });
-
-
-const CLIENT_AGREEMENT_TEXT = `
-Terms of Service for Clients
-
-Welcome to NDT Connect!
-
-NDT Connect ("Platform", "we", "us", "our") provides a platform to connect clients seeking Non-Destructive Testing (NDT) services with NDT service providers ("Service Providers"). By registering an account as a Client on NDT Connect, you ("Client", "you", "your") agree to these Terms of Service.
-
-1. Role of NDT Connect:
-NDT Connect acts SOLELY AS A FACILITATOR to help Clients find and connect with Service Providers. We are not a party to any agreement, contract, or transaction between you and any Service Provider.
-
-2. Client Responsibilities:
-   a. Due Diligence: You are solely responsible for conducting your own due diligence and for selecting an appropriate Service Provider. This includes verifying the Service Provider's qualifications, certifications, insurance, experience, and suitability for your specific NDT requirements.
-   b. Service Agreement: Any work engagement or service agreement is strictly between you and the Service Provider. You are responsible for negotiating the terms of service, including scope, deliverables, timelines, and payment, directly with the Service Provider.
-   c. Requirements Definition: You are responsible for clearly defining your NDT service requirements, including any specific procedures, acceptance criteria, and applicable industry standards or client-specific requirements that the Service Provider must adhere to.
-   d. Fulfillment and Disputes: NDT Connect is not responsible for the quality, legality, or outcome of services provided by Service Providers. Any disputes, issues, or claims related to the services must be resolved directly between you and the Service Provider.
-
-3. No Endorsement or Guarantee:
-NDT Connect does not endorse, recommend, or guarantee any Service Provider or their services. Information about Service Providers on the Platform is provided by the Service Providers themselves or gathered from publicly available sources and is for informational purposes only.
-
-4. Limitation of Liability:
-To the fullest extent permitted by law, NDT Connect shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or inability to access or use the Platform; (ii) any conduct or content of any Service Provider or third party on the Platform; or (iii) any services provided by a Service Provider.
-
-5. Acceptance of Terms:
-By checking the "I agree" box and completing the registration process, you affirm that you have read, understood, and agree to be bound by these Terms of Service.
-`;
-
-const PROVIDER_AGREEMENT_TEXT = `
-Terms of Service for Service Providers
-
-Welcome to NDT Connect!
-
-NDT Connect ("Platform", "we", "us", "our") provides a platform to connect NDT service providers ("Service Provider", "you", "your") with clients seeking Non-Destructive Testing (NDT) services ("Clients"). By registering an account as a Service Provider on NDT Connect, you agree to these Terms of Service.
-
-1. Account and Profile Information:
-   a. Accuracy: You are responsible for providing accurate, current, and complete information in your profile, including but not limited to your business details, location, services offered, qualifications, certifications, available technical documents, contact information, pricing indications, procedure outlines, and acceptance criteria information.
-   b. Updates: You agree to maintain and promptly update your profile information to keep it accurate, current, and complete.
-
-2. Service Provision and Responsibilities:
-   a. Fulfillment of Requirements: You commit to fulfilling all agreed-upon client requirements to the best of your ability. This includes strict adherence to any client-specific procedures, acceptance criteria, and qualification standards communicated by the Client.
-   b. Professional Standards: You will conduct all NDT services in a professional manner and in accordance with recognized industry standards (e.g., SNT-TC-1A for personnel qualification, relevant ASME, API, ISO, or other applicable codes and standards for testing procedures and acceptance criteria), or any other client-specified requirements which may be more stringent.
-   c. Qualification: You warrant that you and your personnel possess the necessary qualifications, certifications (e.g., SNT-TC-1A, ISO 9712, or equivalent), and experience to perform the NDT services you offer and undertake.
-   d. Document Availability: You agree to make available, upon reasonable request from a client with whom you are engaged or discussing an engagement, copies of relevant technical documents as listed in your profile, such as procedures, certifications, and qualification records. The mechanism and timing of sharing will be agreed upon directly with the client.
-   e. Direct Agreements: Any service agreement or contract is strictly between you and the Client. NDT Connect is not a party to such agreements. You are responsible for negotiating terms, scope, deliverables, and payment directly with the Client.
-
-3. Role of NDT Connect:
-NDT Connect acts SOLELY AS A FACILITATOR platform. We do not guarantee work, projects, or income. We are not responsible for Client actions, payment failures, or disputes.
-
-4. Service Fees:
-NDT Connect may charge a service fee for utilizing the Platform or for successful engagements facilitated through the Platform. Any applicable commission or conceptual fee and payment terms will be communicated to you separately or as part of specific feature usage.
-
-5. Limitation of Liability:
-To the fullest extent permitted by law, NDT Connect shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising from your use of the Platform, interactions with Clients, or the provision of your services.
-
-6. Acceptance of Terms:
-By checking the "I agree" box and completing the registration process, you affirm that you have read, understood, and agree to be bound by these Terms of Service.
-`;
 
 
 const baseSchema = z.object({
@@ -226,8 +137,7 @@ const formSchema = z.union([clientSchema, providerSchema])
         return 'locationProvider' in data && data.locationProvider &&
                'servicesOffered' in data && data.servicesOffered.length > 0 &&
                'contactNumberProvider' in data && data.contactNumberProvider &&
-               'personnelQualifications' in data && data.personnelQualifications && data.personnelQualifications.length > 0 &&
-               'procedureInfoUrl' in data;
+               'personnelQualifications' in data && data.personnelQualifications && data.personnelQualifications.length > 0;
     }
     return true;
   }, {
@@ -238,15 +148,77 @@ const formSchema = z.union([clientSchema, providerSchema])
 
 type FormSchemaType = z.infer<typeof formSchema>;
 
+const CLIENT_AGREEMENT_TEXT = `
+Terms of Service for Clients
+
+Welcome to NDT Connect!
+
+NDT Connect ("Platform", "we", "us", "our") provides a platform to connect clients seeking Non-Destructive Testing (NDT) services with NDT service providers ("Service Providers"). By registering an account as a Client on NDT Connect, you ("Client", "you", "your") agree to these Terms of Service.
+
+1. Role of NDT Connect:
+NDT Connect acts SOLELY AS A FACILITATOR to help Clients find and connect with Service Providers. We are not a party to any agreement, contract, or transaction between you and any Service Provider.
+
+2. Client Responsibilities:
+   a. Due Diligence: You are solely responsible for conducting your own due diligence and for selecting an appropriate Service Provider. This includes verifying the Service Provider's qualifications, certifications, insurance, experience, and suitability for your specific NDT requirements.
+   b. Service Agreement: Any work engagement or service agreement is strictly between you and the Service Provider. You are responsible for negotiating the terms of service, including scope, deliverables, timelines, and payment, directly with the Service Provider.
+   c. Requirements Definition: You are responsible for clearly defining your NDT service requirements, including any specific procedures, acceptance criteria, and applicable industry standards or client-specific requirements that the Service Provider must adhere to.
+   d. Fulfillment and Disputes: NDT Connect is not responsible for the quality, legality, or outcome of services provided by Service Providers. Any disputes, issues, or claims related to the services must be resolved directly between you and the Service Provider.
+
+3. No Endorsement or Guarantee:
+NDT Connect does not endorse, recommend, or guarantee any Service Provider or their services. Information about Service Providers on the Platform is provided by the Service Providers themselves or gathered from publicly available sources and is for informational purposes only.
+
+4. Limitation of Liability:
+To the fullest extent permitted by law, NDT Connect shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or inability to access or use the Platform; (ii) any conduct or content of any Service Provider or third party on the Platform; or (iii) any services provided by a Service Provider.
+
+5. Acceptance of Terms:
+By checking the "I agree" box and completing the registration process, you affirm that you have read, understood, and agree to be bound by these Terms of Service.
+`;
+
+const PROVIDER_AGREEMENT_TEXT = `
+Terms of Service for Service Providers
+
+Welcome to NDT Connect!
+
+NDT Connect ("Platform", "we", "us", "our") provides a platform to connect NDT service providers ("Service Provider", "you", "your") with clients seeking Non-Destructive Testing (NDT) services ("Clients"). By registering an account as a Service Provider on NDT Connect, you agree to these Terms of Service.
+
+1. Account and Profile Information:
+   a. Accuracy: You are responsible for providing accurate, current, and complete information in your profile, including but not limited to your business details, location, services offered, qualifications, certifications, available technical documents, contact information, pricing indications, procedure outlines, and acceptance criteria information.
+   b. Updates: You agree to maintain and promptly update your profile information to keep it accurate, current, and complete.
+
+2. Service Provision and Responsibilities:
+   a. Fulfillment of Requirements: You commit to fulfilling all agreed-upon client requirements to the best of your ability. This includes strict adherence to any client-specific procedures, acceptance criteria, and qualification standards communicated by the Client.
+   b. Professional Standards: You will conduct all NDT services in a professional manner and in accordance with recognized industry standards (e.g., SNT-TC-1A for personnel qualification, relevant ASME, API, ISO, or other applicable codes and standards for testing procedures and acceptance criteria), or any other client-specified requirements which may be more stringent.
+   c. Qualification: You warrant that you and your personnel possess the necessary qualifications, certifications (e.g., SNT-TC-1A, ISO 9712, or equivalent), and experience to perform the NDT services you offer and undertake.
+   d. Document Availability: You agree to make available, upon reasonable request from a client with whom you are engaged or discussing an engagement, copies of relevant technical documents as listed in your profile, such as procedures, certifications, and qualification records. The mechanism and timing of sharing will be agreed upon directly with the client.
+   e. Direct Agreements: Any service agreement or contract is strictly between you and the Client. NDT Connect is not a party to such agreements. You are responsible for negotiating terms, scope, deliverables, and payment directly with the Client.
+
+3. Role of NDT Connect:
+NDT Connect acts SOLELY AS A FACILITATOR platform. We do not guarantee work, projects, or income. We are not responsible for Client actions, payment failures, or disputes.
+
+4. Service Fees:
+NDT Connect may charge a service fee for utilizing the Platform or for successful engagements facilitated through the Platform. Any applicable commission or conceptual fee and payment terms will be communicated to you separately or as part of specific feature usage.
+
+5. Limitation of Liability:
+To the fullest extent permitted by law, NDT Connect shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising from your use of the Platform, interactions with Clients, or the provision of your services.
+
+6. Acceptance of Terms:
+By checking the "I agree" box and completing the registration process, you affirm that you have read, understood, and agree to be bound by these Terms of Service.
+`;
+
 export function RegisterForm() {
   const { login } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
-  // Removed Firestore-related state for units
-  // const [serviceUnits, setServiceUnits] = useState<string[]>([]);
-  // const [isLoadingUnits, setIsLoadingUnits] = useState(true);
-  // const [unitFetchError, setUnitFetchError] = useState<string | null>(null);
+  const [isLoadingLists, setIsLoadingLists] = useState(false);
+  const [listsError, setListsError] = useState<string | null>(null);
+
+  // State for predefined lists fetched from Firestore
+  const [providerNdtServices, setProviderNdtServices] = useState<string[]>([]);
+  const [serviceUnits, setServiceUnits] = useState<string[]>([]);
+  const [qualificationBodies, setQualificationBodies] = useState<string[]>([]);
+  const [qualificationLevels, setQualificationLevels] = useState<string[]>([]);
+  const [companyCertifications, setCompanyCertifications] = useState<string[]>([]);
 
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
@@ -290,39 +262,47 @@ export function RegisterForm() {
     name: "certifications" as any,
   });
 
-  // Removed useEffect for fetching units from Firestore
-  // useEffect(() => {
-  //   const fetchServiceUnits = async () => {
-  //     setIsLoadingUnits(true);
-  //     setUnitFetchError(null);
-  //     try {
-  //       const serviceUnitsDocRef = doc(db, "predefinedunits", "Units", "Units-Quotation", "Units-Quotation");
-  //       const docSnap = await getDoc(serviceUnitsDocRef);
+  const fetchPredefinedLists = useCallback(async () => {
+    setIsLoadingLists(true);
+    setListsError(null);
+    try {
+      const listIds = [
+        "providerNdtServices", "serviceUnits", "personnelQualificationBodies", 
+        "personnelQualificationLevels", "companyCertifications"
+      ];
+      const listPromises = listIds.map(id => getDoc(doc(db, "predefinedLists", id)));
+      const listSnapshots = await Promise.all(listPromises);
 
-  //       if (docSnap.exists() && docSnap.data()?.options && Array.isArray(docSnap.data()?.options)) {
-  //         setServiceUnits(docSnap.data()?.options as string[]);
-  //       } else {
-  //         console.warn("Service units document 'predefinedunits/Units/Units-Quotation/Units-Quotation' not found or 'options' field missing/invalid in Firestore.");
-  //         setUnitFetchError("Units list unavailable. Check DB structure.");
-  //         setServiceUnits([]);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching service units from Firestore:", error);
-  //       setUnitFetchError("Failed to load units. Check connection/rules.");
-  //       setServiceUnits([]);
-  //     }
-  //     setIsLoadingUnits(false);
-  //   };
+      const setters: Record<string, React.Dispatch<React.SetStateAction<string[]>>> = {
+        providerNdtServices: setProviderNdtServices,
+        serviceUnits: setServiceUnits,
+        personnelQualificationBodies: setQualificationBodies,
+        personnelQualificationLevels: setQualificationLevels,
+        companyCertifications: setCompanyCertifications,
+      };
 
-  //   if (currentRole === 'provider') {
-  //     fetchServiceUnits();
-  //   } else {
-  //     setServiceUnits([]);
-  //     setIsLoadingUnits(false);
-  //     setUnitFetchError(null);
-  //   }
-  // }, [currentRole]);
+      listSnapshots.forEach((snapshot, index) => {
+        const id = listIds[index];
+        if (snapshot.exists() && Array.isArray(snapshot.data().items)) {
+          setters[id](snapshot.data().items);
+        } else {
+          console.warn(`Document '${id}' not found or invalid in 'predefinedLists'.`);
+        }
+      });
 
+    } catch (error) {
+      console.error("Error fetching predefined lists:", error);
+      setListsError("Failed to load required lists from database. Please try again later.");
+    } finally {
+      setIsLoadingLists(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (currentRole === 'provider') {
+      fetchPredefinedLists();
+    }
+  }, [currentRole, fetchPredefinedLists]);
 
   const previousRole = React.useRef(currentRole);
   React.useEffect(() => {
@@ -570,373 +550,376 @@ export function RegisterForm() {
 
         {currentRole === "provider" && (
           <>
-            <FormField
-              control={form.control}
-              name="locationProvider"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Your Business Location</FormLabel>
-                  <FormControl>
-                    <Input placeholder="City, State" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="companyLogoUrl"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="flex items-center"><ImageIcon className="h-4 w-4 mr-2 text-muted-foreground"/>Company Logo URL (Optional)</FormLabel>
-                  <FormControl>
-                    <Input type="url" placeholder="https://example.com/logo.png" {...field} />
-                  </FormControl>
-                  <FormDescription>Direct link to an image of your company logo.</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            {isLoadingLists && (
+                <div className="flex items-center justify-center p-4 text-muted-foreground"><Activity className="mr-2 h-4 w-4 animate-spin"/>Loading registration options...</div>
+            )}
+            {listsError && (
+                <div className="flex items-center justify-center p-4 text-destructive bg-destructive/10 rounded-md"><AlertCircle className="mr-2 h-4 w-4"/>{listsError}</div>
+            )}
+            {!isLoadingLists && !listsError && (
+              <>
+                <FormField
+                  control={form.control}
+                  name="locationProvider"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Your Business Location</FormLabel>
+                      <FormControl>
+                        <Input placeholder="City, State" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="companyLogoUrl"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="flex items-center"><ImageIcon className="h-4 w-4 mr-2 text-muted-foreground"/>Company Logo URL (Optional)</FormLabel>
+                      <FormControl>
+                        <Input type="url" placeholder="https://example.com/logo.png" {...field} />
+                      </FormControl>
+                      <FormDescription>Direct link to an image of your company logo.</FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center text-lg font-semibold"><ListChecks className="h-5 w-5 mr-2 text-primary"/>Services Offered & Pricing</CardTitle>
-                <FormDescription>Define each NDT service you provide. Add at least one.</FormDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {serviceFields.map((item, index) => (
-                  <Card key={item.id} className="p-3 shadow-sm bg-muted/20">
-                    <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_auto] gap-3 items-end">
-                       <FormField
-                        control={form.control}
-                        name={`servicesOffered.${index}.name` as const}
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Service Name</FormLabel>
-                            {(item as ServiceOffering).isCustom ? (
-                              <FormControl>
-                                <Input placeholder="Enter custom service name" {...field} />
-                              </FormControl>
-                            ) : (
-                              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                <FormControl>
-                                  <SelectTrigger><SelectValue placeholder="Select Service" /></SelectTrigger>
-                                </FormControl>
-                                <SelectContent>
-                                  {PREDEFINED_NDT_SERVICES_TABLE.map(service => (
-                                    <SelectItem key={service} value={service}>{service}</SelectItem>
-                                  ))}
-                                </SelectContent>
-                              </Select>
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center text-lg font-semibold"><ListChecks className="h-5 w-5 mr-2 text-primary"/>Services Offered & Pricing</CardTitle>
+                    <FormDescription>Define each NDT service you provide. Add at least one.</FormDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    {serviceFields.map((item, index) => (
+                      <Card key={item.id} className="p-3 shadow-sm bg-muted/20">
+                        <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_auto] gap-3 items-end">
+                          <FormField
+                            control={form.control}
+                            name={`servicesOffered.${index}.name` as const}
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Service Name</FormLabel>
+                                {(item as ServiceOffering).isCustom ? (
+                                  <FormControl>
+                                    <Input placeholder="Enter custom service name" {...field} />
+                                  </FormControl>
+                                ) : (
+                                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                    <FormControl>
+                                      <SelectTrigger><SelectValue placeholder="Select Service" /></SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent>
+                                      {providerNdtServices.map(service => (
+                                        <SelectItem key={service} value={service}>{service}</SelectItem>
+                                      ))}
+                                    </SelectContent>
+                                  </Select>
+                                )}
+                                <FormMessage />
+                              </FormItem>
                             )}
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name={`servicesOffered.${index}.unit` as const}
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Unit</FormLabel>
-                             {(item as ServiceOffering).isCustom ? (
-                              <FormControl>
-                                <Input placeholder="Enter custom unit" {...field} />
-                              </FormControl>
-                            ) : (
-                              <Select onValueChange={field.onChange} value={field.value} defaultValue={field.value} >
-                                <FormControl>
-                                  <SelectTrigger><SelectValue placeholder="Select Unit" /></SelectTrigger>
-                                </FormControl>
-                                <SelectContent>
-                                  {/* Use hardcoded SERVICE_UNITS_REGISTER directly */}
-                                  {SERVICE_UNITS_REGISTER.map((unit) => (
-                                    <SelectItem key={unit} value={unit}>{unit}</SelectItem>
-                                  ))}
-                                </SelectContent>
-                              </Select>
+                          />
+                          <FormField
+                            control={form.control}
+                            name={`servicesOffered.${index}.unit` as const}
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Unit</FormLabel>
+                                <Select onValueChange={field.onChange} value={field.value} defaultValue={field.value} >
+                                  <FormControl>
+                                    <SelectTrigger><SelectValue placeholder="Select Unit" /></SelectTrigger>
+                                  </FormControl>
+                                  <SelectContent>
+                                    {serviceUnits.map((unit) => (
+                                      <SelectItem key={unit} value={unit}>{unit}</SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                                <FormMessage />
+                              </FormItem>
                             )}
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                       <FormField
-                        control={form.control}
-                        name={`servicesOffered.${index}.rate` as const}
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Rate</FormLabel>
-                            <FormControl>
-                              <Input type="text" placeholder="e.g., 100" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                        {serviceFields.length > 1 && (
-                          <Button type="button" variant="ghost" size="icon" onClick={() => removeService(index)} className="text-destructive hover:bg-destructive/10 self-end mb-1">
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
-                        )}
+                          />
+                          <FormField
+                            control={form.control}
+                            name={`servicesOffered.${index}.rate` as const}
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Rate</FormLabel>
+                                <FormControl>
+                                  <Input type="text" placeholder="e.g., 100" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                            {serviceFields.length > 1 && (
+                              <Button type="button" variant="ghost" size="icon" onClick={() => removeService(index)} className="text-destructive hover:bg-destructive/10 self-end mb-1">
+                                <Trash2 className="h-4 w-4" />
+                              </Button>
+                            )}
+                        </div>
+                      </Card>
+                    ))}
+                    <div className="flex flex-col sm:flex-row gap-2">
+                      <Button type="button" variant="outline" onClick={() => appendService(defaultServiceOfferingRow(false))} className="w-full sm:w-auto">
+                        <PlusCircle className="h-4 w-4 mr-2"/> Add Predefined Service
+                      </Button>
+                      <Button type="button" variant="outline" onClick={() => appendService(defaultServiceOfferingRow(true))} className="w-full sm:w-auto">
+                        <PlusCircle className="h-4 w-4 mr-2"/> Add Custom Service
+                      </Button>
                     </div>
-                  </Card>
-                ))}
-                <div className="flex flex-col sm:flex-row gap-2">
-                  <Button type="button" variant="outline" onClick={() => appendService(defaultServiceOfferingRow(false))} className="w-full sm:w-auto">
-                    <PlusCircle className="h-4 w-4 mr-2"/> Add Predefined Service
-                  </Button>
-                  <Button type="button" variant="outline" onClick={() => appendService(defaultServiceOfferingRow(true))} className="w-full sm:w-auto">
-                    <PlusCircle className="h-4 w-4 mr-2"/> Add Custom Service
-                  </Button>
-                </div>
-                <FormMessage>{form.formState.errors.servicesOffered?.root?.message || form.formState.errors.servicesOffered?.message}</FormMessage>
-              </CardContent>
-            </Card>
+                    <FormMessage>{form.formState.errors.servicesOffered?.root?.message || form.formState.errors.servicesOffered?.message}</FormMessage>
+                  </CardContent>
+                </Card>
 
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center text-lg font-semibold"><Users2 className="h-5 w-5 mr-2 text-primary"/>Personnel Qualifications</CardTitle>
-                <FormDescription>List your technical personnel's qualifications. Add at least one.</FormDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead className="w-[80px]">Qty</TableHead>
-                      <TableHead className="w-[200px]">Cert. Body</TableHead>
-                      <TableHead className="w-[150px]">Level</TableHead>
-                      <TableHead>Expiry Date</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {personnelFields.map((item, index) => (
-                      <TableRow key={item.id}>
-                        <TableCell>
-                          <FormField
-                            control={form.control}
-                            name={`personnelQualifications.${index}.quantity`}
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormControl>
-                                  <Input type="number" placeholder="1" {...field} onChange={e => field.onChange(parseInt(e.target.value,10) || 0)} min="1" />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                        </TableCell>
-                        <TableCell>
-                          <FormField
-                            control={form.control}
-                            name={`personnelQualifications.${index}.certificationBody`}
-                            render={({ field }) => (
-                              <FormItem>
-                                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                  <FormControl>
-                                    <SelectTrigger><SelectValue placeholder="Select Body" /></SelectTrigger>
-                                  </FormControl>
-                                  <SelectContent>
-                                    {QUALIFICATION_BODIES_REGISTER.map(body => <SelectItem key={body} value={body}>{body}</SelectItem>)}
-                                  </SelectContent>
-                                </Select>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                        </TableCell>
-                        <TableCell>
-                          <FormField
-                            control={form.control}
-                            name={`personnelQualifications.${index}.level`}
-                            render={({ field }) => (
-                              <FormItem>
-                                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                  <FormControl>
-                                    <SelectTrigger><SelectValue placeholder="Select Level" /></SelectTrigger>
-                                  </FormControl>
-                                  <SelectContent>
-                                    {QUALIFICATION_LEVELS_REGISTER.map(level => <SelectItem key={level} value={level}>{level}</SelectItem>)}
-                                  </SelectContent>
-                                </Select>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                        </TableCell>
-                        <TableCell>
-                          <FormField
-                            control={form.control}
-                            name={`personnelQualifications.${index}.expiryDate`}
-                            render={({ field }) => (
-                              <FormItem className="flex flex-col">
-                                <Popover>
-                                  <PopoverTrigger asChild>
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center text-lg font-semibold"><Users2 className="h-5 w-5 mr-2 text-primary"/>Personnel Qualifications</CardTitle>
+                    <FormDescription>List your technical personnel's qualifications. Add at least one.</FormDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead className="w-[80px]">Qty</TableHead>
+                          <TableHead className="w-[200px]">Cert. Body</TableHead>
+                          <TableHead className="w-[150px]">Level</TableHead>
+                          <TableHead>Expiry Date</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {personnelFields.map((item, index) => (
+                          <TableRow key={item.id}>
+                            <TableCell>
+                              <FormField
+                                control={form.control}
+                                name={`personnelQualifications.${index}.quantity`}
+                                render={({ field }) => (
+                                  <FormItem>
                                     <FormControl>
-                                      <Button
-                                        variant={"outline"}
-                                        className={cn(
-                                          "w-full pl-3 text-left font-normal",
-                                          !field.value && "text-muted-foreground"
-                                        )}
-                                      >
-                                        {field.value ? (
-                                          format(field.value, "PPP")
-                                        ) : (
-                                          <span>Pick a date</span>
-                                        )}
-                                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                                      </Button>
+                                      <Input type="number" placeholder="1" {...field} onChange={e => field.onChange(parseInt(e.target.value,10) || 0)} min="1" />
                                     </FormControl>
-                                  </PopoverTrigger>
-                                  <PopoverContent className="w-auto p-0" align="start">
-                                    <Calendar
-                                      mode="single"
-                                      selected={field.value}
-                                      onSelect={field.onChange}
-                                      disabled={(date) => date < new Date("1900-01-01")}
-                                      initialFocus
-                                    />
-                                  </PopoverContent>
-                                </Popover>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-                <Button type="button" variant="outline" onClick={() => appendPersonnel(defaultPersonnelQualificationRow())} className="w-full">
-                  <PlusCircle className="h-4 w-4 mr-2"/> Add Personnel Qualification
-                </Button>
-                 <FormMessage>{form.formState.errors.personnelQualifications?.root?.message || form.formState.errors.personnelQualifications?.message}</FormMessage>
-              </CardContent>
-            </Card>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                            </TableCell>
+                            <TableCell>
+                              <FormField
+                                control={form.control}
+                                name={`personnelQualifications.${index}.certificationBody`}
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                      <FormControl>
+                                        <SelectTrigger><SelectValue placeholder="Select Body" /></SelectTrigger>
+                                      </FormControl>
+                                      <SelectContent>
+                                        {qualificationBodies.map(body => <SelectItem key={body} value={body}>{body}</SelectItem>)}
+                                      </SelectContent>
+                                    </Select>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                            </TableCell>
+                            <TableCell>
+                              <FormField
+                                control={form.control}
+                                name={`personnelQualifications.${index}.level`}
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                      <FormControl>
+                                        <SelectTrigger><SelectValue placeholder="Select Level" /></SelectTrigger>
+                                      </FormControl>
+                                      <SelectContent>
+                                        {qualificationLevels.map(level => <SelectItem key={level} value={level}>{level}</SelectItem>)}
+                                      </SelectContent>
+                                    </Select>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                            </TableCell>
+                            <TableCell>
+                              <FormField
+                                control={form.control}
+                                name={`personnelQualifications.${index}.expiryDate`}
+                                render={({ field }) => (
+                                  <FormItem className="flex flex-col">
+                                    <Popover>
+                                      <PopoverTrigger asChild>
+                                        <FormControl>
+                                          <Button
+                                            variant={"outline"}
+                                            className={cn(
+                                              "w-full pl-3 text-left font-normal",
+                                              !field.value && "text-muted-foreground"
+                                            )}
+                                          >
+                                            {field.value ? (
+                                              format(field.value, "PPP")
+                                            ) : (
+                                              <span>Pick a date</span>
+                                            )}
+                                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                          </Button>
+                                        </FormControl>
+                                      </PopoverTrigger>
+                                      <PopoverContent className="w-auto p-0" align="start">
+                                        <Calendar
+                                          mode="single"
+                                          selected={field.value}
+                                          onSelect={field.onChange}
+                                          disabled={(date) => date < new Date("1900-01-01")}
+                                          initialFocus
+                                        />
+                                      </PopoverContent>
+                                    </Popover>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                    <Button type="button" variant="outline" onClick={() => appendPersonnel(defaultPersonnelQualificationRow())} className="w-full">
+                      <PlusCircle className="h-4 w-4 mr-2"/> Add Personnel Qualification
+                    </Button>
+                    <FormMessage>{form.formState.errors.personnelQualifications?.root?.message || form.formState.errors.personnelQualifications?.message}</FormMessage>
+                  </CardContent>
+                </Card>
 
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center text-lg font-semibold"><Award className="h-5 w-5 mr-2 text-primary"/>Company Certifications & Accreditations</CardTitle>
-                <FormDescription>List your company's certifications (Optional).</FormDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Certification Name</TableHead>
-                      <TableHead>Category/Details</TableHead>
-                      <TableHead>Expiry Date</TableHead>
-                      <TableHead className="text-right w-[50px]">Action</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {certificationFields.map((item, index) => (
-                      <TableRow key={item.id}>
-                        <TableCell>
-                          <FormField
-                            control={form.control}
-                            name={`certifications.${index}.name`}
-                            render={({ field }) => (
-                              <FormItem>
-                                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                  <FormControl>
-                                    <SelectTrigger><SelectValue placeholder="Select Certification" /></SelectTrigger>
-                                  </FormControl>
-                                  <SelectContent>
-                                    {COMPANY_CERTIFICATIONS_REGISTER.map(certName => <SelectItem key={certName} value={certName}>{certName}</SelectItem>)}
-                                  </SelectContent>
-                                </Select>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                        </TableCell>
-                        <TableCell>
-                          <FormField
-                            control={form.control}
-                            name={`certifications.${index}.category`}
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormControl>
-                                  <Input placeholder="e.g., Standard No., Scope" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                        </TableCell>
-                        <TableCell>
-                          <FormField
-                            control={form.control}
-                            name={`certifications.${index}.expiryDate`}
-                            render={({ field }) => (
-                              <FormItem className="flex flex-col">
-                                <Popover>
-                                  <PopoverTrigger asChild>
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center text-lg font-semibold"><Award className="h-5 w-5 mr-2 text-primary"/>Company Certifications & Accreditations</CardTitle>
+                    <FormDescription>List your company's certifications (Optional).</FormDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Certification Name</TableHead>
+                          <TableHead>Category/Details</TableHead>
+                          <TableHead>Expiry Date</TableHead>
+                          <TableHead className="text-right w-[50px]">Action</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {certificationFields.map((item, index) => (
+                          <TableRow key={item.id}>
+                            <TableCell>
+                              <FormField
+                                control={form.control}
+                                name={`certifications.${index}.name`}
+                                render={({ field }) => (
+                                  <FormItem>
+                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                      <FormControl>
+                                        <SelectTrigger><SelectValue placeholder="Select Certification" /></SelectTrigger>
+                                      </FormControl>
+                                      <SelectContent>
+                                        {companyCertifications.map(certName => <SelectItem key={certName} value={certName}>{certName}</SelectItem>)}
+                                      </SelectContent>
+                                    </Select>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                            </TableCell>
+                            <TableCell>
+                              <FormField
+                                control={form.control}
+                                name={`certifications.${index}.category`}
+                                render={({ field }) => (
+                                  <FormItem>
                                     <FormControl>
-                                      <Button
-                                        variant={"outline"}
-                                        className={cn(
-                                          "w-full pl-3 text-left font-normal",
-                                          !field.value && "text-muted-foreground"
-                                        )}
-                                      >
-                                        {field.value ? (
-                                          format(field.value, "PPP")
-                                        ) : (
-                                          <span>Pick a date</span>
-                                        )}
-                                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                                      </Button>
+                                      <Input placeholder="e.g., Standard No., Scope" {...field} />
                                     </FormControl>
-                                  </PopoverTrigger>
-                                  <PopoverContent className="w-auto p-0" align="start">
-                                    <Calendar
-                                      mode="single"
-                                      selected={field.value}
-                                      onSelect={field.onChange}
-                                      disabled={(date) => date < new Date("1900-01-01")}
-                                      initialFocus
-                                    />
-                                  </PopoverContent>
-                                </Popover>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                        </TableCell>
-                        <TableCell className="text-right">
-                          {(certificationFields.length > 1 || (certificationFields.length === 1 && (form.getValues(`certifications.${index}.name`) || form.getValues(`certifications.${index}.category`)))) && ( 
-                            <Button type="button" variant="ghost" size="icon" onClick={() => certificationFields.length > 1 ? removeCertification(index) : form.resetField(`certifications.${index}` as any) } className="text-destructive">
-                              <Trash2 className="h-4 w-4" />
-                            </Button>
-                          )}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-                <Button type="button" variant="outline" onClick={() => appendCertification(defaultCompanyCertificationRow())} className="w-full">
-                  <PlusCircle className="h-4 w-4 mr-2"/> Add Certification
-                </Button>
-                <FormMessage>{form.formState.errors.certifications?.root?.message || form.formState.errors.certifications?.message}</FormMessage>
-              </CardContent>
-            </Card>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                            </TableCell>
+                            <TableCell>
+                              <FormField
+                                control={form.control}
+                                name={`certifications.${index}.expiryDate`}
+                                render={({ field }) => (
+                                  <FormItem className="flex flex-col">
+                                    <Popover>
+                                      <PopoverTrigger asChild>
+                                        <FormControl>
+                                          <Button
+                                            variant={"outline"}
+                                            className={cn(
+                                              "w-full pl-3 text-left font-normal",
+                                              !field.value && "text-muted-foreground"
+                                            )}
+                                          >
+                                            {field.value ? (
+                                              format(field.value, "PPP")
+                                            ) : (
+                                              <span>Pick a date</span>
+                                            )}
+                                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                          </Button>
+                                        </FormControl>
+                                      </PopoverTrigger>
+                                      <PopoverContent className="w-auto p-0" align="start">
+                                        <Calendar
+                                          mode="single"
+                                          selected={field.value}
+                                          onSelect={field.onChange}
+                                          disabled={(date) => date < new Date("1900-01-01")}
+                                          initialFocus
+                                        />
+                                      </PopoverContent>
+                                    </Popover>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
+                            </TableCell>
+                            <TableCell className="text-right">
+                              {(certificationFields.length > 1 || (certificationFields.length === 1 && (form.getValues(`certifications.${index}.name`) || form.getValues(`certifications.${index}.category`)))) && ( 
+                                <Button type="button" variant="ghost" size="icon" onClick={() => certificationFields.length > 1 ? removeCertification(index) : form.resetField(`certifications.${index}` as any) } className="text-destructive">
+                                  <Trash2 className="h-4 w-4" />
+                                </Button>
+                              )}
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                    <Button type="button" variant="outline" onClick={() => appendCertification(defaultCompanyCertificationRow())} className="w-full">
+                      <PlusCircle className="h-4 w-4 mr-2"/> Add Certification
+                    </Button>
+                    <FormMessage>{form.formState.errors.certifications?.root?.message || form.formState.errors.certifications?.message}</FormMessage>
+                  </CardContent>
+                </Card>
 
-            <FormField
-              control={form.control}
-              name="procedureInfoUrl"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="flex items-center"><LinkIcon className="h-4 w-4 mr-2 text-muted-foreground"/>Link to General Procedures</FormLabel>
-                  <FormControl>
-                    <Input type="url" placeholder="https://example.com/ndt-procedures.pdf" {...field} />
-                  </FormControl>
-                  <FormDescription>URL to your company's general NDT procedures document.</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                <FormField
+                  control={form.control}
+                  name="procedureInfoUrl"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="flex items-center"><LinkIcon className="h-4 w-4 mr-2 text-muted-foreground"/>Link to General Procedures</FormLabel>
+                      <FormControl>
+                        <Input type="url" placeholder="https://example.com/ndt-procedures.pdf" {...field} />
+                      </FormControl>
+                      <FormDescription>URL to your company's general NDT procedures document.</FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </>
+            )}
           </>
         )}
 
@@ -971,11 +954,10 @@ export function RegisterForm() {
           </div>
         )}
 
-        <Button type="submit" className="w-full" disabled={isLoading || !form.formState.isValid}>
+        <Button type="submit" className="w-full" disabled={isLoading || (currentRole === 'provider' && (isLoadingLists || !!listsError))}>
           {isLoading ? "Registering..." : "Create Account"}
         </Button>
       </form>
     </Form>
   );
 }
-

@@ -121,30 +121,11 @@ Collections:
 
 4. predefinedLists:
    - Purpose: Store admin-managed lists that populate dropdowns in the application.
-   - Document ID: A descriptive name for the list (e.g., "clientNdtServiceTypes", "companyCertifications", "serviceUnitsProviderForm").
-   - Example Document (for NDT Service Types used in client forms):
-     {
-       id: "clientNdtServiceTypes", // Matches the document ID for clarity
-       name: "NDT Service Types (Client Request Forms & AI Recommendations)",
-       items: [
-         "Ultrasonic Testing (UT)",
-         "Magnetic Particle Testing (MT)",
-         "Liquid Penetrant Testing (PT)",
-         "Radiographic Testing (RT)",
-         "Eddy Current Testing (ET)",
-         "Visual Testing (VT)",
-         "Leak Testing (LT)",
-         "Acoustic Emission Testing (AET)",
-         "Phased Array UT (PAUT)",
-         "Time-of-Flight Diffraction (TOFD)",
-         "Other"
-       ],
-       lastUpdated: Timestamp
-     }
+   - Document ID: A descriptive name for the list (e.g., "clientNdtServices", "companyCertifications", "serviceUnitsProviderForm").
    - Example Document (for Service Units used in provider profile/registration):
      {
-       id: "serviceUnitsProviderForm",
-       name: "Service Units (Provider Profile & Registration)",
+       id: "serviceUnits", // Matches the document ID for clarity
+       name: "Service Units",
        items: [
          "per hour", "per day", "per month", "per meter",
          "per mm of thickness", "per inch of thickness", "per project"
@@ -152,15 +133,16 @@ Collections:
        lastUpdated: Timestamp
      }
    // Similar documents for:
-   // - providerProfileNdtServices
-   // - companyCertificationsOptions
-   // - personnelQualificationBodiesOptions
-   // - personnelQualificationLevelsOptions
+   // - clientNdtServices
+   // - providerNdtServices
+   // - companyCertifications
+   // - personnelQualificationBodies
+   // - personnelQualificationLevels
 
 How Collections are Created:
 Firestore collections are created automatically when you write the first document to them.
 You can do this by:
-  1. Manually adding the first document via the Firebase Console (useful for initial setup of `predefinedLists`).
+  1. Manually adding the first document via the Firebase Console (useful for initial setup of `predefinedLists`). For example, create the 'predefinedLists' collection, then add a document with ID 'serviceUnits' and the fields 'name' and 'items' as shown above.
   2. Programmatically from your application code when a new entity is created (e.g., a new user document is created in the `users` collection upon registration).
 
 Security Rules:
