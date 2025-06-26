@@ -115,7 +115,21 @@ export function LoginForm() {
         companyName: "Demo Client Innovations", industry: "Technology & R&D", primaryLocation: "Austin, TX", contactNumber: "(555) 123-CLIENT"
     };
     const providerProfile: ProviderProfileData = {
-        location: "Houston, TX", servicesOffered: ALL_NDT_SERVICES_DEMO, contactNumber: "(713) 555-PROVIDER", certifications: DEMO_PROVIDER_CERTIFICATIONS, personnelQualifications: DEMO_PROVIDER_QUALIFICATIONS, isVerified: true, availableDocuments: ["General NDT Procedures", "ISO 9001 Cert"], baseRate: 95
+        location: "Houston, TX", 
+        servicesOffered: ALL_NDT_SERVICES_DEMO, 
+        contactNumber: "(713) 555-PROVIDER", 
+        certifications: DEMO_PROVIDER_CERTIFICATIONS, 
+        personnelQualifications: DEMO_PROVIDER_QUALIFICATIONS, 
+        isVerified: true, 
+        availableDocuments: ["General NDT Procedures", "ISO 9001 Cert"], 
+        baseRate: 95,
+        description: "A leading demo provider of NDT services for the energy sector, offering a wide range of advanced inspection techniques.",
+        specialization: "Oil & Gas Pipelines",
+        rating: 4.8,
+        lat: 29.7604,
+        lng: -95.3698,
+        companyLogoUrl: 'https://images.unsplash.com/photo-1582489853490-cd3a53eb4530?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8aW5kdXN0cnl8ZW58MHx8fHwxNzQ4NDM3Nzc5fDA&ixlib=rb-4.1.0&q=80&w=1080',
+        dataAiHint: 'industrial site'
     };
 
     const demoUserDetails = role === 'client' 

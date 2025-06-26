@@ -12,7 +12,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Activity, Save, Building, Mail, Globe, ImageIcon, ListChecks, PlusCircle, Trash2, PenTool, CalendarIcon, Users2, Award } from "lucide-react";
+import { Activity, Save, Building, Mail, Globe, ImageIcon, ListChecks, PlusCircle, Trash2, PenTool, CalendarIcon, Users2, Award, Info } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { ServiceOffering, PersonnelQualification, CompanyCertification, User } from "@/lib/types";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -67,6 +67,18 @@ export default function ProviderProfilePage() {
         setProfile({ ...profile, [name]: value });
     }
   };
+  
+  const handleNestedTextAreaChange = (field: 'description' | 'specialization', value: string) => {
+    if (!profile) return;
+    setProfile({
+      ...profile,
+      providerProfile: {
+        ...profile.providerProfile,
+        [field]: value
+      }
+    });
+  };
+
 
   const handleNestedChange = (field: keyof NonNullable<User['providerProfile']>, value: any) => {
     if (!profile) return;
@@ -103,8 +115,8 @@ export default function ProviderProfilePage() {
   const removeDynamicListItem = (listName: 'servicesOffered' | 'personnelQualifications' | 'certifications', id: string) => {
       if (!profile || !profile.providerProfile) return;
       const list = profile.providerProfile[listName] || [];
-      if (list.length <= 1) {
-          toast({ title: "Cannot remove the last item.", variant: "destructive" });
+      if (list.length <= 1 && (listName === 'servicesOffered' || listName === 'personnelQualifications')) {
+          toast({ title: "At least one item is required.", variant: "destructive" });
           return;
       }
       handleNestedChange(listName, list.filter((item: any) => item.id !== id));
@@ -148,8 +160,25 @@ export default function ProviderProfilePage() {
                 <div><Label htmlFor="providerProfile.contactNumber">Phone</Label><Input id="providerProfile.contactNumber" name="providerProfile.contactNumber" value={profile.providerProfile?.contactNumber} onChange={handleInputChange} /></div>
                 <div><Label htmlFor="providerProfile.location">Location</Label><Input id="providerProfile.location" name="providerProfile.location" value={profile.providerProfile?.location} onChange={handleInputChange} /></div>
              </div>
+             <div>
+                <Label htmlFor="description">Company Description</Label>
+                <Textarea id="description" placeholder="A brief description of your company, its history, and expertise." value={profile.providerProfile?.description || ''} onChange={(e) => handleNestedTextAreaChange('description', e.target.value)} />
+             </div>
+             <div>
+                <Label htmlFor="specialization">Specialization</Label>
+                <Input id="specialization" placeholder="e.g., Aerospace, Oil & Gas, Weld Inspection" value={profile.providerProfile?.specialization || ''} onChange={(e) => handleNestedTextAreaChange('specialization', e.target.value)} />
+             </div>
              <div><Label htmlFor="providerProfile.companyLogoUrl">Logo URL</Label><Input id="providerProfile.companyLogoUrl" name="providerProfile.companyLogoUrl" value={profile.providerProfile?.companyLogoUrl} onChange={handleInputChange} /></div>
-             <div><Label htmlFor="providerProfile.procedureInfoUrl">Bio / Procedures URL</Label><Textarea id="providerProfile.procedureInfoUrl" name="providerProfile.procedureInfoUrl" value={profile.providerProfile?.procedureInfoUrl} onChange={handleInputChange} /></div>
+             <div><Label htmlFor="providerProfile.procedureInfoUrl">Bio / Procedures URL</Label><Input id="providerProfile.procedureInfoUrl" name="providerProfile.procedureInfoUrl" value={profile.providerProfile?.procedureInfoUrl} onChange={handleInputChange} /></div>
+              {profile.providerProfile?.rating !== undefined && (
+                <div>
+                  <Label>Current Rating</Label>
+                  <div className="flex items-center gap-2 p-2 bg-muted rounded-md">
+                    <Info className="h-4 w-4 text-muted-foreground" />
+                    <span className="text-sm">Your rating is {profile.providerProfile.rating.toFixed(1)}. This is calculated from client feedback and cannot be edited.</span>
+                  </div>
+                </div>
+              )}
           </CardContent>
         </Card>
 

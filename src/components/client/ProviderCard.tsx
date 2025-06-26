@@ -7,7 +7,7 @@ import type { ServiceProvider } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { MapPin, Star, CheckSquare, DollarSign, ShieldCheck, Award, Users2, Briefcase, BookOpen, FileQuestion } from 'lucide-react';
+import { MapPin, Star, CheckSquare, DollarSign, ShieldCheck, Award, Users2, Briefcase, BookOpen, FileQuestion, Activity, Building2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useToast } from "@/hooks/use-toast";
 import { useEffect, useState } from 'react';
@@ -24,6 +24,7 @@ export function ProviderCard({ provider }: ProviderCardProps) {
   const { toast } = useToast();
   const [finalImageUrl, setFinalImageUrl] = useState(provider.imageUrl || '');
   const [imageHint, setImageHint] = useState(provider.dataAiHint || "company building");
+  const [clientPrice, setClientPrice] = useState<string | null>(null);
 
   useEffect(() => {
     let determinedImageUrl = provider.imageUrl;
@@ -43,11 +44,26 @@ export function ProviderCard({ provider }: ProviderCardProps) {
     setImageHint(determinedHint);
   }, [provider.imageUrl, provider.dataAiHint]);
 
+  const displayRate = provider.services.length > 0 && provider.services[0].rate
+    ? provider.services[0].rate
+    : provider.baseRate;
+  
+  useEffect(() => {
+    if (displayRate && !isNaN(parseFloat(displayRate.toString()))) {
+      // Fetch commission rate from localStorage, default to 15%
+      const commissionRate = parseFloat(localStorage.getItem('clientCommissionRate') || '15') / 100;
+      const price = (parseFloat(displayRate.toString()) * (1 + commissionRate)).toFixed(2);
+      setClientPrice(price);
+    } else {
+      setClientPrice(null);
+    }
+  }, [displayRate]);
+
 
   const handleRequestService = () => {
     const queryParams = new URLSearchParams({
       providerId: provider.id,
-      providerName: provider.name, // Pass actual name when requesting service
+      providerName: provider.name,
       serviceType: provider.services.length > 0 && provider.services[0].name ? provider.services[0].name : "General Inquiry",
     });
     const primaryServiceRate = provider.services.length > 0 && provider.services[0].rate 
@@ -63,15 +79,10 @@ export function ProviderCard({ provider }: ProviderCardProps) {
   const handleRequestDocuments = () => {
     toast({
       title: "Document Request Noted",
-      description: `A request for technical documents from provider specializing in ${provider.specialization} has been noted. The provider will be notified upon service engagement.`,
+      description: `A request for technical documents from ${provider.name} has been noted. The provider will be notified upon service engagement.`,
     });
   };
 
-  const displayRate = provider.services.length > 0 && provider.services[0].rate 
-                      ? provider.services[0].rate 
-                      : provider.baseRate;
-  
-  const clientPrice = displayRate && !isNaN(parseFloat(displayRate.toString())) ? (parseFloat(displayRate.toString()) * 1.15).toFixed(2) : null;
   const displayUnit = provider.services.length > 0 && provider.services[0].unit 
                       ? provider.services[0].unit 
                       : (displayRate ? "per hour (default)" : null);
@@ -79,10 +90,10 @@ export function ProviderCard({ provider }: ProviderCardProps) {
   return (
     <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
       <div className="relative w-full h-48 bg-muted">
-        {finalImageUrl && (
+        {finalImageUrl ? (
           <Image
             src={finalImageUrl}
-            alt={"NDT Services for " + provider.specialization} 
+            alt={`Image for ${provider.name}`}
             fill={true}
             style={{ objectFit: 'cover' }}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -95,6 +106,10 @@ export function ProviderCard({ provider }: ProviderCardProps) {
               setImageHint(NEW_DEFAULT_PROVIDER_IMAGE_HINT);
             }}
           />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-secondary">
+             <Building2 className="w-12 h-12 text-muted-foreground" />
+          </div>
         )}
         {provider.isVerified && (
           <Badge className="absolute top-2 right-2 bg-green-500 hover:bg-green-600 text-white">
@@ -103,7 +118,7 @@ export function ProviderCard({ provider }: ProviderCardProps) {
         )}
       </div>
       <CardHeader>
-        <CardTitle className="text-xl">NDT Provider: {provider.specialization}</CardTitle>
+        <CardTitle className="text-xl">{provider.name}</CardTitle>
         <CardDescription className="flex items-center text-sm">
           <MapPin className="h-4 w-4 mr-1 text-muted-foreground" /> {provider.location}
         </CardDescription>
@@ -115,13 +130,23 @@ export function ProviderCard({ provider }: ProviderCardProps) {
           <span className="text-xs text-muted-foreground ml-1">(Rating)</span>
         </div>
 
-        {clientPrice && displayUnit && (
+        {clientPrice && displayUnit ? (
           <div className="flex items-center font-semibold">
             <DollarSign className="h-5 w-5 text-primary mr-1" />
             Est. Rate: ${clientPrice} {displayUnit}
           </div>
+        ) : (
+          <div className="flex items-center text-sm text-muted-foreground">
+             <DollarSign className="h-5 w-5 mr-1" />
+             Contact for pricing
+          </div>
         )}
 
+        <div className="text-sm">
+          <span className="font-semibold">Specialization: </span>
+          <span className="text-muted-foreground">{provider.specialization}</span>
+        </div>
+        
         {provider.description && <p className="text-sm text-muted-foreground line-clamp-2">{provider.description}</p>}
 
         <div>

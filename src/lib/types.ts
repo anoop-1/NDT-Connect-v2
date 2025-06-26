@@ -43,6 +43,9 @@ export type ProviderProfileData = {
   availableDocuments?: string[];
   serviceRadius?: string;
   baseRate?: number;
+  description?: string;
+  specialization?: string;
+  rating?: number;
 };
 
 export type User = {
