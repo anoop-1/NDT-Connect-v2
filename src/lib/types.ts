@@ -48,12 +48,14 @@ export type ProviderProfileData = {
 };
 
 export type User = {
-  id: string;
+  id: string; // This should be the Firebase Auth UID in a real app
   email: string;
   role: 'client' | 'provider' | 'admin';
   name?: string;
   isDemo?: boolean;
-  isActive?: boolean; // Added for user status management
+  isActive?: boolean;
+  createdAt?: any; // To hold Firestore serverTimestamp
+  updatedAt?: any; // To hold Firestore serverTimestamp
   clientProfile?: ClientProfileData;
   providerProfile?: ProviderProfileData;
 };

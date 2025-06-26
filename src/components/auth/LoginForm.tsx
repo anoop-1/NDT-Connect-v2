@@ -22,12 +22,11 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { Separator } from "@/components/ui/separator";
-import type { ClientProfileData, ProviderProfileData, ServiceOffering, PersonnelQualification, CompanyCertification } from "@/lib/types";
+import type { ClientProfileData, ProviderProfileData, ServiceOffering, PersonnelQualification, CompanyCertification, User } from "@/lib/types";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
-  password: z.string().min(6, { message: "Password must be at least 6 characters." }),
-  role: z.enum(["client", "provider"], { required_error: "You must select a role." }),
+  password: z.string().min(1, { message: "Password is required." }), // Simplified for demo
 });
 
 type FormSchemaType = z.infer<typeof formSchema>;
@@ -39,10 +38,6 @@ const ALL_NDT_SERVICES_DEMO: ServiceOffering[] = [ // Define for demo provider
   { id: "s4", name: "Radiographic Testing (RT)", rate: "180", unit: "per film" },
   { id: "s5", name: "Eddy Current Testing (ET)", rate: "150", unit: "per hour" },
   { id: "s6", name: "Visual Testing (VT)", rate: "90", unit: "per hour" },
-  { id: "s7", name: "Leak Testing (LT)", rate: "130", unit: "per location" },
-  { id: "s8", name: "Acoustic Emission Testing (AET)", rate: "200", unit: "per setup" },
-  { id: "s9", name: "Phased Array UT (PAUT)", rate: "250", unit: "per hour" },
-  { id: "s10", name: "Time-of-Flight Diffraction (TOFD)", rate: "280", unit: "per hour" }
 ];
 
 const DEMO_PROVIDER_QUALIFICATIONS: PersonnelQualification[] = [
@@ -61,7 +56,7 @@ const ADMIN_EMAIL = "anoop@atlantisinspection.com";
 const ADMIN_PASSWORD = "Atlantis9$";
 
 export function LoginForm() {
-  const { login } = useAuth();
+  const { register, loginWithEmail } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
@@ -71,94 +66,79 @@ export function LoginForm() {
     defaultValues: {
       email: "",
       password: "",
-      role: "client",
     },
   });
   
-  const watchEmail = form.watch("email"); // Watch email field for changes
-
   async function onSubmit(values: FormSchemaType) {
     setIsLoading(true);
-    await new Promise(resolve => setTimeout(resolve, 1000));
     
+    // Admin login is a special case
     if (values.email.toLowerCase() === ADMIN_EMAIL.toLowerCase() && values.password === ADMIN_PASSWORD) {
-      login({ 
-        email: values.email, 
-        role: 'admin', 
-        name: "Anoop R", 
-        isDemo: false,
-      });
-      toast({
-        title: "Admin Login Successful",
-        description: "Welcome, Administrator!",
-      });
-      router.push("/admin/dashboard");
-    } else {
-      login({ 
-        email: values.email, 
-        role: values.role, 
-        name: values.email.split('@')[0], // Placeholder name
-        isDemo: false, 
-        profileData: {} 
-      });
-      toast({
-        title: "Login Successful",
-        description: `Welcome back, ${values.email}!`,
-      });
-      router.push("/dashboard");
+      try {
+        let adminUser = await loginWithEmail(values.email);
+        if (!adminUser) {
+           adminUser = await register({ email: values.email, role: 'admin', name: 'Anoop R'});
+        }
+        if (adminUser) {
+            toast({ title: "Admin Login Successful", description: "Welcome, Administrator!" });
+            router.push("/admin/dashboard");
+        }
+      } catch (error: any) {
+        toast({ title: "Admin Login Failed", description: error.message, variant: "destructive" });
+      } finally {
+        setIsLoading(false);
+      }
+      return;
     }
+
+    // Regular user login
+    try {
+        const user = await loginWithEmail(values.email);
+        if (user) {
+            toast({ title: "Login Successful", description: `Welcome back, ${user.name || user.email}!` });
+            router.push("/dashboard");
+        } else {
+            toast({ title: "Login Failed", description: "User not found. Please register an account.", variant: "destructive" });
+        }
+    } catch (error: any) {
+        toast({ title: "Login Failed", description: error.message, variant: "destructive" });
+    }
+    
     setIsLoading(false);
   }
 
   const handleDemoLogin = async (role: 'client' | 'provider') => {
     setIsLoading(true);
-    await new Promise(resolve => setTimeout(resolve, 500)); 
+    
+    const clientProfile: ClientProfileData = {
+        companyName: "Demo Client Innovations", industry: "Technology & R&D", primaryLocation: "Austin, TX", contactNumber: "(555) 123-CLIENT"
+    };
+    const providerProfile: ProviderProfileData = {
+        location: "Houston, TX", servicesOffered: ALL_NDT_SERVICES_DEMO, contactNumber: "(713) 555-PROVIDER", certifications: DEMO_PROVIDER_CERTIFICATIONS, personnelQualifications: DEMO_PROVIDER_QUALIFICATIONS, isVerified: true, availableDocuments: ["General NDT Procedures", "ISO 9001 Cert"], baseRate: 95
+    };
 
-    let demoUserDetails;
+    const demoUserDetails = role === 'client' 
+      ? { email: "client.demo@example.com", role: "client" as const, name: "Demo Client User", isDemo: true, profileData: clientProfile }
+      : { email: "provider.demo@example.com", role: "provider" as const, name: "Demo NDT Experts", isDemo: true, profileData: providerProfile };
 
-    if (role === 'client') {
-      const clientProfile: ClientProfileData = {
-        companyName: "Demo Client Innovations",
-        industry: "Technology & R&D",
-        primaryLocation: "Austin, TX",
-        contactNumber: "(555) 123-CLIENT"
-      };
-      demoUserDetails = {
-        email: "client.demo@example.com",
-        role: "client" as const,
-        name: "Demo Client User",
-        isDemo: true, 
-        profileData: clientProfile
-      };
-    } else { 
-      const providerProfile: ProviderProfileData = {
-        location: "Houston, TX", lat: 29.7604, lng: -95.3698,
-        servicesOffered: ALL_NDT_SERVICES_DEMO,
-        contactNumber: "(713) 555-PROVIDER",
-        procedureInfoUrl: "https://example.com/ndt-procedures.pdf",
-        companyLogoUrl: "https://placehold.co/150x50.png", 
-        certifications: DEMO_PROVIDER_CERTIFICATIONS,
-        personnelQualifications: DEMO_PROVIDER_QUALIFICATIONS,
-        isVerified: true,
-        availableDocuments: ["General NDT Procedures Manual", "ISO 9001 Certificate PDF", "Sample Technician Certs"],
-        baseRate: 95, 
-      };
-      demoUserDetails = {
-        email: "provider.houston.demo@example.com",
-        role: "provider" as const,
-        name: "Houston NDT Experts (Demo)",
-        isDemo: true, 
-        profileData: providerProfile
-      };
+    try {
+      let user = await loginWithEmail(demoUserDetails.email);
+      if (!user) {
+        console.log(`Creating demo ${role} user...`);
+        user = await register(demoUserDetails);
+      }
+      
+      if(user) {
+        toast({ title: "Demo Login Successful", description: `Logged in as ${user.name}.` });
+        router.push("/dashboard");
+      } else {
+        throw new Error("Could not log in or create demo user.");
+      }
+    } catch (error: any) {
+      toast({ title: "Demo Login Failed", description: error.message, variant: "destructive" });
+    } finally {
+      setIsLoading(false);
     }
-
-    login(demoUserDetails);
-    toast({
-      title: "Demo Login Successful",
-      description: role === 'provider' ? "Logged in as Demo Vendor." : `Logged in as ${demoUserDetails.name}.`,
-    });
-    router.push("/dashboard");
-    setIsLoading(false);
   };
 
 
@@ -188,42 +168,11 @@ export function LoginForm() {
                 <FormControl>
                   <Input type="password" placeholder="••••••••" {...field} />
                 </FormControl>
+                <FormDescription>Password not checked for non-admin/demo users.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
           />
-          {watchEmail.toLowerCase() !== ADMIN_EMAIL.toLowerCase() && (
-            <FormField
-              control={form.control}
-              name="role"
-              render={({ field }) => (
-                <FormItem className="space-y-3">
-                  <FormLabel>Login as</FormLabel>
-                  <FormControl>
-                    <RadioGroup
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                      className="flex space-x-4"
-                    >
-                      <FormItem className="flex items-center space-x-2 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value="client" id="role-client" />
-                        </FormControl>
-                        <Label htmlFor="role-client" className="font-normal">Client</Label>
-                      </FormItem>
-                      <FormItem className="flex items-center space-x-2 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value="provider" id="role-provider" />
-                        </FormControl>
-                        <Label htmlFor="role-provider" className="font-normal">Service Provider</Label>
-                      </FormItem>
-                    </RadioGroup>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          )}
           <Button type="submit" className="w-full" disabled={isLoading}>
             {isLoading ? "Logging in..." : "Login"}
           </Button>

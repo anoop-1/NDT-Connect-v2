@@ -12,21 +12,20 @@ import { SettingsIcon, ArrowLeft, Activity, Save, User, Phone } from "lucide-rea
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import type { User as UserType } from "@/lib/types";
 
 export default function SettingsPage() {
-  const { user, setUser, loading } = useAuth();
+  const { user, updateUser, loading } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
 
-  const [displayName, setDisplayName] = useState(user?.name || "");
+  const [displayName, setDisplayName] = useState("");
   const [contactNumber, setContactNumber] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (!loading && !user) {
       router.push("/login?redirect=/settings");
-    } else if (!loading && user && user.role === 'admin') {
-      router.push("/admin/dashboard");
     } else if (user) {
       setDisplayName(user.name || "");
       if (user.role === 'client' && user.clientProfile) {
@@ -37,11 +36,14 @@ export default function SettingsPage() {
     }
   }, [user, loading, router]);
 
-  const handleSaveSettings = () => {
+  const handleSaveSettings = async () => {
     if (!user) return;
     setIsSubmitting(true);
 
-    const updatedUser = { ...user, name: displayName };
+    const updatedUser: UserType = { 
+      ...user, 
+      name: displayName 
+    };
 
     if (user.role === 'client') {
       updatedUser.clientProfile = {
@@ -55,22 +57,22 @@ export default function SettingsPage() {
       };
     }
 
-    setUser(updatedUser);
     try {
-        localStorage.setItem('ndt-user', JSON.stringify(updatedUser));
+        await updateUser(updatedUser);
         toast({
             title: "Settings Saved",
-            description: "Your account details have been updated.",
+            description: "Your account details have been updated in the database.",
         });
     } catch (error) {
         toast({
             title: "Error Saving Settings",
-            description: "Could not save settings to local storage.",
+            description: "Could not save settings to the database.",
             variant: "destructive",
         });
-        console.error("Error saving settings to localStorage:", error);
+        console.error("Error saving settings to Firestore:", error);
+    } finally {
+        setIsSubmitting(false);
     }
-    setIsSubmitting(false);
   };
 
   if (loading) {
@@ -127,24 +129,6 @@ export default function SettingsPage() {
                 <> <Save className="mr-2 h-4 w-4" /> Save Settings </>
             )}
           </Button>
-
-          <hr className="my-6"/>
-
-          <div>
-            <h3 className="text-lg font-semibold mb-2">More Settings Coming Soon</h3>
-            <p className="text-muted-foreground">
-              Future features will include:
-            </p>
-            <ul className="list-disc list-inside mt-2 text-sm text-muted-foreground space-y-1">
-              <li>Updating your email or password.</li>
-              <li>Managing notification preferences for service requests and platform updates.</li>
-              <li>Privacy settings.</li>
-              <li>Deleting your account.</li>
-            </ul>
-            <div className="mt-6 p-6 border border-dashed rounded-lg text-center">
-              [Additional Account Settings Interface Placeholder]
-            </div>
-          </div>
         </CardContent>
       </Card>
     </div>
