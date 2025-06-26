@@ -6,12 +6,12 @@ import type { ServiceProvider, User } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, Filter, ShieldCheck, List, Map as MapIcon, AlertTriangle, Activity } from "lucide-react";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
+import dynamic from 'next/dynamic';
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { InteractiveMap } from "@/components/shared/InteractiveMap";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { db } from "@/lib/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -32,6 +32,14 @@ export default function FindProvidersPage() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const InteractiveMap = useMemo(() => dynamic(
+    () => import('@/components/shared/InteractiveMap').then((mod) => mod.InteractiveMap),
+    { 
+      loading: () => <div className="flex justify-center items-center h-[450px] w-full rounded-lg bg-muted"><Activity className="h-8 w-8 animate-spin text-primary" /><span className="ml-2">Loading Map...</span></div>,
+      ssr: false 
+    }
+  ), []);
 
   useEffect(() => {
     if (!authLoading && !user) {
