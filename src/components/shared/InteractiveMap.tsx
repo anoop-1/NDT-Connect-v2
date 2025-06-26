@@ -1,17 +1,9 @@
 // src/components/shared/InteractiveMap.tsx
 "use client";
 
-import L from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import type { ServiceProvider } from '@/lib/types';
 import { useEffect } from 'react';
-
-// --- LEAFLET ICON FIX ---
-// This is a common workaround for a known issue with Leaflet and Webpack/Next.js
-// where the default marker icons do not appear correctly.
-import iconRetina from 'leaflet/dist/images/marker-icon-2x.png';
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
 // A default center (e.g., center of the US)
 const defaultCenter: L.LatLngExpression = [39.8283, -98.5795];
@@ -42,18 +34,6 @@ interface InteractiveMapProps {
 }
 
 export function InteractiveMap({ providers }: InteractiveMapProps) {
-  
-  useEffect(() => {
-    // This effect sets up the default icon paths for Leaflet to prevent rendering issues with Webpack.
-    // It runs once on the client-side after the component mounts.
-    delete (L.Icon.Default.prototype as any)._getIconUrl;
-    L.Icon.Default.mergeOptions({
-      iconRetinaUrl: iconRetina.src,
-      iconUrl: icon.src,
-      shadowUrl: iconShadow.src,
-    });
-  }, []);
-
   const mapProviders = providers.filter(p => p.lat && p.lng);
 
   // By keeping center and zoom props static on MapContainer, we prevent it from re-initializing.

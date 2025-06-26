@@ -18,6 +18,11 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { useToast } from "@/hooks/use-toast";
 import { MOCK_PROVIDERS } from "@/lib/mockData";
 import { cn } from "@/lib/utils";
+import L from 'leaflet';
+import iconRetina from 'leaflet/dist/images/marker-icon-2x.png';
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+
 
 type ViewMode = "list" | "map";
 
@@ -43,6 +48,17 @@ export default function FindProvidersPage() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  
+  useEffect(() => {
+    // This effect runs once on the client-side after the component mounts.
+    // It sets up the default icon paths for Leaflet to prevent rendering issues.
+    delete (L.Icon.Default.prototype as any)._getIconUrl;
+    L.Icon.Default.mergeOptions({
+      iconRetinaUrl: iconRetina.src,
+      iconUrl: icon.src,
+      shadowUrl: iconShadow.src,
+    });
+  }, []);
 
   useEffect(() => {
     if (!authLoading && !user) {
