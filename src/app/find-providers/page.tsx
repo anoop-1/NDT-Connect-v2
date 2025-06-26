@@ -1,4 +1,3 @@
-
 // src/app/find-providers/page.tsx
 "use client";
 
@@ -17,6 +16,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { db } from "@/lib/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useToast } from "@/hooks/use-toast";
+import { MOCK_PROVIDERS } from "@/lib/mockData";
 
 type ViewMode = "list" | "map";
 
@@ -44,6 +44,13 @@ export default function FindProvidersPage() {
   const fetchProviders = useCallback(async () => {
     setIsLoading(true);
     setError(null);
+    
+    if (user?.isDemo) {
+      setAllProviders(MOCK_PROVIDERS);
+      setIsLoading(false);
+      return;
+    }
+
     try {
       const usersRef = collection(db, "users");
       const q = query(usersRef, where("role", "==", "provider"), where("isActive", "==", true));
@@ -85,7 +92,7 @@ export default function FindProvidersPage() {
     } finally {
       setIsLoading(false);
     }
-  }, [toast]);
+  }, [toast, user]);
 
   useEffect(() => {
     if (user) {
@@ -129,6 +136,7 @@ export default function FindProvidersPage() {
         <h1 className="text-3xl font-bold mb-2">Find NDT Service Providers</h1>
         <p className="text-muted-foreground mb-6">
           Browse and connect with qualified Non-Destructive Testing professionals from our network.
+          {user?.isDemo && <span className="font-semibold text-primary ml-2">(Demo Mode)</span>}
         </p>
         <div className="flex flex-col md:flex-row gap-4 mb-4 items-center">
           <div className="relative flex-grow w-full md:w-auto">
@@ -175,7 +183,7 @@ export default function FindProvidersPage() {
       {isLoading && (
         <div className="flex justify-center items-center py-10">
           <Activity className="h-8 w-8 animate-spin text-primary" />
-          <span className="ml-2">Loading providers from database...</span>
+          <span className="ml-2">Loading providers...</span>
         </div>
       )}
 

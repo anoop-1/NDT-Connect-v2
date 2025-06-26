@@ -15,6 +15,7 @@ import { db } from "@/lib/firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { useToast } from "@/hooks/use-toast";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { MOCK_PROVIDER_REQUESTS } from "@/lib/mockData";
 
 const StatusTimelineStep = ({ status, isActive, isCompleted, title, description }: { status: string, isActive: boolean, isCompleted: boolean, title: string, description: string }) => {
   let IconComponent = Clock;
@@ -47,6 +48,22 @@ export default function ProviderRequestDetailPage() {
 
 
   const fetchRequestDetails = useCallback(async (reqId: string) => {
+    setIsLoading(true);
+    setFetchError(null);
+
+    // DEMO MODE
+    if (user?.isDemo) {
+        const demoRequest = MOCK_PROVIDER_REQUESTS.find(r => r.id === reqId);
+        if (demoRequest) {
+            setRequest(demoRequest);
+        } else {
+            setFetchError("Service request not found in demo data.");
+        }
+        setIsLoading(false);
+        return;
+    }
+
+    // FIRESTORE MODE
     try {
       const requestDocRef = doc(db, "serviceRequests", reqId);
       const requestDoc = await getDoc(requestDocRef);
@@ -56,17 +73,22 @@ export default function ProviderRequestDetailPage() {
         const requestedDate = data.requestedDate?.toDate ? data.requestedDate.toDate().toISOString() : data.requestedDate;
         const requestData = { id: requestDoc.id, ...data, requestedDate } as ServiceRequest;
 
-        // In a real app, you'd verify `requestData.providerId === user.id` here
+        // Security check: only allow assigned provider or any provider for a pending request
+        if (requestData.providerId && requestData.providerId !== user?.id) {
+           throw new Error("You are not assigned to this request.");
+        }
         setRequest(requestData);
 
       } else {
         setFetchError("Service request not found.");
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error fetching request details:", error);
-      setFetchError("Failed to load request from database.");
+      setFetchError(error.message || "Failed to load request from database.");
+    } finally {
+        setIsLoading(false);
     }
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -80,6 +102,11 @@ export default function ProviderRequestDetailPage() {
 
   const handleUpdateStatus = async (newStatus: ServiceRequest['status']) => {
     if (!request) return;
+
+    if (user?.isDemo) {
+        toast({ title: "Demo Mode", description: "Actions are disabled in demo mode."});
+        return;
+    }
 
     setIsUpdating(true);
     try {
@@ -148,7 +175,10 @@ export default function ProviderRequestDetailPage() {
                 Status: {request.status}
               </Badge>
             </div>
-            <CardDescription>Request ID: {request.id}</CardDescription>
+            <CardDescription>
+                Request ID: {request.id}
+                {user.isDemo && <span className="font-semibold text-primary ml-2">(Demo Mode)</span>}
+            </CardDescription>
           </CardHeader>
           <CardContent className="grid md:grid-cols-2 gap-x-8 gap-y-6">
             <div className="space-y-4">
@@ -200,15 +230,15 @@ export default function ProviderRequestDetailPage() {
             )}
             {request.status === 'Pending' && (
               <>
-                  <Button onClick={() => handleUpdateStatus('Confirmed')} disabled={isUpdating}>{isUpdating ? "Confirming...": "Confirm Request"}</Button>
-                  <Button variant="destructive" onClick={() => handleUpdateStatus('Cancelled')} disabled={isUpdating}>{isUpdating ? "Cancelling...": "Cancel Request"}</Button>
+                  <Button onClick={() => handleUpdateStatus('Confirmed')} disabled={isUpdating || user.isDemo}>{isUpdating ? "Confirming...": "Confirm Request"}</Button>
+                  <Button variant="destructive" onClick={() => handleUpdateStatus('Cancelled')} disabled={isUpdating || user.isDemo}>{isUpdating ? "Cancelling...": "Cancel Request"}</Button>
               </>
             )}
             {request.status === 'Confirmed' && (
-                  <Button onClick={() => handleUpdateStatus('In Progress')} disabled={isUpdating}>{isUpdating ? "Updating...": "Start Work"}</Button>
+                  <Button onClick={() => handleUpdateStatus('In Progress')} disabled={isUpdating || user.isDemo}>{isUpdating ? "Updating...": "Start Work"}</Button>
             )}
             {request.status === 'In Progress' && (
-                  <Button onClick={() => handleUpdateStatus('Completed')} disabled={isUpdating}>{isUpdating ? "Updating...": "Mark as Completed"}</Button>
+                  <Button onClick={() => handleUpdateStatus('Completed')} disabled={isUpdating || user.isDemo}>{isUpdating ? "Updating...": "Mark as Completed"}</Button>
             )}
           </CardFooter>
         </Card>

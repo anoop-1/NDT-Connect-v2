@@ -15,6 +15,7 @@ import { db } from "@/lib/firebase";
 import { collection, query, where, getDocs, updateDoc, doc, orderBy } from "firebase/firestore";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ChatWindow } from "@/components/shared/chat/ChatWindow";
+import { MOCK_PROVIDER_REQUESTS } from "@/lib/mockData";
 
 const StatusBadge = ({ status }: { status: ServiceRequest['status'] }) => {
   let variant: "default" | "secondary" | "destructive" | "outline" = "default";
@@ -38,6 +39,12 @@ export default function ProviderRequestsPage() {
 
   const fetchRequests = useCallback(async (userId: string) => {
     setIsLoading(true);
+
+    if (user?.isDemo) {
+        setRequests(MOCK_PROVIDER_REQUESTS);
+        setIsLoading(false);
+        return;
+    }
     
     try {
       const requestsCollectionRef = collection(db, "serviceRequests");
@@ -87,7 +94,7 @@ export default function ProviderRequestsPage() {
     } finally {
       setIsLoading(false);
     }
-  }, [toast]);
+  }, [toast, user]);
 
 
   useEffect(() => {
@@ -101,6 +108,11 @@ export default function ProviderRequestsPage() {
   }, [user, loading, router, fetchRequests]);
 
   const handleUpdateRequest = async (requestId: string, newStatus: ServiceRequest['status']) => {
+    if (user?.isDemo) {
+        toast({ title: "Demo Mode", description: "Actions are disabled in demo mode."});
+        return;
+    }
+
     const request = requests.find(r => r.id === requestId);
     if (!request || !user) return;
 
@@ -139,7 +151,10 @@ export default function ProviderRequestsPage() {
       <div className="space-y-8">
         <div>
           <h1 className="text-3xl font-bold">Incoming Service Requests</h1>
-          <p className="text-muted-foreground">Manage and respond to NDT service requests from clients.</p>
+          <p className="text-muted-foreground">
+            Manage and respond to NDT service requests from clients.
+            {user.isDemo && <span className="font-semibold text-primary ml-2">(Demo Mode)</span>}
+          </p>
         </div>
 
         {requests.length > 0 ? (
@@ -165,17 +180,17 @@ export default function ProviderRequestsPage() {
                   </Button>
                   {request.status === 'Pending' && (
                     <>
-                      <Button size="sm" variant="default" onClick={() => handleUpdateRequest(request.id, 'Confirmed')}>
+                      <Button size="sm" variant="default" onClick={() => handleUpdateRequest(request.id, 'Confirmed')} disabled={user.isDemo}>
                         <Check className="h-4 w-4 mr-2" /> Accept
                       </Button>
-                      <Button size="sm" variant="destructive" onClick={() => handleUpdateRequest(request.id, 'Cancelled')}>
+                      <Button size="sm" variant="destructive" onClick={() => handleUpdateRequest(request.id, 'Cancelled')} disabled={user.isDemo}>
                         <X className="h-4 w-4 mr-2" /> Decline
                       </Button>
                     </>
                   )}
                   {request.status === 'Confirmed' && (
                       <>
-                        <Button size="sm" onClick={() => handleUpdateRequest(request.id, 'In Progress')}>
+                        <Button size="sm" onClick={() => handleUpdateRequest(request.id, 'In Progress')} disabled={user.isDemo}>
                             <Activity className="h-4 w-4 mr-2" /> Start Work
                         </Button>
                         <Button variant="outline" size="sm" onClick={() => setChattingWithRequest(request)}>
@@ -184,7 +199,7 @@ export default function ProviderRequestsPage() {
                       </>
                   )}
                   {request.status === 'In Progress' && (
-                      <Button size="sm" onClick={() => handleUpdateRequest(request.id, 'Completed')}>
+                      <Button size="sm" onClick={() => handleUpdateRequest(request.id, 'Completed')} disabled={user.isDemo}>
                           <Check className="h-4 w-4 mr-2" /> Mark Completed
                       </Button>
                   )}

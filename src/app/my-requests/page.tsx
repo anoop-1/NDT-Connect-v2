@@ -15,6 +15,7 @@ import { db } from "@/lib/firebase";
 import { collection, query, where, getDocs, orderBy } from "firebase/firestore";
 import { useToast } from "@/hooks/use-toast";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { MOCK_CLIENT_REQUESTS } from "@/lib/mockData";
 
 const StatusBadge = ({ status }: { status: ServiceRequest['status'] }) => {
   let variant: "default" | "secondary" | "destructive" | "outline" = "default";
@@ -63,6 +64,12 @@ export default function MyRequestsPage() {
 
   const fetchRequests = useCallback(async (userId: string) => {
     setIsLoading(true);
+
+    if (user?.isDemo) {
+      setRequests(MOCK_CLIENT_REQUESTS);
+      setIsLoading(false);
+      return;
+    }
     
     try {
       const requestsCollectionRef = collection(db, "serviceRequests");
@@ -86,7 +93,7 @@ export default function MyRequestsPage() {
     } finally {
       setIsLoading(false);
     }
-  }, [toast]);
+  }, [toast, user]);
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -112,13 +119,17 @@ export default function MyRequestsPage() {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
             <h1 className="text-3xl font-bold">My Service Requests</h1>
-            <p className="text-muted-foreground">Track and manage all your NDT service requests here.</p>
+            <p className="text-muted-foreground">
+              Track and manage all your NDT service requests here.
+              {user?.isDemo && <span className="font-semibold text-primary ml-2">(Demo Mode)</span>}
+            </p>
           </div>
-          <Button asChild>
+          <Button asChild disabled={user?.isDemo}>
             <Link href="/request-service">
               <PlusCircle className="h-4 w-4 mr-2" /> New Service Request
             </Link>
           </Button>
+           {user?.isDemo && <p className="text-xs text-muted-foreground">New requests are disabled in demo mode.</p>}
         </div>
 
         {requests.length > 0 ? (
@@ -163,7 +174,7 @@ export default function MyRequestsPage() {
               <Briefcase className="h-16 w-16 text-muted-foreground" />
               <h3 className="text-xl font-semibold">No service requests yet.</h3>
               <p className="text-muted-foreground">Make your first request to see it here.</p>
-              <Button asChild>
+              <Button asChild disabled={user?.isDemo}>
                 <Link href="/request-service">
                   <PlusCircle className="h-4 w-4 mr-2" /> Request a Service
                 </Link>

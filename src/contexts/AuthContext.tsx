@@ -1,4 +1,3 @@
-
 // src/contexts/AuthContext.tsx
 "use client";
 
@@ -7,6 +6,7 @@ import type { Dispatch, ReactNode, SetStateAction } from 'react';
 import { createContext, useState, useEffect, useCallback } from 'react';
 import { db } from "@/lib/firebase";
 import { doc, getDoc, setDoc, serverTimestamp, getDocs, collection, query, where, limit } from "firebase/firestore";
+import { MOCK_DEMO_CLIENT, MOCK_DEMO_PROVIDER } from '@/lib/mockData';
 
 interface RegisterDetails {
   email: string;
@@ -22,6 +22,7 @@ interface AuthContextType {
   loading: boolean;
   register: (details: RegisterDetails) => Promise<User | null>;
   loginWithEmail: (email: string) => Promise<User | null>;
+  loginAsDemoUser: (role: 'client' | 'provider') => void;
   logout: () => void;
   updateUser: (userToUpdate: User) => Promise<void>;
 }
@@ -85,8 +86,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     try {
-      await setDoc(doc(db, "users", newUser.id), newUser);
-      // Don't store session here, let login page redirect and handle it
+      // In a real app, the ID should come from Firebase Auth, but for this demo it's generated.
+      // We will use the generated ID for the doc reference.
+      const userDocRef = doc(db, "users", newUser.id);
+      await setDoc(userDocRef, newUser);
       return newUser;
     } catch (error) {
       console.error("Error creating user in Firestore:", error);
@@ -96,7 +99,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   
   const loginWithEmail = async (email: string): Promise<User | null> => {
     const usersRef = collection(db, "users");
-    const q = query(usersRef, where("email", "==", email), limit(1));
+    const q = query(usersRef, where("email", "==", email), where("isDemo", "!=", true), limit(1));
     
     try {
         const querySnapshot = await getDocs(q);
@@ -120,7 +123,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
+  const loginAsDemoUser = (role: 'client' | 'provider') => {
+    const demoUser = role === 'client' ? MOCK_DEMO_CLIENT : MOCK_DEMO_PROVIDER;
+    storeUserSession(demoUser);
+  };
+
   const updateUser = async (userToUpdate: User) => {
+     // If it's a demo user, just update local state, don't touch DB
+     if (userToUpdate.isDemo) {
+        storeUserSession(userToUpdate);
+        return;
+     }
+
      const userDocRef = doc(db, "users", userToUpdate.id);
      const dataToUpdate = {
         ...userToUpdate,
@@ -136,7 +150,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, setUser, loading, register, loginWithEmail, logout, updateUser }}>
+    <AuthContext.Provider value={{ user, setUser, loading, register, loginWithEmail, loginAsDemoUser, logout, updateUser }}>
       {children}
     </AuthContext.Provider>
   );

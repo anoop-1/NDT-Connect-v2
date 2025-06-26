@@ -16,6 +16,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { MOCK_CLIENT_REQUESTS, MOCK_PROVIDERS } from "@/lib/mockData";
 
 const StatusTimelineStep = ({ status, isActive, isCompleted, title, description }: { status: string, isActive: boolean, isCompleted: boolean, title: string, description: string }) => {
   let IconComponent = Clock;
@@ -55,7 +56,33 @@ export default function TrackRequestPage() {
     setIsLoading(true);
     setFetchError(null);
     
-    // Fetch from Firestore for real users
+    // DEMO MODE LOGIC
+    if (user?.isDemo) {
+        const demoRequest = MOCK_CLIENT_REQUESTS.find(r => r.id === reqId);
+        if (demoRequest) {
+            setRequest(demoRequest);
+            if (demoRequest.providerId) {
+                const demoProvider = MOCK_PROVIDERS.find(p => p.id === demoRequest.providerId);
+                if(demoProvider) {
+                   // Create a partial User object from ServiceProvider for consistency
+                   setProviderDetails({
+                       id: demoProvider.id,
+                       name: demoProvider.name,
+                       providerProfile: {
+                         isVerified: demoProvider.isVerified,
+                         availableDocuments: demoProvider.availableDocuments,
+                       }
+                   });
+                }
+            }
+        } else {
+            setFetchError("Service request not found in demo data.");
+        }
+        setIsLoading(false);
+        return;
+    }
+
+    // FIRESTORE LOGIC FOR REAL USERS
     try {
         const requestDocRef = doc(db, "serviceRequests", reqId);
         const requestDoc = await getDoc(requestDocRef);
@@ -66,6 +93,12 @@ export default function TrackRequestPage() {
 
         const requestData = requestDoc.data() as ServiceRequest;
         const requestedDate = requestData.requestedDate?.toDate ? requestData.requestedDate.toDate().toISOString() : requestData.requestedDate;
+        
+        // Security check: ensure the logged-in user is the one who created the request
+        if(requestData.clientId !== user?.id) {
+           throw new Error("You do not have permission to view this request.");
+        }
+        
         setRequest({ ...requestData, id: requestDoc.id, requestedDate });
 
         if (requestData.providerId) {
@@ -81,7 +114,7 @@ export default function TrackRequestPage() {
     } finally {
         setIsLoading(false);
     }
-  }, []);
+  }, [user]);
 
 
   useEffect(() => {
@@ -148,7 +181,10 @@ export default function TrackRequestPage() {
                 Status: {request.status}
               </Badge>
             </div>
-            <CardDescription>Request ID: {request.id}</CardDescription>
+            <CardDescription>
+              Request ID: {request.id}
+              {user.isDemo && <span className="font-semibold text-primary ml-2">(Demo Mode)</span>}
+              </CardDescription>
           </CardHeader>
           <CardContent className="grid md:grid-cols-2 gap-x-8 gap-y-6">
             <div className="space-y-4">
