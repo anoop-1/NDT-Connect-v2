@@ -1,4 +1,3 @@
-
 // src/app/find-providers/page.tsx
 "use client";
 
@@ -7,7 +6,7 @@ import type { ServiceProvider, User } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, Filter, ShieldCheck, List, Map as MapIcon, AlertTriangle, Activity } from "lucide-react";
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback } from "react";
 import dynamic from 'next/dynamic';
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
@@ -22,6 +21,16 @@ import { cn } from "@/lib/utils";
 
 type ViewMode = "list" | "map";
 
+// Define the dynamic component outside of the main component function.
+// This ensures it is only created once and prevents re-initialization errors.
+const InteractiveMap = dynamic(
+    () => import('@/components/shared/InteractiveMap').then((mod) => mod.InteractiveMap),
+    { 
+      loading: () => <div className="flex justify-center items-center h-[450px] w-full rounded-lg bg-muted"><Activity className="h-8 w-8 animate-spin text-primary" /><span className="ml-2">Loading Map...</span></div>,
+      ssr: false 
+    }
+  );
+
 export default function FindProvidersPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterVerifiedOnly, setFilterVerifiedOnly] = useState(false);
@@ -34,14 +43,6 @@ export default function FindProvidersPage() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-  const InteractiveMap = useMemo(() => dynamic(
-    () => import('@/components/shared/InteractiveMap').then((mod) => mod.InteractiveMap),
-    { 
-      loading: () => <div className="flex justify-center items-center h-[450px] w-full rounded-lg bg-muted"><Activity className="h-8 w-8 animate-spin text-primary" /><span className="ml-2">Loading Map...</span></div>,
-      ssr: false 
-    }
-  ), []);
 
   useEffect(() => {
     if (!authLoading && !user) {
