@@ -14,6 +14,7 @@ import { ChatWindow } from "@/components/shared/chat/ChatWindow";
 import { db } from "@/lib/firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { useToast } from "@/hooks/use-toast";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 // Mock data remains for demo vendor fallback
 const mockProviderRequests: ServiceRequest[] = [
@@ -103,7 +104,6 @@ export default function ProviderRequestDetailPage() {
 
   const handleUpdateStatus = async (newStatus: ServiceRequest['status']) => {
     if (!request || (user && user.isDemo)) {
-        // Handle mock data update for demo user
         setRequest(prev => prev ? { ...prev, status: newStatus } : null);
         toast({ title: "Status Updated (Demo)", description: `Request status changed to ${newStatus}.`});
         return;
@@ -162,92 +162,105 @@ export default function ProviderRequestDetailPage() {
   const displayDate = request.requestedDate ? new Date(request.requestedDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : "Not specified";
 
   return (
-    <div className="space-y-8">
-      <Button variant="outline" onClick={() => router.push('/provider-requests')} className="mb-6">
-        <ArrowLeft className="h-4 w-4 mr-2" /> Back to All Requests
-      </Button>
+    <>
+      <div className="space-y-8">
+        <Button variant="outline" onClick={() => router.push('/provider-requests')} className="mb-6">
+          <ArrowLeft className="h-4 w-4 mr-2" /> Back to All Requests
+        </Button>
 
-      <Card className="shadow-xl">
-        <CardHeader>
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
-            <CardTitle className="text-2xl md:text-3xl mb-2 sm:mb-0">Request: {request.serviceType}</CardTitle>
-            <Badge variant={isCancelled ? "destructive" : "default"} className="text-base px-3 py-1">
-              Status: {request.status}
-            </Badge>
-          </div>
-          <CardDescription>Request ID: {request.id}</CardDescription>
-        </CardHeader>
-        <CardContent className="grid md:grid-cols-2 gap-x-8 gap-y-6">
-          <div className="space-y-4">
-             {request.clientId && (
-               <div>
-                <h4 className="font-semibold text-sm text-muted-foreground flex items-center mb-1"><UserCircle className="h-4 w-4 mr-2"/>Client</h4>
-                <p className="font-medium">{request.clientName || `ID: ${request.clientId}`}</p>
-                {request.clientEmail && <p className="text-xs text-muted-foreground">{request.clientEmail}</p>}
-              </div>
-            )}
-            <div>
-              <h4 className="font-semibold text-sm text-muted-foreground flex items-center mb-1"><MapPinIcon className="h-4 w-4 mr-2"/>Location</h4>
-              <p>{request.location}</p>
+        <Card className="shadow-xl">
+          <CardHeader>
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+              <CardTitle className="text-2xl md:text-3xl mb-2 sm:mb-0">Request: {request.serviceType}</CardTitle>
+              <Badge variant={isCancelled ? "destructive" : "default"} className="text-base px-3 py-1">
+                Status: {request.status}
+              </Badge>
             </div>
-            <div>
-              <h4 className="font-semibold text-sm text-muted-foreground flex items-center mb-1"><CalendarDays className="h-4 w-4 mr-2"/>Requested Date</h4>
-              <p>{displayDate}</p>
-            </div>
-            <div>
-              <h4 className="font-semibold text-sm text-muted-foreground flex items-center mb-1"><FileTextIcon className="h-4 w-4 mr-2"/>Description from Client</h4>
-              <p className="text-sm whitespace-pre-wrap bg-muted/50 p-3 rounded-md">{request.description}</p>
-            </div>
-          </div>
-          <div>
-            <h4 className="font-semibold text-lg mb-3">Request Timeline</h4>
-            <ol className="relative border-s border-border ms-3">
-              {isCancelled ? (
-                 <StatusTimelineStep status="Cancelled" isActive={true} isCompleted={false} title="Cancelled" description={timelineDescriptions['Cancelled']} />
-              ) : (
-                statuses.map((status, index) => (
-                  <StatusTimelineStep
-                    key={status}
-                    status={status}
-                    isActive={index === currentStatusIndex}
-                    isCompleted={index < currentStatusIndex}
-                    title={status}
-                    description={timelineDescriptions[status as keyof typeof timelineDescriptions] || "Status details unavailable."}
-                  />
-                ))
+            <CardDescription>Request ID: {request.id}</CardDescription>
+          </CardHeader>
+          <CardContent className="grid md:grid-cols-2 gap-x-8 gap-y-6">
+            <div className="space-y-4">
+              {request.clientId && (
+                <div>
+                  <h4 className="font-semibold text-sm text-muted-foreground flex items-center mb-1"><UserCircle className="h-4 w-4 mr-2"/>Client</h4>
+                  <p className="font-medium">{request.clientName || `ID: ${request.clientId}`}</p>
+                  {request.clientEmail && <p className="text-xs text-muted-foreground">{request.clientEmail}</p>}
+                </div>
               )}
-            </ol>
-          </div>
-        </CardContent>
-         <CardFooter className="flex flex-col sm:flex-row gap-2 justify-end pt-6 border-t">
-          {canChat && (
-            <Button onClick={() => setShowChat(prev => !prev)} variant={showChat ? "secondary" : "default"}>
-              <MessageSquare className="h-4 w-4 mr-2" /> {showChat ? "Hide Chat" : "Chat with Client"}
-            </Button>
-          )}
-           {request.status === 'Pending' && (
+              <div>
+                <h4 className="font-semibold text-sm text-muted-foreground flex items-center mb-1"><MapPinIcon className="h-4 w-4 mr-2"/>Location</h4>
+                <p>{request.location}</p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-sm text-muted-foreground flex items-center mb-1"><CalendarDays className="h-4 w-4 mr-2"/>Requested Date</h4>
+                <p>{displayDate}</p>
+              </div>
+              <div>
+                <h4 className="font-semibold text-sm text-muted-foreground flex items-center mb-1"><FileTextIcon className="h-4 w-4 mr-2"/>Description from Client</h4>
+                <p className="text-sm whitespace-pre-wrap bg-muted/50 p-3 rounded-md">{request.description}</p>
+              </div>
+            </div>
+            <div>
+              <h4 className="font-semibold text-lg mb-3">Request Timeline</h4>
+              <ol className="relative border-s border-border ms-3">
+                {isCancelled ? (
+                  <StatusTimelineStep status="Cancelled" isActive={true} isCompleted={false} title="Cancelled" description={timelineDescriptions['Cancelled']} />
+                ) : (
+                  statuses.map((status, index) => (
+                    <StatusTimelineStep
+                      key={status}
+                      status={status}
+                      isActive={index === currentStatusIndex}
+                      isCompleted={index < currentStatusIndex}
+                      title={status}
+                      description={timelineDescriptions[status as keyof typeof timelineDescriptions] || "Status details unavailable."}
+                    />
+                  ))
+                )}
+              </ol>
+            </div>
+          </CardContent>
+          <CardFooter className="flex flex-col sm:flex-row gap-2 justify-end pt-6 border-t">
+            {canChat && (
+              <Button onClick={() => setShowChat(true)} variant="default">
+                <MessageSquare className="h-4 w-4 mr-2" /> Chat with Client
+              </Button>
+            )}
+            {request.status === 'Pending' && (
+              <>
+                  <Button onClick={() => handleUpdateStatus('Confirmed')} disabled={isUpdating}>{isUpdating ? "Confirming...": "Confirm Request"}</Button>
+                  <Button variant="destructive" onClick={() => handleUpdateStatus('Cancelled')} disabled={isUpdating}>{isUpdating ? "Cancelling...": "Cancel Request"}</Button>
+              </>
+            )}
+            {request.status === 'Confirmed' && (
+                  <Button onClick={() => handleUpdateStatus('In Progress')} disabled={isUpdating}>{isUpdating ? "Updating...": "Start Work"}</Button>
+            )}
+            {request.status === 'In Progress' && (
+                  <Button onClick={() => handleUpdateStatus('Completed')} disabled={isUpdating}>{isUpdating ? "Updating...": "Mark as Completed"}</Button>
+            )}
+          </CardFooter>
+        </Card>
+      </div>
+      <Dialog open={showChat} onOpenChange={setShowChat}>
+        <DialogContent className="max-w-lg h-[70vh] flex flex-col p-0 gap-0">
+          {request && user && (
             <>
-                <Button onClick={() => handleUpdateStatus('Confirmed')} disabled={isUpdating}>{isUpdating ? "Confirming...": "Confirm Request"}</Button>
-                <Button variant="destructive" onClick={() => handleUpdateStatus('Cancelled')} disabled={isUpdating}>{isUpdating ? "Cancelling...": "Cancel Request"}</Button>
+              <DialogHeader className="p-4 border-b">
+                <DialogTitle className="flex items-center">
+                  <MessageSquare className="h-5 w-5 mr-2 text-primary" />
+                  Chat with {request.clientName || "Client"}
+                </DialogTitle>
+              </DialogHeader>
+              <ChatWindow
+                currentUser={user}
+                otherPartyName={request.clientName || "Client"}
+                otherPartyRole="client"
+                requestId={request.id}
+              />
             </>
-           )}
-           {request.status === 'Confirmed' && (
-                <Button onClick={() => handleUpdateStatus('In Progress')} disabled={isUpdating}>{isUpdating ? "Updating...": "Start Work"}</Button>
-           )}
-           {request.status === 'In Progress' && (
-                <Button onClick={() => handleUpdateStatus('Completed')} disabled={isUpdating}>{isUpdating ? "Updating...": "Mark as Completed"}</Button>
-           )}
-        </CardFooter>
-      </Card>
-
-      {canChat && showChat && (
-        <ChatWindow
-          currentUser={user}
-          otherPartyName={request.clientName || "Client"}
-          otherPartyRole="client"
-          requestId={request.id}
-        />
-      )}
-    </div>
+          )}
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }

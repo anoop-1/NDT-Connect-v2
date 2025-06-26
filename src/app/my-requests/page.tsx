@@ -14,6 +14,7 @@ import { ChatWindow } from "@/components/shared/chat/ChatWindow";
 import { db } from "@/lib/firebase";
 import { collection, query, where, getDocs, orderBy } from "firebase/firestore";
 import { useToast } from "@/hooks/use-toast";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 // Mock data remains for demo purposes, but the page will try to fetch from Firestore first.
 const mockRequests: ServiceRequest[] = [
@@ -67,8 +68,7 @@ export default function MyRequestsPage() {
 
   const [requests, setRequests] = useState<ServiceRequest[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedChatRequestId, setSelectedChatRequestId] = useState<string | null>(null);
-  const [showChat, setShowChat] = useState(false);
+  const [chattingWithRequest, setChattingWithRequest] = useState<ServiceRequest | null>(null);
 
   const fetchRequests = useCallback(async (userId: string, isDemo: boolean) => {
     setIsLoading(true);
@@ -113,20 +113,6 @@ export default function MyRequestsPage() {
     }
   }, [user, authLoading, router, fetchRequests]);
 
-  const handleToggleChat = (requestId: string) => {
-    if (selectedChatRequestId === requestId && showChat) {
-      setShowChat(false);
-    } else {
-      setSelectedChatRequestId(requestId);
-      setShowChat(true);
-    }
-  };
-  
-  const getSelectedRequestForChat = () => {
-    return requests.find(r => r.id === selectedChatRequestId);
-  };
-
-
   if (authLoading || isLoading) {
     return <div className="flex justify-center items-center min-h-[calc(100vh-10rem)]"><Activity className="h-8 w-8 animate-spin text-primary" /> <span className="ml-2">Loading your requests...</span></div>;
   }
@@ -136,80 +122,92 @@ export default function MyRequestsPage() {
   }
 
   return (
-    <div className="space-y-8">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <h1 className="text-3xl font-bold">My Service Requests</h1>
-          <p className="text-muted-foreground">Track and manage all your NDT service requests here.</p>
+    <>
+      <div className="space-y-8">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+          <div>
+            <h1 className="text-3xl font-bold">My Service Requests</h1>
+            <p className="text-muted-foreground">Track and manage all your NDT service requests here.</p>
+          </div>
+          <Button asChild>
+            <Link href="/request-service">
+              <PlusCircle className="h-4 w-4 mr-2" /> New Service Request
+            </Link>
+          </Button>
         </div>
-        <Button asChild>
-          <Link href="/request-service">
-            <PlusCircle className="h-4 w-4 mr-2" /> New Service Request
-          </Link>
-        </Button>
+
+        {requests.length > 0 ? (
+          <div className="grid gap-6 md:grid-cols-2">
+            {requests.map(request => {
+              const canChat = request.providerId && request.providerName && (request.status === 'Confirmed' || request.status === 'In Progress');
+              const displayDate = request.requestedDate ? new Date(request.requestedDate).toLocaleDateString() : "Date not set";
+              return (
+                <Card key={request.id} className="shadow-md hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <div className="flex justify-between items-start">
+                      <CardTitle>{request.serviceType}</CardTitle>
+                      <StatusBadge status={request.status} />
+                    </div>
+                    <CardDescription>Location: {request.location}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground mb-2 line-clamp-2">{request.description}</p>
+                    <p className="text-xs text-muted-foreground">Requested Date: {displayDate}</p>
+                    {request.providerName && <p className="text-xs text-muted-foreground mt-1">Provider: {request.providerName}</p>}
+                  </CardContent>
+                  <CardFooter className="flex flex-wrap gap-2 justify-end">
+                    <Button variant="outline" size="sm" asChild>
+                      <Link href={`/track-request/${request.id}`}>
+                        <FileText className="h-4 w-4 mr-2" /> View Details
+                      </Link>
+                    </Button>
+                    {canChat && (
+                      <Button variant="default" size="sm" onClick={() => setChattingWithRequest(request)}>
+                        <MessageSquare className="h-4 w-4 mr-2" /> 
+                        Chat with Provider
+                      </Button>
+                    )}
+                  </CardFooter>
+                </Card>
+              );
+            })}
+          </div>
+        ) : (
+          <Card className="text-center py-12">
+            <CardContent className="flex flex-col items-center gap-4">
+              <Briefcase className="h-16 w-16 text-muted-foreground" />
+              <h3 className="text-xl font-semibold">No service requests yet.</h3>
+              <p className="text-muted-foreground">Make your first request to see it here.</p>
+              <Button asChild>
+                <Link href="/request-service">
+                  <PlusCircle className="h-4 w-4 mr-2" /> Request a Service
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
+        )}
       </div>
 
-      {requests.length > 0 ? (
-        <div className="grid gap-6 md:grid-cols-2">
-          {requests.map(request => {
-            const canChat = request.providerId && request.providerName && (request.status === 'Confirmed' || request.status === 'In Progress');
-            const displayDate = request.requestedDate ? new Date(request.requestedDate).toLocaleDateString() : "Date not set";
-            return (
-              <Card key={request.id} className="shadow-md hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <div className="flex justify-between items-start">
-                    <CardTitle>{request.serviceType}</CardTitle>
-                    <StatusBadge status={request.status} />
-                  </div>
-                  <CardDescription>Location: {request.location}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground mb-2 line-clamp-2">{request.description}</p>
-                  <p className="text-xs text-muted-foreground">Requested Date: {displayDate}</p>
-                  {request.providerName && <p className="text-xs text-muted-foreground mt-1">Provider: {request.providerName}</p>}
-                </CardContent>
-                <CardFooter className="flex flex-wrap gap-2 justify-end">
-                  <Button variant="outline" size="sm" asChild>
-                    <Link href={`/track-request/${request.id}`}>
-                      <FileText className="h-4 w-4 mr-2" /> View Details
-                    </Link>
-                  </Button>
-                  {canChat && (
-                    <Button variant="default" size="sm" onClick={() => handleToggleChat(request.id)}>
-                      <MessageSquare className="h-4 w-4 mr-2" /> 
-                      {showChat && selectedChatRequestId === request.id ? "Hide Chat" : "Chat with Provider"}
-                    </Button>
-                  )}
-                </CardFooter>
-              </Card>
-            );
-          })}
-        </div>
-      ) : (
-        <Card className="text-center py-12">
-          <CardContent className="flex flex-col items-center gap-4">
-            <Briefcase className="h-16 w-16 text-muted-foreground" />
-            <h3 className="text-xl font-semibold">No service requests yet.</h3>
-            <p className="text-muted-foreground">Make your first request to see it here.</p>
-            <Button asChild>
-              <Link href="/request-service">
-                <PlusCircle className="h-4 w-4 mr-2" /> Request a Service
-              </Link>
-            </Button>
-          </CardContent>
-        </Card>
-      )}
-
-      {showChat && selectedChatRequestId && getSelectedRequestForChat() && user && (
-        <div className="mt-8">
-          <ChatWindow
-            currentUser={user}
-            otherPartyName={getSelectedRequestForChat()?.providerName || "Provider"}
-            otherPartyRole="provider"
-            requestId={selectedChatRequestId}
-          />
-        </div>
-      )}
-    </div>
+      <Dialog open={!!chattingWithRequest} onOpenChange={(isOpen) => { if (!isOpen) setChattingWithRequest(null); }}>
+        <DialogContent className="max-w-lg h-[70vh] flex flex-col p-0 gap-0">
+          {chattingWithRequest && user && (
+            <>
+              <DialogHeader className="p-4 border-b">
+                <DialogTitle className="flex items-center">
+                  <MessageSquare className="h-5 w-5 mr-2 text-primary" />
+                  Chat with {chattingWithRequest.providerName || "Provider"}
+                </DialogTitle>
+              </DialogHeader>
+              <ChatWindow
+                currentUser={user}
+                otherPartyName={chattingWithRequest.providerName || "Provider"}
+                otherPartyRole="provider"
+                requestId={chattingWithRequest.id}
+              />
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
+    </>
   );
 }

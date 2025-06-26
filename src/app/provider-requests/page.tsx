@@ -13,12 +13,13 @@ import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { db } from "@/lib/firebase";
 import { collection, query, where, getDocs, updateDoc, doc, orderBy } from "firebase/firestore";
-
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { ChatWindow } from "@/components/shared/chat/ChatWindow";
 
 const mockProviderRequests: ServiceRequest[] = [
-  { id: 'req1_prov', clientId: 'clientA', providerId: 'provider.demo@example.com', serviceType: 'Ultrasonic Testing', location: 'Main Plant, Area 5', description: 'Inspect critical weld points on pressure vessel. Client needs report by EOW.', requestedDate: '2024-08-15', status: 'Confirmed' },
-  { id: 'req2_prov', clientId: 'clientB', providerId: 'provider.demo@example.com', serviceType: 'Visual Testing', location: 'Assembly Line 2', description: 'Urgent visual inspection of 50 units. High priority.', requestedDate: '2024-08-10', status: 'Pending' },
-  { id: 'req3_prov', clientId: 'clientC', providerId: 'provider.demo@example.com', serviceType: 'Magnetic Particle Testing', location: 'Warehouse Sector D', description: 'Surface crack detection for large components.', requestedDate: '2024-08-22', status: 'Pending' },
+  { id: 'req1_prov', clientId: 'clientA', clientName: 'Client Alpha Corp', providerId: 'provider.demo@example.com', serviceType: 'Ultrasonic Testing', location: 'Main Plant, Area 5', description: 'Inspect critical weld points on pressure vessel. Client needs report by EOW.', requestedDate: '2024-08-15', status: 'Confirmed' },
+  { id: 'req2_prov', clientId: 'clientB', clientName: 'Client Beta LLC', providerId: 'provider.demo@example.com', serviceType: 'Visual Testing', location: 'Assembly Line 2', description: 'Urgent visual inspection of 50 units. High priority.', requestedDate: '2024-08-10', status: 'Pending' },
+  { id: 'req3_prov', clientId: 'clientC', clientName: 'Client Gamma Inc', providerId: 'provider.demo@example.com', serviceType: 'Magnetic Particle Testing', location: 'Warehouse Sector D', description: 'Surface crack detection for large components.', requestedDate: '2024-08-22', status: 'Pending' },
 ];
 
 const StatusBadge = ({ status }: { status: ServiceRequest['status'] }) => {
@@ -39,6 +40,7 @@ export default function ProviderRequestsPage() {
   const { toast } = useToast();
   const [requests, setRequests] = useState<ServiceRequest[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [chattingWithRequest, setChattingWithRequest] = useState<ServiceRequest | null>(null);
 
   const fetchRequests = useCallback(async (userId: string, isDemo: boolean) => {
     setIsLoading(true);
@@ -51,19 +53,12 @@ export default function ProviderRequestsPage() {
     
     try {
       const requestsCollectionRef = collection(db, "serviceRequests");
-      // This query finds requests assigned to the provider OR requests that are pending with no provider assigned yet.
-      // A more complex system might have a separate "bidding" status.
-      const q = query(
-        requestsCollectionRef, 
-        where("status", "==", "Pending"),
-        // where("providerId", "in", [null, userId]), // Firestore doesn't support 'in' with null. Requires two queries.
-        orderBy("createdAt", "desc")
-      );
-      // For simplicity, we'll fetch all pending for now. A real app would need more robust logic.
-      // And a separate query for already assigned requests.
+      // Query for requests specifically assigned to this provider
       const qAssigned = query(requestsCollectionRef, where("providerId", "==", userId), orderBy("createdAt", "desc"));
+      // Query for all pending requests that are not yet assigned
+      const qPending = query(requestsCollectionRef, where("status", "==", "Pending"), where("providerId", "==", undefined), orderBy("createdAt", "desc"));
       
-      const [pendingSnapshot, assignedSnapshot] = await Promise.all([getDocs(q), getDocs(qAssigned)]);
+      const [assignedSnapshot, pendingSnapshot] = await Promise.all([getDocs(qAssigned), getDocs(qPending)]);
 
       const fetchedRequests: ServiceRequest[] = [];
       const seenIds = new Set<string>();
@@ -79,8 +74,18 @@ export default function ProviderRequestsPage() {
         });
       };
       
-      processSnapshot(pendingSnapshot);
       processSnapshot(assignedSnapshot);
+      processSnapshot(pendingSnapshot);
+
+      // Sort to have provider's own requests first, then pending.
+      fetchedRequests.sort((a, b) => {
+        if (a.providerId === userId && b.providerId !== userId) return -1;
+        if (a.providerId !== userId && b.providerId === userId) return 1;
+        // For items in the same category, sort by creation date
+        const dateA = a.createdAt?.toDate ? a.createdAt.toDate() : new Date(0);
+        const dateB = b.createdAt?.toDate ? b.createdAt.toDate() : new Date(0);
+        return dateB.getTime() - dateA.getTime();
+      });
 
       setRequests(fetchedRequests);
 
@@ -109,11 +114,10 @@ export default function ProviderRequestsPage() {
 
   const handleUpdateRequest = async (requestId: string, newStatus: ServiceRequest['status']) => {
     const request = requests.find(r => r.id === requestId);
-    if (!request) return;
+    if (!request || !user) return;
 
-    if (user && user.isDemo) {
-        // Handle mock data update for demo user
-        setRequests(prev => prev.map(r => r.id === requestId ? {...r, status: newStatus} : r));
+    if (user.isDemo) {
+        setRequests(prev => prev.map(r => r.id === requestId ? {...r, status: newStatus, providerId: user?.id, providerName: user?.name || user?.email } : r));
         toast({ title: `Request Status Updated (Demo)`, description: `Status changed to ${newStatus}.` });
         return;
     }
@@ -122,13 +126,14 @@ export default function ProviderRequestsPage() {
         const requestDocRef = doc(db, "serviceRequests", requestId);
         // If accepting, assign the providerId
         const updateData: any = { status: newStatus };
-        if (newStatus === 'Confirmed' && !request.providerId && user) {
+        if (newStatus === 'Confirmed' && !request.providerId) {
             updateData.providerId = user.id;
             updateData.providerName = user.name || user.email;
         }
 
         await updateDoc(requestDocRef, updateData);
-        setRequests(prev => prev.map(r => r.id === requestId ? {...r, status: newStatus, providerId: user?.id, providerName: user?.name || user?.email } : r));
+        // Refresh the list to show the change
+        fetchRequests(user.id, user.isDemo);
         toast({
             title: `Request Status Updated`,
             description: `Status changed to ${newStatus}. Client will be notified.`,
@@ -148,78 +153,99 @@ export default function ProviderRequestsPage() {
   }
 
   return (
-    <div className="space-y-8">
-      <div>
-        <h1 className="text-3xl font-bold">Incoming Service Requests</h1>
-        <p className="text-muted-foreground">Manage and respond to NDT service requests from clients.</p>
-      </div>
+    <>
+      <div className="space-y-8">
+        <div>
+          <h1 className="text-3xl font-bold">Incoming Service Requests</h1>
+          <p className="text-muted-foreground">Manage and respond to NDT service requests from clients.</p>
+        </div>
 
-      {requests.length > 0 ? (
-        <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2">
-          {requests.map(request => (
-            <Card key={request.id} className="shadow-md hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="flex justify-between items-start">
-                  <CardTitle>{request.serviceType}</CardTitle>
-                  <StatusBadge status={request.status} />
-                </div>
-                <CardDescription>Location: {request.location} | Client: {request.clientName || request.clientId}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground mb-2 line-clamp-3">{request.description}</p>
-                <p className="text-xs text-muted-foreground">Requested Date: {new Date(request.requestedDate).toLocaleDateString()}</p>
-              </CardContent>
-              <CardFooter className="flex flex-wrap gap-2 justify-end">
-                <Button variant="outline" size="sm" asChild>
-                  <Link href={`/provider-dashboard/requests/${request.id}`}>
-                    <Eye className="h-4 w-4 mr-2" /> View Details
-                  </Link>
-                </Button>
-                {request.status === 'Pending' && (
-                  <>
-                    <Button size="sm" variant="default" onClick={() => handleUpdateRequest(request.id, 'Confirmed')}>
-                      <Check className="h-4 w-4 mr-2" /> Accept
-                    </Button>
-                    <Button size="sm" variant="destructive" onClick={() => handleUpdateRequest(request.id, 'Cancelled')}>
-                      <X className="h-4 w-4 mr-2" /> Decline
-                    </Button>
-                  </>
-                )}
-                 {request.status === 'Confirmed' && (
+        {requests.length > 0 ? (
+          <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2">
+            {requests.map(request => (
+              <Card key={request.id} className="shadow-md hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="flex justify-between items-start">
+                    <CardTitle>{request.serviceType}</CardTitle>
+                    <StatusBadge status={request.status} />
+                  </div>
+                  <CardDescription>Location: {request.location} | Client: {request.clientName || 'N/A'}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-muted-foreground mb-2 line-clamp-3">{request.description}</p>
+                  <p className="text-xs text-muted-foreground">Requested Date: {new Date(request.requestedDate).toLocaleDateString()}</p>
+                </CardContent>
+                <CardFooter className="flex flex-wrap gap-2 justify-end">
+                  <Button variant="outline" size="sm" asChild>
+                    <Link href={`/provider-dashboard/requests/${request.id}`}>
+                      <Eye className="h-4 w-4 mr-2" /> View Details
+                    </Link>
+                  </Button>
+                  {request.status === 'Pending' && (
                     <>
-                      <Button size="sm" onClick={() => handleUpdateRequest(request.id, 'In Progress')}>
-                          <Activity className="h-4 w-4 mr-2" /> Start Work
+                      <Button size="sm" variant="default" onClick={() => handleUpdateRequest(request.id, 'Confirmed')}>
+                        <Check className="h-4 w-4 mr-2" /> Accept
                       </Button>
-                      <Button variant="outline" size="sm" asChild>
-                        <Link href={`/provider-dashboard/requests/${request.id}`}>
-                          <MessageSquare className="h-4 w-4 mr-2" /> Chat with Client
-                        </Link>
+                      <Button size="sm" variant="destructive" onClick={() => handleUpdateRequest(request.id, 'Cancelled')}>
+                        <X className="h-4 w-4 mr-2" /> Decline
                       </Button>
                     </>
-                 )}
-                 {request.status === 'In Progress' && (
-                     <Button size="sm" onClick={() => handleUpdateRequest(request.id, 'Completed')}>
-                        <Check className="h-4 w-4 mr-2" /> Mark Completed
-                    </Button>
-                 )}
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
-      ) : (
-        <Card className="text-center py-12">
-          <CardContent className="flex flex-col items-center gap-4">
-            <Briefcase className="h-16 w-16 text-muted-foreground" />
-            <h3 className="text-xl font-semibold">No active service requests.</h3>
-            <p className="text-muted-foreground">Keep an eye on this page for new client requests.</p>
-            <Button variant="outline" asChild>
-              <Link href="/provider-profile">
-                <Users className="h-4 w-4 mr-2" /> Update Availability
-              </Link>
-            </Button>
-          </CardContent>
-        </Card>
-      )}
-    </div>
+                  )}
+                  {request.status === 'Confirmed' && (
+                      <>
+                        <Button size="sm" onClick={() => handleUpdateRequest(request.id, 'In Progress')}>
+                            <Activity className="h-4 w-4 mr-2" /> Start Work
+                        </Button>
+                        <Button variant="outline" size="sm" onClick={() => setChattingWithRequest(request)}>
+                          <MessageSquare className="h-4 w-4 mr-2" /> Chat with Client
+                        </Button>
+                      </>
+                  )}
+                  {request.status === 'In Progress' && (
+                      <Button size="sm" onClick={() => handleUpdateRequest(request.id, 'Completed')}>
+                          <Check className="h-4 w-4 mr-2" /> Mark Completed
+                      </Button>
+                  )}
+                </CardFooter>
+              </Card>
+            ))}
+          </div>
+        ) : (
+          <Card className="text-center py-12">
+            <CardContent className="flex flex-col items-center gap-4">
+              <Briefcase className="h-16 w-16 text-muted-foreground" />
+              <h3 className="text-xl font-semibold">No active service requests.</h3>
+              <p className="text-muted-foreground">Keep an eye on this page for new client requests.</p>
+              <Button variant="outline" asChild>
+                <Link href="/provider-profile">
+                  <Users className="h-4 w-4 mr-2" /> Update Availability
+                </Link>
+              </Button>
+            </CardContent>
+          </Card>
+        )}
+      </div>
+
+      <Dialog open={!!chattingWithRequest} onOpenChange={(isOpen) => { if (!isOpen) setChattingWithRequest(null); }}>
+          <DialogContent className="max-w-lg h-[70vh] flex flex-col p-0 gap-0">
+            {chattingWithRequest && user && (
+              <>
+                <DialogHeader className="p-4 border-b">
+                  <DialogTitle className="flex items-center">
+                    <MessageSquare className="h-5 w-5 mr-2 text-primary" />
+                    Chat with {chattingWithRequest.clientName || "Client"}
+                  </DialogTitle>
+                </DialogHeader>
+                <ChatWindow
+                  currentUser={user}
+                  otherPartyName={chattingWithRequest.clientName || "Client"}
+                  otherPartyRole="client"
+                  requestId={chattingWithRequest.id}
+                />
+              </>
+            )}
+          </DialogContent>
+        </Dialog>
+    </>
   );
 }

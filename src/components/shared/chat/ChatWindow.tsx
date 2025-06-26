@@ -1,4 +1,3 @@
-
 // src/components/shared/chat/ChatWindow.tsx
 "use client";
 
@@ -6,8 +5,6 @@ import { useState, useEffect, useRef } from "react";
 import { ChatMessage } from "./ChatMessage";
 import { ChatInput } from "./ChatInput";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { MessageSquare } from "lucide-react";
 import type { User } from "@/hooks/useAuth"; // Assuming User type from useAuth or lib/types
 import type { ChatMessage as MessageType } from "@/lib/types";
 
@@ -103,13 +100,7 @@ export function ChatWindow({ currentUser, otherPartyName, otherPartyRole, reques
   }
 
   return (
-    <Card className="shadow-lg flex flex-col h-[500px] max-h-[70vh]">
-      <CardHeader className="border-b">
-        <CardTitle className="flex items-center text-lg">
-          <MessageSquare className="h-5 w-5 mr-2 text-primary" />
-          Chat with {otherPartyName} ({otherPartyRole})
-        </CardTitle>
-      </CardHeader>
+    <div className="flex flex-col h-full">
       <ScrollArea className="flex-grow p-4" ref={scrollAreaRef}>
         {messages.map((msg) => (
           <ChatMessage
@@ -122,6 +113,6 @@ export function ChatWindow({ currentUser, otherPartyName, otherPartyRole, reques
         ))}
       </ScrollArea>
       <ChatInput onSendMessage={handleSendMessage} isLoading={isSending} />
-    </Card>
+    </div>
   );
 }
