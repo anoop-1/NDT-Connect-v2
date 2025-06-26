@@ -199,58 +199,61 @@ export default function FindProvidersPage() {
         </div>
       </section>
 
-      {isLoading && (
-        <div className="flex justify-center items-center py-10">
-          <Activity className="h-8 w-8 animate-spin text-primary" />
-          <span className="ml-2">Loading providers...</span>
-        </div>
-      )}
-
-      {error && (
-        <div className="text-center py-10 bg-destructive/10 text-destructive border border-destructive rounded-lg p-4">
-          <AlertTriangle className="h-12 w-12 mx-auto mb-4" />
-          <p className="text-xl font-semibold">Error Loading Providers</p>
-          <p className="text-sm">{error}</p>
-        </div>
-      )}
-
-      {!isLoading && !error && (
-        <>
-          {/* LIST VIEW */}
-          <div className={cn({ 'hidden': viewMode !== 'list' })}>
-            {displayedProviders.length > 0 ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {displayedProviders.map((provider) => (
-                  <ProviderCard key={provider.id} provider={provider} />
-                ))}
-              </div>
-            ) : (
-              noProvidersFound
-            )}
-          </div>
-
-          {/* MAP VIEW */}
-          <div className={cn('space-y-6', { 'hidden': viewMode !== 'map' })}>
-            <InteractiveMap providers={displayedProviders} />
-            {displayedProviders.length > 0 ? (
-              <div className="mt-4">
-                <h2 className="text-xl font-semibold mb-4">Filtered Providers ({displayedProviders.length}) visible on map</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {displayedProviders.slice(0, 4).map((provider) => ( 
-                    <ProviderCard key={provider.id} provider={provider} />
-                  ))}
+      {/* --- LIST VIEW --- */}
+      <div className={cn({ 'hidden': viewMode !== 'list' })}>
+        {isLoading && (
+            <div className="flex justify-center items-center py-10">
+                <Activity className="h-8 w-8 animate-spin text-primary" />
+                <span className="ml-2">Loading providers...</span>
+            </div>
+        )}
+        {error && (
+            <div className="text-center py-10 bg-destructive/10 text-destructive border border-destructive rounded-lg p-4">
+                <AlertTriangle className="h-12 w-12 mx-auto mb-4" />
+                <p className="text-xl font-semibold">Error Loading Providers</p>
+                <p className="text-sm">{error}</p>
+            </div>
+        )}
+        {!isLoading && !error && (
+            displayedProviders.length > 0 ? (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {displayedProviders.map((provider) => (
+                        <ProviderCard key={provider.id} provider={provider} />
+                    ))}
                 </div>
-                {displayedProviders.length > 4 && <p className="text-sm text-muted-foreground mt-2">And {displayedProviders.length - 4} more providers shown as markers on the map.</p>}
-              </div>
             ) : (
-               <div className="text-center py-10">
-                <AlertTriangle className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-                <p className="text-xl text-muted-foreground">No providers found matching your criteria to display on map.</p>
-              </div>
-            )}
-          </div>
-        </>
-      )}
+                noProvidersFound
+            )
+        )}
+      </div>
+
+      {/* --- MAP VIEW --- */}
+      <div className={cn('space-y-6', { 'hidden': viewMode !== 'map' })}>
+        {/* The Map component is now ALWAYS rendered within this div, not conditionally */}
+        <InteractiveMap providers={displayedProviders} />
+
+        {/* Conditional rendering for text/cards below the map */}
+        {isLoading && <p className="text-center text-muted-foreground">Loading provider locations...</p>}
+        {error && <p className="text-center text-destructive">{error}</p>}
+        {!isLoading && !error && (
+            displayedProviders.length > 0 ? (
+                <div className="mt-4">
+                    <h2 className="text-xl font-semibold mb-4">Filtered Providers ({displayedProviders.length}) visible on map</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {displayedProviders.slice(0, 4).map((provider) => (
+                            <ProviderCard key={provider.id} provider={provider} />
+                        ))}
+                    </div>
+                    {displayedProviders.length > 4 && <p className="text-sm text-muted-foreground mt-2">And {displayedProviders.length - 4} more providers shown as markers on the map.</p>}
+                </div>
+            ) : (
+                <div className="text-center py-10">
+                    <AlertTriangle className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+                    <p className="text-xl text-muted-foreground">No providers found matching your criteria to display on map.</p>
+                </div>
+            )
+        )}
+      </div>
     </div>
   );
 }
