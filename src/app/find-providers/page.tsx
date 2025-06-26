@@ -1,3 +1,4 @@
+
 // src/app/find-providers/page.tsx
 "use client";
 
@@ -17,6 +18,7 @@ import { db } from "@/lib/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useToast } from "@/hooks/use-toast";
 import { MOCK_PROVIDERS } from "@/lib/mockData";
+import { cn } from "@/lib/utils";
 
 type ViewMode = "list" | "map";
 
@@ -138,6 +140,14 @@ export default function FindProvidersPage() {
     return <div className="text-center py-10">Access denied. This page is for clients.</div>;
   }
 
+  const noProvidersFound = (
+    <div className="text-center py-10">
+      <AlertTriangle className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+      <p className="text-xl text-muted-foreground">No providers found matching your criteria.</p>
+      <p className="text-sm text-muted-foreground">Try adjusting your search terms.</p>
+    </div>
+  );
+
   return (
     <div className="space-y-8">
       <section className="bg-card p-6 rounded-lg shadow">
@@ -203,42 +213,42 @@ export default function FindProvidersPage() {
         </div>
       )}
 
-      {!isLoading && !error && viewMode === "list" && (
-        displayedProviders.length > 0 ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {displayedProviders.map((provider) => (
-              <ProviderCard key={provider.id} provider={provider} />
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-10">
-            <AlertTriangle className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-            <p className="text-xl text-muted-foreground">No providers found matching your criteria.</p>
-            <p className="text-sm text-muted-foreground">Try adjusting your search terms.</p>
-          </div>
-        )
-      )}
-
-      {!isLoading && !error && viewMode === "map" && (
-        <div className="space-y-6">
-          <InteractiveMap providers={displayedProviders} />
-          {displayedProviders.length > 0 ? (
-            <div className="mt-4">
-              <h2 className="text-xl font-semibold mb-4">Filtered Providers ({displayedProviders.length}) visible on map</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {displayedProviders.slice(0, 4).map((provider) => ( 
+      {!isLoading && !error && (
+        <>
+          {/* LIST VIEW */}
+          <div className={cn({ 'hidden': viewMode !== 'list' })}>
+            {displayedProviders.length > 0 ? (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {displayedProviders.map((provider) => (
                   <ProviderCard key={provider.id} provider={provider} />
                 ))}
               </div>
-              {displayedProviders.length > 4 && <p className="text-sm text-muted-foreground mt-2">And {displayedProviders.length - 4} more providers shown as markers on the map.</p>}
-            </div>
-          ) : (
-             <div className="text-center py-10">
-              <AlertTriangle className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-              <p className="text-xl text-muted-foreground">No providers found matching your criteria to display on map.</p>
-            </div>
-          )}
-        </div>
+            ) : (
+              noProvidersFound
+            )}
+          </div>
+
+          {/* MAP VIEW */}
+          <div className={cn('space-y-6', { 'hidden': viewMode !== 'map' })}>
+            <InteractiveMap providers={displayedProviders} />
+            {displayedProviders.length > 0 ? (
+              <div className="mt-4">
+                <h2 className="text-xl font-semibold mb-4">Filtered Providers ({displayedProviders.length}) visible on map</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {displayedProviders.slice(0, 4).map((provider) => ( 
+                    <ProviderCard key={provider.id} provider={provider} />
+                  ))}
+                </div>
+                {displayedProviders.length > 4 && <p className="text-sm text-muted-foreground mt-2">And {displayedProviders.length - 4} more providers shown as markers on the map.</p>}
+              </div>
+            ) : (
+               <div className="text-center py-10">
+                <AlertTriangle className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+                <p className="text-xl text-muted-foreground">No providers found matching your criteria to display on map.</p>
+              </div>
+            )}
+          </div>
+        </>
       )}
     </div>
   );
