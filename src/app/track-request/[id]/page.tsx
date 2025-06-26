@@ -16,19 +16,6 @@ import { doc, getDoc } from "firebase/firestore";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 
-const mockRequests: ServiceRequest[] = [
-  { id: 'req1', clientId: 'user1', providerId: 'prov1', providerName: 'Advanced NDT Solutions', serviceType: 'Ultrasonic Testing', location: 'Main Plant, Area 5', description: 'Inspect critical weld points on pressure vessel. Ensure all safety protocols are followed. Report needed by end of week.', requestedDate: '2024-08-15', status: 'Confirmed' },
-  { id: 'req2', clientId: 'user1', serviceType: 'Magnetic Particle Testing', location: 'Storage Tank 3B', description: 'Surface crack detection on tank shell, focusing on welded seams. Provide photographic evidence.', requestedDate: '2024-08-20', status: 'Pending' },
-  { id: 'req3', clientId: 'user1', providerId: 'prov2', providerName: 'Precision Inspections Inc.', serviceType: 'Radiographic Testing', location: 'Fabrication Shop, Bay 2', description: 'Full weld inspection for new pipeline section. Compliance with ASME Section IX required.', requestedDate: '2024-07-10', status: 'Completed' },
-  { id: 'req4', clientId: 'user1', serviceType: 'Visual Testing', location: 'Bridge Section A1', description: 'Routine visual checkup of structural integrity. Look for corrosion or damage.', requestedDate: '2024-08-01', status: 'In Progress', providerId: 'prov1', providerName: 'Advanced NDT Solutions' },
-];
-
-const mockProvidersDB: Partial<User>[] = [
-    { id: 'prov1', name: 'Advanced NDT Solutions', providerProfile: { location: 'Houston, TX', isVerified: true, availableDocuments: ["General Procedures Manual", "ISO 9001 Certificate", "Sample Technician Level III Cert"] } },
-    { id: 'prov2', name: 'Precision Inspections Inc.', providerProfile: { location: 'Los Angeles, CA', isVerified: true, availableDocuments: ["Nadcap Approval Documents", "Safety Plan"] } },
-];
-
-
 const StatusTimelineStep = ({ status, isActive, isCompleted, title, description }: { status: string, isActive: boolean, isCompleted: boolean, title: string, description: string }) => {
   let IconComponent = Clock;
   if (isCompleted || isActive) IconComponent = CheckCircle;
@@ -63,25 +50,9 @@ export default function TrackRequestPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [showChat, setShowChat] = useState(false);
 
-  const fetchRequestAndProvider = useCallback(async (reqId: string, isDemo: boolean) => {
+  const fetchRequestAndProvider = useCallback(async (reqId: string) => {
     setIsLoading(true);
     setFetchError(null);
-
-    // Use mock data for demo user
-    if (isDemo) {
-        const foundRequest = mockRequests.find(r => r.id === reqId);
-        if (foundRequest) {
-            setRequest(foundRequest);
-            if (foundRequest.providerId) {
-                const foundProvider = mockProvidersDB.find(p => p.id === foundRequest.providerId);
-                setProviderDetails(foundProvider || null);
-            }
-        } else {
-            setFetchError("Demo service request not found.");
-        }
-        setIsLoading(false);
-        return;
-    }
     
     // Fetch from Firestore for real users
     try {
@@ -117,7 +88,7 @@ export default function TrackRequestPage() {
     } else if (user && user.role !== 'client') {
       router.push("/dashboard");
     } else if (user && requestId) {
-        fetchRequestAndProvider(requestId, user.isDemo || false);
+        fetchRequestAndProvider(requestId);
     }
   }, [user, authLoading, router, requestId, fetchRequestAndProvider]);
 

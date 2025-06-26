@@ -16,12 +16,6 @@ import { collection, query, where, getDocs, updateDoc, doc, orderBy } from "fire
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ChatWindow } from "@/components/shared/chat/ChatWindow";
 
-const mockProviderRequests: ServiceRequest[] = [
-  { id: 'req1_prov', clientId: 'clientA', clientName: 'Client Alpha Corp', providerId: 'provider.demo@example.com', serviceType: 'Ultrasonic Testing', location: 'Main Plant, Area 5', description: 'Inspect critical weld points on pressure vessel. Client needs report by EOW.', requestedDate: '2024-08-15', status: 'Confirmed' },
-  { id: 'req2_prov', clientId: 'clientB', clientName: 'Client Beta LLC', providerId: 'provider.demo@example.com', serviceType: 'Visual Testing', location: 'Assembly Line 2', description: 'Urgent visual inspection of 50 units. High priority.', requestedDate: '2024-08-10', status: 'Pending' },
-  { id: 'req3_prov', clientId: 'clientC', clientName: 'Client Gamma Inc', providerId: 'provider.demo@example.com', serviceType: 'Magnetic Particle Testing', location: 'Warehouse Sector D', description: 'Surface crack detection for large components.', requestedDate: '2024-08-22', status: 'Pending' },
-];
-
 const StatusBadge = ({ status }: { status: ServiceRequest['status'] }) => {
   let variant: "default" | "secondary" | "destructive" | "outline" = "default";
   switch (status) {
@@ -42,14 +36,8 @@ export default function ProviderRequestsPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [chattingWithRequest, setChattingWithRequest] = useState<ServiceRequest | null>(null);
 
-  const fetchRequests = useCallback(async (userId: string, isDemo: boolean) => {
+  const fetchRequests = useCallback(async (userId: string) => {
     setIsLoading(true);
-    // For demo vendor, we show the mock requests to ensure they have content to see.
-    if (isDemo) {
-      setRequests(mockProviderRequests);
-      setIsLoading(false);
-      return;
-    }
     
     try {
       const requestsCollectionRef = collection(db, "serviceRequests");
@@ -108,19 +96,13 @@ export default function ProviderRequestsPage() {
     } else if (user && user.role !== 'provider') {
       router.push("/dashboard");
     } else if (user) {
-      fetchRequests(user.id, user.isDemo || false);
+      fetchRequests(user.id);
     }
   }, [user, loading, router, fetchRequests]);
 
   const handleUpdateRequest = async (requestId: string, newStatus: ServiceRequest['status']) => {
     const request = requests.find(r => r.id === requestId);
     if (!request || !user) return;
-
-    if (user.isDemo) {
-        setRequests(prev => prev.map(r => r.id === requestId ? {...r, status: newStatus, providerId: user?.id, providerName: user?.name || user?.email } : r));
-        toast({ title: `Request Status Updated (Demo)`, description: `Status changed to ${newStatus}.` });
-        return;
-    }
 
     try {
         const requestDocRef = doc(db, "serviceRequests", requestId);
@@ -133,7 +115,7 @@ export default function ProviderRequestsPage() {
 
         await updateDoc(requestDocRef, updateData);
         // Refresh the list to show the change
-        fetchRequests(user.id, user.isDemo);
+        fetchRequests(user.id);
         toast({
             title: `Request Status Updated`,
             description: `Status changed to ${newStatus}. Client will be notified.`,

@@ -16,20 +16,6 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { useToast } from "@/hooks/use-toast";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
-// Mock data remains for demo vendor fallback
-const mockProviderRequests: ServiceRequest[] = [
-  { id: 'req1_prov', clientId: 'clientA', providerId: 'thisProvider', clientName: 'Client Alpha Corp', clientEmail: 'alpha@example.com', serviceType: 'Ultrasonic Testing', location: 'Main Plant, Area 5', description: 'Inspect critical weld points on pressure vessel. Client needs report by EOW.', requestedDate: '2024-08-15', status: 'Confirmed' },
-  { id: 'req2_prov', clientId: 'clientB', providerId: 'thisProvider', clientName: 'Client Beta LLC', clientEmail: 'beta@example.com', serviceType: 'Visual Testing', location: 'Assembly Line 2', description: 'Urgent visual inspection of 50 units. High priority.', requestedDate: '2024-08-10', status: 'Pending' },
-  { id: 'req3_prov', clientId: 'clientC', providerId: 'thisProvider', clientName: 'Client Gamma Inc', clientEmail: 'gamma@example.com', serviceType: 'Magnetic Particle Testing', location: 'Warehouse Sector D', description: 'Surface crack detection for large components.', requestedDate: '2024-08-22', status: 'Pending' },
-];
-
-const mockClientsDB: Partial<User>[] = [
-  { id: 'clientA', name: 'Client Alpha Corp', email: 'alpha@example.com', role: 'client' },
-  { id: 'clientB', name: 'Client Beta LLC', email: 'beta@example.com', role: 'client' },
-  { id: 'clientC', name: 'Client Gamma Inc', email: 'gamma@example.com', role: 'client' },
-];
-
-
 const StatusTimelineStep = ({ status, isActive, isCompleted, title, description }: { status: string, isActive: boolean, isCompleted: boolean, title: string, description: string }) => {
   let IconComponent = Clock;
   if (isCompleted || isActive) IconComponent = CheckCircle;
@@ -60,17 +46,7 @@ export default function ProviderRequestDetailPage() {
   const [isUpdating, setIsUpdating] = useState(false);
 
 
-  const fetchRequestDetails = useCallback(async (reqId: string, isDemo: boolean) => {
-    if (isDemo) {
-        const foundRequest = mockProviderRequests.find(r => r.id === reqId);
-        if (foundRequest) {
-            setRequest(foundRequest);
-        } else {
-            setFetchError("Demo service request not found.");
-        }
-        return;
-    }
-
+  const fetchRequestDetails = useCallback(async (reqId: string) => {
     try {
       const requestDocRef = doc(db, "serviceRequests", reqId);
       const requestDoc = await getDoc(requestDocRef);
@@ -98,16 +74,12 @@ export default function ProviderRequestDetailPage() {
     } else if (user && user.role !== 'provider') {
       router.push("/dashboard");
     } else if (user && requestId) {
-      fetchRequestDetails(requestId, user.isDemo || false);
+      fetchRequestDetails(requestId);
     }
   }, [user, loading, router, requestId, fetchRequestDetails]);
 
   const handleUpdateStatus = async (newStatus: ServiceRequest['status']) => {
-    if (!request || (user && user.isDemo)) {
-        setRequest(prev => prev ? { ...prev, status: newStatus } : null);
-        toast({ title: "Status Updated (Demo)", description: `Request status changed to ${newStatus}.`});
-        return;
-    }
+    if (!request) return;
 
     setIsUpdating(true);
     try {

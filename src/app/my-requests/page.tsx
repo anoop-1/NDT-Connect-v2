@@ -16,15 +16,6 @@ import { collection, query, where, getDocs, orderBy } from "firebase/firestore";
 import { useToast } from "@/hooks/use-toast";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
-// Mock data remains for demo purposes, but the page will try to fetch from Firestore first.
-const mockRequests: ServiceRequest[] = [
-  { id: 'req1', clientId: 'client.demo@example.com', providerId: 'prov1', providerName: 'Advanced NDT Solutions', serviceType: 'Ultrasonic Testing', location: 'Main Plant, Area 5', description: 'Inspect critical weld points on pressure vessel.', requestedDate: '2024-08-15', status: 'Confirmed' },
-  { id: 'req2', clientId: 'client.demo@example.com', serviceType: 'Magnetic Particle Testing', location: 'Storage Tank 3B', description: 'Surface crack detection on tank shell.', requestedDate: '2024-08-20', status: 'Pending' },
-  { id: 'req3', clientId: 'client.demo@example.com', providerId: 'prov2', providerName: 'Precision Inspections Inc.', serviceType: 'Radiographic Testing', location: 'Fabrication Shop, Bay 2', description: 'Full weld inspection for new pipeline section.', requestedDate: '2024-07-10', status: 'Completed' },
-  { id: 'req4', clientId: 'client.demo@example.com', providerId: 'prov1', providerName: 'Advanced NDT Solutions', serviceType: 'Visual Testing', location: 'Bridge Section A1', description: 'Routine visual checkup.', requestedDate: '2024-08-01', status: 'In Progress' },
-];
-
-
 const StatusBadge = ({ status }: { status: ServiceRequest['status'] }) => {
   let variant: "default" | "secondary" | "destructive" | "outline" = "default";
   let icon = <Activity className="h-3 w-3 mr-1" />;
@@ -70,14 +61,8 @@ export default function MyRequestsPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [chattingWithRequest, setChattingWithRequest] = useState<ServiceRequest | null>(null);
 
-  const fetchRequests = useCallback(async (userId: string, isDemo: boolean) => {
+  const fetchRequests = useCallback(async (userId: string) => {
     setIsLoading(true);
-    // For demo user, we show the mock requests to ensure they have content to see.
-    if (isDemo) {
-      setRequests(mockRequests);
-      setIsLoading(false);
-      return;
-    }
     
     try {
       const requestsCollectionRef = collection(db, "serviceRequests");
@@ -109,7 +94,7 @@ export default function MyRequestsPage() {
     } else if (user && user.role !== 'client') {
       router.push("/dashboard");
     } else if (user) {
-      fetchRequests(user.id, user.isDemo || false);
+      fetchRequests(user.id);
     }
   }, [user, authLoading, router, fetchRequests]);
 
