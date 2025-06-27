@@ -91,7 +91,7 @@ export default function TrackRequestPage() {
             throw new Error("Service request not found or access denied.");
         }
 
-        const requestData = requestDoc.data() as ServiceRequest;
+        const requestData = requestDoc.data() as Omit<ServiceRequest, 'id'>;
         const requestedDate = requestData.requestedDate?.toDate ? requestData.requestedDate.toDate().toISOString() : requestData.requestedDate;
         
         // Security check: ensure the logged-in user is the one who created the request

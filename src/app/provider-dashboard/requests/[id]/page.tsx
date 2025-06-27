@@ -42,6 +42,7 @@ export default function ProviderRequestDetailPage() {
   const requestId = params.id as string;
 
   const [request, setRequest] = useState<ServiceRequest | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [fetchError, setFetchError] = useState<string | null>(null);
   const [showChat, setShowChat] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
@@ -74,7 +75,7 @@ export default function ProviderRequestDetailPage() {
         const requestData = { id: requestDoc.id, ...data, requestedDate } as ServiceRequest;
 
         // Security check: only allow assigned provider or any provider for a pending request
-        if (requestData.providerId && requestData.providerId !== user?.id) {
+        if (requestData.providerId && requestData.providerId !== user?.id && requestData.status !== 'Pending') {
            throw new Error("You are not assigned to this request.");
         }
         setRequest(requestData);
@@ -101,7 +102,7 @@ export default function ProviderRequestDetailPage() {
   }, [user, loading, router, requestId, fetchRequestDetails]);
 
   const handleUpdateStatus = async (newStatus: ServiceRequest['status']) => {
-    if (!request) return;
+    if (!request || !user) return;
 
     if (user?.isDemo) {
         toast({ title: "Demo Mode", description: "Actions are disabled in demo mode."});
@@ -111,8 +112,14 @@ export default function ProviderRequestDetailPage() {
     setIsUpdating(true);
     try {
       const requestDocRef = doc(db, "serviceRequests", request.id);
-      await updateDoc(requestDocRef, { status: newStatus });
-      setRequest(prev => prev ? { ...prev, status: newStatus } : null);
+      const updateData: any = { status: newStatus };
+      // If confirming, assign provider details
+      if (newStatus === 'Confirmed' && !request.providerId) {
+          updateData.providerId = user.id;
+          updateData.providerName = user.name || user.email;
+      }
+      await updateDoc(requestDocRef, updateData);
+      setRequest(prev => prev ? { ...prev, ...updateData } : null);
       toast({ title: "Status Updated", description: `Request status successfully changed to ${newStatus}.`});
     } catch (error) {
         console.error("Error updating status:", error);
@@ -123,7 +130,7 @@ export default function ProviderRequestDetailPage() {
   };
 
 
-  if (loading || (!request && !fetchError)) {
+  if (isLoading || loading) {
     return <div className="flex justify-center items-center min-h-[calc(100vh-10rem)]"><Activity className="h-8 w-8 animate-spin text-primary" /> <span className="ml-2">Loading request details...</span></div>;
   }
 
