@@ -1,1 +1,1 @@
-// This file has been replaced by next.config.js to support the build environment.
+// This file is intentionally blank. Configuration is handled in next.config.js for compatibility.
