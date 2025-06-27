@@ -116,10 +116,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     try {
       const userDocRef = doc(db, "users", newUser.id);
-      // Use the standard, robust JSON stringify/parse method to ensure data is clean
-      const dataForFirestore = JSON.parse(JSON.stringify(newUser));
-      
-      await setDoc(userDocRef, dataForFirestore);
+      // Pass the raw newUser object directly to setDoc.
+      // The Firestore SDK will handle Date objects correctly.
+      // The `ignoreUndefinedProperties: true` setting in firebase.ts will handle any undefined fields.
+      await setDoc(userDocRef, newUser);
       return newUser;
     } catch (error) {
       console.error("Error creating user in Firestore:", error);
@@ -167,9 +167,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
      const userDocRef = doc(db, "users", userToUpdate.id);
      
-     // Use the same robust cleaning method for updates.
-     const dataForFirestore = JSON.parse(JSON.stringify(userToUpdate));
-     await setDoc(userDocRef, dataForFirestore, { merge: true });
+     // Pass the raw object to setDoc. The `ignoreUndefinedProperties` setting handles it.
+     await setDoc(userDocRef, userToUpdate, { merge: true });
      storeUserSession(userToUpdate);
   };
 

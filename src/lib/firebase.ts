@@ -1,7 +1,7 @@
 // src/lib/firebase.ts
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, initializeFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 // =================================================================================
@@ -44,7 +44,11 @@ if (!getApps().length) {
 }
 
 const auth = getAuth(app);
-const db = getFirestore(app);
+// Initialize Firestore with the setting to ignore undefined properties.
+// This is the correct way to handle objects with optional fields.
+const db = initializeFirestore(app, {
+  ignoreUndefinedProperties: true
+});
 const storage = getStorage(app);
 
 /*
