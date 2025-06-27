@@ -289,12 +289,7 @@ export function RegisterForm() {
     }
   }, [currentRole]);
 
-  useEffect(() => {
-    fetchPredefinedLists();
-    form.reset(getInitialValues(currentRole));
-  }, [currentRole, fetchPredefinedLists, form]);
-
-  const getInitialValues = (role: 'client' | 'provider' | 'inspector') => {
+  const getInitialValues = useCallback((role: 'client' | 'provider' | 'inspector') => {
       const base = { name: form.getValues('name'), email: form.getValues('email'), password: form.getValues('password'), confirmPassword: form.getValues('confirmPassword'), acceptTerms: form.getValues('acceptTerms') };
       switch (role) {
           case "client": return { ...base, role, companyName: "", industry: "", primaryLocation: "", contactNumberClient: "" };
@@ -302,7 +297,14 @@ export function RegisterForm() {
           case "inspector": return { ...base, role, locationInspector: "", contactNumberInspector: "", servicesOfferedInspector: [defaultServiceOfferingRow()], personnelQualificationsInspector: [{ id: generateUniqueId(), certificationBody: '', level: '' }], bio: "", profileImageUrl: "" };
           default: return { ...base, role: 'client' };
       }
-  };
+  },[form]);
+
+
+  useEffect(() => {
+    fetchPredefinedLists();
+    form.reset(getInitialValues(currentRole));
+  }, [currentRole, fetchPredefinedLists, form, getInitialValues]);
+
 
   async function onSubmit(values: FormSchemaType) {
     setIsLoading(true);
