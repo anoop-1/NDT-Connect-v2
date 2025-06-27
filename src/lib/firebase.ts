@@ -1,12 +1,27 @@
-
 // src/lib/firebase.ts
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
-// Your web app's Firebase configuration
-// IMPORTANT: Replace these with your actual Firebase project's configuration values!
+// =================================================================================
+// IMPORTANT: ACTION REQUIRED TO MAKE YOUR APP LIVE
+// =================================================================================
+// The configuration object below is currently using placeholder values.
+// To connect your app to your own live Firebase database in the cloud,
+// you must replace these placeholders with the actual configuration values
+// from your Firebase project.
+//
+// HOW TO GET YOUR FIREBASE CONFIG:
+// 1. Go to the Firebase Console: https://console.firebase.google.com/
+// 2. Create a new Firebase project (or select an existing one).
+// 3. In your project, go to Project Settings (click the gear icon).
+// 4. In the "General" tab, scroll down to the "Your apps" section.
+// 5. If you haven't created a web app yet, click the web icon (</>) to create one.
+// 6. Once your web app is created, you will see a `firebaseConfig` object.
+// 7. Copy the values from that object and paste them into the placeholders below.
+// =================================================================================
+
 const firebaseConfig = {
   apiKey: "YOUR_API_KEY", // Replace with your actual API key
   authDomain: "YOUR_PROJECT_ID.firebaseapp.com", // Replace with your actual auth domain
@@ -19,6 +34,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 let app;
+if (firebaseConfig.apiKey === "YOUR_API_KEY") {
+  console.warn("Firebase is not configured. Using placeholders. App will not connect to a live database.");
+}
+
 if (!getApps().length) {
   app = initializeApp(firebaseConfig);
 } else {
