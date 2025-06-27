@@ -1,3 +1,4 @@
+
 // src/components/auth/RegisterForm.tsx
 "use client";
 
@@ -114,6 +115,15 @@ interface PredefinedLists {
     companyCertifications: string[];
 }
 
+const FALLBACK_LISTS: PredefinedLists = {
+    providerNdtServices: [ "Radiographic Testing", "Ultrasonic Testing", "Magnetic Particle Testing", "Liquid Penetrant Testing", "Visual Testing", "Eddy Current Testing", "Leak Testing", "Acoustic Emission" ],
+    serviceUnits: [ "per hour", "per day", "per project", "per item", "per foot", "per weld" ],
+    qualificationBodies: [ "ASNT", "PCN", "ISO 9712", "CSWIP", "ACCP", "NAS 410" ],
+    qualificationLevels: ["Level I", "Level II", "Level III", "Technician", "Trainee"],
+    companyCertifications: [ "ISO 9001", "API Q1", "Nadcap", "AS9100", "ISO/IEC 17025" ],
+};
+
+
 // --- SUB-COMPONENTS FOR EACH ROLE ---
 
 const ClientFields = ({ form }: { form: UseFormReturn<FormSchemaType> }) => (
@@ -197,9 +207,7 @@ export function RegisterForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingLists, setIsLoadingLists] = useState(false);
   const [listsError, setListsError] = useState<string | null>(null);
-  const [predefinedLists, setPredefinedLists] = useState<PredefinedLists>({
-    providerNdtServices: [], serviceUnits: [], qualificationBodies: [], qualificationLevels: [], companyCertifications: []
-  });
+  const [predefinedLists, setPredefinedLists] = useState<PredefinedLists>(FALLBACK_LISTS);
 
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
@@ -213,22 +221,49 @@ export function RegisterForm() {
     if (currentRole === 'client') return;
     setIsLoadingLists(true);
     setListsError(null);
+
+    const fetchPromise = new Promise<PredefinedLists>(async (resolve, reject) => {
+        try {
+            const listIds: (keyof PredefinedLists)[] = ["providerNdtServices", "serviceUnits", "personnelQualificationBodies", "personnelQualificationLevels", "companyCertifications"];
+            const listSnapshots = await Promise.all(listIds.map(id => getDoc(doc(db, "predefinedLists", id))));
+            const newLists = {...FALLBACK_LISTS};
+            
+            listSnapshots.forEach((snap, index) => {
+                const id = listIds[index];
+                if (snap.exists() && Array.isArray(snap.data().items) && snap.data().items.length > 0) {
+                    newLists[id] = snap.data().items;
+                } else {
+                    console.warn(`Firestore list '${id}' not found or is empty, using fallback.`);
+                }
+            });
+            resolve(newLists);
+        } catch (error) {
+            reject(error);
+        }
+    });
+
+    const timeoutPromise = new Promise<never>((_, reject) => 
+        setTimeout(() => reject(new Error("Firestore timeout")), 7000)
+    );
+
     try {
-        const listIds = ["providerNdtServices", "serviceUnits", "personnelQualificationBodies", "personnelQualificationLevels", "companyCertifications"];
-        const listSnapshots = await Promise.all(listIds.map(id => getDoc(doc(db, "predefinedLists", id))));
-        const newLists: any = {};
-        listSnapshots.forEach((snap, index) => {
-            const id = listIds[index];
-            newLists[id] = snap.exists() && Array.isArray(snap.data().items) ? snap.data().items : [];
-        });
-        setPredefinedLists(newLists);
+        const lists = await Promise.race([fetchPromise, timeoutPromise]);
+        setPredefinedLists(lists);
     } catch (error) {
-      console.error("Error fetching predefined lists:", error);
-      setListsError("Failed to load registration options. Please try again later.");
+        console.error("Error or timeout fetching predefined lists:", error);
+        setListsError("Could not load provider options from the database. Using default options.");
+        toast({
+          title: "Database Connection Issue",
+          description: "Using default registration options. Admins: please check Firestore configuration and data.",
+          variant: "destructive",
+          duration: 9000
+        });
+        setPredefinedLists(FALLBACK_LISTS);
     } finally {
       setIsLoadingLists(false);
     }
-  }, [currentRole]);
+  }, [currentRole, toast]);
+
 
   const getInitialValues = useCallback((role: 'client' | 'provider') => {
       const base = { name: form.getValues('name'), email: form.getValues('email'), password: form.getValues('password'), confirmPassword: form.getValues('confirmPassword'), acceptTerms: form.getValues('acceptTerms') };
