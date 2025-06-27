@@ -120,11 +120,18 @@ const providerSchema = baseSchema.extend({
   companyLogoUrl: z.string().url({ message: "Please enter a valid URL for the company logo." }).optional().or(z.literal("")),
 });
 
+const inspectorPersonnelQualificationSchema = z.object({
+    id: z.string(),
+    certificationBody: z.string().min(1, "Certification body is required."),
+    level: z.string().min(1, "Level is required."),
+    expiryDate: z.date().optional(),
+});
+
 const inspectorSchema = baseSchema.extend({
     locationInspector: z.string().min(2, { message: "Your location is required." }),
     servicesOfferedInspector: z.array(serviceOfferingSchema).min(1, "At least one service must be offered."),
     contactNumberInspector: z.string().min(7, { message: "Contact number is required." }),
-    personnelQualificationsInspector: z.array(personnelQualificationSchema).min(1, "At least one personnel qualification must be listed."),
+    personnelQualificationsInspector: z.array(inspectorPersonnelQualificationSchema).min(1, "At least one personnel qualification must be listed."),
     bio: z.string().optional(),
     profileImageUrl: z.string().url({ message: "Please enter a valid URL." }).optional().or(z.literal("")),
 });
@@ -221,7 +228,7 @@ export function RegisterForm() {
       locationInspector: "",
       servicesOfferedInspector: [defaultServiceOfferingRow()],
       contactNumberInspector: "",
-      personnelQualificationsInspector: [defaultPersonnelQualificationRow()],
+      personnelQualificationsInspector: [{ id: generateUniqueId(), certificationBody: '', level: ''}],
       bio: "",
       profileImageUrl: "",
     },
@@ -330,10 +337,16 @@ export function RegisterForm() {
       };
     } else if (values.role === "inspector" && "locationInspector" in values) {
       const inspectorValues = values as Extract<FormSchemaType, { role: 'inspector' }>;
+      
+      const transformedPersonnelQualifications = inspectorValues.personnelQualificationsInspector.map(qual => ({
+        ...qual,
+        quantity: 1, // Add quantity: 1 for each inspector qualification
+      }));
+      
       profileData = {
           location: inspectorValues.locationInspector,
           servicesOffered: inspectorValues.servicesOfferedInspector,
-          personnelQualifications: inspectorValues.personnelQualificationsInspector,
+          personnelQualifications: transformedPersonnelQualifications,
           contactNumber: inspectorValues.contactNumberInspector,
           bio: inspectorValues.bio,
           profileImageUrl: inspectorValues.profileImageUrl,
@@ -526,17 +539,14 @@ export function RegisterForm() {
                             <CardContent>
                                 {personnelInspectorFields.map((item, index) => (
                                     <div key={item.id} className="grid grid-cols-[1fr_auto] gap-2 items-start mb-2">
-                                        <div> {/* Wrapper for all fields */}
-                                            <input type="hidden" {...form.register(`personnelQualificationsInspector.${index}.quantity`)} value={1} />
-                                            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                                                <FormField control={form.control} name={`personnelQualificationsInspector.${index}.certificationBody`} render={({ field }) => (<FormItem><FormLabel>Body</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select a body"/></SelectTrigger></FormControl><SelectContent>{qualificationBodies.map(b => <SelectItem key={b} value={b}>{b}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)}/>
-                                                <FormField control={form.control} name={`personnelQualificationsInspector.${index}.level`} render={({ field }) => (<FormItem><FormLabel>Level</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select a level"/></SelectTrigger></FormControl><SelectContent>{qualificationLevels.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)}/>
-                                            </div>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                            <FormField control={form.control} name={`personnelQualificationsInspector.${index}.certificationBody`} render={({ field }) => (<FormItem><FormLabel>Body</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select a Body..." /></SelectTrigger></FormControl><SelectContent>{qualificationBodies.map(b => <SelectItem key={b} value={b}>{b}</SelectItem>)}</SelectContent></Select><FormMessage /></FormItem>)} />
+                                            <FormField control={form.control} name={`personnelQualificationsInspector.${index}.level`} render={({ field }) => (<FormItem><FormLabel>Level</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select a Level..." /></SelectTrigger></FormControl><SelectContent>{qualificationLevels.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}</SelectContent></Select><FormMessage /></FormItem>)} />
                                         </div>
                                         <div className="pt-8"><Button type="button" variant="ghost" size="icon" onClick={() => removeInspectorPersonnel(index)} className="text-destructive"><Trash2 className="h-4 w-4"/></Button></div>
                                     </div>
                                 ))}
-                                <Button type="button" variant="outline" onClick={() => appendInspectorPersonnel(defaultPersonnelQualificationRow())} className="mt-2"><PlusCircle className="h-4 w-4 mr-2"/>Add Qualification</Button>
+                                <Button type="button" variant="outline" onClick={() => appendInspectorPersonnel({ id: generateUniqueId(), certificationBody: '', level: '' })} className="mt-2"><PlusCircle className="h-4 w-4 mr-2"/>Add Qualification</Button>
                             </CardContent>
                         </Card>
 
