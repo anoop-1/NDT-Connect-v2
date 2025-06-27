@@ -119,31 +119,52 @@ export default function FindProvidersPage() {
 
     try {
       const usersRef = collection(db, "users");
-      const q = query(usersRef, where("role", "==", "provider"), where("isActive", "==", true));
+      const q = query(usersRef, where("role", "in", ["provider", "inspector"]), where("isActive", "==", true));
       const querySnapshot = await getDocs(q);
       const fetchedUsers: User[] = [];
       querySnapshot.forEach((doc) => {
         fetchedUsers.push({ id: doc.id, ...doc.data() } as User);
       });
 
-      const providersData: ServiceProvider[] = fetchedUsers.map(u => ({
-        id: u.id,
-        name: u.name || "Unnamed Provider",
-        location: u.providerProfile?.location || "Location not set",
-        lat: u.providerProfile?.lat,
-        lng: u.providerProfile?.lng,
-        services: u.providerProfile?.servicesOffered || [],
-        specialization: u.providerProfile?.specialization || "General NDT Services",
-        rating: u.providerProfile?.rating || 4.0,
-        description: u.providerProfile?.description || "No description available.",
-        imageUrl: u.providerProfile?.companyLogoUrl,
-        dataAiHint: u.providerProfile?.dataAiHint,
-        baseRate: u.providerProfile?.baseRate,
-        certifications: u.providerProfile?.certifications,
-        personnelQualifications: u.providerProfile?.personnelQualifications,
-        isVerified: u.providerProfile?.isVerified,
-        availableDocuments: u.providerProfile?.availableDocuments,
-      }));
+      const providersData: ServiceProvider[] = fetchedUsers.map(u => {
+        if (u.role === 'provider') {
+            return {
+                id: u.id,
+                type: 'company',
+                name: u.name || "Unnamed Provider",
+                location: u.providerProfile?.location || "Location not set",
+                services: u.providerProfile?.servicesOffered || [],
+                specialization: u.providerProfile?.specialization || "General NDT Services",
+                rating: u.providerProfile?.rating || 4.0,
+                description: u.providerProfile?.description || "No description available.",
+                imageUrl: u.providerProfile?.companyLogoUrl,
+                dataAiHint: u.providerProfile?.dataAiHint,
+                baseRate: u.providerProfile?.baseRate,
+                certifications: u.providerProfile?.certifications,
+                personnelQualifications: u.providerProfile?.personnelQualifications,
+                isVerified: u.providerProfile?.isVerified,
+                availableDocuments: u.providerProfile?.availableDocuments,
+            };
+        } else { // u.role === 'inspector'
+            return {
+                id: u.id,
+                type: 'freelancer',
+                name: u.name || "Unnamed Inspector",
+                location: u.inspectorProfile?.location || "Location not set",
+                services: u.inspectorProfile?.servicesOffered || [],
+                specialization: 'Freelance Inspector',
+                rating: u.inspectorProfile?.rating || 4.0,
+                description: u.inspectorProfile?.bio || "No bio available.",
+                imageUrl: u.inspectorProfile?.profileImageUrl,
+                dataAiHint: u.inspectorProfile?.dataAiHint || "person portrait",
+                baseRate: u.inspectorProfile?.baseRate,
+                certifications: [],
+                personnelQualifications: u.inspectorProfile?.personnelQualifications,
+                isVerified: u.inspectorProfile?.isVerified,
+                availableDocuments: [],
+            };
+        }
+      });
       
       if (providersData.length === 0) {
         setAllProviders(MOCK_PROVIDERS);
@@ -246,7 +267,7 @@ export default function FindProvidersPage() {
       <section className="bg-card p-6 rounded-lg shadow">
         <h1 className="text-3xl font-bold mb-2">Find NDT Service Providers</h1>
         <p className="text-muted-foreground mb-6">
-          Browse and connect with qualified Non-Destructive Testing professionals from our network.
+          Browse and connect with qualified NDT professionals and companies from our network.
           {user?.isDemo && <span className="font-semibold text-primary ml-2">(Demo Mode)</span>}
           {isShowingExamples && <span className="font-semibold text-primary ml-2">(Example Data)</span>}
         </p>
@@ -276,7 +297,7 @@ export default function FindProvidersPage() {
                   </div>
                   <div className="grid gap-y-3">
                     <div>
-                      <Label htmlFor="companyNameFilter">Company Name</Label>
+                      <Label htmlFor="companyNameFilter">Company / Inspector Name</Label>
                       <Input id="companyNameFilter" value={filterCompanyName} onChange={(e) => setFilterCompanyName(e.target.value)} placeholder="e.g., Global Inspection" />
                     </div>
                     <div>
@@ -345,7 +366,7 @@ export default function FindProvidersPage() {
             onCheckedChange={(checked) => setFilterVerifiedOnly(checked as boolean)}
           />
           <Label htmlFor="verifiedOnly" className="flex items-center text-sm font-medium">
-            <ShieldCheck className="h-4 w-4 mr-1 text-green-600" /> Show Verified Providers Only
+            <ShieldCheck className="h-4 w-4 mr-1 text-green-600" /> Show Verified Only
           </Label>
         </div>
       </section>

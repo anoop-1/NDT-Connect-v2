@@ -25,8 +25,8 @@ import { useToast } from "@/hooks/use-toast";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useState, useEffect, useCallback } from "react";
-import type { ClientProfileData, ProviderProfileData, ServiceOffering, PersonnelQualification, CompanyCertification } from "@/lib/types";
-import { ImageIcon, DollarSign, FileText, Award, Users2, BookOpen, ListChecks, PlusCircle, Trash2, CalendarIcon, Link as LinkIcon, Activity, AlertCircle } from "lucide-react";
+import type { ClientProfileData, ProviderProfileData, ServiceOffering, PersonnelQualification, CompanyCertification, InspectorProfileData } from "@/lib/types";
+import { ImageIcon, DollarSign, FileText, Award, Users2, BookOpen, ListChecks, PlusCircle, Trash2, CalendarIcon, Link as LinkIcon, Activity, AlertCircle, User as UserIcon } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -70,7 +70,7 @@ const baseSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
   password: z.string().min(6, { message: "Password must be at least 6 characters." }),
   confirmPassword: z.string(),
-  role: z.enum(["client", "provider"], { required_error: "You must select a role." }),
+  role: z.enum(["client", "provider", "inspector"], { required_error: "You must select a role." }),
   acceptTerms: z.boolean().refine(val => val === true, { message: "You must accept the terms and conditions to register." }),
 });
 
@@ -121,7 +121,16 @@ const providerSchema = baseSchema.extend({
   companyLogoUrl: z.string().url({ message: "Please enter a valid URL for the company logo." }).optional().or(z.literal("")),
 });
 
-const formSchema = z.union([clientSchema, providerSchema])
+const inspectorSchema = baseSchema.extend({
+    locationInspector: z.string().min(2, { message: "Your location is required." }),
+    servicesOfferedInspector: z.array(serviceOfferingSchema).min(1, "At least one service must be offered."),
+    contactNumberInspector: z.string().min(7, { message: "Contact number is required." }),
+    personnelQualificationsInspector: z.array(personnelQualificationSchema).min(1, "At least one personnel qualification must be listed."),
+    bio: z.string().optional(),
+    profileImageUrl: z.string().url({ message: "Please enter a valid URL." }).optional().or(z.literal("")),
+});
+
+const formSchema = z.union([clientSchema, providerSchema, inspectorSchema])
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don't match",
     path: ["confirmPassword"],
@@ -138,6 +147,12 @@ const formSchema = z.union([clientSchema, providerSchema])
                'servicesOffered' in data && data.servicesOffered.length > 0 &&
                'contactNumberProvider' in data && data.contactNumberProvider &&
                'personnelQualifications' in data && data.personnelQualifications && data.personnelQualifications.length > 0;
+    }
+    if (data.role === 'inspector') {
+        return 'locationInspector' in data && data.locationInspector &&
+               'servicesOfferedInspector' in data && data.servicesOfferedInspector.length > 0 &&
+               'contactNumberInspector' in data && data.contactNumberInspector &&
+               'personnelQualificationsInspector' in data && data.personnelQualificationsInspector && data.personnelQualificationsInspector.length > 0;
     }
     return true;
   }, {
@@ -158,6 +173,12 @@ const PROVIDER_AGREEMENT_TEXT = `
 Terms of Service for Service Providers
 
 Welcome to NDT Connect! By registering as a Service Provider, you agree to provide accurate information in your profile and to fulfill client requirements professionally and in accordance with industry standards. NDT Connect is a facilitator and does not guarantee work. You are responsible for your agreements with clients.
+`;
+
+const INSPECTOR_AGREEMENT_TEXT = `
+Terms of Service for NDT Inspectors (Freelancers)
+
+Welcome to NDT Connect! By registering as an NDT Inspector, you affirm that you are an independent contractor. You agree to represent your skills and qualifications accurately and to perform work with professional diligence. NDT Connect is a platform to connect you with opportunities and is not your employer.
 `;
 
 export function RegisterForm() {
@@ -184,10 +205,12 @@ export function RegisterForm() {
       confirmPassword: "",
       role: "client",
       acceptTerms: false,
+      // Client
       companyName: "",
       industry: "",
       primaryLocation: "",
       contactNumberClient: "",
+      // Provider
       locationProvider: "",
       servicesOffered: [defaultServiceOfferingRow()],
       contactNumberProvider: "",
@@ -195,6 +218,13 @@ export function RegisterForm() {
       certifications: [defaultCompanyCertificationRow()],
       procedureInfoUrl: "",
       companyLogoUrl: "",
+      // Inspector
+      locationInspector: "",
+      servicesOfferedInspector: [defaultServiceOfferingRow()],
+      contactNumberInspector: "",
+      personnelQualificationsInspector: [defaultPersonnelQualificationRow()],
+      bio: "",
+      profileImageUrl: "",
     },
   });
 
@@ -204,10 +234,20 @@ export function RegisterForm() {
     control: form.control,
     name: "servicesOffered" as any,
   });
+  
+  const { fields: serviceInspectorFields, append: appendInspectorService, remove: removeInspectorService } = useFieldArray({
+    control: form.control,
+    name: "servicesOfferedInspector" as any,
+  });
 
   const { fields: personnelFields, append: appendPersonnel, remove: removePersonnel } = useFieldArray({
     control: form.control,
     name: "personnelQualifications" as any,
+  });
+  
+  const { fields: personnelInspectorFields, append: appendInspectorPersonnel, remove: removeInspectorPersonnel } = useFieldArray({
+    control: form.control,
+    name: "personnelQualificationsInspector" as any,
   });
 
   const { fields: certificationFields, append: appendCertification, remove: removeCertification } = useFieldArray({
@@ -216,7 +256,7 @@ export function RegisterForm() {
   });
 
   const fetchPredefinedLists = useCallback(async () => {
-    if (currentRole !== 'provider') return;
+    if (currentRole === 'client') return;
     setIsLoadingLists(true);
     setListsError(null);
     try {
@@ -269,7 +309,7 @@ export function RegisterForm() {
         return;
     }
     
-    let profileData: Partial<ClientProfileData & ProviderProfileData> = {};
+    let profileData: Partial<ClientProfileData & ProviderProfileData & InspectorProfileData> = {};
 
     if (values.role === "client" && "companyName" in values) {
       profileData = {
@@ -288,6 +328,16 @@ export function RegisterForm() {
         contactNumber: providerValues.contactNumberProvider,
         procedureInfoUrl: providerValues.procedureInfoUrl,
         companyLogoUrl: providerValues.companyLogoUrl,
+      };
+    } else if (values.role === "inspector" && "locationInspector" in values) {
+      const inspectorValues = values as Extract<FormSchemaType, { role: 'inspector' }>;
+      profileData = {
+          location: inspectorValues.locationInspector,
+          servicesOffered: inspectorValues.servicesOfferedInspector,
+          personnelQualifications: inspectorValues.personnelQualificationsInspector,
+          contactNumber: inspectorValues.contactNumberInspector,
+          bio: inspectorValues.bio,
+          profileImageUrl: inspectorValues.profileImageUrl,
       };
     }
     
@@ -312,12 +362,21 @@ export function RegisterForm() {
     setIsLoading(false);
   }
 
+  const getAgreementText = () => {
+    switch (currentRole) {
+        case 'client': return CLIENT_AGREEMENT_TEXT;
+        case 'provider': return PROVIDER_AGREEMENT_TEXT;
+        case 'inspector': return INSPECTOR_AGREEMENT_TEXT;
+        default: return '';
+    }
+  };
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         {/* Basic Info Fields */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-             <FormField control={form.control} name="name" render={({ field }) => ( <FormItem> <FormLabel>Full Name</FormLabel> <FormControl><Input placeholder="John Doe" {...field} /></FormControl> <FormMessage /> </FormItem> )} />
+             <FormField control={form.control} name="name" render={({ field }) => ( <FormItem> <FormLabel>Full Name / Company Name</FormLabel> <FormControl><Input placeholder="John Doe or Acme Inc." {...field} /></FormControl> <FormMessage /> </FormItem> )} />
              <FormField control={form.control} name="email" render={({ field }) => ( <FormItem> <FormLabel>Work Email</FormLabel> <FormControl><Input type="email" placeholder="you@example.com" {...field} /></FormControl> <FormMessage /> </FormItem> )} />
              <FormField control={form.control} name="password" render={({ field }) => ( <FormItem> <FormLabel>Password</FormLabel> <FormControl><Input type="password" placeholder="••••••••" {...field} /></FormControl> <FormMessage /> </FormItem> )} />
              <FormField control={form.control} name="confirmPassword" render={({ field }) => ( <FormItem> <FormLabel>Confirm Password</FormLabel> <FormControl><Input type="password" placeholder="••••••••" {...field} /></FormControl> <FormMessage /> </FormItem> )} />
@@ -330,7 +389,7 @@ export function RegisterForm() {
             <FormItem className="space-y-2 pt-2">
               <FormLabel>Register as</FormLabel>
               <FormControl>
-                <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex space-x-4">
+                <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-wrap space-x-4">
                   <FormItem className="flex items-center space-x-2 space-y-0">
                     <FormControl><RadioGroupItem value="client" id="role-client-reg" /></FormControl>
                     <Label htmlFor="role-client-reg" className="font-normal">Client</Label>
@@ -338,6 +397,10 @@ export function RegisterForm() {
                   <FormItem className="flex items-center space-x-2 space-y-0">
                     <FormControl><RadioGroupItem value="provider" id="role-provider-reg" /></FormControl>
                     <Label htmlFor="role-provider-reg" className="font-normal">Service Provider</Label>
+                  </FormItem>
+                  <FormItem className="flex items-center space-x-2 space-y-0">
+                    <FormControl><RadioGroupItem value="inspector" id="role-inspector-reg" /></FormControl>
+                    <Label htmlFor="role-inspector-reg" className="font-normal">NDT Inspector (Freelancer)</Label>
                   </FormItem>
                 </RadioGroup>
               </FormControl>
@@ -427,19 +490,75 @@ export function RegisterForm() {
             )}
           </div>
         )}
+        
+        {currentRole === "inspector" && (
+            <div className="space-y-6">
+                {isLoadingLists && ( <div className="flex items-center justify-center p-4 text-muted-foreground"><Activity className="mr-2 h-4 w-4 animate-spin"/>Loading registration options...</div> )}
+                {listsError && ( <div className="flex items-center justify-center p-4 text-destructive bg-destructive/10 rounded-md"><AlertCircle className="mr-2 h-4 w-4"/>{listsError}</div> )}
+
+                {!isLoadingLists && !listsError && (
+                    <>
+                        <FormField control={form.control} name="locationInspector" render={({ field }) => (<FormItem><FormLabel>Your Location</FormLabel><FormControl><Input placeholder="City, State" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                        <FormField control={form.control} name="contactNumberInspector" render={({ field }) => (<FormItem><FormLabel>Contact Number</FormLabel><FormControl><Input placeholder="(555) 555-5555" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                        
+                        {/* Services Offered */}
+                        <Card>
+                          <CardHeader><CardTitle className="flex items-center text-lg font-semibold"><ListChecks className="h-5 w-5 mr-2 text-primary"/>Services Offered</CardTitle></CardHeader>
+                          <CardContent className="space-y-4">
+                            {serviceInspectorFields.map((item, index) => (
+                              <div key={item.id} className="grid grid-cols-[1fr_auto] gap-2 items-start">
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                                   <FormField control={form.control} name={`servicesOfferedInspector.${index}.name`} render={({ field }) => (<FormItem><FormLabel>Service</FormLabel>{(item as ServiceOffering).isCustom ? (<FormControl><Input placeholder="Custom service" {...field} /></FormControl>) : (<Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue/></SelectTrigger></FormControl><SelectContent>{providerNdtServices.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent></Select>)}<FormMessage/></FormItem>)} />
+                                   <FormField control={form.control} name={`servicesOfferedInspector.${index}.unit`} render={({ field }) => (<FormItem><FormLabel>Unit</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue/></SelectTrigger></FormControl><SelectContent>{serviceUnits.map(u => <SelectItem key={u} value={u}>{u}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
+                                   <FormField control={form.control} name={`servicesOfferedInspector.${index}.rate`} render={({ field }) => (<FormItem><FormLabel>Rate</FormLabel><FormControl><Input placeholder="100" {...field} /></FormControl><FormMessage/></FormItem>)} />
+                                </div>
+                                <div className="pt-8">
+                                    <Button type="button" variant="ghost" size="icon" onClick={() => removeInspectorService(index)} className="text-destructive"><Trash2 className="h-4 w-4" /></Button>
+                                </div>
+                              </div>
+                            ))}
+                            <div className="flex gap-2"><Button type="button" variant="outline" onClick={() => appendInspectorService(defaultServiceOfferingRow(false))}><PlusCircle className="h-4 w-4 mr-2"/>Add Service</Button><Button type="button" variant="outline" onClick={() => appendInspectorService(defaultServiceOfferingRow(true))}><PlusCircle className="h-4 w-4 mr-2"/>Add Custom</Button></div>
+                          </CardContent>
+                        </Card>
+
+                        {/* Personnel Qualifications */}
+                        <Card>
+                            <CardHeader><CardTitle className="flex items-center text-lg font-semibold"><Users2 className="h-5 w-5 mr-2 text-primary"/>Your Qualifications</CardTitle></CardHeader>
+                            <CardContent>
+                                {personnelInspectorFields.map((item, index) => (
+                                    <div key={item.id} className="grid grid-cols-[1fr_auto] gap-2 items-start mb-2">
+                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+                                            {/* Hide Quantity for inspectors */}
+                                            <input type="hidden" {...form.register(`personnelQualificationsInspector.${index}.quantity`)} value={1} />
+                                            <FormField control={form.control} name={`personnelQualificationsInspector.${index}.certificationBody`} render={({ field }) => (<FormItem><FormLabel>Body</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue/></SelectTrigger></FormControl><SelectContent>{qualificationBodies.map(b => <SelectItem key={b} value={b}>{b}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)}/>
+                                            <FormField control={form.control} name={`personnelQualificationsInspector.${index}.level`} render={({ field }) => (<FormItem><FormLabel>Level</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue/></SelectTrigger></FormControl><SelectContent>{qualificationLevels.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)}/>
+                                        </div>
+                                        <div className="pt-8"><Button type="button" variant="ghost" size="icon" onClick={() => removeInspectorPersonnel(index)} className="text-destructive"><Trash2 className="h-4 w-4"/></Button></div>
+                                    </div>
+                                ))}
+                                <Button type="button" variant="outline" onClick={() => appendInspectorPersonnel(defaultPersonnelQualificationRow())} className="mt-2"><PlusCircle className="h-4 w-4 mr-2"/>Add Qualification</Button>
+                            </CardContent>
+                        </Card>
+
+                        <FormField control={form.control} name="bio" render={({ field }) => (<FormItem><FormLabel>Bio (Optional)</FormLabel><FormControl><Textarea placeholder="Briefly describe your experience and expertise." {...field} /></FormControl><FormMessage /></FormItem>)} />
+                        <FormField control={form.control} name="profileImageUrl" render={({ field }) => (<FormItem><FormLabel>Profile Photo URL (Optional)</FormLabel><FormControl><Input placeholder="https://example.com/your-photo.png" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                    </>
+                )}
+            </div>
+        )}
 
         {/* Terms and Agreement */}
         <div className="space-y-3 pt-4">
             <Label className="text-lg font-semibold flex items-center"><FileText className="mr-2 h-5 w-5 text-primary" />NDT Connect User Agreement</Label>
             <ScrollArea className="h-40 w-full rounded-md border p-3 text-sm bg-muted/30">
                 <pre className="whitespace-pre-wrap font-sans">
-                {currentRole === "client" ? CLIENT_AGREEMENT_TEXT : PROVIDER_AGREEMENT_TEXT}
+                  {getAgreementText()}
                 </pre>
             </ScrollArea>
             <FormField control={form.control} name="acceptTerms" render={({ field }) => ( <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-3 shadow-sm"> <FormControl> <Checkbox checked={field.value} onCheckedChange={field.onChange} /> </FormControl> <div className="space-y-1 leading-none"> <FormLabel className="font-normal"> I have read and agree to the User Agreement. </FormLabel> <FormMessage /> </div> </FormItem> )} />
         </div>
 
-        <Button type="submit" className="w-full" disabled={isLoading || (currentRole === 'provider' && isLoadingLists)}>
+        <Button type="submit" className="w-full" disabled={isLoading || (currentRole !== 'client' && isLoadingLists)}>
           {isLoading ? "Registering..." : "Create Account"}
         </Button>
       </form>

@@ -49,10 +49,25 @@ export type ProviderProfileData = {
   rating?: number;
 };
 
+export type InspectorProfileData = {
+  location?: string;
+  lat?: number;
+  lng?: number;
+  servicesOffered?: ServiceOffering[];
+  contactNumber?: string;
+  bio?: string;
+  profileImageUrl?: string;
+  dataAiHint?: string;
+  personnelQualifications?: PersonnelQualification[];
+  isVerified?: boolean;
+  rating?: number;
+  baseRate?: number;
+};
+
 export type User = {
   id: string; // This should be the Firebase Auth UID in a real app
   email: string;
-  role: 'client' | 'provider' | 'admin';
+  role: 'client' | 'provider' | 'admin' | 'inspector';
   name?: string;
   isDemo?: boolean;
   isActive?: boolean;
@@ -60,10 +75,12 @@ export type User = {
   updatedAt?: any; // To hold Firestore serverTimestamp
   clientProfile?: ClientProfileData;
   providerProfile?: ProviderProfileData;
+  inspectorProfile?: InspectorProfileData;
 };
 
 export type ServiceProvider = {
   id:string;
+  type: 'company' | 'freelancer';
   name: string;
   location: string;
   lat?: number;
