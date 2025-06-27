@@ -43,6 +43,7 @@ export type InspectorProfileData = {
 };
 
 export type ProviderProfileData = {
+  companyName?: string;
   location?: string;
   lat?: number;
   lng?: number;

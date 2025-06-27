@@ -23,6 +23,7 @@ export const MOCK_DEMO_CLIENT: User = {
 };
 
 const DEMO_PROVIDER_PROFILE: ProviderProfileData = {
+    companyName: "Demo NDT Experts",
     location: "Houston, TX",
     lat: 29.7604,
     lng: -95.3698,
@@ -51,7 +52,7 @@ export const MOCK_DEMO_PROVIDER: User = {
     id: "demo-provider-01",
     email: "provider.demo@example.com",
     role: "provider",
-    name: "Demo NDT Experts",
+    name: "Demo Provider Contact",
     isDemo: true,
     providerProfile: DEMO_PROVIDER_PROFILE
 };
@@ -64,7 +65,7 @@ export const MOCK_DEMO_PROVIDER: User = {
 export const MOCK_PROVIDERS: ServiceProvider[] = [
   {
     id: MOCK_DEMO_PROVIDER.id,
-    name: MOCK_DEMO_PROVIDER.name!,
+    name: MOCK_DEMO_PROVIDER.providerProfile!.companyName!,
     location: MOCK_DEMO_PROVIDER.providerProfile!.location!,
     lat: MOCK_DEMO_PROVIDER.providerProfile!.lat,
     lng: MOCK_DEMO_PROVIDER.providerProfile!.lng,
@@ -77,6 +78,7 @@ export const MOCK_PROVIDERS: ServiceProvider[] = [
     isVerified: MOCK_DEMO_PROVIDER.providerProfile!.isVerified,
     certifications: MOCK_DEMO_PROVIDER.providerProfile!.certifications,
     personnelQualifications: MOCK_DEMO_PROVIDER.providerProfile!.personnelQualifications,
+    isCompany: true,
   },
   {
     id: 'mock-provider-02',
@@ -96,6 +98,7 @@ export const MOCK_PROVIDERS: ServiceProvider[] = [
     isVerified: true,
     certifications: [ { id: "c1", name: 'Nadcap', category: 'Aerospace' } ],
     personnelQualifications: [ {id: "pq1", quantity: 3, certificationBody: "ACCP", level: "Level II"} ],
+    isCompany: true,
   },
   {
     id: 'mock-provider-03',
@@ -112,6 +115,7 @@ export const MOCK_PROVIDERS: ServiceProvider[] = [
     isVerified: false,
     certifications: [],
     personnelQualifications: [ {id: "pq1", quantity: 2, certificationBody: "ASNT", level: "Level III"} ],
+    isCompany: true,
   },
 ];
 
@@ -120,13 +124,14 @@ export const MOCK_CLIENT_REQUESTS: ServiceRequest[] = [
     id: 'req-mock-01',
     clientId: MOCK_DEMO_CLIENT.id,
     providerId: MOCK_DEMO_PROVIDER.id,
-    providerName: MOCK_DEMO_PROVIDER.name,
+    providerName: MOCK_DEMO_PROVIDER.providerProfile?.companyName,
     serviceType: 'Ultrasonic Testing (UT)',
     location: 'Demo Client Main Site',
     description: 'Annual inspection of primary storage tank welds.',
     requestedDate: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
     status: 'Confirmed',
-    createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
+    createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+    updatedAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
   },
   {
     id: 'req-mock-02',
@@ -138,7 +143,8 @@ export const MOCK_CLIENT_REQUESTS: ServiceRequest[] = [
     description: 'Post-fabrication visual inspection of 50 new components.',
     requestedDate: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000).toISOString(),
     status: 'In Progress',
-    createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+    createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+    updatedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
   },
    {
     id: 'req-mock-03',
@@ -150,7 +156,8 @@ export const MOCK_CLIENT_REQUESTS: ServiceRequest[] = [
     description: 'Routine check of all pressurized systems.',
     requestedDate: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString(),
     status: 'Completed',
-    createdAt: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000),
+    createdAt: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000).toISOString(),
+    updatedAt: new Date(Date.now() - 20 * 24 * 60 * 60 * 1000).toISOString(),
   }
 ];
 
@@ -168,6 +175,7 @@ export const MOCK_PROVIDER_REQUESTS: ServiceRequest[] = [
         description: 'Need urgent RT on a new pipeline installation. 100 welds.',
         requestedDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
         status: 'Pending',
-        createdAt: new Date(),
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
     }
 ]

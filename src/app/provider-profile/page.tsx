@@ -155,7 +155,8 @@ export default function ProviderProfilePage() {
             </CardHeader>
             <CardContent className="space-y-6">
                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div><Label htmlFor="name">Company Name</Label><Input id="name" name="name" value={profile.name} onChange={handleInputChange} /></div>
+                  <div><Label htmlFor="providerProfile.companyName">Company Name</Label><Input id="providerProfile.companyName" name="providerProfile.companyName" value={profile.providerProfile?.companyName || ''} onChange={handleInputChange} /></div>
+                  <div><Label htmlFor="name">Contact Person Name</Label><Input id="name" name="name" value={profile.name} onChange={handleInputChange} /></div>
                   <div><Label htmlFor="email">Contact Email</Label><Input id="email" name="email" type="email" value={profile.email} disabled /></div>
                   <div><Label htmlFor="providerProfile.contactNumber">Phone</Label><Input id="providerProfile.contactNumber" name="providerProfile.contactNumber" value={profile.providerProfile?.contactNumber || ''} onChange={handleInputChange} /></div>
                   <div><Label htmlFor="providerProfile.location">Location</Label><Input id="providerProfile.location" name="providerProfile.location" value={profile.providerProfile?.location || ''} onChange={handleInputChange} /></div>

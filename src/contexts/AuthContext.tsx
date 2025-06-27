@@ -71,6 +71,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } else if (details.role === 'provider' && details.profileData) {
       const providerProfileData = details.profileData as ProviderProfileData;
       newUser.providerProfile = {
+        companyName: providerProfileData.companyName || "",
         location: providerProfileData.location || "",
         servicesOffered: providerProfileData.servicesOffered || [],
         contactNumber: providerProfileData.contactNumber || "",

@@ -62,11 +62,17 @@ const clientSchema = baseSchema.extend({
   companyName: z.string().min(2, { message: "Company name is required." }), industry: z.string().min(2, { message: "Industry is required." }),
   primaryLocation: z.string().min(2, { message: "Primary location is required." }), contactNumber: z.string().min(7, { message: "Contact number is required." }),
 });
+
 const providerSchema = baseSchema.extend({
-  role: z.literal("provider"), location: z.string().min(2, "Location is required."), contactNumber: z.string().min(7, "Contact number is required."),
+  role: z.literal("provider"),
+  companyName: z.string().min(2, { message: "Company name is required." }),
+  location: z.string().min(2, "Location is required."),
+  contactNumber: z.string().min(7, "Contact number is required."),
   servicesOffered: z.array(serviceOfferingSchema).min(1, "At least one service is required."),
   personnelQualifications: z.array(personnelQualificationSchema).min(1, "At least one qualification is required."),
-  certifications: z.array(companyCertificationSchema).optional(), procedureInfoUrl: z.string().url().or(z.literal("")).optional(), companyLogoUrl: z.string().url().or(z.literal("")).optional(),
+  certifications: z.array(companyCertificationSchema).optional(),
+  procedureInfoUrl: z.string().url().or(z.literal("")).optional(),
+  companyLogoUrl: z.string().url().or(z.literal("")).optional(),
 });
 
 const inspectorSchema = baseSchema.extend({
@@ -203,6 +209,7 @@ const ProviderFields = ({ form, lists }: { form: UseFormReturn<any>, lists: type
 
     return (
         <div className="space-y-6">
+            <FormField control={form.control} name="companyName" render={({ field }) => (<FormItem><FormLabel>Company Name</FormLabel><FormControl><Input placeholder="NDT Services LLC" {...field} /></FormControl><FormMessage /></FormItem>)} />
             <FormField control={form.control} name="location" render={({ field }) => (<FormItem><FormLabel>Business Location</FormLabel><FormControl><Input placeholder="City, State" {...field} /></FormControl><FormMessage /></FormItem>)} />
             <FormField control={form.control} name="contactNumber" render={({ field }) => (<FormItem><FormLabel>Contact Number</FormLabel><FormControl><Input placeholder="(555) 987-6543" {...field} /></FormControl><FormMessage /></FormItem>)} />
             
@@ -371,10 +378,15 @@ export function RegisterForm() {
         };
     } else if (currentRole === 'provider') {
         newDefaultValues = {
-            role: 'provider', location: "", contactNumber: "", 
+            role: 'provider',
+            companyName: "",
+            location: "",
+            contactNumber: "", 
             servicesOffered: [{ id: generateUniqueId(), name: "", rate: '', unit: "", currency: "USD", tax: "0", isCustom: false }], 
             personnelQualifications: [{ id: generateUniqueId(), quantity: 1, certificationBody: "", level: "" }], 
-            certifications: [], procedureInfoUrl: "", companyLogoUrl: ""
+            certifications: [],
+            procedureInfoUrl: "",
+            companyLogoUrl: ""
         };
     } else if (currentRole === 'inspector') {
         newDefaultValues = {
@@ -398,7 +410,16 @@ export function RegisterForm() {
     if (values.role === "client") {
         profileData = { companyName: values.companyName, industry: values.industry, primaryLocation: values.primaryLocation, contactNumber: values.contactNumber };
     } else if (values.role === "provider") {
-        profileData = { location: values.location, contactNumber: values.contactNumber, servicesOffered: values.servicesOffered, personnelQualifications: values.personnelQualifications, certifications: values.certifications, procedureInfoUrl: values.procedureInfoUrl, companyLogoUrl: values.companyLogoUrl };
+        profileData = {
+            companyName: values.companyName,
+            location: values.location,
+            contactNumber: values.contactNumber,
+            servicesOffered: values.servicesOffered,
+            personnelQualifications: values.personnelQualifications,
+            certifications: values.certifications,
+            procedureInfoUrl: values.procedureInfoUrl,
+            companyLogoUrl: values.companyLogoUrl
+        };
     } else if (values.role === "inspector") {
         profileData = { association: values.association, contactNumber: values.contactNumber, companyName: values.companyName, location: values.location, designation: values.designation };
     }
@@ -417,7 +438,7 @@ export function RegisterForm() {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-             <FormField control={form.control} name="name" render={({ field }) => ( <FormItem><FormLabel>Name</FormLabel><FormControl><Input placeholder="John Doe or Acme Inc." {...field} /></FormControl><FormMessage/></FormItem> )} />
+             <FormField control={form.control} name="name" render={({ field }) => ( <FormItem><FormLabel>Your Full Name</FormLabel><FormControl><Input placeholder="John Doe" {...field} /></FormControl><FormMessage/></FormItem> )} />
              <FormField control={form.control} name="email" render={({ field }) => ( <FormItem><FormLabel>Work Email</FormLabel><FormControl><Input type="email" placeholder="you@example.com" {...field} /></FormControl><FormMessage/></FormItem> )} />
              <FormField control={form.control} name="password" render={({ field }) => ( <FormItem><FormLabel>Password</FormLabel><FormControl><Input type="password" placeholder="••••••••" {...field} /></FormControl><FormMessage/></FormItem> )} />
              <FormField control={form.control} name="confirmPassword" render={({ field }) => ( <FormItem><FormLabel>Confirm Password</FormLabel><FormControl><Input type="password" placeholder="••••••••" {...field} /></FormControl><FormMessage/></FormItem> )} />

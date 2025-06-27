@@ -83,7 +83,7 @@ export default function FindProvidersPage() {
           if (u.role === 'provider') {
             return {
                 id: u.id,
-                name: u.name || "Unnamed Provider",
+                name: u.providerProfile?.companyName || u.name || "Unnamed Provider",
                 location: u.providerProfile?.location || "Location not set",
                 services: u.providerProfile?.servicesOffered || [],
                 specialization: u.providerProfile?.specialization || "General NDT Services",
