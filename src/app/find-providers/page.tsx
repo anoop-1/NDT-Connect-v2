@@ -45,9 +45,6 @@ export default function FindProvidersPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // The Leaflet icon setup has been moved into the InteractiveMap component
-  // to ensure it only runs on the client.
-
   useEffect(() => {
     if (!authLoading && !user) {
       router.push("/login?redirect=/find-providers");
