@@ -29,42 +29,6 @@ interface AuthContextType {
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Helper function to recursively remove any fields with `undefined` values and convert Dates.
-// This is the definitive fix for Firestore's "400 Bad Request" on write.
-const cleanForFirestore = (obj: any): any => {
-    if (obj === null || typeof obj !== 'object') {
-        return obj;
-    }
-
-    // This handles Date objects, converting them to ISO strings
-    if (obj instanceof Date) {
-        return obj.toISOString();
-    }
-
-    if (Array.isArray(obj)) {
-        // Corrected logic: First, map to clean each item, then filter out any undefined results.
-        return obj
-            .map(v => cleanForFirestore(v))
-            .filter(v => v !== undefined);
-    }
-
-    const newObj: {[key: string]: any} = {};
-    for (const key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key)) {
-            const value = obj[key];
-            if (value !== undefined) {
-                const cleanedValue = cleanForFirestore(value);
-                if (cleanedValue !== undefined) {
-                    newObj[key] = cleanedValue;
-                }
-            }
-        }
-    }
-    
-    return newObj;
-};
-
-
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -118,9 +82,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     try {
       const userDocRef = doc(db, "users", newUser.id);
-      // Clean the object before sending to remove any undefined values from the complex form state.
-      const cleanedUser = cleanForFirestore(newUser);
-      await setDoc(userDocRef, cleanedUser);
+      // Create a clean, plain object for Firestore by serializing and deserializing.
+      // This reliably removes 'undefined' values and converts Dates to ISO strings,
+      // preventing Firestore write errors.
+      const dataForFirestore = JSON.parse(JSON.stringify(newUser));
+      
+      await setDoc(userDocRef, dataForFirestore);
       return newUser;
     } catch (error) {
       console.error("Error creating user in Firestore:", error);
@@ -167,9 +134,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
      const userDocRef = doc(db, "users", userToUpdate.id);
      
-     // Clean data on updates as a safety measure.
-     const cleanedData = cleanForFirestore(userToUpdate);
-     await setDoc(userDocRef, cleanedData, { merge: true });
+     // Use the same robust cleaning method for updates.
+     const dataForFirestore = JSON.parse(JSON.stringify(userToUpdate));
+     await setDoc(userDocRef, dataForFirestore, { merge: true });
      storeUserSession(userToUpdate);
   };
 
