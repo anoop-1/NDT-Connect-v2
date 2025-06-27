@@ -34,6 +34,7 @@ export default function FindProvidersPage() {
   const [isFiltersApplied, setIsFiltersApplied] = useState(false);
   
   const [ndtServices, setNdtServices] = useState<string[]>([]);
+  const [certifications, setCertifications] = useState<string[]>([]);
   
   const { user, loading: authLoading } = useAuth();
   const router = useRouter();
@@ -122,13 +123,33 @@ export default function FindProvidersPage() {
         });
     }
   }, [toast]);
+  
+  const fetchCertifications = useCallback(async () => {
+    try {
+        const docRef = doc(db, "predefinedLists", "companyCertifications");
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists() && Array.isArray(docSnap.data().items)) {
+            setCertifications(docSnap.data().items);
+        } else {
+            console.warn("Could not find 'companyCertifications' in predefinedLists.");
+            setCertifications([]);
+        }
+    } catch (e) {
+        console.error("Error fetching certifications list:", e);
+        toast({
+            title: "Could not load certification list",
+            variant: "destructive"
+        });
+    }
+  }, [toast]);
 
   useEffect(() => {
     if (user) {
       fetchProviders();
       fetchNdtServices();
+      fetchCertifications();
     }
-  }, [user, fetchProviders, fetchNdtServices]);
+  }, [user, fetchProviders, fetchNdtServices, fetchCertifications]);
   
   useEffect(() => {
     const lowerSearchTerm = searchTerm.toLowerCase();
@@ -152,7 +173,7 @@ export default function FindProvidersPage() {
       const matchesLocation = !filterLocation || provider.location.toLowerCase().includes(lowerLocation);
       const matchesService = !filterService || provider.services.some(service => service.name.toLowerCase() === lowerService);
       const matchesSpecialization = !filterSpecialization || provider.specialization.toLowerCase().includes(lowerSpecialization);
-      const matchesCertification = !filterCertification || (provider.certifications || []).some(cert => cert.name.toLowerCase().includes(lowerCertification));
+      const matchesCertification = !filterCertification || (provider.certifications || []).some(cert => cert.name.toLowerCase() === lowerCertification);
       const matchesVerificationFilter = !filterVerifiedOnly || provider.isVerified === true;
 
       return matchesSearchTerm && matchesCompanyName && matchesLocation && matchesService && matchesSpecialization && matchesCertification && matchesVerificationFilter;
@@ -253,7 +274,18 @@ export default function FindProvidersPage() {
                     </div>
                     <div>
                       <Label htmlFor="certificationFilter">Certification</Label>
-                      <Input id="certificationFilter" value={filterCertification} onChange={(e) => setFilterCertification(e.target.value)} placeholder="e.g., ISO 9001" />
+                      <Select 
+                        value={filterCertification} 
+                        onValueChange={(value) => setFilterCertification(value === 'any-certification' ? '' : value)}
+                      >
+                        <SelectTrigger id="certificationFilter">
+                          <SelectValue placeholder="Any Certification" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="any-certification">Any Certification</SelectItem>
+                          {certifications.map(cert => <SelectItem key={cert} value={cert.toLowerCase()}>{cert}</SelectItem>)}
+                        </SelectContent>
+                      </Select>
                     </div>
                   </div>
                   <Button variant="outline" onClick={handleClearFilters}>Clear Filters</Button>
