@@ -14,7 +14,6 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-  FormDescription,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -24,8 +23,8 @@ import { useToast } from "@/hooks/use-toast";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useState, useEffect, useCallback } from "react";
-import type { ClientProfileData, ProviderProfileData, ServiceOffering, PersonnelQualification, CompanyCertification } from "@/lib/types";
-import { ListChecks, PlusCircle, Trash2, Award, Users2, FileText, Activity } from "lucide-react";
+import type { ClientProfileData, ProviderProfileData, InspectorProfileData, ServiceOffering, PersonnelQualification, CompanyCertification } from "@/lib/types";
+import { ListChecks, PlusCircle, Trash2, Award, Users2, FileText, User as UserIcon, Building } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -33,11 +32,10 @@ import { db } from '@/lib/firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 
 // --- ZOD SCHEMAS ---
-
 const generateUniqueId = () => Date.now().toString(36) + Math.random().toString(36).substring(2);
 
 const baseSchema = z.object({
-  name: z.string().min(2, { message: "Full name or Company Name must be at least 2 characters." }),
+  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Invalid email address." }),
   password: z.string().min(6, { message: "Password must be at least 6 characters." }),
   confirmPassword: z.string(),
@@ -45,107 +43,75 @@ const baseSchema = z.object({
 });
 
 const serviceOfferingSchema = z.object({
-  id: z.string(),
-  name: z.string().min(1, "Service name is required."),
-  unit: z.string().min(1, "Unit is required."),
-  rate: z.string().refine(val => val === '' || !isNaN(parseFloat(val)), { message: "Rate must be a number or empty." }),
-  isCustom: z.boolean().optional(),
+  id: z.string(), name: z.string().min(1, "Service name is required."), unit: z.string().min(1, "Unit is required."),
+  rate: z.string().refine(val => val === '' || !isNaN(parseFloat(val)), { message: "Rate must be a number or empty." }), isCustom: z.boolean().optional(),
 });
-
 const personnelQualificationSchema = z.object({
-  id: z.string(),
-  quantity: z.preprocess(val => parseInt(String(val), 10), z.number().min(1, "Min 1")),
-  certificationBody: z.string().min(1, "Body is required."),
-  level: z.string().min(1, "Level is required."),
+  id: z.string(), quantity: z.preprocess(val => parseInt(String(val), 10), z.number().min(1, "Min 1")),
+  certificationBody: z.string().min(1, "Body is required."), level: z.string().min(1, "Level is required."),
 });
-
-const companyCertificationSchema = z.object({
-  id: z.string(),
-  name: z.string().min(1, "Certification name is required."),
-  category: z.string().optional(),
-});
+const companyCertificationSchema = z.object({ id: z.string(), name: z.string().min(1, "Cert name is required."), category: z.string().optional() });
 
 const clientSchema = baseSchema.extend({
   role: z.literal("client"),
-  companyName: z.string().min(2, { message: "Company name is required." }),
-  industry: z.string().min(2, { message: "Industry is required." }),
-  primaryLocation: z.string().min(2, { message: "Primary location is required." }),
-  contactNumberClient: z.string().min(7, { message: "Contact number is required." }),
+  companyName: z.string().min(2, { message: "Company name is required." }), industry: z.string().min(2, { message: "Industry is required." }),
+  primaryLocation: z.string().min(2, { message: "Primary location is required." }), contactNumber: z.string().min(7, { message: "Contact number is required." }),
 });
-
 const providerSchema = baseSchema.extend({
-  role: z.literal("provider"),
-  locationProvider: z.string().min(2, { message: "Location is required." }),
-  contactNumberProvider: z.string().min(7, { message: "Contact number is required." }),
+  role: z.literal("provider"), location: z.string().min(2, "Location is required."), contactNumber: z.string().min(7, "Contact number is required."),
   servicesOffered: z.array(serviceOfferingSchema).min(1, "At least one service is required."),
   personnelQualifications: z.array(personnelQualificationSchema).min(1, "At least one qualification is required."),
-  certifications: z.array(companyCertificationSchema).optional(),
-  procedureInfoUrl: z.string().url().or(z.literal("")).optional(),
-  companyLogoUrl: z.string().url().or(z.literal("")).optional(),
+  certifications: z.array(companyCertificationSchema).optional(), procedureInfoUrl: z.string().url().or(z.literal("")).optional(), companyLogoUrl: z.string().url().or(z.literal("")).optional(),
 });
 
-const formSchema = z.discriminatedUnion("role", [clientSchema, providerSchema])
-  .refine((data) => data.password === data.confirmPassword, {
-    message: "Passwords don't match",
-    path: ["confirmPassword"],
-  });
+const inspectorBaseSchema = baseSchema.extend({ role: z.literal("inspector"), contactNumber: z.string().min(7, "Contact number is required.") });
+const inspectorSchema = z.discriminatedUnion("association", [
+    inspectorBaseSchema.extend({ association: z.literal("freelancer") }),
+    inspectorBaseSchema.extend({
+        association: z.literal("company"),
+        companyName: z.string().min(2, "Company name is required."),
+        location: z.string().min(2, "Company city/state is required."),
+        designation: z.string().min(2, "Designation is required."),
+    }),
+]);
+
+const formSchema = z.discriminatedUnion("role", [clientSchema, providerSchema, inspectorSchema])
+  .refine((data) => data.password === data.confirmPassword, { message: "Passwords don't match", path: ["confirmPassword"] });
 
 type FormSchemaType = z.infer<typeof formSchema>;
 
-const defaultServiceOfferingRow = (isCustom: boolean = false): ServiceOffering => ({
-  id: generateUniqueId(), name: "", rate: '', unit: "", isCustom,
-});
-const defaultPersonnelQualificationRow = (): PersonnelQualification => ({
-  id: generateUniqueId(), quantity: 1, certificationBody: "", level: ""
-});
-const defaultCompanyCertificationRow = (): CompanyCertification => ({
-  id: generateUniqueId(), name: "", category: ""
-});
-
-const agreementTexts = {
-  client: "Welcome to NDT Connect! By registering as a Client, you agree that NDT Connect is a facilitator platform. You are solely responsible for your due diligence, selection of, and agreements with Service Providers.",
-  provider: "Welcome to NDT Connect! By registering as a Service Provider, you agree to provide accurate information in your profile and to fulfill client requirements professionally. NDT Connect is a facilitator and does not guarantee work.",
-};
-
-interface PredefinedLists {
-    providerNdtServices: string[];
-    serviceUnits: string[];
-    qualificationBodies: string[];
-    qualificationLevels: string[];
-    companyCertifications: string[];
-}
-
-// These lists are now the primary source of truth for the form, guaranteeing it always loads.
-// The admin panel at /admin/manage-predefined-lists can still manage live Firestore data.
-const BUILT_IN_LISTS: PredefinedLists = {
+const BUILT_IN_LISTS = {
     providerNdtServices: [ "Radiographic Testing", "Ultrasonic Testing", "Magnetic Particle Testing", "Liquid Penetrant Testing", "Visual Testing", "Eddy Current Testing", "Leak Testing", "Acoustic Emission" ],
     serviceUnits: [ "per hour", "per day", "per project", "per item", "per foot", "per weld" ],
     qualificationBodies: [ "ASNT", "PCN", "ISO 9712", "CSWIP", "ACCP", "NAS 410" ],
     qualificationLevels: ["Level I", "Level II", "Level III", "Technician", "Trainee"],
     companyCertifications: [ "ISO 9001", "API Q1", "Nadcap", "AS9100", "ISO/IEC 17025" ],
 };
-
+const agreementTexts = {
+  client: "Welcome to NDT Connect! By registering as a Client, you agree that NDT Connect is a facilitator platform. You are solely responsible for your due diligence, selection of, and agreements with Service Providers.",
+  provider: "Welcome to NDT Connect! By registering as a Service Provider, you agree to provide accurate information in your profile and to fulfill client requirements professionally. NDT Connect is a facilitator and does not guarantee work.",
+  inspector: "As an NDT Inspector, you can register as a freelancer or associate with a company. You are responsible for the accuracy of your qualifications and for upholding professional standards in any engagement sourced through NDT Connect.",
+};
 
 // --- SUB-COMPONENTS FOR EACH ROLE ---
-
-const ClientFields = ({ form }: { form: UseFormReturn<FormSchemaType> }) => (
+const ClientFields = ({ form }: { form: UseFormReturn<any> }) => (
   <div className="space-y-4">
     <FormField control={form.control} name="companyName" render={({ field }) => (<FormItem><FormLabel>Company Name</FormLabel><FormControl><Input placeholder="Client Inc." {...field} /></FormControl><FormMessage /></FormItem>)} />
     <FormField control={form.control} name="industry" render={({ field }) => (<FormItem><FormLabel>Industry</FormLabel><FormControl><Input placeholder="e.g., Manufacturing, Energy" {...field} /></FormControl><FormMessage /></FormItem>)} />
     <FormField control={form.control} name="primaryLocation" render={({ field }) => (<FormItem><FormLabel>Primary Location</FormLabel><FormControl><Input placeholder="City, State" {...field} /></FormControl><FormMessage /></FormItem>)} />
-    <FormField control={form.control} name="contactNumberClient" render={({ field }) => (<FormItem><FormLabel>Contact Number</FormLabel><FormControl><Input placeholder="(555) 123-4567" {...field} /></FormControl><FormMessage /></FormItem>)} />
+    <FormField control={form.control} name="contactNumber" render={({ field }) => (<FormItem><FormLabel>Contact Number</FormLabel><FormControl><Input placeholder="(555) 123-4567" {...field} /></FormControl><FormMessage /></FormItem>)} />
   </div>
 );
 
-const ProviderFields = ({ form, lists }: { form: UseFormReturn<FormSchemaType>, lists: PredefinedLists }) => {
-    const { fields: serviceFields, append: appendService, remove: removeService } = useFieldArray({ control: form.control, name: "servicesOffered" as any });
-    const { fields: personnelFields, append: appendPersonnel, remove: removePersonnel } = useFieldArray({ control: form.control, name: "personnelQualifications" as any });
-    const { fields: certFields, append: appendCert, remove: removeCert } = useFieldArray({ control: form.control, name: "certifications" as any });
+const ProviderFields = ({ form, lists }: { form: UseFormReturn<any>, lists: typeof BUILT_IN_LISTS }) => {
+    const { fields: serviceFields, append: appendService, remove: removeService } = useFieldArray({ control: form.control, name: "servicesOffered" });
+    const { fields: personnelFields, append: appendPersonnel, remove: removePersonnel } = useFieldArray({ control: form.control, name: "personnelQualifications" });
+    const { fields: certFields, append: appendCert, remove: removeCert } = useFieldArray({ control: form.control, name: "certifications" });
 
     return (
         <div className="space-y-6">
-            <FormField control={form.control} name="locationProvider" render={({ field }) => (<FormItem><FormLabel>Business Location</FormLabel><FormControl><Input placeholder="City, State" {...field} /></FormControl><FormMessage /></FormItem>)} />
-            <FormField control={form.control} name="contactNumberProvider" render={({ field }) => (<FormItem><FormLabel>Contact Number</FormLabel><FormControl><Input placeholder="(555) 987-6543" {...field} /></FormControl><FormMessage /></FormItem>)} />
+            <FormField control={form.control} name="location" render={({ field }) => (<FormItem><FormLabel>Business Location</FormLabel><FormControl><Input placeholder="City, State" {...field} /></FormControl><FormMessage /></FormItem>)} />
+            <FormField control={form.control} name="contactNumber" render={({ field }) => (<FormItem><FormLabel>Contact Number</FormLabel><FormControl><Input placeholder="(555) 987-6543" {...field} /></FormControl><FormMessage /></FormItem>)} />
             
             <Card><CardHeader><CardTitle className="flex items-center text-lg"><ListChecks className="h-5 w-5 mr-2 text-primary"/>Services Offered</CardTitle></CardHeader>
                 <CardContent className="space-y-2">
@@ -159,7 +125,7 @@ const ProviderFields = ({ form, lists }: { form: UseFormReturn<FormSchemaType>, 
                             <Button type="button" variant="ghost" size="icon" onClick={() => removeService(index)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
                         </div>
                     ))}
-                    <div className="flex gap-2"><Button type="button" variant="outline" size="sm" onClick={() => appendService(defaultServiceOfferingRow(false))}><PlusCircle className="mr-2 h-4 w-4"/>Add Service</Button><Button type="button" variant="outline" size="sm" onClick={() => appendService(defaultServiceOfferingRow(true))}><PlusCircle className="mr-2 h-4 w-4"/>Add Custom</Button></div>
+                    <div className="flex gap-2"><Button type="button" variant="outline" size="sm" onClick={() => appendService({ id: generateUniqueId(), name: "", rate: '', unit: "", isCustom: false })}><PlusCircle className="mr-2 h-4 w-4"/>Add Service</Button></div>
                 </CardContent>
             </Card>
 
@@ -175,7 +141,7 @@ const ProviderFields = ({ form, lists }: { form: UseFormReturn<FormSchemaType>, 
                             <Button type="button" variant="ghost" size="icon" onClick={() => removePersonnel(index)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
                         </div>
                     ))}
-                    <Button type="button" variant="outline" size="sm" onClick={() => appendPersonnel(defaultPersonnelQualificationRow())}><PlusCircle className="mr-2 h-4 w-4"/>Add Qualification</Button>
+                    <Button type="button" variant="outline" size="sm" onClick={() => appendPersonnel({ id: generateUniqueId(), quantity: 1, certificationBody: "", level: "" })}><PlusCircle className="mr-2 h-4 w-4"/>Add Qualification</Button>
                 </CardContent>
             </Card>
 
@@ -190,7 +156,7 @@ const ProviderFields = ({ form, lists }: { form: UseFormReturn<FormSchemaType>, 
                             <Button type="button" variant="ghost" size="icon" onClick={() => removeCert(index)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
                         </div>
                     ))}
-                    <Button type="button" variant="outline" size="sm" onClick={() => appendCert(defaultCompanyCertificationRow())}><PlusCircle className="mr-2 h-4 w-4"/>Add Certification</Button>
+                    <Button type="button" variant="outline" size="sm" onClick={() => appendCert({ id: generateUniqueId(), name: "", category: "" })}><PlusCircle className="mr-2 h-4 w-4"/>Add Certification</Button>
                 </CardContent>
             </Card>
             
@@ -198,10 +164,35 @@ const ProviderFields = ({ form, lists }: { form: UseFormReturn<FormSchemaType>, 
             <FormField control={form.control} name="companyLogoUrl" render={({ field }) => (<FormItem><FormLabel>Company Logo URL (Optional)</FormLabel><FormControl><Input placeholder="https://example.com/logo.png" {...field} /></FormControl><FormMessage/></FormItem>)} />
         </div>
     );
-}
+};
+
+const InspectorFields = ({ form }: { form: UseFormReturn<any> }) => {
+    const association = form.watch('association');
+    return (
+        <div className="space-y-4">
+            <FormField control={form.control} name="association" render={({ field }) => (
+                <FormItem className="space-y-2 pt-2"><FormLabel>Association</FormLabel>
+                    <FormControl><RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-wrap gap-x-4 gap-y-2">
+                        <FormItem className="flex items-center space-x-2 space-y-0"><FormControl><RadioGroupItem value="freelancer"/></FormControl><Label className="font-normal flex items-center"><UserIcon className="mr-2 h-4 w-4"/>Freelancer</Label></FormItem>
+                        <FormItem className="flex items-center space-x-2 space-y-0"><FormControl><RadioGroupItem value="company"/></FormControl><Label className="font-normal flex items-center"><Building className="mr-2 h-4 w-4"/>Company Employee</Label></FormItem>
+                    </RadioGroup></FormControl><FormMessage/>
+                </FormItem>
+            )}/>
+            <FormField control={form.control} name="contactNumber" render={({ field }) => (<FormItem><FormLabel>Contact Number</FormLabel><FormControl><Input placeholder="(555) 555-5555" {...field} /></FormControl><FormMessage /></FormItem>)} />
+            {association === 'company' && (
+                <Card className="p-4 bg-muted/50">
+                    <div className="space-y-4">
+                        <FormField control={form.control} name="companyName" render={({ field }) => (<FormItem><FormLabel>Company Name</FormLabel><FormControl><Input placeholder="Employer Inc." {...field} /></FormControl><FormMessage /></FormItem>)} />
+                        <FormField control={form.control} name="location" render={({ field }) => (<FormItem><FormLabel>Company Location</FormLabel><FormControl><Input placeholder="City, State" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                        <FormField control={form.control} name="designation" render={({ field }) => (<FormItem><FormLabel>Your Designation</FormLabel><FormControl><Input placeholder="e.g., Senior Inspector" {...field} /></FormControl><FormMessage /></FormItem>)} />
+                    </div>
+                </Card>
+            )}
+        </div>
+    );
+};
 
 // --- MAIN FORM COMPONENT ---
-
 export function RegisterForm() {
   const { register } = useAuth();
   const router = useRouter();
@@ -210,24 +201,24 @@ export function RegisterForm() {
   
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
-    defaultValues: { role: "client", name: "", email: "", password: "", confirmPassword: "", acceptTerms: false, companyName: "", industry: "", primaryLocation: "", contactNumberClient: "" },
+    defaultValues: { role: "client", name: "", email: "", password: "", confirmPassword: "", acceptTerms: false, companyName: "", industry: "", primaryLocation: "", contactNumber: "" },
     mode: "onBlur"
   });
 
   const currentRole = form.watch("role");
 
-  const getInitialValues = useCallback((role: 'client' | 'provider') => {
+  const getInitialValues = useCallback((role: 'client' | 'provider' | 'inspector') => {
       const base = { name: form.getValues('name'), email: form.getValues('email'), password: form.getValues('password'), confirmPassword: form.getValues('confirmPassword'), acceptTerms: form.getValues('acceptTerms') };
       switch (role) {
-          case "client": return { ...base, role, companyName: "", industry: "", primaryLocation: "", contactNumberClient: "" };
-          case "provider": return { ...base, role, locationProvider: "", contactNumberProvider: "", servicesOffered: [defaultServiceOfferingRow()], personnelQualifications: [defaultPersonnelQualificationRow()], certifications: [defaultCompanyCertificationRow()], procedureInfoUrl: "", companyLogoUrl: "" };
-          default: return { ...base, role: 'client', companyName: "", industry: "", primaryLocation: "", contactNumberClient: "" };
+          case "client": return { ...base, role, companyName: "", industry: "", primaryLocation: "", contactNumber: "" };
+          case "provider": return { ...base, role, location: "", contactNumber: "", servicesOffered: [{ id: generateUniqueId(), name: "", rate: '', unit: "" }], personnelQualifications: [{ id: generateUniqueId(), quantity: 1, certificationBody: "", level: "" }], certifications: [] };
+          case "inspector": return { ...base, role, association: 'freelancer', contactNumber: '' };
+          default: return { ...base, role: 'client', companyName: "", industry: "", primaryLocation: "", contactNumber: "" };
       }
-  },[form]);
-
+  }, [form]);
 
   useEffect(() => {
-    form.reset(getInitialValues(currentRole as 'client' | 'provider'));
+    form.reset(getInitialValues(currentRole as any));
   }, [currentRole, form, getInitialValues]);
 
 
@@ -242,11 +233,13 @@ export function RegisterForm() {
         return;
     }
     
-    let profileData: Partial<ClientProfileData & ProviderProfileData> = {};
+    let profileData: Partial<ClientProfileData & ProviderProfileData & InspectorProfileData> = {};
     if (values.role === "client") {
-        profileData = { companyName: values.companyName, industry: values.industry, primaryLocation: values.primaryLocation, contactNumber: values.contactNumberClient };
+        profileData = { companyName: values.companyName, industry: values.industry, primaryLocation: values.primaryLocation, contactNumber: values.contactNumber };
     } else if (values.role === "provider") {
-        profileData = { location: values.locationProvider, contactNumber: values.contactNumberProvider, servicesOffered: values.servicesOffered, personnelQualifications: values.personnelQualifications, certifications: values.certifications, procedureInfoUrl: values.procedureInfoUrl, companyLogoUrl: values.companyLogoUrl };
+        profileData = { location: values.location, contactNumber: values.contactNumber, servicesOffered: values.servicesOffered, personnelQualifications: values.personnelQualifications, certifications: values.certifications, procedureInfoUrl: values.procedureInfoUrl, companyLogoUrl: values.companyLogoUrl };
+    } else if (values.role === "inspector") {
+        profileData = { association: values.association, contactNumber: values.contactNumber, companyName: values.companyName, location: values.location, designation: values.designation };
     }
     
     const registeredUser = await register({ email: values.email, role: values.role, name: values.name, profileData });
@@ -263,7 +256,7 @@ export function RegisterForm() {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-             <FormField control={form.control} name="name" render={({ field }) => ( <FormItem><FormLabel>Full Name / Company Name</FormLabel><FormControl><Input placeholder="John Doe or Acme Inc." {...field} /></FormControl><FormMessage/></FormItem> )} />
+             <FormField control={form.control} name="name" render={({ field }) => ( <FormItem><FormLabel>Name</FormLabel><FormControl><Input placeholder="John Doe or Acme Inc." {...field} /></FormControl><FormMessage/></FormItem> )} />
              <FormField control={form.control} name="email" render={({ field }) => ( <FormItem><FormLabel>Work Email</FormLabel><FormControl><Input type="email" placeholder="you@example.com" {...field} /></FormControl><FormMessage/></FormItem> )} />
              <FormField control={form.control} name="password" render={({ field }) => ( <FormItem><FormLabel>Password</FormLabel><FormControl><Input type="password" placeholder="••••••••" {...field} /></FormControl><FormMessage/></FormItem> )} />
              <FormField control={form.control} name="confirmPassword" render={({ field }) => ( <FormItem><FormLabel>Confirm Password</FormLabel><FormControl><Input type="password" placeholder="••••••••" {...field} /></FormControl><FormMessage/></FormItem> )} />
@@ -274,16 +267,18 @@ export function RegisterForm() {
                 <FormControl><RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-wrap gap-x-4 gap-y-2">
                     <FormItem className="flex items-center space-x-2 space-y-0"><FormControl><RadioGroupItem value="client"/></FormControl><Label className="font-normal">Client</Label></FormItem>
                     <FormItem className="flex items-center space-x-2 space-y-0"><FormControl><RadioGroupItem value="provider"/></FormControl><Label className="font-normal">Service Provider</Label></FormItem>
+                    <FormItem className="flex items-center space-x-2 space-y-0"><FormControl><RadioGroupItem value="inspector"/></FormControl><Label className="font-normal">NDT Inspector</Label></FormItem>
                 </RadioGroup></FormControl><FormMessage/>
             </FormItem>
         )}/>
 
         {currentRole === "client" && <ClientFields form={form} />}
         {currentRole === "provider" && <ProviderFields form={form} lists={BUILT_IN_LISTS} />}
+        {currentRole === "inspector" && <InspectorFields form={form} />}
 
         <div className="space-y-3 pt-4">
             <Label className="text-lg font-semibold flex items-center"><FileText className="mr-2 h-5 w-5 text-primary" />Agreement</Label>
-            <ScrollArea className="h-24 w-full rounded-md border p-3 text-sm bg-muted/30"><pre className="whitespace-pre-wrap font-sans">{agreementTexts[currentRole as 'client' | 'provider']}</pre></ScrollArea>
+            <ScrollArea className="h-24 w-full rounded-md border p-3 text-sm bg-muted/30"><pre className="whitespace-pre-wrap font-sans">{agreementTexts[currentRole as 'client' | 'provider' | 'inspector']}</pre></ScrollArea>
             <FormField control={form.control} name="acceptTerms" render={({ field }) => ( <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-3 shadow-sm"><FormControl><Checkbox checked={field.value} onCheckedChange={field.onChange}/></FormControl><div className="space-y-1 leading-none"><FormLabel className="font-normal">I have read and agree to the User Agreement.</FormLabel><FormMessage/></div></FormItem> )} />
         </div>
 

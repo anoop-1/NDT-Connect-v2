@@ -29,6 +29,17 @@ export type CompanyCertification = {
   expiryDate?: Date;
 };
 
+export type InspectorProfileData = {
+  association: 'freelancer' | 'company';
+  contactNumber?: string;
+  // Company-specific fields
+  companyName?: string;
+  location?: string; // City, State
+  designation?: string;
+  // Common fields
+  personnelQualifications?: PersonnelQualification[];
+};
+
 export type ProviderProfileData = {
   location?: string;
   lat?: number;
@@ -52,7 +63,7 @@ export type ProviderProfileData = {
 export type User = {
   id: string; // This should be the Firebase Auth UID in a real app
   email: string;
-  role: 'client' | 'provider' | 'admin';
+  role: 'client' | 'provider' | 'admin' | 'inspector';
   name?: string;
   isDemo?: boolean;
   isActive?: boolean;
@@ -60,10 +71,11 @@ export type User = {
   updatedAt?: any; // To hold Firestore serverTimestamp
   clientProfile?: ClientProfileData;
   providerProfile?: ProviderProfileData;
+  inspectorProfile?: InspectorProfileData;
 };
 
 export type ServiceProvider = {
-  id:string;
+  id: string;
   name: string;
   location: string;
   lat?: number;
@@ -79,6 +91,7 @@ export type ServiceProvider = {
   personnelQualifications?: PersonnelQualification[];
   isVerified?: boolean;
   availableDocuments?: string[];
+  isCompany: boolean; // Flag to distinguish between company and inspector
 };
 
 export type OptimizeServiceProviderRecommendationsInput = {
