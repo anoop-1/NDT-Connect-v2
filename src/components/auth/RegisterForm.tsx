@@ -64,16 +64,27 @@ const providerSchema = baseSchema.extend({
   certifications: z.array(companyCertificationSchema).optional(), procedureInfoUrl: z.string().url().or(z.literal("")).optional(), companyLogoUrl: z.string().url().or(z.literal("")).optional(),
 });
 
-const inspectorBaseSchema = baseSchema.extend({ role: z.literal("inspector"), contactNumber: z.string().min(7, "Contact number is required.") });
-const inspectorSchema = z.discriminatedUnion("association", [
-    inspectorBaseSchema.extend({ association: z.literal("freelancer") }),
-    inspectorBaseSchema.extend({
-        association: z.literal("company"),
-        companyName: z.string().min(2, "Company name is required."),
-        location: z.string().min(2, "Company city/state is required."),
-        designation: z.string().min(2, "Designation is required."),
-    }),
-]);
+const inspectorSchema = baseSchema.extend({
+    role: z.literal("inspector"),
+    association: z.enum(["freelancer", "company"]),
+    contactNumber: z.string().min(7, { message: "Contact number is required." }),
+    companyName: z.string().optional(),
+    location: z.string().optional(),
+    designation: z.string().optional(),
+}).superRefine((data, ctx) => {
+    if (data.association === "company") {
+        if (!data.companyName || data.companyName.length < 2) {
+            ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Company name is required.", path: ["companyName"] });
+        }
+        if (!data.location || data.location.length < 2) {
+            ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Company city/state is required.", path: ["location"] });
+        }
+        if (!data.designation || data.designation.length < 2) {
+            ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Designation is required.", path: ["designation"] });
+        }
+    }
+});
+
 
 const formSchema = z.discriminatedUnion("role", [clientSchema, providerSchema, inspectorSchema])
   .refine((data) => data.password === data.confirmPassword, { message: "Passwords don't match", path: ["confirmPassword"] });
