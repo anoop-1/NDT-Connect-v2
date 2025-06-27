@@ -29,6 +29,37 @@ interface AuthContextType {
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// Helper function to recursively remove undefined values from objects and arrays.
+// Firestore does not allow 'undefined' as a field value.
+const removeUndefinedValues = (obj: any): any => {
+  if (obj === null || obj === undefined) {
+    return null; // Keep null as it's a valid Firestore type
+  }
+  if (Array.isArray(obj)) {
+    // Filter out undefined items from arrays and clean nested objects
+    return obj.map(item => removeUndefinedValues(item)).filter(item => item !== undefined);
+  }
+  // Check for object and not a Date, as Firestore handles Date objects correctly
+  if (typeof obj === 'object' && !(obj instanceof Date)) {
+    const newObj: { [key: string]: any } = {};
+    for (const key in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        const value = obj[key];
+        // The crucial part: only include the key if the value is not undefined
+        if (value !== undefined) {
+          const cleanedValue = removeUndefinedValues(value);
+          if (cleanedValue !== undefined) {
+             newObj[key] = cleanedValue;
+          }
+        }
+      }
+    }
+    return newObj;
+  }
+  return obj;
+};
+
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -63,7 +94,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       role: details.role,
       name: details.name,
       isDemo: details.isDemo || false,
-      isActive: true, // New users are active by default
+      isActive: true,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
       profileImageUrl: null,
@@ -74,43 +105,45 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     if (details.role === 'client') {
       newUser.clientProfile = {
-        companyName: profileData.companyName ?? '',
-        industry: profileData.industry ?? '',
-        primaryLocation: profileData.primaryLocation ?? '',
-        contactNumber: profileData.contactNumber ?? '',
+        companyName: profileData.companyName || '',
+        industry: profileData.industry || '',
+        primaryLocation: profileData.primaryLocation || '',
+        contactNumber: profileData.contactNumber || '',
       };
     } else if (details.role === 'provider') {
       newUser.providerProfile = {
-        companyName: profileData.companyName ?? '',
-        location: profileData.location ?? '',
-        contactNumber: profileData.contactNumber ?? '',
-        procedureInfoUrl: profileData.procedureInfoUrl ?? null,
-        companyLogoUrl: profileData.companyLogoUrl ?? null,
-        servicesOffered: profileData.servicesOffered ?? [],
-        personnelQualifications: profileData.personnelQualifications ?? [],
-        certifications: profileData.certifications ?? [],
+        companyName: profileData.companyName || '',
+        location: profileData.location || '',
+        contactNumber: profileData.contactNumber || '',
+        procedureInfoUrl: profileData.procedureInfoUrl || null,
+        companyLogoUrl: profileData.companyLogoUrl || null,
+        servicesOffered: profileData.servicesOffered || [],
+        personnelQualifications: profileData.personnelQualifications || [],
+        certifications: profileData.certifications || [],
         isVerified: false,
         availableDocuments: [],
         baseRate: 0,
         serviceRadius: '',
-        rating: 4.0, // Default starting rating
+        rating: 4.0,
         specialization: '',
         description: '',
       };
     } else if (details.role === 'inspector') {
       newUser.inspectorProfile = {
-          association: profileData.association ?? 'freelancer',
-          contactNumber: profileData.contactNumber ?? '',
-          companyName: profileData.companyName ?? null,
-          location: profileData.location ?? null,
-          designation: profileData.designation ?? null,
+          association: profileData.association || 'freelancer',
+          contactNumber: profileData.contactNumber || '',
+          companyName: profileData.companyName || null,
+          location: profileData.location || null,
+          designation: profileData.designation || null,
           personnelQualifications: [], // Init as empty
       };
     }
 
     try {
       const userDocRef = doc(db, "users", newUser.id);
-      await setDoc(userDocRef, newUser);
+      // **THE FIX**: Clean the object before sending to Firestore
+      const cleanedUser = removeUndefinedValues(newUser);
+      await setDoc(userDocRef, cleanedUser);
       return newUser;
     } catch (error) {
       console.error("Error creating user in Firestore:", error);
@@ -162,7 +195,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         updatedAt: new Date().toISOString(),
      };
      
-     await setDoc(userDocRef, dataToUpdate, { merge: true });
+     // **THE FIX**: Clean the object before sending to Firestore
+     const cleanedData = removeUndefinedValues(dataToUpdate);
+     await setDoc(userDocRef, cleanedData, { merge: true });
      storeUserSession(userToUpdate); // Update state and local storage
   };
 
