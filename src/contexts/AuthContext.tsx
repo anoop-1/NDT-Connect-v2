@@ -57,13 +57,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const register = async (details: RegisterDetails) => {
     const { email, role, name, isDemo = false, profileData = {} } = details;
 
+    // Create the base user object.
     let newUser: User = {
-      id: `${role}-${Date.now()}`,
+      id: `${role}-${Date.now()}`, // Simple unique ID for now
       email: email,
       role: role,
       name: name,
       isDemo: isDemo,
-      isActive: true,
+      isActive: true, // All new users are active by default
       createdAt: new Date(),
       updatedAt: new Date(),
       profileImageUrl: null,
@@ -72,25 +73,57 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       inspectorProfile: null,
     };
     
-    if (role === 'client') {
-        newUser.clientProfile = profileData as ClientProfileData;
-    } else if (role === 'provider') {
-        newUser.providerProfile = profileData as ProviderProfileData;
-    } else if (role === 'inspector') {
-        newUser.inspectorProfile = profileData as InspectorProfileData;
+    // Construct the specific profile based on the role.
+    if (role === 'client' && profileData) {
+        newUser.clientProfile = {
+            companyName: profileData.companyName || "",
+            industry: profileData.industry || "",
+            primaryLocation: profileData.primaryLocation || "",
+            contactNumber: profileData.contactNumber || "",
+        };
+    } else if (role === 'provider' && profileData) {
+        // Construct a FULL and VALID ProviderProfileData object.
+        newUser.providerProfile = {
+            // Fields from the form
+            companyName: profileData.companyName || "",
+            location: profileData.location || "",
+            contactNumber: profileData.contactNumber || "",
+            servicesOffered: profileData.servicesOffered || [],
+            personnelQualifications: profileData.personnelQualifications || [],
+            certifications: profileData.certifications || [],
+            procedureInfoUrl: profileData.procedureInfoUrl || null,
+            companyLogoUrl: profileData.companyLogoUrl || null,
+            
+            // Default values for REQUIRED fields not on the form
+            isVerified: false,
+            availableDocuments: [],
+            serviceRadius: "50 miles", // Sensible default
+            baseRate: 0, // Sensible default
+            description: `Newly registered provider.`, // Sensible default
+            specialization: "General NDT", // Sensible default
+            rating: 4.0, // Start with a default rating
+        };
+    } else if (role === 'inspector' && profileData) {
+        newUser.inspectorProfile = {
+            association: profileData.association || 'freelancer',
+            contactNumber: profileData.contactNumber || "",
+            companyName: profileData.companyName || null,
+            location: profileData.location || null,
+            designation: profileData.designation || null,
+            personnelQualifications: profileData.personnelQualifications || [],
+        };
     }
 
     try {
       const userDocRef = doc(db, "users", newUser.id);
-      // Create a clean, plain object for Firestore by serializing and deserializing.
-      // This reliably removes 'undefined' values and converts Dates to ISO strings,
-      // preventing Firestore write errors.
+      // Use the standard, robust JSON stringify/parse method to ensure data is clean
       const dataForFirestore = JSON.parse(JSON.stringify(newUser));
       
       await setDoc(userDocRef, dataForFirestore);
       return newUser;
     } catch (error) {
       console.error("Error creating user in Firestore:", error);
+      console.error("Data that failed to write:", JSON.stringify(newUser, null, 2));
       return null;
     }
   };
