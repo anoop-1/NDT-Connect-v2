@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { SettingsIcon, ArrowLeft, Activity, Save, User, Phone } from "lucide-react";
+import { SettingsIcon, ArrowLeft, Activity, Save, User, Phone, ImageIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
@@ -21,6 +21,7 @@ export default function SettingsPage() {
 
   const [displayName, setDisplayName] = useState("");
   const [contactNumber, setContactNumber] = useState("");
+  const [profileImageUrl, setProfileImageUrl] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
@@ -28,6 +29,7 @@ export default function SettingsPage() {
       router.push("/login?redirect=/settings");
     } else if (user) {
       setDisplayName(user.name || "");
+      setProfileImageUrl(user.profileImageUrl || "");
       if (user.role === 'client' && user.clientProfile) {
         setContactNumber(user.clientProfile.contactNumber || "");
       } else if (user.role === 'provider' && user.providerProfile) {
@@ -42,7 +44,8 @@ export default function SettingsPage() {
 
     const updatedUser: UserType = { 
       ...user, 
-      name: displayName 
+      name: displayName,
+      profileImageUrl: profileImageUrl,
     };
 
     if (user.role === 'client') {
@@ -119,6 +122,16 @@ export default function SettingsPage() {
               value={contactNumber}
               onChange={(e) => setContactNumber(e.target.value)}
               placeholder="Your contact number"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="profileImageUrl" className="flex items-center"><ImageIcon className="mr-2 h-4 w-4 text-muted-foreground"/>Profile Image URL</Label>
+            <Input
+              id="profileImageUrl"
+              value={profileImageUrl}
+              onChange={(e) => setProfileImageUrl(e.target.value)}
+              placeholder="https://example.com/avatar.png"
             />
           </div>
 

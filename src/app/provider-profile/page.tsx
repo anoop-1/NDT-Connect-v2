@@ -157,8 +157,8 @@ export default function ProviderProfilePage() {
                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div><Label htmlFor="name">Company Name</Label><Input id="name" name="name" value={profile.name} onChange={handleInputChange} /></div>
                   <div><Label htmlFor="email">Contact Email</Label><Input id="email" name="email" type="email" value={profile.email} disabled /></div>
-                  <div><Label htmlFor="providerProfile.contactNumber">Phone</Label><Input id="providerProfile.contactNumber" name="providerProfile.contactNumber" value={profile.providerProfile?.contactNumber} onChange={handleInputChange} /></div>
-                  <div><Label htmlFor="providerProfile.location">Location</Label><Input id="providerProfile.location" name="providerProfile.location" value={profile.providerProfile?.location} onChange={handleInputChange} /></div>
+                  <div><Label htmlFor="providerProfile.contactNumber">Phone</Label><Input id="providerProfile.contactNumber" name="providerProfile.contactNumber" value={profile.providerProfile?.contactNumber || ''} onChange={handleInputChange} /></div>
+                  <div><Label htmlFor="providerProfile.location">Location</Label><Input id="providerProfile.location" name="providerProfile.location" value={profile.providerProfile?.location || ''} onChange={handleInputChange} /></div>
                </div>
                <div>
                   <Label htmlFor="description">Company Description</Label>
@@ -168,8 +168,20 @@ export default function ProviderProfilePage() {
                   <Label htmlFor="specialization">Specialization</Label>
                   <Input id="specialization" placeholder="e.g., Aerospace, Oil & Gas, Weld Inspection" value={profile.providerProfile?.specialization || ''} onChange={(e) => handleNestedTextAreaChange('specialization', e.target.value)} />
                </div>
-               <div><Label htmlFor="providerProfile.companyLogoUrl">Logo URL</Label><Input id="providerProfile.companyLogoUrl" name="providerProfile.companyLogoUrl" value={profile.providerProfile?.companyLogoUrl} onChange={handleInputChange} /></div>
-               <div><Label htmlFor="providerProfile.procedureInfoUrl">Bio / Procedures URL</Label><Input id="providerProfile.procedureInfoUrl" name="providerProfile.procedureInfoUrl" value={profile.providerProfile?.procedureInfoUrl} onChange={handleInputChange} /></div>
+                <div>
+                    <Label htmlFor="providerProfile.companyLogoUrl" className="flex items-center">
+                        <ImageIcon className="mr-2 h-4 w-4 text-muted-foreground"/>
+                        Company/Profile Image URL
+                    </Label>
+                    <Input 
+                        id="providerProfile.companyLogoUrl" 
+                        name="providerProfile.companyLogoUrl" 
+                        placeholder="https://example.com/logo.png"
+                        value={profile.providerProfile?.companyLogoUrl || ''} 
+                        onChange={handleInputChange} 
+                    />
+                </div>
+               <div><Label htmlFor="providerProfile.procedureInfoUrl">Bio / Procedures URL</Label><Input id="providerProfile.procedureInfoUrl" name="providerProfile.procedureInfoUrl" value={profile.providerProfile?.procedureInfoUrl || ''} onChange={handleInputChange} /></div>
                 {profile.providerProfile?.rating !== undefined && (
                   <div>
                     <Label>Current Rating</Label>
@@ -212,7 +224,7 @@ export default function ProviderProfilePage() {
                            <div key={cert.id} className="grid grid-cols-[1fr_auto] gap-2 items-end mb-2">
                               <div className="grid grid-cols-2 gap-2">
                                   <div><Label>Name</Label><Select value={cert.name} onValueChange={(v) => handleDynamicListChange('certifications', cert.id, 'name', v)}><SelectTrigger/><SelectContent>{COMPANY_CERTIFICATIONS.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent></Select></div>
-                                  <div><Label>Category</Label><Input value={cert.category} onChange={(e) => handleDynamicListChange('certifications', cert.id, 'category', e.target.value)} /></div>
+                                  <div><Label>Category</Label><Input value={cert.category || ''} onChange={(e) => handleDynamicListChange('certifications', cert.id, 'category', e.target.value)} /></div>
                               </div>
                               <Button type="button" variant="ghost" size="icon" onClick={() => removeDynamicListItem('certifications', cert.id)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
                           </div>

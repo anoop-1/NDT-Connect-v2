@@ -67,6 +67,7 @@ export type User = {
   email: string;
   role: 'client' | 'provider' | 'admin' | 'inspector';
   name?: string;
+  profileImageUrl?: string;
   isDemo?: boolean;
   isActive?: boolean;
   createdAt?: any; // To hold Firestore serverTimestamp
