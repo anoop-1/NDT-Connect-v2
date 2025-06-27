@@ -233,7 +233,7 @@ export default function FindProvidersPage() {
 
       {/* --- MAP VIEW --- */}
       <div className={cn('space-y-6', { 'hidden': viewMode !== 'map' })}>
-        <InteractiveMap providers={displayedProviders} />
+        {!isLoading && <InteractiveMap providers={displayedProviders} />}
       </div>
     </div>
   );
