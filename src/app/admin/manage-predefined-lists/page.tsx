@@ -30,6 +30,16 @@ const listConfigurations = [
   { id: "personnelQualificationLevels", name: "Personnel Qualification Levels", itemTypeName: "Level", placeholder: "e.g., Trainee" },
 ];
 
+const BUILT_IN_DEFAULTS: Record<string, string[]> = {
+  clientNdtServices: ["Ultrasonic Testing (UT)", "Magnetic Particle Testing (MT)", "Liquid Penetrant Testing (PT)", "Radiographic Testing (RT)", "Eddy Current Testing (ET)", "Visual Testing (VT)"],
+  providerNdtServices: ["Radiographic Testing", "Ultrasonic Testing", "Magnetic Particle Testing", "Liquid Penetrant Testing", "Visual Testing", "Eddy Current Testing", "Leak Testing", "Acoustic Emission"],
+  serviceUnits: ["per hour", "per day", "per project", "per item", "per foot", "per weld"],
+  companyCertifications: ["ISO 9001", "API Q1", "Nadcap", "AS9100", "ISO/IEC 17025"],
+  personnelQualificationBodies: ["ASNT", "PCN", "ISO 9712", "CSWIP", "ACCP", "NAS 410"],
+  personnelQualificationLevels: ["Level I", "Level II", "Level III", "Technician", "Trainee"],
+};
+
+
 export default function ManagePredefinedListsPage() {
   const { user, loading: authLoading } = useAuth();
   const router = useRouter();
@@ -47,6 +57,8 @@ export default function ManagePredefinedListsPage() {
       const listsCollectionRef = collection(db, "predefinedLists");
       const querySnapshot = await getDocs(listsCollectionRef);
       const fetchedLists: Record<string, PredefinedList> = {};
+      const existingListIds = new Set<string>();
+
       querySnapshot.forEach((docSnap) => {
         const data = docSnap.data();
         fetchedLists[docSnap.id] = {
@@ -54,14 +66,44 @@ export default function ManagePredefinedListsPage() {
           name: data.name || "Unnamed List",
           items: Array.isArray(data.items) ? data.items : [],
         };
+        existingListIds.add(docSnap.id);
       });
+
+      // Automatically seed the database with default lists if they don't exist
+      let dbWasSeeded = false;
+      for (const listConfig of listConfigurations) {
+        if (!existingListIds.has(listConfig.id)) {
+          dbWasSeeded = true;
+          const defaultItems = BUILT_IN_DEFAULTS[listConfig.id] || [];
+          const listDocRef = doc(db, "predefinedLists", listConfig.id);
+          await setDoc(listDocRef, {
+            id: listConfig.id,
+            name: listConfig.name,
+            items: defaultItems,
+            lastUpdated: serverTimestamp()
+          });
+          fetchedLists[listConfig.id] = {
+            id: listConfig.id,
+            name: listConfig.name,
+            items: defaultItems,
+          };
+        }
+      }
+      
+      if (dbWasSeeded) {
+          toast({
+              title: "Database Initialized",
+              description: "Default predefined lists have been created in your database.",
+          });
+      }
+
       setLists(fetchedLists);
     } catch (e) {
-      console.error("Error fetching predefined lists from Firestore:", e);
-      setError("Failed to load lists from the database. Please check your Firestore connection and security rules.");
+      console.error("Error fetching or seeding predefined lists:", e);
+      setError("Failed to load or initialize lists in the database. Please check your Firestore connection and security rules.");
       toast({
         title: "Database Error",
-        description: "Could not fetch predefined lists.",
+        description: "Could not fetch or create predefined lists.",
         variant: "destructive",
       });
     } finally {
@@ -216,8 +258,8 @@ export default function ManagePredefinedListsPage() {
                 <h4 className="font-semibold text-amber-700">Live Database Editing</h4>
                 <p className="text-sm text-amber-600">
                   Changes made here directly modify the live `predefinedLists` collection in your Firestore database.
-                  These changes will be reflected globally across the application where these lists are used, such as in registration forms.
-                  If a list is not showing up, you may need to create its document first in the Firebase Console.
+                  If this is your first time visiting this page, the default lists have been automatically created for you.
+                  These changes will be reflected globally where these lists are used, such as in registration forms.
                 </p>
               </div>
             </div>
