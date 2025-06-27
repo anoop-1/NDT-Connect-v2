@@ -167,18 +167,23 @@ function RequestServiceFormContent() {
         clientId: user.id,
         clientName: user.name || user.email,
         clientEmail: user.email,
-        providerId: providerId || undefined,
-        providerName: providerName || undefined,
+        providerId: providerId || null,
+        providerName: providerName || null,
         serviceType,
         location,
         description,
         requestedDate,
-        status: providerId ? 'Pending' : 'Pending',
-        estimatedCost: estimatedCost || undefined,
-        fileAttachmentUrl: fileAttachmentUrl || undefined,
+        status: 'Pending',
+        estimatedCost: estimatedCost ?? null,
+        fileAttachmentUrl: fileAttachmentUrl || null,
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
     };
+
+    // Remove fileAttachmentUrl if it's null, as an empty field is cleaner.
+    if (!newRequest.fileAttachmentUrl) {
+      delete newRequest.fileAttachmentUrl;
+    }
 
     try {
         const docRef = await addDoc(collection(db, "serviceRequests"), newRequest);

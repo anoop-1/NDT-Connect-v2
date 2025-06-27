@@ -52,8 +52,8 @@ export default function ProviderRequestsPage() {
       const requestsCollectionRef = collection(db, "serviceRequests");
       // Query for requests specifically assigned to this provider
       const qAssigned = query(requestsCollectionRef, where("providerId", "==", userId), orderBy("createdAt", "desc"));
-      // Query for all pending requests that are not yet assigned
-      const qPending = query(requestsCollectionRef, where("status", "==", "Pending"), where("providerId", "==", undefined), orderBy("createdAt", "desc"));
+      // Query for all pending requests that are not yet assigned (providerId is null)
+      const qPending = query(requestsCollectionRef, where("status", "==", "Pending"), where("providerId", "==", null), orderBy("createdAt", "desc"));
       
       const [assignedSnapshot, pendingSnapshot] = await Promise.all([getDocs(qAssigned), getDocs(qPending)]);
 

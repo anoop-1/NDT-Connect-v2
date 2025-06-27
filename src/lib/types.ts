@@ -118,17 +118,17 @@ export type ServiceRequest = {
   clientId: string;
   clientName?: string; // Denormalized for display
   clientEmail?: string; // Denormalized for display
-  providerId?: string;
-  providerName?: string;
+  providerId: string | null;
+  providerName: string | null;
   serviceType: string;
   location: string;
   description: string;
   requestedDate: any; // Can be string (from mock) or Firestore Timestamp
-  estimatedCost?: number;
+  estimatedCost: number | null;
   status: 'Pending' | 'Confirmed' | 'In Progress' | 'Completed' | 'Cancelled';
   createdAt?: any; // Firestore serverTimestamp
   updatedAt?: any; // Firestore serverTimestamp
-  fileAttachmentUrl?: string; // URL to file in Firebase Storage
+  fileAttachmentUrl?: string | null; // URL to file in Firebase Storage
 };
 
 export type ChatMessage = {
