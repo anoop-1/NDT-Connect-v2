@@ -1,3 +1,4 @@
+
 // src/app/find-providers/page.tsx
 "use client";
 
@@ -44,8 +45,8 @@ export default function FindProvidersPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // The Leaflet icon setup is now correctly placed within the InteractiveMap component.
-  // No Leaflet-related code should be here.
+  // The Leaflet icon setup has been moved into the InteractiveMap component
+  // to ensure it only runs on the client.
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -232,30 +233,7 @@ export default function FindProvidersPage() {
 
       {/* --- MAP VIEW --- */}
       <div className={cn('space-y-6', { 'hidden': viewMode !== 'map' })}>
-        {/* The Map component is now ALWAYS rendered within this div, not conditionally */}
         <InteractiveMap providers={displayedProviders} />
-
-        {/* Conditional rendering for text/cards below the map */}
-        {isLoading && <p className="text-center text-muted-foreground">Loading provider locations...</p>}
-        {error && <p className="text-center text-destructive">{error}</p>}
-        {!isLoading && !error && (
-            displayedProviders.length > 0 ? (
-                <div className="mt-4">
-                    <h2 className="text-xl font-semibold mb-4">Filtered Providers ({displayedProviders.length}) visible on map</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {displayedProviders.slice(0, 4).map((provider) => (
-                            <ProviderCard key={provider.id} provider={provider} />
-                        ))}
-                    </div>
-                    {displayedProviders.length > 4 && <p className="text-sm text-muted-foreground mt-2">And {displayedProviders.length - 4} more providers shown as markers on the map.</p>}
-                </div>
-            ) : (
-                <div className="text-center py-10">
-                    <AlertTriangle className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-                    <p className="text-xl text-muted-foreground">No providers found matching your criteria to display on map.</p>
-                </div>
-            )
-        )}
       </div>
     </div>
   );
