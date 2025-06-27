@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Briefcase, UserCircle, Settings, Activity } from "lucide-react";
+import { Briefcase, UserCircle, Settings, Activity, FileSignature } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { db } from "@/lib/firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
@@ -110,6 +110,12 @@ export default function ProviderDashboardPage() {
           description="View and manage incoming service requests from clients."
           href="/provider-requests"
           icon={<Briefcase className="h-8 w-8 text-primary" />}
+        />
+        <DashboardActionCard
+          title="AI Procedure Writer"
+          description="Use AI to generate comprehensive NDT procedures."
+          href="/provider-dashboard/ai-procedure-writer"
+          icon={<FileSignature className="h-8 w-8 text-primary" />}
         />
         <DashboardActionCard
           title="Manage Profile"
