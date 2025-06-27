@@ -1,14 +1,13 @@
 // src/components/shared/InteractiveMap.tsx
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L, { type LatLngExpression } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import type { ServiceProvider } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { Activity } from 'lucide-react';
 
 // Fix for default icon paths in Next.js
 import iconRetina from 'leaflet/dist/images/marker-icon-2x.png';
@@ -33,11 +32,10 @@ function MapUpdater({ center, zoom }: { center: LatLngExpression, zoom: number }
 }
 
 export default function InteractiveMap({ providers, center, zoom = 5 }: InteractiveMapProps) {
-  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
     // This effect runs only once on the client, preventing icon path issues.
+    // It's safe here because the component is dynamically imported with ssr: false
     const defaultIcon = L.icon({
       iconRetinaUrl: iconRetina.src,
       iconUrl: icon.src,
@@ -60,16 +58,6 @@ export default function InteractiveMap({ providers, center, zoom = 5 }: Interact
     : defaultCenter);
   
   const mapZoom = validProviders.length > 0 ? 8 : 4;
-
-  // This check prevents the "Map container is already initialized" error
-  if (!isClient) {
-    return (
-      <div style={{ height: '100%', width: '100%' }} className="flex items-center justify-center bg-muted rounded-lg">
-        <Activity className="h-8 w-8 animate-spin text-primary" />
-        <span className="ml-2">Loading Map...</span>
-      </div>
-    );
-  }
 
   return (
     <MapContainer 
