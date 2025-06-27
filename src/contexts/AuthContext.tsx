@@ -29,34 +29,25 @@ interface AuthContextType {
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Helper function to recursively remove undefined values from objects and arrays.
-// Firestore does not allow 'undefined' as a field value.
-const removeUndefinedValues = (obj: any): any => {
-  if (obj === null || obj === undefined) {
-    return null; // Keep null as it's a valid Firestore type
-  }
-  if (Array.isArray(obj)) {
-    // Filter out undefined items from arrays and clean nested objects
-    return obj.map(item => removeUndefinedValues(item)).filter(item => item !== undefined);
-  }
-  // Check for object and not a Date, as Firestore handles Date objects correctly
-  if (typeof obj === 'object' && !(obj instanceof Date)) {
-    const newObj: { [key: string]: any } = {};
-    for (const key in obj) {
-      if (Object.prototype.hasOwnProperty.call(obj, key)) {
-        const value = obj[key];
-        // The crucial part: only include the key if the value is not undefined
-        if (value !== undefined) {
-          const cleanedValue = removeUndefinedValues(value);
-          if (cleanedValue !== undefined) {
-             newObj[key] = cleanedValue;
-          }
-        }
-      }
+// Helper function to recursively clean objects before Firestore write.
+// This is more robust than the previous implementation.
+const cleanForFirestore = (obj: any): any => {
+    if (obj === null || typeof obj !== 'object') {
+        return obj;
     }
+
+    if (Array.isArray(obj)) {
+        return obj.map(v => cleanForFirestore(v));
+    }
+
+    const newObj: {[key: string]: any} = {};
+    for (const key in obj) {
+        if (obj[key] !== undefined) {
+            newObj[key] = cleanForFirestore(obj[key]);
+        }
+    }
+
     return newObj;
-  }
-  return obj;
 };
 
 
@@ -111,15 +102,35 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         contactNumber: profileData.contactNumber || '',
       };
     } else if (details.role === 'provider') {
+      const providerProfile = profileData as ProviderProfileData;
       newUser.providerProfile = {
-        companyName: profileData.companyName || '',
-        location: profileData.location || '',
-        contactNumber: profileData.contactNumber || '',
-        procedureInfoUrl: profileData.procedureInfoUrl || null,
-        companyLogoUrl: profileData.companyLogoUrl || null,
-        servicesOffered: profileData.servicesOffered || [],
-        personnelQualifications: profileData.personnelQualifications || [],
-        certifications: profileData.certifications || [],
+        companyName: providerProfile.companyName || '',
+        location: providerProfile.location || '',
+        contactNumber: providerProfile.contactNumber || '',
+        procedureInfoUrl: providerProfile.procedureInfoUrl || null,
+        companyLogoUrl: providerProfile.companyLogoUrl || null,
+        servicesOffered: (providerProfile.servicesOffered || []).map(s => ({
+            id: s.id,
+            name: s.name || '',
+            rate: s.rate || '',
+            unit: s.unit || '',
+            currency: s.currency || 'USD',
+            tax: s.tax || null,
+            isCustom: s.isCustom || false
+        })),
+        personnelQualifications: (providerProfile.personnelQualifications || []).map(p => ({
+            id: p.id,
+            quantity: p.quantity || 1,
+            certificationBody: p.certificationBody || '',
+            level: p.level || '',
+            expiryDate: p.expiryDate || null
+        })),
+        certifications: (providerProfile.certifications || []).map(c => ({
+            id: c.id,
+            name: c.name || '',
+            category: c.category || null,
+            expiryDate: c.expiryDate || null
+        })),
         isVerified: false,
         availableDocuments: [],
         baseRate: 0,
@@ -129,20 +140,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         description: '',
       };
     } else if (details.role === 'inspector') {
+      const inspectorProfile = profileData as InspectorProfileData;
       newUser.inspectorProfile = {
-          association: profileData.association || 'freelancer',
-          contactNumber: profileData.contactNumber || '',
-          companyName: profileData.companyName || null,
-          location: profileData.location || null,
-          designation: profileData.designation || null,
-          personnelQualifications: [], // Init as empty
+          association: inspectorProfile.association || 'freelancer',
+          contactNumber: inspectorProfile.contactNumber || '',
+          companyName: inspectorProfile.companyName || null,
+          location: inspectorProfile.location || null,
+          designation: inspectorProfile.designation || null,
+          personnelQualifications: [],
       };
     }
 
     try {
       const userDocRef = doc(db, "users", newUser.id);
-      // **THE FIX**: Clean the object before sending to Firestore
-      const cleanedUser = removeUndefinedValues(newUser);
+      const cleanedUser = cleanForFirestore(newUser);
       await setDoc(userDocRef, cleanedUser);
       return newUser;
     } catch (error) {
@@ -183,7 +194,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const updateUser = async (userToUpdate: User) => {
-     // If it's a demo user, just update local state, don't touch DB
      if (userToUpdate.isDemo) {
         storeUserSession(userToUpdate);
         return;
@@ -195,10 +205,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         updatedAt: new Date().toISOString(),
      };
      
-     // **THE FIX**: Clean the object before sending to Firestore
-     const cleanedData = removeUndefinedValues(dataToUpdate);
+     const cleanedData = cleanForFirestore(dataToUpdate);
      await setDoc(userDocRef, cleanedData, { merge: true });
-     storeUserSession(userToUpdate); // Update state and local storage
+     storeUserSession(userToUpdate);
   };
 
   const logout = () => {
