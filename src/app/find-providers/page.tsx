@@ -26,7 +26,30 @@ const PREDEFINED_NDT_SERVICES = [
   "Phased Array Ultrasonic Testing (PAUT)", "Radiographic Testing (RT)", "Remote Field Testing (RFT)", "Thermal/Infrared Testing (IRT)",
   "Time-of-Flight Diffraction (TOFD)", "Ultrasonic Testing (UT)", "Vibration Analysis (VA)", "Visual Testing (VT)",
 ];
-const PREDEFINED_CERTIFICATIONS = [ "AS9100", "IACS - American Bureau of Shipping (ABS)", "IACS - Bureau Veritas (BV)", "IACS - China Classification Society (CCS)", "IACS - Croatian Register of Shipping (CRS)", "IACS - DNV", "IACS - Indian Register of Shipping (IRS)", "IACS - Korean Register of Shipping (KR)", "IACS - Lloyd's Register (LR)", "IACS - Nippon Kaiji Kyokai (ClassNK)", "IACS - Polski Rejestr Statków (PRS)", "IACS - RINA Services (RINA)", "IACS - Russian Maritime Register of Shipping (RS)", "ISO 9001", "ISO/IEC 17025", "ISO 45001", "Nadcap", "NAS 410", "API Q1" ];
+const PREDEFINED_CERTIFICATIONS = [
+  "API Q1",
+  "AS9100",
+  "IACS - American Bureau of Shipping (ABS)",
+  "IACS - Bureau Veritas (BV)",
+  "IACS - China Classification Society (CCS)",
+  "IACS - Croatian Register of Shipping (CRS)",
+  "IACS - DNV",
+  "IACS - Indian Register of Shipping (IRS)",
+  "IACS - Korean Register of Shipping (KR)",
+  "IACS - Lloyd's Register (LR)",
+  "IACS - Nippon Kaiji Kyokai (ClassNK)",
+  "IACS - Polski Rejestr Statków (PRS)",
+  "IACS - RINA Services (RINA)",
+  "IACS - Russian Maritime Register of Shipping (RS)",
+  "ISO 9001",
+  "ISO 14001",
+  "ISO 45001",
+  "ISO/IEC 17020",
+  "ISO/IEC 17024",
+  "ISO/IEC 17025",
+  "Nadcap",
+  "NAS 410",
+];
 const PREDEFINED_PERSONNEL_CERTS = [ "ACCP", "ASNT", "CGSB", "CSWIP", "EN 4179", "ISO 9712", "NAS 410", "PCN", "SNT-TC-1A" ];
 
 export default function FindProvidersPage() {
