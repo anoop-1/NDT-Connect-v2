@@ -63,6 +63,18 @@ const PREDEFINED_CERTIFICATIONS = [
   "API Q1",
 ];
 
+const PREDEFINED_PERSONNEL_CERTS = [
+  "ACCP",
+  "ASNT",
+  "CGSB",
+  "CSWIP",
+  "EN 4179",
+  "ISO 9712",
+  "NAS 410",
+  "PCN",
+  "SNT-TC-1A",
+];
+
 export default function FindProvidersPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [allProviders, setAllProviders] = useState<ServiceProvider[]>([]);
@@ -75,6 +87,7 @@ export default function FindProvidersPage() {
   const [filterService, setFilterService] = useState('');
   const [filterSpecialization, setFilterSpecialization] = useState('');
   const [filterCertification, setFilterCertification] = useState('');
+  const [filterPersonnelCert, setFilterPersonnelCert] = useState('');
   const [isFiltersApplied, setIsFiltersApplied] = useState(false);
   
   const { user, loading: authLoading } = useAuth();
@@ -158,6 +171,7 @@ export default function FindProvidersPage() {
     const lowerService = filterService.toLowerCase();
     const lowerSpecialization = filterSpecialization.toLowerCase();
     const lowerCertification = filterCertification.toLowerCase();
+    const lowerPersonnelCert = filterPersonnelCert.toLowerCase();
 
     const filtered = allProviders.filter(provider => {
       // General keyword search from the main search bar
@@ -174,18 +188,19 @@ export default function FindProvidersPage() {
       const matchesService = !filterService || provider.services.some(service => service.name.toLowerCase() === lowerService);
       const matchesSpecialization = !filterSpecialization || provider.specialization.toLowerCase().includes(lowerSpecialization);
       const matchesCertification = !filterCertification || (provider.certifications || []).some(cert => cert.name.toLowerCase() === lowerCertification);
+      const matchesPersonnelCert = !filterPersonnelCert || (provider.personnelQualifications || []).some(qual => qual.certificationBody.toLowerCase() === lowerPersonnelCert);
       const matchesVerificationFilter = !filterVerifiedOnly || provider.isVerified === true;
 
-      return matchesSearchTerm && matchesCompanyName && matchesLocation && matchesService && matchesSpecialization && matchesCertification && matchesVerificationFilter;
+      return matchesSearchTerm && matchesCompanyName && matchesLocation && matchesService && matchesSpecialization && matchesCertification && matchesPersonnelCert && matchesVerificationFilter;
     });
     setDisplayedProviders(filtered);
 
     // Update the indicator for active filters
     setIsFiltersApplied(
-      !!filterCompanyName || !!filterLocation || !!filterService || !!filterSpecialization || !!filterCertification || filterVerifiedOnly
+      !!filterCompanyName || !!filterLocation || !!filterService || !!filterSpecialization || !!filterCertification || !!filterPersonnelCert || filterVerifiedOnly
     );
 
-  }, [searchTerm, filterCompanyName, filterLocation, filterService, filterSpecialization, filterCertification, filterVerifiedOnly, allProviders]);
+  }, [searchTerm, filterCompanyName, filterLocation, filterService, filterSpecialization, filterCertification, filterPersonnelCert, filterVerifiedOnly, allProviders]);
 
   const handleClearFilters = () => {
     setFilterCompanyName('');
@@ -193,6 +208,7 @@ export default function FindProvidersPage() {
     setFilterService('');
     setFilterSpecialization('');
     setFilterCertification('');
+    setFilterPersonnelCert('');
     setFilterVerifiedOnly(false);
   };
 
@@ -273,7 +289,7 @@ export default function FindProvidersPage() {
                       <Input id="specializationFilter" value={filterSpecialization} onChange={(e) => setFilterSpecialization(e.target.value)} placeholder="e.g., Aerospace" />
                     </div>
                     <div>
-                      <Label htmlFor="certificationFilter">Certification</Label>
+                      <Label htmlFor="certificationFilter">Company Certification</Label>
                       <Select 
                         value={filterCertification} 
                         onValueChange={(value) => setFilterCertification(value === 'any-certification' ? '' : value)}
@@ -284,6 +300,21 @@ export default function FindProvidersPage() {
                         <SelectContent>
                           <SelectItem value="any-certification">Any Certification</SelectItem>
                           {PREDEFINED_CERTIFICATIONS.sort().map(cert => <SelectItem key={cert} value={cert.toLowerCase()}>{cert}</SelectItem>)}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <Label htmlFor="personnelCertFilter">Personnel Certification</Label>
+                      <Select 
+                        value={filterPersonnelCert} 
+                        onValueChange={(value) => setFilterPersonnelCert(value === 'any-personnel-cert' ? '' : value)}
+                      >
+                        <SelectTrigger id="personnelCertFilter">
+                          <SelectValue placeholder="Any Personnel Cert" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="any-personnel-cert">Any Personnel Cert</SelectItem>
+                          {PREDEFINED_PERSONNEL_CERTS.sort().map(cert => <SelectItem key={cert} value={cert.toLowerCase()}>{cert}</SelectItem>)}
                         </SelectContent>
                       </Select>
                     </div>
@@ -334,3 +365,5 @@ export default function FindProvidersPage() {
     </div>
   );
 }
+
+    
