@@ -9,19 +9,31 @@ import { Search, Filter, ShieldCheck, AlertTriangle, Activity } from "lucide-rea
 import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
-import Link from 'next/link';
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { db } from "@/lib/firebase";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query, where, doc, getDoc } from "firebase/firestore";
 import { useToast } from "@/hooks/use-toast";
 import { MOCK_PROVIDERS } from "@/lib/mockData";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 export default function FindProvidersPage() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [filterVerifiedOnly, setFilterVerifiedOnly] = useState(false);
-  const [displayedProviders, setDisplayedProviders] = useState<ServiceProvider[]>([]);
   const [allProviders, setAllProviders] = useState<ServiceProvider[]>([]);
+  const [displayedProviders, setDisplayedProviders] = useState<ServiceProvider[]>([]);
+  
+  // Filter states
+  const [filterVerifiedOnly, setFilterVerifiedOnly] = useState(false);
+  const [filterCompanyName, setFilterCompanyName] = useState('');
+  const [filterLocation, setFilterLocation] = useState('');
+  const [filterService, setFilterService] = useState('');
+  const [filterSpecialization, setFilterSpecialization] = useState('');
+  const [filterCertification, setFilterCertification] = useState('');
+  const [isFiltersApplied, setIsFiltersApplied] = useState(false);
+  
+  const [ndtServices, setNdtServices] = useState<string[]>([]);
+  
   const { user, loading: authLoading } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
@@ -90,33 +102,77 @@ export default function FindProvidersPage() {
     }
   }, [toast, user]);
 
+  const fetchNdtServices = useCallback(async () => {
+    try {
+        const docRef = doc(db, "predefinedLists", "clientNdtServices");
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists() && Array.isArray(docSnap.data().items)) {
+            setNdtServices(docSnap.data().items);
+        } else {
+            console.warn("Could not find 'clientNdtServices' in predefinedLists.");
+            setNdtServices([]); // Ensure it's an array
+        }
+    } catch (e) {
+        console.error("Error fetching NDT services list:", e);
+        toast({
+            title: "Could not load service list",
+            description: "Defaulting to an empty list for filters.",
+            variant: "destructive"
+        });
+    }
+  }, [toast]);
+
   useEffect(() => {
     if (user) {
       fetchProviders();
+      fetchNdtServices();
     }
-  }, [user, fetchProviders]);
+  }, [user, fetchProviders, fetchNdtServices]);
   
   useEffect(() => {
     const lowerSearchTerm = searchTerm.toLowerCase();
+    const lowerCompanyName = filterCompanyName.toLowerCase();
+    const lowerLocation = filterLocation.toLowerCase();
+    const lowerService = filterService.toLowerCase();
+    const lowerSpecialization = filterSpecialization.toLowerCase();
+    const lowerCertification = filterCertification.toLowerCase();
+
     const filtered = allProviders.filter(provider => {
-      const matchesSearchTerm =
+      // General keyword search from the main search bar
+      const matchesSearchTerm = !searchTerm || (
         provider.name.toLowerCase().includes(lowerSearchTerm) ||
         provider.location.toLowerCase().includes(lowerSearchTerm) ||
         provider.specialization.toLowerCase().includes(lowerSearchTerm) ||
-        (provider.description || "").toLowerCase().includes(lowerSearchTerm) ||
-        provider.services.some(service => service.name.toLowerCase().includes(lowerSearchTerm)) || 
-        (provider.certifications || []).some(cert => cert.name.toLowerCase().includes(lowerSearchTerm) || (cert.category || "").toLowerCase().includes(lowerSearchTerm)) ||
-        (provider.personnelQualifications || []).some(qual => 
-          `${qual.quantity} ${qual.certificationBody} ${qual.level}`.toLowerCase().includes(lowerSearchTerm)
-        ) ||
-        (provider.availableDocuments || []).some(doc => doc.toLowerCase().includes(lowerSearchTerm));
-      
-      const matchesVerificationFilter = filterVerifiedOnly ? provider.isVerified === true : true;
+        (provider.description || "").toLowerCase().includes(lowerSearchTerm)
+      );
 
-      return matchesSearchTerm && matchesVerificationFilter;
+      // Specific filters from the popover
+      const matchesCompanyName = !filterCompanyName || provider.name.toLowerCase().includes(lowerCompanyName);
+      const matchesLocation = !filterLocation || provider.location.toLowerCase().includes(lowerLocation);
+      const matchesService = !filterService || provider.services.some(service => service.name.toLowerCase() === lowerService);
+      const matchesSpecialization = !filterSpecialization || provider.specialization.toLowerCase().includes(lowerSpecialization);
+      const matchesCertification = !filterCertification || (provider.certifications || []).some(cert => cert.name.toLowerCase().includes(lowerCertification));
+      const matchesVerificationFilter = !filterVerifiedOnly || provider.isVerified === true;
+
+      return matchesSearchTerm && matchesCompanyName && matchesLocation && matchesService && matchesSpecialization && matchesCertification && matchesVerificationFilter;
     });
     setDisplayedProviders(filtered);
-  }, [searchTerm, filterVerifiedOnly, allProviders]);
+
+    // Update the indicator for active filters
+    setIsFiltersApplied(
+      !!filterCompanyName || !!filterLocation || !!filterService || !!filterSpecialization || !!filterCertification || filterVerifiedOnly
+    );
+
+  }, [searchTerm, filterCompanyName, filterLocation, filterService, filterSpecialization, filterCertification, filterVerifiedOnly, allProviders]);
+
+  const handleClearFilters = () => {
+    setFilterCompanyName('');
+    setFilterLocation('');
+    setFilterService('');
+    setFilterSpecialization('');
+    setFilterCertification('');
+    setFilterVerifiedOnly(false);
+  };
 
   if (authLoading || (!user && !authLoading)) {
     return <div className="flex justify-center items-center min-h-[calc(100vh-10rem)]"><Activity className="h-8 w-8 animate-spin text-primary" /><span className="ml-2">Loading...</span></div>;
@@ -130,7 +186,7 @@ export default function FindProvidersPage() {
     <div className="text-center py-10">
       <AlertTriangle className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
       <p className="text-xl text-muted-foreground">No providers found matching your criteria.</p>
-      <p className="text-sm text-muted-foreground">Try adjusting your search terms.</p>
+      <p className="text-sm text-muted-foreground">Try adjusting your search terms or filters.</p>
     </div>
   );
 
@@ -147,15 +203,59 @@ export default function FindProvidersPage() {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
             <Input
               type="search"
-              placeholder="Search by name, location, service, specialization..."
+              placeholder="Search by keyword..."
               className="pl-10 w-full"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          <Button variant="outline"> 
-            <Filter className="h-4 w-4 mr-2" /> Filters
-          </Button>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button variant="outline" className="w-full md:w-auto"> 
+                <Filter className="h-4 w-4 mr-2" /> Filters
+                {isFiltersApplied && <span className="h-2 w-2 rounded-full bg-primary ml-2 animate-pulse"></span>}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-80">
+                <div className="grid gap-4">
+                  <div className="space-y-1">
+                    <h4 className="font-medium leading-none">Advanced Filters</h4>
+                    <p className="text-sm text-muted-foreground">Refine your search.</p>
+                  </div>
+                  <div className="grid gap-y-3">
+                    <div>
+                      <Label htmlFor="companyNameFilter">Company Name</Label>
+                      <Input id="companyNameFilter" value={filterCompanyName} onChange={(e) => setFilterCompanyName(e.target.value)} placeholder="e.g., Global Inspection" />
+                    </div>
+                    <div>
+                      <Label htmlFor="locationFilter">Location</Label>
+                      <Input id="locationFilter" value={filterLocation} onChange={(e) => setFilterLocation(e.target.value)} placeholder="City, Country, Region" />
+                    </div>
+                    <div>
+                      <Label htmlFor="serviceFilter">NDT Service</Label>
+                      <Select value={filterService} onValueChange={setFilterService}>
+                        <SelectTrigger id="serviceFilter">
+                          <SelectValue placeholder="Any Service" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="">Any Service</SelectItem>
+                          {ndtServices.map(service => <SelectItem key={service} value={service.toLowerCase()}>{service}</SelectItem>)}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                     <div>
+                      <Label htmlFor="specializationFilter">Specialization</Label>
+                      <Input id="specializationFilter" value={filterSpecialization} onChange={(e) => setFilterSpecialization(e.target.value)} placeholder="e.g., Aerospace" />
+                    </div>
+                    <div>
+                      <Label htmlFor="certificationFilter">Certification</Label>
+                      <Input id="certificationFilter" value={filterCertification} onChange={(e) => setFilterCertification(e.target.value)} placeholder="e.g., ISO 9001" />
+                    </div>
+                  </div>
+                  <Button variant="outline" onClick={handleClearFilters}>Clear Filters</Button>
+                </div>
+            </PopoverContent>
+          </Popover>
         </div>
         <div className="flex items-center space-x-2">
           <Checkbox 
