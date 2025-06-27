@@ -28,6 +28,8 @@ import { ListChecks, PlusCircle, Trash2, Award, Users2, FileText, User as UserIc
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 // --- ZOD SCHEMAS ---
 const generateUniqueId = () => Date.now().toString(36) + Math.random().toString(36).substring(2);
@@ -282,7 +284,8 @@ export function RegisterForm() {
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
-  const [predefinedLists] = useState(BUILT_IN_LISTS);
+  const [predefinedLists, setPredefinedLists] = useState(BUILT_IN_LISTS);
+  const [isLoadingLists, setIsLoadingLists] = useState(true);
   
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
@@ -302,6 +305,45 @@ export function RegisterForm() {
   });
 
   const currentRole = form.watch("role");
+
+  useEffect(() => {
+    const fetchLists = async () => {
+        setIsLoadingLists(true);
+        try {
+            const listsCollectionRef = collection(db, "predefinedLists");
+            const querySnapshot = await getDocs(listsCollectionRef);
+            const fetchedLists: Record<string, string[]> = {};
+            querySnapshot.forEach((docSnap) => {
+                const data = docSnap.data();
+                if (docSnap.id && Array.isArray(data.items)) {
+                    fetchedLists[docSnap.id] = data.items;
+                }
+            });
+
+            // Merge fetched lists with defaults as a fallback for any missing list
+            setPredefinedLists({
+                providerNdtServices: fetchedLists.providerNdtServices && fetchedLists.providerNdtServices.length > 0 ? fetchedLists.providerNdtServices : BUILT_IN_LISTS.providerNdtServices,
+                serviceUnits: fetchedLists.serviceUnits && fetchedLists.serviceUnits.length > 0 ? fetchedLists.serviceUnits : BUILT_IN_LISTS.serviceUnits,
+                qualificationBodies: fetchedLists.qualificationBodies && fetchedLists.qualificationBodies.length > 0 ? fetchedLists.qualificationBodies : BUILT_IN_LISTS.qualificationBodies,
+                qualificationLevels: fetchedLists.qualificationLevels && fetchedLists.qualificationLevels.length > 0 ? fetchedLists.qualificationLevels : BUILT_IN_LISTS.qualificationLevels,
+                companyCertifications: fetchedLists.companyCertifications && fetchedLists.companyCertifications.length > 0 ? fetchedLists.companyCertifications : BUILT_IN_LISTS.companyCertifications,
+            });
+
+        } catch (e) {
+            console.error("Error fetching predefined lists from Firestore:", e);
+            toast({
+                title: "Database Load Error",
+                description: "Could not load provider options from the database. Using default options.",
+                variant: "destructive",
+            });
+            // State already holds default lists, so it's a graceful fallback.
+        } finally {
+            setIsLoadingLists(false);
+        }
+    };
+
+    fetchLists();
+  }, [toast]);
 
   useEffect(() => {
     const baseValues = {
@@ -392,7 +434,7 @@ export function RegisterForm() {
             <FormField control={form.control} name="acceptTerms" render={({ field }) => ( <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-3 shadow-sm"><FormControl><Checkbox checked={field.value} onCheckedChange={field.onChange}/></FormControl><div className="space-y-1 leading-none"><FormLabel className="font-normal">I have read and agree to the User Agreement.</FormLabel><FormMessage/></div></FormItem> )} />
         </div>
 
-        <Button type="submit" className="w-full" disabled={isLoading}>
+        <Button type="submit" className="w-full" disabled={isLoading || isLoadingLists}>
           {isLoading ? "Registering..." : "Create Account"}
         </Button>
       </form>

@@ -23,13 +23,12 @@ import { getStorage } from "firebase/storage";
 // =================================================================================
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY", // Replace with your actual API key
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com", // Replace with your actual auth domain
-  projectId: "YOUR_PROJECT_ID", // Replace with your actual project ID
-  storageBucket: "YOUR_PROJECT_ID.appspot.com", // Replace with your actual storage bucket
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID", // Replace with your actual messaging sender ID
-  appId: "YOUR_APP_ID", // Replace with your actual app ID
-  // measurementId: "YOUR_MEASUREMENT_ID" // Optional: Replace if you use Google Analytics
+  apiKey: "AIzaSyBqrXfMRyFd8VsRYyMBwsBFPp06-v1hhXA",
+  authDomain: "ndt-connect.firebaseapp.com",
+  projectId: "ndt-connect",
+  storageBucket: "ndt-connect.firebasestorage.app",
+  messagingSenderId: "77096169277",
+  appId: "1:77096169277:web:66cb06971e235451331f54"
 };
 
 // Initialize Firebase
