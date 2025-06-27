@@ -71,8 +71,12 @@ const inspectorSchema = baseSchema.extend({
     companyName: z.string().optional(),
     location: z.string().optional(),
     designation: z.string().optional(),
-}).superRefine((data, ctx) => {
-    if (data.association === "company") {
+});
+
+
+const formSchema = z.discriminatedUnion("role", [clientSchema, providerSchema, inspectorSchema])
+  .superRefine((data, ctx) => {
+    if (data.role === 'inspector' && data.association === "company") {
         if (!data.companyName || data.companyName.length < 2) {
             ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Company name is required.", path: ["companyName"] });
         }
@@ -83,10 +87,7 @@ const inspectorSchema = baseSchema.extend({
             ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Designation is required.", path: ["designation"] });
         }
     }
-});
-
-
-const formSchema = z.discriminatedUnion("role", [clientSchema, providerSchema, inspectorSchema])
+  })
   .refine((data) => data.password === data.confirmPassword, { message: "Passwords don't match", path: ["confirmPassword"] });
 
 type FormSchemaType = z.infer<typeof formSchema>;
@@ -231,9 +232,6 @@ export function RegisterForm() {
   const currentRole = form.watch("role");
 
   useEffect(() => {
-    // This effect ensures the form is cleanly reset with appropriate default values
-    // whenever the user switches the role, preventing validation errors from
-    // lingering fields of the previous role.
     const baseValues = {
         name: form.getValues('name'),
         email: form.getValues('email'),
@@ -262,11 +260,13 @@ export function RegisterForm() {
         };
     }
 
-    form.reset({
-        ...newDefaultValues,
-        ...baseValues
-    });
-  }, [currentRole, form.reset]);
+    if(newDefaultValues) {
+        form.reset({
+            ...newDefaultValues,
+            ...baseValues
+        }, { keepDefaultValues: true });
+    }
+  }, [currentRole, form]);
 
 
   async function onSubmit(values: FormSchemaType) {
