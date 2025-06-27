@@ -29,16 +29,23 @@ interface AuthContextType {
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Helper function to recursively remove any fields with `undefined` values.
+// Helper function to recursively remove any fields with `undefined` values and convert Dates.
 // This is the definitive fix for Firestore's "400 Bad Request" on write.
 const cleanForFirestore = (obj: any): any => {
     if (obj === null || typeof obj !== 'object') {
         return obj;
     }
 
+    // This handles Date objects, converting them to ISO strings
+    if (obj instanceof Date) {
+        return obj.toISOString();
+    }
+
     if (Array.isArray(obj)) {
-        // Filter out undefined values from arrays and clean the rest
-        return obj.filter(v => v !== undefined).map(v => cleanForFirestore(v));
+        // Corrected logic: First, map to clean each item, then filter out any undefined results.
+        return obj
+            .map(v => cleanForFirestore(v))
+            .filter(v => v !== undefined);
     }
 
     const newObj: {[key: string]: any} = {};
@@ -46,10 +53,14 @@ const cleanForFirestore = (obj: any): any => {
         if (Object.prototype.hasOwnProperty.call(obj, key)) {
             const value = obj[key];
             if (value !== undefined) {
-                newObj[key] = cleanForFirestore(value);
+                const cleanedValue = cleanForFirestore(value);
+                if (cleanedValue !== undefined) {
+                    newObj[key] = cleanedValue;
+                }
             }
         }
     }
+    
     return newObj;
 };
 
@@ -155,13 +166,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
      }
 
      const userDocRef = doc(db, "users", userToUpdate.id);
-     const dataToUpdate = {
-        ...userToUpdate,
-        updatedAt: new Date(),
-     };
      
      // Clean data on updates as a safety measure.
-     const cleanedData = cleanForFirestore(dataToUpdate);
+     const cleanedData = cleanForFirestore(userToUpdate);
      await setDoc(userDocRef, cleanedData, { merge: true });
      storeUserSession(userToUpdate);
   };
