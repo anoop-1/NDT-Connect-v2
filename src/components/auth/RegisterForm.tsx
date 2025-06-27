@@ -28,8 +28,6 @@ import { ListChecks, PlusCircle, Trash2, Award, Users2, FileText, User as UserIc
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { db } from '@/lib/firebase';
-import { collection, getDocs, query, where } from 'firebase/firestore';
 
 // --- ZOD SCHEMAS ---
 const generateUniqueId = () => Date.now().toString(36) + Math.random().toString(36).substring(2);
@@ -210,7 +208,7 @@ export function RegisterForm() {
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
-  const [predefinedLists, setPredefinedLists] = useState(BUILT_IN_LISTS);
+  const [predefinedLists] = useState(BUILT_IN_LISTS);
   
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
@@ -271,15 +269,6 @@ export function RegisterForm() {
 
   async function onSubmit(values: FormSchemaType) {
     setIsLoading(true);
-    const usersRef = collection(db, "users");
-    const q = query(usersRef, where("email", "==", values.email), where("isActive", "==", true));
-    const querySnapshot = await getDocs(q);
-    if (!querySnapshot.empty) {
-        toast({ title: "Registration Failed", description: "An active account with this email already exists.", variant: "destructive" });
-        setIsLoading(false);
-        return;
-    }
-    
     let profileData: Partial<ClientProfileData & ProviderProfileData & InspectorProfileData> = {};
     if (values.role === "client") {
         profileData = { companyName: values.companyName, industry: values.industry, primaryLocation: values.primaryLocation, contactNumber: values.contactNumber };
@@ -294,7 +283,7 @@ export function RegisterForm() {
         toast({ title: "Registration Successful!", description: `Please 'verify' your email on the login page for ${values.email}.`, duration: 7000 });
         router.push(`/login?status=verification_pending&email=${encodeURIComponent(values.email)}`);
     } else {
-        toast({ title: "Registration Failed", description: "Could not create user account.", variant: "destructive" });
+        toast({ title: "Registration Failed", description: "An account with this email may already exist.", variant: "destructive" });
     }
     setIsLoading(false);
   }
