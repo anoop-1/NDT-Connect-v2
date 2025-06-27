@@ -42,8 +42,11 @@ const cleanForFirestore = (obj: any): any => {
 
     const newObj: {[key: string]: any} = {};
     for (const key in obj) {
-        if (obj[key] !== undefined) {
-            newObj[key] = cleanForFirestore(obj[key]);
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+            const value = obj[key];
+            if (value !== undefined) {
+                newObj[key] = cleanForFirestore(value);
+            }
         }
     }
 
@@ -93,50 +96,55 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       providerProfile: null,
       inspectorProfile: null,
     };
-
+    
+    // Explicitly build profile objects to ensure no 'undefined' values are present.
+    // This is the definitive fix for the 400 Bad Request error from Firestore.
     if (details.role === 'client') {
-      newUser.clientProfile = {
-        companyName: profileData.companyName,
-        industry: profileData.industry,
-        primaryLocation: profileData.primaryLocation,
-        contactNumber: profileData.contactNumber,
-      };
+        const clientProfile = (profileData as ClientProfileData) || {};
+        newUser.clientProfile = {
+            companyName: clientProfile.companyName || null,
+            industry: clientProfile.industry || null,
+            primaryLocation: clientProfile.primaryLocation || null,
+            contactNumber: clientProfile.contactNumber || null,
+        };
     } else if (details.role === 'provider') {
-      const providerProfile = profileData as ProviderProfileData;
-      newUser.providerProfile = {
-        companyName: providerProfile.companyName,
-        location: providerProfile.location,
-        contactNumber: providerProfile.contactNumber,
-        procedureInfoUrl: providerProfile.procedureInfoUrl,
-        companyLogoUrl: providerProfile.companyLogoUrl,
-        servicesOffered: providerProfile.servicesOffered,
-        personnelQualifications: providerProfile.personnelQualifications,
-        certifications: providerProfile.certifications,
-        isVerified: false,
-        availableDocuments: [],
-        baseRate: 0,
-        serviceRadius: '',
-        rating: 4.0,
-        specialization: '',
-        description: '',
-      };
+        const providerProfile = (profileData as ProviderProfileData) || {};
+        newUser.providerProfile = {
+            companyName: providerProfile.companyName || null,
+            location: providerProfile.location || null,
+            contactNumber: providerProfile.contactNumber || null,
+            servicesOffered: providerProfile.servicesOffered || [],
+            personnelQualifications: providerProfile.personnelQualifications || [],
+            certifications: providerProfile.certifications || [],
+            procedureInfoUrl: providerProfile.procedureInfoUrl || null,
+            companyLogoUrl: providerProfile.companyLogoUrl || null,
+            isVerified: false,
+            availableDocuments: [],
+            baseRate: providerProfile.baseRate || 0,
+            serviceRadius: providerProfile.serviceRadius || '',
+            rating: providerProfile.rating || 4.0,
+            specialization: providerProfile.specialization || null,
+            description: providerProfile.description || null,
+            dataAiHint: providerProfile.dataAiHint || null,
+            lat: providerProfile.lat || null,
+            lng: providerProfile.lng || null,
+        };
     } else if (details.role === 'inspector') {
-      const inspectorProfile = profileData as InspectorProfileData;
-      newUser.inspectorProfile = {
-          association: inspectorProfile.association,
-          contactNumber: inspectorProfile.contactNumber,
-          companyName: inspectorProfile.companyName,
-          location: inspectorProfile.location,
-          designation: inspectorProfile.designation,
-          personnelQualifications: [],
-      };
+        const inspectorProfile = (profileData as InspectorProfileData) || {};
+        newUser.inspectorProfile = {
+            association: inspectorProfile.association || 'freelancer',
+            contactNumber: inspectorProfile.contactNumber || null,
+            companyName: inspectorProfile.companyName || null,
+            location: inspectorProfile.location || null,
+            designation: inspectorProfile.designation || null,
+            personnelQualifications: inspectorProfile.personnelQualifications || [],
+        };
     }
 
     try {
       const userDocRef = doc(db, "users", newUser.id);
-      // This is the critical step: clean the object of any `undefined` values before sending.
-      const cleanedUser = cleanForFirestore(newUser);
-      await setDoc(userDocRef, cleanedUser);
+      // The 'newUser' object is now guaranteed to be clean.
+      await setDoc(userDocRef, newUser);
       return newUser;
     } catch (error) {
       console.error("Error creating user in Firestore:", error);
