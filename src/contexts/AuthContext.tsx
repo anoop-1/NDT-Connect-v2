@@ -37,7 +37,8 @@ const cleanForFirestore = (obj: any): any => {
     }
 
     if (Array.isArray(obj)) {
-        return obj.map(v => cleanForFirestore(v));
+        // Filter out undefined values from arrays and clean the rest
+        return obj.filter(v => v !== undefined).map(v => cleanForFirestore(v));
     }
 
     const newObj: {[key: string]: any} = {};
@@ -88,8 +89,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       name: name,
       isDemo: isDemo,
       isActive: true,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
       profileImageUrl: null,
       clientProfile: null,
       providerProfile: null,
@@ -156,7 +157,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
      const userDocRef = doc(db, "users", userToUpdate.id);
      const dataToUpdate = {
         ...userToUpdate,
-        updatedAt: new Date().toISOString(),
+        updatedAt: new Date(),
      };
      
      // Clean data on updates as a safety measure.
