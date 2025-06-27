@@ -1,3 +1,4 @@
+
 // src/app/find-providers/page.tsx
 "use client";
 
@@ -233,12 +234,15 @@ export default function FindProvidersPage() {
                     </div>
                     <div>
                       <Label htmlFor="serviceFilter">NDT Service</Label>
-                      <Select value={filterService} onValueChange={setFilterService}>
+                      <Select 
+                        value={filterService} 
+                        onValueChange={(value) => setFilterService(value === 'any-service' ? '' : value)}
+                      >
                         <SelectTrigger id="serviceFilter">
                           <SelectValue placeholder="Any Service" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="">Any Service</SelectItem>
+                          <SelectItem value="any-service">Any Service</SelectItem>
                           {ndtServices.map(service => <SelectItem key={service} value={service.toLowerCase()}>{service}</SelectItem>)}
                         </SelectContent>
                       </Select>
