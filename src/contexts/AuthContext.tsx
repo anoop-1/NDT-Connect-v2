@@ -30,7 +30,7 @@ interface AuthContextType {
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // Helper function to recursively remove any fields with `undefined` values.
-// Firestore rejects objects containing `undefined`.
+// This is a safety net, especially for the updateUser function.
 const cleanForFirestore = (obj: any): any => {
     if (obj === null || typeof obj !== 'object') {
         return obj;
@@ -49,7 +49,6 @@ const cleanForFirestore = (obj: any): any => {
             }
         }
     }
-
     return newObj;
 };
 
@@ -80,14 +79,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const register = async (details: RegisterDetails) => {
-    const profileData = details.profileData || {};
+    const { email, role, name, isDemo = false, profileData = {} } = details;
 
+    // Start with a base user object that is always valid
     let newUser: User = {
-      id: `${details.role}-${Date.now()}`, // Simple unique ID
-      email: details.email,
-      role: details.role,
-      name: details.name,
-      isDemo: details.isDemo || false,
+      id: `${role}-${Date.now()}`,
+      email: email,
+      role: role,
+      name: name,
+      isDemo: isDemo,
       isActive: true,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
@@ -97,53 +97,53 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       inspectorProfile: null,
     };
     
-    // Explicitly build profile objects to ensure no 'undefined' values are present.
+    // Meticulously build the profile object to ensure no `undefined` values are ever present.
     // This is the definitive fix for the 400 Bad Request error from Firestore.
-    if (details.role === 'client') {
-        const clientProfile = (profileData as ClientProfileData) || {};
+    if (role === 'client') {
+        const p = (profileData as Partial<ClientProfileData>);
         newUser.clientProfile = {
-            companyName: clientProfile.companyName || null,
-            industry: clientProfile.industry || null,
-            primaryLocation: clientProfile.primaryLocation || null,
-            contactNumber: clientProfile.contactNumber || null,
+            companyName: p.companyName || '',
+            industry: p.industry || '',
+            primaryLocation: p.primaryLocation || '',
+            contactNumber: p.contactNumber || '',
         };
-    } else if (details.role === 'provider') {
-        const providerProfile = (profileData as ProviderProfileData) || {};
+    } else if (role === 'provider') {
+        const p = (profileData as Partial<ProviderProfileData>);
         newUser.providerProfile = {
-            companyName: providerProfile.companyName || null,
-            location: providerProfile.location || null,
-            contactNumber: providerProfile.contactNumber || null,
-            servicesOffered: providerProfile.servicesOffered || [],
-            personnelQualifications: providerProfile.personnelQualifications || [],
-            certifications: providerProfile.certifications || [],
-            procedureInfoUrl: providerProfile.procedureInfoUrl || null,
-            companyLogoUrl: providerProfile.companyLogoUrl || null,
+            companyName: p.companyName || '',
+            location: p.location || '',
+            contactNumber: p.contactNumber || '',
+            servicesOffered: p.servicesOffered || [],
+            personnelQualifications: p.personnelQualifications || [],
+            certifications: p.certifications || [],
+            procedureInfoUrl: p.procedureInfoUrl || null,
+            companyLogoUrl: p.companyLogoUrl || null,
             isVerified: false,
             availableDocuments: [],
-            baseRate: providerProfile.baseRate || 0,
-            serviceRadius: providerProfile.serviceRadius || '',
-            rating: providerProfile.rating || 4.0,
-            specialization: providerProfile.specialization || null,
-            description: providerProfile.description || null,
-            dataAiHint: providerProfile.dataAiHint || null,
-            lat: providerProfile.lat || null,
-            lng: providerProfile.lng || null,
+            baseRate: 0,
+            rating: 4.0, // Default rating
+            specialization: p.specialization || null,
+            description: p.description || null,
+            dataAiHint: p.dataAiHint || null,
+            lat: p.lat || null,
+            lng: p.lng || null,
+            serviceRadius: p.serviceRadius || '',
         };
-    } else if (details.role === 'inspector') {
-        const inspectorProfile = (profileData as InspectorProfileData) || {};
+    } else if (role === 'inspector') {
+        const p = (profileData as Partial<InspectorProfileData>);
         newUser.inspectorProfile = {
-            association: inspectorProfile.association || 'freelancer',
-            contactNumber: inspectorProfile.contactNumber || null,
-            companyName: inspectorProfile.companyName || null,
-            location: inspectorProfile.location || null,
-            designation: inspectorProfile.designation || null,
-            personnelQualifications: inspectorProfile.personnelQualifications || [],
+            association: p.association || 'freelancer',
+            contactNumber: p.contactNumber || '',
+            companyName: p.companyName || null,
+            location: p.location || null,
+            designation: p.designation || null,
+            personnelQualifications: p.personnelQualifications || [],
         };
     }
 
     try {
       const userDocRef = doc(db, "users", newUser.id);
-      // The 'newUser' object is now guaranteed to be clean.
+      // The `newUser` object is now guaranteed to be clean of `undefined` values.
       await setDoc(userDocRef, newUser);
       return newUser;
     } catch (error) {
@@ -195,7 +195,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         updatedAt: new Date().toISOString(),
      };
      
-     // Also clean data on updates to prevent errors.
+     // Clean data on updates as a safety measure.
      const cleanedData = cleanForFirestore(dataToUpdate);
      await setDoc(userDocRef, cleanedData, { merge: true });
      storeUserSession(userToUpdate);

@@ -1,4 +1,3 @@
-
 // src/components/auth/RegisterForm.tsx
 "use client";
 
@@ -52,15 +51,25 @@ const serviceOfferingSchema = z.object({
   isCustom: z.boolean().optional(),
 });
 const personnelQualificationSchema = z.object({
-  id: z.string(), quantity: z.preprocess(val => parseInt(String(val), 10), z.number().min(1, "Min 1")),
-  certificationBody: z.string().min(1, "Body is required."), level: z.string().min(1, "Level is required."),
+  id: z.string(), 
+  quantity: z.preprocess(val => parseInt(String(val), 10), z.number().min(1, "Min 1")),
+  certificationBody: z.string().min(1, "Body is required."), 
+  level: z.string().min(1, "Level is required."),
+  expiryDate: z.date().nullable().optional(),
 });
-const companyCertificationSchema = z.object({ id: z.string(), name: z.string().min(1, "Cert name is required."), category: z.string().optional() });
+const companyCertificationSchema = z.object({ 
+  id: z.string(), 
+  name: z.string().min(1, "Cert name is required."), 
+  category: z.string().optional(),
+  expiryDate: z.date().nullable().optional(),
+});
 
 const clientSchema = baseSchema.extend({
   role: z.literal("client"),
-  companyName: z.string().min(2, { message: "Company name is required." }), industry: z.string().min(2, { message: "Industry is required." }),
-  primaryLocation: z.string().min(2, { message: "Primary location is required." }), contactNumber: z.string().min(7, { message: "Contact number is required." }),
+  companyName: z.string().min(2, { message: "Company name is required." }), 
+  industry: z.string().min(2, { message: "Industry is required." }),
+  primaryLocation: z.string().min(2, { message: "Primary location is required." }), 
+  contactNumber: z.string().min(7, { message: "Contact number is required." }),
 });
 
 const providerSchema = baseSchema.extend({
@@ -243,7 +252,7 @@ const ProviderFields = ({ form, lists }: { form: UseFormReturn<any>, lists: type
                             <Button type="button" variant="ghost" size="icon" onClick={() => removePersonnel(index)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
                         </div>
                     ))}
-                    <Button type="button" variant="outline" size="sm" onClick={() => appendPersonnel({ id: generateUniqueId(), quantity: 1, certificationBody: "", level: "" })}><PlusCircle className="mr-2 h-4 w-4"/>Add Qualification</Button>
+                    <Button type="button" variant="outline" size="sm" onClick={() => appendPersonnel({ id: generateUniqueId(), quantity: 1, certificationBody: "", level: "", expiryDate: null })}><PlusCircle className="mr-2 h-4 w-4"/>Add Qualification</Button>
                 </CardContent>
             </Card>
 
@@ -258,7 +267,7 @@ const ProviderFields = ({ form, lists }: { form: UseFormReturn<any>, lists: type
                             <Button type="button" variant="ghost" size="icon" onClick={() => removeCert(index)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
                         </div>
                     ))}
-                    <Button type="button" variant="outline" size="sm" onClick={() => appendCert({ id: generateUniqueId(), name: "", category: "" })}><PlusCircle className="mr-2 h-4 w-4"/>Add Certification</Button>
+                    <Button type="button" variant="outline" size="sm" onClick={() => appendCert({ id: generateUniqueId(), name: "", category: "", expiryDate: null })}><PlusCircle className="mr-2 h-4 w-4"/>Add Certification</Button>
                 </CardContent>
             </Card>
             
@@ -383,7 +392,7 @@ export function RegisterForm() {
             location: "",
             contactNumber: "", 
             servicesOffered: [{ id: generateUniqueId(), name: "", rate: '', unit: "", currency: "USD", tax: "0", isCustom: false }], 
-            personnelQualifications: [{ id: generateUniqueId(), quantity: 1, certificationBody: "", level: "" }], 
+            personnelQualifications: [{ id: generateUniqueId(), quantity: 1, certificationBody: "", level: "", expiryDate: null }], 
             certifications: [],
             procedureInfoUrl: "",
             companyLogoUrl: ""
