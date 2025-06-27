@@ -25,12 +25,12 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useState, useEffect, useCallback } from "react";
 import type { ClientProfileData, ProviderProfileData, ServiceOffering, PersonnelQualification, CompanyCertification } from "@/lib/types";
-import { ListChecks, PlusCircle, Trash2, Award, Users2, FileText, Activity, AlertCircle } from "lucide-react";
+import { ListChecks, PlusCircle, Trash2, Award, Users2, FileText, Activity } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { db } from '@/lib/firebase';
-import { doc, getDoc, collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 
 // --- ZOD SCHEMAS ---
 
@@ -115,7 +115,9 @@ interface PredefinedLists {
     companyCertifications: string[];
 }
 
-const FALLBACK_LISTS: PredefinedLists = {
+// These lists are now the primary source of truth for the form, guaranteeing it always loads.
+// The admin panel at /admin/manage-predefined-lists can still manage live Firestore data.
+const BUILT_IN_LISTS: PredefinedLists = {
     providerNdtServices: [ "Radiographic Testing", "Ultrasonic Testing", "Magnetic Particle Testing", "Liquid Penetrant Testing", "Visual Testing", "Eddy Current Testing", "Leak Testing", "Acoustic Emission" ],
     serviceUnits: [ "per hour", "per day", "per project", "per item", "per foot", "per weld" ],
     qualificationBodies: [ "ASNT", "PCN", "ISO 9712", "CSWIP", "ACCP", "NAS 410" ],
@@ -205,10 +207,7 @@ export function RegisterForm() {
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoadingLists, setIsLoadingLists] = useState(false);
-  const [listsError, setListsError] = useState<string | null>(null);
-  const [predefinedLists, setPredefinedLists] = useState<PredefinedLists>(FALLBACK_LISTS);
-
+  
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: { role: "client", name: "", email: "", password: "", confirmPassword: "", acceptTerms: false, companyName: "", industry: "", primaryLocation: "", contactNumberClient: "" },
@@ -216,54 +215,6 @@ export function RegisterForm() {
   });
 
   const currentRole = form.watch("role");
-
-  const fetchPredefinedLists = useCallback(async () => {
-    if (currentRole === 'client') return;
-    setIsLoadingLists(true);
-    setListsError(null);
-
-    const fetchPromise = new Promise<PredefinedLists>(async (resolve, reject) => {
-        try {
-            const listIds: (keyof PredefinedLists)[] = ["providerNdtServices", "serviceUnits", "personnelQualificationBodies", "personnelQualificationLevels", "companyCertifications"];
-            const listSnapshots = await Promise.all(listIds.map(id => getDoc(doc(db, "predefinedLists", id))));
-            const newLists = {...FALLBACK_LISTS};
-            
-            listSnapshots.forEach((snap, index) => {
-                const id = listIds[index];
-                if (snap.exists() && Array.isArray(snap.data().items) && snap.data().items.length > 0) {
-                    newLists[id] = snap.data().items;
-                } else {
-                    console.warn(`Firestore list '${id}' not found or is empty, using fallback.`);
-                }
-            });
-            resolve(newLists);
-        } catch (error) {
-            reject(error);
-        }
-    });
-
-    const timeoutPromise = new Promise<never>((_, reject) => 
-        setTimeout(() => reject(new Error("Firestore timeout")), 7000)
-    );
-
-    try {
-        const lists = await Promise.race([fetchPromise, timeoutPromise]);
-        setPredefinedLists(lists);
-    } catch (error) {
-        console.error("Error or timeout fetching predefined lists:", error);
-        setListsError("Could not load provider options from the database. Using default options.");
-        toast({
-          title: "Database Connection Issue",
-          description: "Using default registration options. Admins: please check Firestore configuration and data.",
-          variant: "destructive",
-          duration: 9000
-        });
-        setPredefinedLists(FALLBACK_LISTS);
-    } finally {
-      setIsLoadingLists(false);
-    }
-  }, [currentRole, toast]);
-
 
   const getInitialValues = useCallback((role: 'client' | 'provider') => {
       const base = { name: form.getValues('name'), email: form.getValues('email'), password: form.getValues('password'), confirmPassword: form.getValues('confirmPassword'), acceptTerms: form.getValues('acceptTerms') };
@@ -276,9 +227,8 @@ export function RegisterForm() {
 
 
   useEffect(() => {
-    fetchPredefinedLists();
     form.reset(getInitialValues(currentRole as 'client' | 'provider'));
-  }, [currentRole, fetchPredefinedLists, form, getInitialValues]);
+  }, [currentRole, form, getInitialValues]);
 
 
   async function onSubmit(values: FormSchemaType) {
@@ -329,7 +279,7 @@ export function RegisterForm() {
         )}/>
 
         {currentRole === "client" && <ClientFields form={form} />}
-        {currentRole === "provider" && (isLoadingLists ? <div className="flex items-center gap-2 text-muted-foreground"><Activity className="animate-spin h-4 w-4"/><span>Loading provider options...</span></div> : listsError ? <p className="text-destructive flex items-center gap-2"><AlertCircle className="h-4 w-4"/>{listsError}</p> : <ProviderFields form={form} lists={predefinedLists} />)}
+        {currentRole === "provider" && <ProviderFields form={form} lists={BUILT_IN_LISTS} />}
 
         <div className="space-y-3 pt-4">
             <Label className="text-lg font-semibold flex items-center"><FileText className="mr-2 h-5 w-5 text-primary" />Agreement</Label>
@@ -337,7 +287,7 @@ export function RegisterForm() {
             <FormField control={form.control} name="acceptTerms" render={({ field }) => ( <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-3 shadow-sm"><FormControl><Checkbox checked={field.value} onCheckedChange={field.onChange}/></FormControl><div className="space-y-1 leading-none"><FormLabel className="font-normal">I have read and agree to the User Agreement.</FormLabel><FormMessage/></div></FormItem> )} />
         </div>
 
-        <Button type="submit" className="w-full" disabled={isLoading || isLoadingLists}>
+        <Button type="submit" className="w-full" disabled={isLoading}>
           {isLoading ? "Registering..." : "Create Account"}
         </Button>
       </form>
