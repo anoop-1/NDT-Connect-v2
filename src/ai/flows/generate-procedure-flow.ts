@@ -11,12 +11,12 @@ import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
 export const GenerateProcedureInputSchema = z.object({
-  testMethod: z.string().describe("The NDT method to be used (e.g., Ultrasonic Testing, Magnetic Particle Testing)."),
-  scope: z.string().describe("The scope of the work, including what is being tested and why."),
-  equipment: z.string().describe("A list of the primary equipment, including make and model (e.g., Olympus EPOCH 650, Danatronics EHC-09)."),
-  consumables: z.string().describe("A list of consumables to be used (e.g., Sonotech Ultragel II, Magnaflux WCP-2, Parker Research B-100 Yoke)."),
-  personnelQualification: z.string().describe("The required personnel qualification standard (e.g., SNT-TC-1A, ISO 9712)."),
-  acceptanceCriteria: z.string().describe("The standard or specification that defines the acceptance criteria for discovered indications (e.g., API 1104 20th Edition, ASME Sec V Art. 4)."),
+  testMethod: z.string({ required_error: "Test method is required."}).min(1, "Test method is required."),
+  scope: z.string({ required_error: "Scope is required."}).min(10, "Scope must be at least 10 characters long."),
+  equipment: z.string({ required_error: "Equipment list is required."}).min(5, "Equipment list must be at least 5 characters long."),
+  consumables: z.string({ required_error: "Consumables list is required."}).min(5, "Consumables list must be at least 5 characters long."),
+  personnelQualification: z.string({ required_error: "Personnel qualification standard is required."}).min(1, "Personnel qualification standard is required."),
+  acceptanceCriteria: z.string({ required_error: "Acceptance criteria are required."}).min(10, "Acceptance criteria must be at least 10 characters long."),
 });
 export type GenerateProcedureInput = z.infer<typeof GenerateProcedureInputSchema>;
 

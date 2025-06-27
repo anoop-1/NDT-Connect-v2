@@ -24,7 +24,6 @@ const formSchema = GenerateProcedureInputSchema;
 
 const NDT_METHODS = ["Ultrasonic Testing (UT)", "Magnetic Particle Testing (MT)", "Liquid Penetrant Testing (PT)", "Radiographic Testing (RT)", "Eddy Current Testing (ET)", "Visual Testing (VT)"];
 const PERSONNEL_QUALS = ["SNT-TC-1A", "ISO 9712", "NAS 410", "EN 4179"];
-const ACCEPTANCE_CRITERIA_STANDARDS = ["API 1104", "ASME Section V", "ASME B31.3", "AWS D1.1", "Client Specification"];
 
 function AIProcedureWriterPage() {
   const { user, loading: authLoading } = useAuth();
@@ -118,10 +117,10 @@ function AIProcedureWriterPage() {
                 <FormField control={form.control} name="testMethod" render={({ field }) => (<FormItem><FormLabel>NDT Method</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select a method..." /></SelectTrigger></FormControl><SelectContent>{NDT_METHODS.map(m => <SelectItem key={m} value={m}>{m}</SelectItem>)}</SelectContent></Select><FormMessage /></FormItem>)} />
                 <FormField control={form.control} name="personnelQualification" render={({ field }) => (<FormItem><FormLabel>Personnel Qualification</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select a standard..." /></SelectTrigger></FormControl><SelectContent>{PERSONNEL_QUALS.map(q => <SelectItem key={q} value={q}>{q}</SelectItem>)}</SelectContent></Select><FormMessage /></FormItem>)} />
               </div>
-              <FormField control={form.control} name="acceptanceCriteria" render={({ field }) => (<FormItem><FormLabel>Acceptance Criteria</FormLabel><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select or type a standard..." /></SelectTrigger></FormControl><SelectContent>{ACCEPTANCE_CRITERIA_STANDARDS.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent></Select><Input className="mt-2" placeholder="Or type a custom standard..." onChange={(e) => field.onChange(e.target.value)} value={field.value} /><FormMessage /></FormItem>)} />
               <FormField control={form.control} name="scope" render={({ field }) => (<FormItem><FormLabel>Scope of Work</FormLabel><FormControl><Textarea placeholder="e.g., Perform UT thickness gauging on all accessible primary pipelines..." {...field} /></FormControl><FormMessage /></FormItem>)} />
               <FormField control={form.control} name="equipment" render={({ field }) => (<FormItem><FormLabel>Equipment List</FormLabel><FormControl><Textarea placeholder="e.g., Olympus EPOCH 650, Krautkramer D-70 probe..." {...field} /></FormControl><FormDescription>List main equipment, make, and model. One per line.</FormDescription><FormMessage /></FormItem>)} />
               <FormField control={form.control} name="consumables" render={({ field }) => (<FormItem><FormLabel>Consumables List</FormLabel><FormControl><Textarea placeholder="e.g., Ultragel II Couplant, Calibration Blocks..." {...field} /></FormControl><FormDescription>List all necessary consumables. One per line.</FormDescription><FormMessage /></FormItem>)} />
+              <FormField control={form.control} name="acceptanceCriteria" render={({ field }) => (<FormItem><FormLabel>Acceptance Criteria</FormLabel><FormControl><Textarea placeholder="Describe the acceptance criteria, referencing standards like API 1104, ASME Section V, AWS D1.1, etc." {...field} rows={4} /></FormControl><FormDescription>Clearly state the standards and rules for accepting or rejecting indications.</FormDescription><FormMessage /></FormItem>)} />
               <Button type="submit" disabled={isGenerating}>
                 {isGenerating ? <><Activity className="mr-2 h-4 w-4 animate-spin"/> Generating...</> : <><FileSignature className="mr-2 h-4 w-4"/> Generate Procedure</>}
               </Button>
@@ -134,13 +133,16 @@ function AIProcedureWriterPage() {
             <div className="mt-8 border-t pt-6">
               <div className="flex justify-between items-center no-print">
                 <h3 className="text-xl font-semibold">Generated Procedure</h3>
-                <div className="flex gap-2">
-                  <Button variant="outline" size="sm" onClick={handleCopyToClipboard}><Copy className="mr-2 h-4 w-4"/>Copy</Button>
-                  <Button variant="outline" size="sm" onClick={handlePrint}><Printer className="mr-2 h-4 w-4"/>Print</Button>
-                  <Button variant="outline" size="sm" onClick={() => toast({title: "Feature in development"})}><MessageSquare className="mr-2 h-4 w-4"/>Send</Button>
+                <div className="flex items-center gap-4">
+                  <div className="flex gap-2">
+                      <Button variant="outline" size="sm" onClick={handleCopyToClipboard}><Copy className="mr-2 h-4 w-4"/>Copy Markdown</Button>
+                      <Button variant="default" size="sm" onClick={handlePrint}><Download className="mr-2 h-4 w-4"/>Download as PDF</Button>
+                  </div>
                 </div>
               </div>
-              <Card className="mt-4 prose dark:prose-invert max-w-none p-6">
+              <p className="text-xs text-muted-foreground mt-2 no-print">To download, use your browser's "Save as PDF" option in the print dialog.</p>
+              
+              <Card className="mt-4 prose dark:prose-invert max-w-none p-6 bg-background shadow-inner">
                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
                     {generatedProcedure.procedureMarkdown}
                  </ReactMarkdown>
