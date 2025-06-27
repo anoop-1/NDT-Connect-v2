@@ -353,8 +353,8 @@ export function RegisterForm() {
         )}/>
 
         {currentRole === "client" && <ClientFields form={form} />}
-        {currentRole === "provider" && (isLoadingLists ? <Activity className="animate-spin"/> : listsError ? <p className="text-destructive">{listsError}</p> : <ProviderFields form={form} lists={predefinedLists} />)}
-        {currentRole === "inspector" && (isLoadingLists ? <Activity className="animate-spin"/> : listsError ? <p className="text-destructive">{listsError}</p> : <InspectorFields form={form} lists={predefinedLists} />)}
+        {currentRole === "provider" && (isLoadingLists ? <div className="flex items-center gap-2 text-muted-foreground"><Activity className="animate-spin h-4 w-4"/><span>Loading provider options...</span></div> : listsError ? <p className="text-destructive flex items-center gap-2"><AlertCircle className="h-4 w-4"/>{listsError}</p> : <ProviderFields form={form} lists={predefinedLists} />)}
+        {currentRole === "inspector" && (isLoadingLists ? <div className="flex items-center gap-2 text-muted-foreground"><Activity className="animate-spin h-4 w-4"/><span>Loading inspector options...</span></div> : listsError ? <p className="text-destructive flex items-center gap-2"><AlertCircle className="h-4 w-4"/>{listsError}</p> : <InspectorFields form={form} lists={predefinedLists} />)}
 
         <div className="space-y-3 pt-4">
             <Label className="text-lg font-semibold flex items-center"><FileText className="mr-2 h-5 w-5 text-primary" />Agreement</Label>
