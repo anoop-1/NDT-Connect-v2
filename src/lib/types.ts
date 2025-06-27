@@ -11,6 +11,8 @@ export type ServiceOffering = {
   name: string;
   rate: string;
   unit: string;
+  currency: string;
+  tax?: string;
   isCustom?: boolean;
 };
 

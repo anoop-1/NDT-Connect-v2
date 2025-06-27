@@ -43,8 +43,13 @@ const baseSchema = z.object({
 });
 
 const serviceOfferingSchema = z.object({
-  id: z.string(), name: z.string().min(1, "Service name is required."), unit: z.string().min(1, "Unit is required."),
-  rate: z.string().refine(val => val === '' || !isNaN(parseFloat(val)), { message: "Rate must be a number or empty." }), isCustom: z.boolean().optional(),
+  id: z.string(), 
+  name: z.string().min(1, "Service name is required."), 
+  unit: z.string().min(1, "Unit is required."),
+  currency: z.string().min(1, "Currency is required."),
+  tax: z.string().refine(val => val === '' || !isNaN(parseFloat(val)), { message: "Tax must be a number or empty." }).optional(),
+  rate: z.string().refine(val => val === '' || !isNaN(parseFloat(val)), { message: "Rate must be a number or empty." }), 
+  isCustom: z.boolean().optional(),
 });
 const personnelQualificationSchema = z.object({
   id: z.string(), quantity: z.preprocess(val => parseInt(String(val), 10), z.number().min(1, "Min 1")),
@@ -91,6 +96,8 @@ const formSchema = z.discriminatedUnion("role", [clientSchema, providerSchema, i
   .refine((data) => data.password === data.confirmPassword, { message: "Passwords don't match", path: ["confirmPassword"] });
 
 type FormSchemaType = z.infer<typeof formSchema>;
+
+const CURRENCIES = [ "USD", "EUR", "GBP", "INR", "CAD", "AUD", "JPY", "CNY", "CHF", "AED", "SGD", "BRL", "ZAR", "SAR", "QAR", "OMR", "KWD", "BHD" ];
 
 const BUILT_IN_LISTS = {
     providerNdtServices: [ "Radiographic Testing", "Ultrasonic Testing", "Magnetic Particle Testing", "Liquid Penetrant Testing", "Visual Testing", "Eddy Current Testing", "Leak Testing", "Acoustic Emission" ],
@@ -203,15 +210,17 @@ const ProviderFields = ({ form, lists }: { form: UseFormReturn<any>, lists: type
                 <CardContent className="space-y-2">
                     {serviceFields.map((item, index) => (
                         <div key={item.id} className="flex gap-2 items-start">
-                            <div className="grid flex-grow grid-cols-1 md:grid-cols-3 gap-2">
+                            <div className="grid flex-grow grid-cols-1 md:grid-cols-5 gap-2">
                                 <FormField control={form.control} name={`servicesOffered.${index}.name`} render={({ field }) => (<FormItem>{(item as ServiceOffering).isCustom ? <FormControl><Input placeholder="Custom service name" {...field}/></FormControl> : <Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select service"/></SelectTrigger></FormControl><SelectContent>{lists.providerNdtServices.map(s=><SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent></Select>}<FormMessage/></FormItem>)} />
                                 <FormField control={form.control} name={`servicesOffered.${index}.unit`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select unit"/></SelectTrigger></FormControl><SelectContent>{lists.serviceUnits.map(u=><SelectItem key={u} value={u}>{u}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
                                 <FormField control={form.control} name={`servicesOffered.${index}.rate`} render={({ field }) => (<FormItem><FormControl><Input placeholder="e.g. 100" {...field} /></FormControl><FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`servicesOffered.${index}.currency`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Curr."/></SelectTrigger></FormControl><SelectContent>{CURRENCIES.map(c=><SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`servicesOffered.${index}.tax`} render={({ field }) => (<FormItem><FormControl><Input placeholder="Tax %" {...field} /></FormControl><FormMessage/></FormItem>)} />
                             </div>
                             <Button type="button" variant="ghost" size="icon" onClick={() => removeService(index)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
                         </div>
                     ))}
-                    <div className="flex gap-2"><Button type="button" variant="outline" size="sm" onClick={() => appendService({ id: generateUniqueId(), name: "", rate: '', unit: "", isCustom: false })}><PlusCircle className="mr-2 h-4 w-4"/>Add Service</Button></div>
+                    <div className="flex gap-2"><Button type="button" variant="outline" size="sm" onClick={() => appendService({ id: generateUniqueId(), name: "", rate: '', unit: "", currency: "USD", tax: "0", isCustom: false })}><PlusCircle className="mr-2 h-4 w-4"/>Add Service</Button></div>
                 </CardContent>
             </Card>
 
@@ -363,7 +372,7 @@ export function RegisterForm() {
     } else if (currentRole === 'provider') {
         newDefaultValues = {
             role: 'provider', location: "", contactNumber: "", 
-            servicesOffered: [{ id: generateUniqueId(), name: "", rate: '', unit: "", isCustom: false }], 
+            servicesOffered: [{ id: generateUniqueId(), name: "", rate: '', unit: "", currency: "USD", tax: "0", isCustom: false }], 
             personnelQualifications: [{ id: generateUniqueId(), quantity: 1, certificationBody: "", level: "" }], 
             certifications: [], procedureInfoUrl: "", companyLogoUrl: ""
         };

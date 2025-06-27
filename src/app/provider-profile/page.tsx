@@ -21,8 +21,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 
-// Assuming these are fetched or defined elsewhere for the registration form,
-// we define them here as fallbacks or for consistency.
+const CURRENCIES = [ "USD", "EUR", "GBP", "INR", "CAD", "AUD", "JPY", "CNY", "CHF", "AED", "SGD", "BRL", "ZAR", "SAR", "QAR", "OMR", "KWD", "BHD" ];
 const PREDEFINED_NDT_SERVICES_TABLE = [ "Radiographic Testing", "Ultrasonic Testing", "Magnetic Particle Testing", "Liquid Penetrant Testing", "Visual Testing", "Eddy Current Testing" ];
 const SERVICE_UNITS = [ "per hour", "per day", "per project", "per item" ];
 const COMPANY_CERTIFICATIONS = [ "ISO 9001", "API Q1", "Nadcap", "AS9100" ];
@@ -104,7 +103,7 @@ export default function ProviderProfilePage() {
   const addDynamicListItem = (listName: 'servicesOffered' | 'personnelQualifications' | 'certifications') => {
       if (!profile || !profile.providerProfile) return;
       let newItem: any;
-      if(listName === 'servicesOffered') newItem = { id: generateUniqueId(), name: '', rate: '', unit: ''};
+      if(listName === 'servicesOffered') newItem = { id: generateUniqueId(), name: '', rate: '', unit: '', currency: 'USD', tax: ''};
       else if(listName === 'personnelQualifications') newItem = { id: generateUniqueId(), quantity: 1, certificationBody: '', level: ''};
       else newItem = { id: generateUniqueId(), name: '', category: '' };
 
@@ -189,10 +188,12 @@ export default function ProviderProfilePage() {
               <CardContent>
                   {(profile.providerProfile?.servicesOffered || []).map(service => (
                       <div key={service.id} className="grid grid-cols-[1fr_auto] gap-2 items-end mb-2">
-                          <div className="grid grid-cols-3 gap-2">
+                          <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
                               <div><Label>Service</Label><Select value={service.name} onValueChange={(v) => handleDynamicListChange('servicesOffered', service.id, 'name', v)}><SelectTrigger/><SelectContent>{PREDEFINED_NDT_SERVICES_TABLE.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent></Select></div>
                               <div><Label>Unit</Label><Select value={service.unit} onValueChange={(v) => handleDynamicListChange('servicesOffered', service.id, 'unit', v)}><SelectTrigger/><SelectContent>{SERVICE_UNITS.map(u => <SelectItem key={u} value={u}>{u}</SelectItem>)}</SelectContent></Select></div>
                               <div><Label>Rate</Label><Input value={service.rate} onChange={(e) => handleDynamicListChange('servicesOffered', service.id, 'rate', e.target.value)} /></div>
+                              <div><Label>Currency</Label><Select value={service.currency} onValueChange={(v) => handleDynamicListChange('servicesOffered', service.id, 'currency', v)}><SelectTrigger/><SelectContent>{CURRENCIES.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent></Select></div>
+                              <div><Label>Tax %</Label><Input value={service.tax || ''} onChange={(e) => handleDynamicListChange('servicesOffered', service.id, 'tax', e.target.value)} /></div>
                           </div>
                           <Button type="button" variant="ghost" size="icon" onClick={() => removeDynamicListItem('servicesOffered', service.id)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
                       </div>

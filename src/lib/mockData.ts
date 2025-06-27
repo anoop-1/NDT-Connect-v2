@@ -27,8 +27,8 @@ const DEMO_PROVIDER_PROFILE: ProviderProfileData = {
     lat: 29.7604,
     lng: -95.3698,
     servicesOffered: [
-        { id: "s1", name: "Ultrasonic Testing (UT)", rate: "120", unit: "per hour" },
-        { id: "s2", name: "Magnetic Particle Testing (MT)", rate: "110", unit: "per hour" },
+        { id: "s1", name: "Ultrasonic Testing (UT)", rate: "120", unit: "per hour", currency: "USD", tax: "0" },
+        { id: "s2", name: "Magnetic Particle Testing (MT)", rate: "110", unit: "per hour", currency: "USD", tax: "0" },
     ],
     contactNumber: "(713) 555-PROVIDER",
     certifications: [
@@ -85,8 +85,8 @@ export const MOCK_PROVIDERS: ServiceProvider[] = [
     lat: 41.8781,
     lng: -87.6298,
     services: [
-      { id: "s1", name: 'Radiographic Testing (RT)', rate: '180', unit: 'per hour' },
-      { id: "s2", name: 'Visual Testing (VT)', rate: '90', unit: 'per hour' },
+      { id: "s1", name: 'Radiographic Testing (RT)', rate: '180', unit: 'per hour', currency: "USD", tax: "5" },
+      { id: "s2", name: 'Visual Testing (VT)', rate: '90', unit: 'per hour', currency: "USD", tax: "5" },
     ],
     specialization: 'Manufacturing & Aerospace',
     rating: 4.5,
@@ -103,7 +103,7 @@ export const MOCK_PROVIDERS: ServiceProvider[] = [
     location: 'Seattle, WA',
     lat: 47.6062,
     lng: -122.3321,
-    services: [{ id: "s1", name: 'Ultrasonic Testing (UT)', rate: '150', unit: 'per hour' }],
+    services: [{ id: "s1", name: 'Ultrasonic Testing (UT)', rate: '150', unit: 'per hour', currency: "USD", tax: "0" }],
     specialization: 'Maritime & Shipping',
     rating: 4.2,
     description: 'Specializing in hull integrity testing and maritime equipment inspections.',
