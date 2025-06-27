@@ -29,6 +29,11 @@ interface AuthContextType {
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// Helper function to strip undefined values, which Firestore cannot store.
+const cleanDataForFirestore = (data: object) => {
+    return JSON.parse(JSON.stringify(data));
+};
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -90,9 +95,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     try {
       // In a real app, the ID should come from Firebase Auth, but for this demo it's generated.
-      // We will use the generated ID for the doc reference.
       const userDocRef = doc(db, "users", newUser.id);
-      await setDoc(userDocRef, newUser);
+      
+      // IMPORTANT: Clean the object to remove any 'undefined' fields before sending to Firestore.
+      const cleanNewUser = cleanDataForFirestore(newUser);
+      
+      await setDoc(userDocRef, cleanNewUser);
       return newUser;
     } catch (error) {
       console.error("Error creating user in Firestore:", error);
@@ -143,7 +151,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         ...userToUpdate,
         updatedAt: new Date().toISOString(),
      };
-     await setDoc(userDocRef, dataToUpdate, { merge: true });
+     
+     // IMPORTANT: Clean the object to remove any 'undefined' fields before sending to Firestore.
+     const cleanDataToUpdate = cleanDataForFirestore(dataToUpdate);
+     
+     await setDoc(userDocRef, cleanDataToUpdate, { merge: true });
      storeUserSession(userToUpdate); // Update state and local storage
   };
 
