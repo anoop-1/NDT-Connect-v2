@@ -148,91 +148,93 @@ export default function ProviderProfilePage() {
   return (
     <div className="max-w-4xl mx-auto">
       <form onSubmit={handleSubmit} className="space-y-8">
-        <Card className="shadow-xl">
-          <CardHeader>
-            <CardTitle className="text-3xl">Manage Your Provider Profile</CardTitle>
-            <CardDescription>This information is stored in Firestore and visible to clients.</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6">
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div><Label htmlFor="name">Company Name</Label><Input id="name" name="name" value={profile.name} onChange={handleInputChange} /></div>
-                <div><Label htmlFor="email">Contact Email</Label><Input id="email" name="email" type="email" value={profile.email} disabled /></div>
-                <div><Label htmlFor="providerProfile.contactNumber">Phone</Label><Input id="providerProfile.contactNumber" name="providerProfile.contactNumber" value={profile.providerProfile?.contactNumber} onChange={handleInputChange} /></div>
-                <div><Label htmlFor="providerProfile.location">Location</Label><Input id="providerProfile.location" name="providerProfile.location" value={profile.providerProfile?.location} onChange={handleInputChange} /></div>
-             </div>
-             <div>
-                <Label htmlFor="description">Company Description</Label>
-                <Textarea id="description" placeholder="A brief description of your company, its history, and expertise." value={profile.providerProfile?.description || ''} onChange={(e) => handleNestedTextAreaChange('description', e.target.value)} />
-             </div>
-             <div>
-                <Label htmlFor="specialization">Specialization</Label>
-                <Input id="specialization" placeholder="e.g., Aerospace, Oil & Gas, Weld Inspection" value={profile.providerProfile?.specialization || ''} onChange={(e) => handleNestedTextAreaChange('specialization', e.target.value)} />
-             </div>
-             <div><Label htmlFor="providerProfile.companyLogoUrl">Logo URL</Label><Input id="providerProfile.companyLogoUrl" name="providerProfile.companyLogoUrl" value={profile.providerProfile?.companyLogoUrl} onChange={handleInputChange} /></div>
-             <div><Label htmlFor="providerProfile.procedureInfoUrl">Bio / Procedures URL</Label><Input id="providerProfile.procedureInfoUrl" name="providerProfile.procedureInfoUrl" value={profile.providerProfile?.procedureInfoUrl} onChange={handleInputChange} /></div>
-              {profile.providerProfile?.rating !== undefined && (
-                <div>
-                  <Label>Current Rating</Label>
-                  <div className="flex items-center gap-2 p-2 bg-muted rounded-md">
-                    <Info className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm">Your rating is {profile.providerProfile.rating.toFixed(1)}. This is calculated from client feedback and cannot be edited.</span>
-                  </div>
-                </div>
-              )}
-          </CardContent>
-        </Card>
-
-        {/* Services Offered */}
-        <Card>
-            <CardHeader><CardTitle className="flex items-center"><ListChecks className="h-5 w-5 mr-2 text-primary"/>Services Offered</CardTitle></CardHeader>
-            <CardContent>
-                {(profile.providerProfile?.servicesOffered || []).map(service => (
-                    <div key={service.id} className="grid grid-cols-[1fr_auto] gap-2 items-end mb-2">
-                        <div className="grid grid-cols-3 gap-2">
-                            <div><Label>Service</Label><Select value={service.name} onValueChange={(v) => handleDynamicListChange('servicesOffered', service.id, 'name', v)}><SelectTrigger/><SelectContent>{PREDEFINED_NDT_SERVICES_TABLE.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent></Select></div>
-                            <div><Label>Unit</Label><Select value={service.unit} onValueChange={(v) => handleDynamicListChange('servicesOffered', service.id, 'unit', v)}><SelectTrigger/><SelectContent>{SERVICE_UNITS.map(u => <SelectItem key={u} value={u}>{u}</SelectItem>)}</SelectContent></Select></div>
-                            <div><Label>Rate</Label><Input value={service.rate} onChange={(e) => handleDynamicListChange('servicesOffered', service.id, 'rate', e.target.value)} /></div>
-                        </div>
-                        <Button type="button" variant="ghost" size="icon" onClick={() => removeDynamicListItem('servicesOffered', service.id)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
-                    </div>
-                ))}
-                <Button type="button" variant="outline" onClick={() => addDynamicListItem('servicesOffered')}><PlusCircle className="mr-2 h-4 w-4"/>Add Service</Button>
-            </CardContent>
-        </Card>
-
-        {/* Certifications and Qualifications */}
-        <Card>
-            <CardHeader><CardTitle className="flex items-center"><Award className="h-5 w-5 mr-2 text-primary"/>Certifications & Qualifications</CardTitle></CardHeader>
+        <fieldset disabled={isSubmitting} className="space-y-8 group">
+          <Card className="shadow-xl group-disabled:opacity-50">
+            <CardHeader>
+              <CardTitle className="text-3xl">Manage Your Provider Profile</CardTitle>
+              <CardDescription>This information is stored in Firestore and visible to clients.</CardDescription>
+            </CardHeader>
             <CardContent className="space-y-6">
-                <div>
-                    <Label className="font-semibold">Company Certifications</Label>
-                    {(profile.providerProfile?.certifications || []).map(cert => (
-                         <div key={cert.id} className="grid grid-cols-[1fr_auto] gap-2 items-end mb-2">
-                            <div className="grid grid-cols-2 gap-2">
-                                <div><Label>Name</Label><Select value={cert.name} onValueChange={(v) => handleDynamicListChange('certifications', cert.id, 'name', v)}><SelectTrigger/><SelectContent>{COMPANY_CERTIFICATIONS.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent></Select></div>
-                                <div><Label>Category</Label><Input value={cert.category} onChange={(e) => handleDynamicListChange('certifications', cert.id, 'category', e.target.value)} /></div>
-                            </div>
-                            <Button type="button" variant="ghost" size="icon" onClick={() => removeDynamicListItem('certifications', cert.id)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
-                        </div>
-                    ))}
-                    <Button type="button" variant="outline" onClick={() => addDynamicListItem('certifications')}><PlusCircle className="mr-2 h-4 w-4"/>Add Certification</Button>
-                </div>
-                 <div>
-                    <Label className="font-semibold">Personnel Qualifications</Label>
-                    {(profile.providerProfile?.personnelQualifications || []).map(qual => (
-                         <div key={qual.id} className="grid grid-cols-[1fr_auto] gap-2 items-end mb-2">
-                            <div className="grid grid-cols-3 gap-2">
-                                <div><Label>Qty</Label><Input type="number" value={qual.quantity} onChange={(e) => handleDynamicListChange('personnelQualifications', qual.id, 'quantity', parseInt(e.target.value))} /></div>
-                                <div><Label>Body</Label><Select value={qual.certificationBody} onValueChange={(v) => handleDynamicListChange('personnelQualifications', qual.id, 'certificationBody', v)}><SelectTrigger/><SelectContent>{QUALIFICATION_BODIES.map(b => <SelectItem key={b} value={b}>{b}</SelectItem>)}</SelectContent></Select></div>
-                                <div><Label>Level</Label><Select value={qual.level} onValueChange={(v) => handleDynamicListChange('personnelQualifications', qual.id, 'level', v)}><SelectTrigger/><SelectContent>{QUALIFICATION_LEVELS.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}</SelectContent></Select></div>
-                            </div>
-                            <Button type="button" variant="ghost" size="icon" onClick={() => removeDynamicListItem('personnelQualifications', qual.id)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
-                        </div>
-                    ))}
-                    <Button type="button" variant="outline" onClick={() => addDynamicListItem('personnelQualifications')}><PlusCircle className="mr-2 h-4 w-4"/>Add Qualification</Button>
-                </div>
+               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div><Label htmlFor="name">Company Name</Label><Input id="name" name="name" value={profile.name} onChange={handleInputChange} /></div>
+                  <div><Label htmlFor="email">Contact Email</Label><Input id="email" name="email" type="email" value={profile.email} disabled /></div>
+                  <div><Label htmlFor="providerProfile.contactNumber">Phone</Label><Input id="providerProfile.contactNumber" name="providerProfile.contactNumber" value={profile.providerProfile?.contactNumber} onChange={handleInputChange} /></div>
+                  <div><Label htmlFor="providerProfile.location">Location</Label><Input id="providerProfile.location" name="providerProfile.location" value={profile.providerProfile?.location} onChange={handleInputChange} /></div>
+               </div>
+               <div>
+                  <Label htmlFor="description">Company Description</Label>
+                  <Textarea id="description" placeholder="A brief description of your company, its history, and expertise." value={profile.providerProfile?.description || ''} onChange={(e) => handleNestedTextAreaChange('description', e.target.value)} />
+               </div>
+               <div>
+                  <Label htmlFor="specialization">Specialization</Label>
+                  <Input id="specialization" placeholder="e.g., Aerospace, Oil & Gas, Weld Inspection" value={profile.providerProfile?.specialization || ''} onChange={(e) => handleNestedTextAreaChange('specialization', e.target.value)} />
+               </div>
+               <div><Label htmlFor="providerProfile.companyLogoUrl">Logo URL</Label><Input id="providerProfile.companyLogoUrl" name="providerProfile.companyLogoUrl" value={profile.providerProfile?.companyLogoUrl} onChange={handleInputChange} /></div>
+               <div><Label htmlFor="providerProfile.procedureInfoUrl">Bio / Procedures URL</Label><Input id="providerProfile.procedureInfoUrl" name="providerProfile.procedureInfoUrl" value={profile.providerProfile?.procedureInfoUrl} onChange={handleInputChange} /></div>
+                {profile.providerProfile?.rating !== undefined && (
+                  <div>
+                    <Label>Current Rating</Label>
+                    <div className="flex items-center gap-2 p-2 bg-muted rounded-md">
+                      <Info className="h-4 w-4 text-muted-foreground" />
+                      <span className="text-sm">Your rating is {profile.providerProfile.rating.toFixed(1)}. This is calculated from client feedback and cannot be edited.</span>
+                    </div>
+                  </div>
+                )}
             </CardContent>
-        </Card>
+          </Card>
+
+          {/* Services Offered */}
+          <Card className="group-disabled:opacity-50">
+              <CardHeader><CardTitle className="flex items-center"><ListChecks className="h-5 w-5 mr-2 text-primary"/>Services Offered</CardTitle></CardHeader>
+              <CardContent>
+                  {(profile.providerProfile?.servicesOffered || []).map(service => (
+                      <div key={service.id} className="grid grid-cols-[1fr_auto] gap-2 items-end mb-2">
+                          <div className="grid grid-cols-3 gap-2">
+                              <div><Label>Service</Label><Select value={service.name} onValueChange={(v) => handleDynamicListChange('servicesOffered', service.id, 'name', v)}><SelectTrigger/><SelectContent>{PREDEFINED_NDT_SERVICES_TABLE.map(s => <SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent></Select></div>
+                              <div><Label>Unit</Label><Select value={service.unit} onValueChange={(v) => handleDynamicListChange('servicesOffered', service.id, 'unit', v)}><SelectTrigger/><SelectContent>{SERVICE_UNITS.map(u => <SelectItem key={u} value={u}>{u}</SelectItem>)}</SelectContent></Select></div>
+                              <div><Label>Rate</Label><Input value={service.rate} onChange={(e) => handleDynamicListChange('servicesOffered', service.id, 'rate', e.target.value)} /></div>
+                          </div>
+                          <Button type="button" variant="ghost" size="icon" onClick={() => removeDynamicListItem('servicesOffered', service.id)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
+                      </div>
+                  ))}
+                  <Button type="button" variant="outline" onClick={() => addDynamicListItem('servicesOffered')}><PlusCircle className="mr-2 h-4 w-4"/>Add Service</Button>
+              </CardContent>
+          </Card>
+
+          {/* Certifications and Qualifications */}
+          <Card className="group-disabled:opacity-50">
+              <CardHeader><CardTitle className="flex items-center"><Award className="h-5 w-5 mr-2 text-primary"/>Certifications & Qualifications</CardTitle></CardHeader>
+              <CardContent className="space-y-6">
+                  <div>
+                      <Label className="font-semibold">Company Certifications</Label>
+                      {(profile.providerProfile?.certifications || []).map(cert => (
+                           <div key={cert.id} className="grid grid-cols-[1fr_auto] gap-2 items-end mb-2">
+                              <div className="grid grid-cols-2 gap-2">
+                                  <div><Label>Name</Label><Select value={cert.name} onValueChange={(v) => handleDynamicListChange('certifications', cert.id, 'name', v)}><SelectTrigger/><SelectContent>{COMPANY_CERTIFICATIONS.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent></Select></div>
+                                  <div><Label>Category</Label><Input value={cert.category} onChange={(e) => handleDynamicListChange('certifications', cert.id, 'category', e.target.value)} /></div>
+                              </div>
+                              <Button type="button" variant="ghost" size="icon" onClick={() => removeDynamicListItem('certifications', cert.id)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
+                          </div>
+                      ))}
+                      <Button type="button" variant="outline" onClick={() => addDynamicListItem('certifications')}><PlusCircle className="mr-2 h-4 w-4"/>Add Certification</Button>
+                  </div>
+                   <div>
+                      <Label className="font-semibold">Personnel Qualifications</Label>
+                      {(profile.providerProfile?.personnelQualifications || []).map(qual => (
+                           <div key={qual.id} className="grid grid-cols-[1fr_auto] gap-2 items-end mb-2">
+                              <div className="grid grid-cols-3 gap-2">
+                                  <div><Label>Qty</Label><Input type="number" value={qual.quantity} onChange={(e) => handleDynamicListChange('personnelQualifications', qual.id, 'quantity', parseInt(e.target.value))} /></div>
+                                  <div><Label>Body</Label><Select value={qual.certificationBody} onValueChange={(v) => handleDynamicListChange('personnelQualifications', qual.id, 'certificationBody', v)}><SelectTrigger/><SelectContent>{QUALIFICATION_BODIES.map(b => <SelectItem key={b} value={b}>{b}</SelectItem>)}</SelectContent></Select></div>
+                                  <div><Label>Level</Label><Select value={qual.level} onValueChange={(v) => handleDynamicListChange('personnelQualifications', qual.id, 'level', v)}><SelectTrigger/><SelectContent>{QUALIFICATION_LEVELS.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}</SelectContent></Select></div>
+                              </div>
+                              <Button type="button" variant="ghost" size="icon" onClick={() => removeDynamicListItem('personnelQualifications', qual.id)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
+                          </div>
+                      ))}
+                      <Button type="button" variant="outline" onClick={() => addDynamicListItem('personnelQualifications')}><PlusCircle className="mr-2 h-4 w-4"/>Add Qualification</Button>
+                  </div>
+              </CardContent>
+          </Card>
+        </fieldset>
 
         <CardFooter className="pt-6">
             <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>

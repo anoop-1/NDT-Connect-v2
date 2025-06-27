@@ -45,7 +45,7 @@ export function RecommendationResults({ recommendations }: RecommendationResults
         {recommendations.map((rec) => (
           <Card key={rec.referenceId} className="shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
             <CardHeader>
-              <CardTitle className="text-xl">AI Recommendation</CardTitle> 
+              <CardTitle className="text-xl">{rec.providerName}</CardTitle> 
               <CardDescription className="flex items-center text-sm text-muted-foreground">
                 Ref: {rec.referenceId}
               </CardDescription>

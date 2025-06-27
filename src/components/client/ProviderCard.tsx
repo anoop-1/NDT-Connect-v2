@@ -12,38 +12,40 @@ import { useRouter } from 'next/navigation';
 import { useToast } from "@/hooks/use-toast";
 import { useEffect, useState } from 'react';
 
+const DEFAULT_COMPANY_IMAGE_URL = "https://images.unsplash.com/photo-1582489853490-cd3a53eb4530?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8aW5kdXN0cnl8ZW58MHx8fHwxNzQ4NDM3Nzc5fDA&ixlib=rb-4.1.0&q=80&w=1080";
+const DEFAULT_INSPECTOR_IMAGE_URL = "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NTI1NjI4MDB8MA&ixlib=rb-4.1.0&q=80&w=1080";
+const DEFAULT_COMPANY_IMAGE_HINT = "industrial site";
+const DEFAULT_INSPECTOR_IMAGE_HINT = "professional portrait";
+
 interface ProviderCardProps {
   provider: ServiceProvider;
 }
 
-const NEW_DEFAULT_PROVIDER_IMAGE_URL = "https://images.unsplash.com/photo-1582489853490-cd3a53eb4530?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8aW5kdXN0cnl8ZW58MHx8fHwxNzQ4NDM3Nzc5fDA&ixlib=rb-4.1.0&q=80&w=1080";
-const NEW_DEFAULT_PROVIDER_IMAGE_HINT = "NDT Connect default provider";
-const NEW_DEFAULT_INSPECTOR_IMAGE_HINT = "professional portrait";
-
 export function ProviderCard({ provider }: ProviderCardProps) {
   const router = useRouter();
   const { toast } = useToast();
-  const [finalImageUrl, setFinalImageUrl] = useState(provider.imageUrl || '');
-  const [imageHint, setImageHint] = useState(provider.dataAiHint || "company building");
+  const [finalImageUrl, setFinalImageUrl] = useState('');
+  const [imageHint, setImageHint] = useState('');
   const [clientPrice, setClientPrice] = useState<string | null>(null);
 
   useEffect(() => {
+    // This logic now runs on the client to safely access localStorage
     let determinedImageUrl = provider.imageUrl;
-    let determinedHint = provider.dataAiHint || (provider.isCompany ? "company building" : NEW_DEFAULT_INSPECTOR_IMAGE_HINT);
+    let determinedHint = provider.dataAiHint || (provider.isCompany ? DEFAULT_COMPANY_IMAGE_HINT : DEFAULT_INSPECTOR_IMAGE_HINT);
 
     if (!determinedImageUrl) {
       if (provider.isCompany) {
-        const adminSetDefaultProviderUrl = typeof window !== 'undefined' ? localStorage.getItem('defaultProviderImageUrl') : null;
-        determinedImageUrl = adminSetDefaultProviderUrl || NEW_DEFAULT_PROVIDER_IMAGE_URL;
-        determinedHint = "default provider logo";
-      } else {
-        // No default image for inspectors, will use fallback icon
-        determinedImageUrl = '';
+        const adminSetDefaultProviderUrl = localStorage.getItem('defaultProviderImageUrl');
+        determinedImageUrl = adminSetDefaultProviderUrl || DEFAULT_COMPANY_IMAGE_URL;
+        determinedHint = adminSetDefaultProviderUrl ? "default provider logo" : DEFAULT_COMPANY_IMAGE_HINT;
+      } else { // Is an inspector
+        determinedImageUrl = DEFAULT_INSPECTOR_IMAGE_URL;
+        determinedHint = DEFAULT_INSPECTOR_IMAGE_HINT;
       }
     }
     setFinalImageUrl(determinedImageUrl);
     setImageHint(determinedHint);
-  }, [provider.imageUrl, provider.dataAiHint, provider.isCompany]);
+  }, [provider]);
 
   const displayRate = provider.services.length > 0 && provider.services[0].rate
     ? provider.services[0].rate
@@ -99,7 +101,7 @@ export function ProviderCard({ provider }: ProviderCardProps) {
             src={finalImageUrl} alt={`Image for ${provider.name}`} fill={true}
             style={{ objectFit: 'cover' }} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             priority={false} data-ai-hint={imageHint} className="rounded-t-lg" key={finalImageUrl}
-            onError={() => { setFinalImageUrl(''); }}
+            onError={() => { setFinalImageUrl(''); }} // Graceful error handling
           />
         ) : ( <div className="w-full h-full flex items-center justify-center bg-secondary">{fallbackIcon}</div> )}
         {provider.isVerified && (
