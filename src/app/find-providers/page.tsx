@@ -13,11 +13,21 @@ import { useRouter } from "next/navigation";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { db } from "@/lib/firebase";
-import { collection, getDocs, query, where, doc, getDoc } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { useToast } from "@/hooks/use-toast";
 import { MOCK_PROVIDERS } from "@/lib/mockData";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
+const PREDEFINED_NDT_SERVICES = [
+  "Radiographic Testing",
+  "Ultrasonic Testing",
+  "Magnetic Particle Testing",
+  "Liquid Penetrant Testing",
+  "Visual Testing",
+  "Eddy Current Testing",
+];
+const PREDEFINED_CERTIFICATIONS = ["ISO 9001", "API Q1", "Nadcap", "AS9100"];
 
 export default function FindProvidersPage() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -32,9 +42,6 @@ export default function FindProvidersPage() {
   const [filterSpecialization, setFilterSpecialization] = useState('');
   const [filterCertification, setFilterCertification] = useState('');
   const [isFiltersApplied, setIsFiltersApplied] = useState(false);
-  
-  const [ndtServices, setNdtServices] = useState<string[]>([]);
-  const [certifications, setCertifications] = useState<string[]>([]);
   
   const { user, loading: authLoading } = useAuth();
   const router = useRouter();
@@ -104,52 +111,11 @@ export default function FindProvidersPage() {
     }
   }, [toast, user]);
 
-  const fetchNdtServices = useCallback(async () => {
-    try {
-        const docRef = doc(db, "predefinedLists", "clientNdtServices");
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists() && Array.isArray(docSnap.data().items)) {
-            setNdtServices(docSnap.data().items);
-        } else {
-            console.warn("Could not find 'clientNdtServices' in predefinedLists.");
-            setNdtServices([]); // Ensure it's an array
-        }
-    } catch (e) {
-        console.error("Error fetching NDT services list:", e);
-        toast({
-            title: "Could not load service list",
-            description: "Defaulting to an empty list for filters.",
-            variant: "destructive"
-        });
-    }
-  }, [toast]);
-  
-  const fetchCertifications = useCallback(async () => {
-    try {
-        const docRef = doc(db, "predefinedLists", "companyCertifications");
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists() && Array.isArray(docSnap.data().items)) {
-            setCertifications(docSnap.data().items);
-        } else {
-            console.warn("Could not find 'companyCertifications' in predefinedLists.");
-            setCertifications([]);
-        }
-    } catch (e) {
-        console.error("Error fetching certifications list:", e);
-        toast({
-            title: "Could not load certification list",
-            variant: "destructive"
-        });
-    }
-  }, [toast]);
-
   useEffect(() => {
     if (user) {
       fetchProviders();
-      fetchNdtServices();
-      fetchCertifications();
     }
-  }, [user, fetchProviders, fetchNdtServices, fetchCertifications]);
+  }, [user, fetchProviders]);
   
   useEffect(() => {
     const lowerSearchTerm = searchTerm.toLowerCase();
@@ -264,7 +230,7 @@ export default function FindProvidersPage() {
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="any-service">Any Service</SelectItem>
-                          {ndtServices.map(service => <SelectItem key={service} value={service.toLowerCase()}>{service}</SelectItem>)}
+                          {PREDEFINED_NDT_SERVICES.map(service => <SelectItem key={service} value={service.toLowerCase()}>{service}</SelectItem>)}
                         </SelectContent>
                       </Select>
                     </div>
@@ -283,7 +249,7 @@ export default function FindProvidersPage() {
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="any-certification">Any Certification</SelectItem>
-                          {certifications.map(cert => <SelectItem key={cert} value={cert.toLowerCase()}>{cert}</SelectItem>)}
+                          {PREDEFINED_CERTIFICATIONS.map(cert => <SelectItem key={cert} value={cert.toLowerCase()}>{cert}</SelectItem>)}
                         </SelectContent>
                       </Select>
                     </div>
