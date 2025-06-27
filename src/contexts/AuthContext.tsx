@@ -30,7 +30,7 @@ interface AuthContextType {
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 // Helper function to recursively remove any fields with `undefined` values.
-// This is a safety net, especially for the updateUser function.
+// This is the definitive fix for Firestore's "400 Bad Request" on write.
 const cleanForFirestore = (obj: any): any => {
     if (obj === null || typeof obj !== 'object') {
         return obj;
@@ -81,7 +81,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const register = async (details: RegisterDetails) => {
     const { email, role, name, isDemo = false, profileData = {} } = details;
 
-    // Start with a base user object that is always valid
     let newUser: User = {
       id: `${role}-${Date.now()}`,
       email: email,
@@ -97,54 +96,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       inspectorProfile: null,
     };
     
-    // Meticulously build the profile object to ensure no `undefined` values are ever present.
-    // This is the definitive fix for the 400 Bad Request error from Firestore.
     if (role === 'client') {
-        const p = (profileData as Partial<ClientProfileData>);
-        newUser.clientProfile = {
-            companyName: p.companyName || '',
-            industry: p.industry || '',
-            primaryLocation: p.primaryLocation || '',
-            contactNumber: p.contactNumber || '',
-        };
+        newUser.clientProfile = profileData as ClientProfileData;
     } else if (role === 'provider') {
-        const p = (profileData as Partial<ProviderProfileData>);
-        newUser.providerProfile = {
-            companyName: p.companyName || '',
-            location: p.location || '',
-            contactNumber: p.contactNumber || '',
-            servicesOffered: p.servicesOffered || [],
-            personnelQualifications: p.personnelQualifications || [],
-            certifications: p.certifications || [],
-            procedureInfoUrl: p.procedureInfoUrl || null,
-            companyLogoUrl: p.companyLogoUrl || null,
-            isVerified: false,
-            availableDocuments: [],
-            baseRate: 0,
-            rating: 4.0, // Default rating
-            specialization: p.specialization || null,
-            description: p.description || null,
-            dataAiHint: p.dataAiHint || null,
-            lat: p.lat || null,
-            lng: p.lng || null,
-            serviceRadius: p.serviceRadius || '',
-        };
+        newUser.providerProfile = profileData as ProviderProfileData;
     } else if (role === 'inspector') {
-        const p = (profileData as Partial<InspectorProfileData>);
-        newUser.inspectorProfile = {
-            association: p.association || 'freelancer',
-            contactNumber: p.contactNumber || '',
-            companyName: p.companyName || null,
-            location: p.location || null,
-            designation: p.designation || null,
-            personnelQualifications: p.personnelQualifications || [],
-        };
+        newUser.inspectorProfile = profileData as InspectorProfileData;
     }
 
     try {
       const userDocRef = doc(db, "users", newUser.id);
-      // The `newUser` object is now guaranteed to be clean of `undefined` values.
-      await setDoc(userDocRef, newUser);
+      // Clean the object before sending to remove any undefined values from the complex form state.
+      const cleanedUser = cleanForFirestore(newUser);
+      await setDoc(userDocRef, cleanedUser);
       return newUser;
     } catch (error) {
       console.error("Error creating user in Firestore:", error);

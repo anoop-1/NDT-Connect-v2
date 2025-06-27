@@ -23,7 +23,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useState, useEffect } from "react";
 import type { ClientProfileData, ProviderProfileData, InspectorProfileData, ServiceOffering, PersonnelQualification, CompanyCertification } from "@/lib/types";
-import { ListChecks, PlusCircle, Trash2, Award, Users2, FileText, User as UserIcon, Building } from "lucide-react";
+import { ListChecks, PlusCircle, Trash2, Award, Users2, FileText, User as UserIcon, Building, Activity } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -497,7 +497,7 @@ export function RegisterForm() {
         </div>
 
         <Button type="submit" className="w-full" disabled={isLoading || isLoadingLists}>
-          {isLoading || isLoadingLists ? "Registering..." : "Create Account"}
+          {isLoading ? <><Activity className="mr-2 h-4 w-4 animate-spin"/> Submitting...</> : isLoadingLists ? <><Activity className="mr-2 h-4 w-4 animate-spin"/> Loading Form...</> : "Create Account"}
         </Button>
       </form>
     </Form>

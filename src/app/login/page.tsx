@@ -1,11 +1,8 @@
 
-import { LoginForm } from "@/components/auth/LoginForm";
 import { LoginViewManager } from "@/components/auth/LoginViewManager";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Suspense } from "react";
-import { Activity } from "lucide-react";
 
 export default function LoginPage() {
   return (
@@ -16,9 +13,7 @@ export default function LoginPage() {
           <CardDescription>Enter your credentials to access your account.</CardDescription>
         </CardHeader>
         <CardContent>
-          <Suspense fallback={<div className="flex justify-center items-center p-8"><Activity className="h-6 w-6 animate-spin text-primary" /> <span className="ml-2">Loading...</span></div>}>
-            <LoginViewManager />
-          </Suspense>
+          <LoginViewManager />
           <p className="mt-6 text-center text-sm text-muted-foreground">
             Don&apos;t have an account?{" "}
             <Button variant="link" asChild className="p-0">
@@ -32,5 +27,3 @@ export default function LoginPage() {
     </div>
   );
 }
-
-    
