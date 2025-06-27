@@ -435,7 +435,7 @@ export function RegisterForm() {
         </div>
 
         <Button type="submit" className="w-full" disabled={isLoading || isLoadingLists}>
-          {isLoading ? "Registering..." : "Create Account"}
+          {isLoading || isLoadingLists ? "Registering..." : "Create Account"}
         </Button>
       </form>
     </Form>
