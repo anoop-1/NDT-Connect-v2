@@ -1,4 +1,3 @@
-
 // src/app/find-providers/page.tsx
 "use client";
 
@@ -6,38 +5,22 @@ import { ProviderCard } from "@/components/client/ProviderCard";
 import type { ServiceProvider, User } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, Filter, ShieldCheck, List, Map as MapIcon, AlertTriangle, Activity } from "lucide-react";
+import { Search, Filter, ShieldCheck, AlertTriangle, Activity } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
-import dynamic from 'next/dynamic';
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { db } from "@/lib/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useToast } from "@/hooks/use-toast";
 import { MOCK_PROVIDERS } from "@/lib/mockData";
-import { cn } from "@/lib/utils";
-
-
-type ViewMode = "list" | "map";
-
-// This is the correct way to dynamically load a client-side component.
-const InteractiveMap = dynamic(
-    () => import('@/components/shared/InteractiveMap').then((mod) => mod.InteractiveMap),
-    { 
-      loading: () => <div className="flex justify-center items-center h-[450px] w-full rounded-lg bg-muted"><Activity className="h-8 w-8 animate-spin text-primary" /><span className="ml-2">Loading Map...</span></div>,
-      ssr: false // This is crucial to prevent server-side rendering
-    }
-  );
 
 export default function FindProvidersPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterVerifiedOnly, setFilterVerifiedOnly] = useState(false);
   const [displayedProviders, setDisplayedProviders] = useState<ServiceProvider[]>([]);
   const [allProviders, setAllProviders] = useState<ServiceProvider[]>([]);
-  const [viewMode, setViewMode] = useState<ViewMode>("list");
   const { user, loading: authLoading } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
@@ -163,30 +146,15 @@ export default function FindProvidersPage() {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
             <Input
               type="search"
-              placeholder="Search by name, location, service, specialization, certification..."
+              placeholder="Search by name, location, service, specialization..."
               className="pl-10 w-full"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          <div className="flex gap-2 flex-wrap">
-            <Button variant="outline"> 
-              <Filter className="h-4 w-4 mr-2" /> Filters
-            </Button>
-            <ToggleGroup 
-              type="single" 
-              value={viewMode} 
-              onValueChange={(value: ViewMode) => { if (value) setViewMode(value);}}
-              aria-label="View mode"
-            >
-              <ToggleGroupItem value="list" aria-label="List view">
-                <List className="h-4 w-4 mr-2" /> List
-              </ToggleGroupItem>
-              <ToggleGroupItem value="map" aria-label="Map view">
-                <MapIcon className="h-4 w-4 mr-2" /> Map
-              </ToggleGroupItem>
-            </ToggleGroup>
-          </div>
+          <Button variant="outline"> 
+            <Filter className="h-4 w-4 mr-2" /> Filters
+          </Button>
         </div>
         <div className="flex items-center space-x-2">
           <Checkbox 
@@ -200,8 +168,7 @@ export default function FindProvidersPage() {
         </div>
       </section>
 
-      {/* --- LIST VIEW --- */}
-      <div className={cn({ 'hidden': viewMode !== 'list' })}>
+      <div>
         {isLoading && (
             <div className="flex justify-center items-center py-10">
                 <Activity className="h-8 w-8 animate-spin text-primary" />
@@ -226,11 +193,6 @@ export default function FindProvidersPage() {
                 noProvidersFound
             )
         )}
-      </div>
-
-      {/* --- MAP VIEW --- */}
-      <div className={cn('space-y-6', { 'hidden': viewMode !== 'map' })}>
-        {!isLoading && <InteractiveMap providers={displayedProviders} />}
       </div>
     </div>
   );
