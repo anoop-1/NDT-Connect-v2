@@ -80,7 +80,7 @@ export default function ManagePredefinedListsPage() {
             id: listConfig.id,
             name: listConfig.name,
             items: defaultItems,
-            lastUpdated: serverTimestamp()
+            lastUpdated: new Date().toISOString()
           });
           fetchedLists[listConfig.id] = {
             id: listConfig.id,
@@ -131,7 +131,7 @@ export default function ManagePredefinedListsPage() {
         id: listId,
         name: listConfig.name,
         items: updatedItems,
-        lastUpdated: serverTimestamp() 
+        lastUpdated: new Date().toISOString() 
       }, { merge: true });
 
       setLists(prev => ({

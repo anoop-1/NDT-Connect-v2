@@ -1,4 +1,3 @@
-
 // src/contexts/AuthContext.tsx
 "use client";
 
@@ -63,8 +62,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       name: details.name,
       isDemo: details.isDemo || false,
       isActive: true, // New users are active by default
-      createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp(),
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     };
 
     if (details.role === 'client' && details.profileData) {
@@ -141,7 +140,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
      const userDocRef = doc(db, "users", userToUpdate.id);
      const dataToUpdate = {
         ...userToUpdate,
-        updatedAt: serverTimestamp(),
+        updatedAt: new Date().toISOString(),
      };
      await setDoc(userDocRef, dataToUpdate, { merge: true });
      storeUserSession(userToUpdate); // Update state and local storage

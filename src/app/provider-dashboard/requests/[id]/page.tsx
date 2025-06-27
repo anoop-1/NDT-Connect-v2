@@ -112,7 +112,7 @@ export default function ProviderRequestDetailPage() {
     setIsUpdating(true);
     try {
       const requestDocRef = doc(db, "serviceRequests", request.id);
-      const updateData: any = { status: newStatus };
+      const updateData: any = { status: newStatus, updatedAt: new Date().toISOString() };
       // If confirming, assign provider details
       if (newStatus === 'Confirmed' && !request.providerId) {
           updateData.providerId = user.id;

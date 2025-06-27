@@ -132,7 +132,7 @@ export default function ProviderRequestsPage() {
     try {
         const requestDocRef = doc(db, "serviceRequests", requestId);
         // If accepting, assign the providerId
-        const updateData: any = { status: newStatus };
+        const updateData: any = { status: newStatus, updatedAt: new Date().toISOString() };
         if (newStatus === 'Confirmed' && !request.providerId) {
             updateData.providerId = user.id;
             updateData.providerName = user.name || user.email;

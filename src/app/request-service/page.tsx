@@ -176,8 +176,8 @@ function RequestServiceFormContent() {
         status: providerId ? 'Pending' : 'Pending',
         estimatedCost: estimatedCost || undefined,
         fileAttachmentUrl: fileAttachmentUrl || undefined,
-        createdAt: serverTimestamp(),
-        updatedAt: serverTimestamp(),
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
     };
 
     try {
