@@ -20,14 +20,48 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const PREDEFINED_NDT_SERVICES = [
-  "Radiographic Testing",
-  "Ultrasonic Testing",
-  "Magnetic Particle Testing",
-  "Liquid Penetrant Testing",
-  "Visual Testing",
-  "Eddy Current Testing",
+  "Acoustic Emission Testing (AET)",
+  "Alternating Current Field Measurement (ACFM)",
+  "Borescope Inspection",
+  "Eddy Current Testing (ECT)",
+  "Guided Wave Testing (GWT) / LRUT",
+  "Laser Testing Methods (LM)",
+  "Leak Testing (LT)",
+  "Liquid Penetrant Testing (PT)",
+  "Magnetic Flux Leakage (MFL)",
+  "Magnetic Particle Testing (MT)",
+  "Neutron Radiographic Testing (NR)",
+  "Phased Array Ultrasonic Testing (PAUT)",
+  "Radiographic Testing (RT)",
+  "Remote Field Testing (RFT)",
+  "Thermal/Infrared Testing (IRT)",
+  "Time-of-Flight Diffraction (TOFD)",
+  "Ultrasonic Testing (UT)",
+  "Vibration Analysis (VA)",
+  "Visual Testing (VT)",
 ];
-const PREDEFINED_CERTIFICATIONS = ["ISO 9001", "API Q1", "Nadcap", "AS9100"];
+
+const PREDEFINED_CERTIFICATIONS = [
+  "AS9100",
+  "IACS - American Bureau of Shipping (ABS)",
+  "IACS - Bureau Veritas (BV)",
+  "IACS - China Classification Society (CCS)",
+  "IACS - Croatian Register of Shipping (CRS)",
+  "IACS - DNV",
+  "IACS - Indian Register of Shipping (IRS)",
+  "IACS - Korean Register of Shipping (KR)",
+  "IACS - Lloyd's Register (LR)",
+  "IACS - Nippon Kaiji Kyokai (ClassNK)",
+  "IACS - Polski Rejestr Statków (PRS)",
+  "IACS - RINA Services (RINA)",
+  "IACS - Russian Maritime Register of Shipping (RS)",
+  "ISO 9001",
+  "ISO/IEC 17025",
+  "ISO 45001",
+  "Nadcap",
+  "NAS 410",
+  "API Q1",
+];
 
 export default function FindProvidersPage() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -230,7 +264,7 @@ export default function FindProvidersPage() {
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="any-service">Any Service</SelectItem>
-                          {PREDEFINED_NDT_SERVICES.map(service => <SelectItem key={service} value={service.toLowerCase()}>{service}</SelectItem>)}
+                          {PREDEFINED_NDT_SERVICES.sort().map(service => <SelectItem key={service} value={service.toLowerCase()}>{service}</SelectItem>)}
                         </SelectContent>
                       </Select>
                     </div>
@@ -249,7 +283,7 @@ export default function FindProvidersPage() {
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="any-certification">Any Certification</SelectItem>
-                          {PREDEFINED_CERTIFICATIONS.map(cert => <SelectItem key={cert} value={cert.toLowerCase()}>{cert}</SelectItem>)}
+                          {PREDEFINED_CERTIFICATIONS.sort().map(cert => <SelectItem key={cert} value={cert.toLowerCase()}>{cert}</SelectItem>)}
                         </SelectContent>
                       </Select>
                     </div>
