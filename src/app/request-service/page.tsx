@@ -12,17 +12,13 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { CalendarIcon, Activity, Send, DollarSign, UserCheck, UploadCloud, FileCheck2, AlertTriangle, CheckCircle, Edit, PlusCircle } from "lucide-react";
+import { CalendarIcon, Activity, Send, DollarSign, UserCheck, UploadCloud } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { db } from "@/lib/firebase";
 import { collection, addDoc } from "firebase/firestore";
-import type { ServiceRequest, CompareDocumentsOutput } from "@/lib/types";
-import { compareDocuments } from "@/ai/flows/compare-documents-flow";
-import { FormDescription } from "@/components/ui/form";
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
-
+import type { ServiceRequest } from "@/lib/types";
 
 const NDT_SERVICES = [
   "Ultrasonic Testing (UT)", "Magnetic Particle Testing (MT)", "Liquid Penetrant Testing (PT)",
@@ -32,15 +28,6 @@ const NDT_SERVICES = [
 ];
 
 const ACCEPTED_FILE_TYPES = "application/pdf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/jpeg,image/png,text/plain,.doc,.docx";
-
-const readFileAsDataURL = (file: File): Promise<string> => {
-  return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-  });
-};
 
 
 function RequestServiceFormContent() {
@@ -58,14 +45,6 @@ function RequestServiceFormContent() {
   const [providerName, setProviderName] = useState<string | null>(null);
   const [estimatedCost, setEstimatedCost] = useState<number | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-
-  // State for AI Document Reader
-  const [clientReqFile, setClientReqFile] = useState<File | null>(null);
-  const [providerProcFile, setProviderProcFile] = useState<File | null>(null);
-  const [aiAnalysis, setAiAnalysis] = useState<CompareDocumentsOutput | null>(null);
-  const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [analysisError, setAnalysisError] = useState<string | null>(null);
-
 
   useEffect(() => {
     if (!loading && !user) {
@@ -106,43 +85,6 @@ function RequestServiceFormContent() {
       setSelectedFile(null);
     }
   };
-
-  const handleAnalyze = async () => {
-      if (!clientReqFile || !providerProcFile) {
-          toast({ title: "Missing Documents", description: "Please upload both documents to start the analysis.", variant: "destructive" });
-          return;
-      }
-      setIsAnalyzing(true);
-      setAnalysisError(null);
-      setAiAnalysis(null);
-      try {
-          const [clientRequirementDataUri, providerProcedureDataUri] = await Promise.all([
-              readFileAsDataURL(clientReqFile),
-              readFileAsDataURL(providerProcFile),
-          ]);
-          const result = await compareDocuments({ clientRequirementDataUri, providerProcedureDataUri });
-          setAiAnalysis(result);
-          toast({ title: "Analysis Complete", description: "AI review results are displayed below." });
-      } catch (error) {
-          console.error("AI Analysis Error:", error);
-          setAnalysisError("Failed to analyze documents. The AI may be busy or an error occurred. Please try again.");
-          toast({ title: "Analysis Failed", variant: "destructive" });
-      } finally {
-          setIsAnalyzing(false);
-      }
-  };
-
-  const addRevisionsToDescription = () => {
-      if (!aiAnalysis || aiAnalysis.discrepancies.length === 0) return;
-      const revisionsText = aiAnalysis.discrepancies.map((d, i) => 
-          `Revision Suggestion ${i + 1}:\n- Client Requirement: ${d.clientRequirement}\n- Provider's Clause to be Revised: ${d.providerClause}\n- Suggested New Clause: ${d.suggestedRevision}`
-      ).join('\n\n');
-
-      const header = "\n\n--- AI-Suggested Revisions for Provider ---\n";
-      setDescription(prev => prev.trim() + header + revisionsText);
-      toast({ title: "Revisions Added", description: "Suggested revisions have been appended to the service description." });
-  };
-
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -286,64 +228,6 @@ function RequestServiceFormContent() {
               </div>
             )}
             
-            {/* AI DOCUMENT READER */}
-            <Card className="bg-muted/30">
-                <CardHeader>
-                    <CardTitle className="flex items-center text-xl"><FileCheck2 className="h-6 w-6 mr-2 text-primary"/>AI Document Reader</CardTitle>
-                    <CardDescription>Verify provider procedures against your requirements before submitting the request.</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                    <div className="grid sm:grid-cols-2 gap-4">
-                        <div>
-                            <Label htmlFor="clientReqFile" className="text-sm">1. Your Requirement Doc</Label>
-                            <Input id="clientReqFile" type="file" onChange={(e) => setClientReqFile(e.target.files?.[0] || null)} accept={ACCEPTED_FILE_TYPES} className="mt-1 bg-background" />
-                        </div>
-                        <div>
-                            <Label htmlFor="providerProcFile" className="text-sm">2. Provider's Procedure Doc</Label>
-                            <Input id="providerProcFile" type="file" onChange={(e) => setProviderProcFile(e.target.files?.[0] || null)} accept={ACCEPTED_FILE_TYPES} className="mt-1 bg-background" />
-                        </div>
-                    </div>
-                    <FormDescription>Upload both documents to enable the analysis. You may need to download the provider's procedure from their website or other sources.</FormDescription>
-                    <Button type="button" onClick={handleAnalyze} disabled={!clientReqFile || !providerProcFile || isAnalyzing}>
-                        {isAnalyzing ? <><Activity className="mr-2 h-4 w-4 animate-spin"/>Analyzing...</> : 'Analyze Documents with AI'}
-                    </Button>
-                    
-                    {analysisError && <Alert variant="destructive"><AlertTriangle className="h-4 w-4" /><AlertTitle>Analysis Error</AlertTitle><AlertDescription>{analysisError}</AlertDescription></Alert>}
-
-                    {aiAnalysis && (
-                      <div className="space-y-4 pt-4">
-                        {aiAnalysis.isCompliant ? (
-                          <Alert variant="default" className="bg-green-50 border-green-200 text-green-800">
-                            <CheckCircle className="h-4 w-4 !text-green-600"/>
-                            <AlertTitle>Compliance Confirmed</AlertTitle>
-                            <AlertDescription>{aiAnalysis.summary}</AlertDescription>
-                          </Alert>
-                        ) : (
-                          <Alert variant="destructive">
-                            <AlertTriangle className="h-4 w-4"/>
-                            <AlertTitle>Discrepancies Found</AlertTitle>
-                            <AlertDescription>{aiAnalysis.summary}</AlertDescription>
-                          </Alert>
-                        )}
-
-                        {aiAnalysis.discrepancies.length > 0 && (
-                          <div className="space-y-4">
-                             <h4 className="font-semibold">Suggested Revisions:</h4>
-                             {aiAnalysis.discrepancies.map((d, i) => (
-                               <div key={i} className="p-3 border rounded-md bg-background text-sm">
-                                 <p><strong className="text-primary">Client Requirement:</strong> {d.clientRequirement}</p>
-                                 <p className="mt-1"><strong className="text-destructive">Provider Clause:</strong> {d.providerClause}</p>
-                                 <p className="mt-2 p-2 bg-green-50 border border-green-200 rounded-md"><strong className="text-green-700">Suggested Revision:</strong> {d.suggestedRevision}</p>
-                               </div>
-                             ))}
-                             <Button type="button" size="sm" variant="outline" onClick={addRevisionsToDescription}><PlusCircle className="mr-2 h-4 w-4"/>Add Revisions to Request</Button>
-                          </div>
-                        )}
-                      </div>
-                    )}
-                </CardContent>
-            </Card>
-
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading ? <> <Activity className="mr-2 h-4 w-4 animate-spin" /> Submitting... </> : <> <Send className="mr-2 h-4 w-4" /> Submit Request </>}
             </Button>
