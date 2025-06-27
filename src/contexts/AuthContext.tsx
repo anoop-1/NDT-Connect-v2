@@ -2,7 +2,7 @@
 // src/contexts/AuthContext.tsx
 "use client";
 
-import type { User, ClientProfileData, ProviderProfileData, InspectorProfileData } from '@/lib/types';
+import type { User, ClientProfileData, ProviderProfileData } from '@/lib/types';
 import type { Dispatch, ReactNode, SetStateAction } from 'react';
 import { createContext, useState, useEffect, useCallback } from 'react';
 import { db } from "@/lib/firebase";
@@ -11,10 +11,10 @@ import { MOCK_DEMO_CLIENT, MOCK_DEMO_PROVIDER } from '@/lib/mockData';
 
 interface RegisterDetails {
   email: string;
-  role: 'client' | 'provider' | 'admin' | 'inspector';
+  role: 'client' | 'provider' | 'admin';
   name: string;
   isDemo?: boolean;
-  profileData?: Partial<ClientProfileData & ProviderProfileData & InspectorProfileData>;
+  profileData?: Partial<ClientProfileData & ProviderProfileData>;
 }
 
 interface AuthContextType {
@@ -84,8 +84,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         baseRate: providerProfileData.baseRate || 0,
         serviceRadius: providerProfileData.serviceRadius || "",
       };
-    } else if (details.role === 'inspector' && details.profileData) {
-        newUser.inspectorProfile = details.profileData as InspectorProfileData;
     }
 
     try {

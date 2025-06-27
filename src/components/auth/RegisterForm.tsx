@@ -16,7 +16,6 @@ import {
   FormDescription,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
@@ -24,7 +23,7 @@ import { useToast } from "@/hooks/use-toast";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useState, useEffect, useCallback } from "react";
-import type { ClientProfileData, ProviderProfileData, ServiceOffering, PersonnelQualification, CompanyCertification, InspectorProfileData } from "@/lib/types";
+import type { ClientProfileData, ProviderProfileData, ServiceOffering, PersonnelQualification, CompanyCertification } from "@/lib/types";
 import { ListChecks, PlusCircle, Trash2, Award, Users2, FileText, Activity, AlertCircle } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -84,17 +83,7 @@ const providerSchema = baseSchema.extend({
   companyLogoUrl: z.string().url().or(z.literal("")).optional(),
 });
 
-const inspectorSchema = baseSchema.extend({
-  role: z.literal("inspector"),
-  locationInspector: z.string().min(2, { message: "Your location is required." }),
-  contactNumberInspector: z.string().min(7, { message: "Contact number is required." }),
-  servicesOfferedInspector: z.array(serviceOfferingSchema).min(1, "At least one service is required."),
-  personnelQualificationsInspector: z.array(personnelQualificationSchema.omit({ quantity: true })).min(1, "At least one qualification is required."),
-  bio: z.string().optional(),
-  profileImageUrl: z.string().url().or(z.literal("")).optional(),
-});
-
-const formSchema = z.discriminatedUnion("role", [clientSchema, providerSchema, inspectorSchema])
+const formSchema = z.discriminatedUnion("role", [clientSchema, providerSchema])
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don't match",
     path: ["confirmPassword"],
@@ -115,7 +104,6 @@ const defaultCompanyCertificationRow = (): CompanyCertification => ({
 const agreementTexts = {
   client: "Welcome to NDT Connect! By registering as a Client, you agree that NDT Connect is a facilitator platform. You are solely responsible for your due diligence, selection of, and agreements with Service Providers.",
   provider: "Welcome to NDT Connect! By registering as a Service Provider, you agree to provide accurate information in your profile and to fulfill client requirements professionally. NDT Connect is a facilitator and does not guarantee work.",
-  inspector: "Welcome to NDT Connect! By registering as an NDT Inspector, you affirm that you are an independent contractor. You agree to represent your skills and qualifications accurately and to perform work with professional diligence."
 };
 
 interface PredefinedLists {
@@ -200,53 +188,6 @@ const ProviderFields = ({ form, lists }: { form: UseFormReturn<FormSchemaType>, 
     );
 }
 
-const InspectorFields = ({ form, lists }: { form: UseFormReturn<FormSchemaType>, lists: PredefinedLists }) => {
-    const { fields: serviceFields, append: appendService, remove: removeService } = useFieldArray({ control: form.control, name: "servicesOfferedInspector" as any });
-    const { fields: personnelFields, append: appendPersonnel, remove: removePersonnel } = useFieldArray({ control: form.control, name: "personnelQualificationsInspector" as any });
-
-    return (
-        <div className="space-y-6">
-            <FormField control={form.control} name="locationInspector" render={({ field }) => (<FormItem><FormLabel>Your Location</FormLabel><FormControl><Input placeholder="City, State" {...field} /></FormControl><FormMessage /></FormItem>)} />
-            <FormField control={form.control} name="contactNumberInspector" render={({ field }) => (<FormItem><FormLabel>Contact Number</FormLabel><FormControl><Input placeholder="(555) 555-5555" {...field} /></FormControl><FormMessage /></FormItem>)} />
-            
-            <Card><CardHeader><CardTitle className="flex items-center text-lg"><ListChecks className="h-5 w-5 mr-2 text-primary"/>Services You Offer</CardTitle></CardHeader>
-                <CardContent className="space-y-2">
-                    {serviceFields.map((item, index) => (
-                        <div key={item.id} className="flex gap-2 items-start">
-                            <div className="grid flex-grow grid-cols-1 md:grid-cols-3 gap-2">
-                                <FormField control={form.control} name={`servicesOfferedInspector.${index}.name`} render={({ field }) => (<FormItem>{(item as ServiceOffering).isCustom ? <FormControl><Input placeholder="Custom service name" {...field}/></FormControl> : <Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select service"/></SelectTrigger></FormControl><SelectContent>{lists.providerNdtServices.map(s=><SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent></Select>}<FormMessage/></FormItem>)} />
-                                <FormField control={form.control} name={`servicesOfferedInspector.${index}.unit`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select unit"/></SelectTrigger></FormControl><SelectContent>{lists.serviceUnits.map(u=><SelectItem key={u} value={u}>{u}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
-                                <FormField control={form.control} name={`servicesOfferedInspector.${index}.rate`} render={({ field }) => (<FormItem><FormControl><Input placeholder="e.g. 100" {...field} /></FormControl><FormMessage/></FormItem>)} />
-                            </div>
-                            <Button type="button" variant="ghost" size="icon" onClick={() => removeService(index)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
-                        </div>
-                    ))}
-                    <div className="flex gap-2"><Button type="button" variant="outline" size="sm" onClick={() => appendService(defaultServiceOfferingRow(false))}><PlusCircle className="mr-2 h-4 w-4"/>Add Service</Button><Button type="button" variant="outline" size="sm" onClick={() => appendService(defaultServiceOfferingRow(true))}><PlusCircle className="mr-2 h-4 w-4"/>Add Custom</Button></div>
-                </CardContent>
-            </Card>
-
-            <Card><CardHeader><CardTitle className="flex items-center text-lg"><Award className="h-5 w-5 mr-2 text-primary"/>Your Qualifications</CardTitle></CardHeader>
-                <CardContent className="space-y-2">
-                    {personnelFields.map((item, index) => (
-                         <div key={item.id} className="flex gap-2 items-start">
-                            <div className="grid flex-grow grid-cols-1 md:grid-cols-2 gap-2">
-                                <FormField control={form.control} name={`personnelQualificationsInspector.${index}.certificationBody`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Body"/></SelectTrigger></FormControl><SelectContent>{lists.qualificationBodies.map(b=><SelectItem key={b} value={b}>{b}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
-                                <FormField control={form.control} name={`personnelQualificationsInspector.${index}.level`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Level"/></SelectTrigger></FormControl><SelectContent>{lists.qualificationLevels.map(l=><SelectItem key={l} value={l}>{l}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
-                            </div>
-                            <Button type="button" variant="ghost" size="icon" onClick={() => removePersonnel(index)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
-                        </div>
-                    ))}
-                    <Button type="button" variant="outline" size="sm" onClick={() => appendPersonnel({ id: generateUniqueId(), certificationBody: '', level: '' })}><PlusCircle className="mr-2 h-4 w-4"/>Add Qualification</Button>
-                </CardContent>
-            </Card>
-
-            <FormField control={form.control} name="bio" render={({ field }) => (<FormItem><FormLabel>Bio (Optional)</FormLabel><FormControl><Textarea placeholder="Briefly describe your experience and expertise." {...field} /></FormControl><FormMessage /></FormItem>)} />
-            <FormField control={form.control} name="profileImageUrl" render={({ field }) => (<FormItem><FormLabel>Profile Photo URL (Optional)</FormLabel><FormControl><Input placeholder="https://example.com/your-photo.png" {...field} /></FormControl><FormMessage /></FormItem>)} />
-        </div>
-    );
-};
-
-
 // --- MAIN FORM COMPONENT ---
 
 export function RegisterForm() {
@@ -289,20 +230,19 @@ export function RegisterForm() {
     }
   }, [currentRole]);
 
-  const getInitialValues = useCallback((role: 'client' | 'provider' | 'inspector') => {
+  const getInitialValues = useCallback((role: 'client' | 'provider') => {
       const base = { name: form.getValues('name'), email: form.getValues('email'), password: form.getValues('password'), confirmPassword: form.getValues('confirmPassword'), acceptTerms: form.getValues('acceptTerms') };
       switch (role) {
           case "client": return { ...base, role, companyName: "", industry: "", primaryLocation: "", contactNumberClient: "" };
           case "provider": return { ...base, role, locationProvider: "", contactNumberProvider: "", servicesOffered: [defaultServiceOfferingRow()], personnelQualifications: [defaultPersonnelQualificationRow()], certifications: [defaultCompanyCertificationRow()], procedureInfoUrl: "", companyLogoUrl: "" };
-          case "inspector": return { ...base, role, locationInspector: "", contactNumberInspector: "", servicesOfferedInspector: [defaultServiceOfferingRow()], personnelQualificationsInspector: [{ id: generateUniqueId(), certificationBody: '', level: '' }], bio: "", profileImageUrl: "" };
-          default: return { ...base, role: 'client' };
+          default: return { ...base, role: 'client', companyName: "", industry: "", primaryLocation: "", contactNumberClient: "" };
       }
   },[form]);
 
 
   useEffect(() => {
     fetchPredefinedLists();
-    form.reset(getInitialValues(currentRole));
+    form.reset(getInitialValues(currentRole as 'client' | 'provider'));
   }, [currentRole, fetchPredefinedLists, form, getInitialValues]);
 
 
@@ -317,10 +257,12 @@ export function RegisterForm() {
         return;
     }
     
-    let profileData: Partial<ClientProfileData & ProviderProfileData & InspectorProfileData> = {};
-    if (values.role === "client") profileData = { companyName: values.companyName, industry: values.industry, primaryLocation: values.primaryLocation, contactNumber: values.contactNumberClient };
-    if (values.role === "provider") profileData = { location: values.locationProvider, contactNumber: values.contactNumberProvider, servicesOffered: values.servicesOffered, personnelQualifications: values.personnelQualifications, certifications: values.certifications, procedureInfoUrl: values.procedureInfoUrl, companyLogoUrl: values.companyLogoUrl };
-    if (values.role === "inspector") profileData = { location: values.locationInspector, contactNumber: values.contactNumberInspector, servicesOffered: values.servicesOfferedInspector, personnelQualifications: values.personnelQualificationsInspector.map(p => ({ ...p, quantity: 1 })), bio: values.bio, profileImageUrl: values.profileImageUrl };
+    let profileData: Partial<ClientProfileData & ProviderProfileData> = {};
+    if (values.role === "client") {
+        profileData = { companyName: values.companyName, industry: values.industry, primaryLocation: values.primaryLocation, contactNumber: values.contactNumberClient };
+    } else if (values.role === "provider") {
+        profileData = { location: values.locationProvider, contactNumber: values.contactNumberProvider, servicesOffered: values.servicesOffered, personnelQualifications: values.personnelQualifications, certifications: values.certifications, procedureInfoUrl: values.procedureInfoUrl, companyLogoUrl: values.companyLogoUrl };
+    }
     
     const registeredUser = await register({ email: values.email, role: values.role, name: values.name, profileData });
     if (registeredUser) {
@@ -347,18 +289,16 @@ export function RegisterForm() {
                 <FormControl><RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-wrap gap-x-4 gap-y-2">
                     <FormItem className="flex items-center space-x-2 space-y-0"><FormControl><RadioGroupItem value="client"/></FormControl><Label className="font-normal">Client</Label></FormItem>
                     <FormItem className="flex items-center space-x-2 space-y-0"><FormControl><RadioGroupItem value="provider"/></FormControl><Label className="font-normal">Service Provider</Label></FormItem>
-                    <FormItem className="flex items-center space-x-2 space-y-0"><FormControl><RadioGroupItem value="inspector"/></FormControl><Label className="font-normal">NDT Inspector (Freelancer)</Label></FormItem>
                 </RadioGroup></FormControl><FormMessage/>
             </FormItem>
         )}/>
 
         {currentRole === "client" && <ClientFields form={form} />}
         {currentRole === "provider" && (isLoadingLists ? <div className="flex items-center gap-2 text-muted-foreground"><Activity className="animate-spin h-4 w-4"/><span>Loading provider options...</span></div> : listsError ? <p className="text-destructive flex items-center gap-2"><AlertCircle className="h-4 w-4"/>{listsError}</p> : <ProviderFields form={form} lists={predefinedLists} />)}
-        {currentRole === "inspector" && (isLoadingLists ? <div className="flex items-center gap-2 text-muted-foreground"><Activity className="animate-spin h-4 w-4"/><span>Loading inspector options...</span></div> : listsError ? <p className="text-destructive flex items-center gap-2"><AlertCircle className="h-4 w-4"/>{listsError}</p> : <InspectorFields form={form} lists={predefinedLists} />)}
 
         <div className="space-y-3 pt-4">
             <Label className="text-lg font-semibold flex items-center"><FileText className="mr-2 h-5 w-5 text-primary" />Agreement</Label>
-            <ScrollArea className="h-24 w-full rounded-md border p-3 text-sm bg-muted/30"><pre className="whitespace-pre-wrap font-sans">{agreementTexts[currentRole]}</pre></ScrollArea>
+            <ScrollArea className="h-24 w-full rounded-md border p-3 text-sm bg-muted/30"><pre className="whitespace-pre-wrap font-sans">{agreementTexts[currentRole as 'client' | 'provider']}</pre></ScrollArea>
             <FormField control={form.control} name="acceptTerms" render={({ field }) => ( <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-3 shadow-sm"><FormControl><Checkbox checked={field.value} onCheckedChange={field.onChange}/></FormControl><div className="space-y-1 leading-none"><FormLabel className="font-normal">I have read and agree to the User Agreement.</FormLabel><FormMessage/></div></FormItem> )} />
         </div>
 
