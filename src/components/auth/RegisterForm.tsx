@@ -149,7 +149,32 @@ To the fullest extent permitted by law, NDT Connect shall not be liable for any 
 
 6. Acceptance of Terms:
 By checking the "I agree" box and completing the registration process, you affirm that you have read, understood, and agree to be bound by these Terms of Service.`,
-  inspector: "As an NDT Inspector, you can register as a freelancer or associate with a company. You are responsible for the accuracy of your qualifications and for upholding professional standards in any engagement sourced through NDT Connect.",
+  inspector: `Terms of Service for NDT Inspectors
+
+Welcome to NDT Connect!
+
+By registering an account as an NDT Inspector on NDT Connect ("Platform", "we", "us", "our"), you ("Inspector", "you", "your") agree to these Terms of Service. These terms apply whether you are operating as a freelancer or as an employee of a Service Provider company.
+
+1. Professional Representation:
+   a. Accuracy of Information: You are solely responsible for providing accurate, current, and verifiable information regarding your qualifications, certifications (e.g., ASNT, ISO 9712, NAS 410), level of certification, experience, and work history. Misrepresentation of your credentials may result in immediate and permanent removal from the Platform.
+   b. Profile Maintenance: You agree to maintain and promptly update your profile to reflect your current status, including any new certifications or changes in employment if associated with a company.
+
+2. Role and Responsibilities:
+   a. Professional Standards: You commit to performing all inspection services with the highest degree of professionalism, integrity, and technical competence, strictly adhering to all applicable industry codes, standards, and safety regulations, as well as any specific procedures or acceptance criteria required by the Client.
+   b. Freelancer vs. Company Employee:
+      i. If you are registering as a freelancer, you acknowledge that you are an independent contractor. You are responsible for your own business operations, insurance, taxes, and contractual agreements with Clients.
+      ii. If you are registering as an employee of a company, you warrant that you are authorized to represent your employer on this Platform. Any engagement or communication through the Platform is on behalf of your employer, and any resulting service agreement will be between your employer and the Client.
+   c. Direct Agreements: NDT Connect acts SOLELY AS A FACILITATOR. All contracts for services, whether oral or written, are directly between you (or your employer) and the Client. You are responsible for negotiating the terms, scope, and payment for any work undertaken.
+
+3. Platform Usage:
+   a. NDT Connect does not guarantee you will be selected for any project or engagement. We provide a platform for visibility and connection.
+   b. You agree to communicate professionally and respectfully with all platform users, including Clients and other Service Providers.
+
+4. Limitation of Liability:
+NDT Connect is not a party to any service agreement and is not responsible for any disputes, claims, losses, injuries, or damages of any kind that might arise out of or in connection with your services or your interactions with Clients. All disputes must be resolved directly between the parties involved.
+
+5. Acceptance of Terms:
+By checking the "I agree" box and completing the registration process, you affirm that you have read, understood, and agree to be bound by these Terms of Service for NDT Inspectors.`,
 };
 
 // --- SUB-COMPONENTS FOR EACH ROLE ---
