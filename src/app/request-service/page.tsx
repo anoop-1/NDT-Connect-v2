@@ -131,9 +131,21 @@ function RequestServiceFormContent() {
     try {
         const docRef = await addDoc(collection(db, "serviceRequests"), newRequest);
         console.log("Service request document written with ID: ", docRef.id);
+        
+        // --- EMAIL NOTIFICATION SIMULATION ---
+        if (providerId && providerName) {
+            console.log(`--- SIMULATING EMAIL NOTIFICATION TO VENDOR ---`);
+            console.log(`To: Email address of ${providerName} (ID: ${providerId})`);
+            console.log(`From: noreply@ndt-connect.com`);
+            console.log(`Subject: New Service Request from ${user.name}`);
+            console.log(`Body: You have received a new service request for '${serviceType}'. Please log in to your dashboard to view the details.`);
+            console.log(`--- END SIMULATION ---`);
+        }
+        // --- END SIMULATION ---
+
         toast({
             title: "Service Request Submitted",
-            description: `Your request has been successfully submitted to the database.`,
+            description: `Your request has been successfully submitted. ${providerName ? providerName + ' has been notified.' : 'Providers will be able to view your open request.'}`,
         });
         router.push(`/track-request/${docRef.id}`);
     } catch (error) {

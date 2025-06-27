@@ -9,10 +9,16 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Briefcase, UserCircle, Settings, Activity } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { db } from "@/lib/firebase";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { ToastAction } from "@/components/ui/toast";
+
 
 export default function ProviderDashboardPage() {
   const { user, loading } = useAuth();
   const router = useRouter();
+  const { toast } = useToast();
 
   useEffect(() => {
     if (!loading && !user) {
@@ -22,6 +28,59 @@ export default function ProviderDashboardPage() {
       router.push("/dashboard"); 
     }
   }, [user, loading, router]);
+
+  useEffect(() => {
+    if (user && user.role === 'provider' && !user.isDemo) {
+      const checkNewRequests = async () => {
+        try {
+          const notifiedRequestsStr = sessionStorage.getItem('notifiedRequestIds') || '[]';
+          const notifiedRequestIds = new Set(JSON.parse(notifiedRequestsStr));
+
+          // Query 1: For requests assigned directly to this provider
+          const assignedQuery = query(collection(db, "serviceRequests"), where("providerId", "==", user.id), where("status", "==", "Pending"));
+          
+          // Query 2: For open requests available to all providers
+          const openQuery = query(collection(db, "serviceRequests"), where("providerId", "==", undefined), where("status", "==", "Pending"));
+
+          const [assignedSnapshot, openSnapshot] = await Promise.all([
+            getDocs(assignedQuery),
+            getDocs(openQuery)
+          ]);
+          
+          const allPendingRequestIds = [
+            ...assignedSnapshot.docs.map(doc => doc.id),
+            ...openSnapshot.docs.map(doc => doc.id)
+          ];
+
+          const newRequestIds = allPendingRequestIds.filter(id => !notifiedRequestIds.has(id));
+
+          if (newRequestIds.length > 0) {
+            toast({
+              title: "New Service Requests!",
+              description: `You have ${newRequestIds.length} new request(s) available.`,
+              duration: 10000, // Keep notification visible for 10 seconds
+              action: (
+                <ToastAction altText="View Requests" asChild>
+                  <Link href="/provider-requests">View</Link>
+                </ToastAction>
+              ),
+            });
+            
+            const updatedNotifiedIds = new Set([...notifiedRequestIds, ...newRequestIds]);
+            sessionStorage.setItem('notifiedRequestIds', JSON.stringify(Array.from(updatedNotifiedIds)));
+          }
+        } catch (error) {
+          console.error("Failed to check for new service requests:", error);
+          // We don't show an error toast for this, as it's a non-critical background task.
+        }
+      };
+
+      // Run check shortly after page load to ensure UI is ready for the toast.
+      const timer = setTimeout(() => checkNewRequests(), 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [user, toast]);
+
 
   if (loading) {
     return <div className="flex justify-center items-center min-h-[calc(100vh-10rem)]"><Activity className="h-8 w-8 animate-spin text-primary" /> <span className="ml-2">Loading provider dashboard...</span></div>;
