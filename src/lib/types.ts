@@ -98,21 +98,6 @@ export type ServiceProvider = {
   isCompany: boolean; // Flag to distinguish between company and inspector
 };
 
-export type OptimizeServiceProviderRecommendationsInput = {
-  location: string;
-  serviceType: string;
-  specialization: string;
-  standard?: string;
-  assetToBeInspected?: string;
-};
-
-export type Recommendation = {
-  referenceId: string;
-  providerName: string; 
-  rating: number;
-  description:string;
-};
-
 export type ServiceRequest = {
   id: string; // Firestore document ID
   clientId: string;
@@ -136,21 +121,4 @@ export type ChatMessage = {
   senderId: string; // User ID or "system" or "provider-simulated"
   text: string;
   timestamp: string; // ISO string
-};
-
-export type Discrepancy = {
-  clientRequirement: string;
-  providerClause: string;
-  suggestedRevision: string;
-};
-
-export type CompareDocumentsOutput = {
-  isCompliant: boolean;
-  summary: string;
-  discrepancies: Discrepancy[];
-};
-
-export type CompareDocumentsInput = {
-    clientRequirementDataUri: string;
-    providerProcedureDataUri: string;
 };
