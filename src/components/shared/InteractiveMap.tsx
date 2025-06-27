@@ -4,8 +4,9 @@
 
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import type { ServiceProvider } from '@/lib/types';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import L from 'leaflet';
+import { Activity } from 'lucide-react';
 
 // Import marker icons
 import iconRetina from 'leaflet/dist/images/marker-icon-2x.png';
@@ -42,9 +43,14 @@ interface InteractiveMapProps {
 }
 
 export function InteractiveMap({ providers }: InteractiveMapProps) {
-  // This is the correct place for the one-time icon setup.
-  // It runs once when this client component mounts.
+  const [isClient, setIsClient] = useState(false);
+
   useEffect(() => {
+    // This effect runs only on the client, after the initial render.
+    // It sets a state that triggers a re-render, allowing the map to be rendered.
+    setIsClient(true);
+    
+    // One-time icon setup
     delete (L.Icon.Default.prototype as any)._getIconUrl;
     L.Icon.Default.mergeOptions({
       iconRetinaUrl: iconRetina.src,
@@ -54,6 +60,17 @@ export function InteractiveMap({ providers }: InteractiveMapProps) {
   }, []);
 
   const mapProviders = providers.filter(p => p.lat && p.lng);
+
+  // This check prevents the map from rendering on the server or during the first
+  // render cycle on the client, which avoids the initialization error.
+  if (!isClient) {
+    return (
+      <div className="flex justify-center items-center h-[450px] w-full rounded-lg bg-muted">
+        <Activity className="h-8 w-8 animate-spin text-primary" />
+        <span className="ml-2">Loading Map...</span>
+      </div>
+    );
+  }
 
   return (
     <MapContainer center={defaultCenter} zoom={defaultZoom} scrollWheelZoom={true} style={{ height: '450px', width: '100%', borderRadius: '0.5rem', zIndex: 0 }}>
