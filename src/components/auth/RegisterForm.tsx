@@ -22,7 +22,7 @@ import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import type { ClientProfileData, ProviderProfileData, InspectorProfileData, ServiceOffering, PersonnelQualification, CompanyCertification } from "@/lib/types";
 import { ListChecks, PlusCircle, Trash2, Award, Users2, FileText, User as UserIcon, Building } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -212,25 +212,57 @@ export function RegisterForm() {
   
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
-    defaultValues: { role: "client", name: "", email: "", password: "", confirmPassword: "", acceptTerms: false, companyName: "", industry: "", primaryLocation: "", contactNumber: "" },
+    defaultValues: {
+      role: "client",
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      acceptTerms: false,
+      companyName: "",
+      industry: "",
+      primaryLocation: "",
+      contactNumber: ""
+    },
     mode: "onBlur"
   });
 
   const currentRole = form.watch("role");
 
-  const getInitialValues = useCallback((role: 'client' | 'provider' | 'inspector') => {
-      const base = { name: form.getValues('name'), email: form.getValues('email'), password: form.getValues('password'), confirmPassword: form.getValues('confirmPassword'), acceptTerms: form.getValues('acceptTerms') };
-      switch (role) {
-          case "client": return { ...base, role, companyName: "", industry: "", primaryLocation: "", contactNumber: "" };
-          case "provider": return { ...base, role, location: "", contactNumber: "", servicesOffered: [{ id: generateUniqueId(), name: "", rate: '', unit: "" }], personnelQualifications: [{ id: generateUniqueId(), quantity: 1, certificationBody: "", level: "" }], certifications: [] };
-          case "inspector": return { ...base, role, association: 'freelancer', contactNumber: '' };
-          default: return { ...base, role: 'client', companyName: "", industry: "", primaryLocation: "", contactNumber: "" };
-      }
-  }, [form]);
-
   useEffect(() => {
-    form.reset(getInitialValues(currentRole as any));
-  }, [currentRole, form, getInitialValues]);
+    const baseValues = {
+        name: form.getValues('name'),
+        email: form.getValues('email'),
+        password: form.getValues('password'),
+        confirmPassword: form.getValues('confirmPassword'),
+        acceptTerms: form.getValues('acceptTerms')
+    };
+
+    let newDefaultValues: any;
+    
+    if (currentRole === 'client') {
+        newDefaultValues = {
+            role: 'client', companyName: "", industry: "", primaryLocation: "", contactNumber: ""
+        };
+    } else if (currentRole === 'provider') {
+        newDefaultValues = {
+            role: 'provider', location: "", contactNumber: "", 
+            servicesOffered: [{ id: generateUniqueId(), name: "", rate: '', unit: "", isCustom: false }], 
+            personnelQualifications: [{ id: generateUniqueId(), quantity: 1, certificationBody: "", level: "" }], 
+            certifications: [], procedureInfoUrl: "", companyLogoUrl: ""
+        };
+    } else if (currentRole === 'inspector') {
+        newDefaultValues = {
+            role: 'inspector', association: 'freelancer', contactNumber: '', 
+            companyName: '', location: '', designation: ''
+        };
+    }
+
+    form.reset({
+        ...newDefaultValues,
+        ...baseValues
+    });
+  }, [currentRole, form]);
 
 
   async function onSubmit(values: FormSchemaType) {
