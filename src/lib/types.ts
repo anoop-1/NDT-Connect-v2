@@ -120,3 +120,20 @@ export type ChatMessage = {
   text: string;
   timestamp: string; // ISO string
 };
+
+export type Discrepancy = {
+  clientRequirement: string;
+  providerClause: string;
+  suggestedRevision: string;
+};
+
+export type CompareDocumentsOutput = {
+  isCompliant: boolean;
+  summary: string;
+  discrepancies: Discrepancy[];
+};
+
+export type CompareDocumentsInput = {
+    clientRequirementDataUri: string;
+    providerProcedureDataUri: string;
+};
