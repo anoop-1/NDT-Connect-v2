@@ -5,7 +5,7 @@ import { ProviderCard } from "@/components/client/ProviderCard";
 import type { ServiceProvider, User } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, Filter, ShieldCheck, AlertTriangle, Activity, Map as MapIcon } from "lucide-react";
+import { Search, Filter, ShieldCheck, AlertTriangle, Activity } from "lucide-react";
 import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
@@ -153,12 +153,6 @@ export default function FindProvidersPage() {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          <Button asChild>
-            <Link href="/find-providers/map">
-              <MapIcon className="h-4 w-4 mr-2" />
-              View on Map
-            </Link>
-          </Button>
           <Button variant="outline"> 
             <Filter className="h-4 w-4 mr-2" /> Filters
           </Button>
