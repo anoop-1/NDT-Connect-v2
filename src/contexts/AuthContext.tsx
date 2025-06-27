@@ -5,7 +5,7 @@ import type { User, ClientProfileData, ProviderProfileData, InspectorProfileData
 import type { Dispatch, ReactNode, SetStateAction } from 'react';
 import { createContext, useState, useEffect, useCallback } from 'react';
 import { db } from "@/lib/firebase";
-import { doc, getDoc, setDoc, serverTimestamp, getDocs, collection, query, where, limit } from "firebase/firestore";
+import { doc, getDoc, setDoc, getDocs, collection, query, where, limit } from "firebase/firestore";
 import { MOCK_DEMO_CLIENT, MOCK_DEMO_PROVIDER } from '@/lib/mockData';
 
 interface RegisterDetails {

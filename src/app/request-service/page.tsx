@@ -17,7 +17,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { db } from "@/lib/firebase";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import type { ServiceRequest, CompareDocumentsOutput } from "@/lib/types";
 import { compareDocuments } from "@/ai/flows/compare-documents-flow";
 import { FormDescription } from "@/components/ui/form";
