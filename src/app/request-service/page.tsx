@@ -180,11 +180,6 @@ function RequestServiceFormContent() {
         updatedAt: new Date().toISOString(),
     };
 
-    // Remove fileAttachmentUrl if it's null, as an empty field is cleaner.
-    if (!newRequest.fileAttachmentUrl) {
-      delete newRequest.fileAttachmentUrl;
-    }
-
     try {
         const docRef = await addDoc(collection(db, "serviceRequests"), newRequest);
         
