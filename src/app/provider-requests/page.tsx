@@ -36,9 +36,11 @@ export default function ProviderRequestsPage() {
   const [requests, setRequests] = useState<ServiceRequest[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [chattingWithRequest, setChattingWithRequest] = useState<ServiceRequest | null>(null);
+  const [isShowingExamples, setIsShowingExamples] = useState(false);
 
   const fetchRequests = useCallback(async (userId: string) => {
     setIsLoading(true);
+    setIsShowingExamples(false);
 
     if (user?.isDemo) {
         setRequests(MOCK_PROVIDER_REQUESTS);
@@ -82,15 +84,26 @@ export default function ProviderRequestsPage() {
         return dateB.getTime() - dateA.getTime();
       });
 
-      setRequests(fetchedRequests);
+      if (fetchedRequests.length === 0) {
+        setRequests(MOCK_PROVIDER_REQUESTS);
+        setIsShowingExamples(true);
+        toast({
+          title: "Displaying Example Requests",
+          description: "There are no active requests. Showing example data.",
+        });
+      } else {
+        setRequests(fetchedRequests);
+      }
 
     } catch (error) {
       console.error("Error fetching service requests:", error);
       toast({
         title: "Error",
-        description: "Failed to fetch service requests from the database.",
+        description: "Failed to fetch service requests from the database. Showing examples.",
         variant: "destructive",
       });
+      setRequests(MOCK_PROVIDER_REQUESTS);
+      setIsShowingExamples(true);
     } finally {
       setIsLoading(false);
     }
@@ -154,6 +167,7 @@ export default function ProviderRequestsPage() {
           <p className="text-muted-foreground">
             Manage and respond to NDT service requests from clients.
             {user.isDemo && <span className="font-semibold text-primary ml-2">(Demo Mode)</span>}
+            {isShowingExamples && <span className="font-semibold text-primary ml-2">(Example Data)</span>}
           </p>
         </div>
 
@@ -212,7 +226,7 @@ export default function ProviderRequestsPage() {
             <CardContent className="flex flex-col items-center gap-4">
               <Briefcase className="h-16 w-16 text-muted-foreground" />
               <h3 className="text-xl font-semibold">No active service requests.</h3>
-              <p className="text-muted-foreground">Keep an eye on this page for new client requests.</p>
+              <p className="text-muted-foreground">{isShowingExamples ? "The examples above show how requests will appear." : "Keep an eye on this page for new client requests."}</p>
               <Button variant="outline" asChild>
                 <Link href="/provider-profile">
                   <Users className="h-4 w-4 mr-2" /> Update Availability

@@ -96,6 +96,7 @@ export default function FindProvidersPage() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isShowingExamples, setIsShowingExamples] = useState(false);
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -108,6 +109,7 @@ export default function FindProvidersPage() {
   const fetchProviders = useCallback(async () => {
     setIsLoading(true);
     setError(null);
+    setIsShowingExamples(false);
     
     if (user?.isDemo) {
       setAllProviders(MOCK_PROVIDERS);
@@ -143,14 +145,25 @@ export default function FindProvidersPage() {
         availableDocuments: u.providerProfile?.availableDocuments,
       }));
       
-      setAllProviders(providersData);
+      if (providersData.length === 0) {
+        setAllProviders(MOCK_PROVIDERS);
+        setIsShowingExamples(true);
+        toast({
+          title: "Displaying Example Providers",
+          description: "Your database has no active providers, so we're showing examples.",
+        });
+      } else {
+        setAllProviders(providersData);
+      }
 
     } catch (e) {
       console.error("Error fetching providers:", e);
-      setError("Failed to load providers from the database. Please check your connection and try again.");
+      setError("Failed to load providers from the database. Showing example data instead.");
+      setAllProviders(MOCK_PROVIDERS);
+      setIsShowingExamples(true);
       toast({
         title: "Database Error",
-        description: "Could not fetch service providers.",
+        description: "Could not fetch providers. Showing example data.",
         variant: "destructive",
       });
     } finally {
@@ -235,6 +248,7 @@ export default function FindProvidersPage() {
         <p className="text-muted-foreground mb-6">
           Browse and connect with qualified Non-Destructive Testing professionals from our network.
           {user?.isDemo && <span className="font-semibold text-primary ml-2">(Demo Mode)</span>}
+          {isShowingExamples && <span className="font-semibold text-primary ml-2">(Example Data)</span>}
         </p>
         <div className="flex flex-col md:flex-row gap-4 mb-4 items-center">
           <div className="relative flex-grow w-full md:w-auto">
@@ -365,5 +379,3 @@ export default function FindProvidersPage() {
     </div>
   );
 }
-
-    

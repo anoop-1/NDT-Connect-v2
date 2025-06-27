@@ -61,9 +61,11 @@ export default function MyRequestsPage() {
   const [requests, setRequests] = useState<ServiceRequest[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [chattingWithRequest, setChattingWithRequest] = useState<ServiceRequest | null>(null);
+  const [isShowingExamples, setIsShowingExamples] = useState(false);
 
   const fetchRequests = useCallback(async (userId: string) => {
     setIsLoading(true);
+    setIsShowingExamples(false);
 
     if (user?.isDemo) {
       setRequests(MOCK_CLIENT_REQUESTS);
@@ -82,14 +84,26 @@ export default function MyRequestsPage() {
         const requestedDate = data.requestedDate?.toDate ? data.requestedDate.toDate().toISOString() : data.requestedDate;
         fetchedRequests.push({ id: doc.id, ...data, requestedDate } as ServiceRequest);
       });
-      setRequests(fetchedRequests);
+      
+      if (fetchedRequests.length === 0) {
+        setRequests(MOCK_CLIENT_REQUESTS);
+        setIsShowingExamples(true);
+        toast({
+          title: "Displaying Example Requests",
+          description: "You have no active requests, so we're showing examples.",
+        });
+      } else {
+        setRequests(fetchedRequests);
+      }
     } catch (error) {
       console.error("Error fetching service requests:", error);
       toast({
         title: "Error",
-        description: "Failed to fetch your service requests from the database.",
+        description: "Failed to fetch your service requests. Showing example data.",
         variant: "destructive",
       });
+      setRequests(MOCK_CLIENT_REQUESTS);
+      setIsShowingExamples(true);
     } finally {
       setIsLoading(false);
     }
@@ -122,6 +136,7 @@ export default function MyRequestsPage() {
             <p className="text-muted-foreground">
               Track and manage all your NDT service requests here.
               {user?.isDemo && <span className="font-semibold text-primary ml-2">(Demo Mode)</span>}
+              {isShowingExamples && <span className="font-semibold text-primary ml-2">(Example Data)</span>}
             </p>
           </div>
           <Button asChild disabled={user?.isDemo}>
@@ -173,7 +188,7 @@ export default function MyRequestsPage() {
             <CardContent className="flex flex-col items-center gap-4">
               <Briefcase className="h-16 w-16 text-muted-foreground" />
               <h3 className="text-xl font-semibold">No service requests yet.</h3>
-              <p className="text-muted-foreground">Make your first request to see it here.</p>
+              <p className="text-muted-foreground">{isShowingExamples ? "The examples above show how your requests will appear." : "Make your first request to see it here."}</p>
               <Button asChild disabled={user?.isDemo}>
                 <Link href="/request-service">
                   <PlusCircle className="h-4 w-4 mr-2" /> Request a Service
