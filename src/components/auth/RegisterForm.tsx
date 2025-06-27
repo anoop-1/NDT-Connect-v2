@@ -209,6 +209,7 @@ export function RegisterForm() {
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const [predefinedLists, setPredefinedLists] = useState(BUILT_IN_LISTS);
   
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
@@ -230,6 +231,9 @@ export function RegisterForm() {
   const currentRole = form.watch("role");
 
   useEffect(() => {
+    // This effect ensures the form is cleanly reset with appropriate default values
+    // whenever the user switches the role, preventing validation errors from
+    // lingering fields of the previous role.
     const baseValues = {
         name: form.getValues('name'),
         email: form.getValues('email'),
@@ -262,7 +266,7 @@ export function RegisterForm() {
         ...newDefaultValues,
         ...baseValues
     });
-  }, [currentRole, form]);
+  }, [currentRole, form.reset]);
 
 
   async function onSubmit(values: FormSchemaType) {
@@ -316,7 +320,7 @@ export function RegisterForm() {
         )}/>
 
         {currentRole === "client" && <ClientFields form={form} />}
-        {currentRole === "provider" && <ProviderFields form={form} lists={BUILT_IN_LISTS} />}
+        {currentRole === "provider" && <ProviderFields form={form} lists={predefinedLists} />}
         {currentRole === "inspector" && <InspectorFields form={form} />}
 
         <div className="space-y-3 pt-4">
