@@ -44,7 +44,11 @@ export default function ManageUsersPage() {
       const querySnapshot = await getDocs(q);
       const fetchedUsers: User[] = [];
       querySnapshot.forEach((doc) => {
-        fetchedUsers.push({ id: doc.id, ...doc.data() } as User);
+        const userData = { id: doc.id, ...doc.data() } as User;
+        // Filter out demo users to only show real accounts in the admin panel
+        if (userData.isDemo !== true) {
+          fetchedUsers.push(userData);
+        }
       });
       setAllUsers(fetchedUsers);
     } catch (error) {
