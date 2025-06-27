@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   title: 'NDT Connect - Inspection Services',
   description: 'Connecting NDT Service Providers and Clients for reliable inspection solutions.',
   icons: {
-    icon: '/favicon.ico',
+    icon: '/favicon.svg',
   },
 };
 
