@@ -1,9 +1,9 @@
 
 export type ClientProfileData = {
-  companyName?: string;
-  industry?: string;
-  primaryLocation?: string;
-  contactNumber?: string;
+  companyName: string;
+  industry: string;
+  primaryLocation: string;
+  contactNumber: string;
 };
 
 export type ServiceOffering = {
@@ -21,43 +21,43 @@ export type PersonnelQualification = {
   quantity: number | string;
   certificationBody: string;
   level: string;
-  expiryDate?: Date;
+  expiryDate?: Date | null;
 };
 
 export type CompanyCertification = {
   id: string;
   name: string;
   category?: string;
-  expiryDate?: Date;
+  expiryDate?: Date | null;
 };
 
 export type InspectorProfileData = {
   association: 'freelancer' | 'company';
-  contactNumber?: string;
+  contactNumber: string;
   // Company-specific fields
-  companyName?: string;
-  location?: string; // City, State
-  designation?: string;
+  companyName: string | null;
+  location: string | null; // City, State
+  designation: string | null;
   // Common fields
-  personnelQualifications?: PersonnelQualification[];
+  personnelQualifications: PersonnelQualification[];
 };
 
 export type ProviderProfileData = {
-  companyName?: string;
-  location?: string;
+  companyName: string;
+  location: string;
   lat?: number;
   lng?: number;
-  servicesOffered?: ServiceOffering[];
-  contactNumber?: string;
-  procedureInfoUrl?: string;
-  companyLogoUrl?: string;
+  servicesOffered: ServiceOffering[];
+  contactNumber: string;
+  procedureInfoUrl: string | null;
+  companyLogoUrl: string | null;
   dataAiHint?: string;
-  certifications?: CompanyCertification[];
-  personnelQualifications?: PersonnelQualification[];
-  isVerified?: boolean;
-  availableDocuments?: string[];
-  serviceRadius?: string;
-  baseRate?: number;
+  certifications: CompanyCertification[];
+  personnelQualifications: PersonnelQualification[];
+  isVerified: boolean;
+  availableDocuments: string[];
+  serviceRadius: string;
+  baseRate: number;
   description?: string;
   specialization?: string;
   rating?: number;
@@ -67,15 +67,15 @@ export type User = {
   id: string; // This should be the Firebase Auth UID in a real app
   email: string;
   role: 'client' | 'provider' | 'admin' | 'inspector';
-  name?: string;
-  profileImageUrl?: string;
+  name: string;
+  profileImageUrl: string | null;
   isDemo?: boolean;
   isActive?: boolean;
   createdAt?: any; // To hold Firestore serverTimestamp
   updatedAt?: any; // To hold Firestore serverTimestamp
-  clientProfile?: ClientProfileData;
-  providerProfile?: ProviderProfileData;
-  inspectorProfile?: InspectorProfileData;
+  clientProfile: ClientProfileData | null;
+  providerProfile: ProviderProfileData | null;
+  inspectorProfile: InspectorProfileData | null;
 };
 
 export type ServiceProvider = {

@@ -29,11 +29,6 @@ interface AuthContextType {
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Helper function to strip undefined values, which Firestore cannot store.
-const cleanDataForFirestore = (data: object) => {
-    return JSON.parse(JSON.stringify(data));
-};
-
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -60,6 +55,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const register = async (details: RegisterDetails) => {
+    const profileData = details.profileData || {};
+
     const newUser: User = {
       id: `${details.role}-${Date.now()}`, // Simple unique ID
       email: details.email,
@@ -69,38 +66,51 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       isActive: true, // New users are active by default
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
+      profileImageUrl: null,
+      clientProfile: null,
+      providerProfile: null,
+      inspectorProfile: null,
     };
 
-    if (details.role === 'client' && details.profileData) {
-      newUser.clientProfile = details.profileData as ClientProfileData;
-    } else if (details.role === 'provider' && details.profileData) {
-      const providerProfileData = details.profileData as ProviderProfileData;
-      newUser.providerProfile = {
-        companyName: providerProfileData.companyName || "",
-        location: providerProfileData.location || "",
-        servicesOffered: providerProfileData.servicesOffered || [],
-        contactNumber: providerProfileData.contactNumber || "",
-        procedureInfoUrl: providerProfileData.procedureInfoUrl || "",
-        companyLogoUrl: providerProfileData.companyLogoUrl || "",
-        certifications: providerProfileData.certifications || [],
-        personnelQualifications: providerProfileData.personnelQualifications || [],
-        isVerified: providerProfileData.isVerified || false,
-        availableDocuments: providerProfileData.availableDocuments || [],
-        baseRate: providerProfileData.baseRate || 0,
-        serviceRadius: providerProfileData.serviceRadius || "",
+    if (details.role === 'client') {
+      newUser.clientProfile = {
+        companyName: profileData.companyName ?? '',
+        industry: profileData.industry ?? '',
+        primaryLocation: profileData.primaryLocation ?? '',
+        contactNumber: profileData.contactNumber ?? '',
       };
-    } else if (details.role === 'inspector' && details.profileData) {
-        newUser.inspectorProfile = details.profileData as InspectorProfileData;
+    } else if (details.role === 'provider') {
+      newUser.providerProfile = {
+        companyName: profileData.companyName ?? '',
+        location: profileData.location ?? '',
+        contactNumber: profileData.contactNumber ?? '',
+        procedureInfoUrl: profileData.procedureInfoUrl ?? null,
+        companyLogoUrl: profileData.companyLogoUrl ?? null,
+        servicesOffered: profileData.servicesOffered ?? [],
+        personnelQualifications: profileData.personnelQualifications ?? [],
+        certifications: profileData.certifications ?? [],
+        isVerified: false,
+        availableDocuments: [],
+        baseRate: 0,
+        serviceRadius: '',
+        rating: 4.0, // Default starting rating
+        specialization: '',
+        description: '',
+      };
+    } else if (details.role === 'inspector') {
+      newUser.inspectorProfile = {
+          association: profileData.association ?? 'freelancer',
+          contactNumber: profileData.contactNumber ?? '',
+          companyName: profileData.companyName ?? null,
+          location: profileData.location ?? null,
+          designation: profileData.designation ?? null,
+          personnelQualifications: [], // Init as empty
+      };
     }
 
     try {
-      // In a real app, the ID should come from Firebase Auth, but for this demo it's generated.
       const userDocRef = doc(db, "users", newUser.id);
-      
-      // IMPORTANT: Clean the object to remove any 'undefined' fields before sending to Firestore.
-      const cleanNewUser = cleanDataForFirestore(newUser);
-      
-      await setDoc(userDocRef, cleanNewUser);
+      await setDoc(userDocRef, newUser);
       return newUser;
     } catch (error) {
       console.error("Error creating user in Firestore:", error);
@@ -152,10 +162,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         updatedAt: new Date().toISOString(),
      };
      
-     // IMPORTANT: Clean the object to remove any 'undefined' fields before sending to Firestore.
-     const cleanDataToUpdate = cleanDataForFirestore(dataToUpdate);
-     
-     await setDoc(userDocRef, cleanDataToUpdate, { merge: true });
+     await setDoc(userDocRef, dataToUpdate, { merge: true });
      storeUserSession(userToUpdate); // Update state and local storage
   };
 
