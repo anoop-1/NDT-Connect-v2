@@ -45,7 +45,7 @@ if (!getApps().length) {
 
 const auth = getAuth(app);
 // Initialize Firestore with the setting to ignore undefined properties.
-// This is the correct way to handle objects with optional fields.
+// This is a failsafe to prevent sending invalid data structures.
 const db = initializeFirestore(app, {
   ignoreUndefinedProperties: true
 });

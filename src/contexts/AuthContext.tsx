@@ -39,6 +39,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       try {
         const storedUser = JSON.parse(storedUserJson) as User;
         if (storedUser && storedUser.id) {
+           // Re-hydrate Date objects if they were stringified in localStorage
+          if (storedUser.createdAt) storedUser.createdAt = new Date(storedUser.createdAt);
+          if (storedUser.updatedAt) storedUser.updatedAt = new Date(storedUser.updatedAt);
           setUser(storedUser);
         }
       } catch (error) {
@@ -57,8 +60,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const register = async (details: RegisterDetails) => {
     const { email, role, name, isDemo = false, profileData = {} } = details;
 
-    // Create the base user object.
-    let newUser: User = {
+    const baseUser: User = {
       id: `${role}-${Date.now()}`, // Simple unique ID for now
       email: email,
       role: role,
@@ -73,18 +75,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       inspectorProfile: null,
     };
     
-    // Construct the specific profile based on the role.
     if (role === 'client' && profileData) {
-        newUser.clientProfile = {
+        baseUser.clientProfile = {
             companyName: profileData.companyName || "",
             industry: profileData.industry || "",
             primaryLocation: profileData.primaryLocation || "",
             contactNumber: profileData.contactNumber || "",
         };
     } else if (role === 'provider' && profileData) {
-        // Construct a FULL and VALID ProviderProfileData object.
-        newUser.providerProfile = {
-            // Fields from the form
+        baseUser.providerProfile = {
             companyName: profileData.companyName || "",
             location: profileData.location || "",
             contactNumber: profileData.contactNumber || "",
@@ -93,18 +92,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             certifications: profileData.certifications || [],
             procedureInfoUrl: profileData.procedureInfoUrl || null,
             companyLogoUrl: profileData.companyLogoUrl || null,
-            
-            // Default values for REQUIRED fields not on the form
             isVerified: false,
             availableDocuments: [],
-            serviceRadius: "50 miles", // Sensible default
-            baseRate: 0, // Sensible default
-            description: `Newly registered provider.`, // Sensible default
-            specialization: "General NDT", // Sensible default
-            rating: 4.0, // Start with a default rating
+            serviceRadius: "50 miles",
+            baseRate: 0,
+            description: `Newly registered provider.`,
+            specialization: "General NDT",
+            rating: 4.0,
         };
     } else if (role === 'inspector' && profileData) {
-        newUser.inspectorProfile = {
+        baseUser.inspectorProfile = {
             association: profileData.association || 'freelancer',
             contactNumber: profileData.contactNumber || "",
             companyName: profileData.companyName || null,
@@ -114,16 +111,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         };
     }
 
+    // --- NEW LOGIC ---
+    // This robustly creates a deep copy and removes all `undefined` values,
+    // which are not allowed by Firestore. It also converts Date objects to a format
+    // that Firestore can handle, which resolves the 400 Bad Request error.
+    const cleanUserObjectForFirestore = JSON.parse(JSON.stringify(baseUser));
+    
     try {
-      const userDocRef = doc(db, "users", newUser.id);
-      // Pass the raw newUser object directly to setDoc.
-      // The Firestore SDK will handle Date objects correctly.
-      // The `ignoreUndefinedProperties: true` setting in firebase.ts will handle any undefined fields.
-      await setDoc(userDocRef, newUser);
-      return newUser;
+      const userDocRef = doc(db, "users", cleanUserObjectForFirestore.id);
+      // Use the cleaned object to write to Firestore
+      await setDoc(userDocRef, cleanUserObjectForFirestore);
+      
+      // Store the original object (with Date objects intact) in the local session
+      storeUserSession(baseUser);
+      return baseUser;
     } catch (error) {
       console.error("Error creating user in Firestore:", error);
-      console.error("Data that failed to write:", JSON.stringify(newUser, null, 2));
+      console.error("Data that failed to write:", JSON.stringify(cleanUserObjectForFirestore, null, 2));
       return null;
     }
   };
@@ -139,7 +143,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
         
         const userDoc = querySnapshot.docs[0];
-        const foundUser = { id: userDoc.id, ...userDoc.data() } as User;
+        const data = userDoc.data();
+        
+        // When fetching from Firestore, Timestamps need to be converted to Date objects
+        const foundUser: User = { 
+            id: userDoc.id, 
+            ...data,
+            createdAt: data.createdAt?.toDate ? data.createdAt.toDate() : (data.createdAt ? new Date(data.createdAt) : new Date()),
+            updatedAt: data.updatedAt?.toDate ? data.updatedAt.toDate() : (data.updatedAt ? new Date(data.updatedAt) : new Date()),
+        } as User;
         
         if (!foundUser.isActive) {
             throw new Error("User account is inactive.");
@@ -165,10 +177,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return;
      }
 
-     const userDocRef = doc(db, "users", userToUpdate.id);
+     const cleanUserObjectForFirestore = JSON.parse(JSON.stringify(userToUpdate));
+     const userDocRef = doc(db, "users", cleanUserObjectForFirestore.id);
      
-     // Pass the raw object to setDoc. The `ignoreUndefinedProperties` setting handles it.
-     await setDoc(userDocRef, userToUpdate, { merge: true });
+     await setDoc(userDocRef, cleanUserObjectForFirestore, { merge: true });
      storeUserSession(userToUpdate);
   };
 
