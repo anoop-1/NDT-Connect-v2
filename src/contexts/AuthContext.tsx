@@ -57,16 +57,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.setItem('ndt-user', JSON.stringify(userToStore));
   };
 
-  const register = async (details: RegisterDetails) => {
+  const register = async (details: RegisterDetails): Promise<User | null> => {
     const { email, role, name, isDemo = false, profileData = {} } = details;
 
-    const baseUser: User = {
-      id: `${role}-${Date.now()}`, // Simple unique ID for now
+    // Start with a base user structure.
+    const newUser: User = {
+      id: `${role}-${Date.now()}`,
       email: email,
       role: role,
       name: name,
       isDemo: isDemo,
-      isActive: true, // All new users are active by default
+      isActive: true,
       createdAt: new Date(),
       updatedAt: new Date(),
       profileImageUrl: null,
@@ -74,60 +75,58 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       providerProfile: null,
       inspectorProfile: null,
     };
-    
-    if (role === 'client' && profileData) {
-        baseUser.clientProfile = {
-            companyName: profileData.companyName || "",
-            industry: profileData.industry || "",
-            primaryLocation: profileData.primaryLocation || "",
-            contactNumber: profileData.contactNumber || "",
-        };
-    } else if (role === 'provider' && profileData) {
-        baseUser.providerProfile = {
-            companyName: profileData.companyName || "",
-            location: profileData.location || "",
-            contactNumber: profileData.contactNumber || "",
-            servicesOffered: profileData.servicesOffered || [],
-            personnelQualifications: profileData.personnelQualifications || [],
-            certifications: profileData.certifications || [],
-            procedureInfoUrl: profileData.procedureInfoUrl || null,
-            companyLogoUrl: profileData.companyLogoUrl || null,
-            isVerified: false,
-            availableDocuments: [],
-            serviceRadius: "50 miles",
-            baseRate: 0,
-            description: `Newly registered provider.`,
-            specialization: "General NDT",
-            rating: 4.0,
-        };
-    } else if (role === 'inspector' && profileData) {
-        baseUser.inspectorProfile = {
-            association: profileData.association || 'freelancer',
-            contactNumber: profileData.contactNumber || "",
-            companyName: profileData.companyName || null,
-            location: profileData.location || null,
-            designation: profileData.designation || null,
-            personnelQualifications: profileData.personnelQualifications || [],
-        };
+
+    // Build the role-specific profile based on the provided data.
+    if (role === 'client') {
+      newUser.clientProfile = {
+        companyName: profileData.companyName || '',
+        industry: profileData.industry || '',
+        primaryLocation: profileData.primaryLocation || '',
+        contactNumber: profileData.contactNumber || '',
+      };
+    } else if (role === 'provider') {
+      newUser.providerProfile = {
+        // Fields from form
+        companyName: profileData.companyName || '',
+        location: profileData.location || '',
+        contactNumber: profileData.contactNumber || '',
+        servicesOffered: profileData.servicesOffered || [],
+        personnelQualifications: profileData.personnelQualifications || [],
+        certifications: profileData.certifications || [],
+        procedureInfoUrl: profileData.procedureInfoUrl || null,
+        companyLogoUrl: profileData.companyLogoUrl || null,
+        // Default fields not on form, required by the type
+        isVerified: false,
+        availableDocuments: [],
+        serviceRadius: '50 miles',
+        baseRate: 0,
+        description: 'Newly registered provider specializing in specified services.',
+        specialization: 'General NDT',
+        rating: 4.0, // Default starting rating
+      };
+    } else if (role === 'inspector') {
+      newUser.inspectorProfile = {
+        association: profileData.association || 'freelancer',
+        contactNumber: profileData.contactNumber || '',
+        companyName: profileData.companyName || null,
+        location: profileData.location || null,
+        designation: profileData.designation || null,
+        personnelQualifications: profileData.personnelQualifications || [],
+      };
     }
 
-    // --- NEW LOGIC ---
-    // This robustly creates a deep copy and removes all `undefined` values,
-    // which are not allowed by Firestore. It also converts Date objects to a format
-    // that Firestore can handle, which resolves the 400 Bad Request error.
-    const cleanUserObjectForFirestore = JSON.parse(JSON.stringify(baseUser));
-    
     try {
-      const userDocRef = doc(db, "users", cleanUserObjectForFirestore.id);
-      // Use the cleaned object to write to Firestore
-      await setDoc(userDocRef, cleanUserObjectForFirestore);
+      const userDocRef = doc(db, 'users', newUser.id);
+      // The `ignoreUndefinedProperties: true` in firebase.ts handles any potential undefined values.
+      // We send the `newUser` object directly. The Firestore SDK will handle Date objects correctly.
+      await setDoc(userDocRef, newUser);
       
-      // Store the original object (with Date objects intact) in the local session
-      storeUserSession(baseUser);
-      return baseUser;
+      storeUserSession(newUser);
+      return newUser;
     } catch (error) {
       console.error("Error creating user in Firestore:", error);
-      console.error("Data that failed to write:", JSON.stringify(cleanUserObjectForFirestore, null, 2));
+      // For detailed debugging if the issue somehow persists:
+      console.error("Data that failed to write:", JSON.stringify(newUser, null, 2));
       return null;
     }
   };
@@ -177,10 +176,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return;
      }
 
-     const cleanUserObjectForFirestore = JSON.parse(JSON.stringify(userToUpdate));
-     const userDocRef = doc(db, "users", cleanUserObjectForFirestore.id);
+     const userDocRef = doc(db, "users", userToUpdate.id);
      
-     await setDoc(userDocRef, cleanUserObjectForFirestore, { merge: true });
+     // Let Firestore handle dates and undefined properties
+     await setDoc(userDocRef, userToUpdate, { merge: true });
      storeUserSession(userToUpdate);
   };
 
