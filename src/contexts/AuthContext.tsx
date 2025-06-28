@@ -1,7 +1,8 @@
+
 // src/contexts/AuthContext.tsx
 "use client";
 
-import type { User, ClientProfileData, ProviderProfileData, InspectorProfileData } from '@/lib/types';
+import type { User, ClientProfileData, ProviderProfileData, InspectorProfileData, ServiceOffering, PersonnelQualification } from '@/lib/types';
 import type { Dispatch, ReactNode, SetStateAction } from 'react';
 import { createContext, useState, useEffect, useCallback } from 'react';
 import { db } from "@/lib/firebase";
@@ -13,7 +14,10 @@ interface RegisterDetails {
   role: 'client' | 'provider' | 'admin' | 'inspector';
   name: string;
   isDemo?: boolean;
-  profileData?: Partial<ClientProfileData & ProviderProfileData & InspectorProfileData>;
+  profileData?: Partial<ClientProfileData & ProviderProfileData & InspectorProfileData> & {
+      servicesOffered?: any[]; // Allow any for form data
+      personnelQualifications?: any[]; // Allow any for form data
+  };
 }
 
 interface AuthContextType {
@@ -29,40 +33,6 @@ interface AuthContextType {
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// A robust, recursive function to ensure data is clean for Firestore.
-function sanitizeForFirestore<T extends object>(data: T): T {
-    if (data === null || typeof data !== 'object') {
-        return data;
-    }
-
-    if (Array.isArray(data)) {
-        return data.map(item => sanitizeForFirestore(item)) as any;
-    }
-    
-    const sanitizedData: { [key: string]: any } = {};
-
-    for (const key in data) {
-        if (Object.prototype.hasOwnProperty.call(data, key)) {
-            const value = (data as any)[key];
-
-            if (value === undefined || value === null) {
-                sanitizedData[key] = null;
-            } else if (value instanceof Date) {
-                sanitizedData[key] = Timestamp.fromDate(value);
-            } else if (typeof value === 'number' && isNaN(value)) {
-                sanitizedData[key] = null;
-            } else if (typeof value === 'object') {
-                sanitizedData[key] = sanitizeForFirestore(value);
-            } else {
-                sanitizedData[key] = value;
-            }
-        }
-    }
-
-    return sanitizedData as T;
-}
-
-
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -73,7 +43,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       try {
         const storedUser = JSON.parse(storedUserJson) as User;
         if (storedUser && storedUser.id) {
-           // Re-hydrate Date objects if they were stringified in localStorage
           if (storedUser.createdAt) storedUser.createdAt = new Date(storedUser.createdAt);
           if (storedUser.updatedAt) storedUser.updatedAt = new Date(storedUser.updatedAt);
           setUser(storedUser);
@@ -101,8 +70,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       name: name,
       isDemo: isDemo,
       isActive: true,
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      createdAt: Timestamp.fromDate(new Date()),
+      updatedAt: Timestamp.fromDate(new Date()),
       profileImageUrl: null,
       clientProfile: null,
       providerProfile: null,
@@ -117,30 +86,41 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         contactNumber: profileData.contactNumber || '',
       };
     } else if (role === 'provider') {
-      newUser.providerProfile = {
-        companyName: profileData.companyName || '',
-        location: profileData.location || '',
-        contactNumber: profileData.contactNumber || '',
-        servicesOffered: (profileData.servicesOffered || []).map(s => ({
-            ...s,
-            rate: s.rate ? s.rate.toString() : '0',
-            tax: s.tax ? s.tax.toString() : '0'
-        })),
-        personnelQualifications: (profileData.personnelQualifications || []).map(p => ({
-            ...p,
-            quantity: p.quantity ? Number(p.quantity) : 1
-        })),
-        certifications: profileData.certifications || [],
-        procedureInfoUrl: profileData.procedureInfoUrl || null,
-        companyLogoUrl: profileData.companyLogoUrl || null,
-        isVerified: false,
-        availableDocuments: [],
-        serviceRadius: '50 miles',
-        baseRate: 0,
-        description: 'Newly registered provider specializing in specified services.',
-        specialization: 'General NDT',
-        rating: 4.0,
-      };
+        const servicesOffered: ServiceOffering[] = (profileData.servicesOffered || []).map((s: any) => ({
+            id: s.id,
+            name: s.name,
+            unit: s.unit,
+            currency: s.currency,
+            rate: parseFloat(s.rate) || 0, // Explicitly parse to number, default to 0
+            tax: s.tax ? parseFloat(s.tax) : undefined, // Parse or set to undefined
+            isCustom: s.isCustom,
+        }));
+
+        const personnelQualifications: PersonnelQualification[] = (profileData.personnelQualifications || []).map((p: any) => ({
+            id: p.id,
+            certificationBody: p.certificationBody,
+            level: p.level,
+            quantity: parseInt(p.quantity, 10) || 1, // Explicitly parse to integer, default to 1
+            expiryDate: p.expiryDate ? Timestamp.fromDate(new Date(p.expiryDate)) : null,
+        }));
+
+        newUser.providerProfile = {
+            companyName: profileData.companyName || '',
+            location: profileData.location || '',
+            contactNumber: profileData.contactNumber || '',
+            servicesOffered,
+            personnelQualifications,
+            certifications: profileData.certifications || [],
+            procedureInfoUrl: profileData.procedureInfoUrl || null,
+            companyLogoUrl: profileData.companyLogoUrl || null,
+            isVerified: false,
+            availableDocuments: [],
+            serviceRadius: '50 miles',
+            baseRate: servicesOffered[0]?.rate || 0, // Set base rate from first service
+            description: 'Newly registered provider specializing in specified services.',
+            specialization: 'General NDT',
+            rating: 4.0,
+        };
     } else if (role === 'inspector') {
       newUser.inspectorProfile = {
         association: profileData.association || 'freelancer',
@@ -148,21 +128,29 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         companyName: profileData.companyName || null,
         location: profileData.location || null,
         designation: profileData.designation || null,
-        personnelQualifications: profileData.personnelQualifications || [],
+        personnelQualifications: (profileData.personnelQualifications || []).map((p: any) => ({
+            id: p.id,
+            certificationBody: p.certificationBody,
+            level: p.level,
+            quantity: parseInt(p.quantity, 10) || 1,
+            expiryDate: p.expiryDate ? Timestamp.fromDate(new Date(p.expiryDate)) : null,
+        }))
       };
     }
 
     try {
       const userDocRef = doc(db, 'users', newUser.id);
+      await setDoc(userDocRef, newUser);
       
-      // *** THIS IS THE CRITICAL FIX ***
-      // Sanitize the entire object before sending it to Firestore.
-      const sanitizedUser = sanitizeForFirestore(newUser);
+      // Store user session with JS Date objects for local use
+      const localUser = {
+          ...newUser,
+          createdAt: (newUser.createdAt as Timestamp).toDate(),
+          updatedAt: (newUser.updatedAt as Timestamp).toDate(),
+      };
+      storeUserSession(localUser as User);
 
-      await setDoc(userDocRef, sanitizedUser);
-      
-      storeUserSession(newUser);
-      return newUser;
+      return localUser as User;
     } catch (error) {
       console.error("Error creating user in Firestore:", error);
       console.error("Data that failed to write:", JSON.stringify(newUser, null, 2));
@@ -177,7 +165,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
         const querySnapshot = await getDocs(q);
         if (querySnapshot.empty) {
-            return null; // User not found
+            return null;
         }
         
         const userDoc = querySnapshot.docs[0];
@@ -199,7 +187,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     } catch (error) {
         console.error("Error logging in with email:", error);
-        throw error; // Re-throw to be caught by the form
+        throw error;
     }
   };
 
@@ -216,12 +204,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
      const userDocRef = doc(db, "users", userToUpdate.id);
      
-     // Also apply sanitization here for robustness
-     const sanitizedUser = sanitizeForFirestore(userToUpdate);
-     await setDoc(userDocRef, sanitizedUser, { merge: true });
+     // Create a Firestore-compatible version of the user object
+     const firestoreUser = {
+       ...userToUpdate,
+       createdAt: Timestamp.fromDate(new Date(userToUpdate.createdAt)),
+       updatedAt: Timestamp.fromDate(new Date()), // Always update timestamp on change
+     };
+     
+     await setDoc(userDocRef, firestoreUser, { merge: true });
 
-     // We store the original userToUpdate in the session, not the sanitized one, 
-     // to preserve JS Date objects for the client.
      storeUserSession(userToUpdate);
   };
 

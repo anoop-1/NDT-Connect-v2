@@ -1,3 +1,4 @@
+
 // src/components/auth/RegisterForm.tsx
 "use client";
 
@@ -47,12 +48,12 @@ const serviceOfferingSchema = z.object({
   unit: z.string().min(1, "Unit is required."),
   currency: z.string().min(1, "Currency is required."),
   tax: z.string().refine(val => val === '' || !isNaN(parseFloat(val)), { message: "Tax must be a number or empty." }).optional(),
-  rate: z.string().refine(val => val === '' || !isNaN(parseFloat(val)), { message: "Rate must be a number or empty." }), 
+  rate: z.string().refine(val => val !== '' && !isNaN(parseFloat(val)), { message: "Rate is required and must be a number." }), 
   isCustom: z.boolean().optional(),
 });
 const personnelQualificationSchema = z.object({
   id: z.string(), 
-  quantity: z.preprocess(val => parseInt(String(val), 10), z.number().min(1, "Min 1")),
+  quantity: z.string().refine(val => !isNaN(parseInt(val)) && parseInt(val) > 0, { message: "Must be a positive number"}),
   certificationBody: z.string().min(1, "Body is required."), 
   level: z.string().min(1, "Level is required."),
   expiryDate: z.date().nullable().optional(),
@@ -250,11 +251,11 @@ const ProviderFields = ({ form, lists }: { form: UseFormReturn<any>, lists: type
                     {serviceFields.map((item, index) => (
                         <div key={item.id} className="flex gap-2 items-start">
                             <div className="grid flex-grow grid-cols-1 md:grid-cols-5 gap-2">
-                                <FormField control={form.control} name={`servicesOffered.${index}.name`} render={({ field }) => (<FormItem>{(item as ServiceOffering).isCustom ? <FormControl><Input placeholder="Custom service name" {...field}/></FormControl> : <Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select service"/></SelectTrigger></FormControl><SelectContent>{lists.providerNdtServices.map(s=><SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent></Select>}<FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`servicesOffered.${index}.name`} render={({ field }) => (<FormItem>{(item as any).isCustom ? <FormControl><Input placeholder="Custom service name" {...field}/></FormControl> : <Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select service"/></SelectTrigger></FormControl><SelectContent>{lists.providerNdtServices.map(s=><SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent></Select>}<FormMessage/></FormItem>)} />
                                 <FormField control={form.control} name={`servicesOffered.${index}.unit`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select unit"/></SelectTrigger></FormControl><SelectContent>{lists.serviceUnits.map(u=><SelectItem key={u} value={u}>{u}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
-                                <FormField control={form.control} name={`servicesOffered.${index}.rate`} render={({ field }) => (<FormItem><FormControl><Input placeholder="e.g. 100" {...field} /></FormControl><FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`servicesOffered.${index}.rate`} render={({ field }) => (<FormItem><FormControl><Input type="number" placeholder="e.g. 100" {...field} /></FormControl><FormMessage/></FormItem>)} />
                                 <FormField control={form.control} name={`servicesOffered.${index}.currency`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Curr."/></SelectTrigger></FormControl><SelectContent>{CURRENCIES.map(c=><SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
-                                <FormField control={form.control} name={`servicesOffered.${index}.tax`} render={({ field }) => (<FormItem><FormControl><Input placeholder="Tax %" {...field} /></FormControl><FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`servicesOffered.${index}.tax`} render={({ field }) => (<FormItem><FormControl><Input type="number" placeholder="Tax %" {...field} /></FormControl><FormMessage/></FormItem>)} />
                             </div>
                             <Button type="button" variant="ghost" size="icon" onClick={() => removeService(index)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
                         </div>
@@ -268,14 +269,14 @@ const ProviderFields = ({ form, lists }: { form: UseFormReturn<any>, lists: type
                     {personnelFields.map((item, index) => (
                         <div key={item.id} className="flex gap-2 items-start">
                             <div className="grid flex-grow grid-cols-1 md:grid-cols-3 gap-2">
-                                <FormField control={form.control} name={`personnelQualifications.${index}.quantity`} render={({ field }) => (<FormItem><FormControl><Input type="number" placeholder="Qty" {...field} onChange={e => field.onChange(parseInt(e.target.value, 10) || 0)}/></FormControl><FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`personnelQualifications.${index}.quantity`} render={({ field }) => (<FormItem><FormControl><Input type="number" placeholder="Qty" {...field} /></FormControl><FormMessage/></FormItem>)} />
                                 <FormField control={form.control} name={`personnelQualifications.${index}.certificationBody`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Body"/></SelectTrigger></FormControl><SelectContent>{lists.qualificationBodies.map(b=><SelectItem key={b} value={b}>{b}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
                                 <FormField control={form.control} name={`personnelQualifications.${index}.level`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Level"/></SelectTrigger></FormControl><SelectContent>{lists.qualificationLevels.map(l=><SelectItem key={l} value={l}>{l}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
                             </div>
                             <Button type="button" variant="ghost" size="icon" onClick={() => removePersonnel(index)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
                         </div>
                     ))}
-                    <Button type="button" variant="outline" size="sm" onClick={() => appendPersonnel({ id: generateUniqueId(), quantity: 1, certificationBody: "", level: "", expiryDate: null })}><PlusCircle className="mr-2 h-4 w-4"/>Add Qualification</Button>
+                    <Button type="button" variant="outline" size="sm" onClick={() => appendPersonnel({ id: generateUniqueId(), quantity: "1", certificationBody: "", level: "", expiryDate: null })}><PlusCircle className="mr-2 h-4 w-4"/>Add Qualification</Button>
                 </CardContent>
             </Card>
 
@@ -415,7 +416,7 @@ export function RegisterForm() {
             location: "",
             contactNumber: "", 
             servicesOffered: [{ id: generateUniqueId(), name: "", rate: '', unit: "", currency: "USD", tax: "0", isCustom: false }], 
-            personnelQualifications: [{ id: generateUniqueId(), quantity: 1, certificationBody: "", level: "", expiryDate: null }], 
+            personnelQualifications: [{ id: generateUniqueId(), quantity: '1', certificationBody: "", level: "", expiryDate: null }], 
             certifications: [],
             procedureInfoUrl: "",
             companyLogoUrl: ""
@@ -438,25 +439,8 @@ export function RegisterForm() {
 
   async function onSubmit(values: FormSchemaType) {
     setIsLoading(true);
-    let profileData: Partial<ClientProfileData & ProviderProfileData & InspectorProfileData> = {};
-    if (values.role === "client") {
-        profileData = { companyName: values.companyName, industry: values.industry, primaryLocation: values.primaryLocation, contactNumber: values.contactNumber };
-    } else if (values.role === "provider") {
-        profileData = {
-            companyName: values.companyName,
-            location: values.location,
-            contactNumber: values.contactNumber,
-            servicesOffered: values.servicesOffered,
-            personnelQualifications: values.personnelQualifications,
-            certifications: values.certifications,
-            procedureInfoUrl: values.procedureInfoUrl,
-            companyLogoUrl: values.companyLogoUrl
-        };
-    } else if (values.role === "inspector") {
-        profileData = { association: values.association, contactNumber: values.contactNumber, companyName: values.companyName, location: values.location, designation: values.designation };
-    }
     
-    const registeredUser = await register({ email: values.email, role: values.role, name: values.name, profileData });
+    const registeredUser = await register({ email: values.email, role: values.role, name: values.name, profileData: values as any });
     if (registeredUser) {
         toast({ title: "Registration Successful!", description: `Please 'verify' your email on the login page for ${values.email}.`, duration: 7000 });
         router.push(`/login?status=verification_pending&email=${encodeURIComponent(values.email)}`);
