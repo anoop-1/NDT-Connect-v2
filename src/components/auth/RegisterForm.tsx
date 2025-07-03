@@ -40,7 +40,6 @@ const baseSchema = z.object({
   acceptTerms: z.boolean().refine(val => val === true, { message: "You must accept the terms and conditions." }),
 });
 
-// Corrected schema to properly handle number conversions from text inputs
 const serviceOfferingSchema = z.object({
   id: z.string(), 
   name: z.string().min(1, "Service name is required."), 
@@ -51,7 +50,7 @@ const serviceOfferingSchema = z.object({
     z.number({ invalid_type_error: "Tax must be a number" }).min(0).optional()
   ),
   rate: z.preprocess(
-    (val) => Number(val),
+    (val) => Number(String(val).trim() === "" ? 0 : val),
     z.number({ required_error: "Rate is required.", invalid_type_error: "Rate must be a number." }).positive("Rate must be positive.")
   ),
   isCustom: z.boolean().optional(),
@@ -351,13 +350,20 @@ export function RegisterForm() {
       });
 
       if (registeredUser) {
-        toast({ title: "Registration Successful!", description: "Please log in to continue.", duration: 5000 });
+        toast({ 
+          title: "Registration Almost Complete!", 
+          description: "A verification link has been sent to your email. Please check your inbox.", 
+          duration: 10000
+        });
         router.push(`/login?registered=true&email=${encodeURIComponent(values.email)}`);
       } else {
         toast({ title: "Registration Failed", description: "An unexpected error occurred. Please try again.", variant: "destructive" });
       }
     } catch (error: any) {
-      toast({ title: "Registration Failed", description: error.message || "An error occurred.", variant: "destructive" });
+      const message = error.code === 'auth/email-already-in-use' 
+        ? "An account with this email already exists." 
+        : error.message || "An error occurred.";
+      toast({ title: "Registration Failed", description: message, variant: "destructive" });
     } finally {
       setIsLoading(false);
     }

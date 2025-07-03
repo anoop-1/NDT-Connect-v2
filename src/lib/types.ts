@@ -63,10 +63,10 @@ export type ProviderProfileData = {
 export type User = {
   id: string;
   email: string;
-  password?: string; // Hashed password
   role: 'client' | 'provider' | 'admin' | 'inspector';
   name: string;
   profileImageUrl: string | null;
+  emailVerified?: boolean;
   isDemo?: boolean;
   isActive?: boolean;
   createdAt?: any; 

@@ -3,11 +3,19 @@
 
 import type { User, ClientProfileData, ProviderProfileData, InspectorProfileData } from '@/lib/types';
 import type { Dispatch, ReactNode, SetStateAction } from 'react';
-import { createContext, useState, useEffect } from 'react';
-import { db } from "@/lib/firebase";
-import { doc, getDoc, setDoc, getDocs, collection, query, where, limit, Timestamp } from "firebase/firestore";
+import { createContext, useState, useEffect, useCallback } from 'react';
+import { db, auth } from "@/lib/firebase";
+import { doc, getDoc, setDoc, Timestamp } from "firebase/firestore";
+import { 
+    onAuthStateChanged, 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, 
+    signOut, 
+    sendEmailVerification,
+    type User as FirebaseUser
+} from "firebase/auth";
 import { MOCK_DEMO_CLIENT, MOCK_DEMO_PROVIDER } from '@/lib/mockData';
-import bcrypt from 'bcryptjs';
+
 
 interface RegisterDetails {
   email: string;
@@ -22,8 +30,8 @@ interface AuthContextType {
   user: User | null;
   setUser: Dispatch<SetStateAction<User | null>>;
   loading: boolean;
-  register: (details: RegisterDetails) => Promise<User | null>;
-  loginWithEmail: (email: string, password?: string) => Promise<User | null>;
+  register: (details: RegisterDetails) => Promise<FirebaseUser | null>;
+  loginWithEmail: (email: string, password?: string) => Promise<FirebaseUser | null>;
   loginAsDemoUser: (role: 'client' | 'provider') => void;
   logout: () => void;
   updateUser: (userToUpdate: User) => Promise<void>;
@@ -35,50 +43,72 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
+  const fetchUserProfile = useCallback(async (firebaseUser: FirebaseUser): Promise<User | null> => {
+    const userDocRef = doc(db, 'users', firebaseUser.uid);
+    const userDoc = await getDoc(userDocRef);
+    if (userDoc.exists()) {
+      const data = userDoc.data();
+      const appUser: User = {
+        id: firebaseUser.uid,
+        email: firebaseUser.email!,
+        name: data.name,
+        role: data.role,
+        emailVerified: firebaseUser.emailVerified,
+        ...data
+      };
+      storeUserSession(appUser);
+      return appUser;
+    }
+    return null;
+  }, []);
+
   useEffect(() => {
-    const storedUserJson = localStorage.getItem('ndt-user');
-    if (storedUserJson) {
-      try {
-        const storedUser = JSON.parse(storedUserJson) as User;
-        if (storedUser && storedUser.id) {
-          if (storedUser.createdAt && !(storedUser.createdAt instanceof Date)) storedUser.createdAt = new Date(storedUser.createdAt);
-          if (storedUser.updatedAt && !(storedUser.updatedAt instanceof Date)) storedUser.updatedAt = new Date(storedUser.updatedAt);
-          setUser(storedUser);
-        }
-      } catch (error) {
-        console.error("Error parsing user from localStorage", error);
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      if (firebaseUser) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        await fetchUserProfile(firebaseUser);
+      } else {
+        // User is signed out
+        setUser(null);
         localStorage.removeItem('ndt-user');
       }
+      setLoading(false);
+    });
+
+    // Check for demo user in local storage as a fallback for non-Firebase auth sessions
+    const storedUserJson = localStorage.getItem('ndt-user');
+    if (storedUserJson) {
+      const storedUser = JSON.parse(storedUserJson);
+      if (storedUser.isDemo) {
+        setUser(storedUser);
+        setLoading(false);
+      }
     }
-    setLoading(false);
-  }, []);
+
+
+    return () => unsubscribe();
+  }, [fetchUserProfile]);
 
   const storeUserSession = (userToStore: User) => {
     setUser(userToStore);
     localStorage.setItem('ndt-user', JSON.stringify(userToStore));
   };
 
-  const register = async (details: RegisterDetails): Promise<User | null> => {
+  const register = async (details: RegisterDetails): Promise<FirebaseUser | null> => {
     const { email, role, name, isDemo = false, profileData, password } = details;
-
-    // Check if user already exists
-    const usersRef = collection(db, "users");
-    const q = query(usersRef, where("email", "==", email), limit(1));
-    const querySnapshot = await getDocs(q);
-    if (!querySnapshot.empty) {
-      throw new Error("An account with this email already exists.");
-    }
     
     if (!password) {
         throw new Error("Password is required for registration.");
     }
-    const hashedPassword = await bcrypt.hash(password, 10);
+    
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const firebaseUser = userCredential.user;
 
     const baseUser: Omit<User, 'id'> = {
-      email: email,
+      email: firebaseUser.email!,
       role: role,
       name: name,
-      password: hashedPassword,
       isDemo: isDemo,
       isActive: true,
       createdAt: Timestamp.fromDate(new Date()),
@@ -99,7 +129,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         contactNumber: profileData.contactNumber,
       };
     } else if (role === 'provider') {
-        const firstService = profileData.servicesOffered?.[0];
         finalUser.providerProfile = {
             companyName: profileData.companyName,
             location: profileData.location,
@@ -112,7 +141,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             isVerified: false,
             availableDocuments: [],
             serviceRadius: '50 miles',
-            baseRate: firstService?.rate || 0,
+            baseRate: profileData.servicesOffered?.[0]?.rate ? Number(profileData.servicesOffered[0].rate) : 0,
             description: 'Newly registered provider specializing in specified services.',
             specialization: 'General NDT',
             rating: 4.0,
@@ -129,69 +158,35 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     try {
-      const id = `${role}-${email.split('@')[0]}-${Date.now()}`;
-      const userDocRef = doc(db, 'users', id);
+      const userDocRef = doc(db, 'users', firebaseUser.uid);
       await setDoc(userDocRef, finalUser);
       
-      const userToReturn = { 
-        ...finalUser, 
-        id, 
-        createdAt: (finalUser.createdAt as Timestamp).toDate(),
-        updatedAt: (finalUser.updatedAt as Timestamp).toDate(),
-      } as User;
+      // Send verification email
+      await sendEmailVerification(firebaseUser);
 
-      // Do not log in user upon registration. They must log in manually.
-      return userToReturn;
+      return firebaseUser;
     } catch (error) {
-      console.error("Error creating user in Firestore:", error);
+      console.error("Error creating user profile in Firestore:", error);
+      // Optional: Delete the just-created Firebase Auth user if Firestore profile creation fails
+      // await firebaseUser.delete(); 
       throw new Error("Failed to create user account in the database.");
     }
   };
   
-  const loginWithEmail = async (email: string, password?: string): Promise<User | null> => {
-    const usersRef = collection(db, "users");
-    const q = query(usersRef, where("email", "==", email), limit(1));
-    
+  const loginWithEmail = async (email: string, password?: string): Promise<FirebaseUser | null> => {
+    if (!password) {
+        throw new Error("Password is required.");
+    }
     try {
-        const querySnapshot = await getDocs(q);
-        if (querySnapshot.empty) {
-            throw new Error("No account found with this email.");
-        }
-        
-        const userDoc = querySnapshot.docs[0];
-        const data = userDoc.data();
-        
-        if (data.isDemo) {
-          throw new Error("Please use the demo login buttons for demo accounts.");
-        }
-
-        if (!password || !data.password) {
-            throw new Error("Invalid login credentials.");
-        }
-
-        const isPasswordValid = await bcrypt.compare(password, data.password);
-
-        if (!isPasswordValid) {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        // onAuthStateChanged will handle setting the user state
+        return userCredential.user;
+    } catch (error: any) {
+        console.error("Error logging in with email:", error);
+        if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
             throw new Error("Invalid email or password.");
         }
-
-        const foundUser: User = { 
-            id: userDoc.id, 
-            ...data,
-            createdAt: data.createdAt?.toDate ? data.createdAt.toDate() : new Date(),
-            updatedAt: data.updatedAt?.toDate ? data.updatedAt.toDate() : new Date(),
-        } as User;
-        
-        if (!foundUser.isActive) {
-            throw new Error("This user account is inactive.");
-        }
-
-        storeUserSession(foundUser);
-        return foundUser;
-
-    } catch (error) {
-        console.error("Error logging in with email:", error);
-        throw error;
+        throw new Error("Login failed. Please try again.");
     }
   };
 
@@ -213,15 +208,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
        createdAt: Timestamp.fromDate(new Date(userToUpdate.createdAt)),
        updatedAt: Timestamp.fromDate(new Date()),
      };
-     // Remove id from the object to be written to Firestore
-     delete (firestoreUser as any).id;
      
-     await setDoc(userDocRef, firestoreUser, { merge: true });
+     // Remove fields that should not be in Firestore or are managed by Firebase Auth
+     const { id, emailVerified, ...dataToSave } = firestoreUser;
+     
+     await setDoc(userDocRef, dataToSave, { merge: true });
 
      storeUserSession(userToUpdate);
   };
 
-  const logout = () => {
+  const logout = async () => {
+    await signOut(auth);
     setUser(null);
     localStorage.removeItem('ndt-user');
   };

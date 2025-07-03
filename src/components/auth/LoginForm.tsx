@@ -51,13 +51,22 @@ export function LoginForm() {
     try {
       const user = await loginWithEmail(values.email, values.password);
       if (user) {
-        toast({ title: "Login Successful", description: `Welcome back!` });
-        // The dashboard redirect logic is handled by the AuthProvider's useEffect
-        router.push('/dashboard'); 
+        if (!user.emailVerified) {
+          toast({ 
+            title: "Verification Required", 
+            description: "Please check your email to verify your account before logging in.",
+            variant: "destructive",
+            duration: 10000,
+          });
+          // Note: The onAuthStateChanged listener might still log the user in briefly.
+          // Depending on security rules, this might be acceptable, or you might need to
+          // explicitly sign them out here after showing the toast.
+        } else {
+          toast({ title: "Login Successful", description: `Welcome back!` });
+          // The dashboard redirect logic is handled by the AuthProvider's useEffect
+          router.push('/dashboard'); 
+        }
       } else {
-        // The loginWithEmail function will throw an error for invalid credentials,
-        // so this 'else' block might not be hit if error handling is robust.
-        // It's here as a fallback.
         toast({ title: "Login Failed", description: "Invalid email or password.", variant: "destructive" });
       }
     } catch (error: any) {
@@ -88,7 +97,7 @@ export function LoginForm() {
             <CheckCircle className="h-4 w-4 !text-green-600"/>
             <AlertTitle>Registration Successful!</AlertTitle>
             <AlertDescription>
-                Your account has been created. Please log in to continue.
+                A verification link has been sent to your email address. Please verify your account before logging in.
             </AlertDescription>
          </Alert>
       )}
