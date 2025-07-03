@@ -23,7 +23,7 @@ import { useToast } from "@/hooks/use-toast";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useState, useEffect } from "react";
-import type { ClientProfileData, ProviderProfileData, InspectorProfileData, ServiceOffering, PersonnelQualification, CompanyCertification } from "@/lib/types";
+import type { ClientProfileData, ProviderProfileData, InspectorProfileData } from "@/lib/types";
 import { ListChecks, PlusCircle, Trash2, Award, Users2, FileText, User as UserIcon, Building, Activity } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -47,13 +47,22 @@ const serviceOfferingSchema = z.object({
   name: z.string().min(1, "Service name is required."), 
   unit: z.string().min(1, "Unit is required."),
   currency: z.string().min(1, "Currency is required."),
-  tax: z.string().refine(val => val === '' || !isNaN(parseFloat(val)), { message: "Tax must be a number or empty." }).optional(),
-  rate: z.string().refine(val => val !== '' && !isNaN(parseFloat(val)), { message: "Rate is required and must be a number." }), 
+  tax: z.preprocess(
+    (val) => val === "" ? 0 : Number(val),
+    z.number({ invalid_type_error: "Tax must be a number" }).min(0).optional()
+  ),
+  rate: z.preprocess(
+    (val) => Number(val),
+    z.number({ required_error: "Rate is required.", invalid_type_error: "Rate must be a number." }).positive("Rate must be positive.")
+  ),
   isCustom: z.boolean().optional(),
 });
 const personnelQualificationSchema = z.object({
   id: z.string(), 
-  quantity: z.string().refine(val => !isNaN(parseInt(val)) && parseInt(val) > 0, { message: "Must be a positive number"}),
+  quantity: z.preprocess(
+    (val) => parseInt(String(val), 10),
+    z.number({ required_error: "Quantity is required.", invalid_type_error: "Quantity must be a whole number." }).int().positive("Quantity must be positive.")
+  ),
   certificationBody: z.string().min(1, "Body is required."), 
   level: z.string().min(1, "Level is required."),
   expiryDate: z.date().nullable().optional(),
@@ -260,7 +269,7 @@ const ProviderFields = ({ form, lists }: { form: UseFormReturn<any>, lists: type
                             <Button type="button" variant="ghost" size="icon" onClick={() => removeService(index)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
                         </div>
                     ))}
-                    <div className="flex gap-2"><Button type="button" variant="outline" size="sm" onClick={() => appendService({ id: generateUniqueId(), name: "", rate: '', unit: "", currency: "USD", tax: "0", isCustom: false })}><PlusCircle className="mr-2 h-4 w-4"/>Add Service</Button></div>
+                    <div className="flex gap-2"><Button type="button" variant="outline" size="sm" onClick={() => appendService({ id: generateUniqueId(), name: "", rate: 0, unit: "", currency: "USD", tax: 0, isCustom: false })}><PlusCircle className="mr-2 h-4 w-4"/>Add Service</Button></div>
                 </CardContent>
             </Card>
 
@@ -276,7 +285,7 @@ const ProviderFields = ({ form, lists }: { form: UseFormReturn<any>, lists: type
                             <Button type="button" variant="ghost" size="icon" onClick={() => removePersonnel(index)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
                         </div>
                     ))}
-                    <Button type="button" variant="outline" size="sm" onClick={() => appendPersonnel({ id: generateUniqueId(), quantity: "1", certificationBody: "", level: "", expiryDate: null })}><PlusCircle className="mr-2 h-4 w-4"/>Add Qualification</Button>
+                    <Button type="button" variant="outline" size="sm" onClick={() => appendPersonnel({ id: generateUniqueId(), quantity: 1, certificationBody: "", level: "", expiryDate: null })}><PlusCircle className="mr-2 h-4 w-4"/>Add Qualification</Button>
                 </CardContent>
             </Card>
 
@@ -415,8 +424,8 @@ export function RegisterForm() {
             companyName: "",
             location: "",
             contactNumber: "", 
-            servicesOffered: [{ id: generateUniqueId(), name: "", rate: '', unit: "", currency: "USD", tax: "0", isCustom: false }], 
-            personnelQualifications: [{ id: generateUniqueId(), quantity: '1', certificationBody: "", level: "", expiryDate: null }], 
+            servicesOffered: [{ id: generateUniqueId(), name: "", rate: undefined, unit: "", currency: "USD", tax: undefined, isCustom: false }], 
+            personnelQualifications: [{ id: generateUniqueId(), quantity: 1, certificationBody: "", level: "", expiryDate: null }], 
             certifications: [],
             procedureInfoUrl: "",
             companyLogoUrl: ""
@@ -440,7 +449,7 @@ export function RegisterForm() {
   async function onSubmit(values: FormSchemaType) {
     setIsLoading(true);
     
-    const registeredUser = await register({ email: values.email, role: values.role, name: values.name, profileData: values as any });
+    const registeredUser = await register({ email: values.email, role: values.role, name: values.name, profileData: values });
     if (registeredUser) {
         toast({ title: "Registration Successful!", description: `Please 'verify' your email on the login page for ${values.email}.`, duration: 7000 });
         router.push(`/login?status=verification_pending&email=${encodeURIComponent(values.email)}`);
@@ -487,3 +496,4 @@ export function RegisterForm() {
     </Form>
   );
 }
+

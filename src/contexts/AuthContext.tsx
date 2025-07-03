@@ -2,9 +2,9 @@
 // src/contexts/AuthContext.tsx
 "use client";
 
-import type { User, ClientProfileData, ProviderProfileData, InspectorProfileData, ServiceOffering, PersonnelQualification } from '@/lib/types';
+import type { User, ClientProfileData, ProviderProfileData, InspectorProfileData } from '@/lib/types';
 import type { Dispatch, ReactNode, SetStateAction } from 'react';
-import { createContext, useState, useEffect, useCallback } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import { db } from "@/lib/firebase";
 import { doc, getDoc, setDoc, getDocs, collection, query, where, limit, Timestamp } from "firebase/firestore";
 import { MOCK_DEMO_CLIENT, MOCK_DEMO_PROVIDER } from '@/lib/mockData';
@@ -14,10 +14,7 @@ interface RegisterDetails {
   role: 'client' | 'provider' | 'admin' | 'inspector';
   name: string;
   isDemo?: boolean;
-  profileData?: Partial<ClientProfileData & ProviderProfileData & InspectorProfileData> & {
-      servicesOffered?: any[]; // Allow any for form data
-      personnelQualifications?: any[]; // Allow any for form data
-  };
+  profileData: any; // Allow any from form
 }
 
 interface AuthContextType {
@@ -43,8 +40,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       try {
         const storedUser = JSON.parse(storedUserJson) as User;
         if (storedUser && storedUser.id) {
-          if (storedUser.createdAt) storedUser.createdAt = new Date(storedUser.createdAt);
-          if (storedUser.updatedAt) storedUser.updatedAt = new Date(storedUser.updatedAt);
+          if (storedUser.createdAt && !(storedUser.createdAt instanceof Date)) storedUser.createdAt = new Date(storedUser.createdAt);
+          if (storedUser.updatedAt && !(storedUser.updatedAt instanceof Date)) storedUser.updatedAt = new Date(storedUser.updatedAt);
           setUser(storedUser);
         }
       } catch (error) {
@@ -61,10 +58,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const register = async (details: RegisterDetails): Promise<User | null> => {
-    const { email, role, name, isDemo = false, profileData = {} } = details;
+    const { email, role, name, isDemo = false, profileData } = details;
 
-    const newUser: User = {
-      id: `${role}-${Date.now()}`,
+    const baseUser: Omit<User, 'id'> = {
       email: email,
       role: role,
       name: name,
@@ -78,82 +74,62 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       inspectorProfile: null,
     };
 
+    let finalUser: Omit<User, 'id'> = baseUser;
+
     if (role === 'client') {
-      newUser.clientProfile = {
-        companyName: profileData.companyName || '',
-        industry: profileData.industry || '',
-        primaryLocation: profileData.primaryLocation || '',
-        contactNumber: profileData.contactNumber || '',
+      finalUser.clientProfile = {
+        companyName: profileData.companyName,
+        industry: profileData.industry,
+        primaryLocation: profileData.primaryLocation,
+        contactNumber: profileData.contactNumber,
       };
     } else if (role === 'provider') {
-        const servicesOffered: ServiceOffering[] = (profileData.servicesOffered || []).map((s: any) => ({
-            id: s.id,
-            name: s.name,
-            unit: s.unit,
-            currency: s.currency,
-            rate: parseFloat(s.rate) || 0, // Explicitly parse to number, default to 0
-            tax: s.tax ? parseFloat(s.tax) : undefined, // Parse or set to undefined
-            isCustom: s.isCustom,
-        }));
-
-        const personnelQualifications: PersonnelQualification[] = (profileData.personnelQualifications || []).map((p: any) => ({
-            id: p.id,
-            certificationBody: p.certificationBody,
-            level: p.level,
-            quantity: parseInt(p.quantity, 10) || 1, // Explicitly parse to integer, default to 1
-            expiryDate: p.expiryDate ? Timestamp.fromDate(new Date(p.expiryDate)) : null,
-        }));
-
-        newUser.providerProfile = {
-            companyName: profileData.companyName || '',
-            location: profileData.location || '',
-            contactNumber: profileData.contactNumber || '',
-            servicesOffered,
-            personnelQualifications,
+        const firstService = profileData.servicesOffered?.[0];
+        finalUser.providerProfile = {
+            companyName: profileData.companyName,
+            location: profileData.location,
+            contactNumber: profileData.contactNumber,
+            servicesOffered: profileData.servicesOffered || [],
+            personnelQualifications: profileData.personnelQualifications || [],
             certifications: profileData.certifications || [],
             procedureInfoUrl: profileData.procedureInfoUrl || null,
             companyLogoUrl: profileData.companyLogoUrl || null,
             isVerified: false,
             availableDocuments: [],
             serviceRadius: '50 miles',
-            baseRate: servicesOffered[0]?.rate || 0, // Set base rate from first service
+            baseRate: firstService?.rate || 0,
             description: 'Newly registered provider specializing in specified services.',
             specialization: 'General NDT',
             rating: 4.0,
         };
     } else if (role === 'inspector') {
-      newUser.inspectorProfile = {
-        association: profileData.association || 'freelancer',
-        contactNumber: profileData.contactNumber || '',
+      finalUser.inspectorProfile = {
+        association: profileData.association,
+        contactNumber: profileData.contactNumber,
         companyName: profileData.companyName || null,
         location: profileData.location || null,
         designation: profileData.designation || null,
-        personnelQualifications: (profileData.personnelQualifications || []).map((p: any) => ({
-            id: p.id,
-            certificationBody: p.certificationBody,
-            level: p.level,
-            quantity: parseInt(p.quantity, 10) || 1,
-            expiryDate: p.expiryDate ? Timestamp.fromDate(new Date(p.expiryDate)) : null,
-        }))
+        personnelQualifications: [] // Keep it simple for registration
       };
     }
 
     try {
-      const userDocRef = doc(db, 'users', newUser.id);
-      await setDoc(userDocRef, newUser);
+      const id = `${role}-${Date.now()}`;
+      const userToStoreInDb = { ...finalUser, id };
+      const userDocRef = doc(db, 'users', id);
+      await setDoc(userDocRef, userToStoreInDb);
       
-      // Store user session with JS Date objects for local use
       const localUser = {
-          ...newUser,
-          createdAt: (newUser.createdAt as Timestamp).toDate(),
-          updatedAt: (newUser.updatedAt as Timestamp).toDate(),
+          ...userToStoreInDb,
+          createdAt: (userToStoreInDb.createdAt as Timestamp).toDate(),
+          updatedAt: (userToStoreInDb.updatedAt as Timestamp).toDate(),
       };
       storeUserSession(localUser as User);
 
       return localUser as User;
     } catch (error) {
       console.error("Error creating user in Firestore:", error);
-      console.error("Data that failed to write:", JSON.stringify(newUser, null, 2));
+      console.error("Data that failed to write:", JSON.stringify(finalUser, null, 2));
       return null;
     }
   };

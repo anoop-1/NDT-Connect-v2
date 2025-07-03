@@ -1,4 +1,5 @@
 
+
 export type ClientProfileData = {
   companyName: string;
   industry: string;
