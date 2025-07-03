@@ -1,4 +1,3 @@
-
 // src/contexts/AuthContext.tsx
 "use client";
 
@@ -8,9 +7,11 @@ import { createContext, useState, useEffect } from 'react';
 import { db } from "@/lib/firebase";
 import { doc, getDoc, setDoc, getDocs, collection, query, where, limit, Timestamp } from "firebase/firestore";
 import { MOCK_DEMO_CLIENT, MOCK_DEMO_PROVIDER } from '@/lib/mockData';
+import bcrypt from 'bcryptjs';
 
 interface RegisterDetails {
   email: string;
+  password?: string;
   role: 'client' | 'provider' | 'admin' | 'inspector';
   name: string;
   isDemo?: boolean;
@@ -19,10 +20,10 @@ interface RegisterDetails {
 
 interface AuthContextType {
   user: User | null;
-  setUser: Dispatch<SetStateAction<User | null>>; // For direct state manipulation if needed
+  setUser: Dispatch<SetStateAction<User | null>>;
   loading: boolean;
   register: (details: RegisterDetails) => Promise<User | null>;
-  loginWithEmail: (email: string) => Promise<User | null>;
+  loginWithEmail: (email: string, password?: string) => Promise<User | null>;
   loginAsDemoUser: (role: 'client' | 'provider') => void;
   logout: () => void;
   updateUser: (userToUpdate: User) => Promise<void>;
@@ -58,12 +59,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const register = async (details: RegisterDetails): Promise<User | null> => {
-    const { email, role, name, isDemo = false, profileData } = details;
+    const { email, role, name, isDemo = false, profileData, password } = details;
+
+    // Check if user already exists
+    const usersRef = collection(db, "users");
+    const q = query(usersRef, where("email", "==", email), limit(1));
+    const querySnapshot = await getDocs(q);
+    if (!querySnapshot.empty) {
+      throw new Error("An account with this email already exists.");
+    }
+    
+    if (!password) {
+        throw new Error("Password is required for registration.");
+    }
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const baseUser: Omit<User, 'id'> = {
       email: email,
       role: role,
       name: name,
+      password: hashedPassword,
       isDemo: isDemo,
       isActive: true,
       createdAt: Timestamp.fromDate(new Date()),
@@ -109,53 +124,66 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         companyName: profileData.companyName || null,
         location: profileData.location || null,
         designation: profileData.designation || null,
-        personnelQualifications: [] // Keep it simple for registration
+        personnelQualifications: [] 
       };
     }
 
     try {
-      const id = `${role}-${Date.now()}`;
-      const userToStoreInDb = { ...finalUser, id };
+      const id = `${role}-${email.split('@')[0]}-${Date.now()}`;
       const userDocRef = doc(db, 'users', id);
-      await setDoc(userDocRef, userToStoreInDb);
+      await setDoc(userDocRef, finalUser);
       
-      const localUser = {
-          ...userToStoreInDb,
-          createdAt: (userToStoreInDb.createdAt as Timestamp).toDate(),
-          updatedAt: (userToStoreInDb.updatedAt as Timestamp).toDate(),
-      };
-      storeUserSession(localUser as User);
+      const userToReturn = { 
+        ...finalUser, 
+        id, 
+        createdAt: (finalUser.createdAt as Timestamp).toDate(),
+        updatedAt: (finalUser.updatedAt as Timestamp).toDate(),
+      } as User;
 
-      return localUser as User;
+      // Do not log in user upon registration. They must log in manually.
+      return userToReturn;
     } catch (error) {
       console.error("Error creating user in Firestore:", error);
-      console.error("Data that failed to write:", JSON.stringify(finalUser, null, 2));
-      return null;
+      throw new Error("Failed to create user account in the database.");
     }
   };
   
-  const loginWithEmail = async (email: string): Promise<User | null> => {
+  const loginWithEmail = async (email: string, password?: string): Promise<User | null> => {
     const usersRef = collection(db, "users");
-    const q = query(usersRef, where("email", "==", email), where("isDemo", "!=", true), limit(1));
+    const q = query(usersRef, where("email", "==", email), limit(1));
     
     try {
         const querySnapshot = await getDocs(q);
         if (querySnapshot.empty) {
-            return null;
+            throw new Error("No account found with this email.");
         }
         
         const userDoc = querySnapshot.docs[0];
         const data = userDoc.data();
         
+        if (data.isDemo) {
+          throw new Error("Please use the demo login buttons for demo accounts.");
+        }
+
+        if (!password || !data.password) {
+            throw new Error("Invalid login credentials.");
+        }
+
+        const isPasswordValid = await bcrypt.compare(password, data.password);
+
+        if (!isPasswordValid) {
+            throw new Error("Invalid email or password.");
+        }
+
         const foundUser: User = { 
             id: userDoc.id, 
             ...data,
-            createdAt: data.createdAt?.toDate ? data.createdAt.toDate() : (data.createdAt ? new Date(data.createdAt) : new Date()),
-            updatedAt: data.updatedAt?.toDate ? data.updatedAt.toDate() : (data.updatedAt ? new Date(data.updatedAt) : new Date()),
+            createdAt: data.createdAt?.toDate ? data.createdAt.toDate() : new Date(),
+            updatedAt: data.updatedAt?.toDate ? data.updatedAt.toDate() : new Date(),
         } as User;
         
         if (!foundUser.isActive) {
-            throw new Error("User account is inactive.");
+            throw new Error("This user account is inactive.");
         }
 
         storeUserSession(foundUser);
@@ -180,12 +208,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
      const userDocRef = doc(db, "users", userToUpdate.id);
      
-     // Create a Firestore-compatible version of the user object
      const firestoreUser = {
        ...userToUpdate,
        createdAt: Timestamp.fromDate(new Date(userToUpdate.createdAt)),
-       updatedAt: Timestamp.fromDate(new Date()), // Always update timestamp on change
+       updatedAt: Timestamp.fromDate(new Date()),
      };
+     // Remove id from the object to be written to Firestore
+     delete (firestoreUser as any).id;
      
      await setDoc(userDocRef, firestoreUser, { merge: true });
 

@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -16,10 +15,12 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/hooks/useAuth";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Separator } from "@/components/ui/separator";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { CheckCircle } from "lucide-react";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
@@ -28,60 +29,42 @@ const formSchema = z.object({
 
 type FormSchemaType = z.infer<typeof formSchema>;
 
-// Admin credentials (for mock purposes)
-const ADMIN_EMAIL = "anoop@atlantisinspection.com";
-const ADMIN_PASSWORD = "Atlantis9$";
-
 export function LoginForm() {
-  const { register, loginWithEmail, loginAsDemoUser } = useAuth();
+  const { loginWithEmail, loginAsDemoUser } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const searchParams = useSearchParams();
+  const registrationSuccess = searchParams.get('registered');
+  const userEmail = searchParams.get('email');
 
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: "",
+      email: userEmail || "",
       password: "",
     },
   });
   
   async function onSubmit(values: FormSchemaType) {
     setIsLoading(true);
-    
-    // Admin login is a special case that still uses the database
-    if (values.email.toLowerCase() === ADMIN_EMAIL.toLowerCase() && values.password === ADMIN_PASSWORD) {
-      try {
-        let adminUser = await loginWithEmail(values.email);
-        if (!adminUser) {
-           adminUser = await register({ email: values.email, role: 'admin', name: 'Anoop R'});
-        }
-        if (adminUser) {
-            toast({ title: "Admin Login Successful", description: "Welcome, Administrator!" });
-            router.push("/admin/dashboard");
-        }
-      } catch (error: any) {
-        toast({ title: "Admin Login Failed", description: error.message, variant: "destructive" });
-      } finally {
-        setIsLoading(false);
-      }
-      return;
-    }
-
-    // Regular user login (non-demo)
     try {
-        const user = await loginWithEmail(values.email);
-        if (user) {
-            toast({ title: "Login Successful", description: `Welcome back, ${user.name || user.email}!` });
-            router.push("/dashboard");
-        } else {
-            toast({ title: "Login Failed", description: "User not found or password incorrect. Please register if you don't have an account.", variant: "destructive" });
-        }
+      const user = await loginWithEmail(values.email, values.password);
+      if (user) {
+        toast({ title: "Login Successful", description: `Welcome back!` });
+        // The dashboard redirect logic is handled by the AuthProvider's useEffect
+        router.push('/dashboard'); 
+      } else {
+        // The loginWithEmail function will throw an error for invalid credentials,
+        // so this 'else' block might not be hit if error handling is robust.
+        // It's here as a fallback.
+        toast({ title: "Login Failed", description: "Invalid email or password.", variant: "destructive" });
+      }
     } catch (error: any) {
-        toast({ title: "Login Failed", description: error.message, variant: "destructive" });
+      toast({ title: "Login Failed", description: error.message, variant: "destructive" });
+    } finally {
+      setIsLoading(false);
     }
-    
-    setIsLoading(false);
   }
 
   const handleDemoLogin = (role: 'client' | 'provider') => {
@@ -100,6 +83,15 @@ export function LoginForm() {
 
   return (
     <>
+      {registrationSuccess && (
+         <Alert variant="default" className="mb-4 bg-green-50 border-green-200 text-green-800">
+            <CheckCircle className="h-4 w-4 !text-green-600"/>
+            <AlertTitle>Registration Successful!</AlertTitle>
+            <AlertDescription>
+                Your account has been created. Please log in to continue.
+            </AlertDescription>
+         </Alert>
+      )}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <FormField
@@ -124,7 +116,6 @@ export function LoginForm() {
                 <FormControl>
                   <Input type="password" placeholder="••••••••" {...field} />
                 </FormControl>
-                <FormDescription>Password checked for admin users.</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -134,7 +125,7 @@ export function LoginForm() {
           </Button>
         </form>
       </Form>
-
+      
       <Separator className="my-6" />
       
       <div className="space-y-3">

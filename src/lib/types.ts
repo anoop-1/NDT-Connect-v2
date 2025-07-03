@@ -22,24 +22,20 @@ export type PersonnelQualification = {
   quantity: number;
   certificationBody: string;
   level: string;
-  expiryDate?: Date | null;
 };
 
 export type CompanyCertification = {
   id:string;
   name: string;
   category?: string;
-  expiryDate?: Date | null;
 };
 
 export type InspectorProfileData = {
   association: 'freelancer' | 'company';
   contactNumber: string;
-  // Company-specific fields
   companyName: string | null;
   location: string | null; // City, State
   designation: string | null;
-  // Common fields
   personnelQualifications: PersonnelQualification[];
 };
 
@@ -65,15 +61,16 @@ export type ProviderProfileData = {
 };
 
 export type User = {
-  id: string; // This should be the Firebase Auth UID in a real app
+  id: string;
   email: string;
+  password?: string; // Hashed password
   role: 'client' | 'provider' | 'admin' | 'inspector';
   name: string;
   profileImageUrl: string | null;
   isDemo?: boolean;
   isActive?: boolean;
-  createdAt?: any; // To hold Firestore serverTimestamp
-  updatedAt?: any; // To hold Firestore serverTimestamp
+  createdAt?: any; 
+  updatedAt?: any; 
   clientProfile: ClientProfileData | null;
   providerProfile: ProviderProfileData | null;
   inspectorProfile: InspectorProfileData | null;
@@ -96,30 +93,30 @@ export type ServiceProvider = {
   personnelQualifications?: PersonnelQualification[];
   isVerified?: boolean;
   availableDocuments?: string[];
-  isCompany: boolean; // Flag to distinguish between company and inspector
+  isCompany: boolean;
 };
 
 export type ServiceRequest = {
-  id: string; // Firestore document ID
+  id: string; 
   clientId: string;
-  clientName?: string; // Denormalized for display
-  clientEmail?: string; // Denormalized for display
+  clientName?: string;
+  clientEmail?: string;
   providerId: string | null;
   providerName: string | null;
   serviceType: string;
   location: string;
   description: string;
-  requestedDate: any; // Can be string (from mock) or Firestore Timestamp
+  requestedDate: any;
   estimatedCost: number | null;
   status: 'Pending' | 'Confirmed' | 'In Progress' | 'Completed' | 'Cancelled';
-  createdAt?: any; // Firestore serverTimestamp
-  updatedAt?: any; // Firestore serverTimestamp
-  fileAttachmentUrl?: string | null; // URL to file in Firebase Storage
+  createdAt?: any;
+  updatedAt?: any;
+  fileAttachmentUrl?: string | null;
 };
 
 export type ChatMessage = {
   id: string;
-  senderId: string; // User ID or "system" or "provider-simulated"
+  senderId: string;
   text: string;
   timestamp: string; // ISO string
 };
