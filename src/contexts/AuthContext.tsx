@@ -183,7 +183,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         return userCredential.user;
     } catch (error: any) {
         console.error("Error logging in with email:", error);
-        if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+        if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
             throw new Error("Invalid email or password.");
         }
         throw new Error("Login failed. Please try again.");
