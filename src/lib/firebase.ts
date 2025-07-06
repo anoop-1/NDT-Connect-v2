@@ -143,29 +143,20 @@ Collections:
 
 4. predefinedLists:
    - Purpose: Store admin-managed lists that populate dropdowns in the application.
-   - Document ID: A descriptive name for the list (e.g., "clientNdtServices", "companyCertifications", "serviceUnitsProviderForm").
-   - Example Document (for Service Units used in provider profile/registration):
+   - Document ID: A descriptive name for the list (e.g., "clientNdtServices", "companyCertifications").
+   - Example Document (for Service Units):
      {
-       id: "serviceUnits", // Matches the document ID for clarity
+       id: "serviceUnits",
        name: "Service Units",
-       items: [
-         "per hour", "per day", "per month", "per meter",
-         "per mm of thickness", "per inch of thickness", "per project"
-       ],
+       items: [ "per hour", "per day", "per project" ],
        lastUpdated: Timestamp
      }
-   // Similar documents for:
-   // - clientNdtServices
-   // - providerNdtServices
-   // - companyCertifications
-   // - personnelQualificationBodies
-   // - personnelQualificationLevels
 
 How Collections are Created:
 Firestore collections are created automatically when you write the first document to them.
 You can do this by:
-  1. Manually adding the first document via the Firebase Console (useful for initial setup of `predefinedLists`). For example, create the 'predefinedLists' collection, then add a document with ID 'serviceUnits' and the fields 'name' and 'items' as shown above.
-  2. Programmatically from your application code when a new entity is created (e.g., a new user document is created in the `users` collection upon registration).
+  1. Manually adding the first document via the Firebase Console (useful for initial setup of `predefinedLists`).
+  2. Programmatically from your application code. For example, the new Admin->Manage Predefined Lists page will automatically create and seed these lists if they do not exist when the page is loaded.
 
 Security Rules:
 Remember to configure Firestore Security Rules in the Firebase Console to control who can read from and write to these collections.
