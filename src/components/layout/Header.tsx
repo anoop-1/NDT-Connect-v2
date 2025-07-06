@@ -51,9 +51,6 @@ export function Header() {
               <Link href="/find-providers" className={navLinkClasses("/find-providers")}>
                 <Search className="h-4 w-4 inline-block mr-1" /> Find Providers
               </Link>
-              <Link href="/recommendations" className={navLinkClasses("/recommendations")}>
-                <Sparkles className="h-4 w-4 inline-block mr-1" /> Get Recommendations
-              </Link>
                <Link href="/my-requests" className={navLinkClasses("/my-requests")}>
                 <Briefcase className="h-4 w-4 inline-block mr-1" /> My Requests
               </Link>

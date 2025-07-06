@@ -112,12 +112,6 @@ export default function ProviderDashboardPage() {
           icon={<Briefcase className="h-8 w-8 text-primary" />}
         />
         <DashboardActionCard
-          title="AI Procedure Writer"
-          description="Use AI to generate comprehensive NDT procedures."
-          href="/provider-dashboard/ai-procedure-writer"
-          icon={<FileSignature className="h-8 w-8 text-primary" />}
-        />
-        <DashboardActionCard
           title="Manage Profile"
           description="Update your company details, services offered, and availability."
           href="/provider-profile" 

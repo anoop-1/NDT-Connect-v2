@@ -61,12 +61,6 @@ export default function DashboardPage() {
             icon={<Search className="h-8 w-8 text-primary" />}
           />
           <DashboardActionCard
-            title="Get Recommendations"
-            description="Use our AI tool to find the best provider for your needs."
-            href="/recommendations"
-            icon={<Sparkles className="h-8 w-8 text-primary" />}
-          />
-          <DashboardActionCard
             title="My Service Requests"
             description="Track the status of your ongoing and past service requests."
             href="/my-requests"
