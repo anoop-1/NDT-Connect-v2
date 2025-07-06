@@ -25,8 +25,6 @@ import { ListChecks, PlusCircle, Trash2, Award, Users2, FileText, User as UserIc
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/lib/firebase";
 import { useRouter } from "next/navigation";
 
 // --- ZOD SCHEMAS ---
@@ -55,6 +53,7 @@ const serviceOfferingSchema = z.object({
   ),
   isCustom: z.boolean().optional(),
 });
+
 const personnelQualificationSchema = z.object({
   id: z.string(), 
   quantity: z.preprocess(
@@ -64,6 +63,7 @@ const personnelQualificationSchema = z.object({
   certificationBody: z.string().min(1, "Body is required."), 
   level: z.string().min(1, "Level is required."),
 });
+
 const companyCertificationSchema = z.object({ 
   id: z.string(), 
   name: z.string().min(1, "Cert name is required."), 
@@ -99,9 +99,11 @@ const inspectorSchema = baseSchema.extend({
     designation: z.string().optional(),
 });
 
-
 const formSchema = z.discriminatedUnion("role", [clientSchema, providerSchema, inspectorSchema])
   .superRefine((data, ctx) => {
+    if (data.password !== data.confirmPassword) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Passwords don't match", path: ["confirmPassword"] });
+    }
     if (data.role === 'inspector' && data.association === "company") {
         if (!data.companyName || data.companyName.length < 2) {
             ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Company name is required.", path: ["companyName"] });
@@ -113,25 +115,20 @@ const formSchema = z.discriminatedUnion("role", [clientSchema, providerSchema, i
             ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Designation is required.", path: ["designation"] });
         }
     }
-  })
-  .refine((data) => data.password === data.confirmPassword, { message: "Passwords don't match", path: ["confirmPassword"] });
+  });
 
 type FormSchemaType = z.infer<typeof formSchema>;
 
 const CURRENCIES = [ "USD", "EUR", "GBP", "INR", "CAD", "AUD", "JPY", "CNY", "CHF", "AED", "SGD", "BRL", "ZAR", "SAR", "QAR", "OMR", "KWD", "BHD" ];
+const SERVICE_UNITS = ["per hour", "per day", "per project", "per item", "per foot", "per weld"];
+const NDT_SERVICES_TABLE = [ "Radiographic Testing", "Ultrasonic Testing", "Magnetic Particle Testing", "Liquid Penetrant Testing", "Visual Testing", "Eddy Current Testing" ];
+const QUALIFICATION_BODIES = [ "ASNT", "PCN", "ISO 9712", "CSWIP", "ACCP", "NAS 410" ];
+const QUALIFICATION_LEVELS = ["Level I", "Level II", "Level III", "Technician", "Trainee"];
+const COMPANY_CERTIFICATIONS = [ "ISO 9001", "API Q1", "Nadcap", "AS9100", "ISO/IEC 17025" ];
 
-const BUILT_IN_LISTS = {
-    providerNdtServices: [ "Radiographic Testing", "Ultrasonic Testing", "Magnetic Particle Testing", "Liquid Penetrant Testing", "Visual Testing", "Eddy Current Testing", "Leak Testing", "Acoustic Emission" ],
-    serviceUnits: [ "per hour", "per day", "per project", "per item", "per foot", "per weld" ],
-    qualificationBodies: [ "ASNT", "PCN", "ISO 9712", "CSWIP", "ACCP", "NAS 410" ],
-    qualificationLevels: ["Level I", "Level II", "Level III", "Technician", "Trainee"],
-    companyCertifications: [
-      "API Q1", "AS9100", "IACS - American Bureau of Shipping (ABS)", "IACS - Bureau Veritas (BV)", "IACS - China Classification Society (CCS)", "IACS - Croatian Register of Shipping (CRS)", "IACS - DNV", "IACS - Indian Register of Shipping (IRS)", "IACS - Korean Register of Shipping (KR)", "IACS - Lloyd's Register (LR)", "IACS - Nippon Kaiji Kyokai (ClassNK)", "IACS - Polski Rejestr Statków (PRS)", "IACS - RINA Services (RINA)", "IACS - Russian Maritime Register of Shipping (RS)", "ISO 9001", "ISO 14001", "ISO 45001", "ISO/IEC 17020", "ISO/IEC 17024", "ISO/IEC 17025", "Nadcap", "NAS 410",
-    ],
-};
 const agreementTexts = {
   client: `Terms of Service for Clients: NDT Connect acts SOLELY AS A FACILITATOR to help Clients find and connect with Service Providers. We are not a party to any agreement between you and any Service Provider. You are solely responsible for conducting your own due diligence, verifying qualifications, and negotiating terms. NDT Connect is not responsible for the quality or outcome of services and shall not be liable for any damages arising from your use of the Platform or the services provided by a Service Provider. By registering, you agree to these terms.`,
-  provider: `Terms of Service for Service Providers: You are responsible for providing accurate and current information in your profile. You agree to perform services professionally and in accordance with all client requirements and industry standards. All service agreements are strictly between you and the Client. NDT Connect is SOLELY AS A FACILITATOR and is not responsible for client actions or disputes. By registering, you agree to these terms.`,
+  provider: `Terms of Service for Service Providers: You are responsible for providing accurate and current information in your profile. You agree to perform services professionally and in accordance with all client requirements and industry standards. All service agreements are strictly between you and the Client. NDT Connect acts SOLELY AS A FACILITATOR and is not responsible for client actions or disputes. By registering, you agree to these terms.`,
   inspector: `Terms of Service for NDT Inspectors: You are responsible for providing accurate and verifiable information about your qualifications and experience. All inspection services must be performed with the highest degree of professionalism and adherence to industry standards. NDT Connect acts SOLELY AS A FACILITATOR. All contracts and disputes are directly between you (or your employer) and the Client. By registering, you agree to these terms.`,
 };
 
@@ -145,7 +142,7 @@ const ClientFields = ({ form }: { form: UseFormReturn<any> }) => (
   </div>
 );
 
-const ProviderFields = ({ form, lists }: { form: UseFormReturn<any>, lists: typeof BUILT_IN_LISTS }) => {
+const ProviderFields = ({ form }: { form: UseFormReturn<any> }) => {
     const { fields: serviceFields, append: appendService, remove: removeService } = useFieldArray({ control: form.control, name: "servicesOffered" });
     const { fields: personnelFields, append: appendPersonnel, remove: removePersonnel } = useFieldArray({ control: form.control, name: "personnelQualifications" });
     const { fields: certFields, append: appendCert, remove: removeCert } = useFieldArray({ control: form.control, name: "certifications" });
@@ -161,8 +158,8 @@ const ProviderFields = ({ form, lists }: { form: UseFormReturn<any>, lists: type
                     {serviceFields.map((item, index) => (
                         <div key={item.id} className="flex gap-2 items-start">
                             <div className="grid flex-grow grid-cols-1 md:grid-cols-5 gap-2">
-                                <FormField control={form.control} name={`servicesOffered.${index}.name`} render={({ field }) => (<FormItem>{(item as any).isCustom ? <FormControl><Input placeholder="Custom service name" {...field}/></FormControl> : <Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select service"/></SelectTrigger></FormControl><SelectContent>{lists.providerNdtServices.map(s=><SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent></Select>}<FormMessage/></FormItem>)} />
-                                <FormField control={form.control} name={`servicesOffered.${index}.unit`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select unit"/></SelectTrigger></FormControl><SelectContent>{lists.serviceUnits.map(u=><SelectItem key={u} value={u}>{u}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`servicesOffered.${index}.name`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select service"/></SelectTrigger></FormControl><SelectContent>{NDT_SERVICES_TABLE.map(s=><SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`servicesOffered.${index}.unit`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select unit"/></SelectTrigger></FormControl><SelectContent>{SERVICE_UNITS.map(u=><SelectItem key={u} value={u}>{u}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
                                 <FormField control={form.control} name={`servicesOffered.${index}.rate`} render={({ field }) => (<FormItem><FormControl><Input type="number" placeholder="e.g. 100" {...field} /></FormControl><FormMessage/></FormItem>)} />
                                 <FormField control={form.control} name={`servicesOffered.${index}.currency`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Curr."/></SelectTrigger></FormControl><SelectContent>{CURRENCIES.map(c=><SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
                                 <FormField control={form.control} name={`servicesOffered.${index}.tax`} render={({ field }) => (<FormItem><FormControl><Input type="number" placeholder="Tax %" {...field} /></FormControl><FormMessage/></FormItem>)} />
@@ -180,8 +177,8 @@ const ProviderFields = ({ form, lists }: { form: UseFormReturn<any>, lists: type
                         <div key={item.id} className="flex gap-2 items-start">
                             <div className="grid flex-grow grid-cols-1 md:grid-cols-3 gap-2">
                                 <FormField control={form.control} name={`personnelQualifications.${index}.quantity`} render={({ field }) => (<FormItem><FormControl><Input type="number" placeholder="Qty" {...field} /></FormControl><FormMessage/></FormItem>)} />
-                                <FormField control={form.control} name={`personnelQualifications.${index}.certificationBody`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Body"/></SelectTrigger></FormControl><SelectContent>{lists.qualificationBodies.map(b=><SelectItem key={b} value={b}>{b}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
-                                <FormField control={form.control} name={`personnelQualifications.${index}.level`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Level"/></SelectTrigger></FormControl><SelectContent>{lists.qualificationLevels.map(l=><SelectItem key={l} value={l}>{l}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`personnelQualifications.${index}.certificationBody`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Body"/></SelectTrigger></FormControl><SelectContent>{QUALIFICATION_BODIES.map(b=><SelectItem key={b} value={b}>{b}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`personnelQualifications.${index}.level`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Level"/></SelectTrigger></FormControl><SelectContent>{QUALIFICATION_LEVELS.map(l=><SelectItem key={l} value={l}>{l}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
                             </div>
                             <Button type="button" variant="ghost" size="icon" onClick={() => removePersonnel(index)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
                         </div>
@@ -195,7 +192,7 @@ const ProviderFields = ({ form, lists }: { form: UseFormReturn<any>, lists: type
                     {certFields.map((item, index) => (
                         <div key={item.id} className="flex gap-2 items-start">
                             <div className="grid flex-grow grid-cols-1 md:grid-cols-2 gap-2">
-                                <FormField control={form.control} name={`certifications.${index}.name`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Name"/></SelectTrigger></FormControl><SelectContent>{lists.companyCertifications.map(c=><SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`certifications.${index}.name`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Name"/></SelectTrigger></FormControl><SelectContent>{COMPANY_CERTIFICATIONS.map(c=><SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
                                 <FormField control={form.control} name={`certifications.${index}.category`} render={({ field }) => (<FormItem><FormControl><Input placeholder="e.g. Quality Mgmt" {...field}/></FormControl><FormMessage/></FormItem>)} />
                             </div>
                             <Button type="button" variant="ghost" size="icon" onClick={() => removeCert(index)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
@@ -243,8 +240,6 @@ export function RegisterForm() {
   const { toast } = useToast();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
-  const [predefinedLists, setPredefinedLists] = useState(BUILT_IN_LISTS);
-  const [isLoadingLists, setIsLoadingLists] = useState(true);
   
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
@@ -266,44 +261,7 @@ export function RegisterForm() {
   const currentRole = form.watch("role");
 
   useEffect(() => {
-    const fetchLists = async () => {
-        setIsLoadingLists(true);
-        try {
-            const listsCollectionRef = collection(db, "predefinedLists");
-            const querySnapshot = await getDocs(listsCollectionRef);
-            const fetchedLists: Record<string, string[]> = {};
-            querySnapshot.forEach((docSnap) => {
-                const data = docSnap.data();
-                if (docSnap.id && Array.isArray(data.items)) {
-                    fetchedLists[docSnap.id] = data.items;
-                }
-            });
-
-            // Merge fetched lists with defaults as a fallback
-            setPredefinedLists({
-                providerNdtServices: fetchedLists.providerNdtServices?.length ? fetchedLists.providerNdtServices : BUILT_IN_LISTS.providerNdtServices,
-                serviceUnits: fetchedLists.serviceUnits?.length ? fetchedLists.serviceUnits : BUILT_IN_LISTS.serviceUnits,
-                qualificationBodies: fetchedLists.qualificationBodies?.length ? fetchedLists.qualificationBodies : BUILT_IN_LISTS.qualificationBodies,
-                qualificationLevels: fetchedLists.qualificationLevels?.length ? fetchedLists.qualificationLevels : BUILT_IN_LISTS.qualificationLevels,
-                companyCertifications: fetchedLists.companyCertifications?.length ? fetchedLists.companyCertifications : BUILT_IN_LISTS.companyCertifications,
-            });
-
-        } catch (e) {
-            console.error("Error fetching predefined lists from Firestore:", e);
-            toast({
-                title: "Could not load form options",
-                description: "Using default values. Some options may be limited.",
-                variant: "destructive"
-            });
-        } finally {
-            setIsLoadingLists(false);
-        }
-    };
-
-    fetchLists();
-  }, [toast]);
-
-  useEffect(() => {
+    // This effect runs when the role changes to reset the form structure
     const baseValues = {
         name: form.getValues('name'),
         email: form.getValues('email'),
@@ -324,8 +282,8 @@ export function RegisterForm() {
             companyName: "",
             location: "",
             contactNumber: "", 
-            servicesOffered: [{ id: generateUniqueId(), name: "", rate: undefined, unit: "", currency: "USD", tax: undefined }], 
-            personnelQualifications: [{ id: generateUniqueId(), quantity: 1, certificationBody: "", level: "" }], 
+            servicesOffered: [{ id: generateUniqueId(), name: "Ultrasonic Testing", rate: undefined, unit: "per hour", currency: "USD", tax: undefined }], 
+            personnelQualifications: [{ id: generateUniqueId(), quantity: 1, certificationBody: "ASNT", level: "Level II" }], 
             certifications: [],
             procedureInfoUrl: "",
             companyLogoUrl: ""
@@ -394,15 +352,11 @@ export function RegisterForm() {
             </FormItem>
         )}/>
 
-        {isLoadingLists ? (
-             <div className="flex items-center justify-center p-8"><Activity className="h-6 w-6 animate-spin text-primary"/> <span className="ml-2">Loading Options...</span></div>
-        ) : (
-            <>
-                {currentRole === "client" && <ClientFields form={form} />}
-                {currentRole === "provider" && <ProviderFields form={form} lists={predefinedLists} />}
-                {currentRole === "inspector" && <InspectorFields form={form} />}
-            </>
-        )}
+        <>
+          {currentRole === "client" && <ClientFields form={form} />}
+          {currentRole === "provider" && <ProviderFields form={form} />}
+          {currentRole === "inspector" && <InspectorFields form={form} />}
+        </>
 
         <div className="space-y-3 pt-4">
             <Label className="text-lg font-semibold flex items-center"><FileText className="mr-2 h-5 w-5 text-primary" />Agreement</Label>
@@ -410,8 +364,8 @@ export function RegisterForm() {
             <FormField control={form.control} name="acceptTerms" render={({ field }) => ( <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-3 shadow-sm"><FormControl><Checkbox checked={field.value} onCheckedChange={field.onChange}/></FormControl><div className="space-y-1 leading-none"><FormLabel className="font-normal">I have read and agree to the User Agreement.</FormLabel><FormMessage/></div></FormItem> )} />
         </div>
 
-        <Button type="submit" className="w-full" disabled={isLoading || isLoadingLists}>
-          {isLoading ? <><Activity className="mr-2 h-4 w-4 animate-spin"/> Submitting...</> : isLoadingLists ? <><Activity className="mr-2 h-4 w-4 animate-spin"/> Loading Form...</> : "Create Account"}
+        <Button type="submit" className="w-full" disabled={isLoading}>
+          {isLoading ? <><Activity className="mr-2 h-4 w-4 animate-spin"/> Submitting...</> : "Create Account"}
         </Button>
       </form>
     </Form>

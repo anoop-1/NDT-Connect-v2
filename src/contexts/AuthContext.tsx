@@ -5,7 +5,7 @@ import type { User, ClientProfileData, ProviderProfileData, InspectorProfileData
 import type { Dispatch, ReactNode, SetStateAction } from 'react';
 import { createContext, useState, useEffect, useCallback } from 'react';
 import { db, auth } from "@/lib/firebase";
-import { doc, getDoc, setDoc, Timestamp } from "firebase/firestore";
+import { doc, getDoc, setDoc, Timestamp, updateDoc } from "firebase/firestore";
 import { 
     onAuthStateChanged, 
     createUserWithEmailAndPassword, 
@@ -51,11 +51,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const appUser: User = {
         id: firebaseUser.uid,
         email: firebaseUser.email!,
-        name: data.name,
-        role: data.role,
         emailVerified: firebaseUser.emailVerified,
         ...data
-      };
+      } as User;
       storeUserSession(appUser);
       return appUser;
     }
@@ -65,9 +63,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        await fetchUserProfile(firebaseUser);
+        // User is signed in
+        const userProfile = await fetchUserProfile(firebaseUser);
+        if (userProfile) {
+          setUser(userProfile);
+        } else {
+          // Profile doesn't exist in Firestore, maybe an error during registration
+          // Or this is a user from a previous auth system. For now, we log them out.
+          await signOut(auth);
+          setUser(null);
+          localStorage.removeItem('ndt-user');
+        }
       } else {
         // User is signed out
         setUser(null);
@@ -105,7 +111,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const firebaseUser = userCredential.user;
 
-    const baseUser: Omit<User, 'id'> = {
+    const baseUser: Partial<User> = {
       email: firebaseUser.email!,
       role: role,
       name: name,
@@ -119,7 +125,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       inspectorProfile: null,
     };
 
-    let finalUser: Omit<User, 'id'> = baseUser;
+    let finalUser: Partial<User> = baseUser;
 
     if (role === 'client') {
       finalUser.clientProfile = {
@@ -140,11 +146,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             companyLogoUrl: profileData.companyLogoUrl || null,
             isVerified: false,
             availableDocuments: [],
-            serviceRadius: '50 miles',
+            serviceRadius: '50 miles', // default value
             baseRate: profileData.servicesOffered?.[0]?.rate ? Number(profileData.servicesOffered[0].rate) : 0,
             description: 'Newly registered provider specializing in specified services.',
             specialization: 'General NDT',
-            rating: 4.0,
+            rating: 4.0, // default rating
         };
     } else if (role === 'inspector') {
       finalUser.inspectorProfile = {
@@ -153,12 +159,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         companyName: profileData.companyName || null,
         location: profileData.location || null,
         designation: profileData.designation || null,
-        personnelQualifications: [] 
+        personnelQualifications: [] // default empty
       };
     }
 
     try {
       const userDocRef = doc(db, 'users', firebaseUser.uid);
+      // We don't need to spread the finalUser object since it contains everything
       await setDoc(userDocRef, finalUser);
       
       // Send verification email
@@ -179,7 +186,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
     try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        // onAuthStateChanged will handle setting the user state
+        // onAuthStateChanged will handle fetching profile and setting the user state
         return userCredential.user;
     } catch (error: any) {
         console.error("Error logging in with email:", error);
@@ -196,25 +203,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const updateUser = async (userToUpdate: User) => {
-     if (userToUpdate.isDemo) {
+     if (!userToUpdate.id || userToUpdate.isDemo) {
         storeUserSession(userToUpdate);
         return;
      }
 
      const userDocRef = doc(db, "users", userToUpdate.id);
      
-     const firestoreUser = {
-       ...userToUpdate,
-       createdAt: Timestamp.fromDate(new Date(userToUpdate.createdAt)),
-       updatedAt: Timestamp.fromDate(new Date()),
-     };
+     const dataToSave: Partial<User> = { ...userToUpdate };
+     // Remove fields managed by Firebase Auth from the update payload
+     delete dataToSave.id;
+     delete (dataToSave as any).emailVerified; 
      
-     // Remove fields that should not be in Firestore or are managed by Firebase Auth
-     const { id, emailVerified, ...dataToSave } = firestoreUser;
-     
-     await setDoc(userDocRef, dataToSave, { merge: true });
+     // Set the update timestamp
+     dataToSave.updatedAt = Timestamp.fromDate(new Date());
 
-     storeUserSession(userToUpdate);
+     await updateDoc(userDocRef, dataToSave);
+
+     // Fetch the latest version to ensure local state is consistent
+     const updatedProfile = await fetchUserProfile(auth.currentUser!);
+     if(updatedProfile) {
+       storeUserSession(updatedProfile);
+     }
   };
 
   const logout = async () => {

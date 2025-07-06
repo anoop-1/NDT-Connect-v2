@@ -67,6 +67,7 @@ export function LoginForm() {
           router.push('/dashboard'); 
         }
       } else {
+        // This case should ideally be handled by the error thrown in loginWithEmail
         toast({ title: "Login Failed", description: "Invalid email or password.", variant: "destructive" });
       }
     } catch (error: any) {
