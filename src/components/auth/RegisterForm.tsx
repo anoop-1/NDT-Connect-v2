@@ -170,7 +170,7 @@ const ProviderFields = ({ form, lists }: { form: UseFormReturn<any>, lists: type
                             <Button type="button" variant="ghost" size="icon" onClick={() => removeService(index)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
                         </div>
                     ))}
-                    <div className="flex gap-2"><Button type="button" variant="outline" size="sm" onClick={() => appendService({ id: generateUniqueId(), name: "", rate: 0, unit: "", currency: "USD", tax: 0, isCustom: false })}><PlusCircle className="mr-2 h-4 w-4"/>Add Service</Button></div>
+                    <div className="flex gap-2"><Button type="button" variant="outline" size="sm" onClick={() => appendService({ id: generateUniqueId(), name: "", rate: undefined, unit: "", currency: "USD", tax: undefined, isCustom: false })}><PlusCircle className="mr-2 h-4 w-4"/>Add Service</Button></div>
                 </CardContent>
             </Card>
 

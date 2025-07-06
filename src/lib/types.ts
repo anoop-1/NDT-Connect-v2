@@ -10,16 +10,16 @@ export type ClientProfileData = {
 export type ServiceOffering = {
   id: string;
   name: string;
-  rate: number;
+  rate: any;
   unit: string;
   currency: string;
-  tax?: number;
+  tax?: any;
   isCustom?: boolean;
 };
 
 export type PersonnelQualification = {
   id: string;
-  quantity: number;
+  quantity: any;
   certificationBody: string;
   level: string;
 };
