@@ -23,10 +23,10 @@ import { getStorage } from "firebase/storage";
 // =================================================================================
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBqrXfMRyFd8VsRYyMBwsBFPp06-v1hhXA",
+  apiKey: "AIzaSyDOYOPMV9Gch3ZtGj-XbQ3cdPo7IQvX8NU",
   authDomain: "ndt-connect.firebaseapp.com",
   projectId: "ndt-connect",
-  storageBucket: "ndt-connect.firebasestorage.app",
+  storageBucket: "ndt-connect.appspot.com",
   messagingSenderId: "77096169277",
   appId: "1:77096169277:web:66cb06971e235451331f54"
 };
