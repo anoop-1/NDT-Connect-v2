@@ -1,1 +1,1 @@
-// This file has been emptied to remove the map functionality.
+// This file has been emptied as it was identified as unused.
