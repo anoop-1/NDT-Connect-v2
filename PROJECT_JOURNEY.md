@@ -1,89 +1,113 @@
-# Project Journey: NDT Connect
+# Project Journey & Functionality Guide: NDT Connect
 
-This document chronicles the key development steps and feature requests that have shaped the NDT Connect application.
+This document outlines the key development milestones and provides a clear guide to the application's architecture and data flow. It serves as a functional diagram to understand how different parts of the app work together.
 
-## 1. Initial Application Scaffolding
-The project began as a standard Next.js application. Through a series of foundational prompts, it was built into a specialized platform for the Non-Destructive Testing (NDT) industry.
+## I. Core Architecture Overview
 
-Key entities were established:
-- **Users:** Clients, Service Providers, and Administrators.
-- **Core Features:** User registration and login, role-based dashboards, a system for clients to find providers, and an AI-powered recommendation engine.
+The application is built on a modern, server-rendered architecture using Next.js and Firebase.
 
-This initial build-out created the core file structure, including pages for login, registration, dashboards, and the underlying components and contexts (`AuthContext`, etc.).
+1.  **Frontend Framework:** **Next.js with React** (`src/app`)
+    *   Handles all user interface rendering, routing, and client-side interactions.
+    *   Uses the App Router for page management.
 
-## 2. Implementing and Refining Chat Functionality
-A major focus was enabling communication between clients and providers.
+2.  **Backend & Database:** **Firebase** (`src/lib/firebase.ts`)
+    *   **Authentication:** Firebase Auth handles secure user registration and login.
+    *   **Database:** Firestore is the NoSQL database for storing all application data (users, requests, etc.).
 
-### 2.1. Chat for Demo Users
-**Prompt:** _"I don't see the chat option when logged in as a demo client or demo vendor."_
+3.  **Global State Management:** **React Context API** (`src/contexts/AuthContext.tsx`)
+    *   Manages the global state of the currently logged-in user, making it accessible throughout the application.
 
-**Action:** I identified that providers lacked a page to view individual request details.
-- **Created `src/app/provider-dashboard/requests/[id]/page.tsx`**: A new page for providers to view a specific service request's details and access the chat interface.
-- **Modified `src/app/provider-requests/page.tsx`**: Updated the "View Details" button to link to the new detailed view.
-
-### 2.2. Enhancing the Provider's Chat Experience
-**Prompt:** _"In the service request section of a confirmed job, there should be a 'Chat with Client' option. The chat box needs an 'Attach' option."_
-
-**Action:**
-- **Modified `src/app/provider-requests/page.tsx`**: Added a "Chat with Client" button as a shortcut on the main requests list for confirmed jobs.
-- **Modified `src/components/shared/chat/ChatInput.tsx`**: Added a paperclip icon button to simulate file attachments in the chat window.
-
-### 2.3. Enabling Chat on the Client's Dashboard
-**Prompt:** _"When logged in as a demo client, under the service request section, the client should be able to chat with the respective provider."_
-
-**Action:**
-- **Modified `src/app/my-requests/page.tsx`**: Implemented logic to display a "Chat with Provider" button on request cards where the status was 'Confirmed' or 'In Progress'. Clicking this button opens the chat window for that specific request.
-
-## 3. Database and Backend Integration
-A significant portion of our interaction involved discussing and attempting to integrate a live Firestore database.
-
-### 3.1. Understanding Firestore
-**Prompts:** _"What is stopping you from transferring data from local storage to Firestore?"_ and _"Couldn't find the database folder, please provide me the path."_
-
-**Action:** I provided detailed explanations clarifying that:
-- I am a code generator and do not have direct access to run applications or interact with live databases.
-- Firestore is a cloud-hosted service, so there is no local "database folder". The connection is configured in `src/lib/firebase.ts`.
-
-### 3.2. Planning the Firestore Schema
-**Prompt:** _"Now that you have access to the Firestore database, create all the databases necessary."_
-
-**Action:** While clarifying that I cannot *create* the database entries, I assisted by creating a detailed schema plan.
-- **Modified `src/lib/firebase.ts`**: Added extensive comments outlining a recommended structure for `users`, `serviceRequests`, `chats`, and `predefinedLists` collections.
-
-### 3.3. Attempting and Reverting Dynamic Data Fetching
-**Prompt:** _"In the vendor registration process... can you instead select units from the predefined units of the Firestore database?"_
-
-**Action & Follow-up:**
-1.  I modified `src/components/auth/RegisterForm.tsx` to fetch the "Service Units" list from Firestore.
-2.  The user encountered a "Failed to load units" error, leading to troubleshooting discussions about Firebase configuration, Firestore data structure, and security rules.
-3.  I updated the Firestore path based on the user's specific setup.
-4.  Ultimately, the user requested to roll back this change.
-
-**Prompt:** _"Roll back the unit selection revision."_
-
-**Action:**
-- **Modified `src/components/auth/RegisterForm.tsx`**: Reverted the component to use a hardcoded array for the service units, removing the Firestore fetching logic.
-
-### 3.4. Connecting the AI Backend
-**Prompt:** _"Preview backend disconnected it says, how can I connect it?"_
-
-**Action:** I diagnosed the likely issue as a missing API key for the Genkit AI service.
-- **Modified `.env`**: Added a `GOOGLE_API_KEY` placeholder to the environment file, which the user would need to replace with their actual key to connect the backend.
-
-## 4. Codebase Cleanup and Refinement
-The final phase of our work focused on improving the project's structure and removing non-functional code.
-
-### 4.1. Removing Unnecessary Files
-**Prompts:** A series of requests to _"review all the files in the code, remove unnecessary non-functional files"_ and _"check & remove all unnecessary files from the directory"_.
-
-**Action:** I performed several passes to identify and empty unused files.
-- **Emptied Files:** `src/components/shared/MapPlaceholder.tsx`, `src/components/ui/sidebar.tsx`, `src/hooks/use-mobile.tsx`, `src/components/ui/menubar.tsx`, `src/components/ui/progress.tsx`, `src/components/ui/sheet.tsx`, `src/components/ui/skeleton.tsx`, `src/components/ui/slider.tsx`, and `src/components/ui/switch.tsx`.
-
-### 4.2. Fixing a Server Issue
-**Implicit Request:** While investigating other issues, a server startup loop was identified.
-
-**Action:**
-- **Modified `package.json`**: Simplified the `dev` script to resolve a port conflict, allowing the server to start correctly.
+4.  **UI Components:** **ShadCN UI & Tailwind CSS** (`src/components/ui` & `globals.css`)
+    *   Provides a professional, consistent, and responsive design system.
 
 ---
-This document provides a high-level overview of our collaborative process in building and refining the NDT Connect application.
+
+## II. Key Folder & File Functions
+
+Here's a breakdown of the most important directories and what they do:
+
+*   **`src/app`**: **Routing & Pages**
+    *   This is the heart of the Next.js App Router. Each folder inside represents a URL path (e.g., `/app/login` corresponds to the login page).
+    *   `page.tsx` inside a folder defines the UI for that route.
+    *   `layout.tsx` defines the main structure (like the header and footer) that wraps all pages.
+
+*   **`src/components`**: **Reusable UI Building Blocks**
+    *   `/auth`: Contains the `LoginForm.tsx` and `RegisterForm.tsx`.
+    *   `/client`: Components specifically for the client-side experience, like `ProviderCard.tsx`.
+    *   `/layout`: Main site structure components like `Header.tsx` and `Footer.tsx`.
+    *   `/shared`: Components used across different roles, like the `ChatWindow.tsx`.
+    *   `/ui`: Core, unstyled components from ShadCN (buttons, cards, etc.).
+
+*   **`src/contexts`**: **Global State**
+    *   `AuthContext.tsx`: This is the **central nervous system** for user management. It handles all registration, login, logout, and session persistence logic by communicating directly with Firebase.
+
+*   **`src/hooks`**: **Custom Logic Hooks**
+    *   `useAuth.ts`: A simple hook to easily access the `AuthContext` from any component.
+    *   `useToast.ts`: Manages system-wide notifications (e.g., "Login Successful").
+
+*   **`src/lib`**: **Core Logic & Utilities**
+    *   `firebase.ts`: **The single point of connection to your Firebase backend.** It initializes Firebase and Firestore and includes comments detailing the database schema.
+    *   `types.ts`: Defines the data structures (like `User`, `ServiceRequest`) used throughout the app with TypeScript. This is crucial for data consistency.
+    *   `mockData.ts`: Contains the sample data used for "Demo Mode".
+
+---
+
+## III. User & Data Flow Diagrams (Textual)
+
+### A. New User Registration
+
+1.  **UI (`/register/page.tsx` & `RegisterForm.tsx`):**
+    *   User fills out the registration form, selecting a role (Client, Provider, or Inspector).
+    *   The form uses Zod (`formSchema`) for client-side validation to ensure data is correct *before* submission.
+
+2.  **State Management (`AuthContext.tsx`):**
+    *   The form calls the `register` function in the `AuthContext`.
+
+3.  **Backend Interaction (`AuthContext.tsx` -> `firebase.ts`):**
+    *   The `register` function first calls Firebase Authentication (`createUserWithEmailAndPassword`) to securely create the user account.
+    *   Upon success, it sends a verification email (`sendEmailVerification`).
+    *   It then creates a corresponding user profile document in the Firestore `users` collection, storing all the role-specific information.
+
+4.  **Result:**
+    *   A new user is created in Firebase Auth (pending email verification).
+    *   A new document is created in the `users` collection in Firestore.
+    *   The user is redirected to the login page with a success message.
+
+### B. User Login
+
+1.  **UI (`/login/page.tsx` & `LoginForm.tsx`):**
+    *   User enters their email and password.
+    *   For a quick preview, they can click "Login as Demo..." which loads mock data from `lib/mockData.ts`.
+
+2.  **State Management (`AuthContext.tsx`):**
+    *   The form calls the `loginWithEmail` function.
+
+3.  **Backend Interaction (`AuthContext.tsx` -> `firebase.ts`):**
+    *   The `loginWithEmail` function calls Firebase Authentication (`signInWithEmailAndPassword`) to verify credentials.
+    *   The `onAuthStateChanged` listener in `AuthContext` detects the successful login. It then fetches the user's profile from the Firestore `users` collection.
+
+4.  **Result:**
+    *   The user's data is fetched from Firestore and stored in the global `AuthContext`.
+    *   The user is automatically redirected to the appropriate dashboard (`/dashboard`, `/provider-dashboard`, or `/admin/dashboard`) based on their role.
+
+### C. Client Requests a Service
+
+1.  **UI (`/find-providers/page.tsx`):**
+    *   Client views a list of providers fetched from the Firestore `users` collection (where `role` is 'provider').
+    *   Client clicks "Request Service" on a `ProviderCard.tsx`.
+
+2.  **Navigation & Data Passing:**
+    *   The app navigates to `/request-service`, passing the provider's ID and name in the URL query parameters.
+
+3.  **UI (`/request-service/page.tsx`):**
+    *   The form pre-populates the selected provider's details.
+    *   Client fills out the service request details (description, date, etc.).
+
+4.  **Backend Interaction (`request-service/page.tsx` -> `firebase.ts`):**
+    *   On submission, a new document is created directly in the `serviceRequests` collection in Firestore. This document includes the client's ID and the selected provider's ID.
+
+5.  **Result:**
+    *   The client is redirected to `/track-request/[id]` to see the status of their newly created request.
+    *   The provider can now see this new request on their `/provider-requests` page.
+
+This detailed breakdown should provide a clear understanding of the application's structure and how its key features operate.
