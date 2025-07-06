@@ -1,4 +1,3 @@
-
 // src/app/admin/manage-predefined-lists/page.tsx
 "use client";
 
