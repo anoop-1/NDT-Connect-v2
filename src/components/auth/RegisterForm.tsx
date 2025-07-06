@@ -1,3 +1,4 @@
+
 // src/components/auth/RegisterForm.tsx
 "use client";
 
@@ -290,13 +291,18 @@ export function RegisterForm() {
 
         } catch (e) {
             console.error("Error fetching predefined lists from Firestore:", e);
+            toast({
+                title: "Could not load form options",
+                description: "Using default values. Some options may be limited.",
+                variant: "destructive"
+            });
         } finally {
             setIsLoadingLists(false);
         }
     };
 
     fetchLists();
-  }, []);
+  }, [toast]);
 
   useEffect(() => {
     const baseValues = {
