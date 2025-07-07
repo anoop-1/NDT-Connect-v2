@@ -11,11 +11,9 @@ import { Briefcase, Eye, Check, X, Activity, Users, MessageSquare } from "lucide
 import type { ServiceRequest } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { db } from "@/lib/firebase";
-import { collection, query, where, getDocs, updateDoc, doc, orderBy } from "firebase/firestore";
+import { MOCK_PROVIDER_REQUESTS } from "@/lib/mockData";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ChatWindow } from "@/components/shared/chat/ChatWindow";
-import { MOCK_PROVIDER_REQUESTS } from "@/lib/mockData";
 
 const StatusBadge = ({ status }: { status: ServiceRequest['status'] }) => {
   let variant: "default" | "secondary" | "destructive" | "outline" = "default";
@@ -49,31 +47,9 @@ export default function ProviderRequestsPage() {
     }
     
     try {
-      const requestsCollectionRef = collection(db, "serviceRequests");
-      // Query for requests specifically assigned to this provider
-      const qAssigned = query(requestsCollectionRef, where("providerId", "==", userId), orderBy("createdAt", "desc"));
-      // Query for all pending requests that are not yet assigned (providerId is null)
-      const qPending = query(requestsCollectionRef, where("status", "==", "Pending"), where("providerId", "==", null), orderBy("createdAt", "desc"));
+      // Mocked fetching logic
+      const fetchedRequests: ServiceRequest[] = MOCK_PROVIDER_REQUESTS;
       
-      const [assignedSnapshot, pendingSnapshot] = await Promise.all([getDocs(qAssigned), getDocs(qPending)]);
-
-      const fetchedRequests: ServiceRequest[] = [];
-      const seenIds = new Set<string>();
-
-      const processSnapshot = (snapshot: any) => {
-         snapshot.forEach((doc: any) => {
-          if (!seenIds.has(doc.id)) {
-            const data = doc.data();
-            const requestedDate = data.requestedDate?.toDate ? data.requestedDate.toDate().toISOString() : data.requestedDate;
-            fetchedRequests.push({ id: doc.id, ...data, requestedDate } as ServiceRequest);
-            seenIds.add(doc.id);
-          }
-        });
-      };
-      
-      processSnapshot(assignedSnapshot);
-      processSnapshot(pendingSnapshot);
-
       // Sort to have provider's own requests first, then pending.
       fetchedRequests.sort((a, b) => {
         if (a.providerId === userId && b.providerId !== userId) return -1;
@@ -130,15 +106,7 @@ export default function ProviderRequestsPage() {
     if (!request || !user) return;
 
     try {
-        const requestDocRef = doc(db, "serviceRequests", requestId);
-        // If accepting, assign the providerId
-        const updateData: any = { status: newStatus, updatedAt: new Date().toISOString() };
-        if (newStatus === 'Confirmed' && !request.providerId) {
-            updateData.providerId = user.id;
-            updateData.providerName = user.name || user.email;
-        }
-
-        await updateDoc(requestDocRef, updateData);
+        // Mocked update logic
         // Refresh the list to show the change
         fetchRequests(user.id);
         toast({
@@ -237,7 +205,7 @@ export default function ProviderRequestsPage() {
         )}
       </div>
 
-      <Dialog open={!!chattingWithRequest} onOpenChange={(isOpen) => { if (!isOpen) setChattingWithRequest(null); }}>
+      <Dialog open={!!chattingWithRequest} onOpenChange={(isOpen: boolean) => { if (!isOpen) setChattingWithRequest(null); }}>
           <DialogContent className="max-w-lg h-[70vh] flex flex-col p-0 gap-0">
             {chattingWithRequest && user && (
               <>

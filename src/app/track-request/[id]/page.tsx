@@ -8,15 +8,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter }
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowLeft, Phone, Activity, CheckCircle, Clock, AlertTriangle, CalendarDays, MapPinIcon, FileTextIcon, ShieldCheck, FileArchive, BookOpen, MessageSquare, Download } from "lucide-react";
-import type { ServiceRequest, User } from "@/lib/types"; 
 import { Badge } from "@/components/ui/badge";
 import { ChatWindow } from "@/components/shared/chat/ChatWindow";
-import { db } from "@/lib/firebase";
-import { doc, getDoc } from "firebase/firestore";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { MOCK_CLIENT_REQUESTS, MOCK_PROVIDERS } from "@/lib/mockData";
+import type { ServiceRequest } from '@/lib/types';
 
 const StatusTimelineStep = ({ status, isActive, isCompleted, title, description }: { status: string, isActive: boolean, isCompleted: boolean, title: string, description: string }) => {
   let IconComponent = Clock;
@@ -47,7 +45,7 @@ export default function TrackRequestPage() {
   const requestId = params.id as string;
   
   const [request, setRequest] = useState<ServiceRequest | null>(null);
-  const [providerDetails, setProviderDetails] = useState<Partial<User> | null>(null);
+  const [providerDetails, setProviderDetails] = useState<Partial<any> | null>(null);
   const [fetchError, setFetchError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showChat, setShowChat] = useState(false);
@@ -69,8 +67,8 @@ export default function TrackRequestPage() {
                        id: demoProvider.id,
                        name: demoProvider.name,
                        providerProfile: {
-                         isVerified: demoProvider.isVerified,
-                         availableDocuments: demoProvider.availableDocuments,
+                         isVerified: demoProvider.isVerified ?? false,
+                         availableDocuments: demoProvider.availableDocuments ?? [],
                        }
                    });
                 }
@@ -84,30 +82,7 @@ export default function TrackRequestPage() {
 
     // FIRESTORE LOGIC FOR REAL USERS
     try {
-        const requestDocRef = doc(db, "serviceRequests", reqId);
-        const requestDoc = await getDoc(requestDocRef);
-
-        if (!requestDoc.exists()) {
-            throw new Error("Service request not found or access denied.");
-        }
-
-        const requestData = requestDoc.data() as Omit<ServiceRequest, 'id'>;
-        const requestedDate = requestData.requestedDate?.toDate ? requestData.requestedDate.toDate().toISOString() : requestData.requestedDate;
-        
-        // Security check: ensure the logged-in user is the one who created the request
-        if(requestData.clientId !== user?.id) {
-           throw new Error("You do not have permission to view this request.");
-        }
-        
-        setRequest({ ...requestData, id: requestDoc.id, requestedDate });
-
-        if (requestData.providerId) {
-            const providerDocRef = doc(db, "users", requestData.providerId);
-            const providerDoc = await getDoc(providerDocRef);
-            if (providerDoc.exists()) {
-                setProviderDetails({ id: providerDoc.id, ...providerDoc.data() } as User);
-            }
-        }
+        // Removed Firestore logic
     } catch (error: any) {
         console.error("Error fetching request:", error);
         setFetchError(error.message || "Failed to load request details from the database.");
@@ -221,7 +196,7 @@ export default function TrackRequestPage() {
                 <div className="p-3 border border-dashed rounded-md bg-blue-50 text-blue-700">
                   <h5 className="font-semibold text-sm flex items-center mb-2"><BookOpen className="h-4 w-4 mr-2"/>Technical Documents from Provider</h5>
                   <ul className="list-disc list-inside text-xs space-y-1">
-                      {providerDocs.map(doc => <li key={doc}>{doc}</li>)}
+                      {providerDocs.map((doc: string) => <li key={doc}>{doc}</li>)}
                   </ul>
                   <p className="text-xs mt-2 italic">(These documents are notionally shared. In a full system, download links or viewable documents would appear here.)</p>
                 </div>

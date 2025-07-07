@@ -17,15 +17,15 @@ import {
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useAuth } from "@/hooks/useAuth";
+import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useState, useEffect } from "react";
-import { ListChecks, PlusCircle, Trash2, Award, Users2, FileText, User as UserIcon, Building, Activity } from "lucide-react";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useRouter } from "next/navigation";
+import { ListChecks, PlusCircle, Upload,  Trash2, Award, Users2, FileText, User as UserIcon, Building, Activity } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 // --- ZOD SCHEMAS ---
 const generateUniqueId = () => Date.now().toString(36) + Math.random().toString(36).substring(2);
@@ -43,31 +43,22 @@ const serviceOfferingSchema = z.object({
   name: z.string().min(1, "Service name is required."), 
   unit: z.string().min(1, "Unit is required."),
   currency: z.string().min(1, "Currency is required."),
-  tax: z.preprocess(
-    (val) => (String(val).trim() === "" ? 0 : Number(val)),
-    z.number({ invalid_type_error: "Tax must be a number" }).min(0).optional()
-  ),
-  rate: z.preprocess(
-    (val) => Number(String(val).trim() === "" ? 0 : val),
-    z.number({ required_error: "Rate is required.", invalid_type_error: "Rate must be a number." }).positive("Rate must be positive.")
-  ),
+  tax: z.string().refine(val => val === '' || !isNaN(parseFloat(val)), { message: "Tax must be a number or empty." }).optional(),
+  rate: z.string().refine(val => val !== '' && !isNaN(parseFloat(val)), { message: "Rate is required and must be a number." }), 
   isCustom: z.boolean().optional(),
 });
-
 const personnelQualificationSchema = z.object({
   id: z.string(), 
-  quantity: z.preprocess(
-    (val) => (String(val).trim() === "" ? 0 : parseInt(String(val), 10)),
-    z.number({ required_error: "Quantity is required.", invalid_type_error: "Quantity must be a whole number." }).int().positive("Quantity must be positive.")
-  ),
+  quantity: z.string().refine(val => !isNaN(parseInt(val)) && parseInt(val) > 0, { message: "Must be a positive number"}),
   certificationBody: z.string().min(1, "Body is required."), 
   level: z.string().min(1, "Level is required."),
+  expiryDate: z.date().nullable().optional(),
 });
-
 const companyCertificationSchema = z.object({ 
   id: z.string(), 
   name: z.string().min(1, "Cert name is required."), 
   category: z.string().optional(),
+  expiryDate: z.date().nullable().optional(),
 });
 
 const clientSchema = baseSchema.extend({
@@ -101,9 +92,6 @@ const inspectorSchema = baseSchema.extend({
 
 const formSchema = z.discriminatedUnion("role", [clientSchema, providerSchema, inspectorSchema])
   .superRefine((data, ctx) => {
-    if (data.password !== data.confirmPassword) {
-      ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Passwords don't match", path: ["confirmPassword"] });
-    }
     if (data.role === 'inspector' && data.association === "company") {
         if (!data.companyName || data.companyName.length < 2) {
             ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Company name is required.", path: ["companyName"] });
@@ -115,21 +103,89 @@ const formSchema = z.discriminatedUnion("role", [clientSchema, providerSchema, i
             ctx.addIssue({ code: z.ZodIssueCode.custom, message: "Designation is required.", path: ["designation"] });
         }
     }
-  });
+  })
+  .refine((data) => data.password === data.confirmPassword, { message: "Passwords don't match", path: ["confirmPassword"] });
 
 type FormSchemaType = z.infer<typeof formSchema>;
 
-const CURRENCIES = [ "USD", "EUR", "GBP", "INR", "CAD", "AUD", "JPY", "CNY", "CHF", "AED", "SGD", "BRL", "ZAR", "SAR", "QAR", "OMR", "KWD", "BHD" ];
-const SERVICE_UNITS = ["per hour", "per day", "per project", "per item", "per foot", "per weld"];
-const NDT_SERVICES_TABLE = [ "Radiographic Testing", "Ultrasonic Testing", "Magnetic Particle Testing", "Liquid Penetrant Testing", "Visual Testing", "Eddy Current Testing" ];
-const QUALIFICATION_BODIES = [ "ASNT", "PCN", "ISO 9712", "CSWIP", "ACCP", "NAS 410" ];
-const QUALIFICATION_LEVELS = ["Level I", "Level II", "Level III", "Technician", "Trainee"];
-const COMPANY_CERTIFICATIONS = [ "ISO 9001", "API Q1", "Nadcap", "AS9100", "ISO/IEC 17025" ];
-
 const agreementTexts = {
-  client: `Terms of Service for Clients: NDT Connect acts SOLELY AS A FACILITATOR to help Clients find and connect with Service Providers. We are not a party to any agreement between you and any Service Provider. You are solely responsible for conducting your own due diligence, verifying qualifications, and negotiating terms. NDT Connect is not responsible for the quality or outcome of services and shall not be liable for any damages arising from your use of the Platform or the services provided by a Service Provider. By registering, you agree to these terms.`,
-  provider: `Terms of Service for Service Providers: You are responsible for providing accurate and current information in your profile. You agree to perform services professionally and in accordance with all client requirements and industry standards. All service agreements are strictly between you and the Client. NDT Connect acts SOLELY AS A FACILITATOR and is not responsible for client actions or disputes. By registering, you agree to these terms.`,
-  inspector: `Terms of Service for NDT Inspectors: You are responsible for providing accurate and verifiable information about your qualifications and experience. All inspection services must be performed with the highest degree of professionalism and adherence to industry standards. NDT Connect acts SOLELY AS A FACILITATOR. All contracts and disputes are directly between you (or your employer) and the Client. By registering, you agree to these terms.`,
+  client: `Terms of Service for Clients
+
+Welcome to NDT Connect!
+
+NDT Connect ("Platform", "we", "us", "our") provides a platform to connect clients seeking Non-Destructive Testing (NDT) services with NDT service providers ("Service Providers"). By registering an account as a Client on NDT Connect, you ("Client", "you", "your") agree to these Terms of Service.
+
+1. Role of NDT Connect:
+NDT Connect acts SOLELY AS A FACILITATOR to help Clients find and connect with Service Providers. We are not a party to any agreement, contract, or transaction between you and any Service Provider.
+
+2. Client Responsibilities:
+   a. Due Diligence: You are solely responsible for conducting your own due diligence and for selecting an appropriate Service Provider. This includes verifying the Service Provider's qualifications, certifications, insurance, experience, and suitability for your specific NDT requirements.
+   b. Service Agreement: Any work engagement or service agreement is strictly between you and the Service Provider. You are responsible for negotiating the terms of service, including scope, deliverables, timelines, and payment, directly with the Service Provider.
+   c. Requirements Definition: You are responsible for clearly defining your NDT service requirements, including any specific procedures, acceptance criteria, and applicable industry standards or client-specific requirements that the Service Provider must adhere to.
+   d. Fulfillment and Disputes: NDT Connect is not responsible for the quality, legality, or outcome of services provided by Service Providers. Any disputes, issues, or claims related to the services must be resolved directly between you and the Service Provider.
+
+3. No Endorsement or Guarantee:
+NDT Connect does not endorse, recommend, or guarantee any Service Provider or their services. Information about Service Providers on the Platform is provided by the Service Providers themselves or gathered from publicly available sources and is for informational purposes only.
+
+4. Limitation of Liability:
+To the fullest extent permitted by law, NDT Connect shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly, or any loss of data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or inability to access or use the Platform; (ii) any conduct or content of any Service Provider or third party on the Platform; or (iii) any services provided by a Service Provider.
+
+5. Acceptance of Terms:
+By checking the "I agree" box and completing the registration process, you affirm that you have read, understood, and agree to be bound by these Terms of Service.`,
+  provider: `Terms of Service for Service Providers
+
+Welcome to NDT Connect!
+
+NDT Connect ("Platform", "we", "us", "our") provides a platform to connect NDT service providers ("Service Provider", "you", "your") with clients seeking Non-Destructive Testing (NDT) services ("Clients"). By registering an account as a Service Provider on NDT Connect, you agree to these Terms of Service.
+
+1. Account and Profile Information:
+   a. Accuracy: You are responsible for providing accurate, current, and complete information in your profile, including but not limited to your business details, location, services offered, qualifications, certifications, available technical documents, contact information, pricing indications, procedure outlines, and acceptance criteria information.
+   b. Updates: You agree to maintain and promptly update your profile information to keep it accurate, current, and complete.
+
+2. Service Provision and Responsibilities:
+   a. Fulfillment of Requirements: You commit to fulfilling all agreed-upon client requirements to the best of your ability. This includes strict adherence to any client-specific procedures, acceptance criteria, and qualification standards communicated by the Client.
+   b. Professional Standards: You will conduct all NDT services in a professional manner and in accordance with recognized industry standards (e.g., SNT-TC-1A for personnel qualification, relevant ASME, API, ISO, or other applicable codes and standards for testing procedures and acceptance criteria), or any other client-specified requirements which may be more stringent.
+   c. Qualification: You warrant that you and your personnel possess the necessary qualifications, certifications (e.g., SNT-TC-1A, ISO 9712, or equivalent), and experience to perform the NDT services you offer and undertake.
+   d. Document Availability: You agree to make available, upon reasonable request from a client with whom you are engaged or discussing an engagement, copies of relevant technical documents as listed in your profile, such as procedures, certifications, and qualification records. The mechanism and timing of sharing will be agreed upon directly with the client.
+   e. Direct Agreements: Any service agreement or contract is strictly between you and the Client. NDT Connect is not a party to such agreements. You are responsible for negotiating terms, scope, deliverables, and payment directly with the Client.
+
+3. Role of NDT Connect:
+NDT Connect acts SOLELY AS A FACILITATOR platform. We do not guarantee work, projects, or income. We are not responsible for Client actions, payment failures, or disputes.
+
+4. Service Fees:
+NDT Connect may charge a service fee for utilizing the Platform or for successful engagements facilitated through the Platform. Any applicable commission or conceptual fee and payment terms will be communicated to you separately or as part of specific feature usage.
+
+5. Limitation of Liability:
+To the fullest extent permitted by law, NDT Connect shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising from your use of the Platform, interactions with Clients, or the provision of your services.
+
+6. Acceptance of Terms:
+By checking the "I agree" box and completing the registration process, you affirm that you have read, understood, and agree to be bound by these Terms of Service.`,
+  inspector: `Terms of Service for NDT Inspectors
+
+Welcome to NDT Connect!
+
+By registering an account as an NDT Inspector on NDT Connect ("Platform", "we", "us", "our"), you ("Inspector", "you", "your") agree to these Terms of Service. These terms apply whether you are operating as a freelancer or as an employee of a Service Provider company.
+
+1. Professional Representation:
+   a. Accuracy of Information: You are solely responsible for providing accurate, current, and verifiable information regarding your qualifications, certifications (e.g., ASNT, ISO 9712, NAS 410), level of certification, experience, and work history. Misrepresentation of your credentials may result in immediate and permanent removal from the Platform.
+   b. Profile Maintenance: You agree to maintain and promptly update your profile to reflect your current status, including any new certifications or changes in employment if associated with a company.
+
+2. Role and Responsibilities:
+   a. Professional Standards: You commit to performing all inspection services with the highest degree of professionalism, integrity, and technical competence, strictly adhering to all applicable industry codes, standards, and safety regulations, as well as any specific procedures or acceptance criteria required by the Client.
+   b. Freelancer vs. Company Employee:
+      i. If you are registering as a freelancer, you acknowledge that you are an independent contractor. You are responsible for your own business operations, insurance, taxes, and contractual agreements with Clients.
+      ii. If you are registering as an employee of a company, you warrant that you are authorized to represent your employer on this Platform. Any engagement or communication through the Platform is on behalf of your employer, and any resulting service agreement will be between your employer and the Client.
+   c. Direct Agreements: NDT Connect acts SOLELY AS A FACILITATOR. All contracts for services, whether oral or written, are directly between you (or your employer) and the Client. You are responsible for negotiating the terms, scope, and payment for any work undertaken.
+
+3. Platform Usage:
+   a. NDT Connect does not guarantee you will be selected for any project or engagement. We provide a platform for visibility and connection.
+   b. You agree to communicate professionally and respectfully with all platform users, including Clients and other Service Providers.
+
+4. Limitation of Liability:
+NDT Connect is not a party to any service agreement and is not responsible for any disputes, claims, losses, injuries, or damages of any kind that might arise out of or in connection with your services or your interactions with Clients. All disputes must be resolved directly between the parties involved.
+
+5. Acceptance of Terms:
+By checking the "I agree" box and completing the registration process, you affirm that you have read, understood, and agree to be bound by these Terms of Service for NDT Inspectors.`,
 };
 
 // --- SUB-COMPONENTS FOR EACH ROLE ---
@@ -142,7 +198,9 @@ const ClientFields = ({ form }: { form: UseFormReturn<any> }) => (
   </div>
 );
 
-const ProviderFields = ({ form }: { form: UseFormReturn<any> }) => {
+const ProviderFields = ({ form, lists }: { form: UseFormReturn<any>, lists: any }) => {
+     const [logoImage, setLogoImage] = useState<string | null>(null);
+    const [logoImageFile, setLogoImageFile] = useState<File | null>(null);
     const { fields: serviceFields, append: appendService, remove: removeService } = useFieldArray({ control: form.control, name: "servicesOffered" });
     const { fields: personnelFields, append: appendPersonnel, remove: removePersonnel } = useFieldArray({ control: form.control, name: "personnelQualifications" });
     const { fields: certFields, append: appendCert, remove: removeCert } = useFieldArray({ control: form.control, name: "certifications" });
@@ -158,16 +216,16 @@ const ProviderFields = ({ form }: { form: UseFormReturn<any> }) => {
                     {serviceFields.map((item, index) => (
                         <div key={item.id} className="flex gap-2 items-start">
                             <div className="grid flex-grow grid-cols-1 md:grid-cols-5 gap-2">
-                                <FormField control={form.control} name={`servicesOffered.${index}.name`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select service"/></SelectTrigger></FormControl><SelectContent>{NDT_SERVICES_TABLE.map(s=><SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
-                                <FormField control={form.control} name={`servicesOffered.${index}.unit`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select unit"/></SelectTrigger></FormControl><SelectContent>{SERVICE_UNITS.map(u=><SelectItem key={u} value={u}>{u}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`servicesOffered.${index}.name`} render={({ field }) => (<FormItem>{(item as any).isCustom ? <FormControl><Input placeholder="Custom service name" {...field}/></FormControl> : <Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select service"/></SelectTrigger></FormControl><SelectContent>{lists.providerNdtServices.map((s: string) => <SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent></Select>}<FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`servicesOffered.${index}.unit`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select unit"/></SelectTrigger></FormControl><SelectContent>{lists.serviceUnits.map((u: string) => <SelectItem key={u} value={u}>{u}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
                                 <FormField control={form.control} name={`servicesOffered.${index}.rate`} render={({ field }) => (<FormItem><FormControl><Input type="number" placeholder="e.g. 100" {...field} /></FormControl><FormMessage/></FormItem>)} />
-                                <FormField control={form.control} name={`servicesOffered.${index}.currency`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Curr."/></SelectTrigger></FormControl><SelectContent>{CURRENCIES.map(c=><SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`servicesOffered.${index}.currency`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} placeholder="e.g. USD" defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Curr."/></SelectTrigger></FormControl><SelectContent>{lists.currencies.map((c: string) => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
                                 <FormField control={form.control} name={`servicesOffered.${index}.tax`} render={({ field }) => (<FormItem><FormControl><Input type="number" placeholder="Tax %" {...field} /></FormControl><FormMessage/></FormItem>)} />
                             </div>
                             <Button type="button" variant="ghost" size="icon" onClick={() => removeService(index)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
                         </div>
                     ))}
-                    <div className="flex gap-2"><Button type="button" variant="outline" size="sm" onClick={() => appendService({ id: generateUniqueId(), name: "", rate: undefined, unit: "", currency: "USD", tax: undefined, isCustom: false })}><PlusCircle className="mr-2 h-4 w-4"/>Add Service</Button></div>
+                    <div className="flex gap-2"><Button type="button" variant="outline" size="sm" onClick={() => appendService({ id: generateUniqueId(), name: "", rate: '', unit: "", currency: "USD", tax: "0", isCustom: false })}><PlusCircle className="mr-2 h-4 w-4"/>Add Service</Button></div>
                 </CardContent>
             </Card>
 
@@ -177,13 +235,13 @@ const ProviderFields = ({ form }: { form: UseFormReturn<any> }) => {
                         <div key={item.id} className="flex gap-2 items-start">
                             <div className="grid flex-grow grid-cols-1 md:grid-cols-3 gap-2">
                                 <FormField control={form.control} name={`personnelQualifications.${index}.quantity`} render={({ field }) => (<FormItem><FormControl><Input type="number" placeholder="Qty" {...field} /></FormControl><FormMessage/></FormItem>)} />
-                                <FormField control={form.control} name={`personnelQualifications.${index}.certificationBody`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Body"/></SelectTrigger></FormControl><SelectContent>{QUALIFICATION_BODIES.map(b=><SelectItem key={b} value={b}>{b}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
-                                <FormField control={form.control} name={`personnelQualifications.${index}.level`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Level"/></SelectTrigger></FormControl><SelectContent>{QUALIFICATION_LEVELS.map(l=><SelectItem key={l} value={l}>{l}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`personnelQualifications.${index}.certificationBody`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Body"/></SelectTrigger></FormControl><SelectContent>{lists.qualificationBodies.map((b: string) => <SelectItem key={b} value={b}>{b}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`personnelQualifications.${index}.level`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Level"/></SelectTrigger></FormControl><SelectContent>{lists.qualificationLevels.map((l: string) => <SelectItem key={l} value={l}>{l}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
                             </div>
                             <Button type="button" variant="ghost" size="icon" onClick={() => removePersonnel(index)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
                         </div>
                     ))}
-                    <Button type="button" variant="outline" size="sm" onClick={() => appendPersonnel({ id: generateUniqueId(), quantity: 1, certificationBody: "", level: "" })}><PlusCircle className="mr-2 h-4 w-4"/>Add Qualification</Button>
+                    <Button type="button" variant="outline" size="sm" onClick={() => appendPersonnel({ id: generateUniqueId(), quantity: "1", certificationBody: "", level: "", expiryDate: null })}><PlusCircle className="mr-2 h-4 w-4"/>Add Qualification</Button>
                 </CardContent>
             </Card>
 
@@ -192,18 +250,81 @@ const ProviderFields = ({ form }: { form: UseFormReturn<any> }) => {
                     {certFields.map((item, index) => (
                         <div key={item.id} className="flex gap-2 items-start">
                             <div className="grid flex-grow grid-cols-1 md:grid-cols-2 gap-2">
-                                <FormField control={form.control} name={`certifications.${index}.name`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Name"/></SelectTrigger></FormControl><SelectContent>{COMPANY_CERTIFICATIONS.map(c=><SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`certifications.${index}.name`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Name"/></SelectTrigger></FormControl><SelectContent>{lists.companyCertifications.map((c: string) => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
                                 <FormField control={form.control} name={`certifications.${index}.category`} render={({ field }) => (<FormItem><FormControl><Input placeholder="e.g. Quality Mgmt" {...field}/></FormControl><FormMessage/></FormItem>)} />
                             </div>
                             <Button type="button" variant="ghost" size="icon" onClick={() => removeCert(index)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
                         </div>
                     ))}
-                    <Button type="button" variant="outline" size="sm" onClick={() => appendCert({ id: generateUniqueId(), name: "", category: "" })}><PlusCircle className="mr-2 h-4 w-4"/>Add Certification</Button>
+                    <Button type="button" variant="outline" size="sm" onClick={() => appendCert({ id: generateUniqueId(), name: "", category: "", expiryDate: null })}><PlusCircle className="mr-2 h-4 w-4"/>Add Certification</Button>
                 </CardContent>
             </Card>
-            
             <FormField control={form.control} name="procedureInfoUrl" render={({ field }) => (<FormItem><FormLabel>Procedures/Bio URL (Optional)</FormLabel><FormControl><Input placeholder="https://example.com/about" {...field} /></FormControl><FormMessage/></FormItem>)} />
-            <FormField control={form.control} name="companyLogoUrl" render={({ field }) => (<FormItem><FormLabel>Company Logo URL (Optional)</FormLabel><FormControl><Input placeholder="https://example.com/logo.png" {...field} /></FormControl><FormMessage/></FormItem>)} />
+            <FormField
+                  control={form.control}
+                  name="companyLogoUrl"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Company Logo</FormLabel>
+                      <div className="flex flex-col items-start gap-4">
+                        {logoImage ? (
+                          <div className="w-32 h-32 border rounded-lg overflow-hidden">
+                            <img 
+                              src={logoImage} 
+                              alt="Company logo preview" 
+                              className="w-full h-full object-contain"
+                            />
+                          </div>
+                        ) : (
+                          <div className="w-32 h-32 bg-muted/50 flex items-center justify-center rounded-lg">
+                            <span className="text-muted-foreground text-sm">No logo</span>
+                          </div>
+                        )}
+                        
+                        <input
+                          id="companyLogoUpload"
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file) {
+                              const reader = new FileReader();
+                              reader.onload = (event) => {
+                                const result = event.target?.result as string;
+                                setLogoImage(result);
+                                setLogoImageFile(file);
+                                field.onChange(result); // This sets the base64 string to the form field
+                              };
+                              reader.readAsDataURL(file);
+                            }
+                          }}
+                        />
+                        <Label 
+                          htmlFor="companyLogoUpload" 
+                          className="cursor-pointer"
+                        >
+                          <Button 
+                            type="button" 
+                            variant="outline" 
+                            size="sm"
+                            onClick={() => document.getElementById('companyLogoUpload')?.click()}
+                          >
+                            <Upload className="mr-2 h-4 w-4" />
+                            {logoImage ? 'Change Logo' : 'Upload Logo'}
+                          </Button>
+                        </Label>
+                        
+                        {logoImageFile && (
+                          <p className="text-sm text-muted-foreground">
+                            {logoImageFile.name} ({Math.round(logoImageFile.size / 1024)}KB)
+                          </p>
+                        )}
+                      </div>
+                      <FormMessage />
+                    </FormItem>
+              )}
+            />
         </div>
     );
 };
@@ -236,10 +357,19 @@ const InspectorFields = ({ form }: { form: UseFormReturn<any> }) => {
 
 // --- MAIN FORM COMPONENT ---
 export function RegisterForm() {
-  const { register } = useAuth();
-  const { toast } = useToast();
+  const { register, loading } = useAuth();
   const router = useRouter();
+  const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const [predefinedLists, setPredefinedLists] = useState({
+    providerNdtServices: [],
+    serviceUnits: [],
+    currencies: [],
+    companyCertifications: [],
+    qualificationBodies: [],
+    qualificationLevels: ["Level I", "Level II", "Level III", "Technician", "Trainee"]
+  });
+  const [isLoadingLists, setIsLoadingLists] = useState(false);
   
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
@@ -261,7 +391,6 @@ export function RegisterForm() {
   const currentRole = form.watch("role");
 
   useEffect(() => {
-    // This effect runs when the role changes to reset the form structure
     const baseValues = {
         name: form.getValues('name'),
         email: form.getValues('email'),
@@ -282,8 +411,8 @@ export function RegisterForm() {
             companyName: "",
             location: "",
             contactNumber: "", 
-            servicesOffered: [{ id: generateUniqueId(), name: "Ultrasonic Testing", rate: undefined, unit: "per hour", currency: "USD", tax: undefined }], 
-            personnelQualifications: [{ id: generateUniqueId(), quantity: 1, certificationBody: "ASNT", level: "Level II" }], 
+            servicesOffered: [{ id: generateUniqueId(), name: "", rate: '', unit: "", currency: "USD", tax: "0", isCustom: false }], 
+            personnelQualifications: [{ id: generateUniqueId(), quantity: '1', certificationBody: "", level: "", expiryDate: null }], 
             certifications: [],
             procedureInfoUrl: "",
             companyLogoUrl: ""
@@ -297,39 +426,63 @@ export function RegisterForm() {
 
     if(newDefaultValues) {
         form.reset({
-            ...baseValues,
             ...newDefaultValues,
-        });
+            ...baseValues
+        }, { keepDefaultValues: true });
     }
   }, [currentRole, form]);
 
-
+  useEffect(() => {
+    setIsLoadingLists(true);
+    fetch("/api/lists/all")
+      .then(r => r.json())
+      .then(data => {
+        const lists = {
+          providerNdtServices: data.find((list: any) => list.id === "providerNdtServices")?.items || [],
+          serviceUnits: data.find((list: any) => list.id === "serviceUnits")?.items || [],
+          currencies: data.find((list: any) => list.id === "currency")?.items || [],
+          companyCertifications: data.find((list: any) => list.id === "companyCertifications")?.items || [],
+          qualificationBodies: data.find((list: any) => list.id === "personnelQualificationBodies")?.items || [],
+          qualificationLevels: data.find((list: any) => list.id === "personnelQualificationLevels")?.items || ["Level I", "Level II", "Level III", "Technician", "Trainee"]
+        };
+        setPredefinedLists(lists);
+      })
+      .catch((error) => {
+        toast({ title: "Error loading options", description: "There was an error loading the registration options. Please try again later.", variant: "destructive" });
+      })
+      .finally(() => {
+        setIsLoadingLists(false);
+      });
+  }, []);
+  
   async function onSubmit(values: FormSchemaType) {
     setIsLoading(true);
     try {
-      const registeredUser = await register({
-        ...values,
-        profileData: values,
-      });
-
+      // Remove profileData if not in RegisterDetails type:
+      const x = { ...values };
+      delete x['confirmPassword'];
+      const registeredUser = await register(x);
       if (registeredUser) {
-        toast({ 
-          title: "Registration Almost Complete!", 
-          description: "A verification link has been sent to your email. Please check your inbox.", 
-          duration: 10000
-        });
-        router.push(`/login?registered=true&email=${encodeURIComponent(values.email)}`);
+        toast({ title: "Registration Successful!", description: `Please click on the verification link on your email ${values.email} to verify your account.`, duration: 7000 });
+        router.push(`/login?status=verification_pending&email=${encodeURIComponent(values.email)}`);
       } else {
-        toast({ title: "Registration Failed", description: "An unexpected error occurred. Please try again.", variant: "destructive" });
+        toast({ title: "Registration Failed", description: "An account with this email may already exist.", variant: "destructive" });
       }
     } catch (error: any) {
-      const message = error.code === 'auth/email-already-in-use' 
-        ? "An account with this email already exists." 
-        : error.message || "An error occurred.";
-      toast({ title: "Registration Failed", description: message, variant: "destructive" });
+      toast({ title: "Registration Failed", description: error?.message || "An error occurred.", variant: "destructive" });
     } finally {
       setIsLoading(false);
     }
+  }
+  
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center py-10">
+        <Activity className="mr-2 h-6 w-6 animate-spin" />
+        <span>Loading...</span>
+      </div>
+    );
   }
 
   return (
@@ -352,20 +505,18 @@ export function RegisterForm() {
             </FormItem>
         )}/>
 
-        <>
-          {currentRole === "client" && <ClientFields form={form} />}
-          {currentRole === "provider" && <ProviderFields form={form} />}
-          {currentRole === "inspector" && <InspectorFields form={form} />}
-        </>
+        {currentRole === "client" && <ClientFields form={form} />}
+        {currentRole === "provider" && <ProviderFields form={form} lists={predefinedLists} />}
+        {currentRole === "inspector" && <InspectorFields form={form} />}
 
         <div className="space-y-3 pt-4">
             <Label className="text-lg font-semibold flex items-center"><FileText className="mr-2 h-5 w-5 text-primary" />Agreement</Label>
-            <ScrollArea className="h-24 w-full rounded-md border p-3 text-sm bg-muted/30"><pre className="whitespace-pre-wrap font-sans text-xs">{agreementTexts[currentRole as 'client' | 'provider' | 'inspector']}</pre></ScrollArea>
+            <ScrollArea className="h-24 w-full rounded-md border p-3 text-sm bg-muted/30"><pre className="whitespace-pre-wrap font-sans">{agreementTexts[currentRole as 'client' | 'provider' | 'inspector']}</pre></ScrollArea>
             <FormField control={form.control} name="acceptTerms" render={({ field }) => ( <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-3 shadow-sm"><FormControl><Checkbox checked={field.value} onCheckedChange={field.onChange}/></FormControl><div className="space-y-1 leading-none"><FormLabel className="font-normal">I have read and agree to the User Agreement.</FormLabel><FormMessage/></div></FormItem> )} />
         </div>
 
-        <Button type="submit" className="w-full" disabled={isLoading}>
-          {isLoading ? <><Activity className="mr-2 h-4 w-4 animate-spin"/> Submitting...</> : "Create Account"}
+        <Button type="submit" className="w-full" disabled={isLoading || isLoadingLists}>
+          {isLoading ? <><Activity className="mr-2 h-4 w-4 animate-spin"/> Submitting...</> : isLoadingLists ? <><Activity className="mr-2 h-4 w-4 animate-spin"/> Loading Form...</> : "Create Account"}
         </Button>
       </form>
     </Form>

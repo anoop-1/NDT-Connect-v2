@@ -1,4 +1,3 @@
-// src/components/auth/LoginForm.tsx
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -15,12 +15,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useAuth } from "@/hooks/useAuth";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Separator } from "@/components/ui/separator";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { CheckCircle } from "lucide-react";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
@@ -29,19 +27,17 @@ const formSchema = z.object({
 
 type FormSchemaType = z.infer<typeof formSchema>;
 
+
 export function LoginForm() {
-  const { loginWithEmail, loginAsDemoUser } = useAuth();
+  const { loginWithEmail } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
-  const searchParams = useSearchParams();
-  const registrationSuccess = searchParams.get('registered');
-  const userEmail = searchParams.get('email');
 
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: userEmail || "",
+      email: "",
       password: "",
     },
   });
@@ -49,26 +45,15 @@ export function LoginForm() {
   async function onSubmit(values: FormSchemaType) {
     setIsLoading(true);
     try {
-      const user = await loginWithEmail(values.email, values.password);
+      let user = await loginWithEmail(values.email, values.password);
       if (user) {
-        if (!user.emailVerified) {
-          toast({ 
-            title: "Verification Required", 
-            description: "Please check your email to verify your account before logging in.",
-            variant: "destructive",
-            duration: 10000,
-          });
-          // Note: The onAuthStateChanged listener might still log the user in briefly.
-          // Depending on security rules, this might be acceptable, or you might need to
-          // explicitly sign them out here after showing the toast.
-        } else {
-          toast({ title: "Login Successful", description: `Welcome back!` });
-          // The dashboard redirect logic is handled by the AuthProvider's useEffect
-          router.push('/dashboard'); 
-        }
+        toast({ title: "Login Successful", description: `Welcome back, ${user.name || user.email}!` });           
+        if (user?.role === 'admin') 
+          router.push("/admin/dashboard"); 
+        else 
+          router.push("/dashboard");       	
       } else {
-        // This case should ideally be handled by the error thrown in loginWithEmail
-        toast({ title: "Login Failed", description: "Invalid email or password.", variant: "destructive" });
+        toast({ title: "Login Failed", description: "User not found or password incorrect. Please register if you don't have an account.", variant: "destructive" });
       }
     } catch (error: any) {
       toast({ title: "Login Failed", description: error.message, variant: "destructive" });
@@ -77,31 +62,8 @@ export function LoginForm() {
     }
   }
 
-  const handleDemoLogin = (role: 'client' | 'provider') => {
-    setIsLoading(true);
-    try {
-      loginAsDemoUser(role);
-      toast({ title: "Demo Login Successful", description: `Logged in as Demo ${role.charAt(0).toUpperCase() + role.slice(1)}.` });
-      router.push("/dashboard");
-    } catch (error: any) {
-      toast({ title: "Demo Login Failed", description: error.message, variant: "destructive" });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-
   return (
     <>
-      {registrationSuccess && (
-         <Alert variant="default" className="mb-4 bg-green-50 border-green-200 text-green-800">
-            <CheckCircle className="h-4 w-4 !text-green-600"/>
-            <AlertTitle>Registration Successful!</AlertTitle>
-            <AlertDescription>
-                A verification link has been sent to your email address. Please verify your account before logging in.
-            </AlertDescription>
-         </Alert>
-      )}
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <FormField
@@ -135,28 +97,6 @@ export function LoginForm() {
           </Button>
         </form>
       </Form>
-      
-      <Separator className="my-6" />
-      
-      <div className="space-y-3">
-        <p className="text-center text-sm text-muted-foreground">Or try a quick demo:</p>
-        <Button 
-          variant="outline" 
-          className="w-full" 
-          onClick={() => handleDemoLogin('client')}
-          disabled={isLoading}
-        >
-          {isLoading ? "Loading..." : "Login as Demo Client"}
-        </Button>
-        <Button 
-          variant="outline" 
-          className="w-full" 
-          onClick={() => handleDemoLogin('provider')}
-          disabled={isLoading}
-        >
-          {isLoading ? "Loading..." : "Login as Demo Vendor"}
-        </Button>
-      </div>
     </>
   );
 }

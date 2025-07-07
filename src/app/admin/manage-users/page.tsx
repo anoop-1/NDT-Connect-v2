@@ -1,4 +1,3 @@
-
 // src/app/admin/manage-users/page.tsx
 "use client";
 
@@ -12,7 +11,6 @@ import { Users, ArrowLeft, CheckCircle, XCircle, Shield, Trash2, AlertTriangle, 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import type { User } from "@/lib/types";
 import { useToast } from "@/hooks/use-toast";
 import {
   AlertDialog,
@@ -25,32 +23,21 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { db } from "@/lib/firebase";
-import { collection, getDocs, doc, updateDoc, deleteDoc, query, orderBy } from "firebase/firestore";
 
 export default function ManageUsersPage() {
   const { user: currentUser, loading: authLoading } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
 
-  const [allUsers, setAllUsers] = useState<User[]>([]);
+  const [allUsers, setAllUsers] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchUsers = useCallback(async () => {
     setIsLoading(true);
     try {
-      const usersCollectionRef = collection(db, "users");
-      const q = query(usersCollectionRef, orderBy("createdAt", "desc"));
-      const querySnapshot = await getDocs(q);
-      const fetchedUsers: User[] = [];
-      querySnapshot.forEach((doc) => {
-        const userData = { id: doc.id, ...doc.data() } as User;
-        // Filter out demo users to only show real accounts in the admin panel
-        if (userData.isDemo !== true) {
-          fetchedUsers.push(userData);
-        }
-      });
-      setAllUsers(fetchedUsers);
+      const response = await fetch('/api/users');
+      const data = await response.json();
+      setAllUsers(data);
     } catch (error) {
       console.error("Error fetching users:", error);
       toast({
@@ -75,12 +62,19 @@ export default function ManageUsersPage() {
     }
   }, [currentUser, authLoading, router, fetchUsers]);
 
-  const handleToggleUserStatus = async (userToUpdate: User) => {
+  const handleToggleUserStatus = async (userToUpdate: any) => {
     const newStatus = !userToUpdate.isActive;
     try {
-      const userDocRef = doc(db, "users", userToUpdate.id);
-      await updateDoc(userDocRef, { isActive: newStatus });
+      const response = await fetch(`/api/users/${userToUpdate.id}/status`, {
+        method: 'PATCH',
+        body: JSON.stringify({ isActive: newStatus }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
       
+      if (!response.ok) throw new Error('Network response was not ok');
+
       setAllUsers(prevUsers => 
         prevUsers.map(u => u.id === userToUpdate.id ? { ...u, isActive: newStatus } : u)
       );
@@ -101,8 +95,11 @@ export default function ManageUsersPage() {
 
   const handleDeleteUser = async (userId: string, userName: string) => {
      try {
-      const userDocRef = doc(db, "users", userId);
-      await deleteDoc(userDocRef);
+      const response = await fetch(`/api/users/${userId}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) throw new Error('Network response was not ok');
 
       setAllUsers(prevUsers => prevUsers.filter(u => u.id !== userId));
 
@@ -120,7 +117,7 @@ export default function ManageUsersPage() {
     }
   };
 
-  const filterUsersByRole = (role: 'client' | 'provider' | 'admin') => {
+  const filterUsersByRole = (role: string) => {
     return allUsers.filter(u => u.role === role);
   };
 
@@ -132,7 +129,7 @@ export default function ManageUsersPage() {
     return <div className="text-center py-10">Access Denied. Redirecting...</div>;
   }
 
-  const renderUserTable = (users: User[], userType: 'client' | 'provider' | 'admin') => (
+  const renderUserTable = (users: any[], userType: string) => (
     <Table>
       <TableHeader>
         <TableRow>
@@ -209,3 +206,4 @@ export default function ManageUsersPage() {
     </div>
   );
 }
+

@@ -16,16 +16,6 @@ import { CalendarIcon, Activity, Send, DollarSign, UserCheck, UploadCloud } from
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
-import { db } from "@/lib/firebase";
-import { collection, addDoc } from "firebase/firestore";
-import type { ServiceRequest } from "@/lib/types";
-
-const NDT_SERVICES = [
-  "Ultrasonic Testing (UT)", "Magnetic Particle Testing (MT)", "Liquid Penetrant Testing (PT)",
-  "Radiographic Testing (RT)", "Eddy Current Testing (ET)", "Visual Testing (VT)",
-  "Leak Testing (LT)", "Acoustic Emission Testing (AET)", "Phased Array UT (PAUT)",
-  "Time-of-Flight Diffraction (TOFD)", "Other", "General Inquiry"
-];
 
 const ACCEPTED_FILE_TYPES = "application/pdf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,image/jpeg,image/png,text/plain,.doc,.docx";
 
@@ -45,22 +35,22 @@ function RequestServiceFormContent() {
   const [providerName, setProviderName] = useState<string | null>(null);
   const [estimatedCost, setEstimatedCost] = useState<number | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [ndtServices, setNdtServices] = useState<string[]>([]);
 
   useEffect(() => {
     if (!loading && !user) {
-      const redirectPath = `/request-service${searchParams.toString() ? `?${searchParams.toString()}` : ''}`;
+      const redirectPath = `/request-service${searchParams?.toString() ? `?${searchParams?.toString()}` : ''}`;
       router.push(`/login?redirect=${encodeURIComponent(redirectPath)}`);
     } else if (user && user.role !== 'client') {
       router.push("/dashboard");
     } else if (user) {
         setLocation(user.clientProfile?.primaryLocation || "");
     }
-
-    const queryProviderId = searchParams.get("providerId");
-    const queryProviderName = searchParams.get("providerName");
-    const queryServiceType = searchParams.get("serviceType");
-    const queryBaseRate = searchParams.get("baseRate");
-    const queryAiRecommendationId = searchParams.get("aiRecommendationId");
+    const queryProviderId = searchParams?.get("providerId");
+    const queryProviderName = searchParams?.get("providerName");
+    const queryServiceType = searchParams?.get("serviceType");
+    const queryBaseRate = searchParams?.get("baseRate");
+    const queryAiRecommendationId = searchParams?.get("aiRecommendationId");
 
     if (queryProviderId) setProviderId(queryProviderId);
     if (queryProviderName) setProviderName(queryProviderName);
@@ -75,6 +65,10 @@ function RequestServiceFormContent() {
     } else if (queryAiRecommendationId && !queryBaseRate) {
         // Placeholder for AI recs without explicit base rate
     }
+
+    fetch("/api/lists/ndt_services")
+      .then(r => r.json())
+      .then(data => setNdtServices(data.map((s: any) => s.name)));
 
   }, [user, loading, router, searchParams]);
 
@@ -105,46 +99,21 @@ function RequestServiceFormContent() {
         fileAttachmentUrl = `uploads/placeholder/${selectedFile.name}`;
     }
 
-    const newRequest: Omit<ServiceRequest, 'id'> = {
-        clientId: user.id,
-        clientName: user.name || user.email,
-        clientEmail: user.email,
-        providerId: providerId || null,
-        providerName: providerName || null,
-        serviceType,
-        location,
-        description,
-        requestedDate,
-        status: 'Pending',
-        estimatedCost: estimatedCost ?? null,
-        fileAttachmentUrl: fileAttachmentUrl || null,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-    };
-
-    try {
-        const docRef = await addDoc(collection(db, "serviceRequests"), newRequest);
-        
-        if (providerId && providerName) {
-            console.log(`--- SIMULATING EMAIL NOTIFICATION TO VENDOR ---`);
-            console.log(`To: Email address of ${providerName} (ID: ${providerId})`);
-            console.log(`--- END SIMULATION ---`);
-        }
-
+    // Simulate form submission success
+    setTimeout(() => {
         toast({
             title: "Service Request Submitted",
             description: `Your request has been successfully submitted. ${providerName ? providerName + ' has been notified.' : 'Providers will be able to view your open request.'}`,
         });
-        router.push(`/track-request/${docRef.id}`);
-    } catch (error) {
-        console.error("Error adding document: ", error);
-        toast({
-            title: "Submission Failed",
-            description: "Could not save your service request to the database.",
-            variant: "destructive",
-        });
+        router.push(`/track-request/simulated-doc-id`);
         setIsLoading(false);
-    }
+    }, 1000);
+
+    /*
+    // --- SIMULATED EMAIL NOTIFICATION TO VENDOR ---
+    console.log(`To: Email address of ${providerName} (ID: ${providerId})`);
+    // --- END SIMULATION ---
+    */
   };
 
   if (loading) {
@@ -181,7 +150,7 @@ function RequestServiceFormContent() {
                   <SelectValue placeholder="Select NDT Service" />
                 </SelectTrigger>
                 <SelectContent>
-                  {NDT_SERVICES.map(service => (
+                  {ndtServices.map(service => (
                     <SelectItem key={service} value={service}>{service}</SelectItem>
                   ))}
                 </SelectContent>
@@ -204,7 +173,7 @@ function RequestServiceFormContent() {
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0">
-                  <Calendar mode="single" selected={requestedDate} onSelect={setRequestedDate} initialFocus disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() -1))} />
+                  <Calendar mode="single" selected={requestedDate} onSelect={setRequestedDate} disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() -1))} />
                 </PopoverContent>
               </Popover>
             </div>
