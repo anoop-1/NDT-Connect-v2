@@ -1,0 +1,26 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'ndtconnect-web'
+    static_configs:
+      - targets: ['web:3000']
+    metrics_path: '/api/metrics'
+
+  - job_name: 'envoy'
+    static_configs:
+      - targets: ['envoy:9901']
+    metrics_path: '/stats/prometheus'
+
+  - job_name: 'kafka'
+    static_configs:
+      - targets: ['kafka:9092']
+
+  - job_name: 'jaeger'
+    static_configs:
+      - targets: ['jaeger:14269']

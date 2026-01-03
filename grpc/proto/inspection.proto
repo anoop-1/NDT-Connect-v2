@@ -1,0 +1,165 @@
+syntax = "proto3";
+
+package ndtconnect.inspection;
+
+option go_package = "github.com/ndtconnect/proto/inspection";
+
+// Inspection Event Service - bidirectional streaming
+service InspectionEventService {
+  // Subscribe to real-time events
+  rpc SubscribeEvents(EventSubscription) returns (stream InspectionEvent);
+  
+  // Publish events from client
+  rpc PublishEvent(InspectionEvent) returns (EventAck);
+  
+  // Bidirectional event stream
+  rpc EventStream(stream InspectionEvent) returns (stream InspectionEvent);
+}
+
+// Location Tracking Service
+service LocationService {
+  // Stream inspector locations
+  rpc StreamLocation(stream LocationUpdate) returns (stream LocationAck);
+  
+  // Get nearby inspectors
+  rpc GetNearbyInspectors(NearbyRequest) returns (NearbyResponse);
+  
+  // Get ETA for inspector
+  rpc GetETA(ETARequest) returns (ETAResponse);
+}
+
+// Dispatch Service
+service DispatchService {
+  // Request inspector dispatch
+  rpc RequestDispatch(DispatchRequest) returns (DispatchResponse);
+  
+  // Accept or reject job
+  rpc RespondToJob(JobResponse) returns (JobResponseAck);
+  
+  // Get available inspectors for job
+  rpc GetAvailableInspectors(AvailabilityRequest) returns (AvailabilityResponse);
+}
+
+// Messages
+
+message EventSubscription {
+  string user_id = 1;
+  repeated string event_types = 2;
+  repeated string job_ids = 3;
+  string auth_token = 4;
+}
+
+message InspectionEvent {
+  string id = 1;
+  string type = 2;
+  int64 timestamp = 3;
+  int32 version = 4;
+  string source = 5;
+  string correlation_id = 6;
+  bytes payload = 7;  // JSON encoded payload
+}
+
+message EventAck {
+  string event_id = 1;
+  bool success = 2;
+  string error = 3;
+}
+
+message LocationUpdate {
+  string inspector_id = 1;
+  double lat = 2;
+  double lng = 3;
+  float accuracy = 4;
+  float speed = 5;
+  float heading = 6;
+  int64 timestamp = 7;
+  string h3_index = 8;
+}
+
+message LocationAck {
+  bool success = 1;
+  int64 server_timestamp = 2;
+}
+
+message NearbyRequest {
+  double lat = 1;
+  double lng = 2;
+  int32 max_distance_km = 3;
+  int32 max_results = 4;
+  repeated string required_certifications = 5;
+  repeated string service_types = 6;
+}
+
+message NearbyResponse {
+  repeated InspectorInfo inspectors = 1;
+}
+
+message InspectorInfo {
+  string id = 1;
+  string name = 2;
+  double lat = 3;
+  double lng = 4;
+  float distance_km = 5;
+  int32 eta_minutes = 6;
+  string status = 7;
+  float rating = 8;
+  repeated string certifications = 9;
+}
+
+message ETARequest {
+  string inspector_id = 1;
+  double destination_lat = 2;
+  double destination_lng = 3;
+}
+
+message ETAResponse {
+  int32 eta_minutes = 1;
+  float distance_km = 2;
+  float confidence = 3;
+  string route_polyline = 4;
+}
+
+message DispatchRequest {
+  string job_id = 1;
+  string client_id = 2;
+  string service_type = 3;
+  double lat = 4;
+  double lng = 5;
+  string address = 6;
+  int64 requested_time = 7;
+  string priority = 8;
+  repeated string requirements = 9;
+}
+
+message DispatchResponse {
+  string dispatch_id = 1;
+  bool accepted = 2;
+  InspectorInfo assigned_inspector = 3;
+  int32 estimated_eta = 4;
+  string status = 5;
+}
+
+message JobResponse {
+  string job_id = 1;
+  string inspector_id = 2;
+  bool accepted = 3;
+  string rejection_reason = 4;
+  int32 eta_minutes = 5;
+}
+
+message JobResponseAck {
+  bool success = 1;
+  string message = 2;
+}
+
+message AvailabilityRequest {
+  double lat = 1;
+  double lng = 2;
+  string service_type = 3;
+  int64 requested_time = 4;
+}
+
+message AvailabilityResponse {
+  repeated InspectorInfo available_inspectors = 1;
+  int32 estimated_wait_time = 2;
+}

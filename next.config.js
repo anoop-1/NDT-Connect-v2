@@ -23,6 +23,30 @@ const nextConfig = {
       },
     ],
   },
+  // Externalize server-only packages
+  experimental: {
+    serverComponentsExternalPackages: [
+      'pusher',
+      '@grpc/grpc-js',
+      '@grpc/proto-loader',
+      'kafkajs',
+      'ioredis',
+    ],
+  },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      // Don't bundle server-only modules on client
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        net: false,
+        tls: false,
+        dns: false,
+      };
+    }
+    return config;
+  },
 };
 
 module.exports = nextConfig;
+
