@@ -3,7 +3,6 @@
 
 import type { Dispatch, ReactNode, SetStateAction } from 'react';
 import { createContext, useState, useEffect } from 'react';
-import { registerUser, getUserByEmail, updateUser as updateUserInDb } from '../lib/auth-service';
 import { MOCK_DEMO_CLIENT, MOCK_DEMO_PROVIDER } from '@/lib/mockData';
 import type { User } from '../lib/types';
 
@@ -11,6 +10,7 @@ interface RegisterDetails {
   email: string;
   role: 'client' | 'provider' | 'inspector';
   name: string;
+  password?: string;
   isDemo?: boolean;
   profileData?: any;
 }
@@ -20,7 +20,7 @@ interface AuthContextType {
   setUser: Dispatch<SetStateAction<User | null>>;
   loading: boolean;
   register: (details: RegisterDetails) => Promise<User | null>;
-  loginWithEmail: (email: string) => Promise<User | null>;
+  loginWithEmail: (email: string, password?: string) => Promise<User | null>;
   loginAsDemoUser: (role: 'client' | 'provider') => void;
   logout: () => void;
   updateUser: (userToUpdate: User) => Promise<void>;
@@ -54,7 +54,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const register = async (details: RegisterDetails): Promise<User | null> => {
-    const { email, role, name, isDemo, profileData } = details;
+    const { email, role, name, password, isDemo, profileData } = details;
     if (isDemo) {
       const demoUser = role === 'client' ? sanitizeDemoUserRole(MOCK_DEMO_CLIENT, 'client') : sanitizeDemoUserRole(MOCK_DEMO_PROVIDER, 'provider');
       setUser(demoUser);
@@ -62,7 +62,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return demoUser;
     }
     try {
-      const newUser = await registerUser({ email, role, name, profileData });
+      // Use API route instead of direct server import
+      const response = await fetch('/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, role, name, password, profileData }),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Registration failed');
+      }
+
+      const newUser = await response.json();
       if (newUser) {
         setUser(newUser);
         localStorage.setItem('ndt-user', JSON.stringify(newUser));
@@ -74,14 +86,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const loginWithEmail = async (email: string): Promise<User | null> => {
+  const loginWithEmail = async (email: string, password?: string): Promise<User | null> => {
     try {
-      const user = await getUserByEmail(email);
-      if (user) {
-        setUser(user);
-        localStorage.setItem('ndt-user', JSON.stringify(user));
+      // Use API route instead of direct server import
+      const response = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Login failed');
       }
-      return user;
+
+      const userData = await response.json();
+      if (userData) {
+        setUser(userData);
+        localStorage.setItem('ndt-user', JSON.stringify(userData));
+      }
+      return userData;
     } catch (error) {
       console.error('Login error:', error);
       throw error;
@@ -101,7 +125,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const updateUser = async (userToUpdate: User) => {
     try {
-      await updateUserInDb(userToUpdate);
+      // Use API route instead of direct server import
+      const response = await fetch('/api/auth/update', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userToUpdate),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update user');
+      }
+
       setUser(userToUpdate);
       localStorage.setItem('ndt-user', JSON.stringify(userToUpdate));
     } catch (error) {
