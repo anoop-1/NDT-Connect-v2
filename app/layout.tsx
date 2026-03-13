@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://ndtconnect.com',
+    url: 'https://ndt-connect.com',
     siteName: 'NDT Connect',
     title: 'NDT Connect - Real-Time NDT Inspection Services Platform',
     description: 'Book NDT inspection online. Connect with certified NDT service providers and freelance inspectors. Real-time tracking and instant quotes.',
@@ -78,10 +78,10 @@ export const metadata: Metadata = {
   },
   manifest: '/manifest.json',
   alternates: {
-    canonical: 'https://ndtconnect.com',
+    canonical: 'https://ndt-connect.com',
   },
   verification: {
-    google: 'your-google-verification-code',
+    google: 'afbI_z9kdB5yg6Sm11tqhvzz0M2iOo7Fb7jYCkgB460',
   },
 };
 
