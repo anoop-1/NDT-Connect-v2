@@ -8,15 +8,15 @@ import { Badge } from '@/components/ui/badge';
 import { MapPin, Building2, Search, ArrowRight, Shield, CheckCircle, Clock, Users } from 'lucide-react';
 
 interface Props {
-  params: { slug: string };
+  params: { city: string };
 }
 
 export async function generateStaticParams() {
-  return getAllCitySlugs().map((slug) => ({ slug }));
+  return getAllCitySlugs().map((city) => ({ city }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const city = getCityBySlug(params.slug);
+  const city = getCityBySlug(params.city);
   if (!city) return {};
 
   const title = `NDT Services in ${city.name}, ${city.country} | NDT Inspection Near You | NDT Connect`;
@@ -48,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default function CityPage({ params }: Props) {
-  const city = getCityBySlug(params.slug);
+  const city = getCityBySlug(params.city);
   if (!city) notFound();
 
   // Get nearby cities from same region
