@@ -138,40 +138,48 @@ function ServicePage({ city, method, citySlug, serviceSlug }: { city: any; metho
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-      <div className="space-y-12">
+      <div className="space-y-16">
         {/* Breadcrumbs */}
-        <div className="bg-muted/50 py-4 px-0">
+        <div className="glass py-4 px-0 sticky top-0 z-40 backdrop-blur-xl border-b border-white/10">
           <div className="container">
             <nav className="flex items-center space-x-2 text-sm">
-              <Link href="/" className="text-primary hover:underline">Home</Link>
-              <ChevronRight className="w-4 h-4 text-muted-foreground" />
-              <Link href={`/ndt-services/${citySlug}`} className="text-primary hover:underline">{city.name}</Link>
-              <ChevronRight className="w-4 h-4 text-muted-foreground" />
-              <Link href={`/services/${serviceSlug}`} className="text-primary hover:underline">{method.name}</Link>
-              <ChevronRight className="w-4 h-4 text-muted-foreground" />
-              <span className="text-muted-foreground">{method.name} in {city.name}</span>
+              <Link href="/" className="text-[#004aad] hover:text-[#003a85] font-medium transition">Home</Link>
+              <ChevronRight className="w-4 h-4 text-white/40" />
+              <Link href={`/ndt-services/${citySlug}`} className="text-[#004aad] hover:text-[#003a85] font-medium transition">{city.name}</Link>
+              <ChevronRight className="w-4 h-4 text-white/40" />
+              <Link href={`/services/${serviceSlug}`} className="text-[#004aad] hover:text-[#003a85] font-medium transition">{method.name}</Link>
+              <ChevronRight className="w-4 h-4 text-white/40" />
+              <span className="text-white/60">{method.name} in {city.name}</span>
             </nav>
           </div>
         </div>
 
         {/* Hero Section */}
-        <section className="py-16 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent">
-          <div className="container">
-            <div className="max-w-4xl">
-              <div className="inline-block mb-4 px-3 py-1 bg-primary/20 rounded-full text-sm font-medium text-primary">
-                {method.abbreviation} Services
+        <section className="relative overflow-hidden pt-20 pb-32">
+          {/* Background elements */}
+          <div className="hero-grid-bg absolute inset-0 opacity-5"></div>
+          <div className="absolute inset-0 hero-radial-glow"></div>
+
+          {/* Floating orbs */}
+          <div className="absolute top-20 right-10 w-72 h-72 orb opacity-20 animate-float" style={{ animationDelay: '0s' }}></div>
+          <div className="absolute -bottom-10 left-20 w-64 h-64 orb opacity-15 animate-float" style={{ animationDelay: '2s' }}></div>
+
+          <div className="container relative z-10">
+            <div className="max-w-4xl animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+              <div className="inline-block mb-6 px-4 py-2 glass-dark rounded-full text-sm font-semibold text-[#004aad] border border-[#004aad]/20 backdrop-blur-sm">
+                {method.abbreviation} Services in {city.name}
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-                {method.name} in {city.name}
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 gradient-text">
+                {method.name} Inspection
               </h1>
-              <p className="text-xl text-muted-foreground mb-6 leading-relaxed">
+              <p className="text-xl md:text-2xl text-white/80 mb-8 leading-relaxed max-w-3xl">
                 Professional {method.abbreviation} inspection services for {city.name}, {city.region}. Connect with certified NDT inspectors specializing in {method.name.toLowerCase()} for {city.industries.join(', ')} industries.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/request-service" className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition text-center">
+                <Link href="/request-service" className="px-8 py-4 bg-[#004aad] text-white rounded-xl font-semibold hover:bg-[#003a85] transition btn-glow text-center">
                   Request Inspection Quote
                 </Link>
-                <Link href={`/services/${serviceSlug}`} className="px-6 py-3 border border-primary text-primary rounded-lg font-medium hover:bg-primary/5 transition text-center">
+                <Link href={`/services/${serviceSlug}`} className="px-8 py-4 glass-strong rounded-xl font-semibold hover:glass text-[#004aad] border border-[#004aad]/30 transition text-center">
                   Learn More About {method.abbreviation}
                 </Link>
               </div>
@@ -179,66 +187,75 @@ function ServicePage({ city, method, citySlug, serviceSlug }: { city: any; metho
           </div>
         </section>
 
+        {/* Divider */}
+        <div className="section-divider"></div>
+
         {/* Overview Section */}
         <section className="container">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="md:col-span-2">
-              <h2 className="text-3xl font-bold mb-6">Overview</h2>
-              <p className="text-lg text-muted-foreground mb-4 leading-relaxed">{method.longDescription}</p>
-              <p className="text-base text-muted-foreground mb-6 leading-relaxed">
+          <div className="grid lg:grid-cols-3 gap-12">
+            <div className="lg:col-span-2 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+              <h2 className="text-4xl font-bold mb-8 gradient-text">Overview</h2>
+              <p className="text-lg text-white/75 mb-6 leading-relaxed">{method.longDescription}</p>
+              <p className="text-base text-white/70 mb-6 leading-relaxed">
                 In {city.name}, {method.name} is essential for maintaining safety and reliability across critical industries including {city.industries.join(', ')}. Our certified NDT inspectors have extensive experience with {method.name} applications specific to {city.name}&apos;s unique industrial landscape and regulatory environment.
               </p>
-              <p className="text-base text-muted-foreground leading-relaxed">
+              <p className="text-base text-white/70 leading-relaxed">
                 Whether you operate equipment at {city.keyFacilities.slice(0, 2).join(' or ')}, or other facilities in the {city.name} area, our {method.abbreviation} specialists are equipped to deliver reliable, code-compliant inspection services that meet your operational requirements.
               </p>
             </div>
-            <div className="bg-muted/50 p-6 rounded-lg h-fit">
-              <h3 className="font-semibold mb-4 flex items-center">
-                <Zap className="w-5 h-5 mr-2 text-primary" />Quick Facts
+            <div className="glass-strong backdrop-blur-xl rounded-2xl p-8 h-fit border border-[#004aad]/20 animate-fade-in-scale stagger-1 animated-border">
+              <h3 className="font-bold mb-6 flex items-center text-xl text-[#004aad]">
+                <Zap className="w-6 h-6 mr-3 animate-pulse-glow" />Quick Facts
               </h3>
-              <ul className="space-y-3 text-sm">
-                <li className="flex items-start"><CheckCircle className="w-4 h-4 mr-2 text-green-600 mt-0.5 flex-shrink-0" /><span>Method: <strong>{method.abbreviation} - {method.name}</strong></span></li>
-                <li className="flex items-start"><CheckCircle className="w-4 h-4 mr-2 text-green-600 mt-0.5 flex-shrink-0" /><span>Service Area: <strong>{city.name}, {city.region}</strong></span></li>
-                <li className="flex items-start"><CheckCircle className="w-4 h-4 mr-2 text-green-600 mt-0.5 flex-shrink-0" /><span>Primary Industries: <strong>{city.industries.slice(0, 2).join(', ')}</strong></span></li>
-                <li className="flex items-start"><CheckCircle className="w-4 h-4 mr-2 text-green-600 mt-0.5 flex-shrink-0" /><span>Key Standards: <strong>{method.standards.slice(0, 2).join(', ')}</strong></span></li>
+              <ul className="space-y-4 text-sm">
+                <li className="flex items-start gap-3"><CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" /><span className="text-white/90"><strong className="text-[#004aad]">Method:</strong> {method.abbreviation} - {method.name}</span></li>
+                <li className="flex items-start gap-3"><CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" /><span className="text-white/90"><strong className="text-[#004aad]">Service Area:</strong> {city.name}, {city.region}</span></li>
+                <li className="flex items-start gap-3"><CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" /><span className="text-white/90"><strong className="text-[#004aad]">Primary Industries:</strong> {city.industries.slice(0, 2).join(', ')}</span></li>
+                <li className="flex items-start gap-3"><CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" /><span className="text-white/90"><strong className="text-[#004aad]">Key Standards:</strong> {method.standards.slice(0, 2).join(', ')}</span></li>
               </ul>
             </div>
           </div>
         </section>
 
+        {/* Divider */}
+        <div className="section-divider"></div>
+
         {/* Why This Service Matters */}
         <section className="container">
-          <h2 className="text-3xl font-bold mb-8">Why {method.abbreviation} Matters in {city.name}</h2>
+          <h2 className="text-4xl font-bold mb-12 gradient-text text-center">Why {method.abbreviation} Matters</h2>
           <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-xl font-semibold mb-4 flex items-center"><Target className="w-5 h-5 mr-3 text-primary" />Industry Relevance</h3>
-              <p className="text-muted-foreground leading-relaxed mb-4">
+            <div className="glass-dark rounded-2xl p-8 backdrop-blur-xl border border-[#004aad]/20 card-hover-lift animate-fade-in-up stagger-1">
+              <h3 className="text-2xl font-bold mb-4 flex items-center text-[#004aad]"><Target className="w-6 h-6 mr-3 icon-glow" />Industry Relevance</h3>
+              <p className="text-white/75 leading-relaxed mb-4">
                 {city.name} is home to significant operations in {city.industries.join(', ')}. {method.name} is critical for ensuring equipment reliability and regulatory compliance across these sectors.
               </p>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-white/70 leading-relaxed">
                 The industrial facilities in the {city.name} area, including {city.keyFacilities.slice(0, 2).join(', ')}, depend on regular {method.abbreviation} inspections to maintain operational safety and meet stringent code requirements.
               </p>
             </div>
-            <div>
-              <h3 className="text-xl font-semibold mb-4 flex items-center"><AlertCircle className="w-5 h-5 mr-3 text-primary" />Compliance &amp; Safety</h3>
-              <p className="text-muted-foreground leading-relaxed mb-4">
+            <div className="glass-dark rounded-2xl p-8 backdrop-blur-xl border border-[#004aad]/20 card-hover-lift animate-fade-in-up stagger-2">
+              <h3 className="text-2xl font-bold mb-4 flex items-center text-[#004aad]"><Shield className="w-6 h-6 mr-3 icon-glow" />Compliance &amp; Safety</h3>
+              <p className="text-white/75 leading-relaxed mb-4">
                 {method.name} is mandated by key standards and codes applicable to {city.name} operations: {method.standards.slice(0, 3).join(', ')}.
               </p>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-white/70 leading-relaxed">
                 Working with certified {method.abbreviation} inspectors ensures your facility remains compliant with all applicable regulations while preventing costly equipment failures and safety incidents.
               </p>
             </div>
           </div>
         </section>
 
+        {/* Divider */}
+        <div className="section-divider"></div>
+
         {/* Industries Served */}
         <section className="container">
-          <h2 className="text-3xl font-bold mb-8">Industries Served in {city.name}</h2>
+          <h2 className="text-4xl font-bold mb-12 gradient-text text-center">Industries Served in {city.name}</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {city.industries.map((industry: string, idx: number) => (
-              <div key={idx} className="border rounded-lg p-6 hover:shadow-lg transition">
-                <h3 className="text-lg font-semibold mb-3">{industry}</h3>
-                <p className="text-sm text-muted-foreground mb-4">
+              <div key={idx} className="glass rounded-2xl p-6 backdrop-blur-xl border border-white/10 card-hover-3d animate-fade-in-up transition-all hover:border-[#004aad]/50" style={{ animationDelay: `${idx * 0.1}s` }}>
+                <h3 className="text-lg font-bold mb-4 text-[#004aad]">{industry}</h3>
+                <p className="text-sm text-white/75 mb-4 leading-relaxed">
                   {industry === 'Oil & Gas'
                     ? `${method.name} plays a vital role in ensuring the integrity of pipelines, refineries, and production facilities throughout the ${city.name} region.`
                     : industry === 'Aerospace'
@@ -251,175 +268,227 @@ function ServicePage({ city, method, citySlug, serviceSlug }: { city: any; metho
                     ? `Marine vessels and offshore structures in the ${city.name} area depend on ${method.abbreviation} for corrosion and fatigue inspection.`
                     : `${industry} operations in ${city.name} require professional ${method.abbreviation} inspection services for equipment and facility maintenance.`}
                 </p>
-                <Link href={`/services/${serviceSlug}`} className="text-primary text-sm font-medium hover:underline">
-                  Learn more about {method.abbreviation} &rarr;
+                <Link href={`/services/${serviceSlug}`} className="text-[#004aad] text-sm font-semibold hover:text-[#003a85] transition inline-flex items-center gap-1">
+                  Learn more <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             ))}
           </div>
         </section>
 
+        {/* Divider */}
+        <div className="section-divider"></div>
+
         {/* Key Facilities */}
-        <section className="container bg-muted/30 rounded-lg p-8">
-          <h2 className="text-3xl font-bold mb-8">Key Facilities &amp; Infrastructure</h2>
-          <p className="text-muted-foreground mb-6 leading-relaxed">
-            {city.name}&apos;s major industrial and infrastructure facilities require specialized {method.abbreviation} inspection services:
-          </p>
-          <div className="grid md:grid-cols-2 gap-4">
-            {city.keyFacilities.map((facility: string, idx: number) => (
-              <div key={idx} className="flex items-start p-4 bg-background rounded-lg">
-                <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
-                <div>
-                  <p className="font-medium">{facility}</p>
-                  <p className="text-xs text-muted-foreground mt-1">Infrastructure requiring {method.abbreviation} inspection services</p>
+        <section className="container">
+          <h2 className="text-4xl font-bold mb-12 gradient-text text-center">Key Facilities &amp; Infrastructure</h2>
+          <div className="glass-dark rounded-2xl p-8 backdrop-blur-xl border border-[#004aad]/20 mb-8">
+            <p className="text-white/80 mb-8 leading-relaxed text-lg">
+              {city.name}&apos;s major industrial and infrastructure facilities require specialized {method.abbreviation} inspection services:
+            </p>
+            <div className="grid md:grid-cols-2 gap-4">
+              {city.keyFacilities.map((facility: string, idx: number) => (
+                <div key={idx} className="flex items-start p-4 glass rounded-xl border border-white/10 animate-fade-in-up" style={{ animationDelay: `${idx * 0.05}s` }}>
+                  <CheckCircle className="w-5 h-5 text-emerald-400 mr-3 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <p className="font-semibold text-white">{facility}</p>
+                    <p className="text-xs text-white/60 mt-1">Infrastructure requiring {method.abbreviation} inspection services</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </section>
 
+        {/* Divider */}
+        <div className="section-divider"></div>
+
         {/* Method Principles */}
         <section className="container">
-          <h2 className="text-3xl font-bold mb-8">{method.abbreviation} Principles &amp; Process</h2>
-          <div className="bg-blue-50 border border-blue-200 rounded-lg p-8 mb-8">
-            <h3 className="text-lg font-semibold mb-4 text-blue-900">How {method.name} Works</h3>
-            <ol className="space-y-3">
+          <h2 className="text-4xl font-bold mb-12 gradient-text text-center">{method.abbreviation} Principles &amp; Process</h2>
+          <div className="glass-strong rounded-2xl p-8 md:p-12 backdrop-blur-xl border border-[#004aad]/30">
+            <h3 className="text-2xl font-bold mb-8 text-[#004aad]">How {method.name} Works</h3>
+            <div className="space-y-4">
               {method.principles.map((principle: string, idx: number) => (
-                <li key={idx} className="flex items-start">
-                  <span className="font-bold text-blue-600 mr-3">{idx + 1}.</span>
-                  <span className="text-blue-900">{principle}</span>
-                </li>
+                <div key={idx} className="flex items-start gap-4 p-4 glass rounded-xl border border-white/10 hover:border-[#004aad]/30 transition animate-fade-in-up stagger-{idx}" style={{ animationDelay: `${idx * 0.1}s` }}>
+                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-[#004aad] to-[#003a85] font-bold text-white text-sm flex-shrink-0">
+                    {idx + 1}
+                  </div>
+                  <span className="text-white/90 leading-relaxed pt-1">{principle}</span>
+                </div>
               ))}
-            </ol>
+            </div>
           </div>
-          <p className="text-muted-foreground leading-relaxed">
+          <p className="text-white/75 leading-relaxed mt-8 text-center text-lg">
             Our certified NDT inspectors in {city.name} follow these principles rigorously to deliver accurate, reliable {method.abbreviation} inspections that meet industry standards and regulatory requirements specific to your facility.
           </p>
         </section>
 
+        {/* Divider */}
+        <div className="section-divider"></div>
+
         {/* Standards & Compliance */}
         <section className="container">
-          <h2 className="text-3xl font-bold mb-8">Applicable Standards &amp; Codes</h2>
-          <p className="text-muted-foreground mb-6 leading-relaxed">
+          <h2 className="text-4xl font-bold mb-12 gradient-text text-center">Applicable Standards &amp; Codes</h2>
+          <p className="text-white/75 mb-8 leading-relaxed text-center text-lg">
             {method.name} inspections in {city.name} are performed in compliance with the following industry standards and codes:
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {method.standards.map((standard: string, idx: number) => (
-              <div key={idx} className="border rounded-lg p-4 bg-muted/50">
-                <p className="font-semibold text-sm">{standard}</p>
+              <div key={idx} className="glass rounded-xl p-5 backdrop-blur-xl border border-[#004aad]/20 flex items-center gap-3 card-hover-lift animate-fade-in-up" style={{ animationDelay: `${idx * 0.05}s` }}>
+                <Shield className="w-5 h-5 text-[#004aad] flex-shrink-0" />
+                <p className="font-semibold text-sm text-white">{standard}</p>
               </div>
             ))}
           </div>
         </section>
+
+        {/* Divider */}
+        <div className="section-divider"></div>
 
         {/* Advantages Section */}
         <section className="container">
-          <h2 className="text-3xl font-bold mb-8">Advantages of {method.abbreviation} Inspection</h2>
+          <h2 className="text-4xl font-bold mb-12 gradient-text text-center">Advantages of {method.abbreviation} Inspection</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {method.advantages.map((advantage: string, idx: number) => (
-              <div key={idx} className="flex items-start p-4 border rounded-lg hover:shadow-md transition">
-                <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-1 flex-shrink-0" />
-                <p className="text-sm">{advantage}</p>
+              <div key={idx} className="flex items-start p-6 glass rounded-xl backdrop-blur-xl border border-white/10 card-hover-lift transition-all animate-fade-in-up" style={{ animationDelay: `${idx * 0.1}s` }}>
+                <CheckCircle className="w-6 h-6 text-emerald-400 mr-4 mt-0.5 flex-shrink-0" />
+                <p className="text-sm text-white/90">{advantage}</p>
               </div>
             ))}
           </div>
         </section>
 
+        {/* Divider */}
+        <div className="section-divider"></div>
+
         {/* Applications Section */}
         <section className="container">
-          <h2 className="text-3xl font-bold mb-8">{method.abbreviation} Applications</h2>
-          <p className="text-muted-foreground mb-6 leading-relaxed">
+          <h2 className="text-4xl font-bold mb-12 gradient-text text-center">{method.abbreviation} Applications</h2>
+          <p className="text-white/75 mb-8 leading-relaxed text-center text-lg">
             {method.name} is used across many inspection scenarios in {city.name}:
           </p>
           <div className="grid md:grid-cols-2 gap-4">
             {method.applications.map((app: string, idx: number) => (
-              <div key={idx} className="p-4 bg-muted/50 rounded-lg">
-                <p className="text-sm text-foreground">{app}</p>
+              <div key={idx} className="p-4 glass rounded-xl backdrop-blur-xl border border-white/10 text-white/90 animate-fade-in-up" style={{ animationDelay: `${idx * 0.05}s` }}>
+                <p className="text-sm flex items-start gap-3">
+                  <span className="text-[#004aad] font-bold mt-0.5">•</span>
+                  {app}
+                </p>
               </div>
             ))}
           </div>
         </section>
 
+        {/* Divider */}
+        <div className="section-divider"></div>
+
         {/* FAQ Section */}
         <section className="container">
-          <h2 className="text-3xl font-bold mb-8">Frequently Asked Questions</h2>
-          <div className="space-y-6">
-            <div className="border rounded-lg p-6">
-              <h3 className="font-semibold text-lg mb-2">Why is {method.abbreviation} important in {city.name}?</h3>
-              <p className="text-muted-foreground">
-                {method.name} is essential for {city.name}&apos;s critical industries including {city.industries.slice(0, 2).join(' and ')}. These sectors depend on regular inspections to ensure equipment safety, prevent failures, and maintain regulatory compliance.
-              </p>
-            </div>
-            <div className="border rounded-lg p-6">
-              <h3 className="font-semibold text-lg mb-2">What are the main advantages of {method.abbreviation}?</h3>
-              <p className="text-muted-foreground">
-                Key advantages include: {method.advantages.slice(0, 3).join('; ')}. These benefits make {method.abbreviation} a cost-effective choice for many inspection scenarios in {city.name}.
-              </p>
-            </div>
-            <div className="border rounded-lg p-6">
-              <h3 className="font-semibold text-lg mb-2">Which standards apply to {method.abbreviation} in {city.name}?</h3>
-              <p className="text-muted-foreground">
-                {method.name} inspections follow standards including {method.standards.slice(0, 3).join(', ')}. All inspectors are certified to ASNT standards to ensure quality and compliance.
-              </p>
-            </div>
-            <div className="border rounded-lg p-6">
-              <h3 className="font-semibold text-lg mb-2">How much does {method.abbreviation} cost?</h3>
-              <p className="text-muted-foreground">
-                Pricing depends on scope, equipment complexity, location, and facility accessibility. NDT Connect connects you with certified inspectors in {city.name} who provide competitive quotes for your specific needs.
-              </p>
-            </div>
+          <h2 className="text-4xl font-bold mb-12 gradient-text text-center">Frequently Asked Questions</h2>
+          <div className="space-y-4">
+            {[
+              {
+                q: `Why is ${method.abbreviation} important in ${city.name}?`,
+                a: `${method.name} is essential for ${city.name}'s critical industries including ${city.industries.slice(0, 2).join(' and ')}. These sectors depend on regular inspections to ensure equipment safety, prevent failures, and maintain regulatory compliance.`
+              },
+              {
+                q: `What are the main advantages of ${method.abbreviation}?`,
+                a: `Key advantages include: ${method.advantages.slice(0, 3).join('; ')}. These benefits make ${method.abbreviation} a cost-effective choice for many inspection scenarios in ${city.name}.`
+              },
+              {
+                q: `Which standards apply to ${method.abbreviation} in ${city.name}?`,
+                a: `${method.name} inspections follow standards including ${method.standards.slice(0, 3).join(', ')}. All inspectors are certified to ASNT standards to ensure quality and compliance.`
+              },
+              {
+                q: `How much does ${method.abbreviation} cost?`,
+                a: `Pricing depends on scope, equipment complexity, location, and facility accessibility. NDT Connect connects you with certified inspectors in ${city.name} who provide competitive quotes for your specific needs.`
+              }
+            ].map((faq, idx) => (
+              <div key={idx} className="glass rounded-xl p-6 backdrop-blur-xl border border-white/10 card-hover-lift animate-fade-in-up" style={{ animationDelay: `${idx * 0.1}s` }}>
+                <h3 className="font-bold text-lg mb-3 text-[#004aad]">{faq.q}</h3>
+                <p className="text-white/80 leading-relaxed">{faq.a}</p>
+              </div>
+            ))}
           </div>
         </section>
 
+        {/* Divider */}
+        <div className="section-divider"></div>
+
         {/* Call to Action */}
-        <section className="container bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg p-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready for Professional {method.abbreviation} Inspection?</h2>
-          <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Connect with certified NDT inspectors in {city.name} who specialize in {method.name} services for your industry.
-          </p>
-          <Link href="/request-service" className="px-8 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition inline-block">
-            Get a Free Quote
-          </Link>
+        <section className="relative overflow-hidden rounded-3xl p-12 md:p-20">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#004aad]/20 via-transparent to-[#004aad]/10"></div>
+          <div className="absolute inset-0 hero-dots-bg opacity-10"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 orb opacity-15 animate-float" style={{ animationDelay: '0s' }}></div>
+          <div className="absolute bottom-0 left-0 w-80 h-80 orb opacity-10 animate-float" style={{ animationDelay: '2s' }}></div>
+
+          <div className="relative z-10 text-center max-w-3xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">Ready for Professional {method.abbreviation} Inspection?</h2>
+            <p className="text-lg text-white/80 mb-8 leading-relaxed">
+              Connect with certified NDT inspectors in {city.name} who specialize in {method.name} services for your industry.
+            </p>
+            <Link href="/request-service" className="px-10 py-4 bg-[#004aad] text-white rounded-xl font-bold hover:bg-[#003a85] transition btn-glow inline-block">
+              Get a Free Quote Today
+            </Link>
+          </div>
         </section>
+
+        {/* Divider */}
+        <div className="section-divider"></div>
 
         {/* Related Services */}
         {related.length > 0 && (
           <section className="container">
-            <h2 className="text-3xl font-bold mb-8">Related Services in {city.name}</h2>
+            <h2 className="text-4xl font-bold mb-12 gradient-text text-center">Related Services in {city.name}</h2>
             <div className="grid md:grid-cols-2 gap-6">
-              {related.map((relatedMethod) => (
-                <Link key={relatedMethod.slug} href={`/ndt-services/${citySlug}/${relatedMethod.slug}`} className="border rounded-lg p-6 hover:shadow-lg hover:border-primary transition group">
-                  <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition">{relatedMethod.name}</h3>
-                  <p className="text-sm text-muted-foreground mb-4">{relatedMethod.abbreviation}</p>
-                  <p className="text-sm text-muted-foreground">{relatedMethod.description}</p>
+              {related.map((relatedMethod, idx) => (
+                <Link key={relatedMethod.slug} href={`/ndt-services/${citySlug}/${relatedMethod.slug}`} className="glass rounded-2xl p-8 backdrop-blur-xl border border-[#004aad]/20 card-hover-3d animate-fade-in-up transition-all group" style={{ animationDelay: `${idx * 0.1}s` }}>
+                  <h3 className="font-bold text-2xl mb-3 text-[#004aad] group-hover:text-emerald-400 transition">{relatedMethod.name}</h3>
+                  <p className="text-sm text-white/70 mb-4 font-medium">{relatedMethod.abbreviation}</p>
+                  <p className="text-sm text-white/80 leading-relaxed">{relatedMethod.description}</p>
+                  <div className="mt-4 flex items-center gap-2 text-[#004aad] text-sm font-semibold group-hover:gap-3 transition">
+                    Learn more <ArrowRight className="w-4 h-4" />
+                  </div>
                 </Link>
               ))}
             </div>
           </section>
         )}
+
+        {/* Divider */}
+        {nearby.length > 0 && <div className="section-divider"></div>}
 
         {/* Same Service in Nearby Cities */}
         {nearby.length > 0 && (
           <section className="container">
-            <h2 className="text-3xl font-bold mb-8">{method.name} Services in Nearby Cities</h2>
+            <h2 className="text-4xl font-bold mb-12 gradient-text text-center">{method.name} Services in Nearby Cities</h2>
             <div className="grid md:grid-cols-2 gap-6">
-              {nearby.map((nearbyCity) => (
-                <Link key={nearbyCity.slug} href={`/ndt-services/${nearbyCity.slug}/${serviceSlug}`} className="border rounded-lg p-6 hover:shadow-lg hover:border-primary transition group">
-                  <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition">{method.name} in {nearbyCity.name}</h3>
-                  <p className="text-sm text-muted-foreground mb-2">{nearbyCity.region}</p>
-                  <p className="text-xs text-muted-foreground">{nearbyCity.description.substring(0, 100)}...</p>
+              {nearby.map((nearbyCity, idx) => (
+                <Link key={nearbyCity.slug} href={`/ndt-services/${nearbyCity.slug}/${serviceSlug}`} className="glass rounded-2xl p-8 backdrop-blur-xl border border-white/10 card-hover-3d animate-fade-in-up transition-all group hover:border-[#004aad]/50" style={{ animationDelay: `${idx * 0.1}s` }}>
+                  <h3 className="font-bold text-2xl mb-2 text-[#004aad] group-hover:text-emerald-400 transition">{method.name}</h3>
+                  <p className="text-sm text-white/70 mb-3 font-medium flex items-center gap-2">
+                    <MapPin className="w-4 h-4" /> {nearbyCity.name}, {nearbyCity.region}
+                  </p>
+                  <p className="text-sm text-white/75 leading-relaxed">{nearbyCity.description.substring(0, 100)}...</p>
+                  <div className="mt-4 flex items-center gap-2 text-[#004aad] text-sm font-semibold group-hover:gap-3 transition">
+                    Explore <ArrowRight className="w-4 h-4" />
+                  </div>
                 </Link>
               ))}
             </div>
           </section>
         )}
 
+        {/* Divider */}
+        <div className="section-divider"></div>
+
         {/* City Page Link */}
         <section className="container text-center">
-          <h2 className="text-2xl font-bold mb-4">Explore All NDT Services in {city.name}</h2>
-          <p className="text-muted-foreground mb-6">View complete NDT service offerings and certified inspectors serving the {city.name} area.</p>
-          <Link href={`/ndt-services/${citySlug}`} className="inline-flex items-center px-6 py-3 border border-primary text-primary rounded-lg font-medium hover:bg-primary/5 transition">
-            View {city.name} Page <ChevronRight className="w-4 h-4 ml-2" />
+          <h2 className="text-3xl font-bold mb-4 gradient-text">Explore All NDT Services in {city.name}</h2>
+          <p className="text-white/75 mb-8 text-lg">View complete NDT service offerings and certified inspectors serving the {city.name} area.</p>
+          <Link href={`/ndt-services/${citySlug}`} className="inline-flex items-center px-8 py-4 glass-strong rounded-xl font-bold text-[#004aad] border border-[#004aad]/30 hover:border-[#004aad]/60 transition hover:bg-[#004aad]/5">
+            View {city.name} Page <ChevronRight className="w-5 h-5 ml-2" />
           </Link>
         </section>
       </div>
@@ -453,155 +522,249 @@ function IndustryPage({ city, industry, citySlug }: { city: any; industry: any; 
       ]} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
 
-      <div className="max-w-6xl mx-auto">
-        <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6 flex-wrap">
-          <Link href="/" className="hover:text-primary">Home</Link><span>/</span>
-          <Link href="/ndt-services" className="hover:text-primary">Services</Link><span>/</span>
-          <Link href={`/ndt-services/${city.slug}`} className="hover:text-primary">{city.name}</Link><span>/</span>
-          <span className="text-foreground">{industry.name}</span>
+      <div className="max-w-6xl mx-auto space-y-16">
+        {/* Breadcrumbs */}
+        <nav className="flex items-center gap-2 text-sm text-white/60 mb-6 flex-wrap p-4 glass rounded-xl backdrop-blur-xl border border-white/10">
+          <Link href="/" className="hover:text-[#004aad] transition">Home</Link><span>/</span>
+          <Link href="/ndt-services" className="hover:text-[#004aad] transition">Services</Link><span>/</span>
+          <Link href={`/ndt-services/${city.slug}`} className="hover:text-[#004aad] transition">{city.name}</Link><span>/</span>
+          <span className="text-white font-medium">{industry.name}</span>
         </nav>
 
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-10 md:p-14 mb-12">
-          <div className="flex items-start justify-between gap-4 mb-6 flex-wrap">
-            <div className="flex-1">
-              <div className="flex items-center gap-3 mb-4">
-                <Badge>{industry.name}</Badge>
-                <div className="flex items-center gap-1 text-sm text-muted-foreground"><MapPin className="h-4 w-4" />{city.name}, {city.region}</div>
+        <section className="relative overflow-hidden rounded-3xl p-12 md:p-16">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#004aad]/20 via-transparent to-[#004aad]/10"></div>
+          <div className="absolute inset-0 hero-grid-bg opacity-5"></div>
+          <div className="absolute top-10 right-10 w-96 h-96 orb opacity-20 animate-float" style={{ animationDelay: '0s' }}></div>
+
+          <div className="relative z-10">
+            <div className="flex items-start justify-between gap-6 mb-8 flex-wrap">
+              <div className="flex-1 max-w-2xl">
+                <div className="flex items-center gap-3 mb-6 flex-wrap">
+                  <Badge className="bg-[#004aad]/20 text-[#004aad] border border-[#004aad]/30 px-4 py-2 text-sm font-semibold">{industry.name}</Badge>
+                  <div className="flex items-center gap-1 text-sm text-white/70 glass rounded-lg px-3 py-1 backdrop-blur-sm border border-white/10">
+                    <MapPin className="h-4 w-4 text-[#004aad]" />{city.name}, {city.region}
+                  </div>
+                </div>
+                <h1 className="text-5xl md:text-6xl font-bold mb-6 gradient-text">{industry.name} NDT</h1>
+                <p className="text-xl text-white/80 max-w-2xl leading-relaxed">{industry.description}</p>
               </div>
-              <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">{industry.name} NDT Services in {city.name}</h1>
-              <p className="text-lg text-muted-foreground max-w-2xl">{industry.description}</p>
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#004aad]/20 to-transparent rounded-2xl blur-2xl"></div>
+                <Building2 className="h-28 w-28 text-[#004aad] opacity-30 relative" />
+              </div>
             </div>
-            <Building2 className="h-16 w-16 text-primary opacity-20" />
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
-            <div className="bg-white/50 rounded-lg p-3"><div className="font-semibold text-primary">{industry.commonMethods.length}+</div><div className="text-muted-foreground text-xs">Testing Methods</div></div>
-            <div className="bg-white/50 rounded-lg p-3"><div className="font-semibold text-primary">{industry.standards.length}+</div><div className="text-muted-foreground text-xs">Applicable Standards</div></div>
-            <div className="bg-white/50 rounded-lg p-3"><div className="font-semibold text-primary">{industry.keyApplications.length}+</div><div className="text-muted-foreground text-xs">Applications</div></div>
-            <div className="bg-white/50 rounded-lg p-3"><div className="font-semibold text-primary">24/7</div><div className="text-muted-foreground text-xs">Availability</div></div>
+
+            {/* Stats Grid */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+              {[
+                { value: `${industry.commonMethods.length}+`, label: 'Testing Methods' },
+                { value: `${industry.standards.length}+`, label: 'Standards' },
+                { value: `${industry.keyApplications.length}+`, label: 'Applications' },
+                { value: '24/7', label: 'Availability' }
+              ].map((stat, idx) => (
+                <div key={idx} className="glass rounded-xl p-4 backdrop-blur-xl border border-[#004aad]/20 text-center animate-fade-in-up" style={{ animationDelay: `${idx * 0.1}s` }}>
+                  <div className="font-bold text-2xl text-[#004aad]">{stat.value}</div>
+                  <div className="text-xs text-white/70 mt-1">{stat.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
+        {/* Divider */}
+        <div className="section-divider"></div>
+
         {/* Main Content */}
-        <div className="grid lg:grid-cols-3 gap-8 mb-12">
-          <div className="lg:col-span-2 space-y-8">
-            <section>
-              <h2 className="text-2xl font-bold text-primary mb-4">About {industry.name} in {city.name}</h2>
-              <Card><CardContent className="pt-6">
-                <p className="text-muted-foreground leading-relaxed mb-6">{industry.longDescription}</p>
-                <div className="bg-primary/5 rounded-lg p-4">
-                  <h3 className="font-semibold text-foreground mb-2 flex items-center gap-2"><Zap className="h-4 w-4 text-primary" />Industry Snapshot in {city.name}</h3>
-                  <p className="text-sm text-muted-foreground">{city.description}</p>
+        <div className="grid lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2 space-y-12">
+            {/* About Section */}
+            <section className="animate-fade-in-up">
+              <h2 className="text-4xl font-bold text-[#004aad] mb-6 gradient-text">About {industry.name}</h2>
+              <div className="glass rounded-2xl p-8 backdrop-blur-xl border border-white/10">
+                <p className="text-white/85 leading-relaxed mb-6 text-lg">{industry.longDescription}</p>
+                <div className="glass-dark rounded-xl p-6 border border-[#004aad]/20">
+                  <h3 className="font-bold text-[#004aad] mb-3 flex items-center gap-2">
+                    <Zap className="h-5 w-5 icon-glow" />Industry Snapshot in {city.name}
+                  </h3>
+                  <p className="text-sm text-white/80 leading-relaxed">{city.description}</p>
                 </div>
-              </CardContent></Card>
+              </div>
             </section>
 
-            <section>
-              <h2 className="text-2xl font-bold text-primary mb-4 flex items-center gap-2"><AlertTriangle className="h-6 w-6" />Key Challenges &amp; Inspection Needs</h2>
+            {/* Challenges Section */}
+            <section className="animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+              <h2 className="text-4xl font-bold text-[#004aad] mb-6 gradient-text flex items-center gap-3">
+                <AlertTriangle className="h-8 w-8 icon-glow" />Key Challenges
+              </h2>
               <div className="space-y-3">
                 {industry.challenges.map((challenge: string, i: number) => (
-                  <Card key={i}><CardContent className="pt-6"><p className="text-sm text-muted-foreground">{challenge}</p></CardContent></Card>
+                  <div key={i} className="glass rounded-xl p-6 backdrop-blur-xl border border-white/10 card-hover-lift animate-fade-in-up" style={{ animationDelay: `${i * 0.05}s` }}>
+                    <p className="text-white/90 text-base leading-relaxed">{challenge}</p>
+                  </div>
                 ))}
               </div>
             </section>
 
-            <section>
-              <h2 className="text-2xl font-bold text-primary mb-4 flex items-center gap-2"><Zap className="h-6 w-6" />Common NDT Methods for {industry.name}</h2>
+            {/* Common Methods Section */}
+            <section className="animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+              <h2 className="text-4xl font-bold text-[#004aad] mb-6 gradient-text flex items-center gap-3">
+                <Zap className="h-8 w-8 icon-glow" />Common NDT Methods
+              </h2>
               <div className="grid md:grid-cols-2 gap-4">
                 {industry.commonMethods.map((method: string, i: number) => (
-                  <Card key={i} className="hover:shadow-lg transition-shadow"><CardContent className="pt-6">
-                    <div className="flex items-start gap-3">
-                      <CheckCircle className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                      <div><div className="font-semibold text-foreground">{method}</div></div>
+                  <div key={i} className="glass rounded-xl p-6 backdrop-blur-xl border border-white/10 card-hover-lift animate-fade-in-up transition-all hover:border-[#004aad]/40" style={{ animationDelay: `${i * 0.05}s` }}>
+                    <div className="flex items-start gap-4">
+                      <CheckCircle className="h-6 w-6 text-[#004aad] flex-shrink-0 mt-1" />
+                      <div className="font-bold text-white text-lg">{method}</div>
                     </div>
-                  </CardContent></Card>
+                  </div>
                 ))}
               </div>
             </section>
 
-            <section>
-              <h2 className="text-2xl font-bold text-primary mb-4 flex items-center gap-2"><Shield className="h-6 w-6" />Applications in {city.name}</h2>
-              <div className="space-y-2">
+            {/* Applications Section */}
+            <section className="animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+              <h2 className="text-4xl font-bold text-[#004aad] mb-6 gradient-text flex items-center gap-3">
+                <Shield className="h-8 w-8 icon-glow" />Applications in {city.name}
+              </h2>
+              <div className="space-y-3">
                 {industry.keyApplications.map((app: string, i: number) => (
-                  <Card key={i}><CardContent className="py-3 px-4 flex items-center gap-3"><CheckCircle className="h-4 w-4 text-primary flex-shrink-0" /><span className="text-sm text-muted-foreground">{app}</span></CardContent></Card>
+                  <div key={i} className="glass rounded-xl p-4 backdrop-blur-xl border border-white/10 flex items-center gap-3 animate-fade-in-up" style={{ animationDelay: `${i * 0.05}s` }}>
+                    <CheckCircle className="h-5 w-5 text-[#004aad] flex-shrink-0" />
+                    <span className="text-white/90">{app}</span>
+                  </div>
                 ))}
               </div>
             </section>
 
-            <section>
-              <h2 className="text-2xl font-bold text-primary mb-4 flex items-center gap-2"><FileText className="h-6 w-6" />Applicable Standards</h2>
-              <Card><CardContent className="pt-6">
+            {/* Standards Section */}
+            <section className="animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+              <h2 className="text-4xl font-bold text-[#004aad] mb-6 gradient-text flex items-center gap-3">
+                <FileText className="h-8 w-8 icon-glow" />Applicable Standards
+              </h2>
+              <div className="glass rounded-2xl p-8 backdrop-blur-xl border border-white/10">
                 <div className="flex flex-wrap gap-2">
                   {industry.standards.map((standard: string, i: number) => (
-                    <Badge key={i} variant="secondary" className="text-sm py-2 px-3">{standard}</Badge>
+                    <Badge key={i} className="bg-[#004aad]/20 text-[#004aad] border border-[#004aad]/30 px-4 py-2 text-sm font-medium animate-fade-in-scale" style={{ animationDelay: `${i * 0.05}s` }}>{standard}</Badge>
                   ))}
                 </div>
-              </CardContent></Card>
+              </div>
             </section>
           </div>
 
           {/* Sidebar */}
           <div className="space-y-6">
-            <Card className="sticky top-4 bg-primary/5 border-primary/20">
-              <CardHeader><CardTitle className="text-lg">Request {industry.name} NDT Services</CardTitle></CardHeader>
-              <CardContent className="space-y-3">
-                <p className="text-sm text-muted-foreground">Connect with certified NDT professionals in {city.name} specializing in {industry.name}.</p>
-                <Button asChild className="w-full"><Link href="/request-service">Request Service</Link></Button>
-                <Button variant="outline" asChild className="w-full"><Link href="/find-providers">Find Providers</Link></Button>
-              </CardContent>
-            </Card>
+            {/* CTA Card */}
+            <div className="sticky top-4 glass-strong rounded-2xl p-8 backdrop-blur-xl border border-[#004aad]/30 animated-border animate-fade-in-scale">
+              <h3 className="text-xl font-bold text-[#004aad] mb-4">Request {industry.name} Services</h3>
+              <p className="text-sm text-white/80 mb-5 leading-relaxed">Connect with certified NDT professionals in {city.name} specializing in {industry.name}.</p>
+              <div className="space-y-3">
+                <Link href="/request-service" className="block px-6 py-3 bg-[#004aad] text-white rounded-xl font-semibold hover:bg-[#003a85] transition text-center btn-glow">
+                  Request Service
+                </Link>
+                <Link href="/find-providers" className="block px-6 py-3 glass rounded-xl font-semibold text-[#004aad] border border-[#004aad]/30 hover:border-[#004aad]/60 transition text-center">
+                  Find Providers
+                </Link>
+              </div>
+            </div>
 
-            <Card>
-              <CardHeader><CardTitle className="text-lg flex items-center gap-2"><Shield className="h-5 w-5" />Why NDT is Critical</CardTitle></CardHeader>
-              <CardContent><p className="text-sm text-muted-foreground">{industry.whyNDT}</p></CardContent>
-            </Card>
+            {/* Why NDT Card */}
+            <div className="glass rounded-2xl p-8 backdrop-blur-xl border border-white/10 card-hover-lift animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+              <h4 className="text-lg font-bold text-[#004aad] mb-4 flex items-center gap-2">
+                <Shield className="h-5 w-5 icon-glow" />Why NDT is Critical
+              </h4>
+              <p className="text-sm text-white/80 leading-relaxed">{industry.whyNDT}</p>
+            </div>
 
+            {/* Related Cities */}
             {relatedCities.length > 0 && (
-              <Card>
-                <CardHeader><CardTitle className="text-lg">{industry.name} in Other Cities</CardTitle></CardHeader>
-                <CardContent className="space-y-2">
+              <div className="glass rounded-2xl p-8 backdrop-blur-xl border border-white/10 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                <h4 className="text-lg font-bold text-[#004aad] mb-4">{industry.name} in Other Cities</h4>
+                <div className="space-y-2">
                   {relatedCities.map((relCity) => (
-                    <Link key={relCity.slug} href={`/ndt-services/${relCity.slug}/${industry.slug}`} className="block p-2 rounded-lg border border-border hover:border-primary hover:bg-primary/5 transition-all">
-                      <div className="font-semibold text-sm text-foreground hover:text-primary">{relCity.name}</div>
-                      <div className="text-xs text-muted-foreground">{relCity.region}</div>
+                    <Link key={relCity.slug} href={`/ndt-services/${relCity.slug}/${industry.slug}`} className="block p-3 rounded-lg glass border border-white/10 hover:border-[#004aad]/40 transition-all hover:bg-[#004aad]/5">
+                      <div className="font-semibold text-sm text-[#004aad] hover:text-emerald-400 transition">{relCity.name}</div>
+                      <div className="text-xs text-white/60">{relCity.region}</div>
                     </Link>
                   ))}
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             )}
 
+            {/* Related Industries */}
             {relatedIndustries.length > 0 && (
-              <Card>
-                <CardHeader><CardTitle className="text-lg">Other Services in {city.name}</CardTitle></CardHeader>
-                <CardContent className="space-y-2">
+              <div className="glass rounded-2xl p-8 backdrop-blur-xl border border-white/10 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+                <h4 className="text-lg font-bold text-[#004aad] mb-4">Other Services in {city.name}</h4>
+                <div className="space-y-2">
                   {relatedIndustries.map((relInd) => (
-                    <Link key={relInd.slug} href={`/ndt-services/${city.slug}/${relInd.slug}`} className="block p-2 rounded-lg border border-border hover:border-primary hover:bg-primary/5 transition-all">
-                      <div className="font-semibold text-sm text-foreground hover:text-primary">{relInd.name}</div>
+                    <Link key={relInd.slug} href={`/ndt-services/${city.slug}/${relInd.slug}`} className="block p-3 rounded-lg glass border border-white/10 hover:border-[#004aad]/40 transition-all hover:bg-[#004aad]/5">
+                      <div className="font-semibold text-sm text-[#004aad] hover:text-emerald-400 transition">{relInd.name}</div>
                     </Link>
                   ))}
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             )}
           </div>
         </div>
 
+        {/* Divider */}
+        <div className="section-divider"></div>
+
         {/* How We Help */}
-        <section className="mb-12">
-          <h2 className="text-3xl font-bold text-primary mb-8 text-center">How NDT Connect Helps</h2>
+        <section>
+          <h2 className="text-4xl font-bold text-center mb-12 gradient-text">How NDT Connect Helps</h2>
           <div className="grid md:grid-cols-3 gap-6">
-            <Card><CardHeader><CardTitle className="text-lg flex items-center gap-2"><Users className="h-5 w-5 text-primary" />Find Certified Professionals</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Connect with verified NDT professionals in {city.name} with specific expertise in {industry.name} inspection.</p></CardContent></Card>
-            <Card><CardHeader><CardTitle className="text-lg flex items-center gap-2"><Clock className="h-5 w-5 text-primary" />Quick Service Requests</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">Post your inspection needs and receive quotes from multiple qualified providers within hours.</p></CardContent></Card>
-            <Card><CardHeader><CardTitle className="text-lg flex items-center gap-2"><TrendingUp className="h-5 w-5 text-primary" />Reliable Quality</CardTitle></CardHeader><CardContent><p className="text-sm text-muted-foreground">All NDT providers are certified and verified. Get reliable, compliant inspections every time.</p></CardContent></Card>
+            {[
+              {
+                icon: Users,
+                title: 'Find Certified Professionals',
+                desc: `Connect with verified NDT professionals in ${city.name} with specific expertise in ${industry.name} inspection.`
+              },
+              {
+                icon: Clock,
+                title: 'Quick Service Requests',
+                desc: 'Post your inspection needs and receive quotes from multiple qualified providers within hours.'
+              },
+              {
+                icon: TrendingUp,
+                title: 'Reliable Quality',
+                desc: 'All NDT providers are certified and verified. Get reliable, compliant inspections every time.'
+              }
+            ].map((item, idx) => (
+              <div key={idx} className="glass rounded-2xl p-8 backdrop-blur-xl border border-white/10 card-hover-lift animate-fade-in-up" style={{ animationDelay: `${idx * 0.1}s` }}>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-[#004aad]/20 border border-[#004aad]/30">
+                    <item.icon className="h-6 w-6 text-[#004aad]" />
+                  </div>
+                  <h3 className="text-lg font-bold text-[#004aad]">{item.title}</h3>
+                </div>
+                <p className="text-sm text-white/80 leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* CTA */}
-        <section className="bg-primary rounded-2xl p-10 text-primary-foreground text-center">
-          <h2 className="text-2xl font-bold mb-4">Need {industry.name} NDT Services in {city.name}?</h2>
-          <p className="mb-8 opacity-90 max-w-lg mx-auto">Request professional NDT inspection services tailored to your {industry.name} operation in {city.name}.</p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button size="lg" variant="secondary" asChild><Link href="/request-service">Request Service Now</Link></Button>
-            <Button size="lg" variant="outline" asChild><Link href={`/ndt-services/${city.slug}`}>More Services in {city.name}</Link></Button>
+        {/* Divider */}
+        <div className="section-divider"></div>
+
+        {/* CTA Section */}
+        <section className="relative overflow-hidden rounded-3xl p-12 md:p-20">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#004aad] to-[#003a85]"></div>
+          <div className="absolute inset-0 hero-dots-bg opacity-10"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 orb opacity-20 animate-float" style={{ animationDelay: '0s' }}></div>
+
+          <div className="relative z-10 text-center max-w-3xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">Need {industry.name} NDT Services in {city.name}?</h2>
+            <p className="mb-8 text-white/90 max-w-lg mx-auto text-lg leading-relaxed">Request professional NDT inspection services tailored to your {industry.name} operation in {city.name}.</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/request-service" className="px-8 py-4 bg-white text-[#004aad] rounded-xl font-bold hover:bg-white/90 transition text-center">
+                Request Service Now
+              </Link>
+              <Link href={`/ndt-services/${city.slug}`} className="px-8 py-4 glass rounded-xl font-bold text-white border border-white/30 hover:border-white/60 transition text-center">
+                More Services in {city.name}
+              </Link>
+            </div>
           </div>
         </section>
       </div>

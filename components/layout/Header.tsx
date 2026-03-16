@@ -32,21 +32,21 @@ export function Header() {
 
   const navLinkClasses = (path: string) =>
     cn(
-      "text-sm font-medium transition-colors hover:text-primary px-3 py-2 rounded-md",
+      "text-sm font-medium transition-all duration-300 px-4 py-2 rounded-lg relative",
       pathname === path
-        ? "text-primary bg-primary/5"
-        : "text-muted-foreground hover:bg-muted/50"
+        ? "text-[#004aad] bg-[#004aad]/5 font-semibold"
+        : "text-muted-foreground hover:text-[#004aad] hover:bg-[#004aad]/5"
     );
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full glass-strong shadow-sm">
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2" aria-label="NDT Connect Home">
+        <Link href="/" className="flex items-center gap-2 group" aria-label="NDT Connect Home">
           <Logo />
         </Link>
 
-        {/* Desktop Navigation - Clean & Professional */}
+        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-1">
           <Link href="/services" className={navLinkClasses("/services")}>
             Services
@@ -64,7 +64,6 @@ export function Header() {
             Tools
           </Link>
 
-          {/* Logged-in user specific nav */}
           {user?.role === 'client' && (
             <>
               <Link href="/recommendations" className={navLinkClasses("/recommendations")}>
@@ -88,32 +87,32 @@ export function Header() {
         </nav>
 
         {/* Right Side Actions */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           {/* Mobile menu toggle */}
           <button
-            className="md:hidden p-2 rounded-md hover:bg-muted/50 transition-colors"
+            className="md:hidden p-2 rounded-lg hover:bg-[#004aad]/5 transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileMenuOpen ? <X className="h-5 w-5 text-[#004aad]" /> : <Menu className="h-5 w-5" />}
           </button>
 
           {loading ? (
-            <div className="h-8 w-20 animate-pulse rounded-md bg-muted"></div>
+            <div className="h-8 w-20 animate-pulse rounded-lg bg-[#004aad]/10"></div>
           ) : user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-9 w-9 rounded-full">
+                <Button variant="ghost" className="relative h-9 w-9 rounded-full ring-2 ring-[#004aad]/20 hover:ring-[#004aad]/40 transition-all">
                   <Avatar className="h-9 w-9">
                     <AvatarImage src={user.profileImageUrl || "https://placehold.co/40x40.png"} alt={user.name ?? 'User'} data-ai-hint="user avatar" />
-                    <AvatarFallback>{user.name?.[0].toUpperCase() ?? 'U'}</AvatarFallback>
+                    <AvatarFallback className="bg-[#004aad]/10 text-[#004aad] font-semibold">{user.name?.[0].toUpperCase() ?? 'U'}</AvatarFallback>
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-56" align="end" forceMount>
+              <DropdownMenuContent className="w-56 rounded-xl border-[#004aad]/10 shadow-xl" align="end" forceMount>
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium leading-none">{user.name ?? user.email}</p>
+                    <p className="text-sm font-semibold leading-none">{user.name ?? user.email}</p>
                     <p className="text-xs leading-none text-muted-foreground">
                       {user.email} ({user.role})
                     </p>
@@ -121,32 +120,30 @@ export function Header() {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 {user.role === 'admin' ? (
-                  <DropdownMenuItem onClick={() => router.push('/admin/dashboard')}>
-                    <Shield className="mr-2 h-4 w-4" />
+                  <DropdownMenuItem onClick={() => router.push('/admin/dashboard')} className="rounded-lg">
+                    <Shield className="mr-2 h-4 w-4 text-[#004aad]" />
                     <span>Admin Dashboard</span>
                   </DropdownMenuItem>
                 ) : (
-                  <DropdownMenuItem onClick={() => router.push('/dashboard')}>
-                    <LayoutDashboard className="mr-2 h-4 w-4" />
+                  <DropdownMenuItem onClick={() => router.push('/dashboard')} className="rounded-lg">
+                    <LayoutDashboard className="mr-2 h-4 w-4 text-[#004aad]" />
                     <span>Dashboard</span>
                   </DropdownMenuItem>
                 )}
-
                 {user.role === 'provider' && (
-                  <DropdownMenuItem onClick={() => router.push('/provider-profile')}>
-                    <UserCircle className="mr-2 h-4 w-4" />
+                  <DropdownMenuItem onClick={() => router.push('/provider-profile')} className="rounded-lg">
+                    <UserCircle className="mr-2 h-4 w-4 text-[#004aad]" />
                     <span>My Profile</span>
                   </DropdownMenuItem>
                 )}
-
                 {user.role !== 'admin' && (
-                  <DropdownMenuItem onClick={() => router.push('/settings')}>
-                    <Settings className="mr-2 h-4 w-4" />
+                  <DropdownMenuItem onClick={() => router.push('/settings')} className="rounded-lg">
+                    <Settings className="mr-2 h-4 w-4 text-[#004aad]" />
                     <span>Settings</span>
                   </DropdownMenuItem>
                 )}
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleLogout}>
+                <DropdownMenuItem onClick={handleLogout} className="rounded-lg">
                   <LogOut className="mr-2 h-4 w-4" />
                   <span>Log out</span>
                 </DropdownMenuItem>
@@ -154,10 +151,10 @@ export function Header() {
             </DropdownMenu>
           ) : (
             <>
-              <Button variant="ghost" size="sm" asChild className="hidden sm:flex">
+              <Button variant="ghost" size="sm" asChild className="hidden sm:flex rounded-lg hover:text-[#004aad] hover:bg-[#004aad]/5">
                 <Link href="/login">Login</Link>
               </Button>
-              <Button size="sm" asChild>
+              <Button size="sm" asChild className="rounded-lg bg-[#004aad] hover:bg-[#003a8c] shadow-md shadow-[#004aad]/20">
                 <Link href="/register">Get Started</Link>
               </Button>
             </>
@@ -165,25 +162,41 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu - Clean slide-down */}
+      {/* Mobile Menu - Glass morphism slide-down */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t bg-background animate-in slide-in-from-top-2">
+        <div className="md:hidden border-t border-[#004aad]/10 glass-strong animate-in slide-in-from-top-2">
           <div className="container py-4 space-y-1">
-            <Link href="/services" className="block py-2.5 px-3 text-sm font-medium rounded-md hover:bg-muted/50 transition-colors" onClick={() => setMobileMenuOpen(false)}>Services</Link>
-            <Link href="/industries" className="block py-2.5 px-3 text-sm font-medium rounded-md hover:bg-muted/50 transition-colors" onClick={() => setMobileMenuOpen(false)}>Industries</Link>
-            <Link href="/find-providers" className="block py-2.5 px-3 text-sm font-medium rounded-md hover:bg-muted/50 transition-colors" onClick={() => setMobileMenuOpen(false)}>Find Providers</Link>
-            <Link href="/blog" className="block py-2.5 px-3 text-sm font-medium rounded-md hover:bg-muted/50 transition-colors" onClick={() => setMobileMenuOpen(false)}>Blog</Link>
-            <Link href="/tools/ndt-method-selector" className="block py-2.5 px-3 text-sm font-medium rounded-md hover:bg-muted/50 transition-colors" onClick={() => setMobileMenuOpen(false)}>Tools</Link>
-            <Link href="/careers" className="block py-2.5 px-3 text-sm font-medium rounded-md hover:bg-muted/50 transition-colors" onClick={() => setMobileMenuOpen(false)}>Careers</Link>
-            <Link href="/glossary" className="block py-2.5 px-3 text-sm font-medium rounded-md hover:bg-muted/50 transition-colors" onClick={() => setMobileMenuOpen(false)}>Glossary</Link>
-            <Link href="/contact" className="block py-2.5 px-3 text-sm font-medium rounded-md hover:bg-muted/50 transition-colors" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
+            {[
+              { href: '/services', label: 'Services' },
+              { href: '/industries', label: 'Industries' },
+              { href: '/find-providers', label: 'Find Providers' },
+              { href: '/blog', label: 'Blog' },
+              { href: '/tools/ndt-method-selector', label: 'Tools' },
+              { href: '/careers', label: 'Careers' },
+              { href: '/glossary', label: 'Glossary' },
+              { href: '/contact', label: 'Contact' },
+            ].map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "block py-3 px-4 text-sm font-medium rounded-lg transition-all",
+                  pathname === link.href
+                    ? "text-[#004aad] bg-[#004aad]/5 font-semibold"
+                    : "text-foreground hover:text-[#004aad] hover:bg-[#004aad]/5"
+                )}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
 
             {!user && (
-              <div className="flex gap-2 pt-3 mt-2 border-t">
-                <Button variant="outline" size="sm" asChild className="flex-1">
+              <div className="flex gap-3 pt-4 mt-3 border-t border-[#004aad]/10">
+                <Button variant="outline" size="sm" asChild className="flex-1 rounded-lg border-[#004aad]/20">
                   <Link href="/login" onClick={() => setMobileMenuOpen(false)}>Login</Link>
                 </Button>
-                <Button size="sm" asChild className="flex-1">
+                <Button size="sm" asChild className="flex-1 rounded-lg bg-[#004aad] hover:bg-[#003a8c]">
                   <Link href="/register" onClick={() => setMobileMenuOpen(false)}>Get Started</Link>
                 </Button>
               </div>
