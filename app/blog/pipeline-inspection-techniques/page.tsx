@@ -1,16 +1,18 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, FeatureGrid, FeatureCard, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
     title: 'Modern Pipeline Inspection Techniques You Need to Know | NDT Connect',
     description: 'From MFL to ILI, explore the latest technologies keeping pipelines safe and compliant.',
+    alternates: { canonical: 'https://ndt-connect.com/blog/pipeline-inspection-techniques' },
     keywords: ['pipeline inspection', 'MFL testing', 'inline inspection ILI', 'smart pigging'],
 };
 
 export default function PipelineInspectionArticle() {
     return (
         <>
+            <ArticleSchema title="Pipeline Inspection Techniques and Technologies" description="Pipeline inspection techniques and technologies for integrity management." url="https://ndt-connect.com/blog/pipeline-inspection-techniques" datePublished="2023-12-20" category="Techniques" />
             <NDTConnectOrganizationSchema />
             <BlogLayout
                 title="Modern Pipeline Inspection Techniques You Need to Know"

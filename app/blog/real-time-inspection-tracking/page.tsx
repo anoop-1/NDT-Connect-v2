@@ -1,16 +1,18 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, FeatureGrid, FeatureCard, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
     title: 'How Real-Time Tracking is Revolutionizing NDT Inspections | NDT Connect',
     description: 'Discover how platforms like NDT Connect use GPS, H3 indexing, and live updates to transform inspection workflows.',
+    alternates: { canonical: 'https://ndt-connect.com/blog/real-time-inspection-tracking' },
     keywords: ['real-time inspection tracking', 'NDT technology', 'GPS tracking', 'H3 indexing'],
 };
 
 export default function RealTimeTrackingArticle() {
     return (
         <>
+            <ArticleSchema title="Real-Time Inspection Tracking Technology" description="Real-time inspection tracking technology for NDT service management." url="https://ndt-connect.com/blog/real-time-inspection-tracking" datePublished="2024-01-10" category="Technology" />
             <NDTConnectOrganizationSchema />
             <BlogLayout
                 title="How Real-Time Tracking is Revolutionizing NDT Inspections"

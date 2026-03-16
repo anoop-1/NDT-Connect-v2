@@ -1,7 +1,20 @@
 // src/app/about/page.tsx
+import { Metadata } from 'next';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Users, Target, Eye, CheckCircle } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'About NDT Connect | The Leading NDT Inspection Marketplace',
+  description: 'NDT Connect is the world\'s leading marketplace for non-destructive testing services. We connect asset owners with certified NDT inspectors for UT, RT, MT, PT, and more.',
+  keywords: ['about NDT Connect', 'NDT marketplace', 'NDT platform', 'non-destructive testing marketplace', 'NDT service provider platform'],
+  openGraph: {
+    title: 'About NDT Connect',
+    description: 'The leading marketplace connecting asset owners with certified NDT inspectors worldwide.',
+    url: 'https://ndt-connect.com/about',
+  },
+  alternates: { canonical: 'https://ndt-connect.com/about' },
+};
 
 export default function AboutPage() {
   return (

@@ -6,6 +6,7 @@ import { AuthProvider } from '@/contexts/AuthContext';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Toaster } from '@/components/ui/toaster';
+import AdSenseScript from '@/components/ads/AdSenseScript';
 
 const fontSans = Inter({
   variable: '--font-sans',
@@ -92,6 +93,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <AdSenseScript />
+      </head>
       <body
         className={`${fontSans.variable} ${fontMono.variable} antialiased flex flex-col min-h-screen`}
         suppressHydrationWarning={true}

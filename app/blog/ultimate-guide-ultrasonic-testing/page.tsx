@@ -1,16 +1,18 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, FeatureGrid, FeatureCard, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
     title: 'The Ultimate Guide to Ultrasonic Testing (UT) in 2024 | NDT Connect',
     description: 'Learn everything about ultrasonic testing - from basic principles to advanced techniques like PAUT and TOFD. Complete guide for asset owners and inspectors.',
+    alternates: { canonical: 'https://ndt-connect.com/blog/ultimate-guide-ultrasonic-testing' },
     keywords: ['ultrasonic testing', 'UT inspection', 'PAUT', 'TOFD', 'NDT'],
 };
 
 export default function UltrasonicTestingGuide() {
     return (
         <>
+            <ArticleSchema title="The Ultimate Guide to Ultrasonic Testing (UT) in 2024" description="Learn everything about ultrasonic testing - from basic principles to advanced techniques like PAUT and TOFD." url="https://ndt-connect.com/blog/ultimate-guide-ultrasonic-testing" datePublished="2024-01-15" category="Techniques" />
             <NDTConnectOrganizationSchema />
             <BlogLayout
                 title="The Ultimate Guide to Ultrasonic Testing (UT) in 2024"

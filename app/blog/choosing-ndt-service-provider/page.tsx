@@ -1,16 +1,18 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
     title: 'How to Choose the Right NDT Service Provider | NDT Connect',
     description: 'Key factors to consider when selecting an NDT company: certifications, experience, equipment, insurance.',
+    alternates: { canonical: 'https://ndt-connect.com/blog/choosing-ndt-service-provider' },
     keywords: ['choose NDT provider', 'NDT company selection', 'certified NDT company'],
 };
 
 export default function ChoosingNDTProviderArticle() {
     return (
         <>
+            <ArticleSchema title="How to Choose the Right NDT Service Provider" description="How to choose the right NDT service provider for your inspection needs." url="https://ndt-connect.com/blog/choosing-ndt-service-provider" datePublished="2023-12-28" category="Guide" />
             <NDTConnectOrganizationSchema />
             <BlogLayout
                 title="How to Choose the Right NDT Service Provider"

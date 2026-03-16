@@ -1,16 +1,18 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, FeatureGrid, FeatureCard, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
     title: 'Risk-Based Inspection (RBI): Complete Guide for Asset Owners | NDT Connect',
     description: 'Implement RBI strategies to prioritize inspections, reduce costs, and ensure asset integrity.',
+    alternates: { canonical: 'https://ndt-connect.com/blog/rbi-corrosion-management' },
     keywords: ['risk-based inspection', 'RBI methodology', 'asset integrity', 'API 580'],
 };
 
 export default function RBIGuideArticle() {
     return (
         <>
+            <ArticleSchema title="Risk-Based Inspection and Corrosion Management" description="Comprehensive guide to risk-based inspection and corrosion management for industrial assets." url="https://ndt-connect.com/blog/rbi-corrosion-management" datePublished="2024-01-05" category="Industry" />
             <NDTConnectOrganizationSchema />
             <BlogLayout
                 title="Risk-Based Inspection (RBI): A Complete Guide for Asset Owners"

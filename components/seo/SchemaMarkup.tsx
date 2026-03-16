@@ -215,6 +215,54 @@ export function NDTConnectOrganizationSchema() {
     );
 }
 
+// Article schema for blog posts — essential for rich snippets
+interface ArticleSchemaProps {
+    title: string;
+    description: string;
+    url: string;
+    datePublished: string;
+    dateModified?: string;
+    category?: string;
+    wordCount?: number;
+}
+
+export function ArticleSchema({ title, description, url, datePublished, dateModified, category, wordCount }: ArticleSchemaProps) {
+    const schema = {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: title,
+        description,
+        url,
+        datePublished,
+        dateModified: dateModified || datePublished,
+        author: { '@type': 'Organization', name: 'NDT Connect', url: 'https://ndtconnect.com' },
+        publisher: { '@type': 'Organization', name: 'NDT Connect', url: 'https://ndtconnect.com', logo: { '@type': 'ImageObject', url: 'https://ndtconnect.com/logo.png' } },
+        mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+        ...(category && { articleSection: category }),
+        ...(wordCount && { wordCount }),
+    };
+    return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
+}
+
+// BreadcrumbList schema for navigation rich snippets
+interface BreadcrumbSchemaProps {
+    items: Array<{ name: string; url: string }>;
+}
+
+export function BreadcrumbSchema({ items }: BreadcrumbSchemaProps) {
+    const schema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: items.map((item, i) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            name: item.name,
+            item: item.url,
+        })),
+    };
+    return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />;
+}
+
 // FAQPage schema for SEO
 interface FAQSchemaProps {
     questions: Array<{ question: string; answer: string }>;

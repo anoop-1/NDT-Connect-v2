@@ -95,7 +95,7 @@ export function LiveTrackingMap({
       font-size: 14px;
       transition: transform 0.2s ease;
     `;
-        el.innerHTML = inspector.name.charAt(0).toUpperCase();
+        el.textContent = inspector.name.charAt(0).toUpperCase();
         el.title = inspector.name;
 
         el.addEventListener('mouseenter', () => {

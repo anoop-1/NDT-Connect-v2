@@ -1,16 +1,18 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
     title: 'NDT Certifications Explained: ASNT, ISO 9712, and More | NDT Connect',
     description: 'Understanding the different certification bodies and levels in non-destructive testing.',
+    alternates: { canonical: 'https://ndt-connect.com/blog/ndt-certifications-explained' },
     keywords: ['NDT certifications', 'ASNT certification', 'ISO 9712', 'NDT Level I II III'],
 };
 
 export default function NDTCertificationsArticle() {
     return (
         <>
+            <ArticleSchema title="NDT Certifications Explained: ASNT, ISO 9712, PCN, and More" description="Understanding NDT certifications including ASNT, ISO 9712, PCN, and more." url="https://ndt-connect.com/blog/ndt-certifications-explained" datePublished="2023-12-15" category="Certifications" />
             <NDTConnectOrganizationSchema />
             <BlogLayout
                 title="NDT Certifications Explained: ASNT, ISO 9712, and More"

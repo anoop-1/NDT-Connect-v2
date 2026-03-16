@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
         role: user.role
       },
       process.env.JWT_SECRET!,
-      { expiresIn: '1y' }
+      { expiresIn: '24h' }
     );
 
     cookies().set({
@@ -77,7 +77,7 @@ export async function POST(request: NextRequest) {
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
       path: '/',
-      maxAge: 60 * 60 * 24 * 365 
+      maxAge: 60 * 60 * 24
     });
     
     return NextResponse.json({ 
