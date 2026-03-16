@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { cities, methods, getCityBySlug } from '@/lib/seo-data';
-import { ChevronRight, CheckCircle, BookOpen, Users, Certificate, MapPin } from 'lucide-react';
+import { ChevronRight, CheckCircle, BookOpen, Users, Award, MapPin } from 'lucide-react';
 
 interface PageProps {
   params: Promise<{
@@ -104,7 +104,7 @@ const TrainingCourse = ({
         </div>
         <h3 className="text-xl font-semibold">{title}</h3>
       </div>
-      <Certificate className="w-6 h-6 text-primary flex-shrink-0" />
+      <Award className="w-6 h-6 text-primary flex-shrink-0" />
     </div>
     <p className="text-muted-foreground mb-4">{description}</p>
     <div className="space-y-2 mb-4 text-sm">
@@ -531,7 +531,7 @@ export default async function TrainingPage({ params }: PageProps) {
 
         {/* Training Benefits */}
         <section className="container bg-muted/30 rounded-lg p-8">
-          <h2 className="text-3xl font-bold mb-8">Benefits of NDT Training in {city.Name}</h2>
+          <h2 className="text-3xl font-bold mb-8">Benefits of NDT Training in {city.name}</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <div className="flex items-start">
@@ -584,7 +584,7 @@ export default async function TrainingPage({ params }: PageProps) {
 
         {/* Industry Context */}
         <section className="container">
-          <h2 className="text-3xl font-bold mb-8">NDT Career Opportunities in {city.Name}</h2>
+          <h2 className="text-3xl font-bold mb-8">NDT Career Opportunities in {city.name}</h2>
           <p className="text-muted-foreground mb-8 leading-relaxed">
             {city.name}'s strong industrial base creates abundant career opportunities for certified NDT inspectors. Key industries driving demand for NDT expertise include:
           </p>
@@ -735,7 +735,7 @@ export default async function TrainingPage({ params }: PageProps) {
 
         {/* Related Pages */}
         <section className="container">
-          <h2 className="text-3xl font-bold mb-8">Explore More in {city.Name}</h2>
+          <h2 className="text-3xl font-bold mb-8">Explore More in {city.name}</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <Link
               href={`/cities/${citySlug}`}
