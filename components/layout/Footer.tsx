@@ -27,8 +27,7 @@ export function Footer() {
             </p>
             <Link
               href="/register"
-              className="inline-block px-6 py-2.5 text-white text-sm font-medium rounded-lg transition-all duration-300 btn-glow hover:scale-105 transform"
-              style={{ backgroundColor: '#004aad' }}
+              className="inline-block px-6 py-2.5 bg-brand hover:bg-brand-dark text-white text-sm font-medium rounded-lg transition-all duration-300 btn-glow hover:scale-105 transform"
             >
               Get Started Free
             </Link>
@@ -37,7 +36,7 @@ export function Footer() {
           {/* NDT Services */}
           <div className="group">
             <div className="mb-4">
-              <h4 className="font-semibold text-sm mb-2 flex items-center gap-2" style={{ color: '#004aad' }}>
+              <h4 className="font-semibold text-sm mb-2 flex items-center gap-2 text-brand">
                 <span>NDT Services</span>
                 <span className="w-1.5 h-1.5 bg-blue-500 rounded-full group-hover:bg-blue-400 transition-colors"></span>
               </h4>
@@ -59,7 +58,7 @@ export function Footer() {
           {/* Industries */}
           <div className="group">
             <div className="mb-4">
-              <h4 className="font-semibold text-sm mb-2 flex items-center gap-2" style={{ color: '#004aad' }}>
+              <h4 className="font-semibold text-sm mb-2 flex items-center gap-2 text-brand">
                 <span>Industries</span>
                 <span className="w-1.5 h-1.5 bg-blue-500 rounded-full group-hover:bg-blue-400 transition-colors"></span>
               </h4>
@@ -79,7 +78,7 @@ export function Footer() {
           {/* Locations */}
           <div className="group">
             <div className="mb-4">
-              <h4 className="font-semibold text-sm mb-2 flex items-center gap-2" style={{ color: '#004aad' }}>
+              <h4 className="font-semibold text-sm mb-2 flex items-center gap-2 text-brand">
                 <span>Locations</span>
                 <span className="w-1.5 h-1.5 bg-blue-500 rounded-full group-hover:bg-blue-400 transition-colors"></span>
               </h4>
@@ -102,7 +101,7 @@ export function Footer() {
           {/* Resources */}
           <div className="group">
             <div className="mb-4">
-              <h4 className="font-semibold text-sm mb-2 flex items-center gap-2" style={{ color: '#004aad' }}>
+              <h4 className="font-semibold text-sm mb-2 flex items-center gap-2 text-brand">
                 <span>Resources</span>
                 <span className="w-1.5 h-1.5 bg-blue-500 rounded-full group-hover:bg-blue-400 transition-colors"></span>
               </h4>
@@ -125,7 +124,7 @@ export function Footer() {
           {/* Company */}
           <div className="group">
             <div className="mb-4">
-              <h4 className="font-semibold text-sm mb-2 flex items-center gap-2" style={{ color: '#004aad' }}>
+              <h4 className="font-semibold text-sm mb-2 flex items-center gap-2 text-brand">
                 <span>Company</span>
                 <span className="w-1.5 h-1.5 bg-blue-500 rounded-full group-hover:bg-blue-400 transition-colors"></span>
               </h4>
@@ -139,7 +138,7 @@ export function Footer() {
               <li><Link href="/login" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Login</Link></li>
             </ul>
             <div>
-              <h4 className="font-semibold text-sm mb-2 flex items-center gap-2" style={{ color: '#004aad' }}>
+              <h4 className="font-semibold text-sm mb-2 flex items-center gap-2 text-brand">
                 <span>Contact</span>
                 <span className="w-1.5 h-1.5 bg-blue-500 rounded-full group-hover:bg-blue-400 transition-colors"></span>
               </h4>

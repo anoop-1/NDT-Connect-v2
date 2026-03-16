@@ -143,11 +143,11 @@ function ServicePage({ city, method, citySlug, serviceSlug }: { city: any; metho
         <div className="glass py-4 px-0 sticky top-0 z-40 backdrop-blur-xl border-b border-white/10">
           <div className="container">
             <nav className="flex items-center space-x-2 text-sm">
-              <Link href="/" className="text-[#004aad] hover:text-[#003a85] font-medium transition">Home</Link>
+              <Link href="/" className="text-brand hover:text-brand-dark font-medium transition">Home</Link>
               <ChevronRight className="w-4 h-4 text-white/40" />
-              <Link href={`/ndt-services/${citySlug}`} className="text-[#004aad] hover:text-[#003a85] font-medium transition">{city.name}</Link>
+              <Link href={`/ndt-services/${citySlug}`} className="text-brand hover:text-brand-dark font-medium transition">{city.name}</Link>
               <ChevronRight className="w-4 h-4 text-white/40" />
-              <Link href={`/services/${serviceSlug}`} className="text-[#004aad] hover:text-[#003a85] font-medium transition">{method.name}</Link>
+              <Link href={`/services/${serviceSlug}`} className="text-brand hover:text-brand-dark font-medium transition">{method.name}</Link>
               <ChevronRight className="w-4 h-4 text-white/40" />
               <span className="text-white/60">{method.name} in {city.name}</span>
             </nav>
@@ -166,7 +166,7 @@ function ServicePage({ city, method, citySlug, serviceSlug }: { city: any; metho
 
           <div className="container relative z-10">
             <div className="max-w-4xl animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-              <div className="inline-block mb-6 px-4 py-2 glass-dark rounded-full text-sm font-semibold text-[#004aad] border border-[#004aad]/20 backdrop-blur-sm">
+              <div className="inline-block mb-6 px-4 py-2 glass-dark rounded-full text-sm font-semibold text-brand border border-brand/20 backdrop-blur-sm">
                 {method.abbreviation} Services in {city.name}
               </div>
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 gradient-text text-slate-900">
@@ -176,10 +176,10 @@ function ServicePage({ city, method, citySlug, serviceSlug }: { city: any; metho
                 Professional {method.abbreviation} inspection services for {city.name}, {city.region}. Connect with certified NDT inspectors specializing in {method.name.toLowerCase()} for {city.industries.join(', ')} industries.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/request-service" className="px-8 py-4 bg-[#004aad] text-white rounded-xl font-semibold hover:bg-[#003a85] transition btn-glow text-center">
+                <Link href="/request-service" className="px-8 py-4 bg-brand text-white rounded-xl font-semibold hover:bg-brand-dark transition btn-glow text-center">
                   Request Inspection Quote
                 </Link>
-                <Link href={`/services/${serviceSlug}`} className="px-8 py-4 glass-strong rounded-xl font-semibold hover:glass text-[#004aad] border border-[#004aad]/30 transition text-center">
+                <Link href={`/services/${serviceSlug}`} className="px-8 py-4 glass-strong rounded-xl font-semibold hover:glass text-brand border border-brand/30 transition text-center">
                   Learn More About {method.abbreviation}
                 </Link>
               </div>
@@ -203,15 +203,15 @@ function ServicePage({ city, method, citySlug, serviceSlug }: { city: any; metho
                 Whether you operate equipment at {city.keyFacilities.slice(0, 2).join(' or ')}, or other facilities in the {city.name} area, our {method.abbreviation} specialists are equipped to deliver reliable, code-compliant inspection services that meet your operational requirements.
               </p>
             </div>
-            <div className="glass-strong backdrop-blur-xl rounded-2xl p-8 h-fit border border-[#004aad]/20 animate-fade-in-scale stagger-1 animated-border">
-              <h3 className="font-bold mb-6 flex items-center text-xl text-[#004aad]">
+            <div className="glass-strong backdrop-blur-xl rounded-2xl p-8 h-fit border border-brand/20 animate-fade-in-scale stagger-1 animated-border">
+              <h3 className="font-bold mb-6 flex items-center text-xl text-brand">
                 <Zap className="w-6 h-6 mr-3 animate-pulse-glow" />Quick Facts
               </h3>
               <ul className="space-y-4 text-sm">
-                <li className="flex items-start gap-3"><CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" /><span className="text-white/90"><strong className="text-[#004aad]">Method:</strong> {method.abbreviation} - {method.name}</span></li>
-                <li className="flex items-start gap-3"><CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" /><span className="text-white/90"><strong className="text-[#004aad]">Service Area:</strong> {city.name}, {city.region}</span></li>
-                <li className="flex items-start gap-3"><CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" /><span className="text-white/90"><strong className="text-[#004aad]">Primary Industries:</strong> {city.industries.slice(0, 2).join(', ')}</span></li>
-                <li className="flex items-start gap-3"><CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" /><span className="text-white/90"><strong className="text-[#004aad]">Key Standards:</strong> {method.standards.slice(0, 2).join(', ')}</span></li>
+                <li className="flex items-start gap-3"><CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" /><span className="text-white/90"><strong className="text-brand">Method:</strong> {method.abbreviation} - {method.name}</span></li>
+                <li className="flex items-start gap-3"><CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" /><span className="text-white/90"><strong className="text-brand">Service Area:</strong> {city.name}, {city.region}</span></li>
+                <li className="flex items-start gap-3"><CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" /><span className="text-white/90"><strong className="text-brand">Primary Industries:</strong> {city.industries.slice(0, 2).join(', ')}</span></li>
+                <li className="flex items-start gap-3"><CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" /><span className="text-white/90"><strong className="text-brand">Key Standards:</strong> {method.standards.slice(0, 2).join(', ')}</span></li>
               </ul>
             </div>
           </div>
@@ -224,8 +224,8 @@ function ServicePage({ city, method, citySlug, serviceSlug }: { city: any; metho
         <section className="container">
           <h2 className="text-4xl font-bold mb-12 gradient-text text-center">Why {method.abbreviation} Matters</h2>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="glass-dark rounded-2xl p-8 backdrop-blur-xl border border-[#004aad]/20 card-hover-lift animate-fade-in-up stagger-1">
-              <h3 className="text-2xl font-bold mb-4 flex items-center text-[#004aad]"><Target className="w-6 h-6 mr-3 icon-glow" />Industry Relevance</h3>
+            <div className="glass-dark rounded-2xl p-8 backdrop-blur-xl border border-brand/20 card-hover-lift animate-fade-in-up stagger-1">
+              <h3 className="text-2xl font-bold mb-4 flex items-center text-brand"><Target className="w-6 h-6 mr-3 icon-glow" />Industry Relevance</h3>
               <p className="text-white/75 leading-relaxed mb-4">
                 {city.name} is home to significant operations in {city.industries.join(', ')}. {method.name} is critical for ensuring equipment reliability and regulatory compliance across these sectors.
               </p>
@@ -233,8 +233,8 @@ function ServicePage({ city, method, citySlug, serviceSlug }: { city: any; metho
                 The industrial facilities in the {city.name} area, including {city.keyFacilities.slice(0, 2).join(', ')}, depend on regular {method.abbreviation} inspections to maintain operational safety and meet stringent code requirements.
               </p>
             </div>
-            <div className="glass-dark rounded-2xl p-8 backdrop-blur-xl border border-[#004aad]/20 card-hover-lift animate-fade-in-up stagger-2">
-              <h3 className="text-2xl font-bold mb-4 flex items-center text-[#004aad]"><Shield className="w-6 h-6 mr-3 icon-glow" />Compliance &amp; Safety</h3>
+            <div className="glass-dark rounded-2xl p-8 backdrop-blur-xl border border-brand/20 card-hover-lift animate-fade-in-up stagger-2">
+              <h3 className="text-2xl font-bold mb-4 flex items-center text-brand"><Shield className="w-6 h-6 mr-3 icon-glow" />Compliance &amp; Safety</h3>
               <p className="text-white/75 leading-relaxed mb-4">
                 {method.name} is mandated by key standards and codes applicable to {city.name} operations: {method.standards.slice(0, 3).join(', ')}.
               </p>
@@ -253,8 +253,8 @@ function ServicePage({ city, method, citySlug, serviceSlug }: { city: any; metho
           <h2 className="text-4xl font-bold mb-12 gradient-text text-center">Industries Served in {city.name}</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {city.industries.map((industry: string, idx: number) => (
-              <div key={idx} className="glass rounded-2xl p-6 backdrop-blur-xl border border-white/10 card-hover-3d animate-fade-in-up transition-all hover:border-[#004aad]/50" style={{ animationDelay: `${idx * 0.1}s` }}>
-                <h3 className="text-lg font-bold mb-4 text-[#004aad]">{industry}</h3>
+              <div key={idx} className="glass rounded-2xl p-6 backdrop-blur-xl border border-white/10 card-hover-3d animate-fade-in-up transition-all hover:border-brand/50" style={{ animationDelay: `${idx * 0.1}s` }}>
+                <h3 className="text-lg font-bold mb-4 text-brand">{industry}</h3>
                 <p className="text-sm text-white/75 mb-4 leading-relaxed">
                   {industry === 'Oil & Gas'
                     ? `${method.name} plays a vital role in ensuring the integrity of pipelines, refineries, and production facilities throughout the ${city.name} region.`
@@ -268,7 +268,7 @@ function ServicePage({ city, method, citySlug, serviceSlug }: { city: any; metho
                     ? `Marine vessels and offshore structures in the ${city.name} area depend on ${method.abbreviation} for corrosion and fatigue inspection.`
                     : `${industry} operations in ${city.name} require professional ${method.abbreviation} inspection services for equipment and facility maintenance.`}
                 </p>
-                <Link href={`/services/${serviceSlug}`} className="text-[#004aad] text-sm font-semibold hover:text-[#003a85] transition inline-flex items-center gap-1">
+                <Link href={`/services/${serviceSlug}`} className="text-brand text-sm font-semibold hover:text-brand-dark transition inline-flex items-center gap-1">
                   Learn more <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -282,7 +282,7 @@ function ServicePage({ city, method, citySlug, serviceSlug }: { city: any; metho
         {/* Key Facilities */}
         <section className="container">
           <h2 className="text-4xl font-bold mb-12 gradient-text text-center">Key Facilities &amp; Infrastructure</h2>
-          <div className="glass-dark rounded-2xl p-8 backdrop-blur-xl border border-[#004aad]/20 mb-8">
+          <div className="glass-dark rounded-2xl p-8 backdrop-blur-xl border border-brand/20 mb-8">
             <p className="text-white/80 mb-8 leading-relaxed text-lg">
               {city.name}&apos;s major industrial and infrastructure facilities require specialized {method.abbreviation} inspection services:
             </p>
@@ -306,11 +306,11 @@ function ServicePage({ city, method, citySlug, serviceSlug }: { city: any; metho
         {/* Method Principles */}
         <section className="container">
           <h2 className="text-4xl font-bold mb-12 gradient-text text-center">{method.abbreviation} Principles &amp; Process</h2>
-          <div className="glass-strong rounded-2xl p-8 md:p-12 backdrop-blur-xl border border-[#004aad]/30">
-            <h3 className="text-2xl font-bold mb-8 text-[#004aad]">How {method.name} Works</h3>
+          <div className="glass-strong rounded-2xl p-8 md:p-12 backdrop-blur-xl border border-brand/30">
+            <h3 className="text-2xl font-bold mb-8 text-brand">How {method.name} Works</h3>
             <div className="space-y-4">
               {method.principles.map((principle: string, idx: number) => (
-                <div key={idx} className="flex items-start gap-4 p-4 glass rounded-xl border border-white/10 hover:border-[#004aad]/30 transition animate-fade-in-up stagger-{idx}" style={{ animationDelay: `${idx * 0.1}s` }}>
+                <div key={idx} className="flex items-start gap-4 p-4 glass rounded-xl border border-white/10 hover:border-brand/30 transition animate-fade-in-up stagger-{idx}" style={{ animationDelay: `${idx * 0.1}s` }}>
                   <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br from-[#004aad] to-[#003a85] font-bold text-white text-sm flex-shrink-0">
                     {idx + 1}
                   </div>
@@ -335,8 +335,8 @@ function ServicePage({ city, method, citySlug, serviceSlug }: { city: any; metho
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {method.standards.map((standard: string, idx: number) => (
-              <div key={idx} className="glass rounded-xl p-5 backdrop-blur-xl border border-[#004aad]/20 flex items-center gap-3 card-hover-lift animate-fade-in-up" style={{ animationDelay: `${idx * 0.05}s` }}>
-                <Shield className="w-5 h-5 text-[#004aad] flex-shrink-0" />
+              <div key={idx} className="glass rounded-xl p-5 backdrop-blur-xl border border-brand/20 flex items-center gap-3 card-hover-lift animate-fade-in-up" style={{ animationDelay: `${idx * 0.05}s` }}>
+                <Shield className="w-5 h-5 text-brand flex-shrink-0" />
                 <p className="font-semibold text-sm text-white">{standard}</p>
               </div>
             ))}
@@ -372,7 +372,7 @@ function ServicePage({ city, method, citySlug, serviceSlug }: { city: any; metho
             {method.applications.map((app: string, idx: number) => (
               <div key={idx} className="p-4 glass rounded-xl backdrop-blur-xl border border-white/10 text-white/90 animate-fade-in-up" style={{ animationDelay: `${idx * 0.05}s` }}>
                 <p className="text-sm flex items-start gap-3">
-                  <span className="text-[#004aad] font-bold mt-0.5">•</span>
+                  <span className="text-brand font-bold mt-0.5">•</span>
                   {app}
                 </p>
               </div>
@@ -406,7 +406,7 @@ function ServicePage({ city, method, citySlug, serviceSlug }: { city: any; metho
               }
             ].map((faq, idx) => (
               <div key={idx} className="glass rounded-xl p-6 backdrop-blur-xl border border-white/10 card-hover-lift animate-fade-in-up" style={{ animationDelay: `${idx * 0.1}s` }}>
-                <h3 className="font-bold text-lg mb-3 text-[#004aad]">{faq.q}</h3>
+                <h3 className="font-bold text-lg mb-3 text-brand">{faq.q}</h3>
                 <p className="text-white/80 leading-relaxed">{faq.a}</p>
               </div>
             ))}
@@ -428,7 +428,7 @@ function ServicePage({ city, method, citySlug, serviceSlug }: { city: any; metho
             <p className="text-lg text-white/80 mb-8 leading-relaxed">
               Connect with certified NDT inspectors in {city.name} who specialize in {method.name} services for your industry.
             </p>
-            <Link href="/request-service" className="px-10 py-4 bg-[#004aad] text-white rounded-xl font-bold hover:bg-[#003a85] transition btn-glow inline-block">
+            <Link href="/request-service" className="px-10 py-4 bg-brand text-white rounded-xl font-bold hover:bg-brand-dark transition btn-glow inline-block">
               Get a Free Quote Today
             </Link>
           </div>
@@ -443,11 +443,11 @@ function ServicePage({ city, method, citySlug, serviceSlug }: { city: any; metho
             <h2 className="text-4xl font-bold mb-12 gradient-text text-center">Related Services in {city.name}</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {related.map((relatedMethod, idx) => (
-                <Link key={relatedMethod.slug} href={`/ndt-services/${citySlug}/${relatedMethod.slug}`} className="glass rounded-2xl p-8 backdrop-blur-xl border border-[#004aad]/20 card-hover-3d animate-fade-in-up transition-all group" style={{ animationDelay: `${idx * 0.1}s` }}>
-                  <h3 className="font-bold text-2xl mb-3 text-[#004aad] group-hover:text-emerald-400 transition">{relatedMethod.name}</h3>
+                <Link key={relatedMethod.slug} href={`/ndt-services/${citySlug}/${relatedMethod.slug}`} className="glass rounded-2xl p-8 backdrop-blur-xl border border-brand/20 card-hover-3d animate-fade-in-up transition-all group" style={{ animationDelay: `${idx * 0.1}s` }}>
+                  <h3 className="font-bold text-2xl mb-3 text-brand group-hover:text-emerald-400 transition">{relatedMethod.name}</h3>
                   <p className="text-sm text-white/70 mb-4 font-medium">{relatedMethod.abbreviation}</p>
                   <p className="text-sm text-white/80 leading-relaxed">{relatedMethod.description}</p>
-                  <div className="mt-4 flex items-center gap-2 text-[#004aad] text-sm font-semibold group-hover:gap-3 transition">
+                  <div className="mt-4 flex items-center gap-2 text-brand text-sm font-semibold group-hover:gap-3 transition">
                     Learn more <ArrowRight className="w-4 h-4" />
                   </div>
                 </Link>
@@ -465,13 +465,13 @@ function ServicePage({ city, method, citySlug, serviceSlug }: { city: any; metho
             <h2 className="text-4xl font-bold mb-12 gradient-text text-center">{method.name} Services in Nearby Cities</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {nearby.map((nearbyCity, idx) => (
-                <Link key={nearbyCity.slug} href={`/ndt-services/${nearbyCity.slug}/${serviceSlug}`} className="glass rounded-2xl p-8 backdrop-blur-xl border border-white/10 card-hover-3d animate-fade-in-up transition-all group hover:border-[#004aad]/50" style={{ animationDelay: `${idx * 0.1}s` }}>
-                  <h3 className="font-bold text-2xl mb-2 text-[#004aad] group-hover:text-emerald-400 transition">{method.name}</h3>
+                <Link key={nearbyCity.slug} href={`/ndt-services/${nearbyCity.slug}/${serviceSlug}`} className="glass rounded-2xl p-8 backdrop-blur-xl border border-white/10 card-hover-3d animate-fade-in-up transition-all group hover:border-brand/50" style={{ animationDelay: `${idx * 0.1}s` }}>
+                  <h3 className="font-bold text-2xl mb-2 text-brand group-hover:text-emerald-400 transition">{method.name}</h3>
                   <p className="text-sm text-white/70 mb-3 font-medium flex items-center gap-2">
                     <MapPin className="w-4 h-4" /> {nearbyCity.name}, {nearbyCity.region}
                   </p>
                   <p className="text-sm text-white/75 leading-relaxed">{nearbyCity.description.substring(0, 100)}...</p>
-                  <div className="mt-4 flex items-center gap-2 text-[#004aad] text-sm font-semibold group-hover:gap-3 transition">
+                  <div className="mt-4 flex items-center gap-2 text-brand text-sm font-semibold group-hover:gap-3 transition">
                     Explore <ArrowRight className="w-4 h-4" />
                   </div>
                 </Link>
@@ -487,7 +487,7 @@ function ServicePage({ city, method, citySlug, serviceSlug }: { city: any; metho
         <section className="container text-center">
           <h2 className="text-3xl font-bold mb-4 gradient-text text-slate-900">Explore All NDT Services in {city.name}</h2>
           <p className="text-white/75 mb-8 text-lg">View complete NDT service offerings and certified inspectors serving the {city.name} area.</p>
-          <Link href={`/ndt-services/${citySlug}`} className="inline-flex items-center px-8 py-4 glass-strong rounded-xl font-bold text-[#004aad] border border-[#004aad]/30 hover:border-[#004aad]/60 transition hover:bg-[#004aad]/5">
+          <Link href={`/ndt-services/${citySlug}`} className="inline-flex items-center px-8 py-4 glass-strong rounded-xl font-bold text-brand border border-brand/30 hover:border-brand/60 transition hover:bg-brand/5">
             View {city.name} Page <ChevronRight className="w-5 h-5 ml-2" />
           </Link>
         </section>
@@ -525,9 +525,9 @@ function IndustryPage({ city, industry, citySlug }: { city: any; industry: any; 
       <div className="max-w-6xl mx-auto space-y-16">
         {/* Breadcrumbs */}
         <nav className="flex items-center gap-2 text-sm text-white/60 mb-6 flex-wrap p-4 glass rounded-xl backdrop-blur-xl border border-white/10">
-          <Link href="/" className="hover:text-[#004aad] transition">Home</Link><span>/</span>
-          <Link href="/ndt-services" className="hover:text-[#004aad] transition">Services</Link><span>/</span>
-          <Link href={`/ndt-services/${city.slug}`} className="hover:text-[#004aad] transition">{city.name}</Link><span>/</span>
+          <Link href="/" className="hover:text-brand transition">Home</Link><span>/</span>
+          <Link href="/ndt-services" className="hover:text-brand transition">Services</Link><span>/</span>
+          <Link href={`/ndt-services/${city.slug}`} className="hover:text-brand transition">{city.name}</Link><span>/</span>
           <span className="text-white font-medium">{industry.name}</span>
         </nav>
 
@@ -541,9 +541,9 @@ function IndustryPage({ city, industry, citySlug }: { city: any; industry: any; 
             <div className="flex items-start justify-between gap-6 mb-8 flex-wrap">
               <div className="flex-1 max-w-2xl">
                 <div className="flex items-center gap-3 mb-6 flex-wrap">
-                  <Badge className="bg-[#004aad]/20 text-[#004aad] border border-[#004aad]/30 px-4 py-2 text-sm font-semibold">{industry.name}</Badge>
+                  <Badge className="bg-brand/20 text-brand border border-brand/30 px-4 py-2 text-sm font-semibold">{industry.name}</Badge>
                   <div className="flex items-center gap-1 text-sm text-white/70 glass rounded-lg px-3 py-1 backdrop-blur-sm border border-white/10">
-                    <MapPin className="h-4 w-4 text-[#004aad]" />{city.name}, {city.region}
+                    <MapPin className="h-4 w-4 text-brand" />{city.name}, {city.region}
                   </div>
                 </div>
                 <h1 className="text-5xl md:text-6xl font-bold mb-6 gradient-text text-slate-900">{industry.name} NDT</h1>
@@ -551,7 +551,7 @@ function IndustryPage({ city, industry, citySlug }: { city: any; industry: any; 
               </div>
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#004aad]/20 to-transparent rounded-2xl blur-2xl"></div>
-                <Building2 className="h-28 w-28 text-[#004aad] opacity-30 relative" />
+                <Building2 className="h-28 w-28 text-brand opacity-30 relative" />
               </div>
             </div>
 
@@ -563,8 +563,8 @@ function IndustryPage({ city, industry, citySlug }: { city: any; industry: any; 
                 { value: `${industry.keyApplications.length}+`, label: 'Applications' },
                 { value: '24/7', label: 'Availability' }
               ].map((stat, idx) => (
-                <div key={idx} className="glass rounded-xl p-4 backdrop-blur-xl border border-[#004aad]/20 text-center animate-fade-in-up" style={{ animationDelay: `${idx * 0.1}s` }}>
-                  <div className="font-bold text-2xl text-[#004aad]">{stat.value}</div>
+                <div key={idx} className="glass rounded-xl p-4 backdrop-blur-xl border border-brand/20 text-center animate-fade-in-up" style={{ animationDelay: `${idx * 0.1}s` }}>
+                  <div className="font-bold text-2xl text-brand">{stat.value}</div>
                   <div className="text-xs text-white/70 mt-1">{stat.label}</div>
                 </div>
               ))}
@@ -580,11 +580,11 @@ function IndustryPage({ city, industry, citySlug }: { city: any; industry: any; 
           <div className="lg:col-span-2 space-y-12">
             {/* About Section */}
             <section className="animate-fade-in-up">
-              <h2 className="text-4xl font-bold text-[#004aad] mb-6 gradient-text text-slate-900">About {industry.name}</h2>
+              <h2 className="text-4xl font-bold text-brand mb-6 gradient-text text-slate-900">About {industry.name}</h2>
               <div className="glass rounded-2xl p-8 backdrop-blur-xl border border-white/10">
                 <p className="text-white/85 leading-relaxed mb-6 text-lg">{industry.longDescription}</p>
-                <div className="glass-dark rounded-xl p-6 border border-[#004aad]/20">
-                  <h3 className="font-bold text-[#004aad] mb-3 flex items-center gap-2">
+                <div className="glass-dark rounded-xl p-6 border border-brand/20">
+                  <h3 className="font-bold text-brand mb-3 flex items-center gap-2">
                     <Zap className="h-5 w-5 icon-glow" />Industry Snapshot in {city.name}
                   </h3>
                   <p className="text-sm text-white/80 leading-relaxed">{city.description}</p>
@@ -594,7 +594,7 @@ function IndustryPage({ city, industry, citySlug }: { city: any; industry: any; 
 
             {/* Challenges Section */}
             <section className="animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-              <h2 className="text-4xl font-bold text-[#004aad] mb-6 gradient-text flex items-center gap-3">
+              <h2 className="text-4xl font-bold text-brand mb-6 gradient-text flex items-center gap-3">
                 <AlertTriangle className="h-8 w-8 icon-glow" />Key Challenges
               </h2>
               <div className="space-y-3">
@@ -608,14 +608,14 @@ function IndustryPage({ city, industry, citySlug }: { city: any; industry: any; 
 
             {/* Common Methods Section */}
             <section className="animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              <h2 className="text-4xl font-bold text-[#004aad] mb-6 gradient-text flex items-center gap-3">
+              <h2 className="text-4xl font-bold text-brand mb-6 gradient-text flex items-center gap-3">
                 <Zap className="h-8 w-8 icon-glow" />Common NDT Methods
               </h2>
               <div className="grid md:grid-cols-2 gap-4">
                 {industry.commonMethods.map((method: string, i: number) => (
-                  <div key={i} className="glass rounded-xl p-6 backdrop-blur-xl border border-white/10 card-hover-lift animate-fade-in-up transition-all hover:border-[#004aad]/40" style={{ animationDelay: `${i * 0.05}s` }}>
+                  <div key={i} className="glass rounded-xl p-6 backdrop-blur-xl border border-white/10 card-hover-lift animate-fade-in-up transition-all hover:border-brand/40" style={{ animationDelay: `${i * 0.05}s` }}>
                     <div className="flex items-start gap-4">
-                      <CheckCircle className="h-6 w-6 text-[#004aad] flex-shrink-0 mt-1" />
+                      <CheckCircle className="h-6 w-6 text-brand flex-shrink-0 mt-1" />
                       <div className="font-bold text-white text-lg">{method}</div>
                     </div>
                   </div>
@@ -625,13 +625,13 @@ function IndustryPage({ city, industry, citySlug }: { city: any; industry: any; 
 
             {/* Applications Section */}
             <section className="animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-              <h2 className="text-4xl font-bold text-[#004aad] mb-6 gradient-text flex items-center gap-3">
+              <h2 className="text-4xl font-bold text-brand mb-6 gradient-text flex items-center gap-3">
                 <Shield className="h-8 w-8 icon-glow" />Applications in {city.name}
               </h2>
               <div className="space-y-3">
                 {industry.keyApplications.map((app: string, i: number) => (
                   <div key={i} className="glass rounded-xl p-4 backdrop-blur-xl border border-white/10 flex items-center gap-3 animate-fade-in-up" style={{ animationDelay: `${i * 0.05}s` }}>
-                    <CheckCircle className="h-5 w-5 text-[#004aad] flex-shrink-0" />
+                    <CheckCircle className="h-5 w-5 text-brand flex-shrink-0" />
                     <span className="text-white/90">{app}</span>
                   </div>
                 ))}
@@ -640,13 +640,13 @@ function IndustryPage({ city, industry, citySlug }: { city: any; industry: any; 
 
             {/* Standards Section */}
             <section className="animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-              <h2 className="text-4xl font-bold text-[#004aad] mb-6 gradient-text flex items-center gap-3">
+              <h2 className="text-4xl font-bold text-brand mb-6 gradient-text flex items-center gap-3">
                 <FileText className="h-8 w-8 icon-glow" />Applicable Standards
               </h2>
               <div className="glass rounded-2xl p-8 backdrop-blur-xl border border-white/10">
                 <div className="flex flex-wrap gap-2">
                   {industry.standards.map((standard: string, i: number) => (
-                    <Badge key={i} className="bg-[#004aad]/20 text-[#004aad] border border-[#004aad]/30 px-4 py-2 text-sm font-medium animate-fade-in-scale" style={{ animationDelay: `${i * 0.05}s` }}>{standard}</Badge>
+                    <Badge key={i} className="bg-brand/20 text-brand border border-brand/30 px-4 py-2 text-sm font-medium animate-fade-in-scale" style={{ animationDelay: `${i * 0.05}s` }}>{standard}</Badge>
                   ))}
                 </div>
               </div>
@@ -656,14 +656,14 @@ function IndustryPage({ city, industry, citySlug }: { city: any; industry: any; 
           {/* Sidebar */}
           <div className="space-y-6">
             {/* CTA Card */}
-            <div className="sticky top-4 glass-strong rounded-2xl p-8 backdrop-blur-xl border border-[#004aad]/30 animated-border animate-fade-in-scale">
-              <h3 className="text-xl font-bold text-[#004aad] mb-4">Request {industry.name} Services</h3>
+            <div className="sticky top-4 glass-strong rounded-2xl p-8 backdrop-blur-xl border border-brand/30 animated-border animate-fade-in-scale">
+              <h3 className="text-xl font-bold text-brand mb-4">Request {industry.name} Services</h3>
               <p className="text-sm text-white/80 mb-5 leading-relaxed">Connect with certified NDT professionals in {city.name} specializing in {industry.name}.</p>
               <div className="space-y-3">
-                <Link href="/request-service" className="block px-6 py-3 bg-[#004aad] text-white rounded-xl font-semibold hover:bg-[#003a85] transition text-center btn-glow">
+                <Link href="/request-service" className="block px-6 py-3 bg-brand text-white rounded-xl font-semibold hover:bg-brand-dark transition text-center btn-glow">
                   Request Service
                 </Link>
-                <Link href="/find-providers" className="block px-6 py-3 glass rounded-xl font-semibold text-[#004aad] border border-[#004aad]/30 hover:border-[#004aad]/60 transition text-center">
+                <Link href="/find-providers" className="block px-6 py-3 glass rounded-xl font-semibold text-brand border border-brand/30 hover:border-brand/60 transition text-center">
                   Find Providers
                 </Link>
               </div>
@@ -671,7 +671,7 @@ function IndustryPage({ city, industry, citySlug }: { city: any; industry: any; 
 
             {/* Why NDT Card */}
             <div className="glass rounded-2xl p-8 backdrop-blur-xl border border-white/10 card-hover-lift animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-              <h4 className="text-lg font-bold text-[#004aad] mb-4 flex items-center gap-2">
+              <h4 className="text-lg font-bold text-brand mb-4 flex items-center gap-2">
                 <Shield className="h-5 w-5 icon-glow" />Why NDT is Critical
               </h4>
               <p className="text-sm text-white/80 leading-relaxed">{industry.whyNDT}</p>
@@ -680,11 +680,11 @@ function IndustryPage({ city, industry, citySlug }: { city: any; industry: any; 
             {/* Related Cities */}
             {relatedCities.length > 0 && (
               <div className="glass rounded-2xl p-8 backdrop-blur-xl border border-white/10 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                <h4 className="text-lg font-bold text-[#004aad] mb-4">{industry.name} in Other Cities</h4>
+                <h4 className="text-lg font-bold text-brand mb-4">{industry.name} in Other Cities</h4>
                 <div className="space-y-2">
                   {relatedCities.map((relCity) => (
-                    <Link key={relCity.slug} href={`/ndt-services/${relCity.slug}/${industry.slug}`} className="block p-3 rounded-lg glass border border-white/10 hover:border-[#004aad]/40 transition-all hover:bg-[#004aad]/5">
-                      <div className="font-semibold text-sm text-[#004aad] hover:text-emerald-400 transition">{relCity.name}</div>
+                    <Link key={relCity.slug} href={`/ndt-services/${relCity.slug}/${industry.slug}`} className="block p-3 rounded-lg glass border border-white/10 hover:border-brand/40 transition-all hover:bg-brand/5">
+                      <div className="font-semibold text-sm text-brand hover:text-emerald-400 transition">{relCity.name}</div>
                       <div className="text-xs text-white/60">{relCity.region}</div>
                     </Link>
                   ))}
@@ -695,11 +695,11 @@ function IndustryPage({ city, industry, citySlug }: { city: any; industry: any; 
             {/* Related Industries */}
             {relatedIndustries.length > 0 && (
               <div className="glass rounded-2xl p-8 backdrop-blur-xl border border-white/10 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-                <h4 className="text-lg font-bold text-[#004aad] mb-4">Other Services in {city.name}</h4>
+                <h4 className="text-lg font-bold text-brand mb-4">Other Services in {city.name}</h4>
                 <div className="space-y-2">
                   {relatedIndustries.map((relInd) => (
-                    <Link key={relInd.slug} href={`/ndt-services/${city.slug}/${relInd.slug}`} className="block p-3 rounded-lg glass border border-white/10 hover:border-[#004aad]/40 transition-all hover:bg-[#004aad]/5">
-                      <div className="font-semibold text-sm text-[#004aad] hover:text-emerald-400 transition">{relInd.name}</div>
+                    <Link key={relInd.slug} href={`/ndt-services/${city.slug}/${relInd.slug}`} className="block p-3 rounded-lg glass border border-white/10 hover:border-brand/40 transition-all hover:bg-brand/5">
+                      <div className="font-semibold text-sm text-brand hover:text-emerald-400 transition">{relInd.name}</div>
                     </Link>
                   ))}
                 </div>
@@ -734,10 +734,10 @@ function IndustryPage({ city, industry, citySlug }: { city: any; industry: any; 
             ].map((item, idx) => (
               <div key={idx} className="glass rounded-2xl p-8 backdrop-blur-xl border border-white/10 card-hover-lift animate-fade-in-up" style={{ animationDelay: `${idx * 0.1}s` }}>
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-[#004aad]/20 border border-[#004aad]/30">
-                    <item.icon className="h-6 w-6 text-[#004aad]" />
+                  <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-brand/20 border border-brand/30">
+                    <item.icon className="h-6 w-6 text-brand" />
                   </div>
-                  <h3 className="text-lg font-bold text-[#004aad]">{item.title}</h3>
+                  <h3 className="text-lg font-bold text-brand">{item.title}</h3>
                 </div>
                 <p className="text-sm text-white/80 leading-relaxed">{item.desc}</p>
               </div>
@@ -758,7 +758,7 @@ function IndustryPage({ city, industry, citySlug }: { city: any; industry: any; 
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">Need {industry.name} NDT Services in {city.name}?</h2>
             <p className="mb-8 text-white/90 max-w-lg mx-auto text-lg leading-relaxed">Request professional NDT inspection services tailored to your {industry.name} operation in {city.name}.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/request-service" className="px-8 py-4 bg-white text-[#004aad] rounded-xl font-bold hover:bg-white/90 transition text-center">
+              <Link href="/request-service" className="px-8 py-4 bg-white text-brand rounded-xl font-bold hover:bg-white/90 transition text-center">
                 Request Service Now
               </Link>
               <Link href={`/ndt-services/${city.slug}`} className="px-8 py-4 glass rounded-xl font-bold text-white border border-white/30 hover:border-white/60 transition text-center">

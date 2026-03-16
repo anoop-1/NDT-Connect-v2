@@ -101,12 +101,12 @@ const TrainingCourse = ({
     <div className="relative z-10">
       <div className="flex items-start justify-between mb-4">
         <div>
-          <div className="inline-block px-3 py-1 glass-dark rounded-full text-sm font-medium text-white mb-2 border border-[#004aad]/30">
+          <div className="inline-block px-3 py-1 glass-dark rounded-full text-sm font-medium text-white mb-2 border border-brand/30">
             {level}
           </div>
           <h3 className="text-xl font-semibold text-foreground">{title}</h3>
         </div>
-        <Award className="w-6 h-6 text-[#004aad] flex-shrink-0 icon-glow" />
+        <Award className="w-6 h-6 text-brand flex-shrink-0 icon-glow" />
       </div>
       <p className="text-muted-foreground mb-4">{description}</p>
       <div className="space-y-2 mb-4 text-sm">
@@ -117,14 +117,14 @@ const TrainingCourse = ({
           <span className="font-medium block mb-2 text-foreground">Methods Covered:</span>
           <div className="flex flex-wrap gap-2">
             {courseMethods.map((method, idx) => (
-              <span key={idx} className="px-2 py-1 glass-dark text-xs rounded-full text-white border border-[#004aad]/20 hover:border-[#004aad]/50 transition">
+              <span key={idx} className="px-2 py-1 glass-dark text-xs rounded-full text-white border border-brand/20 hover:border-brand/50 transition">
                 {method}
               </span>
             ))}
           </div>
         </div>
       </div>
-      <button className="w-full px-4 py-2 bg-[#004aad] text-white rounded-lg font-medium hover:bg-[#003a8c] btn-glow transition">
+      <button className="w-full px-4 py-2 bg-brand text-white rounded-lg font-medium hover:bg-brand-dark btn-glow transition">
         Learn More
       </button>
     </div>
@@ -140,7 +140,7 @@ export default async function TrainingPage({ params }: PageProps) {
       <div className="container py-12">
         <h1 className="text-2xl font-bold text-red-600">Training Program Not Found</h1>
         <p className="text-muted-foreground mt-2">The training program for this city does not exist.</p>
-        <Link href="/" className="text-[#004aad] hover:underline mt-4 block">
+        <Link href="/" className="text-brand hover:underline mt-4 block">
           Return to Home
         </Link>
       </div>
@@ -153,14 +153,14 @@ export default async function TrainingPage({ params }: PageProps) {
 
       <div className="space-y-12">
         {/* Breadcrumbs */}
-        <div className="bg-gradient-to-r from-[#004aad]/5 to-transparent py-4 px-0 border-b border-[#004aad]/10">
+        <div className="bg-gradient-to-r from-[#004aad]/5 to-transparent py-4 px-0 border-b border-brand/10">
           <div className="container">
             <nav className="flex items-center space-x-2 text-sm">
-              <Link href="/" className="text-[#004aad] hover:text-[#003a8c] font-medium transition">
+              <Link href="/" className="text-brand hover:text-brand-dark font-medium transition">
                 Home
               </Link>
               <ChevronRight className="w-4 h-4 text-muted-foreground" />
-              <Link href="/training" className="text-[#004aad] hover:text-[#003a8c] font-medium transition">
+              <Link href="/training" className="text-brand hover:text-brand-dark font-medium transition">
                 Training
               </Link>
               <ChevronRight className="w-4 h-4 text-muted-foreground" />
@@ -173,12 +173,12 @@ export default async function TrainingPage({ params }: PageProps) {
         <section className="relative overflow-hidden py-20">
           <div className="absolute inset-0 hero-grid-bg opacity-30" />
           <div className="absolute inset-0">
-            <div className="orb w-96 h-96 bg-[#004aad]/20 rounded-full blur-3xl absolute -top-20 -left-20 animate-float" />
-            <div className="orb w-72 h-72 bg-[#004aad]/10 rounded-full blur-3xl absolute -bottom-32 -right-32 animate-float" style={{ animationDelay: '2s' }} />
+            <div className="orb w-96 h-96 bg-brand/20 rounded-full blur-3xl absolute -top-20 -left-20 animate-float" />
+            <div className="orb w-72 h-72 bg-brand/10 rounded-full blur-3xl absolute -bottom-32 -right-32 animate-float" style={{ animationDelay: '2s' }} />
           </div>
           <div className="container relative z-10">
             <div className="max-w-4xl">
-              <div className="inline-block mb-4 px-4 py-2 glass-dark rounded-full text-sm font-medium text-white border border-[#004aad]/40 backdrop-blur-xl">
+              <div className="inline-block mb-4 px-4 py-2 glass-dark rounded-full text-sm font-medium text-white border border-brand/40 backdrop-blur-xl">
                 NDT Training & Certification
               </div>
               <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-4 gradient-text">
@@ -188,12 +188,12 @@ export default async function TrainingPage({ params }: PageProps) {
                 Comprehensive Non-Destructive Testing (NDT) training and certification programs in {city.name}, {city.region}. Become a certified NDT Inspector with ASNT Level I, II, and III courses covering all major NDT methods.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="px-8 py-3 bg-[#004aad] text-white rounded-lg font-medium btn-glow hover:bg-[#003a8c] transition">
+                <button className="px-8 py-3 bg-brand text-white rounded-lg font-medium btn-glow hover:bg-brand-dark transition">
                   Enroll in a Course
                 </button>
                 <Link
                   href={`/cities/${citySlug}`}
-                  className="px-8 py-3 glass animated-border rounded-lg font-medium text-[#004aad] hover:bg-[#004aad]/10 transition"
+                  className="px-8 py-3 glass animated-border rounded-lg font-medium text-brand hover:bg-brand/10 transition"
                 >
                   View NDT Services
                 </Link>
@@ -208,8 +208,8 @@ export default async function TrainingPage({ params }: PageProps) {
           <div className="grid md:grid-cols-2 gap-8">
             <div className="glass p-8 rounded-xl animate-fade-in-up stagger-1">
               <h3 className="text-xl font-semibold mb-4 flex items-center text-foreground">
-                <div className="w-10 h-10 rounded-lg bg-[#004aad]/20 flex items-center justify-center mr-3">
-                  <MapPin className="w-5 h-5 text-[#004aad]" />
+                <div className="w-10 h-10 rounded-lg bg-brand/20 flex items-center justify-center mr-3">
+                  <MapPin className="w-5 h-5 text-brand" />
                 </div>
                 Strategic Location
               </h3>
@@ -222,8 +222,8 @@ export default async function TrainingPage({ params }: PageProps) {
             </div>
             <div className="glass p-8 rounded-xl animate-fade-in-up stagger-2">
               <h3 className="text-xl font-semibold mb-4 flex items-center text-foreground">
-                <div className="w-10 h-10 rounded-lg bg-[#004aad]/20 flex items-center justify-center mr-3">
-                  <Users className="w-5 h-5 text-[#004aad]" />
+                <div className="w-10 h-10 rounded-lg bg-brand/20 flex items-center justify-center mr-3">
+                  <Users className="w-5 h-5 text-brand" />
                 </div>
                 Industry Network
               </h3>
@@ -562,8 +562,8 @@ export default async function TrainingPage({ params }: PageProps) {
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-6 stagger-1">
               <div className="flex items-start group">
-                <div className="w-10 h-10 rounded-lg bg-[#004aad]/20 flex items-center justify-center mr-4 flex-shrink-0 group-hover:bg-[#004aad]/40 transition">
-                  <CheckCircle className="w-5 h-5 text-[#004aad]" />
+                <div className="w-10 h-10 rounded-lg bg-brand/20 flex items-center justify-center mr-4 flex-shrink-0 group-hover:bg-brand/40 transition">
+                  <CheckCircle className="w-5 h-5 text-brand" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Industry-Recognized Certification</h3>
@@ -571,8 +571,8 @@ export default async function TrainingPage({ params }: PageProps) {
                 </div>
               </div>
               <div className="flex items-start group">
-                <div className="w-10 h-10 rounded-lg bg-[#004aad]/20 flex items-center justify-center mr-4 flex-shrink-0 group-hover:bg-[#004aad]/40 transition">
-                  <CheckCircle className="w-5 h-5 text-[#004aad]" />
+                <div className="w-10 h-10 rounded-lg bg-brand/20 flex items-center justify-center mr-4 flex-shrink-0 group-hover:bg-brand/40 transition">
+                  <CheckCircle className="w-5 h-5 text-brand" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Career Advancement</h3>
@@ -580,8 +580,8 @@ export default async function TrainingPage({ params }: PageProps) {
                 </div>
               </div>
               <div className="flex items-start group">
-                <div className="w-10 h-10 rounded-lg bg-[#004aad]/20 flex items-center justify-center mr-4 flex-shrink-0 group-hover:bg-[#004aad]/40 transition">
-                  <CheckCircle className="w-5 h-5 text-[#004aad]" />
+                <div className="w-10 h-10 rounded-lg bg-brand/20 flex items-center justify-center mr-4 flex-shrink-0 group-hover:bg-brand/40 transition">
+                  <CheckCircle className="w-5 h-5 text-brand" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Practical Hands-On Training</h3>
@@ -591,8 +591,8 @@ export default async function TrainingPage({ params }: PageProps) {
             </div>
             <div className="space-y-6 stagger-2">
               <div className="flex items-start group">
-                <div className="w-10 h-10 rounded-lg bg-[#004aad]/20 flex items-center justify-center mr-4 flex-shrink-0 group-hover:bg-[#004aad]/40 transition">
-                  <CheckCircle className="w-5 h-5 text-[#004aad]" />
+                <div className="w-10 h-10 rounded-lg bg-brand/20 flex items-center justify-center mr-4 flex-shrink-0 group-hover:bg-brand/40 transition">
+                  <CheckCircle className="w-5 h-5 text-brand" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Multiple Method Options</h3>
@@ -600,8 +600,8 @@ export default async function TrainingPage({ params }: PageProps) {
                 </div>
               </div>
               <div className="flex items-start group">
-                <div className="w-10 h-10 rounded-lg bg-[#004aad]/20 flex items-center justify-center mr-4 flex-shrink-0 group-hover:bg-[#004aad]/40 transition">
-                  <CheckCircle className="w-5 h-5 text-[#004aad]" />
+                <div className="w-10 h-10 rounded-lg bg-brand/20 flex items-center justify-center mr-4 flex-shrink-0 group-hover:bg-brand/40 transition">
+                  <CheckCircle className="w-5 h-5 text-brand" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Local Networking</h3>
@@ -609,8 +609,8 @@ export default async function TrainingPage({ params }: PageProps) {
                 </div>
               </div>
               <div className="flex items-start group">
-                <div className="w-10 h-10 rounded-lg bg-[#004aad]/20 flex items-center justify-center mr-4 flex-shrink-0 group-hover:bg-[#004aad]/40 transition">
-                  <CheckCircle className="w-5 h-5 text-[#004aad]" />
+                <div className="w-10 h-10 rounded-lg bg-brand/20 flex items-center justify-center mr-4 flex-shrink-0 group-hover:bg-brand/40 transition">
+                  <CheckCircle className="w-5 h-5 text-brand" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground">Job Placement Support</h3>
@@ -650,7 +650,7 @@ export default async function TrainingPage({ params }: PageProps) {
                       ? `Construction and structural steel projects in ${city.name} require NDT inspection for quality assurance and code compliance.`
                       : `${industry} operations throughout ${city.name} create steady demand for skilled NDT professionals.`}
                   </p>
-                  <p className="text-xs font-medium text-[#004aad] bg-[#004aad]/10 px-3 py-2 rounded-lg inline-block">
+                  <p className="text-xs font-medium text-brand bg-brand/10 px-3 py-2 rounded-lg inline-block">
                     Typical positions: NDT Level I/II/III, Quality Control Inspector, Inspection Engineer
                   </p>
                 </div>
@@ -765,7 +765,7 @@ export default async function TrainingPage({ params }: PageProps) {
             <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
               Enroll in NDT training in {city.name} today and take the first step toward a rewarding career in Non-Destructive Testing.
             </p>
-            <button className="px-8 py-3 bg-white text-[#004aad] rounded-lg font-medium btn-glow hover:bg-opacity-90 transition shadow-xl">
+            <button className="px-8 py-3 bg-white text-brand rounded-lg font-medium btn-glow hover:bg-opacity-90 transition shadow-xl">
               Enroll Now
             </button>
           </div>
@@ -781,7 +781,7 @@ export default async function TrainingPage({ params }: PageProps) {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-[#004aad]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="relative z-10">
-                <h3 className="font-semibold text-lg mb-2 group-hover:text-[#004aad] transition flex items-center text-foreground">
+                <h3 className="font-semibold text-lg mb-2 group-hover:text-brand transition flex items-center text-foreground">
                   <MapPin className="w-5 h-5 mr-2" />
                   NDT Services in {city.name}
                 </h3>
@@ -796,7 +796,7 @@ export default async function TrainingPage({ params }: PageProps) {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-[#004aad]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="relative z-10">
-                <h3 className="font-semibold text-lg mb-2 group-hover:text-[#004aad] transition flex items-center text-foreground">
+                <h3 className="font-semibold text-lg mb-2 group-hover:text-brand transition flex items-center text-foreground">
                   <BookOpen className="w-5 h-5 mr-2" />
                   NDT Methods & Services
                 </h3>

@@ -155,7 +155,7 @@ export default function CityPage({ params }: Props) {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="btn-glow bg-[#004aad] hover:bg-[#003a8a] text-white" asChild>
+              <Button size="lg" className="btn-glow bg-brand hover:bg-brand-dark text-white" asChild>
                 <Link href="/find-providers">
                   <Search className="h-4 w-4 mr-2" />
                   Find Inspectors in {city.name}
@@ -184,8 +184,8 @@ export default function CityPage({ params }: Props) {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="glass rounded-xl p-6 border border-white/10 card-hover-lift animate-fade-in-up stagger-1 group cursor-default">
               <div className="relative mb-4">
-                <div className="absolute inset-0 bg-[#004aad]/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <Users className="h-8 w-8 text-[#004aad] relative z-10 animate-float" />
+                <div className="absolute inset-0 bg-brand/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <Users className="h-8 w-8 text-brand relative z-10 animate-float" />
               </div>
               <p className="font-semibold text-slate-900 mb-1">Verified Inspectors</p>
               <p className="text-sm text-slate-600">Certified & qualified professionals</p>
@@ -193,8 +193,8 @@ export default function CityPage({ params }: Props) {
 
             <div className="glass rounded-xl p-6 border border-white/10 card-hover-lift animate-fade-in-up stagger-2 group cursor-default">
               <div className="relative mb-4">
-                <div className="absolute inset-0 bg-[#004aad]/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <Clock className="h-8 w-8 text-[#004aad] relative z-10 animate-float" />
+                <div className="absolute inset-0 bg-brand/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <Clock className="h-8 w-8 text-brand relative z-10 animate-float" />
               </div>
               <p className="font-semibold text-slate-900 mb-1">Instant Quotes</p>
               <p className="text-sm text-slate-600">Get pricing in seconds</p>
@@ -202,8 +202,8 @@ export default function CityPage({ params }: Props) {
 
             <div className="glass rounded-xl p-6 border border-white/10 card-hover-lift animate-fade-in-up stagger-3 group cursor-default">
               <div className="relative mb-4">
-                <div className="absolute inset-0 bg-[#004aad]/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <Shield className="h-8 w-8 text-[#004aad] relative z-10 animate-float" />
+                <div className="absolute inset-0 bg-brand/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <Shield className="h-8 w-8 text-brand relative z-10 animate-float" />
               </div>
               <p className="font-semibold text-slate-900 mb-1">Quality Assured</p>
               <p className="text-sm text-slate-600">Standards compliant</p>
@@ -211,8 +211,8 @@ export default function CityPage({ params }: Props) {
 
             <div className="glass rounded-xl p-6 border border-white/10 card-hover-lift animate-fade-in-up stagger-4 group cursor-default">
               <div className="relative mb-4">
-                <div className="absolute inset-0 bg-[#004aad]/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <Globe className="h-8 w-8 text-[#004aad] relative z-10 animate-float" />
+                <div className="absolute inset-0 bg-brand/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <Globe className="h-8 w-8 text-brand relative z-10 animate-float" />
               </div>
               <p className="font-semibold text-slate-900 mb-1">Local Experts</p>
               <p className="text-sm text-slate-600">{city.name} based services</p>
@@ -236,9 +236,9 @@ export default function CityPage({ params }: Props) {
               >
                 <div className="flex items-center gap-4">
                   <div className="p-3 glass-strong rounded-lg group-hover:scale-110 transition-transform duration-300">
-                    <Building2 className="h-5 w-5 text-[#004aad]" />
+                    <Building2 className="h-5 w-5 text-brand" />
                   </div>
-                  <span className="font-semibold text-foreground group-hover:text-[#004aad] transition-colors">{ind}</span>
+                  <span className="font-semibold text-foreground group-hover:text-brand transition-colors">{ind}</span>
                 </div>
               </div>
             ))}
@@ -250,7 +250,7 @@ export default function CityPage({ params }: Props) {
               {city.keyFacilities.map((facility, i) => (
                 <Badge
                   key={i}
-                  className="glass border border-[#004aad]/30 bg-[#004aad]/5 text-[#004aad] font-medium py-2 px-4 text-sm hover:bg-[#004aad]/10 transition-colors"
+                  className="glass border border-brand/30 bg-brand/5 text-brand font-medium py-2 px-4 text-sm hover:bg-brand/10 transition-colors"
                 >
                   {facility}
                 </Badge>
@@ -278,12 +278,12 @@ export default function CityPage({ params }: Props) {
 
                 <div className="relative z-10 p-6">
                   <div className="mb-4">
-                    <Badge className="glass-strong border border-[#004aad]/30 bg-[#004aad]/10 text-[#004aad] font-bold text-xs">
+                    <Badge className="glass-strong border border-brand/30 bg-brand/10 text-brand font-bold text-xs">
                       {method.abbreviation}
                     </Badge>
                   </div>
 
-                  <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-[#004aad] transition-colors">
+                  <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-brand transition-colors">
                     {method.name}
                   </h3>
 
@@ -293,7 +293,7 @@ export default function CityPage({ params }: Props) {
 
                   <Link
                     href={`/services/${method.slug}`}
-                    className="inline-flex items-center gap-2 text-[#004aad] font-semibold text-sm hover:gap-3 transition-all group/link"
+                    className="inline-flex items-center gap-2 text-brand font-semibold text-sm hover:gap-3 transition-all group/link"
                   >
                     {method.abbreviation} in {city.name}
                     <ArrowRight className="h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
@@ -349,9 +349,9 @@ export default function CityPage({ params }: Props) {
                 style={{transitionDelay: `${i * 100}ms`}}
               >
                 <div className="flex gap-1 mb-3">
-                  <CheckCircle className="h-5 w-5 text-[#004aad] shrink-0 group-hover:animate-pulse-glow" />
+                  <CheckCircle className="h-5 w-5 text-brand shrink-0 group-hover:animate-pulse-glow" />
                 </div>
-                <h3 className="font-bold text-foreground mb-3 group-hover:text-[#004aad] transition-colors">
+                <h3 className="font-bold text-foreground mb-3 group-hover:text-brand transition-colors">
                   {faq.q}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
@@ -385,7 +385,7 @@ export default function CityPage({ params }: Props) {
             <div className="flex flex-wrap justify-center gap-4">
               <Button
                 size="lg"
-                className="bg-white text-[#004aad] hover:bg-gray-100 font-semibold"
+                className="bg-white text-brand hover:bg-gray-100 font-semibold"
                 asChild
               >
                 <Link href="/find-providers">
@@ -425,8 +425,8 @@ export default function CityPage({ params }: Props) {
                   className="glass rounded-xl p-4 border border-white/10 card-hover-lift animate-fade-in-up group flex flex-col items-center gap-2 text-center text-sm transition-all"
                   style={{transitionDelay: `${i * 80}ms`}}
                 >
-                  <MapPin className="h-5 w-5 text-[#004aad] group-hover:animate-float" />
-                  <span className="font-semibold text-foreground group-hover:text-[#004aad] transition-colors">
+                  <MapPin className="h-5 w-5 text-brand group-hover:animate-float" />
+                  <span className="font-semibold text-foreground group-hover:text-brand transition-colors">
                     NDT in {c.name}
                   </span>
                 </Link>

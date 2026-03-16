@@ -11,8 +11,9 @@ export default {
     "./lib/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   safelist: [
-    'bg-brand', 'text-brand', 'border-brand', 'hover:bg-brand-dark',
-    'bg-brand/5', 'bg-brand/10', 'bg-brand/20', 'border-brand/20', 'border-brand/30',
+    'bg-brand', 'text-brand', 'border-brand', 'hover:bg-brand-dark', 'text-brand-dark', 'hover:text-brand-dark',
+    'bg-brand/5', 'bg-brand/10', 'bg-brand/20', 'bg-brand/40', 'border-brand/8', 'border-brand/10', 'border-brand/20', 'border-brand/25', 'border-brand/30', 'border-brand/40', 'border-brand/60',
+    'ring-brand/20', 'ring-brand/40', 'shadow-brand/20', 'shadow-brand/25',
   ],
   theme: {
   	extend: {
