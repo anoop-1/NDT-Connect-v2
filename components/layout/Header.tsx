@@ -157,8 +157,8 @@ export function Header() {
               <Button variant="ghost" size="sm" asChild className="hidden sm:flex rounded-lg hover:text-[#004aad] hover:bg-[#004aad]/5">
                 <Link href="/login">Login</Link>
               </Button>
-              <Button size="sm" asChild className="rounded-lg bg-[#004aad] hover:bg-[#003a8c] shadow-md shadow-[#004aad]/20">
-                <Link href="/register">Get Started</Link>
+              <Button size="sm" asChild className="rounded-lg bg-[#004aad] hover:bg-[#003a8c] text-white shadow-md shadow-[#004aad]/20">
+                <Link href="/register" className="text-white">Get Started</Link>
               </Button>
             </>
           )}
@@ -215,8 +215,8 @@ export function Header() {
                 <Button variant="outline" size="sm" asChild className="flex-1 rounded-lg border-[#004aad]/20">
                   <Link href="/login" onClick={() => setMobileMenuOpen(false)}>Login</Link>
                 </Button>
-                <Button size="sm" asChild className="flex-1 rounded-lg bg-[#004aad] hover:bg-[#003a8c]">
-                  <Link href="/register" onClick={() => setMobileMenuOpen(false)}>Get Started</Link>
+                <Button size="sm" asChild className="flex-1 rounded-lg bg-[#004aad] hover:bg-[#003a8c] text-white">
+                  <Link href="/register" className="text-white" onClick={() => setMobileMenuOpen(false)}>Get Started</Link>
                 </Button>
               </div>
             )}

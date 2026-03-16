@@ -121,7 +121,7 @@ export default function HomePage() {
 
               {/* Main heading with gradient text */}
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 animate-fade-in-up leading-[1.1] text-slate-900" style={{ animationDelay: '0.1s' }}>
-                <span className="gradient-text">Book NDT Inspection</span>
+                <span className="gradient-text">Book NDT Inspection</span>{' '}
                 <br className="hidden sm:block" />
                 <span className="text-slate-900">Services Online</span>
               </h1>
@@ -133,8 +133,8 @@ export default function HomePage() {
 
               {/* CTA buttons with glow */}
               <div className="flex flex-col sm:flex-row justify-center gap-4 mb-10 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-                <Button size="lg" className="text-base px-10 py-6 btn-glow bg-[#004aad] hover:bg-[#003a8c] rounded-xl shadow-lg shadow-[#004aad]/25" asChild>
-                  <Link href="/request-service">Request Inspection <ArrowRight className="ml-2 h-5 w-5" /></Link>
+                <Button size="lg" className="text-base px-10 py-6 btn-glow bg-[#004aad] hover:bg-[#003a8c] text-white rounded-xl shadow-lg shadow-[#004aad]/25" asChild>
+                  <Link href="/request-service" className="text-white">Request Inspection <ArrowRight className="ml-2 h-5 w-5" /></Link>
                 </Button>
                 <Button size="lg" variant="outline" className="text-base px-10 py-6 rounded-xl glass border-[#004aad]/20 hover:border-[#004aad]/40 hover:bg-[#004aad]/5" asChild>
                   <Link href="/find-providers">Find NDT Providers</Link>
@@ -398,8 +398,8 @@ export default function HomePage() {
                   </li>
                 ))}
               </ul>
-              <Button size="lg" className="bg-[#004aad] hover:bg-[#003a8c] rounded-xl px-10 py-6 btn-glow shadow-lg shadow-[#004aad]/25" asChild>
-                <Link href="/register">Join as Provider <ArrowRight className="ml-2 h-5 w-5" /></Link>
+              <Button size="lg" className="bg-[#004aad] hover:bg-[#003a8c] text-white rounded-xl px-10 py-6 btn-glow shadow-lg shadow-[#004aad]/25" asChild>
+                <Link href="/register" className="text-white">Join as Provider <ArrowRight className="ml-2 h-5 w-5" /></Link>
               </Button>
             </div>
 
