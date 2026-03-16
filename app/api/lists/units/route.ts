@@ -9,7 +9,7 @@ export async function GET() {
     const db = client.db();
     const units = await db.collection('units').find({}).toArray();
     return NextResponse.json(units);
-  } catch (err) {
+  } catch (err: any) {
     return NextResponse.json({ error: 'Failed to fetch units' }, { status: 500 });
   } finally {
     await client.close();

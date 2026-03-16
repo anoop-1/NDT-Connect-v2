@@ -234,9 +234,9 @@ export class ComplianceService {
                 createEvent('NOTIFICATION_SENT' as any, {
                     type: 'AUDIT_LOG',
                     entry: logEntry,
-                })
+                } as any)
             );
-        } catch (error) {
+        } catch (error: any) {
             console.error('Failed to publish audit log:', error);
         }
     }

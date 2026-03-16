@@ -9,7 +9,7 @@ export async function GET() {
     const db = client.db();
     const taxRates = await db.collection('tax_rates').find({}).toArray();
     return NextResponse.json(taxRates);
-  } catch (err) {
+  } catch (err: any) {
     return NextResponse.json({ error: 'Failed to fetch tax rates' }, { status: 500 });
   } finally {
     await client.close();

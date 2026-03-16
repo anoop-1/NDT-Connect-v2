@@ -71,7 +71,7 @@ export default function ProviderRequestsPage() {
         setRequests(fetchedRequests);
       }
 
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error fetching service requests:", error);
       toast({
         title: "Error",
@@ -113,7 +113,7 @@ export default function ProviderRequestsPage() {
             title: `Request Status Updated`,
             description: `Status changed to ${newStatus}. Client will be notified.`,
         });
-    } catch (error) {
+    } catch (error: any) {
         console.error("Error updating request:", error);
         toast({ title: "Update Failed", description: "Could not update the request in the database.", variant: "destructive" });
     }

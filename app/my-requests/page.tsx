@@ -15,7 +15,6 @@ import { db } from "@/lib/firebase";
 import { collection, query, where, getDocs, orderBy } from "firebase/firestore";
 import { useToast } from "@/hooks/use-toast";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { MOCK_CLIENT_REQUESTS } from "@/lib/mockData";
 
 const StatusBadge = ({ status }: { status: ServiceRequest['status'] }) => {
   let variant: "default" | "secondary" | "destructive" | "outline" = "default";
@@ -61,14 +60,11 @@ export default function MyRequestsPage() {
   const [requests, setRequests] = useState<ServiceRequest[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [chattingWithRequest, setChattingWithRequest] = useState<ServiceRequest | null>(null);
-  const [isShowingExamples, setIsShowingExamples] = useState(false);
-
   const fetchRequests = useCallback(async (userId: string) => {
     setIsLoading(true);
-    setIsShowingExamples(false);
 
     if (user?.isDemo) {
-      setRequests(MOCK_CLIENT_REQUESTS);
+      setRequests([]);
       setIsLoading(false);
       return;
     }
@@ -85,25 +81,14 @@ export default function MyRequestsPage() {
         fetchedRequests.push({ id: doc.id, ...data, requestedDate } as ServiceRequest);
       });
       
-      if (fetchedRequests.length === 0) {
-        setRequests(MOCK_CLIENT_REQUESTS);
-        setIsShowingExamples(true);
-        toast({
-          title: "Displaying Example Requests",
-          description: "You have no active requests, so we're showing examples.",
-        });
-      } else {
-        setRequests(fetchedRequests);
-      }
-    } catch (error) {
+      setRequests(fetchedRequests);
+    } catch (error: any) {
       console.error("Error fetching service requests:", error);
       toast({
         title: "Error",
-        description: "Failed to fetch your service requests. Showing example data.",
+        description: "Failed to fetch your service requests. Please try again.",
         variant: "destructive",
       });
-      setRequests(MOCK_CLIENT_REQUESTS);
-      setIsShowingExamples(true);
     } finally {
       setIsLoading(false);
     }
@@ -129,14 +114,13 @@ export default function MyRequestsPage() {
 
   return (
     <>
-      <div className="space-y-8">
+      <div className="max-w-7xl mx-auto space-y-8">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
             <h1 className="text-3xl font-bold">My Service Requests</h1>
             <p className="text-muted-foreground">
               Track and manage all your NDT service requests here.
               {user?.isDemo && <span className="font-semibold text-primary ml-2">(Demo Mode)</span>}
-              {isShowingExamples && <span className="font-semibold text-primary ml-2">(Example Data)</span>}
             </p>
           </div>
           <Button asChild disabled={user?.isDemo}>
@@ -188,7 +172,7 @@ export default function MyRequestsPage() {
             <CardContent className="flex flex-col items-center gap-4">
               <Briefcase className="h-16 w-16 text-muted-foreground" />
               <h3 className="text-xl font-semibold">No service requests yet.</h3>
-              <p className="text-muted-foreground">{isShowingExamples ? "The examples above show how your requests will appear." : "Make your first request to see it here."}</p>
+              <p className="text-muted-foreground">Make your first request to see it here.</p>
               <Button asChild disabled={user?.isDemo}>
                 <Link href="/request-service">
                   <PlusCircle className="h-4 w-4 mr-2" /> Request a Service

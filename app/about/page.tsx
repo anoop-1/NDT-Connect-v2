@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Users, Target, Eye, CheckCircle } from 'lucide-react';
+import { PageHero } from '@/components/shared/PageHero';
 
 export const metadata: Metadata = {
   title: 'About NDT Connect | The Leading NDT Inspection Marketplace',
@@ -18,19 +19,14 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="space-y-12">
-      <section className="text-center py-16 bg-gradient-to-br from-primary/5 to-accent/5 rounded-lg shadow-sm">
-        <div className="container">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-primary">
-            About NDT Connect
-          </h1>
-          <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Facilitating seamless connections between Non-Destructive Testing (NDT) service providers and clients who require specialized inspection services.
-          </p>
-        </div>
-      </section>
+    <div className="max-w-5xl mx-auto space-y-12">
+      <PageHero
+        title="About NDT Connect"
+        description="Facilitating seamless connections between Non-Destructive Testing (NDT) service providers and clients who require specialized inspection services."
+        breadcrumbs={[{ label: 'About' }]}
+      />
 
-      <section className="container grid md:grid-cols-2 gap-12 items-center">
+      <section className="grid md:grid-cols-2 gap-12 items-center">
         <div>
           <h2 className="text-3xl font-semibold mb-4">Our Mission</h2>
           <p className="text-muted-foreground mb-6 text-lg leading-relaxed">
@@ -78,7 +74,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="container py-12">
+      <section className="py-12">
         <h2 className="text-3xl font-semibold text-center mb-10">Our Vision for the Future</h2>
         <p className="text-center text-muted-foreground max-w-3xl mx-auto mb-10">
           We envision NDT Connect as the leading global hub for all Non-Destructive Testing needs. A future where finding specialized NDT expertise is just a few clicks away, supported by intelligent tools that ensure optimal matches, project management ease, and continuous quality improvement across industries.

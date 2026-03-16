@@ -20,7 +20,7 @@ export async function POST(request: NextRequest) {
         });
 
         return NextResponse.json({ success: true, inspection });
-    } catch (error) {
+    } catch (error: any) {
         console.error('Create inspection error:', error);
         return NextResponse.json(
             { error: 'Failed to create inspection' },
@@ -61,7 +61,7 @@ export async function GET(request: NextRequest) {
         // Return statistics
         const stats = inspectionLifecycleService.getStatistics();
         return NextResponse.json({ statistics: stats });
-    } catch (error) {
+    } catch (error: any) {
         console.error('Get inspection error:', error);
         return NextResponse.json(
             { error: 'Failed to get inspection' },
@@ -89,7 +89,7 @@ export async function PATCH(request: NextRequest) {
         );
 
         return NextResponse.json({ success: true, inspection });
-    } catch (error) {
+    } catch (error: any) {
         const message = (error as Error).message;
         console.error('Update inspection error:', message);
         return NextResponse.json(

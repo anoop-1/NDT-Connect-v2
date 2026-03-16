@@ -35,33 +35,78 @@ export type CompanyCertification = {
   expiryDate?: Date | null;
 };
 
+// Nested profile types matching Firestore document structure
+export type ClientProfileFields = {
+  companyName?: string;
+  industry?: string;
+  primaryLocation?: string;
+  contactNumber?: string;
+};
+
+export type ProviderProfileFields = {
+  companyName?: string;
+  location?: string;
+  contactNumber?: string;
+  website?: string;
+  companyLogoUrl?: string;
+  bio?: string;
+  servicesOffered?: ServiceOffering[];
+  personnelQualifications?: PersonnelQualification[];
+  certifications?: CompanyCertification[];
+  availableDocuments?: string[];
+  serviceRadius?: string;
+  baseRate?: number;
+  pricingDetails?: string;
+  procedureInfoUrl?: string;
+  isVerified?: boolean;
+  description?: string;
+  specialization?: string;
+  rating?: number;
+  dataAiHint?: string;
+  lat?: number;
+  lng?: number;
+};
+
+export type InspectorProfileFields = {
+  association?: 'freelancer' | 'company';
+  companyName?: string;
+  location?: string;
+  designation?: string;
+  contactNumber?: string;
+  personnelQualifications?: PersonnelQualification[];
+};
+
 export interface ClientUser extends BaseUser {
   role: 'client';
-  companyName: string;
-  industry: string;
-  primaryLocation: string;
-  contactNumber: string;
+  // Flat fields (from MongoDB registration)
+  companyName?: string;
+  industry?: string;
+  primaryLocation?: string;
+  contactNumber?: string;
+  // Nested profile (from Firestore)
+  clientProfile?: ClientProfileFields;
 }
 
 export interface InspectorUser extends BaseUser {
   role: 'inspector';
-  association: 'freelancer' | 'company';
-  contactNumber: string;
+  association?: 'freelancer' | 'company';
+  contactNumber?: string;
   companyName?: string;
   location?: string;
   designation?: string;
-  personnelQualifications: PersonnelQualification[];
+  personnelQualifications?: PersonnelQualification[];
+  inspectorProfile?: InspectorProfileFields;
 }
 
 export interface ProviderUser extends BaseUser {
   role: 'provider';
-  companyName: string;
-  location: string;
+  companyName?: string;
+  location?: string;
   lat?: number;
   lng?: number;
-  contactNumber: string;
-  servicesOffered: ServiceOffering[];
-  personnelQualifications: PersonnelQualification[];
+  contactNumber?: string;
+  servicesOffered?: ServiceOffering[];
+  personnelQualifications?: PersonnelQualification[];
   certifications?: CompanyCertification[];
   procedureInfoUrl?: string;
   companyLogoUrl?: string;
@@ -73,9 +118,14 @@ export interface ProviderUser extends BaseUser {
   description?: string;
   specialization?: string;
   rating?: number;
+  providerProfile?: ProviderProfileFields;
 }
 
-export type User = ClientUser | ProviderUser | InspectorUser;
+export interface AdminUser extends BaseUser {
+  role: 'admin';
+}
+
+export type User = ClientUser | ProviderUser | InspectorUser | AdminUser;
 
 export type ClientProfileData = Omit<ClientUser, keyof BaseUser>;
 export type InspectorProfileData = Omit<InspectorUser, keyof BaseUser>;
@@ -98,32 +148,42 @@ export type ServiceProvider = {
   personnelQualifications?: PersonnelQualification[];
   isVerified?: boolean;
   availableDocuments?: string[];
-  isCompany: boolean; // Flag to distinguish between company and inspector
+  isCompany: boolean;
 };
 
 export type ServiceRequest = {
-  id: string; // Firestore document ID
+  id: string;
   clientId: string;
-  clientName?: string; // Denormalized for display
-  clientEmail?: string; // Denormalized for display
+  clientName?: string;
+  clientEmail?: string;
   providerId: string | null;
   providerName: string | null;
   serviceType: string;
   location: string;
   description: string;
-  requestedDate: any; // Can be string (from mock) or Firestore Timestamp
+  requestedDate: any;
   estimatedCost: number | null;
   status: 'Pending' | 'Confirmed' | 'In Progress' | 'Completed' | 'Cancelled';
-  createdAt?: any; // Firestore serverTimestamp
-  updatedAt?: any; // Firestore serverTimestamp
-  fileAttachmentUrl?: string | null; // URL to file in Firebase Storage
+  createdAt?: any;
+  updatedAt?: any;
+  fileAttachmentUrl?: string | null;
 };
 
 export type ChatMessage = {
   id: string;
-  senderId: string; // User ID or "system" or "provider-simulated"
+  senderId: string;
   text: string;
-  timestamp: string; // ISO string
+  timestamp: string;
 };
 
-// Remove redundant export block at the end of the file
+export type Review = {
+  id: string;
+  requestId: string;
+  reviewerId: string;
+  reviewerName: string;
+  providerId: string;
+  providerName: string;
+  rating: number;
+  comment: string;
+  createdAt: any;
+};

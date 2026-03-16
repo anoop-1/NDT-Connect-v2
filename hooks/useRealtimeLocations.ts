@@ -81,7 +81,7 @@ export function useRealtimeLocations(options: UseRealtimeLocationsOptions = {}) 
                 channel.unbind_all();
                 pusher.unsubscribe(CHANNELS.LOCATIONS);
             };
-        } catch (err) {
+        } catch (err: any) {
             setError('Pusher not configured');
             return;
         }
@@ -100,7 +100,7 @@ export function useRealtimeLocations(options: UseRealtimeLocationsOptions = {}) 
                     });
                     setLocations(locationMap);
                 }
-            } catch (err) {
+            } catch (err: any) {
                 console.error('Failed to fetch initial locations:', err);
             }
         }
@@ -117,7 +117,7 @@ export function useRealtimeLocations(options: UseRealtimeLocationsOptions = {}) 
                     body: JSON.stringify({ inspectorId, lat, lng }),
                 });
                 return response.ok;
-            } catch (err) {
+            } catch (err: any) {
                 console.error('Failed to update location:', err);
                 return false;
             }

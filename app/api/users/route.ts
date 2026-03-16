@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
 
     const users = await getAllUsers();
     
-    const safeUsers = users.map((user: User) => ({
+    const safeUsers = users.map((user: any) => ({
       id: user.id,
       email: user.email,
       name: user.name,
@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
       users: safeUsers,
       total: safeUsers.length 
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error fetching users:', error);
     return NextResponse.json(
       { error: 'Failed to fetch users' },

@@ -38,7 +38,7 @@ function RequestServiceFormContent() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [serviceType, setServiceType] = useState("");
-  const [location, setLocation] = useState(user?.clientProfile?.primaryLocation || "");
+  const [location, setLocation] = useState((user as any)?.clientProfile?.primaryLocation || "");
   const [description, setDescription] = useState("");
   const [requestedDate, setRequestedDate] = useState<Date | undefined>(new Date());
   const [providerId, setProviderId] = useState<string | null>(null);
@@ -48,19 +48,19 @@ function RequestServiceFormContent() {
 
   useEffect(() => {
     if (!loading && !user) {
-      const redirectPath = `/request-service${searchParams.toString() ? `?${searchParams.toString()}` : ''}`;
+      const redirectPath = `/request-service${searchParams?.toString() ? `?${searchParams.toString()}` : ''}`;
       router.push(`/login?redirect=${encodeURIComponent(redirectPath)}`);
     } else if (user && user.role !== 'client') {
       router.push("/dashboard");
     } else if (user) {
-        setLocation(user.clientProfile?.primaryLocation || "");
+        setLocation((user as any).clientProfile?.primaryLocation || "");
     }
 
-    const queryProviderId = searchParams.get("providerId");
-    const queryProviderName = searchParams.get("providerName");
-    const queryServiceType = searchParams.get("serviceType");
-    const queryBaseRate = searchParams.get("baseRate");
-    const queryAiRecommendationId = searchParams.get("aiRecommendationId");
+    const queryProviderId = searchParams?.get("providerId");
+    const queryProviderName = searchParams?.get("providerName");
+    const queryServiceType = searchParams?.get("serviceType");
+    const queryBaseRate = searchParams?.get("baseRate");
+    const queryAiRecommendationId = searchParams?.get("aiRecommendationId");
 
     if (queryProviderId) setProviderId(queryProviderId);
     if (queryProviderName) setProviderName(queryProviderName);
@@ -102,7 +102,20 @@ function RequestServiceFormContent() {
 
     let fileAttachmentUrl = "";
     if (selectedFile) {
-        fileAttachmentUrl = `uploads/placeholder/${selectedFile.name}`;
+      try {
+        const formData = new FormData();
+        formData.append("file", selectedFile);
+        formData.append("folder", `service-requests/${user.id}`);
+        const uploadRes = await fetch("/api/upload", { method: "POST", body: formData });
+        const uploadData = await uploadRes.json();
+        if (uploadData.success) {
+          fileAttachmentUrl = uploadData.url;
+        } else {
+          console.warn("File upload failed, proceeding without attachment:", uploadData.error);
+        }
+      } catch (uploadErr) {
+        console.warn("File upload error, proceeding without attachment:", uploadErr);
+      }
     }
 
     const newRequest: Omit<ServiceRequest, 'id'> = {
@@ -125,10 +138,26 @@ function RequestServiceFormContent() {
     try {
         const docRef = await addDoc(collection(db, "serviceRequests"), newRequest);
         
+        // Send email notification to provider
         if (providerId && providerName) {
-            console.log(`--- SIMULATING EMAIL NOTIFICATION TO VENDOR ---`);
-            console.log(`To: Email address of ${providerName} (ID: ${providerId})`);
-            console.log(`--- END SIMULATION ---`);
+          try {
+            await fetch("/api/notify", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                type: "new-request",
+                providerEmail: "", // Will be looked up server-side if needed
+                providerName,
+                serviceType,
+                location,
+                description,
+                clientName: user.name || user.email,
+                requestId: docRef.id,
+              }),
+            });
+          } catch (notifyErr) {
+            console.warn("Email notification failed (non-blocking):", notifyErr);
+          }
         }
 
         toast({
@@ -136,7 +165,7 @@ function RequestServiceFormContent() {
             description: `Your request has been successfully submitted. ${providerName ? providerName + ' has been notified.' : 'Providers will be able to view your open request.'}`,
         });
         router.push(`/track-request/${docRef.id}`);
-    } catch (error) {
+    } catch (error: any) {
         console.error("Error adding document: ", error);
         toast({
             title: "Submission Failed",
@@ -204,7 +233,7 @@ function RequestServiceFormContent() {
                   </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-auto p-0">
-                  <Calendar mode="single" selected={requestedDate} onSelect={setRequestedDate} initialFocus disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() -1))} />
+                  <Calendar mode="single" selected={requestedDate} onSelect={setRequestedDate} autoFocus disabled={(date) => date < new Date(new Date().setDate(new Date().getDate() -1))} />
                 </PopoverContent>
               </Popover>
             </div>
@@ -215,9 +244,9 @@ function RequestServiceFormContent() {
             </div>
             
             <div>
-              <Label htmlFor="fileUpload" className="flex items-center"><UploadCloud className="h-4 w-4 mr-2 text-muted-foreground"/> Attach General Drawings/Documents (Conceptual)</Label>
+              <Label htmlFor="fileUpload" className="flex items-center"><UploadCloud className="h-4 w-4 mr-2 text-muted-foreground"/> Attach Drawings/Documents (Optional)</Label>
               <Input id="fileUpload" type="file" onChange={handleFileChange} accept={ACCEPTED_FILE_TYPES} className="mt-1" />
-              <p className="text-xs text-muted-foreground mt-1">Accepted: PDF, Excel, JPG, PNG. Note: File is not actually uploaded in this demo.</p>
+              <p className="text-xs text-muted-foreground mt-1">Accepted: PDF, Excel, Word, JPG, PNG. Max 10MB.</p>
             </div>
 
             {estimatedCost !== null && (

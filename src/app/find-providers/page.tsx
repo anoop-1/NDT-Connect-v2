@@ -107,7 +107,7 @@ export default function FindProvidersPage() {
         setAllProviders(providersData);
       }
 
-    } catch (e) {
+    } catch (e: any) {
       console.error("Error fetching providers:", e);
       setError("Failed to load providers from the database. Showing example data instead.");
       setAllProviders(MOCK_PROVIDERS);

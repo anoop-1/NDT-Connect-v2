@@ -61,7 +61,7 @@ export default function CityCareerPage({ params }: Props) {
   const relevantIndustries = city.industries || ['Oil & Gas', 'Manufacturing', 'Construction'];
   const topRoles = careerRoles.slice(0, 8);
 
-  const cityContext = {
+  const cityContext: Record<string, { demand: string; keyFocus: string; description: string }> = {
     houston: { demand: 'Very High', keyFocus: 'Oil & Gas, Petrochemical, Pipeline', description: 'Houston is the energy capital with exceptional demand for NDT services.' },
     'los-angeles': { demand: 'High', keyFocus: 'Aerospace, Manufacturing, Port', description: 'Los Angeles requires specialized aerospace and marine NDT expertise.' },
     denver: { demand: 'High', keyFocus: 'Pipeline, Mining, Construction', description: 'Denver is a hub for pipeline and mining NDT operations.' },

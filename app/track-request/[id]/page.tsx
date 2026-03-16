@@ -16,7 +16,6 @@ import { doc, getDoc } from "firebase/firestore";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { MOCK_CLIENT_REQUESTS, MOCK_PROVIDERS } from "@/lib/mockData";
 
 const StatusTimelineStep = ({ status, isActive, isCompleted, title, description }: { status: string, isActive: boolean, isCompleted: boolean, title: string, description: string }) => {
   let IconComponent = Clock;
@@ -44,10 +43,10 @@ export default function TrackRequestPage() {
   const router = useRouter();
   const params = useParams();
   const { toast } = useToast();
-  const requestId = params.id as string;
+  const requestId = params?.id as string;
   
   const [request, setRequest] = useState<ServiceRequest | null>(null);
-  const [providerDetails, setProviderDetails] = useState<Partial<User> | null>(null);
+  const [providerDetails, setProviderDetails] = useState<any>(null);
   const [fetchError, setFetchError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showChat, setShowChat] = useState(false);
@@ -58,26 +57,7 @@ export default function TrackRequestPage() {
     
     // DEMO MODE LOGIC
     if (user?.isDemo) {
-        const demoRequest = MOCK_CLIENT_REQUESTS.find(r => r.id === reqId);
-        if (demoRequest) {
-            setRequest(demoRequest);
-            if (demoRequest.providerId) {
-                const demoProvider = MOCK_PROVIDERS.find(p => p.id === demoRequest.providerId);
-                if(demoProvider) {
-                   // Create a partial User object from ServiceProvider for consistency
-                   setProviderDetails({
-                       id: demoProvider.id,
-                       name: demoProvider.name,
-                       providerProfile: {
-                         isVerified: demoProvider.isVerified,
-                         availableDocuments: demoProvider.availableDocuments,
-                       }
-                   });
-                }
-            }
-        } else {
-            setFetchError("Service request not found in demo data.");
-        }
+        setFetchError("Request tracking is not available in demo mode.");
         setIsLoading(false);
         return;
     }
@@ -221,7 +201,7 @@ export default function TrackRequestPage() {
                 <div className="p-3 border border-dashed rounded-md bg-blue-50 text-blue-700">
                   <h5 className="font-semibold text-sm flex items-center mb-2"><BookOpen className="h-4 w-4 mr-2"/>Technical Documents from Provider</h5>
                   <ul className="list-disc list-inside text-xs space-y-1">
-                      {providerDocs.map(doc => <li key={doc}>{doc}</li>)}
+                      {providerDocs.map((doc: any) => <li key={doc}>{doc}</li>)}
                   </ul>
                   <p className="text-xs mt-2 italic">(These documents are notionally shared. In a full system, download links or viewable documents would appear here.)</p>
                 </div>

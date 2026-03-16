@@ -59,7 +59,7 @@ export default function ManagePredefinedListsPage() {
       });
       
       setLists(fetchedLists);
-    } catch (e) {
+    } catch (e: any) {
       console.error("Error fetching predefined lists:", e);
       setError("Failed to load lists from server");
       toast({
@@ -128,7 +128,7 @@ export default function ManagePredefinedListsPage() {
         title: "Item Added",
         description: `"${newItemText}" added to ${listConfig?.name || 'list'}`,
       });
-    } catch (e) {
+    } catch (e: any) {
       console.error("Error adding item:", e);
       toast({
         title: "Add Failed",
@@ -170,7 +170,7 @@ export default function ManagePredefinedListsPage() {
         title: "Item Removed",
         description: `"${item}" removed from list`,
       });
-    } catch (e) {
+    } catch (e: any) {
       console.error("Error removing item:", e);
       toast({
         title: "Remove Failed",
@@ -250,7 +250,7 @@ export default function ManagePredefinedListsPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="max-w-7xl mx-auto space-y-6">
       <Button variant="outline" asChild>
         <Link href="/admin/dashboard">
           <ArrowLeft className="mr-2 h-4 w-4" />

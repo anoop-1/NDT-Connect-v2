@@ -39,7 +39,7 @@ export default function ProviderRequestDetailPage() {
   const router = useRouter();
   const params = useParams();
   const { toast } = useToast();
-  const requestId = params.id as string;
+  const requestId = params?.id as string;
 
   const [request, setRequest] = useState<ServiceRequest | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -121,7 +121,7 @@ export default function ProviderRequestDetailPage() {
       await updateDoc(requestDocRef, updateData);
       setRequest(prev => prev ? { ...prev, ...updateData } : null);
       toast({ title: "Status Updated", description: `Request status successfully changed to ${newStatus}.`});
-    } catch (error) {
+    } catch (error: any) {
         console.error("Error updating status:", error);
         toast({ title: "Update Failed", description: "Could not update status in the database.", variant: "destructive" });
     } finally {

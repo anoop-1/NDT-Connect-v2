@@ -29,7 +29,7 @@ export default function RecommendationsPage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="max-w-7xl mx-auto space-y-8">
       <Card className="shadow-lg">
         <CardHeader>
           <CardTitle className="text-3xl">AI-Powered Provider Recommendations</CardTitle>

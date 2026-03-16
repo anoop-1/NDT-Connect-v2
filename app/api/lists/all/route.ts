@@ -15,7 +15,7 @@ export async function GET(request: Request) {
       items: list.items,
       lastUpdated: list.lastUpdated
     })));
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error fetching lists:', error);
     return NextResponse.json(
       { error: 'Failed to fetch lists' },

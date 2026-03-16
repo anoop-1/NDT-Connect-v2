@@ -8,14 +8,38 @@ export function Footer() {
     <footer className="relative overflow-hidden bg-gradient-to-b from-slate-950 via-blue-950/20 to-slate-950 border-t section-divider">
       {/* Decorative orb background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="orb absolute -top-40 -right-40 opacity-30"></div>
-        <div className="orb absolute -bottom-32 -left-32 opacity-20"></div>
+        <div className="orb orb-accent w-[400px] h-[400px] absolute -top-40 -right-40 opacity-20"></div>
+        <div className="orb orb-primary w-[350px] h-[350px] absolute -bottom-32 -left-32 opacity-15"></div>
         <div className="hero-grid-bg absolute inset-0 opacity-5"></div>
       </div>
 
-      <div className="container py-16 relative z-10">
+      <div className="layout-wrapper py-16 relative z-10">
+        {/* Navigation Bar */}
+        <nav className="mb-12 pb-8 border-b border-slate-800">
+          <div className="flex flex-wrap justify-center gap-x-4 sm:gap-x-6 md:gap-x-8 gap-y-2 sm:gap-y-3">
+            {[
+              { label: 'Home', href: '/' },
+              { label: 'Find Providers', href: '/find-providers' },
+              { label: 'Services', href: '/services' },
+              { label: 'Industries', href: '/industries' },
+              { label: 'About', href: '/about' },
+              { label: 'Blog', href: '/blog' },
+              { label: 'Contact', href: '/contact' },
+              { label: 'FAQ', href: '/faq' },
+            ].map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-slate-300 hover:text-white transition-colors duration-200"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </nav>
+
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 mb-12 animate-fade-in-up">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 lg:gap-8 mb-12 animate-fade-in-up">
           {/* Brand */}
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
             <div className="mb-4">
@@ -36,7 +60,7 @@ export function Footer() {
           {/* NDT Services */}
           <div className="group">
             <div className="mb-4">
-              <h4 className="font-semibold text-sm mb-2 flex items-center gap-2 text-brand">
+              <h4 className="font-semibold text-sm mb-2 flex items-center gap-2 text-blue-400">
                 <span>NDT Services</span>
                 <span className="w-1.5 h-1.5 bg-blue-500 rounded-full group-hover:bg-blue-400 transition-colors"></span>
               </h4>
@@ -58,7 +82,7 @@ export function Footer() {
           {/* Industries */}
           <div className="group">
             <div className="mb-4">
-              <h4 className="font-semibold text-sm mb-2 flex items-center gap-2 text-brand">
+              <h4 className="font-semibold text-sm mb-2 flex items-center gap-2 text-blue-400">
                 <span>Industries</span>
                 <span className="w-1.5 h-1.5 bg-blue-500 rounded-full group-hover:bg-blue-400 transition-colors"></span>
               </h4>
@@ -78,7 +102,7 @@ export function Footer() {
           {/* Locations */}
           <div className="group">
             <div className="mb-4">
-              <h4 className="font-semibold text-sm mb-2 flex items-center gap-2 text-brand">
+              <h4 className="font-semibold text-sm mb-2 flex items-center gap-2 text-blue-400">
                 <span>Locations</span>
                 <span className="w-1.5 h-1.5 bg-blue-500 rounded-full group-hover:bg-blue-400 transition-colors"></span>
               </h4>
@@ -101,7 +125,7 @@ export function Footer() {
           {/* Resources */}
           <div className="group">
             <div className="mb-4">
-              <h4 className="font-semibold text-sm mb-2 flex items-center gap-2 text-brand">
+              <h4 className="font-semibold text-sm mb-2 flex items-center gap-2 text-blue-400">
                 <span>Resources</span>
                 <span className="w-1.5 h-1.5 bg-blue-500 rounded-full group-hover:bg-blue-400 transition-colors"></span>
               </h4>
@@ -124,7 +148,7 @@ export function Footer() {
           {/* Company */}
           <div className="group">
             <div className="mb-4">
-              <h4 className="font-semibold text-sm mb-2 flex items-center gap-2 text-brand">
+              <h4 className="font-semibold text-sm mb-2 flex items-center gap-2 text-blue-400">
                 <span>Company</span>
                 <span className="w-1.5 h-1.5 bg-blue-500 rounded-full group-hover:bg-blue-400 transition-colors"></span>
               </h4>
@@ -138,7 +162,7 @@ export function Footer() {
               <li><Link href="/login" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Login</Link></li>
             </ul>
             <div>
-              <h4 className="font-semibold text-sm mb-2 flex items-center gap-2 text-brand">
+              <h4 className="font-semibold text-sm mb-2 flex items-center gap-2 text-blue-400">
                 <span>Contact</span>
                 <span className="w-1.5 h-1.5 bg-blue-500 rounded-full group-hover:bg-blue-400 transition-colors"></span>
               </h4>

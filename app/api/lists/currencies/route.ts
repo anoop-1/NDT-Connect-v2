@@ -9,7 +9,7 @@ export async function GET() {
     const db = client.db();
     const currencies = await db.collection('currencies').find({}).toArray();
     return NextResponse.json(currencies);
-  } catch (err) {
+  } catch (err: any) {
     return NextResponse.json({ error: 'Failed to fetch currencies' }, { status: 500 });
   } finally {
     await client.close();

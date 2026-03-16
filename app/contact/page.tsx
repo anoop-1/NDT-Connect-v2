@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Mail, Phone, MapPin, MessageSquare, Clock } from 'lucide-react';
+import { PageHero } from '@/components/shared/PageHero';
 
 export const metadata: Metadata = {
   title: 'Contact NDT Connect | Get in Touch | NDT Marketplace Support',
@@ -15,16 +16,11 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="max-w-4xl mx-auto">
-      <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
-        <Link href="/" className="hover:text-primary">Home</Link>
-        <span>/</span>
-        <span className="text-foreground">Contact</span>
-      </nav>
-
-      <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">Contact Us</h1>
-      <p className="text-muted-foreground mb-10">
-        Have questions about NDT Connect? We are here to help asset owners, NDT service providers, and anyone interested in our platform.
-      </p>
+      <PageHero
+        title="Contact Us"
+        description="Have questions about NDT Connect? We are here to help asset owners, NDT service providers, and anyone interested in our platform."
+        breadcrumbs={[{ label: 'Contact' }]}
+      />
 
       <div className="grid md:grid-cols-2 gap-8 mb-12">
         <Card>
@@ -73,6 +69,26 @@ export default function ContactPage() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Map Section */}
+      <section className="mb-12">
+        <h2 className="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+          <MapPin className="h-5 w-5 text-primary" /> Our Headquarters
+        </h2>
+        <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d443086.6618498599!2d-95.68145027500001!3d29.817178350000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640b8b4488d8501%3A0xca0d02def365053b!2sHouston%2C%20TX!5e0!3m2!1sen!2sus!4v1710000000000!5m2!1sen!2sus"
+            width="100%"
+            height="300"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="NDT Connect Houston Office Location"
+          />
+        </div>
+        <p className="text-sm text-muted-foreground mt-3">Houston, Texas, USA &mdash; Serving clients and providers worldwide</p>
+      </section>
 
       <section className="bg-primary rounded-2xl p-10 text-primary-foreground text-center">
         <h2 className="text-2xl font-bold mb-4">Ready to Get Started?</h2>

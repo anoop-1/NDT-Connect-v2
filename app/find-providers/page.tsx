@@ -15,7 +15,6 @@ import { Label } from "@/components/ui/label";
 import { db } from "@/lib/firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useToast } from "@/hooks/use-toast";
-import { MOCK_PROVIDERS } from "@/lib/mockData";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
@@ -88,7 +87,7 @@ export default function FindProvidersPage() {
     setIsShowingExamples(false);
     
     if (user?.isDemo) {
-      setAllProviders(MOCK_PROVIDERS);
+      setAllProviders([]);
       setIsLoading(false);
       return;
     }
@@ -102,7 +101,7 @@ export default function FindProvidersPage() {
         fetchedUsers.push({ id: doc.id, ...doc.data() } as User);
       });
 
-      const providersData: ServiceProvider[] = fetchedUsers.map(u => {
+      const providersData: ServiceProvider[] = fetchedUsers.map((u: any) => {
           if (u.role === 'provider') {
             return {
                 id: u.id,
@@ -143,25 +142,14 @@ export default function FindProvidersPage() {
           }
       });
       
-      if (providersData.length === 0) {
-        setAllProviders(MOCK_PROVIDERS);
-        setIsShowingExamples(true);
-        toast({
-          title: "Displaying Example Providers",
-          description: "Your database has no active providers/inspectors, so we're showing examples.",
-        });
-      } else {
-        setAllProviders(providersData);
-      }
+      setAllProviders(providersData);
 
-    } catch (e) {
+    } catch (e: any) {
       console.error("Error fetching providers:", e);
-      setError("Failed to load providers from the database. Showing example data instead.");
-      setAllProviders(MOCK_PROVIDERS);
-      setIsShowingExamples(true);
+      setError("Failed to load providers from the database. Please try again later.");
       toast({
         title: "Database Error",
-        description: "Could not fetch providers. Showing example data.",
+        description: "Could not fetch providers. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -229,7 +217,7 @@ export default function FindProvidersPage() {
   );
 
   return (
-    <div className="space-y-8">
+    <div className="max-w-7xl mx-auto space-y-8">
       <section className="bg-card p-6 rounded-lg shadow">
         <h1 className="text-3xl font-bold mb-2">Find NDT Professionals</h1>
         <p className="text-muted-foreground mb-6">

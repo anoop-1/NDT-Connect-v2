@@ -20,7 +20,7 @@ export function HomepageImage() {
             setImageSrc(`data:image/jpeg;base64,${homepageImage.data}`);
           }
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error('Failed to fetch homepage image:', error);
       }
     };

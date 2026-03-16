@@ -41,7 +41,7 @@ export default function DashboardPage() {
   
   // Content below is now only for clients
   return (
-    <div className="space-y-8">
+    <div className="max-w-7xl mx-auto space-y-8">
       <Card className="shadow-lg">
         <CardHeader>
           <CardTitle className="text-3xl">Welcome to your Dashboard, {user.name || user.email}!</CardTitle>

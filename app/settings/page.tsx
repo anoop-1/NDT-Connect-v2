@@ -30,10 +30,10 @@ export default function SettingsPage() {
     } else if (user) {
       setDisplayName(user.name || "");
       setProfileImageUrl(user.profileImageUrl || "");
-      if (user.role === 'client' && user.clientProfile) {
-        setContactNumber(user.clientProfile.contactNumber || "");
-      } else if (user.role === 'provider' && user.providerProfile) {
-        setContactNumber(user.providerProfile.contactNumber || "");
+      if (user.role === 'client' && (user as any).clientProfile) {
+        setContactNumber((user as any).clientProfile.contactNumber || "");
+      } else if (user.role === 'provider' && (user as any).providerProfile) {
+        setContactNumber((user as any).providerProfile.contactNumber || "");
       }
     }
   }, [user, loading, router]);
@@ -42,20 +42,20 @@ export default function SettingsPage() {
     if (!user) return;
     setIsSubmitting(true);
 
-    const updatedUser: UserType = { 
-      ...user, 
+    const updatedUser: any = {
+      ...user,
       name: displayName,
       profileImageUrl: profileImageUrl,
     };
 
     if (user.role === 'client') {
       updatedUser.clientProfile = {
-        ...(user.clientProfile || {}),
+        ...((user as any).clientProfile || {}),
         contactNumber: contactNumber,
       };
     } else if (user.role === 'provider') {
       updatedUser.providerProfile = {
-        ...(user.providerProfile || {}),
+        ...((user as any).providerProfile || {}),
         contactNumber: contactNumber,
       };
     }
@@ -66,7 +66,7 @@ export default function SettingsPage() {
             title: "Settings Saved",
             description: "Your account details have been updated in the database.",
         });
-    } catch (error) {
+    } catch (error: any) {
         toast({
             title: "Error Saving Settings",
             description: "Could not save settings to the database.",

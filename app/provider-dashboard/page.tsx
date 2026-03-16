@@ -69,7 +69,7 @@ export default function ProviderDashboardPage() {
             const updatedNotifiedIds = new Set([...notifiedRequestIds, ...newRequestIds]);
             sessionStorage.setItem('notifiedRequestIds', JSON.stringify(Array.from(updatedNotifiedIds)));
           }
-        } catch (error) {
+        } catch (error: any) {
           console.error("Failed to check for new service requests:", error);
           // We don't show an error toast for this, as it's a non-critical background task.
         }
@@ -93,7 +93,7 @@ export default function ProviderDashboardPage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="max-w-7xl mx-auto space-y-8">
       <Card className="shadow-lg">
         <CardHeader>
           <CardTitle className="text-3xl">Provider Dashboard</CardTitle>

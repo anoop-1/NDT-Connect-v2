@@ -19,7 +19,7 @@ export const AdSense = ({ slot, format = 'auto', className = '' }: AdSenseProps)
         google_ad_client: 'ca-pub-4713278078667871',
         adsbygoogle: true,
       });
-    } catch (err) {
+    } catch (err: any) {
       console.error('AdSense error:', err);
     }
   }, []);

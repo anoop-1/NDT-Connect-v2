@@ -33,8 +33,7 @@ export class RedisService {
 
         this.client = new Redis(redisUrl, {
             maxRetriesPerRequest: 3,
-            retryDelayOnFailover: 100,
-        });
+        } as any);
 
         this.subscriber = new Redis(redisUrl);
 

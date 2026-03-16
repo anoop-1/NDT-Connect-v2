@@ -9,12 +9,12 @@ export async function registerUser(details: {
   email: string;
   role: 'client' | 'provider' | 'inspector' | 'admin';
   name: string;
-  password: string;
+  password?: string;
   profileData?: any;
-}): Promise<User | null> {
+}): Promise<any> {
   await dbConnect();
 
-  const { email, role, name, password,  profileData = {} } = details;
+  const { email, role, name, password = '',  profileData = {} } = details;
 
   const verificationToken = crypto.randomBytes(32).toString('hex');
 
@@ -36,25 +36,25 @@ export async function registerUser(details: {
     await sendVerificationEmail(email, verificationToken);
 
     return newUser.toObject();
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error creating user:', error);
     throw error;
   }
 }
 
-export async function getUserByEmail(email: string): Promise<User | null> {
+export async function getUserByEmail(email: string): Promise<any> {
   await dbConnect();
 
   try {
     const user = await User.findOne({ email });
     return user ? user.toObject() : null;
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error finding user:', error);
     throw error;
   }
 }
 
-export async function updateUser(user: User): Promise<void> {
+export async function updateUser(user: any): Promise<void> {
   await dbConnect();
 
   try {
@@ -62,19 +62,19 @@ export async function updateUser(user: User): Promise<void> {
       ...user,
       updatedAt: new Date()
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error updating user:', error);
     throw error;
   }
 }
 
-export async function getAllUsers(): Promise<User[]> {
+export async function getAllUsers(): Promise<any[]> {
   await dbConnect();
 
   try {
     const users = await User.find({});
     return users.map(user => user.toObject());
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error getting all users:', error);
     throw error;
   }

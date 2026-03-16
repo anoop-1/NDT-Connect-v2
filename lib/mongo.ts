@@ -1,16 +1,5 @@
 import { MongoClient, Db } from 'mongodb';
 
-declare global {
-  namespace NodeJS {
-    interface Global {
-      mongo?: {
-        conn: { client: MongoClient; db: Db } | null;
-        promise: Promise<{ client: MongoClient; db: Db }> | null;
-      };
-    }
-  }
-}
-
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/ndt-connect';
 
 if (!MONGODB_URI) {
@@ -19,10 +8,10 @@ if (!MONGODB_URI) {
   );
 }
 
-let cached = global.mongo;
+let cached = (global as any).mongo;
 
 if (!cached) {
-  cached = global.mongo = { conn: null, promise: null };
+  cached = (global as any).mongo = { conn: null, promise: null };
 }
 
 async function dbConnect(): Promise<{ client: MongoClient; db: Db }> {
@@ -45,7 +34,7 @@ async function dbConnect(): Promise<{ client: MongoClient; db: Db }> {
 
   try {
     cached.conn = await cached.promise;
-  } catch (e) {
+  } catch (e: any) {
     cached.promise = null;
     throw e;
   }

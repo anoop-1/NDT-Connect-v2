@@ -17,7 +17,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import type { OptimizeServiceProviderRecommendationsInput } from "@/lib/types"; // Ensure this matches the type from lib/types
+type OptimizeServiceProviderRecommendationsInput = {
+  location: string;
+  serviceType: string;
+  specialization: string;
+  standard?: string;
+  assetToBeInspected?: string;
+};
 import { Sparkles } from "lucide-react";
 
 const NDT_SERVICES = [

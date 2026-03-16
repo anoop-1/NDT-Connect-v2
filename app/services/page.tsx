@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Search } from 'lucide-react';
 import { FAQSchema, BreadcrumbSchema } from '@/components/seo/SchemaMarkup';
+import { PageHero } from '@/components/shared/PageHero';
 
 const serviceFaqs = [
   { question: 'What are the main types of NDT testing methods?', answer: 'The six primary NDT methods are Ultrasonic Testing (UT), Radiographic Testing (RT), Magnetic Particle Testing (MT), Liquid Penetrant Testing (PT), Eddy Current Testing (ET), and Visual Testing (VT). Advanced methods include PAUT, TOFD, and Guided Wave Testing.' },
@@ -58,27 +59,19 @@ export default function ServicesPage() {
       <FAQSchema questions={serviceFaqs} />
       <BreadcrumbSchema items={[{ name: 'Home', url: 'https://ndt-connect.com' }, { name: 'NDT Services', url: 'https://ndt-connect.com/services' }]} />
 
-      <div className="max-w-5xl mx-auto bg-white">
-        <nav className="flex items-center gap-2 text-sm text-slate-600 mb-6">
-          <Link href="/" className="hover:text-primary">Home</Link>
-          <span>/</span>
-          <span className="text-slate-900">NDT Services</span>
-        </nav>
-
-        <section className="text-center py-12 mb-10">
-          <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4 text-slate-900">
-            Non-Destructive Testing Services
-          </h1>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
-            Book any NDT inspection method through NDT Connect. Access certified inspectors for all major testing methods worldwide.
-          </p>
+      <div className="max-w-5xl mx-auto">
+        <PageHero
+          title="Non-Destructive Testing Services"
+          description="Book any NDT inspection method through NDT Connect. Access certified inspectors for all major testing methods worldwide."
+          breadcrumbs={[{ label: 'NDT Services' }]}
+        >
           <Button size="lg" asChild>
             <Link href="/find-providers">
               <Search className="h-4 w-4 mr-2" />
               Find NDT Inspectors
             </Link>
           </Button>
-        </section>
+        </PageHero>
 
         {/* Primary Methods */}
         <section className="mb-16">

@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Calendar, Clock, ArrowRight, BookOpen } from 'lucide-react';
 import { FAQSchema, NDTConnectOrganizationSchema } from '@/components/seo/SchemaMarkup';
+import { PageHero } from '@/components/shared/PageHero';
 
 export const metadata: Metadata = {
     title: 'NDT Inspection Blog | Industry Insights & Best Practices | NDT Connect',
@@ -54,24 +55,43 @@ export default function BlogPage() {
             <NDTConnectOrganizationSchema />
             <FAQSchema questions={faqData} />
 
-            <div className="max-w-5xl mx-auto px-4 space-y-16">
+            <div className="max-w-5xl mx-auto space-y-16">
                 {/* Header */}
-                <div className="text-center pt-4">
-                    <div className="inline-flex items-center justify-center w-14 h-14 bg-primary/10 rounded-xl mb-5">
-                        <BookOpen className="h-7 w-7 text-primary" />
+                <PageHero
+                    title="NDT Insights & Resources"
+                    description="Expert articles on non-destructive testing techniques, best practices, and the latest innovations."
+                    breadcrumbs={[{ label: 'Blog' }]}
+                />
+
+                {/* Featured Post */}
+                <Link href={`/blog/${blogPosts[0].slug}`} className="block group">
+                    <div className="rounded-2xl border border-slate-200 shadow-sm overflow-hidden bg-white hover:shadow-lg transition-shadow">
+                        <div className="p-5 sm:p-8 md:p-10">
+                            <div className="flex items-center gap-3 mb-4">
+                                <Badge className="bg-brand text-white">{blogPosts[0].category}</Badge>
+                                <span className="text-xs text-muted-foreground flex items-center gap-1">
+                                    <Clock className="h-3 w-3" />{blogPosts[0].readTime}
+                                </span>
+                                <span className="text-xs text-muted-foreground flex items-center gap-1">
+                                    <Calendar className="h-3 w-3" />{blogPosts[0].date}
+                                </span>
+                            </div>
+                            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 group-hover:text-primary transition-colors mb-3">
+                                {blogPosts[0].title}
+                            </h2>
+                            <p className="text-muted-foreground text-lg leading-relaxed mb-4 max-w-3xl">
+                                {blogPosts[0].excerpt}
+                            </p>
+                            <span className="inline-flex items-center gap-1 text-sm font-medium text-primary group-hover:gap-2 transition-all">
+                                Read full article <ArrowRight className="h-4 w-4" />
+                            </span>
+                        </div>
                     </div>
-                    <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-                        NDT Insights & Resources
-                    </h1>
-                    <p className="text-muted-foreground max-w-xl mx-auto text-lg">
-                        Expert articles on non-destructive testing techniques, best practices,
-                        and the latest innovations.
-                    </p>
-                </div>
+                </Link>
 
                 {/* Blog Grid */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {blogPosts.map((post) => (
+                    {blogPosts.slice(1).map((post) => (
                         <Card
                             key={post.slug}
                             className="group hover:shadow-xl transition-all duration-300"

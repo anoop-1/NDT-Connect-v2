@@ -66,7 +66,7 @@ export default function SettingsPage() {
             title: "Settings Saved",
             description: "Your account details have been updated in the database.",
         });
-    } catch (error) {
+    } catch (error: any) {
         toast({
             title: "Error Saving Settings",
             description: "Could not save settings to the database.",

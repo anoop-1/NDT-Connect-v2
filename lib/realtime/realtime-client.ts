@@ -79,7 +79,7 @@ export class RealtimeClient {
                         reject(error);
                     }
                 };
-            } catch (error) {
+            } catch (error: any) {
                 this.state = 'disconnected';
                 reject(error);
             }
@@ -140,7 +140,7 @@ export class RealtimeClient {
         try {
             this.ws.send(JSON.stringify(message));
             return true;
-        } catch (error) {
+        } catch (error: any) {
             console.error('Failed to send message:', error);
             return false;
         }
@@ -170,7 +170,7 @@ export class RealtimeClient {
             this.globalHandlers.forEach((handler) => {
                 try {
                     handler(event);
-                } catch (error) {
+                } catch (error: any) {
                     console.error('Handler error:', error);
                 }
             });
@@ -181,12 +181,12 @@ export class RealtimeClient {
                 typeHandlers.forEach((handler) => {
                     try {
                         handler(event);
-                    } catch (error) {
+                    } catch (error: any) {
                         console.error('Handler error:', error);
                     }
                 });
             }
-        } catch (error) {
+        } catch (error: any) {
             console.error('Failed to parse message:', error);
         }
     }

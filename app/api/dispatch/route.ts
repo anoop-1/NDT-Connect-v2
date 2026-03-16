@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
                 { status: 422 }
             );
         }
-    } catch (error) {
+    } catch (error: any) {
         console.error('Dispatch error:', error);
         return NextResponse.json(
             { error: 'Internal server error' },
@@ -117,7 +117,7 @@ export async function GET(request: NextRequest) {
             inspectors: inspectorsWithCompliance.filter(i => i.canAcceptJobs),
             total: inspectorsWithCompliance.filter(i => i.canAcceptJobs).length,
         });
-    } catch (error) {
+    } catch (error: any) {
         console.error('Get inspectors error:', error);
         return NextResponse.json(
             { error: 'Internal server error' },

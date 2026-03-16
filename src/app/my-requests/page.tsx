@@ -85,7 +85,7 @@ export default function MyRequestsPage() {
       } else {
         setRequests(fetchedRequests);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error fetching service requests:", error);
       toast({
         title: "Error",

@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import { FAQSchema, BreadcrumbSchema } from '@/components/seo/SchemaMarkup';
+import { PageHero } from '@/components/shared/PageHero';
 
 const industryFaqs = [
   { question: 'Which industries require NDT inspections?', answer: 'NDT inspections are required in oil and gas, aerospace, power generation, manufacturing, marine and offshore, construction, and mining industries. Any industry where structural integrity and safety are critical relies on NDT.' },
@@ -27,19 +28,12 @@ export default function IndustriesPage() {
     <>
     <FAQSchema questions={industryFaqs} />
     <BreadcrumbSchema items={[{ name: 'Home', url: 'https://ndt-connect.com' }, { name: 'Industries', url: 'https://ndt-connect.com/industries' }]} />
-    <div className="max-w-5xl mx-auto bg-white">
-      <nav className="flex items-center gap-2 text-sm text-slate-600 mb-6">
-        <Link href="/" className="hover:text-primary">Home</Link>
-        <span>/</span>
-        <span className="text-slate-900">Industries</span>
-      </nav>
-
-      <section className="text-center py-12 mb-10">
-        <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4 text-slate-900">Industries We Serve</h1>
-        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-          NDT Connect provides specialized non-destructive testing services across all major industries worldwide.
-        </p>
-      </section>
+    <div className="max-w-5xl mx-auto">
+      <PageHero
+        title="Industries We Serve"
+        description="NDT Connect provides specialized non-destructive testing services across all major industries worldwide."
+        breadcrumbs={[{ label: 'Industries' }]}
+      />
 
       <div className="grid sm:grid-cols-2 gap-6 mb-12">
         {industries.map((industry) => (

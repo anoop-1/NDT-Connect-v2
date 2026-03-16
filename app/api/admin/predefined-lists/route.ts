@@ -85,7 +85,7 @@ export async function GET(request: Request) {
       lastUpdated: list.lastUpdated
     })));
     
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error fetching lists:', error);
     return NextResponse.json(
       { error: 'Failed to fetch lists' },
@@ -132,7 +132,7 @@ export async function POST(request: Request) {
       lastUpdated: list.lastUpdated
     });
 
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error adding item:', error);
     return NextResponse.json(
       { error: 'Failed to add item' },
@@ -161,7 +161,7 @@ export async function DELETE(request: Request) {
       );
     }
 
-    list.items = list.items.filter(i => i !== item);
+    list.items = list.items.filter((i: any) => i !== item);
     list.lastUpdated = new Date();
     await list.save();
 
@@ -172,7 +172,7 @@ export async function DELETE(request: Request) {
       lastUpdated: list.lastUpdated
     });
 
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error removing item:', error);
     return NextResponse.json(
       { error: 'Failed to remove item' },

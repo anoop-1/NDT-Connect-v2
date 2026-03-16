@@ -19,7 +19,7 @@ export async function GET(request: Request) {
     };
     
     return NextResponse.json(responseData);
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error getting system settings:', error);
     return NextResponse.json(
       { error: 'Failed to get system settings' },

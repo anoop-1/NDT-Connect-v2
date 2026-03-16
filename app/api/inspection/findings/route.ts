@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
         });
 
         return NextResponse.json({ success: true, finding });
-    } catch (error) {
+    } catch (error: any) {
         console.error('Record finding error:', error);
         return NextResponse.json(
             { error: (error as Error).message },

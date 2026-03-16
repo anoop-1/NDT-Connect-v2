@@ -4,7 +4,7 @@
  */
 
 import { matchInspectorsToJob, geoToH3, estimateETA, H3_RESOLUTION, IndexedEntity, GeoLocation } from '../geo/h3-service';
-import { eventOrchestrator, EventPublisher } from '../events/event-orchestrator';
+import { eventOrchestrator } from '../events/event-orchestrator';
 import { createEvent, JobCreatedEvent, JobAcceptedEvent } from '../events/event-types';
 import { getRedisClient } from '../redis/redis-service';
 
@@ -51,14 +51,14 @@ export class DispatchService {
      */
     async registerInspector(inspector: Inspector): Promise<void> {
         // Add H3 index for spatial queries
-        inspector.h3Index = geoToH3(inspector, H3_RESOLUTION.NEIGHBORHOOD);
+        inspector.h3Index = geoToH3(inspector.location.lat, inspector.location.lng, H3_RESOLUTION);
         this.activeInspectors.set(inspector.id, inspector);
 
         // Cache in Redis for distributed access
         const redis = getRedisClient();
         await redis.setInspectorLocation(inspector.id, {
-            lat: inspector.lat,
-            lng: inspector.lng,
+            lat: inspector.location.lat,
+            lng: inspector.location.lng,
             h3Index: inspector.h3Index,
             status: inspector.status,
             timestamp: Date.now(),
@@ -68,7 +68,7 @@ export class DispatchService {
         await eventOrchestrator.publish(
             createEvent('INSPECTOR_AVAILABLE' as any, {
                 inspectorId: inspector.id,
-                location: { lat: inspector.lat, lng: inspector.lng },
+                location: { lat: inspector.location.lat, lng: inspector.location.lng },
                 h3Index: inspector.h3Index,
             })
         );
@@ -81,9 +81,8 @@ export class DispatchService {
         const inspector = this.activeInspectors.get(inspectorId);
         if (!inspector) return;
 
-        inspector.lat = location.lat;
-        inspector.lng = location.lng;
-        inspector.h3Index = geoToH3(location, H3_RESOLUTION.NEIGHBORHOOD);
+        inspector.location = location;
+        inspector.h3Index = geoToH3(location.lat, location.lng, H3_RESOLUTION);
 
         // Update Redis cache
         const redis = getRedisClient();
@@ -131,10 +130,7 @@ export class DispatchService {
         }
 
         // Use H3 to find nearest inspectors
-        const matches = matchInspectorsToJob(job.location, availableInspectors, {
-            maxDistanceKm: this.getMaxDistanceByPriority(job.priority),
-            maxResults: 5,
-        });
+        const matches = matchInspectorsToJob(job.location, availableInspectors, this.getMaxDistanceByPriority(job.priority));
 
         if (matches.length === 0) {
             return {
@@ -149,7 +145,7 @@ export class DispatchService {
         const selectedInspector = bestMatch.entity;
 
         // Calculate ETA
-        const eta = estimateETA(selectedInspector, job.location);
+        const eta = estimateETA(selectedInspector.location, job.location);
 
         // Assign job
         job.assignedInspectorId = selectedInspector.id;
@@ -158,18 +154,21 @@ export class DispatchService {
         selectedInspector.currentJobId = job.id;
 
         // Publish job assigned event
-        await EventPublisher.jobAccepted(
-            job.id,
-            selectedInspector.id,
-            selectedInspector.name,
-            eta.etaMinutes
+        await eventOrchestrator.publish(
+            createEvent('JOB_ACCEPTED' as any, {
+                jobId: job.id,
+                inspectorId: selectedInspector.id,
+                inspectorName: selectedInspector.name,
+                estimatedArrival: new Date(Date.now() + eta * 60000).toISOString(),
+                etaMinutes: eta,
+            } as any)
         );
 
         return {
             success: true,
             jobId: job.id,
             assignedInspector: selectedInspector,
-            etaMinutes: eta.etaMinutes,
+            etaMinutes: eta,
         };
     }
 
@@ -233,10 +232,7 @@ export class DispatchService {
             inspectors = inspectors.filter(i => i.serviceTypes.includes(serviceType));
         }
 
-        const matches = matchInspectorsToJob(location, inspectors, {
-            maxDistanceKm: maxDistance,
-            maxResults: 20,
-        });
+        const matches = matchInspectorsToJob(location, inspectors, maxDistance);
 
         return matches.map(m => m.entity);
     }

@@ -1,175 +1,25 @@
-// src/lib/firebase.ts
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore, initializeFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
-// =================================================================================
-// IMPORTANT: ACTION REQUIRED TO MAKE YOUR APP LIVE
-// =================================================================================
-// The configuration object below is currently using placeholder values.
-// To connect your app to your own live Firebase database in the cloud,
-// you must replace these placeholders with the actual configuration values
-// from your Firebase project.
-//
-// HOW TO GET YOUR FIREBASE CONFIG:
-// 1. Go to the Firebase Console: https://console.firebase.google.com/
-// 2. Create a new Firebase project (or select an existing one).
-// 3. In your project, go to Project Settings (click the gear icon).
-// 4. In the "General" tab, scroll down to the "Your apps" section.
-// 5. If you haven't created a web app yet, click the web icon (</>) to create one.
-// 6. Once your web app is created, you will see a `firebaseConfig` object.
-// 7. Copy the values from that object and paste them into the placeholders below.
-// =================================================================================
-
 const firebaseConfig = {
-  apiKey: "AIzaSyBqrXfMRyFd8VsRYyMBwsBFPp06-v1hhXA",
-  authDomain: "ndt-connect.firebaseapp.com",
-  projectId: "ndt-connect",
-  storageBucket: "ndt-connect.firebasestorage.app",
-  messagingSenderId: "77096169277",
-  appId: "1:77096169277:web:66cb06971e235451331f54"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// Initialize Firebase
-let app;
-if (firebaseConfig.apiKey === "YOUR_API_KEY") {
-  console.warn("Firebase is not configured. Using placeholders. App will not connect to a live database.");
+if (!firebaseConfig.apiKey) {
+  console.warn("Firebase is not configured. Set NEXT_PUBLIC_FIREBASE_* env vars.");
 }
 
-if (!getApps().length) {
-  app = initializeApp(firebaseConfig);
-} else {
-  app = getApp();
-}
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
 const auth = getAuth(app);
-// Initialize Firestore with the setting to ignore undefined properties.
-// This prevents errors when sending objects with optional fields that are not set.
-const db = initializeFirestore(app, {
-  ignoreUndefinedProperties: true
-});
+const db = initializeFirestore(app, { ignoreUndefinedProperties: true });
 const storage = getStorage(app);
-
-/*
-Firestore Data Structure Plan for NDT Connect:
-
-Collections:
-
-1. users:
-   - Purpose: Store user account information and profiles for clients, providers, and admins.
-   - Document ID: User's Authentication UID (from Firebase Auth).
-   - Example Document:
-     {
-       uid: "firebase_auth_user_id_here",
-       email: "user@example.com",
-       name: "John Doe", // Or Company Name for providers
-       role: "client" | "provider" | "admin",
-       isActive: true, // For admin management
-       createdAt: Timestamp, // Firestore Timestamp
-
-       // If role is 'client':
-       clientProfile: {
-         companyName: "Client Alpha Corp",
-         industry: "Manufacturing",
-         primaryLocation: "New York, NY",
-         contactNumber: "555-0101"
-       },
-
-       // If role is 'provider':
-       providerProfile: {
-         location: "Houston, TX", // Primary operating location
-         contactNumber: "555-0202",
-         website: "https://provider.example.com",
-         companyLogoUrl: "https://logo.url/image.png",
-         bio: "Experienced NDT provider specializing in...",
-         servicesOffered: [
-           { id: "ut", name: "Ultrasonic Testing", rate: "120", unit: "per hour", isCustom: false },
-           { id: "custom_xyz", name: "Custom XYZ Inspection", rate: "500", unit: "per project", isCustom: true }
-         ],
-         personnelQualifications: [
-           { id: "pq1", quantity: 5, certificationBody: "ASNT", level: "Level II", expiryDate: Timestamp }
-         ],
-         certifications: [ // Company certifications
-           { id: "iso9001", name: "ISO 9001", category: "Quality Management", expiryDate: Timestamp }
-         ],
-         availableDocuments: ["General Procedures Manual", "ISO 9001 Certificate"],
-         serviceRadius: "100 miles",
-         baseRate: 75, // A general hourly rate if specific service rate isn't set
-         pricingDetails: "Detailed project quotes available upon request.",
-         procedureInfoUrl: "https://provider.example.com/procedures.pdf",
-         isVerified: false // Admin can set this to true
-       }
-     }
-
-2. serviceRequests:
-   - Purpose: Store details of service requests made by clients.
-   - Document ID: Auto-generated by Firestore.
-   - Example Document:
-     {
-       clientId: "client_auth_uid", // UID of the client who made the request
-       providerId: "provider_auth_uid", // UID of the assigned provider (optional initially)
-       providerName: "Advanced NDT Solutions", // Denormalized for easy display
-       serviceType: "Ultrasonic Testing",
-       location: "Main Plant, Area 5, City, State",
-       description: "Inspect critical weld points on pressure vessel XYZ.",
-       requestedDate: Timestamp, // Firestore Timestamp for preferred date
-       status: "Pending" | "Confirmed" | "In Progress" | "Completed" | "Cancelled",
-       createdAt: Timestamp, // When the request was created
-       updatedAt: Timestamp, // When the request was last updated
-       estimatedCost: 1200.50 (optional)
-       // You might add more fields like attachments URLs (links to files in Firebase Storage)
-     }
-
-3. chats:
-   - Purpose: Store chat conversations between users. Each document could represent a chat thread.
-   - Document ID: A unique ID for the chat thread (e.g., could be related to a serviceRequestId, or a composite ID like `clientUID_providerUID`).
-   - Example Document (Chat Thread):
-     {
-       participantIds: ["client_auth_uid", "provider_auth_uid"],
-       lastMessageTimestamp: Timestamp,
-       serviceRequestId: "service_request_document_id" // Link to the relevant service request
-     }
-   - Subcollection within each chat document: `messages`
-     - Document ID: Auto-generated by Firestore for each message.
-     - Example Message Document:
-       {
-         senderId: "user_auth_uid", // UID of the message sender
-         text: "Hello, when can you start the inspection?",
-         timestamp: Timestamp, // Firestore Timestamp
-         isRead: false // (Optional)
-         // attachmentUrl: "url_to_file_in_storage" (Optional)
-       }
-
-4. predefinedLists:
-   - Purpose: Store admin-managed lists that populate dropdowns in the application.
-   - Document ID: A descriptive name for the list (e.g., "clientNdtServices", "companyCertifications", "serviceUnitsProviderForm").
-   - Example Document (for Service Units used in provider profile/registration):
-     {
-       id: "serviceUnits", // Matches the document ID for clarity
-       name: "Service Units",
-       items: [
-         "per hour", "per day", "per month", "per meter",
-         "per mm of thickness", "per inch of thickness", "per project"
-       ],
-       lastUpdated: Timestamp
-     }
-   // Similar documents for:
-   // - clientNdtServices
-   // - providerNdtServices
-   // - companyCertifications
-   // - personnelQualificationBodies
-   // - personnelQualificationLevels
-
-How Collections are Created:
-Firestore collections are created automatically when you write the first document to them.
-You can do this by:
-  1. Manually adding the first document via the Firebase Console (useful for initial setup of `predefinedLists`). For example, create the 'predefinedLists' collection, then add a document with ID 'serviceUnits' and the fields 'name' and 'items' as shown above.
-  2. Programmatically from your application code when a new entity is created (e.g., a new user document is created in the `users` collection upon registration).
-
-Security Rules:
-Remember to configure Firestore Security Rules in the Firebase Console to control who can read from and write to these collections.
-For example, `predefinedLists` might be publicly readable but only writable by admins. `users` documents should typically only be writable by the authenticated user themselves or admins.
-*/
 
 export { app, auth, db, storage };

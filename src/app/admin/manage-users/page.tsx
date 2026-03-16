@@ -38,7 +38,7 @@ export default function ManageUsersPage() {
       const response = await fetch('/api/users');
       const data = await response.json();
       setAllUsers(data);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error fetching users:", error);
       toast({
         title: "Error",
@@ -83,7 +83,7 @@ export default function ManageUsersPage() {
         title: "User Status Updated",
         description: `${userToUpdate.name || userToUpdate.email}'s status changed to ${newStatus ? 'Active' : 'Inactive'}.`,
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error toggling user status:", error);
       toast({
         title: "Update Failed",
@@ -107,7 +107,7 @@ export default function ManageUsersPage() {
         title: "User Deleted",
         description: `${userName} has been permanently removed from the database.`,
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error deleting user:", error);
       toast({
         title: "Deletion Failed",

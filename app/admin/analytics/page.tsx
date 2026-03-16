@@ -31,7 +31,7 @@ export default function AnalyticsPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="max-w-7xl mx-auto space-y-6">
       <Button variant="outline" asChild>
         <Link href="/admin/dashboard">
           <ArrowLeft className="mr-2 h-4 w-4" />

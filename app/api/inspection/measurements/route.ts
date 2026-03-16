@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
             measurement,
             withinSpec: measurement.isWithinSpec,
         });
-    } catch (error) {
+    } catch (error: any) {
         console.error('Record measurement error:', error);
         return NextResponse.json(
             { error: (error as Error).message },

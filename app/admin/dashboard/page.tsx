@@ -40,7 +40,7 @@ export default function AdminDashboardPage() {
         const data = await response.json();
         setMetrics(data);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to fetch metrics:', error);
       toast({
         title: "Error",
@@ -66,14 +66,14 @@ export default function AdminDashboardPage() {
       const response = await fetch('/api/admin/systemwide');
       if (response.ok) {
         const { data }  = await response.json();
-        if (data?.find(n => n.id === 'homepage_image')) {
-          setHomepageImage(`data:image/jpeg;base64,${data?.find(n => n.id === 'homepage_image')?.data}`);
+        if (data?.find((n: any) => n.id === 'homepage_image')) {
+          setHomepageImage(`data:image/jpeg;base64,${data?.find((n: any) => n.id === 'homepage_image')?.data}`);
         }
-        if (data?.find(n => n.id === 'provider_image')) {
-          setProviderImage(`data:image/jpeg;base64,${data?.find(n => n.id === 'provider_image')?.data}`);
+        if (data?.find((n: any) => n.id === 'provider_image')) {
+          setProviderImage(`data:image/jpeg;base64,${data?.find((n: any) => n.id === 'provider_image')?.data}`);
         }
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Failed to fetch systemwide images:', error);
     } finally {
       setIsLoading(prev => ({ ...prev, initial: false }));
@@ -136,7 +136,7 @@ export default function AdminDashboardPage() {
       } else {
         throw new Error(await response.text());
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error(`Failed to save ${type} image:`, error);
       toast({ 
         title: "Error", 
@@ -162,7 +162,7 @@ export default function AdminDashboardPage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="max-w-7xl mx-auto space-y-8">
       <Card className="shadow-lg bg-primary/5">
         <CardHeader>
           <div className="flex items-center gap-3">

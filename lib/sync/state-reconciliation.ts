@@ -271,7 +271,7 @@ export class OfflineQueue {
                 await item.action();
                 this.queue.shift();
                 succeeded++;
-            } catch (error) {
+            } catch (error: any) {
                 item.retries++;
                 if (item.retries >= this.maxRetries) {
                     this.queue.shift();

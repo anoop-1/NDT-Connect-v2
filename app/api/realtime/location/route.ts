@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
             h3Index,
             timestamp: Date.now(),
         });
-    } catch (error) {
+    } catch (error: any) {
         console.error('Location update error:', error);
         return NextResponse.json(
             { error: 'Failed to update location' },
@@ -80,7 +80,7 @@ export async function GET(request: NextRequest) {
             inspectors,
             count: inspectors.length,
         });
-    } catch (error) {
+    } catch (error: any) {
         console.error('Get locations error:', error);
         return NextResponse.json(
             { error: 'Failed to get locations' },

@@ -4,61 +4,24 @@
 
 body {
   font-family: var(--font-sans), sans-serif;
-  cursor: none;
+  overflow-x: hidden;
 }
 
-/* ===== CUSTOM CURSOR ===== */
-.cursor-dot {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-  pointer-events: none;
-  width: 10px;
-  height: 10px;
-  background: white;
-  border: 2px solid #004aad;
-  border-radius: 50%;
-  box-shadow: 0 0 6px rgba(0, 74, 173, 0.4);
-  transition: transform 0.1s ease, background 0.2s, border-color 0.2s;
-  transform: translate(-50%, -50%);
-}
+/* Shared layout wrapper — used by header, main, and footer for consistent edge alignment */
+@layer components {
+  .layout-wrapper {
+    @apply w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16;
+  }
 
-.cursor-dot.hovering {
-  background: #004aad;
-  box-shadow: 0 0 8px rgba(0, 74, 173, 0.6);
-}
-
-.cursor-dot.clicking {
-  transform: translate(-50%, -50%) scale(0.85);
-}
-
-.cursor-ring {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9998;
-  pointer-events: none;
-  width: 40px;
-  height: 40px;
-  border: 2px solid rgba(0, 74, 173, 0.35);
-  border-radius: 50%;
-  opacity: 1;
-  transition: width 0.3s, height 0.3s, opacity 0.3s, border-color 0.3s, background 0.3s;
-  transform: translate(-50%, -50%);
-}
-
-.cursor-ring.hovering {
-  width: 50px;
-  height: 50px;
-  border-color: rgba(0, 74, 173, 0.6);
-  background: rgba(0, 74, 173, 0.05);
-}
-
-.cursor-ring.clicking {
-  width: 35px;
-  height: 35px;
-  opacity: 0.7;
+  /* Full-bleed escape — cancels layout-wrapper padding so sections go edge-to-edge */
+  .full-bleed {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
 }
 
 @layer base {
@@ -79,7 +42,7 @@ body {
     --secondary-foreground: 216.8 91.7% 30.6%;
 
     --muted: 215 27.9% 90%;
-    --muted-foreground: 215 20.2% 44.7%;
+    --muted-foreground: 215 20.2% 38%;
 
     --accent: 217 91.2% 59.8%;
     --accent-foreground: 0 0% 100%;
@@ -96,7 +59,7 @@ body {
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+    --radius: 0.625rem;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -262,7 +225,7 @@ body {
   border: 1px solid rgba(0, 74, 173, 0.1);
 }
 .glass-dark {
-  background: rgba(0, 74, 173, 0.05);
+  background: rgba(0, 74, 173, 0.12);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(0, 74, 173, 0.12);
@@ -413,4 +376,14 @@ html { scroll-behavior: smooth; }
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* --- Reduced motion support --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

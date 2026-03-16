@@ -24,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const user = await User.findByIdAndUpdate(id, body, { new: true });
         if (!user) return res.status(404).json({ message: 'User not found' });
         return res.status(200).json(user);
-      } catch (err) {
+      } catch (err: any) {
         return res.status(500).json({ message: 'Server error', error: err });
       }
     }
@@ -35,7 +35,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const user = await User.findByIdAndDelete(id);
         if (!user) return res.status(404).json({ message: 'User not found' });
         return res.status(200).json({ message: 'User deleted' });
-      } catch (err) {
+      } catch (err: any) {
         return res.status(500).json({ message: 'Server error', error: err });
       }
     }
@@ -49,7 +49,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
       const users = await User.find({});
       return res.status(200).json(users);
-    } catch (err) {
+    } catch (err: any) {
       return res.status(500).json({ message: 'Server error', error: err });
     }
   }

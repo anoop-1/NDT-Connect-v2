@@ -31,7 +31,7 @@ export async function GET() {
             cleaned: cleanedCount,
             timestamp: new Date().toISOString(),
         });
-    } catch (error) {
+    } catch (error: any) {
         console.error('Cleanup failed:', error);
         return NextResponse.json(
             { error: 'Cleanup failed' },

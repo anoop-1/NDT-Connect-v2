@@ -156,7 +156,7 @@ export class EventOrchestrator {
                     deliveredAt: Date.now(),
                     attempts: 1,
                 });
-            } catch (error) {
+            } catch (error: any) {
                 console.error(`Failed to deliver event ${event.id} to ${sub.id}:`, error);
                 // Could implement retry logic here
             }

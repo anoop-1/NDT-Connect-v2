@@ -154,7 +154,7 @@ export class KafkaEventService {
                 try {
                     const event = JSON.parse(message.value.toString()) as InspectionEvent;
                     await handler(event);
-                } catch (error) {
+                } catch (error: any) {
                     console.error('Error processing Kafka message:', error);
                 }
             },

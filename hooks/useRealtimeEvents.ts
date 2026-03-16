@@ -69,7 +69,7 @@ export function useRealtimeEvents(options: UseRealtimeEventsOptions = {}) {
                     pusher.unsubscribe(channelName);
                 });
             };
-        } catch (err) {
+        } catch (err: any) {
             setError('Pusher not configured');
             return;
         }
@@ -84,7 +84,7 @@ export function useRealtimeEvents(options: UseRealtimeEventsOptions = {}) {
                     body: JSON.stringify({ channel, event, data }),
                 });
                 return response.ok;
-            } catch (err) {
+            } catch (err: any) {
                 console.error('Failed to publish event:', err);
                 return false;
             }

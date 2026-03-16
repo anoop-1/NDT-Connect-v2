@@ -49,7 +49,7 @@ export async function publishEvent(
     try {
         const pusher = await getPusherServer();
         await pusher.trigger(channel, event, data);
-    } catch (error) {
+    } catch (error: any) {
         console.error('Pusher publish error:', error);
     }
 }

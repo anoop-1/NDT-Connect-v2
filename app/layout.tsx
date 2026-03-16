@@ -7,7 +7,8 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Toaster } from '@/components/ui/toaster';
 import AdSenseScript from '@/components/ads/AdSenseScript';
-import CustomCursor from '@/components/shared/CustomCursor';
+import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
+
 
 const fontSans = Inter({
   variable: '--font-sans',
@@ -96,15 +97,18 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <AdSenseScript />
+        <GoogleAnalytics />
       </head>
       <body
         className={`${fontSans.variable} ${fontMono.variable} antialiased flex flex-col min-h-screen`}
         suppressHydrationWarning={true}
       >
         <AuthProvider>
-          <CustomCursor />
+          <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:z-[100] focus:top-2 focus:left-2 focus:bg-primary focus:text-white focus:px-4 focus:py-2 focus:rounded-md">
+            Skip to content
+          </a>
           <Header />
-          <main className="flex-grow container py-8">
+          <main id="main-content" className="flex-grow layout-wrapper py-8">
             {children}
           </main>
           <Footer />

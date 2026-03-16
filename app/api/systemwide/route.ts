@@ -11,7 +11,7 @@ export async function GET(request: Request) {
     return NextResponse.json({
       data: await db.collection("sys").find({}).toArray()
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error getting systemsettings:', error);
     return NextResponse.json(
       { error: 'Failed to get systemsettings' },

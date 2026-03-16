@@ -9,7 +9,7 @@ export async function GET() {
     const db = client.db();
     const services = await db.collection('ndt_services').find({}).toArray();
     return NextResponse.json(services);
-  } catch (err) {
+  } catch (err: any) {
     return NextResponse.json({ error: 'Failed to fetch NDT services' }, { status: 500 });
   } finally {
     await client.close();

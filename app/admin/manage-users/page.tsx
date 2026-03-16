@@ -47,7 +47,7 @@ export default function ManageUsersPage() {
       const response = await fetch('/api/admin/users');
       const data = await response.json();
       setAllUsers(data);
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error fetching users:", error);
       toast({
         title: "Error",
@@ -92,7 +92,7 @@ export default function ManageUsersPage() {
         title: "Status Updated",
         description: `${userToUpdate.name}'s account is now ${newStatus ? 'active' : 'inactive'}.`,
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error toggling user status:", error);
       toast({
         title: "Update Failed",
@@ -116,7 +116,7 @@ export default function ManageUsersPage() {
         title: "User Deleted",
         description: "User has been permanently removed.",
       });
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error deleting user:", error);
       toast({
         title: "Deletion Failed",
@@ -230,7 +230,7 @@ export default function ManageUsersPage() {
   );
 
   return (
-    <div className="space-y-6">
+    <div className="max-w-7xl mx-auto space-y-6">
       <Button variant="outline" asChild>
         <Link href="/admin/dashboard">
           <ArrowLeft className="mr-2 h-4 w-4" />

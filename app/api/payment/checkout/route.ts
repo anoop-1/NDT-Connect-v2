@@ -1,3 +1,13 @@
+import { NextResponse } from "next/server";
+
+// Stripe payment checkout — disabled until Stripe is configured
+export async function POST() {
+  return NextResponse.json(
+    { error: "Payment processing is not yet configured. Please contact support." },
+    { status: 503 }
+  );
+}
+
 /*import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/mongodb";
 import Stripe from "stripe";

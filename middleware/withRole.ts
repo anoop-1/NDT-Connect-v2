@@ -33,7 +33,7 @@ export function withRole(requiredRoles: string[]) {
       }
 
       return NextResponse.next();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Middleware error:', error);
       return unauthorizedResponse(req, JSON.stringify(error));
     }

@@ -29,7 +29,7 @@ async function checkDatabase(): Promise<{ status: string; latency?: number }> {
         // In production, ping MongoDB
         // await mongoose.connection.db.admin().ping();
         return { status: 'ok', latency: Date.now() - start };
-    } catch (error) {
+    } catch (error: any) {
         return { status: 'error' };
     }
 }
@@ -40,7 +40,7 @@ async function checkRedis(): Promise<{ status: string; latency?: number }> {
         // In production, ping Redis
         // await redisClient.ping();
         return { status: 'ok', latency: Date.now() - start };
-    } catch (error) {
+    } catch (error: any) {
         return { status: 'error' };
     }
 }
@@ -49,7 +49,7 @@ async function checkKafka(): Promise<{ status: string }> {
     try {
         // In production, check Kafka connectivity
         return { status: 'ok' };
-    } catch (error) {
+    } catch (error: any) {
         return { status: 'error' };
     }
 }

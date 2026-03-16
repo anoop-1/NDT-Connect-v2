@@ -9,7 +9,7 @@ export const runtime = "nodejs"; // Ensure Node.js runtime for webhook processin
 export async function POST(req: NextRequest) {
   // Fix Stripe API version to match installed types
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { 
-    apiVersion: "2025-05-28.basil" 
+    apiVersion: "2025-08-27.basil" 
   });
   const sig = req.headers.get("stripe-signature");
   const rawBody = await req.arrayBuffer();
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
       sig!, 
       process.env.STRIPE_WEBHOOK_SECRET!
     );
-  } catch (err) {
+  } catch (err: any) {
     return NextResponse.json(
       { error: "Webhook signature verification failed." }, 
       { status: 400 }
@@ -31,8 +31,9 @@ export async function POST(req: NextRequest) {
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as any;
     const metadata = session.metadata ?? {};
-    const db = await dbConnect();
-    
+    const mongooseConn = await dbConnect();
+    const db = mongooseConn.connection.db!;
+
     // Register transaction in MongoDB
     await db.collection("transactions").insertOne({
       buyerId: metadata.buyerId ?? null,

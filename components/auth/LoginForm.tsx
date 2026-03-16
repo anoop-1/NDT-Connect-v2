@@ -54,7 +54,7 @@ export function LoginForm() {
       try {
         let adminUser = await loginWithEmail(values.email);
         if (!adminUser) {
-           adminUser = await register({ email: values.email, role: 'admin', name: 'Anoop R'});
+           adminUser = await register({ email: values.email, role: 'admin' as any, name: 'Anoop R'});
         }
         if (adminUser) {
             toast({ title: "Admin Login Successful", description: "Welcome, Administrator!" });

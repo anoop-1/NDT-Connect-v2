@@ -1,6 +1,11 @@
 
 // src/components/client/RecommendationResults.tsx
-import type { Recommendation } from "@/lib/types";
+type Recommendation = {
+  referenceId: string;
+  providerName: string;
+  rating: number;
+  description: string;
+};
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";

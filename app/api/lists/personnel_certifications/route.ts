@@ -9,7 +9,7 @@ export async function GET() {
     const db = client.db();
     const certs = await db.collection('personnel_certifications').find({}).toArray();
     return NextResponse.json(certs);
-  } catch (err) {
+  } catch (err: any) {
     return NextResponse.json({ error: 'Failed to fetch personnel certifications' }, { status: 500 });
   } finally {
     await client.close();

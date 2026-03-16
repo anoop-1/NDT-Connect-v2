@@ -121,7 +121,7 @@ export default function ProviderRequestDetailPage() {
       await updateDoc(requestDocRef, updateData);
       setRequest(prev => prev ? { ...prev, ...updateData } : null);
       toast({ title: "Status Updated", description: `Request status successfully changed to ${newStatus}.`});
-    } catch (error) {
+    } catch (error: any) {
         console.error("Error updating status:", error);
         toast({ title: "Update Failed", description: "Could not update status in the database.", variant: "destructive" });
     } finally {

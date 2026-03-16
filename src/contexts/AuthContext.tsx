@@ -40,7 +40,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           if (storedUser.updatedAt) storedUser.updatedAt = new Date(storedUser.updatedAt);
           setUser(storedUser);
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error("Error parsing user from localStorage", error);
         localStorage.removeItem('ndt-user');
       }
@@ -70,7 +70,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
       const data = await res.json();
       return data;
-    } catch (error) {
+    } catch (error: any) {
       console.error('Registration error:', error);
       throw error;
     }
@@ -99,7 +99,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       }
   
       throw new Error('No user data returned');
-    } catch (error) {
+    } catch (error: any) {
       console.error('Login error:', error);
       throw error;
     }

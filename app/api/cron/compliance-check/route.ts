@@ -23,7 +23,7 @@ export async function GET() {
             issues: result.issues,
             timestamp: new Date().toISOString(),
         });
-    } catch (error) {
+    } catch (error: any) {
         console.error('Compliance check failed:', error);
         return NextResponse.json(
             { error: 'Compliance check failed' },

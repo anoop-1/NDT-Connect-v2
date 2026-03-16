@@ -55,7 +55,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           if (storedUser.updatedAt) storedUser.updatedAt = new Date(storedUser.updatedAt);
           setUser(storedUser);
         }
-      } catch (error) {
+      } catch (error: any) {
         console.error('Error parsing stored user:', error);
       }
     }
@@ -79,7 +79,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         localStorage.setItem('ndt-user', JSON.stringify(newUser));
       }
       return newUser;
-    } catch (error) {
+    } catch (error: any) {
       console.error('Registration error:', error);
       throw error;
     }
@@ -93,7 +93,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         localStorage.setItem('ndt-user', JSON.stringify(user));
       }
       return user;
-    } catch (error) {
+    } catch (error: any) {
       console.error('Login error:', error);
       throw error;
     }
@@ -115,7 +115,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       await updateUserInDb(userToUpdate);
       setUser(userToUpdate);
       localStorage.setItem('ndt-user', JSON.stringify(userToUpdate));
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error updating user:', error);
       throw error;
     }

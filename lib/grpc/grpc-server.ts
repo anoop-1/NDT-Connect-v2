@@ -43,7 +43,7 @@ function subscribeEvents(
     activeStreams.set(userId, call);
 
     // Subscribe to event orchestrator
-    const unsubscribe = eventOrchestrator.subscribe(
+    const subscriptionId = eventOrchestrator.subscribe(
         userId,
         eventTypes,
         async (event: InspectionEvent) => {
@@ -57,7 +57,7 @@ function subscribeEvents(
                     correlation_id: event.correlationId || '',
                     payload: Buffer.from(JSON.stringify((event as any).payload)),
                 });
-            } catch (error) {
+            } catch (error: any) {
                 console.error(`Failed to send event to ${userId}:`, error);
             }
         }
@@ -66,13 +66,13 @@ function subscribeEvents(
     // Handle client disconnect
     call.on('cancelled', () => {
         console.log(`Client ${userId} disconnected`);
-        unsubscribe();
+        eventOrchestrator.unsubscribe(subscriptionId);
         activeStreams.delete(userId);
     });
 
-    call.on('error', (error) => {
+    call.on('error', (error: any) => {
         console.error(`Stream error for ${userId}:`, error);
-        unsubscribe();
+        eventOrchestrator.unsubscribe(subscriptionId);
         activeStreams.delete(userId);
     });
 }
@@ -100,7 +100,7 @@ function publishEvent(
         } as any);
 
         callback(null, { event_id: event.id, success: true, error: '' });
-    } catch (error) {
+    } catch (error: any) {
         callback(null, {
             event_id: event.id,
             success: false,
@@ -142,7 +142,7 @@ function eventStream(
                 source: 'server',
                 payload: Buffer.from(JSON.stringify({ acknowledged: event.id })),
             });
-        } catch (error) {
+        } catch (error: any) {
             console.error('Error processing event:', error);
         }
     });

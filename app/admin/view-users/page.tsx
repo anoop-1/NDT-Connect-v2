@@ -69,7 +69,7 @@ export default function ViewUsersPage() {
       const data: UsersResponse = await response.json();
       setUsers(data.users);
       setTotal(data.total);
-    } catch (err) {
+    } catch (err: any) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setLoading(false);

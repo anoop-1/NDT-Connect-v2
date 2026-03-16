@@ -285,17 +285,17 @@ export class InspectionLifecycleService {
             assetId: inspection.assetId,
             previousState,
             newState,
-            startTime: inspection.startTime?.toISOString(),
-            endTime: inspection.endTime?.toISOString(),
+            startTime: inspection.startTime?.toISOString() ?? '',
+            endTime: inspection.endTime?.toISOString() ?? '',
             findingsCount: inspection.findings.length,
             defectsCount: inspection.findings.filter(f => f.type === 'defect').length,
-        });
+        } as any);
 
         await eventOrchestrator.publish(event as any);
 
         try {
             await publishToKafka(event as any);
-        } catch (error) {
+        } catch (error: any) {
             console.error('Failed to publish to Kafka:', error);
         }
     }

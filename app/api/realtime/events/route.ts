@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
             success: true,
             timestamp: Date.now(),
         });
-    } catch (error) {
+    } catch (error: any) {
         console.error('Publish event error:', error);
         return NextResponse.json(
             { error: 'Failed to publish event' },
@@ -75,7 +75,7 @@ export async function GET(request: NextRequest) {
             count: messages.length,
             timestamp: Date.now(),
         });
-    } catch (error) {
+    } catch (error: any) {
         console.error('Get events error:', error);
         return NextResponse.json(
             { error: 'Failed to get events' },

@@ -11,7 +11,7 @@ export async function GET() {
     const users = await User.find({ role: { $ne: 'admin' } }).lean();
 
     return NextResponse.json(users);
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error fetching users:', error);
     return NextResponse.json(
       { error: 'Failed to fetch users' },

@@ -24,7 +24,7 @@ export async function GET(request: NextRequest) {
     await user.save();
 
     return NextResponse.json({ message: 'Email verified successfully!' });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Verification error:', error);
     return NextResponse.json(
       { error: 'Email verification failed' },

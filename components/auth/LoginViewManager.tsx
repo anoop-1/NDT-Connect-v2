@@ -10,8 +10,8 @@ import { LoginForm } from './LoginForm';
 
 export function LoginViewManager() {
   const searchParams = useSearchParams();
-  const status = searchParams.get('status');
-  const email = searchParams.get('email');
+  const status = searchParams?.get('status');
+  const email = searchParams?.get('email');
 
   const [isVerificationSimulated, setIsVerificationSimulated] = useState(false);
   const [showVerificationMessage, setShowVerificationMessage] = useState(false);

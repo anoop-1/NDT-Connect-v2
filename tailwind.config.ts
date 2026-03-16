@@ -16,6 +16,13 @@ export default {
     'ring-brand/20', 'ring-brand/40', 'shadow-brand/20', 'shadow-brand/25',
   ],
   theme: {
+    container: {
+      center: true,
+      padding: '0',
+      screens: {
+        '2xl': '1800px',
+      },
+    },
   	extend: {
   		colors: {
   			brand: {

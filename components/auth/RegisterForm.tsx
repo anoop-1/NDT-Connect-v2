@@ -407,7 +407,7 @@ export function RegisterForm() {
       } else {
           toast({ title: "Registration Failed", description: "An account with this email may already exist.", variant: "destructive" });
       }
-    } catch (e) {
+    } catch (e: any) {
       toast({ title: "Registration Error", description: String(e), variant: "destructive" });
     }
     setIsLoading(false); // This must always run

@@ -174,7 +174,7 @@ export default function ProviderProfilePage() {
             title: "Profile Updated",
             description: "Your provider profile has been saved to the database.",
         });
-    } catch (error) {
+    } catch (error: any) {
         console.error("Error updating profile:", error);
         toast({ title: "Update Failed", description: "Could not save your profile.", variant: "destructive" });
     }

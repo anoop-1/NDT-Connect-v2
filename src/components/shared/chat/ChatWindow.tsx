@@ -34,7 +34,7 @@ export function ChatWindow({ currentUser, otherPartyName, otherPartyRole, reques
     if (storedMessages) {
       try {
         setMessages(JSON.parse(storedMessages));
-      } catch (e) {
+      } catch (e: any) {
         console.error("Failed to parse stored chat messages", e);
         localStorage.removeItem(`chat_${requestId}`); // Clear corrupted data
       }
