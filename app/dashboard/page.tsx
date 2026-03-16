@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Activity, Briefcase, Search, Sparkles, UserCircle, Shield, Settings } from "lucide-react";
+import { Activity, Briefcase, Search, Sparkles, UserCircle, Shield, Settings, FileBarChart } from "lucide-react";
 
 export default function DashboardPage() {
   const { user, loading } = useAuth();
@@ -72,6 +72,13 @@ export default function DashboardPage() {
             href="/my-requests"
             icon={<Briefcase className="h-8 w-8 text-primary" />}
           />
+          <DashboardActionCard
+            title="View Reports"
+            description="Access and download your NDT inspection reports."
+            href="https://dt.atlantisndt.com"
+            icon={<FileBarChart className="h-8 w-8 text-primary" />}
+            external={true}
+          />
            <DashboardActionCard
             title="Account Settings"
             description="Manage your account details and preferences."
@@ -89,9 +96,10 @@ interface DashboardActionCardProps {
   description: string;
   href: string;
   icon: React.ReactNode;
+  external?: boolean;
 }
 
-function DashboardActionCard({ title, description, href, icon }: DashboardActionCardProps) {
+function DashboardActionCard({ title, description, href, icon, external = false }: DashboardActionCardProps) {
   return (
     <Card className="hover:shadow-xl transition-shadow duration-300">
       <CardHeader className="items-center text-center">
@@ -102,9 +110,15 @@ function DashboardActionCard({ title, description, href, icon }: DashboardAction
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent className="text-center">
-        <Button asChild>
-          <Link href={href}>Go to {title}</Link>
-        </Button>
+        {external ? (
+          <Button asChild>
+            <a href={href} target="_blank" rel="noopener noreferrer">Go to {title}</a>
+          </Button>
+        ) : (
+          <Button asChild>
+            <Link href={href}>Go to {title}</Link>
+          </Button>
+        )}
       </CardContent>
     </Card>
   );

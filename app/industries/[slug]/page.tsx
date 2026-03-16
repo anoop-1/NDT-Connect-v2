@@ -67,12 +67,12 @@ export default function IndustryPage({ params }: Props) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
 
       <div className="max-w-5xl mx-auto">
-        <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
-          <Link href="/" className="hover:text-primary">Home</Link>
+        <nav className="flex items-center gap-2 text-sm text-slate-600 mb-6">
+          <Link href="/" className="hover:text-slate-900">Home</Link>
           <span>/</span>
-          <Link href="/industries" className="hover:text-primary">Industries</Link>
+          <Link href="/industries" className="hover:text-slate-900">Industries</Link>
           <span>/</span>
-          <span className="text-foreground">{industry.name}</span>
+          <span className="text-slate-900">{industry.name}</span>
         </nav>
 
         {/* Hero */}
@@ -80,7 +80,7 @@ export default function IndustryPage({ params }: Props) {
           <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">
             NDT for {industry.name}
           </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mb-6">{industry.description}</p>
+          <p className="text-lg text-slate-600 max-w-3xl mb-6">{industry.description}</p>
           <Button size="lg" asChild>
             <Link href="/find-providers"><Search className="h-4 w-4 mr-2" /> Find {industry.name} NDT Inspectors</Link>
           </Button>
@@ -89,11 +89,11 @@ export default function IndustryPage({ params }: Props) {
         {/* Overview */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-primary mb-4">NDT in the {industry.name} Industry</h2>
-          <p className="text-muted-foreground leading-relaxed mb-6">{industry.longDescription}</p>
+          <p className="text-slate-600 leading-relaxed mb-6">{industry.longDescription}</p>
 
           <div className="bg-primary/5 border-l-4 border-primary p-5 rounded-r-lg mb-8">
             <h3 className="font-semibold mb-2">Why NDT is Critical for {industry.name}</h3>
-            <p className="text-sm text-muted-foreground">{industry.whyNDT}</p>
+            <p className="text-sm text-slate-600">{industry.whyNDT}</p>
           </div>
         </section>
 
@@ -171,7 +171,7 @@ export default function IndustryPage({ params }: Props) {
             {otherIndustries.map((ind) => (
               <Link key={ind.slug} href={`/industries/${ind.slug}`} className="p-4 border rounded-lg hover:bg-muted/50 transition-colors group">
                 <h3 className="font-semibold text-sm group-hover:text-primary mb-1">{ind.name}</h3>
-                <p className="text-xs text-muted-foreground line-clamp-2">{ind.description}</p>
+                <p className="text-xs text-slate-600 line-clamp-2">{ind.description}</p>
               </Link>
             ))}
           </div>

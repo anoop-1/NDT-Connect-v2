@@ -58,18 +58,18 @@ export default function ServicesPage() {
       <FAQSchema questions={serviceFaqs} />
       <BreadcrumbSchema items={[{ name: 'Home', url: 'https://ndt-connect.com' }, { name: 'NDT Services', url: 'https://ndt-connect.com/services' }]} />
 
-      <div className="max-w-5xl mx-auto">
-        <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
+      <div className="max-w-5xl mx-auto bg-white">
+        <nav className="flex items-center gap-2 text-sm text-slate-600 mb-6">
           <Link href="/" className="hover:text-primary">Home</Link>
           <span>/</span>
-          <span className="text-foreground">NDT Services</span>
+          <span className="text-slate-900">NDT Services</span>
         </nav>
 
         <section className="text-center py-12 mb-10">
-          <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4 text-slate-900">
             Non-Destructive Testing Services
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
             Book any NDT inspection method through NDT Connect. Access certified inspectors for all major testing methods worldwide.
           </p>
           <Button size="lg" asChild>
@@ -82,8 +82,8 @@ export default function ServicesPage() {
 
         {/* Primary Methods */}
         <section className="mb-16">
-          <h2 className="text-2xl font-bold text-primary mb-2">Primary NDT Methods</h2>
-          <p className="text-muted-foreground mb-8">The six fundamental non-destructive testing methods used across all industries.</p>
+          <h2 className="text-2xl font-bold text-primary mb-2 text-slate-900">Primary NDT Methods</h2>
+          <p className="text-slate-600 mb-8">The six fundamental non-destructive testing methods used across all industries.</p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {primaryMethods.map((method) => (
               <Card key={method.slug} className="hover:shadow-lg transition-shadow group">

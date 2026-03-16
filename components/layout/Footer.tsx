@@ -118,6 +118,7 @@ export function Footer() {
               <li><Link href="/tools/inspection-cost-estimator" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Cost Estimator</Link></li>
               <li><Link href="/case-studies" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Case Studies</Link></li>
               <li><Link href="/faq" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">FAQ</Link></li>
+              <li><Link href="https://dt.atlantisndt.com" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Reporting</Link></li>
             </ul>
           </div>
 

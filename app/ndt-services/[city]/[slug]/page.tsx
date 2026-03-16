@@ -169,7 +169,7 @@ function ServicePage({ city, method, citySlug, serviceSlug }: { city: any; metho
               <div className="inline-block mb-6 px-4 py-2 glass-dark rounded-full text-sm font-semibold text-[#004aad] border border-[#004aad]/20 backdrop-blur-sm">
                 {method.abbreviation} Services in {city.name}
               </div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 gradient-text">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 gradient-text text-slate-900">
                 {method.name} Inspection
               </h1>
               <p className="text-xl md:text-2xl text-white/80 mb-8 leading-relaxed max-w-3xl">
@@ -194,7 +194,7 @@ function ServicePage({ city, method, citySlug, serviceSlug }: { city: any; metho
         <section className="container">
           <div className="grid lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-              <h2 className="text-4xl font-bold mb-8 gradient-text">Overview</h2>
+              <h2 className="text-4xl font-bold mb-8 gradient-text text-slate-900">Overview</h2>
               <p className="text-lg text-white/75 mb-6 leading-relaxed">{method.longDescription}</p>
               <p className="text-base text-white/70 mb-6 leading-relaxed">
                 In {city.name}, {method.name} is essential for maintaining safety and reliability across critical industries including {city.industries.join(', ')}. Our certified NDT inspectors have extensive experience with {method.name} applications specific to {city.name}&apos;s unique industrial landscape and regulatory environment.
@@ -424,7 +424,7 @@ function ServicePage({ city, method, citySlug, serviceSlug }: { city: any; metho
           <div className="absolute bottom-0 left-0 w-80 h-80 orb opacity-10 animate-float" style={{ animationDelay: '2s' }}></div>
 
           <div className="relative z-10 text-center max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text">Ready for Professional {method.abbreviation} Inspection?</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text text-slate-900">Ready for Professional {method.abbreviation} Inspection?</h2>
             <p className="text-lg text-white/80 mb-8 leading-relaxed">
               Connect with certified NDT inspectors in {city.name} who specialize in {method.name} services for your industry.
             </p>
@@ -485,7 +485,7 @@ function ServicePage({ city, method, citySlug, serviceSlug }: { city: any; metho
 
         {/* City Page Link */}
         <section className="container text-center">
-          <h2 className="text-3xl font-bold mb-4 gradient-text">Explore All NDT Services in {city.name}</h2>
+          <h2 className="text-3xl font-bold mb-4 gradient-text text-slate-900">Explore All NDT Services in {city.name}</h2>
           <p className="text-white/75 mb-8 text-lg">View complete NDT service offerings and certified inspectors serving the {city.name} area.</p>
           <Link href={`/ndt-services/${citySlug}`} className="inline-flex items-center px-8 py-4 glass-strong rounded-xl font-bold text-[#004aad] border border-[#004aad]/30 hover:border-[#004aad]/60 transition hover:bg-[#004aad]/5">
             View {city.name} Page <ChevronRight className="w-5 h-5 ml-2" />
@@ -546,7 +546,7 @@ function IndustryPage({ city, industry, citySlug }: { city: any; industry: any; 
                     <MapPin className="h-4 w-4 text-[#004aad]" />{city.name}, {city.region}
                   </div>
                 </div>
-                <h1 className="text-5xl md:text-6xl font-bold mb-6 gradient-text">{industry.name} NDT</h1>
+                <h1 className="text-5xl md:text-6xl font-bold mb-6 gradient-text text-slate-900">{industry.name} NDT</h1>
                 <p className="text-xl text-white/80 max-w-2xl leading-relaxed">{industry.description}</p>
               </div>
               <div className="relative">
@@ -580,7 +580,7 @@ function IndustryPage({ city, industry, citySlug }: { city: any; industry: any; 
           <div className="lg:col-span-2 space-y-12">
             {/* About Section */}
             <section className="animate-fade-in-up">
-              <h2 className="text-4xl font-bold text-[#004aad] mb-6 gradient-text">About {industry.name}</h2>
+              <h2 className="text-4xl font-bold text-[#004aad] mb-6 gradient-text text-slate-900">About {industry.name}</h2>
               <div className="glass rounded-2xl p-8 backdrop-blur-xl border border-white/10">
                 <p className="text-white/85 leading-relaxed mb-6 text-lg">{industry.longDescription}</p>
                 <div className="glass-dark rounded-xl p-6 border border-[#004aad]/20">
@@ -713,7 +713,7 @@ function IndustryPage({ city, industry, citySlug }: { city: any; industry: any; 
 
         {/* How We Help */}
         <section>
-          <h2 className="text-4xl font-bold text-center mb-12 gradient-text">How NDT Connect Helps</h2>
+          <h2 className="text-4xl font-bold text-center mb-12 gradient-text text-slate-900">How NDT Connect Helps</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {

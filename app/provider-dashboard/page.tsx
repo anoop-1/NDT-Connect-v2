@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Briefcase, UserCircle, Settings, Activity, FileSignature } from "lucide-react";
+import { Briefcase, UserCircle, Settings, Activity, FileSignature, FileBarChart } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { db } from "@/lib/firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
@@ -112,6 +112,13 @@ export default function ProviderDashboardPage() {
           icon={<Briefcase className="h-8 w-8 text-primary" />}
         />
         <DashboardActionCard
+          title="Inspection Reporting"
+          description="Create and manage your inspection reports"
+          href="https://dt.atlantisndt.com"
+          icon={<FileBarChart className="h-8 w-8 text-primary" />}
+          external={true}
+        />
+        <DashboardActionCard
           title="AI Procedure Writer"
           description="Use AI to generate comprehensive NDT procedures."
           href="/provider-dashboard/ai-procedure-writer"
@@ -120,7 +127,7 @@ export default function ProviderDashboardPage() {
         <DashboardActionCard
           title="Manage Profile"
           description="Update your company details, services offered, and availability."
-          href="/provider-profile" 
+          href="/provider-profile"
           icon={<UserCircle className="h-8 w-8 text-primary" />}
         />
         <DashboardActionCard
@@ -149,9 +156,17 @@ interface DashboardActionCardProps {
   description: string;
   href: string;
   icon: React.ReactNode;
+  external?: boolean;
 }
 
-function DashboardActionCard({ title, description, href, icon }: DashboardActionCardProps) {
+function DashboardActionCard({ title, description, href, icon, external = false }: DashboardActionCardProps) {
+  const linkProps = external ? {
+    as: 'a',
+    href: href,
+    target: '_blank',
+    rel: 'noopener noreferrer'
+  } : undefined;
+
   return (
     <Card className="hover:shadow-xl transition-shadow duration-300">
       <CardHeader className="items-center text-center">
@@ -162,9 +177,15 @@ function DashboardActionCard({ title, description, href, icon }: DashboardAction
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent className="text-center">
-        <Button asChild>
-          <Link href={href}>{title}</Link>
-        </Button>
+        {external ? (
+          <Button asChild>
+            <a href={href} target="_blank" rel="noopener noreferrer">{title}</a>
+          </Button>
+        ) : (
+          <Button asChild>
+            <Link href={href}>{title}</Link>
+          </Button>
+        )}
       </CardContent>
     </Card>
   );

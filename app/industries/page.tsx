@@ -27,16 +27,16 @@ export default function IndustriesPage() {
     <>
     <FAQSchema questions={industryFaqs} />
     <BreadcrumbSchema items={[{ name: 'Home', url: 'https://ndt-connect.com' }, { name: 'Industries', url: 'https://ndt-connect.com/industries' }]} />
-    <div className="max-w-5xl mx-auto">
-      <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
+    <div className="max-w-5xl mx-auto bg-white">
+      <nav className="flex items-center gap-2 text-sm text-slate-600 mb-6">
         <Link href="/" className="hover:text-primary">Home</Link>
         <span>/</span>
-        <span className="text-foreground">Industries</span>
+        <span className="text-slate-900">Industries</span>
       </nav>
 
       <section className="text-center py-12 mb-10">
-        <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">Industries We Serve</h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4 text-slate-900">Industries We Serve</h1>
+        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
           NDT Connect provides specialized non-destructive testing services across all major industries worldwide.
         </p>
       </section>
@@ -48,7 +48,7 @@ export default function IndustriesPage() {
               <CardTitle className="text-xl">{industry.name}</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground mb-4">{industry.description}</p>
+              <p className="text-sm text-slate-600 mb-4">{industry.description}</p>
               <div className="flex flex-wrap gap-1.5 mb-4">
                 {industry.commonMethods.slice(0, 4).map((m, i) => (
                   <Badge key={i} variant="outline" className="text-xs">{m}</Badge>
@@ -64,13 +64,13 @@ export default function IndustriesPage() {
 
       {/* FAQ Section */}
       <section className="mb-12">
-        <h2 className="text-2xl font-bold text-primary mb-8 text-center">Frequently Asked Questions</h2>
+        <h2 className="text-2xl font-bold text-primary mb-8 text-center text-slate-900">Frequently Asked Questions</h2>
         <div className="max-w-3xl mx-auto space-y-4">
           {industryFaqs.map((faq, i) => (
             <Card key={i} className="hover:shadow-md transition-shadow">
               <CardContent className="p-5">
-                <h3 className="font-semibold text-foreground mb-2">{faq.question}</h3>
-                <p className="text-muted-foreground text-sm">{faq.answer}</p>
+                <h3 className="font-semibold text-slate-900 mb-2">{faq.question}</h3>
+                <p className="text-slate-600 text-sm">{faq.answer}</p>
               </CardContent>
             </Card>
           ))}

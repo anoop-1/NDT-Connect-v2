@@ -7,6 +7,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Toaster } from '@/components/ui/toaster';
 import AdSenseScript from '@/components/ads/AdSenseScript';
+import CustomCursor from '@/components/shared/CustomCursor';
 
 const fontSans = Inter({
   variable: '--font-sans',
@@ -101,6 +102,7 @@ export default function RootLayout({
         suppressHydrationWarning={true}
       >
         <AuthProvider>
+          <CustomCursor />
           <Header />
           <main className="flex-grow container py-8">
             {children}

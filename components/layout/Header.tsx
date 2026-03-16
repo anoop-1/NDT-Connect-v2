@@ -63,6 +63,9 @@ export function Header() {
           <Link href="/tools/ndt-method-selector" className={navLinkClasses("/tools/ndt-method-selector")}>
             Tools
           </Link>
+          <a href="https://dt.atlantisndt.com" target="_blank" rel="noopener noreferrer" className={navLinkClasses("reporting")}>
+            Reporting
+          </a>
 
           {user?.role === 'client' && (
             <>
@@ -172,23 +175,39 @@ export function Header() {
               { href: '/find-providers', label: 'Find Providers' },
               { href: '/blog', label: 'Blog' },
               { href: '/tools/ndt-method-selector', label: 'Tools' },
+              { href: 'https://dt.atlantisndt.com', label: 'Reporting', external: true },
               { href: '/careers', label: 'Careers' },
               { href: '/glossary', label: 'Glossary' },
               { href: '/contact', label: 'Contact' },
             ].map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={cn(
-                  "block py-3 px-4 text-sm font-medium rounded-lg transition-all",
-                  pathname === link.href
-                    ? "text-[#004aad] bg-[#004aad]/5 font-semibold"
-                    : "text-foreground hover:text-[#004aad] hover:bg-[#004aad]/5"
-                )}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
+              link.external ? (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn(
+                    "block py-3 px-4 text-sm font-medium rounded-lg transition-all text-foreground hover:text-[#004aad] hover:bg-[#004aad]/5"
+                  )}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    "block py-3 px-4 text-sm font-medium rounded-lg transition-all",
+                    pathname === link.href
+                      ? "text-[#004aad] bg-[#004aad]/5 font-semibold"
+                      : "text-foreground hover:text-[#004aad] hover:bg-[#004aad]/5"
+                  )}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              )
             ))}
 
             {!user && (

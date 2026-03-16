@@ -16,7 +16,7 @@ export const AdSense = ({ slot, format = 'auto', className = '' }: AdSenseProps)
   useEffect(() => {
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({
-        google_ad_client: 'ca-pub-XXXXXXXXXX',
+        google_ad_client: 'ca-pub-4713278078667871',
         adsbygoogle: true,
       });
     } catch (err) {
@@ -47,7 +47,7 @@ export const AdSense = ({ slot, format = 'auto', className = '' }: AdSenseProps)
         width: typeof dimensions.width === 'number' ? `${dimensions.width}px` : 'auto',
         height: typeof dimensions.height === 'number' ? `${dimensions.height}px` : 'auto',
       }}
-      data-ad-client="ca-pub-XXXXXXXXXX"
+      data-ad-client="ca-pub-4713278078667871"
       data-ad-slot={slot}
       data-ad-format={format}
       data-full-width-responsive="true"

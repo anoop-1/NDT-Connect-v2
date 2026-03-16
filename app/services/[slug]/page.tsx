@@ -107,12 +107,12 @@ export default function MethodPage({ params }: Props) {
 
       <div className="max-w-5xl mx-auto">
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
-          <Link href="/" className="hover:text-primary">Home</Link>
+        <nav className="flex items-center gap-2 text-sm text-slate-600 mb-6">
+          <Link href="/" className="hover:text-slate-900">Home</Link>
           <span>/</span>
-          <Link href="/services" className="hover:text-primary">NDT Services</Link>
+          <Link href="/services" className="hover:text-slate-900">NDT Services</Link>
           <span>/</span>
-          <span className="text-foreground">{method.name}</span>
+          <span className="text-slate-900">{method.name}</span>
         </nav>
 
         {/* Hero */}
@@ -121,7 +121,7 @@ export default function MethodPage({ params }: Props) {
           <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">
             {method.name} ({method.abbreviation}) Services
           </h1>
-          <p className="text-lg text-muted-foreground max-w-3xl mb-6">
+          <p className="text-lg text-slate-600 max-w-3xl mb-6">
             {method.description}
           </p>
           <div className="flex flex-wrap gap-3">
@@ -140,14 +140,14 @@ export default function MethodPage({ params }: Props) {
         {/* Overview */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-primary mb-4">What is {method.name}?</h2>
-          <p className="text-muted-foreground leading-relaxed mb-6">{method.longDescription}</p>
+          <p className="text-slate-600 leading-relaxed mb-6">{method.longDescription}</p>
 
           <h3 className="text-xl font-semibold mb-3">How {method.abbreviation} Works</h3>
           <div className="space-y-3 mb-8">
             {method.principles.map((principle, i) => (
               <div key={i} className="flex items-start gap-3">
                 <span className="flex items-center justify-center w-7 h-7 rounded-full bg-primary/10 text-primary text-sm font-bold shrink-0 mt-0.5">{i + 1}</span>
-                <p className="text-muted-foreground">{principle}</p>
+                <p className="text-slate-600">{principle}</p>
               </div>
             ))}
           </div>
@@ -174,7 +174,7 @@ export default function MethodPage({ params }: Props) {
               {method.advantages.map((adv, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <CheckCircle className="h-5 w-5 text-green-500 shrink-0 mt-0.5" />
-                  <span className="text-muted-foreground text-sm">{adv}</span>
+                  <span className="text-slate-600 text-sm">{adv}</span>
                 </li>
               ))}
             </ul>
@@ -185,7 +185,7 @@ export default function MethodPage({ params }: Props) {
               {method.limitations.map((lim, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <AlertTriangle className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
-                  <span className="text-muted-foreground text-sm">{lim}</span>
+                  <span className="text-slate-600 text-sm">{lim}</span>
                 </li>
               ))}
             </ul>
@@ -242,7 +242,7 @@ export default function MethodPage({ params }: Props) {
                   <CardTitle className="text-base">{m.name}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground line-clamp-2 mb-3">{m.description}</p>
+                  <p className="text-sm text-slate-600 line-clamp-2 mb-3">{m.description}</p>
                   <Link href={`/services/${m.slug}`} className="text-sm text-primary font-medium flex items-center hover:underline">
                     Learn more <ArrowRight className="h-3 w-3 ml-1" />
                   </Link>

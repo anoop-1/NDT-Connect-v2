@@ -122,7 +122,7 @@ export default function CityPage({ params }: Props) {
 
       <div className="max-w-5xl mx-auto">
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-8 px-4 md:px-0">
+        <nav className="flex items-center gap-2 text-sm text-slate-600 mb-8 px-4 md:px-0">
           <Link href="/" className="hover:text-primary transition-colors">Home</Link>
           <span className="text-primary/40">/</span>
           <Link href="/services" className="hover:text-primary transition-colors">NDT Services</Link>
@@ -146,11 +146,11 @@ export default function CityPage({ params }: Props) {
               </Badge>
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-bold gradient-text mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-bold gradient-text mb-6 leading-tight text-slate-900">
               NDT Services in {city.name}
             </h1>
 
-            <p className="text-lg text-muted-foreground max-w-3xl mb-8 leading-relaxed">
+            <p className="text-lg text-slate-600 max-w-3xl mb-8 leading-relaxed">
               Find certified non-destructive testing providers in {city.name}. Book inspections online with instant quotes, real-time tracking, and verified expert inspectors.
             </p>
 
@@ -177,8 +177,8 @@ export default function CityPage({ params }: Props) {
         {/* Why NDT in this city - Stats Section */}
         <section className="mb-16 px-4 md:px-0">
           <div className="mb-10">
-            <h2 className="text-3xl font-bold gradient-text mb-4">NDT Services in {city.name}</h2>
-            <p className="text-muted-foreground leading-relaxed text-lg">{city.description}</p>
+            <h2 className="text-3xl font-bold gradient-text mb-4 text-slate-900">NDT Services in {city.name}</h2>
+            <p className="text-slate-600 leading-relaxed text-lg">{city.description}</p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -187,8 +187,8 @@ export default function CityPage({ params }: Props) {
                 <div className="absolute inset-0 bg-[#004aad]/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <Users className="h-8 w-8 text-[#004aad] relative z-10 animate-float" />
               </div>
-              <p className="font-semibold text-foreground mb-1">Verified Inspectors</p>
-              <p className="text-sm text-muted-foreground">Certified & qualified professionals</p>
+              <p className="font-semibold text-slate-900 mb-1">Verified Inspectors</p>
+              <p className="text-sm text-slate-600">Certified & qualified professionals</p>
             </div>
 
             <div className="glass rounded-xl p-6 border border-white/10 card-hover-lift animate-fade-in-up stagger-2 group cursor-default">
@@ -196,8 +196,8 @@ export default function CityPage({ params }: Props) {
                 <div className="absolute inset-0 bg-[#004aad]/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <Clock className="h-8 w-8 text-[#004aad] relative z-10 animate-float" />
               </div>
-              <p className="font-semibold text-foreground mb-1">Instant Quotes</p>
-              <p className="text-sm text-muted-foreground">Get pricing in seconds</p>
+              <p className="font-semibold text-slate-900 mb-1">Instant Quotes</p>
+              <p className="text-sm text-slate-600">Get pricing in seconds</p>
             </div>
 
             <div className="glass rounded-xl p-6 border border-white/10 card-hover-lift animate-fade-in-up stagger-3 group cursor-default">
@@ -205,8 +205,8 @@ export default function CityPage({ params }: Props) {
                 <div className="absolute inset-0 bg-[#004aad]/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <Shield className="h-8 w-8 text-[#004aad] relative z-10 animate-float" />
               </div>
-              <p className="font-semibold text-foreground mb-1">Quality Assured</p>
-              <p className="text-sm text-muted-foreground">Standards compliant</p>
+              <p className="font-semibold text-slate-900 mb-1">Quality Assured</p>
+              <p className="text-sm text-slate-600">Standards compliant</p>
             </div>
 
             <div className="glass rounded-xl p-6 border border-white/10 card-hover-lift animate-fade-in-up stagger-4 group cursor-default">
@@ -214,8 +214,8 @@ export default function CityPage({ params }: Props) {
                 <div className="absolute inset-0 bg-[#004aad]/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <Globe className="h-8 w-8 text-[#004aad] relative z-10 animate-float" />
               </div>
-              <p className="font-semibold text-foreground mb-1">Local Experts</p>
-              <p className="text-sm text-muted-foreground">{city.name} based services</p>
+              <p className="font-semibold text-slate-900 mb-1">Local Experts</p>
+              <p className="text-sm text-slate-600">{city.name} based services</p>
             </div>
           </div>
         </section>

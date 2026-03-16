@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import {
   CheckCircle, Search, Users, ShieldCheck, Globe, Award, Zap, ArrowRight,
   MapPin, Star, Clock, TrendingUp, Briefcase, FileText, ChevronRight, Activity,
-  Radar, Eye, Waves, Atom, Layers
+  Radar, Eye, Waves, Atom, Layers, FileBarChart
 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -99,7 +99,7 @@ export default function HomePage() {
         {/* ============================================
             HERO SECTION - Futuristic with grid bg, floating orbs, glassmorphism
             ============================================ */}
-        <section className="relative overflow-hidden min-h-[85vh] flex items-center">
+        <section className="relative overflow-hidden min-h-[85vh] flex items-center bg-white">
           {/* Background layers */}
           <div className="absolute inset-0 hero-grid-bg" />
           <div className="absolute inset-0 hero-radial-glow" />
@@ -120,14 +120,14 @@ export default function HomePage() {
               </div>
 
               {/* Main heading with gradient text */}
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 animate-fade-in-up leading-[1.1]" style={{ animationDelay: '0.1s' }}>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 animate-fade-in-up leading-[1.1] text-slate-900" style={{ animationDelay: '0.1s' }}>
                 <span className="gradient-text">Book NDT Inspection</span>
                 <br className="hidden sm:block" />
-                <span className="text-foreground">Services Online</span>
+                <span className="text-slate-900">Services Online</span>
               </h1>
 
               {/* Subtitle */}
-              <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-10 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+              <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
                 The world&apos;s leading marketplace for Non-Destructive Testing. Connect with certified inspectors for UT, RT, MT, PT, PAUT, TOFD &mdash; get instant quotes and real-time tracking.
               </p>
 
@@ -162,11 +162,11 @@ export default function HomePage() {
         {/* ============================================
             HOW IT WORKS - Numbered steps with connecting line
             ============================================ */}
-        <section className="container py-24">
+        <section className="container py-24 bg-white">
           <div className="text-center mb-16 animate-fade-in-up">
             <Badge className="mb-4 px-4 py-1.5 glass-dark rounded-full border-[#004aad]/20 text-[#004aad]">How It Works</Badge>
-            <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">Three Simple Steps</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+            <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4 text-slate-900">Three Simple Steps</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto text-lg">
               Get from inspection request to completed report — fast, simple, reliable.
             </p>
           </div>
@@ -189,8 +189,8 @@ export default function HomePage() {
                     {item.step}
                   </span>
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-foreground">{item.title}</h3>
-                <p className="text-muted-foreground leading-relaxed max-w-xs mx-auto">{item.desc}</p>
+                <h3 className="text-xl font-bold mb-3 text-slate-900">{item.title}</h3>
+                <p className="text-slate-600 leading-relaxed max-w-xs mx-auto">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -226,11 +226,11 @@ export default function HomePage() {
         {/* ============================================
             WHY CHOOSE US - Glassmorphism cards with hover 3D
             ============================================ */}
-        <section className="container py-24">
+        <section className="container py-24 bg-white">
           <div className="text-center mb-16">
             <Badge className="mb-4 px-4 py-1.5 glass-dark rounded-full border-[#004aad]/20 text-[#004aad]">Why NDT Connect</Badge>
-            <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">Built for the NDT Industry</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+            <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4 text-slate-900">Built for the NDT Industry</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto text-lg">
               Purpose-built platform connecting asset owners with qualified inspection professionals faster and more reliably.
             </p>
           </div>
@@ -245,12 +245,12 @@ export default function HomePage() {
               { icon: Briefcase, title: 'All-in-One Platform', desc: 'From request to report — manage everything in one place. Scheduling, communication, payments, and documentation.' },
             ].map((item, idx) => (
               <div key={item.title} className={`group animate-fade-in-up stagger-${idx + 1}`}>
-                <div className="h-full p-7 rounded-2xl glass-dark card-hover-3d">
+                <div className="h-full p-7 rounded-2xl bg-white border border-[#004aad]/10 card-hover-3d">
                   <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#004aad]/10 to-[#60a5fa]/10 flex items-center justify-center mb-5 group-hover:from-[#004aad] group-hover:to-[#0066ff] transition-all duration-500">
                     <item.icon className="h-7 w-7 text-[#004aad] group-hover:text-white transition-colors duration-500" />
                   </div>
-                  <h3 className="text-lg font-bold mb-2 text-foreground group-hover:text-[#004aad] transition-colors">{item.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed text-sm">{item.desc}</p>
+                  <h3 className="text-lg font-bold mb-2 text-slate-900 group-hover:text-[#004aad] transition-colors">{item.title}</h3>
+                  <p className="text-slate-600 leading-relaxed text-sm">{item.desc}</p>
                 </div>
               </div>
             ))}
@@ -262,13 +262,13 @@ export default function HomePage() {
         {/* ============================================
             NDT METHODS - Icon cards with animated borders
             ============================================ */}
-        <section className="py-24 relative">
+        <section className="py-24 relative bg-white">
           <div className="absolute inset-0 hero-dots-bg" />
           <div className="relative container">
             <div className="text-center mb-16">
               <Badge className="mb-4 px-4 py-1.5 glass-dark rounded-full border-[#004aad]/20 text-[#004aad]">Inspection Methods</Badge>
-              <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">NDT Inspection Methods</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+              <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4 text-slate-900">NDT Inspection Methods</h2>
+              <p className="text-slate-600 max-w-2xl mx-auto text-lg">
                 Find providers for every major non-destructive testing method — from conventional UT and RT to advanced phased array and TOFD.
               </p>
             </div>
@@ -287,8 +287,8 @@ export default function HomePage() {
                         </div>
                         <Badge variant="outline" className="font-mono text-xs tracking-wider border-[#004aad]/20 text-[#004aad]">{m.abbr}</Badge>
                       </div>
-                      <h3 className="text-lg font-bold mb-2 text-foreground group-hover:text-[#004aad] transition-colors">{m.name}</h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed mb-4">{m.desc}</p>
+                      <h3 className="text-lg font-bold mb-2 text-slate-900 group-hover:text-[#004aad] transition-colors">{m.name}</h3>
+                      <p className="text-slate-600 text-sm leading-relaxed mb-4">{m.desc}</p>
                       <span className="inline-flex items-center text-sm font-medium text-[#004aad] opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-[-8px] group-hover:translate-x-0">
                         Learn more <ArrowRight className="ml-1 h-4 w-4" />
                       </span>
@@ -309,11 +309,11 @@ export default function HomePage() {
         {/* ============================================
             INDUSTRIES - Minimal cards with accent borders
             ============================================ */}
-        <section className="container py-24">
+        <section className="container py-24 bg-white">
           <div className="text-center mb-16">
             <Badge className="mb-4 px-4 py-1.5 glass-dark rounded-full border-[#004aad]/20 text-[#004aad]">Industries</Badge>
-            <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">Industries We Serve</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+            <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4 text-slate-900">Industries We Serve</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto text-lg">
               NDT Connect supports all major industries requiring non-destructive testing and inspection services.
             </p>
           </div>
@@ -323,8 +323,8 @@ export default function HomePage() {
               <Link key={ind.slug} href={`/industries/${ind.slug}`} className={`block group animate-fade-in-up stagger-${idx + 1}`}>
                 <div className="h-full p-5 rounded-2xl border border-[#004aad]/8 card-hover-lift group-hover:border-[#004aad]/25 bg-white relative overflow-hidden">
                   <div className="absolute top-0 left-0 w-1 h-0 bg-gradient-to-b from-[#004aad] to-[#60a5fa] group-hover:h-full transition-all duration-500 rounded-l-2xl" />
-                  <h3 className="font-bold mb-1.5 text-foreground group-hover:text-[#004aad] transition-colors">{ind.name}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{ind.desc}</p>
+                  <h3 className="font-bold mb-1.5 text-slate-900 group-hover:text-[#004aad] transition-colors">{ind.name}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">{ind.desc}</p>
                 </div>
               </Link>
             ))}
@@ -336,13 +336,13 @@ export default function HomePage() {
         {/* ============================================
             POPULAR LOCATIONS - Globe-inspired grid
             ============================================ */}
-        <section className="py-24 relative">
+        <section className="py-24 relative bg-white">
           <div className="absolute inset-0 hero-radial-glow" />
           <div className="relative container">
             <div className="text-center mb-16">
               <Badge className="mb-4 px-4 py-1.5 glass-dark rounded-full border-[#004aad]/20 text-[#004aad]">Global Network</Badge>
-              <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">Find NDT Services Near You</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+              <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4 text-slate-900">Find NDT Services Near You</h2>
+              <p className="text-slate-600 max-w-2xl mx-auto text-lg">
                 NDT Connect operates globally with certified providers in major industrial hubs.
               </p>
             </div>
@@ -356,8 +356,8 @@ export default function HomePage() {
                 >
                   <div className="p-4 bg-white border border-[#004aad]/8 rounded-xl text-center card-hover-lift group-hover:border-[#004aad]/25">
                     <div className="text-2xl mb-2">{city.flag}</div>
-                    <p className="font-semibold text-sm group-hover:text-[#004aad] transition-colors">{city.name}</p>
-                    <p className="text-xs text-muted-foreground mt-0.5">{city.country}</p>
+                    <p className="font-semibold text-sm text-slate-900 group-hover:text-[#004aad] transition-colors">{city.name}</p>
+                    <p className="text-xs text-slate-600 mt-0.5">{city.country}</p>
                   </div>
                 </Link>
               ))}
@@ -374,12 +374,12 @@ export default function HomePage() {
         {/* ============================================
             FOR PROVIDERS - Split layout with floating stats
             ============================================ */}
-        <section className="container py-24">
+        <section className="container py-24 bg-white">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="animate-fade-in-left">
               <Badge className="mb-4 px-4 py-1.5 glass-dark rounded-full border-[#004aad]/20 text-[#004aad]">For NDT Providers</Badge>
-              <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">Grow Your NDT Business</h2>
-              <p className="text-muted-foreground mb-8 leading-relaxed text-lg">
+              <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6 text-slate-900">Grow Your NDT Business</h2>
+              <p className="text-slate-600 mb-8 leading-relaxed text-lg">
                 Join NDT Connect as a service provider and access a steady stream of inspection requests from asset owners worldwide.
               </p>
               <ul className="space-y-4 mb-10">
@@ -394,7 +394,7 @@ export default function HomePage() {
                     <span className="flex items-center justify-center w-6 h-6 rounded-full bg-emerald-100 mt-0.5 shrink-0">
                       <CheckCircle className="h-4 w-4 text-emerald-600" />
                     </span>
-                    <span className="text-sm font-medium text-foreground">{item}</span>
+                    <span className="text-sm font-medium text-slate-900">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -411,12 +411,12 @@ export default function HomePage() {
                 { icon: TrendingUp, value: '24hr', label: 'Avg Response' },
               ].map((stat, idx) => (
                 <div key={stat.label} className={`group animate-float-slow stagger-${idx + 1}`} style={{ animationDelay: `${idx * 1}s` }}>
-                  <div className="p-6 rounded-2xl glass-dark card-hover-3d text-center animate-pulse-glow" style={{ animationDelay: `${idx * 0.7}s` }}>
+                  <div className="p-6 rounded-2xl bg-white border border-[#004aad]/10 card-hover-3d text-center animate-pulse-glow" style={{ animationDelay: `${idx * 0.7}s` }}>
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#004aad]/10 to-[#60a5fa]/10 flex items-center justify-center mx-auto mb-4 group-hover:from-[#004aad] group-hover:to-[#0066ff] transition-all duration-500">
                       <stat.icon className="h-6 w-6 text-[#004aad] group-hover:text-white transition-colors duration-500" />
                     </div>
                     <p className="font-bold text-3xl text-[#004aad] stat-number mb-1">{stat.value}</p>
-                    <p className="text-xs text-muted-foreground font-medium">{stat.label}</p>
+                    <p className="text-xs text-slate-600 font-medium">{stat.label}</p>
                   </div>
                 </div>
               ))}
@@ -429,11 +429,11 @@ export default function HomePage() {
         {/* ============================================
             FREE TOOLS - Minimal with icons
             ============================================ */}
-        <section className="container py-24">
+        <section className="container py-24 bg-white">
           <div className="text-center mb-16">
             <Badge className="mb-4 px-4 py-1.5 glass-dark rounded-full border-[#004aad]/20 text-[#004aad]">Free Resources</Badge>
-            <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4">Free NDT Tools</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+            <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-4 text-slate-900">Free NDT Tools</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto text-lg">
               Use our free tools to help plan your NDT inspection projects.
             </p>
           </div>
@@ -443,19 +443,20 @@ export default function HomePage() {
               { icon: Zap, title: 'NDT Method Selector', desc: 'Answer a few questions and get recommended NDT methods for your specific application and material type.', href: '/tools/ndt-method-selector' },
               { icon: Search, title: 'Cost Estimator', desc: 'Get rough cost estimates for your NDT inspection project based on method, scope, and location.', href: '/tools/inspection-cost-estimator' },
               { icon: Award, title: 'Certification Pathway', desc: 'Plan your NDT certification journey with our step-by-step guide covering ASNT, ISO 9712, PCN, and API.', href: '/tools/certification-pathway' },
+              { icon: FileText, title: 'Reporting Dashboard', desc: 'Generate professional NDT inspection reports with our advanced reporting tools. Access templates, compliance checklists, and digital report generation.', href: 'https://dt.atlantisndt.com', external: true },
             ].map((tool, idx) => (
-              <Link key={tool.href} href={tool.href} className={`block group animate-fade-in-up stagger-${idx + 1}`}>
+              <a key={tool.href} href={tool.href} target={tool.external ? '_blank' : undefined} rel={tool.external ? 'noopener noreferrer' : undefined} className={`block group animate-fade-in-up stagger-${idx + 1}`}>
                 <div className="h-full p-7 rounded-2xl border border-[#004aad]/8 card-hover-lift group-hover:border-[#004aad]/25 bg-white relative overflow-hidden">
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-shimmer" />
                   <div className="relative">
                     <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#004aad]/10 to-[#60a5fa]/10 flex items-center justify-center mb-5 group-hover:from-[#004aad] group-hover:to-[#0066ff] transition-all duration-500">
                       <tool.icon className="h-7 w-7 text-[#004aad] group-hover:text-white transition-colors duration-500" />
                     </div>
-                    <h3 className="text-lg font-bold mb-2 group-hover:text-[#004aad] transition-colors">{tool.title}</h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">{tool.desc}</p>
+                    <h3 className="text-lg font-bold mb-2 text-slate-900 group-hover:text-[#004aad] transition-colors">{tool.title}</h3>
+                    <p className="text-slate-600 text-sm leading-relaxed">{tool.desc}</p>
                   </div>
                 </div>
-              </Link>
+              </a>
             ))}
           </div>
         </section>
@@ -463,11 +464,11 @@ export default function HomePage() {
         {/* ============================================
             BLOG TEASER
             ============================================ */}
-        <section className="container py-16">
+        <section className="container py-16 bg-white">
           <div className="flex items-center justify-between mb-10">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold gradient-text">Latest from Our Blog</h2>
-              <p className="text-muted-foreground mt-2">Expert insights on NDT methods, careers, and industry trends.</p>
+              <h2 className="text-3xl md:text-4xl font-bold gradient-text text-slate-900">Latest from Our Blog</h2>
+              <p className="text-slate-600 mt-2">Expert insights on NDT methods, careers, and industry trends.</p>
             </div>
             <Button variant="outline" asChild className="hidden sm:flex rounded-xl border-[#004aad]/20 hover:border-[#004aad]/40">
               <Link href="/blog">View All <ArrowRight className="ml-2 h-4 w-4" /></Link>
@@ -482,7 +483,7 @@ export default function HomePage() {
               <Link key={post.slug} href={`/blog/${post.slug}`} className={`group animate-fade-in-up stagger-${idx + 1}`}>
                 <div className="h-full p-6 rounded-2xl border border-[#004aad]/8 card-hover-lift group-hover:border-[#004aad]/25 bg-white">
                   <Badge className="mb-3 text-xs glass-dark border-[#004aad]/20 text-[#004aad] rounded-full">{post.category}</Badge>
-                  <h3 className="font-bold leading-snug group-hover:text-[#004aad] transition-colors">{post.title}</h3>
+                  <h3 className="font-bold leading-snug text-slate-900 group-hover:text-[#004aad] transition-colors">{post.title}</h3>
                 </div>
               </Link>
             ))}
