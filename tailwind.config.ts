@@ -6,10 +6,23 @@ export default {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./lib/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  safelist: [
+    'bg-brand', 'text-brand', 'border-brand', 'hover:bg-brand-dark',
+    'bg-brand/5', 'bg-brand/10', 'bg-brand/20', 'border-brand/20', 'border-brand/30',
   ],
   theme: {
   	extend: {
   		colors: {
+  			brand: {
+  				DEFAULT: '#004aad',
+  				dark: '#003a8c',
+  				light: '#e8f0fe',
+  				mid: '#3b82f6',
+  			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
