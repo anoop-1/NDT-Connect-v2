@@ -509,9 +509,9 @@ export default function HomePage() {
               <Button size="lg" className="text-base px-10 py-6 bg-white text-brand hover:bg-white/90 rounded-xl font-bold shadow-xl" asChild>
                 <Link href="/register">Create Free Account</Link>
               </Button>
-              <Button size="lg" variant="outline" className="text-base px-10 py-6 border-2 border-white text-white font-semibold hover:bg-white hover:text-brand rounded-xl transition-all" asChild>
-                <Link href="/find-providers">Browse Providers</Link>
-              </Button>
+              <Link href="/find-providers" className="inline-flex items-center justify-center text-base px-10 py-3 border-2 border-white text-white font-semibold hover:bg-white hover:text-brand rounded-xl transition-all">
+                Browse Providers
+              </Link>
             </div>
             <p className="mt-8 text-sm text-white/50">No credit card required. Free for asset owners.</p>
           </div>
