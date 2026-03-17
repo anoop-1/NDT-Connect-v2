@@ -11,11 +11,8 @@ import { ArrowLeft, Phone, Activity, CheckCircle, Clock, AlertTriangle, Calendar
 import type { ServiceRequest, User } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { ChatWindow } from "@/components/shared/chat/ChatWindow";
-import { db } from "@/lib/firebase";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { useToast } from "@/hooks/use-toast";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { MOCK_PROVIDER_REQUESTS } from "@/lib/mockData";
 
 const StatusTimelineStep = ({ status, isActive, isCompleted, title, description }: { status: string, isActive: boolean, isCompleted: boolean, title: string, description: string }) => {
   let IconComponent = Clock;
@@ -54,38 +51,24 @@ export default function ProviderRequestDetailPage() {
 
     // DEMO MODE
     if (user?.isDemo) {
-        const demoRequest = MOCK_PROVIDER_REQUESTS.find(r => r.id === reqId);
-        if (demoRequest) {
-            setRequest(demoRequest);
-        } else {
-            setFetchError("Service request not found in demo data.");
-        }
+        setFetchError("No request data available in demo mode.");
         setIsLoading(false);
         return;
     }
 
-    // FIRESTORE MODE
+    // API MODE
     try {
-      const requestDocRef = doc(db, "serviceRequests", reqId);
-      const requestDoc = await getDoc(requestDocRef);
-
-      if (requestDoc.exists()) {
-        const data = requestDoc.data();
-        const requestedDate = data.requestedDate?.toDate ? data.requestedDate.toDate().toISOString() : data.requestedDate;
-        const requestData = { id: requestDoc.id, ...data, requestedDate } as ServiceRequest;
-
-        // Security check: only allow assigned provider or any provider for a pending request
-        if (requestData.providerId && requestData.providerId !== user?.id && requestData.status !== 'Pending') {
-           throw new Error("You are not assigned to this request.");
-        }
-        setRequest(requestData);
-
-      } else {
-        setFetchError("Service request not found.");
+      const res = await fetch(`/api/service-requests/${reqId}`);
+      const result = await res.json();
+      if (!result.success) throw new Error(result.error || "Service request not found.");
+      const requestData = result.data;
+      if (requestData.providerId && requestData.providerId !== user?.id && requestData.status !== 'Pending') {
+        throw new Error("You are not assigned to this request.");
       }
+      setRequest(requestData);
     } catch (error: any) {
       console.error("Error fetching request details:", error);
-      setFetchError(error.message || "Failed to load request from database.");
+      setFetchError(error.message || "Failed to load request.");
     } finally {
         setIsLoading(false);
     }
@@ -111,15 +94,19 @@ export default function ProviderRequestDetailPage() {
 
     setIsUpdating(true);
     try {
-      const requestDocRef = doc(db, "serviceRequests", request.id);
-      const updateData: any = { status: newStatus, updatedAt: new Date().toISOString() };
-      // If confirming, assign provider details
+      const updateData: any = { status: newStatus };
       if (newStatus === 'Confirmed' && !request.providerId) {
-          updateData.providerId = user.id;
-          updateData.providerName = user.name || user.email;
+        updateData.providerId = user.id;
+        updateData.providerName = user.name || user.email;
       }
-      await updateDoc(requestDocRef, updateData);
-      setRequest(prev => prev ? { ...prev, ...updateData } : null);
+      const res = await fetch(`/api/service-requests/${request.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updateData),
+      });
+      const result = await res.json();
+      if (!result.success) throw new Error(result.error);
+      setRequest(prev => prev ? { ...prev, ...updateData, updatedAt: new Date().toISOString() } : null);
       toast({ title: "Status Updated", description: `Request status successfully changed to ${newStatus}.`});
     } catch (error: any) {
         console.error("Error updating status:", error);

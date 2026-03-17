@@ -11,8 +11,7 @@ import { ArrowLeft, Phone, Activity, CheckCircle, Clock, AlertTriangle, Calendar
 import type { ServiceRequest, User } from "@/lib/types"; 
 import { Badge } from "@/components/ui/badge";
 import { ChatWindow } from "@/components/shared/chat/ChatWindow";
-import { db } from "@/lib/firebase";
-import { doc, getDoc } from "firebase/firestore";
+
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -62,31 +61,29 @@ export default function TrackRequestPage() {
         return;
     }
 
-    // FIRESTORE LOGIC FOR REAL USERS
     try {
-        const requestDocRef = doc(db, "serviceRequests", reqId);
-        const requestDoc = await getDoc(requestDocRef);
+        // Fetch request from API
+        const res = await fetch(`/api/service-requests/${reqId}`);
+        const result = await res.json();
+        if (!result.success) throw new Error(result.error || "Service request not found.");
 
-        if (!requestDoc.exists()) {
-            throw new Error("Service request not found or access denied.");
+        const requestData = result.data;
+        if (requestData.clientId !== user?.id) {
+          throw new Error("You do not have permission to view this request.");
         }
+        setRequest(requestData);
 
-        const requestData = requestDoc.data() as Omit<ServiceRequest, 'id'>;
-        const requestedDate = requestData.requestedDate?.toDate ? requestData.requestedDate.toDate().toISOString() : requestData.requestedDate;
-        
-        // Security check: ensure the logged-in user is the one who created the request
-        if(requestData.clientId !== user?.id) {
-           throw new Error("You do not have permission to view this request.");
-        }
-        
-        setRequest({ ...requestData, id: requestDoc.id, requestedDate });
-
+        // Fetch provider details if assigned
         if (requestData.providerId) {
-            const providerDocRef = doc(db, "users", requestData.providerId);
-            const providerDoc = await getDoc(providerDocRef);
-            if (providerDoc.exists()) {
-                setProviderDetails({ id: providerDoc.id, ...providerDoc.data() } as User);
+          try {
+            const provRes = await fetch(`/api/users/${requestData.providerId}`);
+            const provResult = await provRes.json();
+            if (provResult.success) {
+              setProviderDetails(provResult.data);
             }
+          } catch (e: any) {
+            console.warn("Could not fetch provider details:", e);
+          }
         }
     } catch (error: any) {
         console.error("Error fetching request:", error);

@@ -16,8 +16,7 @@ import { CalendarIcon, Activity, Send, DollarSign, UserCheck, UploadCloud } from
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
-import { db } from "@/lib/firebase";
-import { collection, addDoc } from "firebase/firestore";
+
 import type { ServiceRequest } from "@/lib/types";
 
 const NDT_SERVICES = [
@@ -136,7 +135,14 @@ function RequestServiceFormContent() {
     };
 
     try {
-        const docRef = await addDoc(collection(db, "serviceRequests"), newRequest);
+        const res = await fetch("/api/service-requests", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newRequest),
+        });
+        const result = await res.json();
+        if (!result.success) throw new Error(result.error || "Failed to create request");
+        const docRef = { id: result.data.id };
         
         // Send email notification to provider
         if (providerId && providerName) {

@@ -11,11 +11,8 @@ import { Briefcase, Eye, Check, X, Activity, Users, MessageSquare } from "lucide
 import type { ServiceRequest } from "../../lib/types";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { db } from "@/lib/firebase";
-import { collection, query, where, getDocs, updateDoc, doc, orderBy } from "firebase/firestore";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ChatWindow } from "@/components/shared/chat/ChatWindow";
-import { MOCK_PROVIDER_REQUESTS } from "@/lib/mockData";
 
 const StatusBadge = ({ status }: { status: ServiceRequest['status'] }) => {
   let variant: "default" | "secondary" | "destructive" | "outline" = "default";
@@ -36,73 +33,28 @@ export default function ProviderRequestsPage() {
   const [requests, setRequests] = useState<ServiceRequest[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [chattingWithRequest, setChattingWithRequest] = useState<ServiceRequest | null>(null);
-  const [isShowingExamples, setIsShowingExamples] = useState(false);
-
   const fetchRequests = useCallback(async (userId: string) => {
     setIsLoading(true);
-    setIsShowingExamples(false);
 
     if (user?.isDemo) {
-        setRequests(MOCK_PROVIDER_REQUESTS);
+        setRequests([]);
         setIsLoading(false);
         return;
     }
-    
+
     try {
-      const requestsCollectionRef = collection(db, "serviceRequests");
-      // Query for requests specifically assigned to this provider
-      const qAssigned = query(requestsCollectionRef, where("providerId", "==", userId), orderBy("createdAt", "desc"));
-      // Fetch all pending requests, filter for providerId == null in JS
-      const qPending = query(requestsCollectionRef, where("status", "==", "Pending"), orderBy("createdAt", "desc"));
-      const [assignedSnapshot, pendingSnapshot] = await Promise.all([getDocs(qAssigned), getDocs(qPending)]);
-
-      const fetchedRequests: ServiceRequest[] = [];
-      const seenIds = new Set<string>();
-
-      const processSnapshot = (snapshot: any) => {
-         snapshot.forEach((doc: any) => {
-          if (!seenIds.has(doc.id)) {
-            const data = doc.data();
-            const requestedDate = data.requestedDate?.toDate ? data.requestedDate.toDate().toISOString() : data.requestedDate;
-            fetchedRequests.push({ id: doc.id, ...data, requestedDate } as ServiceRequest);
-            seenIds.add(doc.id);
-          }
-        });
-      };
-      
-      processSnapshot(assignedSnapshot);
-      processSnapshot(pendingSnapshot);
-
-      // Sort to have provider's own requests first, then pending.
-      fetchedRequests.sort((a, b) => {
-        if (a.providerId === userId && b.providerId !== userId) return -1;
-        if (a.providerId !== userId && b.providerId === userId) return 1;
-        // For items in the same category, sort by creation date
-        const dateA = a.createdAt?.toDate ? a.createdAt.toDate() : new Date(0);
-        const dateB = b.createdAt?.toDate ? b.createdAt.toDate() : new Date(0);
-        return dateB.getTime() - dateA.getTime();
-      });
-
-      if (fetchedRequests.length === 0) {
-        setRequests(MOCK_PROVIDER_REQUESTS);
-        setIsShowingExamples(true);
-        toast({
-          title: "Displaying Example Requests",
-          description: "There are no active requests. Showing example data.",
-        });
-      } else {
-        setRequests(fetchedRequests);
-      }
-
+      const res = await fetch(`/api/service-requests?providerId=${userId}&includeOpen=true`);
+      const result = await res.json();
+      if (!result.success) throw new Error(result.error);
+      setRequests(result.data);
     } catch (error: any) {
       console.error("Error fetching service requests:", error);
       toast({
         title: "Error",
-        description: "Failed to fetch service requests from the database. Showing examples.",
+        description: "Failed to fetch service requests.",
         variant: "destructive",
       });
-      setRequests(MOCK_PROVIDER_REQUESTS);
-      setIsShowingExamples(true);
+      setRequests([]);
     } finally {
       setIsLoading(false);
     }
@@ -129,15 +81,18 @@ export default function ProviderRequestsPage() {
     if (!request || !user) return;
 
     try {
-        const requestDocRef = doc(db, "serviceRequests", requestId);
-        // If accepting, assign the providerId
-        const updateData: any = { status: newStatus, updatedAt: new Date().toISOString() };
+        const updateData: any = { status: newStatus };
         if (newStatus === 'Confirmed' && !request.providerId) {
-            updateData.providerId = user.id;
-            updateData.providerName = user.name || user.email;
+          updateData.providerId = user.id;
+          updateData.providerName = user.name || user.email;
         }
-
-        await updateDoc(requestDocRef, updateData);
+        const res = await fetch(`/api/service-requests/${requestId}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updateData),
+        });
+        const result = await res.json();
+        if (!result.success) throw new Error(result.error);
         // Refresh the list to show the change
         fetchRequests(user.id);
         toast({
@@ -166,7 +121,6 @@ export default function ProviderRequestsPage() {
           <p className="text-muted-foreground">
             Manage and respond to NDT service requests from clients.
             {user.isDemo && <span className="font-semibold text-primary ml-2">(Demo Mode)</span>}
-            {isShowingExamples && <span className="font-semibold text-primary ml-2">(Example Data)</span>}
           </p>
         </div>
 
@@ -225,7 +179,7 @@ export default function ProviderRequestsPage() {
             <CardContent className="flex flex-col items-center gap-4">
               <Briefcase className="h-16 w-16 text-muted-foreground" />
               <h3 className="text-xl font-semibold">No active service requests.</h3>
-              <p className="text-muted-foreground">{isShowingExamples ? "The examples above show how requests will appear." : "Keep an eye on this page for new client requests."}</p>
+              <p className="text-muted-foreground">Keep an eye on this page for new client requests.</p>
               <Button variant="outline" asChild>
                 <Link href="/provider-profile">
                   <Users className="h-4 w-4 mr-2" /> Update Availability

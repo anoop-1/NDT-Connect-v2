@@ -3,7 +3,7 @@
 "use client";
 
 import { ProviderCard } from "@/components/client/ProviderCard";
-import type { ServiceProvider, User } from "@/lib/types";
+import type { ServiceProvider } from "@/lib/types";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, Filter, ShieldCheck, AlertTriangle, Activity } from "lucide-react";
@@ -12,8 +12,6 @@ import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { db } from "@/lib/firebase";
-import { collection, getDocs, query, where } from "firebase/firestore";
 import { useToast } from "@/hooks/use-toast";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -93,56 +91,10 @@ export default function FindProvidersPage() {
     }
 
     try {
-      const usersRef = collection(db, "users");
-      const q = query(usersRef, where("role", "in", ["provider", "inspector"]), where("isActive", "==", true));
-      const querySnapshot = await getDocs(q);
-      const fetchedUsers: User[] = [];
-      querySnapshot.forEach((doc) => {
-        fetchedUsers.push({ id: doc.id, ...doc.data() } as User);
-      });
-
-      const providersData: ServiceProvider[] = fetchedUsers.map((u: any) => {
-          if (u.role === 'provider') {
-            return {
-                id: u.id,
-                name: u.providerProfile?.companyName || u.name || "Unnamed Provider",
-                location: u.providerProfile?.location || "Location not set",
-                services: u.providerProfile?.servicesOffered || [],
-                specialization: u.providerProfile?.specialization || "General NDT Services",
-                rating: u.providerProfile?.rating || 4.0,
-                description: u.providerProfile?.description || "No description available.",
-                imageUrl: u.providerProfile?.companyLogoUrl,
-                dataAiHint: u.providerProfile?.dataAiHint,
-                baseRate: u.providerProfile?.baseRate,
-                certifications: u.providerProfile?.certifications,
-                personnelQualifications: u.providerProfile?.personnelQualifications,
-                isVerified: u.providerProfile?.isVerified,
-                availableDocuments: u.providerProfile?.availableDocuments,
-                isCompany: true,
-            };
-          } else { // 'inspector'
-            const primaryQual = u.inspectorProfile?.personnelQualifications?.[0];
-            return {
-                id: u.id,
-                name: u.name || "Unnamed Inspector",
-                location: u.inspectorProfile?.location || "Location not specified",
-                services: [], // Inspectors list qualifications, not services for sale
-                specialization: primaryQual ? `${primaryQual.certificationBody} ${primaryQual.level}` : "NDT Inspector",
-                rating: 4.0, // Default rating for new inspectors
-                description: u.inspectorProfile?.association === 'company' ? `Inspector at ${u.inspectorProfile.companyName}` : 'Freelance NDT Inspector',
-                imageUrl: undefined, // No logo for inspectors by default
-                dataAiHint: "person portrait",
-                baseRate: undefined, // No base rate
-                certifications: [], // No company certs
-                personnelQualifications: u.inspectorProfile?.personnelQualifications || [],
-                isVerified: false,
-                availableDocuments: [],
-                isCompany: false,
-            };
-          }
-      });
-      
-      setAllProviders(providersData);
+      const res = await fetch("/api/providers");
+      const result = await res.json();
+      if (!result.success) throw new Error(result.error);
+      setAllProviders(result.data);
 
     } catch (e: any) {
       console.error("Error fetching providers:", e);

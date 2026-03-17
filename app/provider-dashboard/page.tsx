@@ -9,8 +9,6 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Briefcase, UserCircle, Settings, Activity, FileSignature, FileBarChart } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { db } from "@/lib/firebase";
-import { collection, query, where, getDocs } from "firebase/firestore";
 import { ToastAction } from "@/components/ui/toast";
 
 
@@ -35,24 +33,12 @@ export default function ProviderDashboardPage() {
           const notifiedRequestsStr = sessionStorage.getItem('notifiedRequestIds') || '[]';
           const notifiedRequestIds = new Set(JSON.parse(notifiedRequestsStr));
 
-          // Query 1: For requests assigned directly to this provider
-          const assignedQuery = query(collection(db, "serviceRequests"), where("providerId", "==", user.id), where("status", "==", "Pending"));
-          
-          // Query 2: For open requests available to all providers
-          const openQuery = query(collection(db, "serviceRequests"), where("status", "==", "Pending"));
-          const openSnapshot = await getDocs(openQuery);
-          const openRequests = openSnapshot.docs
-            .map(doc => ({ id: doc.id, ...(doc.data() as { providerId?: string }) }))
-            .filter(req => !req.providerId);
+          const res = await fetch(`/api/service-requests?providerId=${user.id}&includeOpen=true&status=Pending`);
+          const result = await res.json();
+          if (!result.success) return;
+          const allPendingRequestIds = result.data.map((r: any) => r.id);
 
-          const assignedSnapshot = await getDocs(assignedQuery);
-          
-          const allPendingRequestIds = [
-            ...assignedSnapshot.docs.map(doc => doc.id),
-            ...openRequests.map(req => req.id)
-          ];
-
-          const newRequestIds = allPendingRequestIds.filter(id => !notifiedRequestIds.has(id));
+          const newRequestIds = allPendingRequestIds.filter((id: string) => !notifiedRequestIds.has(id));
 
           if (newRequestIds.length > 0) {
             toast({

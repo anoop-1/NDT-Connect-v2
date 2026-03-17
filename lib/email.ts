@@ -17,13 +17,17 @@ async function getTransporter() {
       });
     } else {
       console.log("Using PROD -> Sending email as prod");    
+      const port = parseInt(process.env.SMTP_PORT || '465');
       return nodemailer.createTransport({
         host: process.env.SMTP_HOST,
-        port: 587,
-        secure: false,
+        port,
+        secure: port === 465,
         auth: {
           user: process.env.SMTP_USER,
           pass: process.env.SMTP_PASS,
+        },
+        tls: {
+          rejectUnauthorized: false,
         },
       });
     }
@@ -56,7 +60,7 @@ export async function sendServiceRequestNotification(
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://ndt-connect.com';
 
   const mailOptions = {
-    from: 'NDT Connect <no-reply@ndt-connect.com>',
+    from: 'NDT Connect <info@ndt-connect.com>',
     to: providerEmail,
     subject: `New Service Request: ${request.serviceType} in ${request.location}`,
     html: `
@@ -93,7 +97,7 @@ export async function sendRequestStatusUpdate(
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://ndt-connect.com';
 
   const mailOptions = {
-    from: 'NDT Connect <no-reply@ndt-connect.com>',
+    from: 'NDT Connect <info@ndt-connect.com>',
     to: clientEmail,
     subject: `Request Update: ${request.serviceType} — ${request.status}`,
     html: `
@@ -124,7 +128,7 @@ export async function sendVerificationEmail(email: string, token: string) {
   const verifyUrl = `${baseUrl}/api/verify?token=${token}`;
 
   const mailOptions = {
-    from: 'NDT Connect <no-reply@ndtconnect.com>',
+    from: 'NDT Connect <info@ndt-connect.com>',
     to: email,
     subject: 'Verify your NDT Connect account',
     html: `<p>Thank you for registering with NDT Connect!</p>

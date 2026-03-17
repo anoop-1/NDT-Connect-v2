@@ -11,8 +11,7 @@ import { Briefcase, PlusCircle, FileText, Activity, AlertTriangle, CheckCircle, 
 import type { ServiceRequest } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 import { ChatWindow } from "@/components/shared/chat/ChatWindow";
-import { db } from "@/lib/firebase";
-import { collection, query, where, getDocs, orderBy } from "firebase/firestore";
+
 import { useToast } from "@/hooks/use-toast";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
@@ -70,18 +69,10 @@ export default function MyRequestsPage() {
     }
     
     try {
-      const requestsCollectionRef = collection(db, "serviceRequests");
-      const q = query(requestsCollectionRef, where("clientId", "==", userId), orderBy("createdAt", "desc"));
-      const querySnapshot = await getDocs(q);
-      const fetchedRequests: ServiceRequest[] = [];
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        // Convert Firestore Timestamps to strings for state compatibility
-        const requestedDate = data.requestedDate?.toDate ? data.requestedDate.toDate().toISOString() : data.requestedDate;
-        fetchedRequests.push({ id: doc.id, ...data, requestedDate } as ServiceRequest);
-      });
-      
-      setRequests(fetchedRequests);
+      const res = await fetch(`/api/service-requests?clientId=${userId}`);
+      const result = await res.json();
+      if (!result.success) throw new Error(result.error);
+      setRequests(result.data);
     } catch (error: any) {
       console.error("Error fetching service requests:", error);
       toast({

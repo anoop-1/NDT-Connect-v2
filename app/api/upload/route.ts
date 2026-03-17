@@ -1,77 +1,62 @@
 import { NextRequest, NextResponse } from "next/server";
-import { initializeApp, getApps, cert } from "firebase-admin/app";
-import { getStorage } from "firebase-admin/storage";
+import dbConnect from "@/lib/mongodb";
+import mongoose from "mongoose";
 
-// Initialize Firebase Admin (server-side only)
-function getFirebaseAdmin() {
-  if (!getApps().length) {
-    // For Vercel: use env vars. Firebase Admin can use application default credentials
-    // or a service account. For simplicity with Firebase Storage public bucket:
-    initializeApp({
-      projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-      storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-    });
-  }
-  return getStorage();
-}
+const FileSchema = new mongoose.Schema({
+  filename: String,
+  contentType: String,
+  size: Number,
+  data: Buffer,
+  folder: String,
+  createdAt: { type: Date, default: Date.now },
+});
+
+const FileModel = mongoose.models?.File || mongoose.model('File', FileSchema);
 
 export async function POST(req: NextRequest) {
   try {
+    await dbConnect();
+
     const formData = await req.formData();
-    const file = formData.get("file") as File | null;
+    const file = formData.get("file") as File;
     const folder = (formData.get("folder") as string) || "uploads";
 
     if (!file) {
-      return NextResponse.json({ error: "No file provided" }, { status: 400 });
+      return NextResponse.json({ success: false, error: "No file provided" }, { status: 400 });
     }
 
-    // Validate file size (10MB max)
+    // 10MB limit
     if (file.size > 10 * 1024 * 1024) {
-      return NextResponse.json({ error: "File too large. Maximum 10MB." }, { status: 400 });
+      return NextResponse.json({ success: false, error: "File too large. Max 10MB." }, { status: 400 });
     }
 
-    // Validate file type
     const allowedTypes = [
-      "application/pdf",
-      "image/jpeg", "image/png", "image/webp",
-      "application/vnd.ms-excel",
-      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-      "application/msword",
-      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-      "text/plain",
+      'application/pdf', 'image/jpeg', 'image/png', 'image/webp',
+      'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'text/plain',
     ];
+
     if (!allowedTypes.includes(file.type)) {
-      return NextResponse.json({ error: "File type not allowed" }, { status: 400 });
+      return NextResponse.json({ success: false, error: "File type not allowed" }, { status: 400 });
     }
 
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-    const timestamp = Date.now();
-    const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
-    const filePath = `${folder}/${timestamp}_${safeName}`;
+    const buffer = Buffer.from(await file.arrayBuffer());
 
-    const storage = getFirebaseAdmin();
-    const bucket = storage.bucket();
-    const fileRef = bucket.file(filePath);
-
-    await fileRef.save(buffer, {
-      metadata: {
-        contentType: file.type,
-        metadata: { originalName: file.name },
-      },
+    const savedFile = await FileModel.create({
+      filename: file.name,
+      contentType: file.type,
+      size: file.size,
+      data: buffer,
+      folder,
     });
 
-    // Make file publicly accessible
-    await fileRef.makePublic();
-    const publicUrl = `https://storage.googleapis.com/${bucket.name}/${filePath}`;
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://ndt-connect.com';
+    const url = `${baseUrl}/api/files/${savedFile._id}`;
 
-    return NextResponse.json({ success: true, url: publicUrl, path: filePath });
+    return NextResponse.json({ success: true, url, fileId: savedFile._id.toString() });
   } catch (error: any) {
     console.error("Upload error:", error);
-    // Fallback: if Firebase Admin isn't configured, use client-side upload approach
-    return NextResponse.json(
-      { error: "Upload failed", details: error.message },
-      { status: 500 }
-    );
+    return NextResponse.json({ success: false, error: "Upload failed" }, { status: 500 });
   }
 }
