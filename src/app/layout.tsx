@@ -6,6 +6,7 @@ import { AuthProvider } from '@/contexts/AuthContext';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Toaster } from '@/components/ui/toaster';
+import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
 
 const fontSans = Inter({
   variable: '--font-sans',
@@ -36,6 +37,7 @@ export default function RootLayout({
         className={`${fontSans.variable} ${fontMono.variable} antialiased flex flex-col min-h-screen`}
         suppressHydrationWarning={true}
       >
+        <GoogleAnalytics />
         <AuthProvider>
           <Header />
           <main className="flex-grow container py-8">
