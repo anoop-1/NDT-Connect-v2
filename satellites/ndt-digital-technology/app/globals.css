@@ -1,0 +1,9 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #1a1a1a; line-height: 1.7; }
+a { color: #9333ea; }
+h1 { font-size: 2.2rem; margin-bottom: 16px; color: #9333ea; }
+h2 { font-size: 1.5rem; margin: 32px 0 12px; color: #333; }
+h3 { font-size: 1.2rem; margin: 24px 0 8px; color: #444; }
+p { margin-bottom: 16px; color: #555; }
+ul { margin: 0 0 16px 24px; }
+li { margin-bottom: 8px; color: #555; }

@@ -1,0 +1,191 @@
+================================================================================
+NDT CONNECT URL GENERATION REPORT
+Generated: 2026-03-16
+Domain: https://ndt-connect.com
+================================================================================
+
+TOTAL URLS GENERATED: 2,901
+
+BREAKDOWN BY CATEGORY:
+================================================================================
+
+1. STATIC PAGES (15 URLs)
+   - https://ndt-connect.com/
+   - https://ndt-connect.com/about
+   - https://ndt-connect.com/contact
+   - https://ndt-connect.com/faq
+   - https://ndt-connect.com/blog
+   - https://ndt-connect.com/services
+   - https://ndt-connect.com/industries
+   - https://ndt-connect.com/find-providers
+   - https://ndt-connect.com/certifications
+   - https://ndt-connect.com/glossary
+   - https://ndt-connect.com/standards
+   - https://ndt-connect.com/careers
+   - https://ndt-connect.com/case-studies
+   - https://ndt-connect.com/register
+   - https://ndt-connect.com/login
+
+2. TOOL PAGES (3 URLs)
+   - https://ndt-connect.com/tools/ndt-method-selector
+   - https://ndt-connect.com/tools/inspection-cost-estimator
+   - https://ndt-connect.com/tools/certification-pathway
+
+3. NDT METHOD PAGES (12 URLs)
+   Services in: /services/[method]
+   - ultrasonic-testing
+   - radiographic-testing
+   - magnetic-particle-testing
+   - penetrant-testing
+   - eddy-current-testing
+   - visual-testing
+   - phased-array-ut
+   - tofd-testing
+   - guided-wave-testing
+   - acoustic-emission-testing
+   - magnetic-flux-leakage
+   - corrosion-mapping
+
+4. INDUSTRY PAGES (7 URLs)
+   Industries in: /industries/[slug]
+   - oil-and-gas
+   - aerospace
+   - power-generation
+   - manufacturing
+   - marine-and-offshore
+   - construction
+   - mining
+
+5. CERTIFICATION PAGES (6 URLs)
+   Certifications in: /certifications/[slug]
+   - asnt-certification
+   - iso-9712
+   - api-510
+   - api-570
+   - api-653
+   - pcn-certification
+
+6. BLOG PAGES (18 URLs)
+   Blog posts in: /blog/[slug]
+   - ultimate-guide-ultrasonic-testing
+   - rbi-corrosion-management
+   - choosing-ndt-service-provider
+   - ndt-certifications-explained
+   - pipeline-inspection-techniques
+   - real-time-inspection-tracking
+   - ndt-digital-twins-guide
+   - ndt-career-guide-2026
+   - ut-vs-rt-comparison
+   - ndt-industry-statistics
+   - corrosion-under-insulation-guide
+   - weld-inspection-complete-guide
+   - ndt-inspection-cost-guide
+   - what-is-ndt-testing
+   - api-510-exam-preparation-guide
+   - ndt-vs-destructive-testing
+   - magnetic-particle-testing-complete-guide
+   - phased-array-ultrasonic-testing-guide
+
+7. CAREER ROLE PAGES (15 URLs)
+   Career roles in: /careers/roles/[slug]
+   - ndt-technician-level-1
+   - ndt-technician-level-2
+   - ndt-technician-level-3
+   - ndt-inspector
+   - radiographic-technician
+   - ultrasonic-technician
+   - welding-inspector
+   - corrosion-engineer
+   - ndt-supervisor
+   - ndt-manager
+   - quality-assurance-manager
+   - pipeline-inspector
+   - offshore-ndt-technician
+   - aerospace-ndt-specialist
+   - ndt-trainer
+
+8. NDT METHOD COMPARISON PAGES (66 URLs)
+   All combinations in: /compare/[method1]-vs-[method2]
+   Generated from 12 NDT methods (12 choose 2 = 66 pairs)
+
+9. GLOSSARY PAGES (126 URLs)
+   Glossary terms in: /glossary/[term]
+   96 unique glossary terms extracted from glossary-data.ts
+
+10. STANDARDS PAGES (84 URLs)
+    Standards in: /standards/[slug]
+    84 unique standards extracted from standards-data.ts
+
+11. GEOGRAPHIC PAGES - CITIES (75 URLs)
+    Base city pages in: /ndt-services/[city]
+    75 major cities across: USA, UAE, India, SE Asia, Europe, Canada, Australia, Africa, LATAM
+    
+    USA (20): houston, los-angeles, new-orleans, denver, chicago, seattle, dallas, phoenix,
+              philadelphia, san-francisco, detroit, pittsburgh, baton-rouge, corpus-christi,
+              tulsa, beaumont, new-york, boston, atlanta, miami
+    
+    Middle East (10): dubai, abu-dhabi, saudi-arabia, qatar, kuwait, bahrain, oman, 
+                      jubail, yanbu, dammam
+    
+    India (11): mumbai, hyderabad, bangalore, chennai, delhi, kolkata, pune, ahmedabad, 
+                kochi, vizag, jamnagar
+    
+    SE Asia (6): singapore, malaysia, indonesia, thailand, vietnam, philippines
+    
+    Europe (8): london, aberdeen, norway, netherlands, germany, france, spain, italy
+    
+    Canada (4): calgary, edmonton, toronto, vancouver
+    
+    Australia (4): sydney, melbourne, brisbane, perth
+    
+    Africa (6): nigeria, south-africa, cape-town, johannesburg, nairobi, egypt
+    
+    LATAM (6): brazil, argentina, chile, colombia, mexico, trinidad
+
+12. CITY x METHOD PAGES (900 URLs)
+    Location-specific service pages in: /ndt-services/[city]/[method]
+    75 cities × 12 NDT methods = 900 pages
+    Example: /ndt-services/houston/ultrasonic-testing
+
+13. CITY x INDUSTRY PAGES (525 URLs)
+    Location-specific industry pages in: /ndt-services/[city]/[industry]
+    75 cities × 7 industries = 525 pages
+    Example: /ndt-services/houston/oil-and-gas
+
+14. COST GUIDE PAGES (900 URLs)
+    Cost estimation pages in: /cost-guide/[city]/[service]
+    75 cities × 12 NDT methods = 900 pages
+    Example: /cost-guide/houston/ultrasonic-testing
+
+15. TRAINING PAGES (75 URLs)
+    Training availability pages in: /training/[city]
+    One page per city (75 total)
+    Example: /training/houston
+
+16. CAREER CITY PAGES (75 URLs)
+    Location-based career opportunities in: /careers/[city]
+    One page per city (75 total)
+    Example: /careers/houston
+
+================================================================================
+GEOGRAPHIC COVERAGE:
+================================================================================
+- 75 cities across 8 major regions
+- Primary focus on major petroleum/aerospace hubs
+- Strong coverage in Middle East (oil & gas) and India (growing market)
+- Complete North American coverage
+- European presence in key locations
+- Emerging markets in Africa and LATAM
+
+================================================================================
+OUTPUT FILE LOCATION:
+================================================================================
+/sessions/nice-zealous-noether/mnt/NDT Connect/all-urls-for-gsc.txt
+
+File contains 2,901 URLs (one per line), ready for:
+- Google Search Console (GSC) URL inspection
+- Bing Webmaster Tools submission
+- Sitemap verification
+- SEO audit crawls
+
+================================================================================

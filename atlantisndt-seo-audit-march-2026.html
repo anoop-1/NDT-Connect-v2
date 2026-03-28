@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atlantis NDT - SEO Audit & Growth Plan - March 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f1f5f9; color: #1e293b; line-height: 1.7; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+
+  .header { background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%); color: white; padding: 48px 24px; margin-bottom: 32px; border-radius: 16px; }
+  .header h1 { font-size: 2rem; margin-bottom: 8px; }
+  .header p { opacity: 0.85; font-size: 1.1rem; }
+  .header .date { opacity: 0.6; font-size: 0.85rem; margin-top: 12px; }
+
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .kpi { background: white; border-radius: 12px; padding: 24px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  .kpi .label { font-size: 0.8rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .kpi .value { font-size: 2.2rem; font-weight: 700; }
+  .kpi .sub { font-size: 0.75rem; color: #94a3b8; margin-top: 4px; }
+  .red { color: #dc2626; }
+  .orange { color: #f59e0b; }
+  .green { color: #16a34a; }
+  .blue { color: #2563eb; }
+
+  .section { background: white; border-radius: 12px; padding: 32px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  .section h2 { font-size: 1.4rem; color: #0f172a; margin-bottom: 16px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
+  .section h3 { font-size: 1.1rem; color: #334155; margin: 20px 0 10px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.88rem; }
+  th { background: #f8fafc; padding: 10px 12px; text-align: left; font-weight: 600; color: #475569; border-bottom: 2px solid #e2e8f0; }
+  td { padding: 10px 12px; border-bottom: 1px solid #f1f5f9; }
+  tr:hover td { background: #fafbfd; }
+
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 100px; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
+  .badge-red { background: #fef2f2; color: #dc2626; }
+  .badge-orange { background: #fffbeb; color: #d97706; }
+  .badge-green { background: #f0fdf4; color: #16a34a; }
+  .badge-blue { background: #eff6ff; color: #2563eb; }
+
+  .issue-card { background: #fafbfd; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px; margin: 12px 0; }
+  .issue-card .title { font-weight: 700; color: #0f172a; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .issue-card .count { font-size: 1.5rem; font-weight: 700; }
+  .issue-card .detail { font-size: 0.88rem; color: #64748b; }
+  .issue-card .fix { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 12px; margin-top: 10px; font-size: 0.85rem; color: #166534; }
+
+  .priority-1 { border-left: 4px solid #dc2626; }
+  .priority-2 { border-left: 4px solid #f59e0b; }
+  .priority-3 { border-left: 4px solid #3b82f6; }
+
+  .gap-bar { display: flex; align-items: center; gap: 8px; margin: 4px 0; }
+  .gap-bar .bar-bg { flex: 1; height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden; }
+  .gap-bar .bar-fill { height: 100%; border-radius: 4px; }
+  .gap-bar .label { font-size: 0.75rem; color: #64748b; min-width: 40px; text-align: right; }
+
+  .timeline { position: relative; padding-left: 24px; }
+  .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: #e2e8f0; }
+  .timeline-item { position: relative; margin-bottom: 24px; }
+  .timeline-item::before { content: ''; position: absolute; left: -20px; top: 6px; width: 12px; height: 12px; border-radius: 50%; border: 2px solid #3b82f6; background: white; }
+  .timeline-item.done::before { background: #16a34a; border-color: #16a34a; }
+  .timeline-item .time { font-size: 0.75rem; color: #3b82f6; font-weight: 600; text-transform: uppercase; }
+  .timeline-item .desc { font-size: 0.92rem; color: #1e293b; margin-top: 4px; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
+
+  .highlight { background: linear-gradient(135deg, #eff6ff, #dbeafe); border: 1px solid #93c5fd; border-radius: 10px; padding: 20px; margin: 16px 0; }
+
+  .cta-box { background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; border-radius: 12px; padding: 24px; text-align: center; margin-top: 32px; }
+  .cta-box h3 { font-size: 1.3rem; margin-bottom: 8px; }
+  .cta-box p { opacity: 0.9; font-size: 0.95rem; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>Atlantis NDT — SEO Audit & Growth Plan</h1>
+  <p>Comprehensive analysis with actionable roadmap to 1,000 clicks/day</p>
+  <div class="date">March 15, 2026 | Data from Google Search Console (last updated March 10-13, 2026)</div>
+</div>
+
+<!-- KPI DASHBOARD -->
+<div class="kpi-grid">
+  <div class="kpi">
+    <div class="label">Clicks (7 days)</div>
+    <div class="value red">34</div>
+    <div class="sub">~4.9/day avg | Target: 1,000/day</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Impressions (7 days)</div>
+    <div class="value orange">3.39K</div>
+    <div class="sub">~484/day avg | Target: 10,000+/day</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Average CTR</div>
+    <div class="value red">1.0%</div>
+    <div class="sub">Industry benchmark: 3-5%</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Average Position</div>
+    <div class="value orange">14.9</div>
+    <div class="sub">Page 2 avg | Need: Top 5</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Indexed Pages</div>
+    <div class="value green">258</div>
+    <div class="sub">of 480 known pages</div>
+  </div>
+  <div class="kpi">
+    <div class="label">Not Indexed</div>
+    <div class="value red">222</div>
+    <div class="sub">46% of pages! Target: &lt;10</div>
+  </div>
+</div>
+
+<!-- 28-DAY OVERVIEW -->
+<div class="section">
+  <h2>28-Day Performance Overview</h2>
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="label">Total Clicks (28d)</div>
+      <div class="value blue">102</div>
+      <div class="sub">~3.6/day</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Total Impressions (28d)</div>
+      <div class="value blue">9.93K</div>
+      <div class="sub">~355/day — trending UP</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Unique Queries (28d)</div>
+      <div class="value blue">508</div>
+      <div class="sub">Good keyword breadth</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Pages with Impressions</div>
+      <div class="value blue">149</div>
+      <div class="sub">of 258 indexed</div>
+    </div>
+  </div>
+
+  <h3>Cyclic Traffic Pattern — Diagnosis</h3>
+  <p style="color:#64748b; margin-bottom:12px;">The traffic fluctuates between ~2-10 clicks/day in a repeating cycle. This is <strong>normal for B2B/industrial content</strong> — NDT professionals search during weekdays (Mon-Fri), and traffic drops 50-70% on weekends. The dips consistently align with Saturdays/Sundays.</p>
+  <div class="highlight">
+    <strong>How to flatten the cycle:</strong> The weekday/weekend dip cannot be fully eliminated since your audience is industrial professionals. However, you can reduce its impact by: (1) Adding consumer-education content ("what is NDT testing", "NDT career guide") that attracts students/job-seekers who search on weekends, (2) Targeting international markets across timezones, (3) Building email/social traffic sources that don't depend on search intent timing.
+  </div>
+</div>
+
+<!-- NOT-INDEXED ANALYSIS -->
+<div class="section">
+  <h2>Not-Indexed Pages Analysis (222 Pages)</h2>
+  <p style="color:#64748b; margin-bottom:20px;">This is the #1 problem holding back growth. Nearly half your pages aren't in Google's index.</p>
+
+  <div class="issue-card priority-1">
+    <div class="title"><span class="badge badge-red">Critical</span> Discovered – Currently Not Indexed</div>
+    <div class="count">94 pages</div>
+    <div class="detail">Google knows these pages exist but has <strong>chosen not to crawl them</strong>. This signals low perceived quality or crawl budget issues. Affected: consulting/city pages (/consulting/ndt-consulting-casablanca, chile, china, ghana...), training pages (/aerospace-ndt-training, /api-570-training), method pages (/acoustic-emission-testing).</div>
+    <div class="fix"><strong>Fix:</strong> These pages likely have thin/template content. Google is rationing its crawl budget and deprioritizing pages it deems low-value. Solutions: (1) Substantially enrich content on each page — at least 800-1200 words of unique content, (2) Improve internal linking FROM high-authority pages TO these pages, (3) Submit via Indexing API (already running daily), (4) Consider consolidating very similar thin pages.</div>
+  </div>
+
+  <div class="issue-card priority-1">
+    <div class="title"><span class="badge badge-red">Critical</span> Page with Redirect</div>
+    <div class="count">56 pages</div>
+    <div class="detail">56 URLs redirect to other pages. Google is tracking the old URLs. These waste crawl budget and dilute link equity.</div>
+    <div class="fix"><strong>Fix:</strong> (1) Update ALL internal links to point to final destination URLs (not the redirect source), (2) Remove redirect URLs from sitemap.xml, (3) Wait for Google to re-crawl — these will naturally resolve, (4) If redirects are from an old WordPress site migration, ensure 301 (permanent) not 302 (temporary) redirects.</div>
+  </div>
+
+  <div class="issue-card priority-1">
+    <div class="title"><span class="badge badge-red">Critical</span> Crawled – Currently Not Indexed</div>
+    <div class="count">35 pages</div>
+    <div class="detail">Google crawled these pages but decided <strong>they're not good enough to index</strong>. This is worse than "Discovered" — Google actively rejected them. Affected: city pages (/ndt-services-philadelphia, /ndt-services-denver, /ndt-services-chicago, /ndt-services-uk), consulting pages (/consulting/ndt-consulting-bangkok, lagos), blog posts (/blog/visual-testing, /blog/ndt-training-complete-guide). Validation status: <strong>Failed</strong>.</div>
+    <div class="fix"><strong>Fix:</strong> These pages need the most improvement. Google crawled them and said "not worth indexing." (1) Add substantial unique content — 1500+ words per page, (2) Add unique data/stats/tools per city (local inspectors, local standards, city-specific use cases), (3) Ensure SSR (no client-side loading spinners), (4) Add structured data (LocalBusiness, Service schemas), (5) Improve E-E-A-T signals.</div>
+  </div>
+
+  <div class="issue-card priority-2">
+    <div class="title"><span class="badge badge-orange">High</span> Soft 404</div>
+    <div class="count">16 pages</div>
+    <div class="detail">Google thinks these pages are basically empty or error-like. <strong>Mostly city/service pages:</strong> /ndt-services-los-angeles, /ndt-services-saudi-arabia, /ndt-services-dubai, /ndt-services-new-orleans, /ndt-services-calgary, /ndt-services-bangalore, /ndt-services-texas, plus old WordPress URL /2024/05/19/damages-due-to-corrosion/.</div>
+    <div class="fix"><strong>Fix:</strong> Soft 404 = Google sees the page returns 200 OK but has little/no meaningful content. Common causes: (1) "use client" pages with loading spinner (Googlebot sees empty), (2) Pages with just a title and no body content, (3) Template pages with identical boilerplate. Fix by ensuring server-side rendering and substantial unique content per city.</div>
+  </div>
+
+  <div class="two-col">
+    <div class="issue-card priority-3">
+      <div class="title"><span class="badge badge-blue">Medium</span> Duplicate Canonical</div>
+      <div class="count">11 pages</div>
+      <div class="detail">Google chose a different canonical URL than you specified. Likely WWW vs non-WWW or HTTP vs HTTPS variants.</div>
+      <div class="fix"><strong>Fix:</strong> Ensure consistent canonical URLs across all pages. Force HTTPS and one domain variant.</div>
+    </div>
+    <div class="issue-card priority-3">
+      <div class="title"><span class="badge badge-blue">Medium</span> Alternative Canonical</div>
+      <div class="count">8 pages</div>
+      <div class="detail">Pages pointing canonical to another page. Expected for paginated or variant pages.</div>
+      <div class="fix"><strong>Fix:</strong> Review — if intentional, no action needed. If not, fix canonical tags.</div>
+    </div>
+  </div>
+</div>
+
+<!-- TOP QUERIES ANALYSIS -->
+<div class="section">
+  <h2>Query Analysis — Quick Win Opportunities</h2>
+  <p style="color:#64748b; margin-bottom:16px;">508 unique queries in 28 days. Here are the highest-impact opportunities:</p>
+
+  <h3>Queries with High Impressions but 0 Clicks (Position Problems)</h3>
+  <table>
+    <thead>
+      <tr><th>Query</th><th>Impressions (28d)</th><th>Clicks</th><th>Position</th><th>Issue</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>eddy current testing</strong></td><td>300</td><td>0</td><td>55.3</td><td class="red">Page 6</td><td>Need dedicated, authoritative 3000+ word guide</td></tr>
+      <tr><td><strong>ultrasonic testing</strong></td><td>132</td><td>0</td><td>68.5</td><td class="red">Page 7</td><td>Existing content too thin; rewrite with depth</td></tr>
+      <tr><td><strong>eddy current inspection</strong></td><td>101</td><td>0</td><td>56.5</td><td class="red">Page 6</td><td>Covered by eddy current testing page</td></tr>
+      <tr><td><strong>api 570</strong></td><td>66</td><td>0</td><td>48.1</td><td class="red">Page 5</td><td>Enrich API 570 certification page</td></tr>
+      <tr><td><strong>rt vs ut</strong></td><td>54</td><td>0</td><td>8.1</td><td class="orange">Almost Page 1!</td><td><strong>QUICK WIN:</strong> Optimize title/meta for clicks</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Best-Performing Pages (7 days)</h3>
+  <table>
+    <thead>
+      <tr><th>Page</th><th>Clicks</th><th>Impressions</th><th>CTR</th><th>Position</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>/ (homepage)</td><td>5</td><td>37</td><td style="color:#16a34a">13.5%</td><td>8.9</td></tr>
+      <tr><td>/blog/eddy-current-testing</td><td>3</td><td>571</td><td>0.5%</td><td>28.8</td></tr>
+      <tr><td>/api-510-certification</td><td>3</td><td>222</td><td>1.4%</td><td>13.2</td></tr>
+      <tr><td>/api-570-certification</td><td>2</td><td>171</td><td>1.2%</td><td>15.7</td></tr>
+      <tr><td>/resources</td><td>2</td><td>29</td><td style="color:#16a34a">6.9%</td><td style="color:#16a34a">4.7</td></tr>
+      <tr><td>/blog/ndt-salary-guide-2025</td><td>1</td><td>192</td><td>0.5%</td><td style="color:#16a34a">4.1</td></tr>
+      <tr><td>/api-653-certification</td><td>1</td><td>174</td><td>0.6%</td><td>18.3</td></tr>
+      <tr><td>/blog/api-653-tank-inspection-guide</td><td>1</td><td>74</td><td>1.4%</td><td>9.3</td></tr>
+      <tr><td>/training-me</td><td>1</td><td>66</td><td>1.5%</td><td>8.9</td></tr>
+      <tr><td>/tools</td><td>1</td><td>25</td><td>4%</td><td style="color:#16a34a">6.4</td></tr>
+    </tbody>
+  </table>
+
+  <div class="highlight">
+    <strong>Key Insight:</strong> The salary guide blog post has 192 impressions at position 4.1 but only 1 click (0.5% CTR). This is a meta description/title tag problem — the content ranks well but the search snippet isn't compelling enough to click. Similarly, the eddy current testing blog has 571 impressions but only 3 clicks at position 28.8 — a content depth problem.
+  </div>
+</div>
+
+<!-- GAP TO TARGET -->
+<div class="section">
+  <h2>Gap to Target: 1,000 Clicks/Day</h2>
+
+  <div class="two-col" style="margin-bottom: 20px;">
+    <div>
+      <h3>Current State</h3>
+      <table>
+        <tr><td>Daily clicks</td><td><strong>~3.6</strong></td></tr>
+        <tr><td>Daily impressions</td><td><strong>~355</strong></td></tr>
+        <tr><td>Average CTR</td><td><strong>1.0%</strong></td></tr>
+        <tr><td>Average position</td><td><strong>16.8</strong></td></tr>
+        <tr><td>Indexed pages</td><td><strong>258</strong></td></tr>
+      </table>
+    </div>
+    <div>
+      <h3>Target State</h3>
+      <table>
+        <tr><td>Daily clicks</td><td><strong style="color:#16a34a">1,000</strong></td></tr>
+        <tr><td>Daily impressions</td><td><strong style="color:#16a34a">10,000+</strong></td></tr>
+        <tr><td>Average CTR</td><td><strong style="color:#16a34a">5-10%</strong></td></tr>
+        <tr><td>Average position</td><td><strong style="color:#16a34a">&lt;8</strong></td></tr>
+        <tr><td>Indexed pages</td><td><strong style="color:#16a34a">450+</strong></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <h3>The Math</h3>
+  <p style="color:#475569;">To reach 1,000 clicks/day you need approximately:</p>
+  <div style="background:#f8fafc; border-radius:8px; padding:16px; margin:12px 0; font-size:0.92rem;">
+    <strong>Option A (CTR focus):</strong> 10,000 impressions/day × 10% CTR = 1,000 clicks<br>
+    <strong>Option B (Volume focus):</strong> 25,000 impressions/day × 4% CTR = 1,000 clicks<br>
+    <strong>Option C (Balanced):</strong> 15,000 impressions/day × 6.7% CTR = 1,000 clicks<br><br>
+    <strong>Realistic path:</strong> Option C — improve both impressions (from 355 → 15,000 = 42x) and CTR (from 1% → 6.7% = 6.7x). This requires: getting 450+ pages indexed, improving average position to top 5, and optimizing all title tags/meta descriptions.
+  </div>
+
+  <p style="color:#dc2626; font-weight:600; margin-top:16px;">Honest assessment: 1,000 clicks/day is achievable but will take 4-6 months of sustained effort. The site is currently at 0.36% of target. Immediate wins (fixing indexing, CTR optimization) can get to 50-100 clicks/day within 4-6 weeks.</p>
+</div>
+
+<!-- ACTION PLAN -->
+<div class="section">
+  <h2>Action Plan — Prioritized Roadmap</h2>
+
+  <h3>Phase 1: Fix Critical Issues (Week 1-2) — Expected Impact: 3x traffic</h3>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="time">Priority 1 — Fix Soft 404 City Pages</div>
+      <div class="desc">The 16 soft 404 pages (mostly city/service pages like /ndt-services-los-angeles) need to be fixed. Ensure all city pages: (1) are server-side rendered (no "use client" with loading spinners), (2) have 800+ words of unique content per city, (3) include local business schema, (4) have proper H1 tags and meta descriptions. If the codebase isn't accessible here, this needs to be done in the atlantisndt.com repo.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="time">Priority 2 — Fix 56 Redirect Pages</div>
+      <div class="desc">Audit all internal links for redirect chains. Update sitemap.xml to remove redirected URLs. Ensure all 301 redirects (not 302). Update old WordPress URLs (/2024/05/19/...) to clean new paths.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="time">Priority 3 — Title Tag & Meta Description Optimization</div>
+      <div class="desc">The salary guide at position 4.1 gets only 0.5% CTR — fix with compelling title like "NDT Salary Guide 2026: What Level I, II & III Inspectors Earn Globally". The "rt vs ut" query at position 8.1 needs a click-optimized title. Every page's title should include the primary keyword and a benefit/hook. Meta descriptions should include a call-to-action.</div>
+    </div>
+  </div>
+
+  <h3>Phase 2: Content Depth & Quality (Week 3-6) — Expected Impact: 10x traffic</h3>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="time">Priority 4 — Rewrite Top 10 High-Impression Pages</div>
+      <div class="desc">Focus on pages getting impressions but no clicks due to poor rankings. The eddy current testing page (571 impressions, position 28.8) needs to become a definitive 4000+ word guide with: diagrams, comparison tables, standards references (ASME, ASTM), equipment reviews, case studies, FAQ section. Same for ultrasonic testing, API certification pages.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="time">Priority 5 — Enrich All City Pages</div>
+      <div class="desc">The 94 "Discovered not indexed" pages are mostly consulting/city pages with thin content. Each city page needs: local industry context (e.g., Houston = oil & gas hub), specific inspection companies/facilities, local standards/regulations, job market data, unique FAQs. Consolidate very thin pages — if two cities have identical content, merge them or differentiate substantially.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="time">Priority 6 — Create Pillar Content for High-Volume Keywords</div>
+      <div class="desc">Target keywords with 1000+ monthly searches: "ultrasonic testing" (12K/mo), "eddy current testing" (6.6K/mo), "radiographic testing" (5.4K/mo), "magnetic particle testing" (4.4K/mo), "NDT testing" (4.4K/mo). Each needs a 3000-5000 word pillar page with: what/why/how, comparison tables, standards, equipment, career paths, and internal links to supporting content.</div>
+    </div>
+  </div>
+
+  <h3>Phase 3: Authority & Scale (Week 7-12) — Expected Impact: 50-100x traffic</h3>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="time">Priority 7 — Backlink Campaign</div>
+      <div class="desc">Current backlink profile is likely weak. Strategies: (1) Guest posts on NDT industry publications, (2) Get listed on ASNT, API, ISO partner directories, (3) Create link-worthy tools (free NDT calculator, certification tracker), (4) Use the 15 satellite sites already created for NDTConnect to also link to atlantisndt.com, (5) Industry forum participation with profile links.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="time">Priority 8 — Programmatic SEO for Long-Tail</div>
+      <div class="desc">Create template-based pages targeting long-tail: "[NDT method] in [city]" (e.g., "ultrasonic testing in Houston"), "[certification] requirements in [country]", "[NDT method] for [industry]". Each must have genuinely unique, useful content — not just city name swaps.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="time">Priority 9 — Technical SEO Maintenance</div>
+      <div class="desc">Continue GSC Indexing API submissions (200/day, atlantisndt first), monitor and fix any new indexing issues weekly, implement hreflang for international pages, add structured data to ALL pages (Article, Service, LocalBusiness, FAQ schemas), optimize Core Web Vitals once traffic increases enough to generate CrUX data.</div>
+    </div>
+  </div>
+</div>
+
+<!-- QUICK WINS TABLE -->
+<div class="section">
+  <h2>Immediate Quick Wins (Do This Week)</h2>
+  <table>
+    <thead>
+      <tr><th>#</th><th>Action</th><th>Expected Impact</th><th>Effort</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td><strong>Optimize title/meta for "rt vs ut"</strong> — position 8.1 with 0 clicks. Add compelling title like "RT vs UT: Which NDT Method is Better? [2026 Comparison]"</td><td>+5-10 clicks/week</td><td>15 min</td></tr>
+      <tr><td>2</td><td><strong>Optimize salary guide meta</strong> — position 4.1, 192 impressions, only 1 click. Title should be "NDT Salary Guide 2026: Level I-III Pay by Country"</td><td>+10-20 clicks/week</td><td>15 min</td></tr>
+      <tr><td>3</td><td><strong>Fix the /ndt-services-* soft 404s</strong> — ensure SSR and substantial content on all 16 affected city pages</td><td>+16 indexed pages, more impressions</td><td>2-4 hours</td></tr>
+      <tr><td>4</td><td><strong>Remove redirect URLs from sitemap</strong> — 56 redirects are wasting crawl budget</td><td>Faster indexing of real pages</td><td>30 min</td></tr>
+      <tr><td>5</td><td><strong>Optimize "asnt certification" page</strong> — position 10.5 with 19 impressions. Just outside top 10. Small content boost could push to page 1</td><td>+50-100 impressions/week</td><td>1 hour</td></tr>
+      <tr><td>6</td><td><strong>Optimize "api 653 certification" page</strong> — position 12.7 with 18 impressions. Close to page 1</td><td>+30-60 impressions/week</td><td>1 hour</td></tr>
+      <tr><td>7</td><td><strong>Submit all 94 "discovered not indexed" URLs via Indexing API</strong> — force Google to crawl them</td><td>Potential +50-94 indexed pages</td><td>Already automated</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- MONTHLY PROJECTIONS -->
+<div class="section">
+  <h2>Monthly Traffic Projections (Conservative)</h2>
+  <table>
+    <thead>
+      <tr><th>Month</th><th>Est. Daily Clicks</th><th>Est. Daily Impressions</th><th>CTR</th><th>Key Milestones</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Current (Mar '26)</strong></td><td>3-5</td><td>350-500</td><td>1%</td><td>Baseline</td></tr>
+      <tr><td><strong>April '26</strong></td><td>15-30</td><td>1,000-2,000</td><td>2%</td><td>Indexing fixes done, quick wins deployed</td></tr>
+      <tr><td><strong>May '26</strong></td><td>50-100</td><td>3,000-5,000</td><td>2.5%</td><td>Content rewrites ranking, backlinks building</td></tr>
+      <tr><td><strong>June '26</strong></td><td>100-200</td><td>5,000-8,000</td><td>3%</td><td>Pillar content gaining authority</td></tr>
+      <tr><td><strong>July '26</strong></td><td>200-400</td><td>8,000-12,000</td><td>3.5%</td><td>City pages indexed, long-tail traffic growing</td></tr>
+      <tr><td><strong>Aug-Sep '26</strong></td><td>400-700</td><td>12,000-18,000</td><td>4%</td><td>Compounding growth, backlink authority</td></tr>
+      <tr><td><strong>Oct-Dec '26</strong></td><td>700-1,000+</td><td>15,000-25,000</td><td>5%+</td><td>Target achieved with sustained effort</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="cta-box">
+  <h3>Next Step: Access the atlantisndt.com Codebase</h3>
+  <p>To implement the fixes above (SSR conversion, content enrichment, meta tag optimization, sitemap cleanup), I need access to the atlantisndt.com source code repository. The NDTConnect codebase is in this workspace, but atlantisndt.com appears to be a separate project. Please provide the repo path or clone it into the workspace so I can start executing Phase 1 immediately.</p>
+</div>
+
+</div>
+</body>
+</html>

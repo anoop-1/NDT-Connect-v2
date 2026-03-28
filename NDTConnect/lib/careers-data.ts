@@ -1,0 +1,532 @@
+// ============================================================
+// NDT Connect - Careers & Roles Data
+// Powers career pages, salary information, and job listings
+// ============================================================
+
+export interface CareerRole {
+  slug: string;
+  title: string;
+  description: string;
+  longDescription?: string;
+  salaryRange: {
+    min: number; // USD
+    max: number; // USD
+  };
+  certifications: string[]; // Required certifications
+  experience: number; // Years required
+  responsibilities: string[];
+  skills: string[];
+  keyAttributes?: string[];
+}
+
+export const careerRoles: CareerRole[] = [
+  {
+    slug: 'ndt-technician-level-1',
+    title: 'NDT Technician Level 1',
+    description: 'Entry-level NDT professional performing basic non-destructive testing under supervision following established procedures.',
+    longDescription: 'Level 1 NDT Technicians are entry-level professionals who perform specific NDT tasks under direct supervision. They work with established procedures and interpret results following detailed instructions. This is typically an entry point into the NDT industry.',
+    salaryRange: { min: 40000, max: 55000 },
+    certifications: ['ASNT Level 1 (or equivalent)', 'Basic NDT Safety Certification'],
+    experience: 0,
+    responsibilities: [
+      'Perform routine NDT inspections following established procedures',
+      'Operate NDT equipment under supervision',
+      'Record inspection data and results',
+      'Maintain and calibrate NDT instruments',
+      'Assist with report preparation',
+      'Follow all safety protocols and procedures',
+      'Complete training and certification requirements',
+    ],
+    skills: [
+      'Attention to detail',
+      'Technical aptitude',
+      'Physical stamina',
+      'Communication skills',
+      'Manual dexterity',
+      'Safety awareness',
+      'Basic computer skills',
+    ],
+    keyAttributes: ['Entry-level', 'Supervised', 'Procedural', 'Learning-focused'],
+  },
+  {
+    slug: 'ndt-technician-level-2',
+    title: 'NDT Technician Level 2',
+    description: 'Intermediate NDT professional qualified to perform independent NDT inspections, interpret results, and mentor Level 1 technicians.',
+    longDescription: 'Level 2 NDT Technicians are the backbone of the industry. They perform independent inspections, interpret complex results, and are responsible for quality assurance. Many Level 2 technicians work as independent contractors or site supervisors.',
+    salaryRange: { min: 55000, max: 80000 },
+    certifications: ['ASNT Level 2 (or equivalent)', 'Multiple method certifications required'],
+    experience: 3,
+    responsibilities: [
+      'Perform independent NDT inspections across multiple methods',
+      'Interpret NDT results and prepare comprehensive reports',
+      'Select and set up appropriate NDT equipment and procedures',
+      'Train and mentor Level 1 technicians',
+      'Conduct equipment calibration and maintenance',
+      'Ensure compliance with applicable standards and codes',
+      'Document findings and communicate results to clients',
+      'Identify equipment or procedure issues',
+    ],
+    skills: [
+      'Technical expertise in multiple NDT methods',
+      'Result interpretation and analysis',
+      'Problem-solving',
+      'Team leadership',
+      'Report writing',
+      'Equipment operation and maintenance',
+      'Knowledge of NDT standards',
+      'Client communication',
+    ],
+    keyAttributes: ['Independent', 'Technical', 'Leadership', 'Quality-focused'],
+  },
+  {
+    slug: 'ndt-technician-level-3',
+    title: 'NDT Technician Level 3',
+    description: 'Senior NDT professional with extensive expertise, responsible for developing procedures, training, and technical decision-making.',
+    longDescription: 'Level 3 NDT Technicians are senior professionals with extensive knowledge and responsibility. They develop NDT procedures, oversee technical programs, make critical decisions about test methods and acceptance criteria, and mentor other technicians.',
+    salaryRange: { min: 80000, max: 120000 },
+    certifications: ['ASNT Level 3 (or equivalent)', 'Multiple advanced certifications'],
+    experience: 8,
+    responsibilities: [
+      'Develop and validate NDT procedures and methodologies',
+      'Make technical decisions regarding acceptance criteria',
+      'Direct and oversee NDT programs and projects',
+      'Train and certify Level 1 and 2 technicians',
+      'Perform advanced and specialized NDT inspections',
+      'Conduct technical audits and quality reviews',
+      'Consult on complex inspection challenges',
+      'Maintain and advance technical knowledge',
+      'Develop testing standards and protocols',
+    ],
+    skills: [
+      'Advanced NDT expertise',
+      'Procedure development',
+      'Technical leadership',
+      'Mentoring and training',
+      'Research and development',
+      'Standards interpretation',
+      'Project management',
+      'Strategic thinking',
+    ],
+    keyAttributes: ['Senior', 'Expert', 'Leadership', 'Innovation-focused'],
+  },
+  {
+    slug: 'ndt-inspector',
+    title: 'NDT Inspector',
+    description: 'Specialized NDT professional focused on inspection planning, execution, and reporting for complex projects and facilities.',
+    longDescription: 'NDT Inspectors are specialists who plan comprehensive inspection programs, execute inspections, and manage inspection projects. They often work for large companies, inspection firms, or as consultants, managing multiple inspections across diverse facilities.',
+    salaryRange: { min: 65000, max: 95000 },
+    certifications: ['ASNT Level 2 or Level 3', 'API 510/570/653 (industry-specific)'],
+    experience: 4,
+    responsibilities: [
+      'Plan comprehensive inspection programs',
+      'Conduct complex and specialized inspections',
+      'Develop inspection schedules and strategies',
+      'Manage inspection projects and teams',
+      'Prepare detailed inspection reports',
+      'Interface with clients and stakeholders',
+      'Ensure regulatory compliance',
+      'Recommend maintenance or repairs based on findings',
+      'Track inspection histories and trends',
+    ],
+    skills: [
+      'Project management',
+      'Planning and scheduling',
+      'NDT expertise',
+      'Client relations',
+      'Report writing',
+      'Data analysis',
+      'Regulatory knowledge',
+      'Leadership',
+    ],
+    keyAttributes: ['Project-focused', 'Client-facing', 'Strategic', 'Compliance-driven'],
+  },
+  {
+    slug: 'radiographic-technician',
+    title: 'Radiographic Technician (RT)',
+    description: 'Specialized NDT technician with expertise in radiographic testing using X-ray and gamma ray equipment.',
+    longDescription: 'Radiographic Technicians specialize in radiographic testing (RT), one of the most critical NDT methods. They operate X-ray and gamma ray equipment, interpret radiographs, and are often required to have additional safety certifications due to radiation exposure.',
+    salaryRange: { min: 60000, max: 90000 },
+    certifications: ['ASNT Level 2 RT certification', 'Radiation Safety Certification', 'API 1104'],
+    experience: 2,
+    responsibilities: [
+      'Operate radiographic equipment (X-ray and gamma ray sources)',
+      'Position equipment and materials for optimal imaging',
+      'Interpret radiographic images',
+      'Ensure radiation safety protocols',
+      'Maintain radiation detection equipment',
+      'Prepare radiographic reports',
+      'Manage radiation documentation and records',
+      'Conduct cavity location and flaw identification',
+    ],
+    skills: [
+      'Radiographic interpretation',
+      'Equipment operation',
+      'Radiation safety',
+      'Image analysis',
+      'Problem-solving',
+      'Attention to detail',
+      'Safety compliance',
+      'Documentation',
+    ],
+    keyAttributes: ['Specialized', 'Safety-critical', 'Technical', 'Detailed'],
+  },
+  {
+    slug: 'ultrasonic-technician',
+    title: 'Ultrasonic Technician (UT)',
+    description: 'Specialized NDT technician focused on ultrasonic testing for material thickness, flaw detection, and structural integrity.',
+    longDescription: 'Ultrasonic Technicians specialize in ultrasonic testing (UT), one of the most versatile NDT methods. They work with conventional UT, phased array UT (PAUT), and time-of-flight diffraction (TOFD) techniques for detecting internal and surface flaws.',
+    salaryRange: { min: 55000, max: 85000 },
+    certifications: ['ASNT Level 2 UT certification', 'Phased Array UT (PAUT) optional'],
+    experience: 2,
+    responsibilities: [
+      'Perform ultrasonic inspections using conventional and phased array equipment',
+      'Calibrate ultrasonic equipment',
+      'Interpret ultrasonic data and produce reports',
+      'Perform thickness measurements',
+      'Detect and characterize internal flaws',
+      'Maintain detailed inspection records',
+      'Operate advanced UT equipment (PAUT, TOFD)',
+      'Troubleshoot equipment issues',
+    ],
+    skills: [
+      'Ultrasonic interpretation',
+      'Equipment operation',
+      'Sound wave physics knowledge',
+      'Data analysis',
+      'Flaw characterization',
+      'Calibration and setup',
+      'Technical troubleshooting',
+      'Report writing',
+    ],
+    keyAttributes: ['Specialized', 'Versatile', 'Technical', 'Data-driven'],
+  },
+  {
+    slug: 'welding-inspector',
+    title: 'Welding Inspector',
+    description: 'Specialized professional responsible for inspecting welds using NDT methods to ensure code compliance and structural integrity.',
+    longDescription: 'Welding Inspectors are responsible for the quality assurance of welded components. They use NDT methods including visual, ultrasonic, radiographic, and magnetic particle testing to ensure welds meet code requirements and safety standards.',
+    salaryRange: { min: 60000, max: 90000 },
+    certifications: ['ASNT Level 2 Multiple Methods', 'AWS Certified Welding Inspector (CWI)', 'API 1104'],
+    experience: 4,
+    responsibilities: [
+      'Inspect welds using multiple NDT methods',
+      'Verify weld quality against codes and standards',
+      'Review weld procedures and specifications',
+      'Perform visual inspections and flaw detection',
+      'Prepare inspection and test reports',
+      'Interface with welders and production teams',
+      'Ensure compliance with AWS, API, and ASME standards',
+      'Recommend rework or repairs as needed',
+      'Maintain inspection records and documentation',
+    ],
+    skills: [
+      'Multiple NDT methods',
+      'Weld metallurgy knowledge',
+      'Code and standard interpretation',
+      'Visual inspection',
+      'Quality assurance',
+      'Documentation',
+      'Team communication',
+      'Leadership',
+    ],
+    keyAttributes: ['Quality-focused', 'Code-compliant', 'Manufacturing', 'Detail-oriented'],
+  },
+  {
+    slug: 'corrosion-engineer',
+    title: 'Corrosion Engineer',
+    description: 'Engineering professional focused on monitoring, assessing, and preventing corrosion through NDT and analytical methods.',
+    longDescription: 'Corrosion Engineers combine material science, engineering analysis, and NDT techniques to monitor and prevent corrosion. They develop corrosion management programs, interpret NDT data related to corrosion, and recommend mitigation strategies.',
+    salaryRange: { min: 75000, max: 110000 },
+    certifications: ['ASNT Level 2+ in multiple methods', 'Corrosion Management Certification', 'PE (Professional Engineer) preferred'],
+    experience: 5,
+    responsibilities: [
+      'Develop and implement corrosion monitoring programs',
+      'Analyze corrosion inspection data',
+      'Perform corrosion rate assessments',
+      'Recommend protective measures and treatments',
+      'Consult on materials selection',
+      'Manage pipeline and pressure vessel corrosion programs',
+      'Produce detailed corrosion assessment reports',
+      'Coordinate with operations and maintenance teams',
+    ],
+    skills: [
+      'Corrosion science and materials knowledge',
+      'NDT data interpretation',
+      'Statistical analysis',
+      'Engineering principles',
+      'Project management',
+      'Problem-solving',
+      'Technical communication',
+      'Data analysis',
+    ],
+    keyAttributes: ['Engineering-focused', 'Analytical', 'Preventive', 'Strategic'],
+  },
+  {
+    slug: 'ndt-supervisor',
+    title: 'NDT Supervisor',
+    description: 'Leadership professional responsible for planning, coordinating, and managing NDT inspection teams and programs.',
+    longDescription: 'NDT Supervisors oversee NDT operations, manage inspection teams, ensure quality standards, and coordinate with other departments. They are responsible for scheduling, resource allocation, and ensuring all inspections meet regulatory and client requirements.',
+    salaryRange: { min: 75000, max: 110000 },
+    certifications: ['ASNT Level 3 preferred', 'Leadership/Management training', 'API certifications'],
+    experience: 6,
+    responsibilities: [
+      'Supervise and manage NDT technicians',
+      'Plan and coordinate inspection schedules',
+      'Ensure quality assurance of all inspections',
+      'Manage inspection budgets and resources',
+      'Develop and implement NDT procedures',
+      'Train and evaluate technician performance',
+      'Coordinate with operations and engineering teams',
+      'Prepare program reports and documentation',
+      'Ensure regulatory compliance and safety',
+    ],
+    skills: [
+      'Team leadership',
+      'Project management',
+      'NDT technical expertise',
+      'Budget management',
+      'Scheduling and planning',
+      'Performance evaluation',
+      'Communication',
+      'Problem-solving',
+    ],
+    keyAttributes: ['Leadership', 'Operational', 'Organized', 'Compliance-driven'],
+  },
+  {
+    slug: 'ndt-manager',
+    title: 'NDT Manager',
+    description: 'Senior management professional overseeing NDT departments, strategies, and business operations.',
+    longDescription: 'NDT Managers are responsible for the overall NDT function within an organization. They develop NDT strategies, manage budgets, hire and develop staff, represent NDT in organizational decision-making, and ensure alignment with company objectives.',
+    salaryRange: { min: 90000, max: 140000 },
+    certifications: ['ASNT Level 3 required', 'Advanced management certifications preferred'],
+    experience: 10,
+    responsibilities: [
+      'Develop and implement NDT strategies and programs',
+      'Manage NDT department budget and resources',
+      'Hire, train, and develop NDT personnel',
+      'Ensure regulatory compliance across all operations',
+      'Establish quality standards and procedures',
+      'Interface with senior management and clients',
+      'Drive continuous improvement initiatives',
+      'Manage customer relationships and contracts',
+      'Report on NDT program performance and metrics',
+    ],
+    skills: [
+      'Strategic planning',
+      'Business management',
+      'Leadership and team development',
+      'Financial management',
+      'Regulatory knowledge',
+      'Negotiation',
+      'Communication',
+      'Innovation and improvement',
+    ],
+    keyAttributes: ['Strategic', 'Executive', 'Business-focused', 'Leadership'],
+  },
+  {
+    slug: 'quality-assurance-manager',
+    title: 'Quality Assurance Manager',
+    description: 'Management professional responsible for quality programs incorporating NDT and ensuring compliance with standards.',
+    longDescription: 'Quality Assurance Managers develop and oversee quality programs that integrate NDT as a critical component. They establish quality metrics, conduct audits, manage customer complaints, and drive continuous improvement initiatives.',
+    salaryRange: { min: 80000, max: 120000 },
+    certifications: ['ASNT Level 2+ preferred', 'ISO 9001 Lead Auditor', 'Quality management certification'],
+    experience: 7,
+    responsibilities: [
+      'Develop and implement quality assurance programs',
+      'Integrate NDT into quality control processes',
+      'Conduct quality audits and assessments',
+      'Manage non-conformances and corrective actions',
+      'Establish quality metrics and KPIs',
+      'Train quality and NDT personnel',
+      'Interface with customers on quality matters',
+      'Drive process improvements',
+      'Maintain quality documentation and records',
+    ],
+    skills: [
+      'Quality management',
+      'NDT knowledge',
+      'Audit and assessment',
+      'Process improvement',
+      'Documentation',
+      'Leadership',
+      'Communication',
+      'Data analysis',
+    ],
+    keyAttributes: ['Quality-focused', 'Process-oriented', 'Compliance-driven', 'Improvement-focused'],
+  },
+  {
+    slug: 'pipeline-inspector',
+    title: 'Pipeline Inspector',
+    description: 'Specialized professional responsible for inspecting pipelines using NDT to ensure safe operation and regulatory compliance.',
+    longDescription: 'Pipeline Inspectors specialize in the inspection and monitoring of pipeline systems. They use NDT methods to detect corrosion, cracks, dents, and other anomalies. They develop inspection strategies, manage pipeline integrity programs, and report findings to regulatory agencies.',
+    salaryRange: { min: 65000, max: 100000 },
+    certifications: ['ASNT Level 2 Multiple Methods', 'API 570', 'Pipeline Integrity Management'],
+    experience: 4,
+    responsibilities: [
+      'Perform NDT inspections of pipelines',
+      'Develop and manage pipeline integrity programs',
+      'Interpret pigging data and inspection results',
+      'Assess pipeline condition and remaining life',
+      'Recommend maintenance and repair actions',
+      'Ensure regulatory compliance (PHMSA, state regulations)',
+      'Manage inspection records and documentation',
+      'Coordinate with operations and maintenance teams',
+      'Prepare detailed condition assessment reports',
+    ],
+    skills: [
+      'Pipeline inspection techniques',
+      'NDT expertise',
+      'Data analysis',
+      'Regulatory knowledge',
+      'Risk assessment',
+      'Problem-solving',
+      'Documentation',
+      'Communication',
+    ],
+    keyAttributes: ['Specialized', 'Regulatory-focused', 'Field-based', 'Safety-critical'],
+  },
+  {
+    slug: 'offshore-ndt-technician',
+    title: 'Offshore NDT Technician',
+    description: 'Specialized NDT technician with expertise in offshore and marine environments, including platforms and subsea infrastructure.',
+    longDescription: 'Offshore NDT Technicians work in challenging offshore environments on oil and gas platforms, FPSO vessels, subsea pipelines, and marine structures. They require extensive safety training, specialized equipment knowledge, and ability to work in hazardous conditions.',
+    salaryRange: { min: 80000, max: 130000 },
+    certifications: ['ASNT Level 2 Multiple Methods', 'OPITO/IMCA Offshore Safety Certification', 'Basic Safety Training (BST)'],
+    experience: 3,
+    responsibilities: [
+      'Perform NDT inspections on offshore platforms and vessels',
+      'Inspect subsea pipelines and equipment',
+      'Work safely in harsh marine environments',
+      'Operate specialized NDT equipment in offshore conditions',
+      'Maintain detailed inspection records',
+      'Comply with offshore safety regulations',
+      'Conduct hot work and confined space inspections',
+      'Interface with platform operators and supervisors',
+      'Prepare inspection reports in offshore settings',
+    ],
+    skills: [
+      'Offshore safety knowledge',
+      'Multiple NDT methods',
+      'Equipment operation',
+      'Marine/subsea environments',
+      'Safety compliance',
+      'Physical fitness',
+      'Team coordination',
+      'Problem-solving in challenging environments',
+    ],
+    keyAttributes: ['Specialized', 'High-risk', 'Well-compensated', 'Safety-critical'],
+  },
+  {
+    slug: 'aerospace-ndt-specialist',
+    title: 'Aerospace NDT Specialist',
+    description: 'Specialized NDT professional with expertise in aerospace materials, components, and stringent quality requirements.',
+    longDescription: 'Aerospace NDT Specialists work in the highly regulated aerospace industry, where zero-defect tolerance is standard. They inspect aircraft structures, engine components, composites, and systems using advanced NDT techniques and must maintain rigorous documentation.',
+    salaryRange: { min: 75000, max: 115000 },
+    certifications: ['ASNT Level 2+ Multiple Methods', 'NAS 410 Aerospace certification', 'Composite inspection certification'],
+    experience: 4,
+    responsibilities: [
+      'Perform inspections on aircraft structures and components',
+      'Inspect aerospace engine components and assemblies',
+      'Work with advanced composite materials',
+      'Use advanced NDT techniques (PAUT, thermography, etc.)',
+      'Maintain aerospace quality documentation standards',
+      'Ensure compliance with FAA and OEM requirements',
+      'Prepare detailed inspection and quality reports',
+      'Support manufacturing and maintenance operations',
+      'Participate in continuous improvement initiatives',
+    ],
+    skills: [
+      'Aerospace NDT specialization',
+      'Composite material inspection',
+      'Advanced NDT techniques',
+      'Quality and documentation',
+      'Regulatory compliance',
+      'Attention to detail',
+      'Technical problem-solving',
+      'Communication',
+    ],
+    keyAttributes: ['Specialized', 'Quality-critical', 'Advanced', 'Regulated'],
+  },
+  {
+    slug: 'ndt-trainer',
+    title: 'NDT Trainer/Instructor',
+    description: 'Professional educator responsible for training and certifying NDT technicians, ensuring industry competency standards.',
+    longDescription: 'NDT Trainers are experienced professionals who educate the next generation of NDT technicians. They develop curriculum, deliver instruction, administer exams, and ensure students meet ASNT, ISO, or other certification standards. Many trainers work for NDT training facilities or companies.',
+    salaryRange: { min: 60000, max: 95000 },
+    certifications: ['ASNT Level 3 required', 'ASNT Certified Instructor', 'Advanced NDT expertise'],
+    experience: 8,
+    responsibilities: [
+      'Develop NDT training curriculum and materials',
+      'Deliver classroom and hands-on training instruction',
+      'Administer and grade certification examinations',
+      'Evaluate student performance and competency',
+      'Maintain training records and documentation',
+      'Keep abreast of industry standards and practices',
+      'Counsel students on career pathways',
+      'Support training program management',
+      'Conduct safety and competency assessments',
+    ],
+    skills: [
+      'Advanced NDT expertise',
+      'Teaching and communication',
+      'Curriculum development',
+      'Assessment and evaluation',
+      'Technical knowledge',
+      'Mentoring',
+      'Organization and planning',
+      'Professional development',
+    ],
+    keyAttributes: ['Educational', 'Mentoring', 'Knowledge-focused', 'Development-oriented'],
+  },
+];
+
+// Helper functions
+export function getCareersByExperienceLevel(level: 'entry' | 'intermediate' | 'advanced'): CareerRole[] {
+  const filterMap = {
+    entry: (role: CareerRole) => role.experience === 0 || role.experience <= 1,
+    intermediate: (role: CareerRole) => role.experience > 1 && role.experience <= 5,
+    advanced: (role: CareerRole) => role.experience > 5,
+  };
+
+  return careerRoles.filter(filterMap[level]);
+}
+
+export function getCareersWithSalaryRange(minSalary: number, maxSalary: number): CareerRole[] {
+  return careerRoles.filter(
+    (role) => role.salaryRange.max >= minSalary && role.salaryRange.min <= maxSalary
+  );
+}
+
+export function adjustSalaryByRegion(baseMin: number, baseMax: number, region: string): { min: number; max: number } {
+  const regionMultipliers: { [key: string]: number } = {
+    // Premium regions
+    'California': 1.25,
+    'New York': 1.25,
+    'Texas (Houston)': 1.2,
+    'Washington': 1.15,
+
+    // Middle regions
+    'Illinois': 1.05,
+    'Pennsylvania': 1.05,
+    'Massachusetts': 1.1,
+    'Florida': 0.95,
+
+    // Lower regions
+    'default': 1.0,
+  };
+
+  const multiplier = regionMultipliers[region] || regionMultipliers['default'];
+
+  return {
+    min: Math.round(baseMin * multiplier),
+    max: Math.round(baseMax * multiplier),
+  };
+}
+
+export function getAllCareerSlugs(): string[] {
+  return careerRoles.map((role) => role.slug);
+}
+
+export function getCareerBySlug(slug: string): CareerRole | undefined {
+  return careerRoles.find((role) => role.slug === slug);
+}

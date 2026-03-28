@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NDT Connect - SEO Assessment & Action Plan</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8fafc; color: #1e293b; line-height: 1.6; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+
+  .header { background: linear-gradient(135deg, #004aad 0%, #0066cc 100%); color: white; padding: 48px 24px; margin-bottom: 32px; border-radius: 16px; }
+  .header h1 { font-size: 2rem; margin-bottom: 8px; }
+  .header p { opacity: 0.9; font-size: 1.1rem; }
+  .header .date { opacity: 0.7; font-size: 0.9rem; margin-top: 12px; }
+
+  .score-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .score-card { background: white; border-radius: 12px; padding: 24px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+  .score-card .label { font-size: 0.85rem; color: #64748b; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .score-card .score { font-size: 2.5rem; font-weight: 700; }
+  .score-card .max { font-size: 1rem; color: #94a3b8; }
+  .score-red { color: #dc2626; }
+  .score-orange { color: #f59e0b; }
+  .score-green { color: #16a34a; }
+
+  .section { background: white; border-radius: 12px; padding: 32px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+  .section h2 { font-size: 1.4rem; color: #004aad; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #e2e8f0; }
+  .section h3 { font-size: 1.1rem; color: #334155; margin: 20px 0 12px; }
+
+  .comparison-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+  .comparison-table th { background: #f1f5f9; padding: 12px 16px; text-align: left; font-weight: 600; border-bottom: 2px solid #e2e8f0; }
+  .comparison-table td { padding: 12px 16px; border-bottom: 1px solid #f1f5f9; vertical-align: top; }
+  .comparison-table tr:hover { background: #f8fafc; }
+
+  .status-badge { display: inline-block; padding: 2px 10px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; }
+  .badge-red { background: #fef2f2; color: #dc2626; }
+  .badge-orange { background: #fffbeb; color: #d97706; }
+  .badge-green { background: #f0fdf4; color: #16a34a; }
+
+  .gap-item { padding: 16px; border-left: 4px solid; margin-bottom: 12px; border-radius: 0 8px 8px 0; }
+  .gap-critical { border-color: #dc2626; background: #fef2f2; }
+  .gap-high { border-color: #f59e0b; background: #fffbeb; }
+  .gap-medium { border-color: #3b82f6; background: #eff6ff; }
+  .gap-item strong { display: block; margin-bottom: 4px; }
+  .gap-item p { font-size: 0.9rem; color: #475569; }
+
+  .action-item { display: flex; gap: 16px; padding: 16px; background: #f8fafc; border-radius: 8px; margin-bottom: 12px; }
+  .action-num { width: 32px; height: 32px; background: #004aad; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; flex-shrink: 0; }
+  .action-content { flex: 1; }
+  .action-content strong { display: block; margin-bottom: 4px; }
+  .action-content p { font-size: 0.9rem; color: #475569; }
+  .action-meta { display: flex; gap: 12px; margin-top: 8px; font-size: 0.8rem; }
+  .action-meta span { padding: 2px 8px; border-radius: 4px; background: #e2e8f0; color: #475569; }
+
+  .page-inventory { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .page-inventory > div { padding: 16px; background: #f8fafc; border-radius: 8px; }
+  .page-inventory h4 { font-size: 0.95rem; color: #004aad; margin-bottom: 8px; }
+  .page-inventory ul { list-style: none; font-size: 0.85rem; }
+  .page-inventory li { padding: 4px 0; color: #475569; }
+  .page-inventory li::before { content: "•"; color: #004aad; margin-right: 8px; }
+
+  .highlight-box { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 20px; margin: 16px 0; }
+  .highlight-box strong { color: #1e40af; }
+
+  @media (max-width: 768px) {
+    .page-inventory { grid-template-columns: 1fr; }
+    .score-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>NDT Connect - SEO Assessment</h1>
+  <p>Comprehensive analysis comparing NDT Connect to the Atlantis NDT SEO benchmark</p>
+  <div class="date">Generated: March 9, 2026 | Domain: ndtconnect.com</div>
+</div>
+
+<!-- Score Overview -->
+<div class="score-grid">
+  <div class="score-card">
+    <div class="label">Overall SEO Score</div>
+    <div class="score score-orange">38<span class="max">/100</span></div>
+  </div>
+  <div class="score-card">
+    <div class="label">Technical SEO</div>
+    <div class="score score-orange">45<span class="max">/100</span></div>
+  </div>
+  <div class="score-card">
+    <div class="label">Content Coverage</div>
+    <div class="score score-red">25<span class="max">/100</span></div>
+  </div>
+  <div class="score-card">
+    <div class="label">Schema/Structured Data</div>
+    <div class="score score-green">60<span class="max">/100</span></div>
+  </div>
+  <div class="score-card">
+    <div class="label">Page Count</div>
+    <div class="score score-red">~15</div>
+    <div style="font-size:0.8rem;color:#94a3b8;">vs Atlantis: 366</div>
+  </div>
+</div>
+
+<!-- What NDT Connect Has -->
+<div class="section">
+  <h2>Current State: What NDT Connect Has</h2>
+
+  <h3>Strengths Already in Place</h3>
+  <table class="comparison-table">
+    <thead>
+      <tr><th>Element</th><th>Status</th><th>Details</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Root Layout Metadata</td>
+        <td><span class="status-badge badge-green">Good</span></td>
+        <td>Title, description, keywords, OG tags, Twitter cards, canonical URL, robots directives all configured in layout.tsx</td>
+      </tr>
+      <tr>
+        <td>Schema Markup Components</td>
+        <td><span class="status-badge badge-green">Good</span></td>
+        <td>Organization, LocalBusiness, Service, Review, FAQ schemas built as reusable components</td>
+      </tr>
+      <tr>
+        <td>Blog Section</td>
+        <td><span class="status-badge badge-orange">Partial</span></td>
+        <td>6 blog posts with metadata, FAQ section with schema, but content is thin compared to Atlantis (30+ posts)</td>
+      </tr>
+      <tr>
+        <td>Footer Internal Links</td>
+        <td><span class="status-badge badge-green">Good</span></td>
+        <td>Quick links, resource links, blog article links in footer for crawlability</td>
+      </tr>
+      <tr>
+        <td>Semantic HTML</td>
+        <td><span class="status-badge badge-green">Good</span></td>
+        <td>Proper heading hierarchy (H1, H2, H3), semantic sections, ARIA labels on nav</td>
+      </tr>
+      <tr>
+        <td>Blog Post Structure</td>
+        <td><span class="status-badge badge-green">Good</span></td>
+        <td>Table of contents, proper heading structure, info boxes, feature grids, CTA sections</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Atlantis NDT Comparison -->
+<div class="section">
+  <h2>Atlantis NDT SEO Benchmark</h2>
+  <p style="margin-bottom:16px;color:#475569;">Atlantis NDT has 366 indexed pages using a hub-and-spoke content model. Here's what they do that NDT Connect doesn't yet.</p>
+
+  <table class="comparison-table">
+    <thead>
+      <tr><th>SEO Element</th><th>Atlantis NDT</th><th>NDT Connect</th><th>Gap</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>sitemap.xml</strong></td>
+        <td>366-page sitemap at /sitemap.xml</td>
+        <td>No sitemap file</td>
+        <td><span class="status-badge badge-red">Missing</span></td>
+      </tr>
+      <tr>
+        <td><strong>robots.txt</strong></td>
+        <td>Full robots.txt allowing all bots, referencing sitemap</td>
+        <td>No robots.txt file</td>
+        <td><span class="status-badge badge-red">Missing</span></td>
+      </tr>
+      <tr>
+        <td><strong>Geographic Landing Pages</strong></td>
+        <td>100+ city/region pages (Houston, Dubai, Mumbai, etc.)</td>
+        <td>Zero location pages</td>
+        <td><span class="status-badge badge-red">Critical</span></td>
+      </tr>
+      <tr>
+        <td><strong>NDT Method Pages</strong></td>
+        <td>20+ dedicated pages per method (UT, RT, MT, PT, ET, VT + advanced)</td>
+        <td>Methods only mentioned in blog posts</td>
+        <td><span class="status-badge badge-red">Critical</span></td>
+      </tr>
+      <tr>
+        <td><strong>Industry Pages</strong></td>
+        <td>Dedicated pages: Oil & Gas, Aerospace, Power Gen</td>
+        <td>Industries mentioned in blog content only</td>
+        <td><span class="status-badge badge-orange">High</span></td>
+      </tr>
+      <tr>
+        <td><strong>Tools & Calculators</strong></td>
+        <td>NDT Method Selector, Cost Calculator, ROI Calculator, Quick Reference</td>
+        <td>None</td>
+        <td><span class="status-badge badge-orange">High</span></td>
+      </tr>
+      <tr>
+        <td><strong>Guides & Resources</strong></td>
+        <td>10+ comprehensive guides, comparison pages, career guides</td>
+        <td>6 blog posts only</td>
+        <td><span class="status-badge badge-orange">High</span></td>
+      </tr>
+      <tr>
+        <td><strong>Case Studies</strong></td>
+        <td>Dedicated case studies section</td>
+        <td>None</td>
+        <td><span class="status-badge badge-orange">High</span></td>
+      </tr>
+      <tr>
+        <td><strong>Certification Pages</strong></td>
+        <td>ASNT, API 510, API 570, API 653 dedicated pages</td>
+        <td>One blog post covers certifications generically</td>
+        <td><span class="status-badge badge-orange">High</span></td>
+      </tr>
+      <tr>
+        <td><strong>Per-Page Meta Descriptions</strong></td>
+        <td>Present on service pages</td>
+        <td>Only on layout.tsx and blog pages</td>
+        <td><span class="status-badge badge-orange">Moderate</span></td>
+      </tr>
+      <tr>
+        <td><strong>Breadcrumb Navigation</strong></td>
+        <td>Not confirmed</td>
+        <td>Missing</td>
+        <td><span class="status-badge badge-orange">Moderate</span></td>
+      </tr>
+      <tr>
+        <td><strong>Manifest/PWA</strong></td>
+        <td>Not confirmed</td>
+        <td>Referenced in layout but /manifest.json missing from public/</td>
+        <td><span class="status-badge badge-orange">Moderate</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Critical Gaps -->
+<div class="section">
+  <h2>Critical SEO Gaps to Fix</h2>
+
+  <div class="gap-item gap-critical">
+    <strong>1. No sitemap.xml or robots.txt</strong>
+    <p>Search engines can't efficiently discover and crawl your pages. Atlantis NDT's sitemap lists 366 pages, ensuring every page gets indexed. NDT Connect currently relies entirely on link-based discovery.</p>
+  </div>
+
+  <div class="gap-item gap-critical">
+    <strong>2. Only ~15 indexable pages vs 366</strong>
+    <p>NDT Connect has roughly 15 public-facing pages total (home, about, blog x6, find-providers, login, register). Atlantis NDT has 366. This massive content gap means you're invisible for the vast majority of NDT-related searches. Most of NDT Connect's pages (dashboard, admin, settings) are behind auth and not indexable.</p>
+  </div>
+
+  <div class="gap-item gap-critical">
+    <strong>3. No geographic landing pages</strong>
+    <p>Atlantis NDT has 100+ city/region-specific pages targeting "NDT consulting Houston", "NDT services Dubai", etc. NDT Connect has zero location-based pages. For a marketplace connecting local providers with clients, this is the single biggest missed opportunity.</p>
+  </div>
+
+  <div class="gap-item gap-critical">
+    <strong>4. No dedicated NDT method service pages</strong>
+    <p>Methods like UT, RT, MT, PT each need their own landing page (not just blog posts). These are the core service pages that drive transactional search intent ("book ultrasonic testing", "hire radiographic testing company").</p>
+  </div>
+
+  <div class="gap-item gap-high">
+    <strong>5. Homepage is "use client" - hurts SSR/SEO</strong>
+    <p>The homepage (page.tsx) is a client component that fetches data on mount. The hero content, value propositions, and CTAs are rendered client-side, which can hurt initial crawl-time content. The loading spinner is what Googlebot may see initially.</p>
+  </div>
+
+  <div class="gap-item gap-high">
+    <strong>6. Google verification placeholder</strong>
+    <p>layout.tsx has <code>verification: { google: 'your-google-verification-code' }</code> - this is still a placeholder. Google Search Console isn't connected.</p>
+  </div>
+
+  <div class="gap-item gap-high">
+    <strong>7. Missing OG image and Twitter image</strong>
+    <p>Layout references /og-image.jpg and /twitter-image.jpg but these files don't exist in /public. Social sharing will show broken or generic images.</p>
+  </div>
+
+  <div class="gap-item gap-high">
+    <strong>8. No manifest.json in /public</strong>
+    <p>Layout references /manifest.json but the file doesn't exist. This affects PWA score and certain search features.</p>
+  </div>
+
+  <div class="gap-item gap-medium">
+    <strong>9. About page missing metadata export</strong>
+    <p>The /about page has no metadata export - it uses only the root layout metadata. Every public page should have unique title and description.</p>
+  </div>
+
+  <div class="gap-item gap-medium">
+    <strong>10. Blog dates are stale (2023-2024)</strong>
+    <p>All blog posts are dated Dec 2023 - Jan 2024. Fresh content signals to search engines that the site is active and current.</p>
+  </div>
+</div>
+
+<!-- Page Inventory Comparison -->
+<div class="section">
+  <h2>Page Inventory: What to Build</h2>
+  <p style="margin-bottom:16px;color:#475569;">Comparing Atlantis NDT's page types with what NDT Connect needs to create.</p>
+
+  <div class="page-inventory">
+    <div>
+      <h4>Atlantis NDT Has (that NDT Connect Needs)</h4>
+      <ul>
+        <li>100+ Regional consulting pages (city-specific)</li>
+        <li>6 Primary NDT method pages</li>
+        <li>8+ Advanced method pages (PAUT, TOFD, GWT...)</li>
+        <li>3 Industry vertical pages</li>
+        <li>4+ Certification deep-dive pages</li>
+        <li>30+ Blog articles</li>
+        <li>Case studies section</li>
+        <li>FAQ page (standalone)</li>
+        <li>6+ Interactive tools/calculators</li>
+        <li>10+ Comparison & guide pages</li>
+        <li>Regional training pages</li>
+        <li>Digital twin / technology pages</li>
+      </ul>
+    </div>
+    <div>
+      <h4>NDT Connect Currently Has (Public SEO Pages)</h4>
+      <ul>
+        <li>Homepage (/)</li>
+        <li>About page (/about)</li>
+        <li>Blog index (/blog)</li>
+        <li>6 Blog posts</li>
+        <li>Find Providers (requires login - not indexable)</li>
+        <li>Login page</li>
+        <li>Register page</li>
+        <li style="color:#dc2626;">No sitemap.xml</li>
+        <li style="color:#dc2626;">No robots.txt</li>
+        <li style="color:#dc2626;">No location pages</li>
+        <li style="color:#dc2626;">No service/method pages</li>
+        <li style="color:#dc2626;">No industry pages</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Action Plan -->
+<div class="section">
+  <h2>Action Plan: SEO Implementation Roadmap</h2>
+  <p style="margin-bottom:20px;color:#475569;">Prioritized actions to bring NDT Connect's SEO up to parity with Atlantis NDT's approach.</p>
+
+  <h3 style="color:#dc2626;">Phase 1: Technical Foundations (Week 1)</h3>
+
+  <div class="action-item">
+    <div class="action-num">1</div>
+    <div class="action-content">
+      <strong>Add sitemap.xml (Next.js built-in)</strong>
+      <p>Create app/sitemap.ts using Next.js 14's built-in sitemap generation. This auto-generates an XML sitemap for all public routes.</p>
+      <div class="action-meta"><span>Impact: Critical</span><span>Effort: 30 min</span></div>
+    </div>
+  </div>
+
+  <div class="action-item">
+    <div class="action-num">2</div>
+    <div class="action-content">
+      <strong>Add robots.txt</strong>
+      <p>Create app/robots.ts allowing all bots, disallowing /admin, /dashboard, /api, /settings, and referencing the sitemap.</p>
+      <div class="action-meta"><span>Impact: Critical</span><span>Effort: 15 min</span></div>
+    </div>
+  </div>
+
+  <div class="action-item">
+    <div class="action-num">3</div>
+    <div class="action-content">
+      <strong>Fix missing assets: OG image, Twitter image, manifest.json</strong>
+      <p>Create og-image.jpg (1200x630), twitter-image.jpg, and manifest.json in /public. These are referenced in layout.tsx but don't exist.</p>
+      <div class="action-meta"><span>Impact: High</span><span>Effort: 1 hr</span></div>
+    </div>
+  </div>
+
+  <div class="action-item">
+    <div class="action-num">4</div>
+    <div class="action-content">
+      <strong>Set up Google Search Console</strong>
+      <p>Replace the placeholder verification code in layout.tsx. Submit sitemap. Connect analytics.</p>
+      <div class="action-meta"><span>Impact: Critical</span><span>Effort: 30 min</span></div>
+    </div>
+  </div>
+
+  <div class="action-item">
+    <div class="action-num">5</div>
+    <div class="action-content">
+      <strong>Make homepage server-rendered</strong>
+      <p>Convert the hero section, value props, and feature cards to a server component. Only the dynamic image fetch needs "use client". This ensures Googlebot sees actual content, not a loading spinner.</p>
+      <div class="action-meta"><span>Impact: High</span><span>Effort: 2 hrs</span></div>
+    </div>
+  </div>
+
+  <div class="action-item">
+    <div class="action-num">6</div>
+    <div class="action-content">
+      <strong>Add metadata exports to all public pages</strong>
+      <p>About, Find Providers, Login, Register - each needs unique title, description, and keywords. Currently only blog pages have per-page metadata.</p>
+      <div class="action-meta"><span>Impact: High</span><span>Effort: 1 hr</span></div>
+    </div>
+  </div>
+
+  <h3 style="color:#f59e0b;">Phase 2: Core Content Pages (Weeks 2-3)</h3>
+
+  <div class="action-item">
+    <div class="action-num">7</div>
+    <div class="action-content">
+      <strong>Create NDT Method Service Pages (6-8 pages)</strong>
+      <p>Dedicated pages: /services/ultrasonic-testing, /services/radiographic-testing, /services/magnetic-particle-testing, /services/penetrant-testing, /services/eddy-current-testing, /services/visual-testing, /services/phased-array-ut, /services/tofd-testing. Each with unique metadata, schema markup, CTA to find providers.</p>
+      <div class="action-meta"><span>Impact: Critical</span><span>Effort: 2-3 days</span></div>
+    </div>
+  </div>
+
+  <div class="action-item">
+    <div class="action-num">8</div>
+    <div class="action-content">
+      <strong>Create Industry Vertical Pages (3-5 pages)</strong>
+      <p>/industries/oil-gas, /industries/aerospace, /industries/power-generation, /industries/manufacturing, /industries/marine. Target queries like "NDT services for oil and gas" and "aerospace NDT inspection".</p>
+      <div class="action-meta"><span>Impact: High</span><span>Effort: 2 days</span></div>
+    </div>
+  </div>
+
+  <div class="action-item">
+    <div class="action-num">9</div>
+    <div class="action-content">
+      <strong>Create a public-facing provider directory (no login required)</strong>
+      <p>The current /find-providers page requires login - search engines can't index it. Create a public version showing provider listings (company names, locations, services, ratings) that's crawlable. This is your most valuable SEO asset as a marketplace.</p>
+      <div class="action-meta"><span>Impact: Critical</span><span>Effort: 3-4 days</span></div>
+    </div>
+  </div>
+
+  <h3 style="color:#3b82f6;">Phase 3: Geographic Content (Weeks 3-5)</h3>
+
+  <div class="action-item">
+    <div class="action-num">10</div>
+    <div class="action-content">
+      <strong>Create Top 20 City/Region Landing Pages</strong>
+      <p>Start with the highest-value locations: /ndt-services/houston, /ndt-services/dubai, /ndt-services/singapore, /ndt-services/mumbai, /ndt-services/aberdeen, etc. Each page targets "NDT services [city]" with local content, schema LocalBusiness markup, and dynamic provider counts.</p>
+      <div class="action-meta"><span>Impact: Critical</span><span>Effort: 1 week (template + 20 pages)</span></div>
+    </div>
+  </div>
+
+  <div class="action-item">
+    <div class="action-num">11</div>
+    <div class="action-content">
+      <strong>Expand to 50+ location pages</strong>
+      <p>Follow Atlantis NDT's playbook: cover major oil & gas hubs, industrial centers, and refining corridors. Build a dynamic template that pulls provider data per region.</p>
+      <div class="action-meta"><span>Impact: High</span><span>Effort: 2 weeks</span></div>
+    </div>
+  </div>
+
+  <h3 style="color:#8b5cf6;">Phase 4: Content Expansion (Weeks 5-8)</h3>
+
+  <div class="action-item">
+    <div class="action-num">12</div>
+    <div class="action-content">
+      <strong>Add 10+ New Blog Posts</strong>
+      <p>Target high-volume keywords: NDT inspection costs, how to become an NDT inspector, NDT salary guide, UT vs RT comparison, digital twins in NDT, ASNT Level III guide. Update existing blog dates to current.</p>
+      <div class="action-meta"><span>Impact: High</span><span>Effort: 2 weeks</span></div>
+    </div>
+  </div>
+
+  <div class="action-item">
+    <div class="action-num">13</div>
+    <div class="action-content">
+      <strong>Build Interactive Tools</strong>
+      <p>NDT Method Selector (which test do I need?), Inspection Cost Estimator, NDT Certification Pathway guide. These are link magnets and engagement drivers that Atlantis NDT leverages heavily.</p>
+      <div class="action-meta"><span>Impact: High</span><span>Effort: 1-2 weeks</span></div>
+    </div>
+  </div>
+
+  <div class="action-item">
+    <div class="action-num">14</div>
+    <div class="action-content">
+      <strong>Create Certification Deep-Dive Pages</strong>
+      <p>/certifications/asnt, /certifications/iso-9712, /certifications/api-510, /certifications/pcn. Break apart the current single blog post into dedicated, authoritative pages.</p>
+      <div class="action-meta"><span>Impact: Medium</span><span>Effort: 3-4 days</span></div>
+    </div>
+  </div>
+
+  <div class="action-item">
+    <div class="action-num">15</div>
+    <div class="action-content">
+      <strong>Add Case Studies / Success Stories section</strong>
+      <p>Even 3-4 case studies showing how NDT Connect helped match clients with providers adds credibility and creates indexable, unique content.</p>
+      <div class="action-meta"><span>Impact: Medium</span><span>Effort: 3-4 days</span></div>
+    </div>
+  </div>
+
+  <h3 style="color:#059669;">Phase 5: Ongoing SEO Hygiene</h3>
+
+  <div class="action-item">
+    <div class="action-num">16</div>
+    <div class="action-content">
+      <strong>Add BreadcrumbList schema to all pages</strong>
+      <p>Enhances search results with breadcrumb navigation. Create a reusable Breadcrumb component with JSON-LD markup.</p>
+      <div class="action-meta"><span>Impact: Medium</span><span>Effort: 2 hrs</span></div>
+    </div>
+  </div>
+
+  <div class="action-item">
+    <div class="action-num">17</div>
+    <div class="action-content">
+      <strong>Implement ArticleSchema for all blog posts</strong>
+      <p>Currently using OrganizationSchema on blog posts but missing Article/BlogPosting schema which enables rich results for articles.</p>
+      <div class="action-meta"><span>Impact: Medium</span><span>Effort: 1 hr</span></div>
+    </div>
+  </div>
+
+  <div class="action-item">
+    <div class="action-num">18</div>
+    <div class="action-content">
+      <strong>Monthly content calendar: 2-4 blog posts per month</strong>
+      <p>Consistent publishing signals freshness. Target seasonal topics, industry events, and trending NDT topics.</p>
+      <div class="action-meta"><span>Impact: High</span><span>Effort: Ongoing</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- Quick Win Code Snippets -->
+<div class="section">
+  <h2>Quick Win: Code Templates Ready to Implement</h2>
+
+  <div class="highlight-box">
+    <strong>These files can be created immediately to fix the most critical gaps:</strong>
+    <p style="margin-top:8px;">1. <code>app/sitemap.ts</code> - Auto-generated sitemap<br>
+    2. <code>app/robots.ts</code> - Crawler directives<br>
+    3. <code>public/manifest.json</code> - PWA manifest<br>
+    4. Metadata exports for /about and other public pages<br>
+    5. BreadcrumbList schema component</p>
+  </div>
+
+  <p style="margin-top:16px;color:#475569;">I can implement any or all of these right now. The Phase 1 technical fixes can be done today and will immediately improve crawlability and indexation.</p>
+</div>
+
+<!-- Summary -->
+<div class="section">
+  <h2>Summary</h2>
+  <p>NDT Connect has solid technical foundations (metadata, schema components, blog structure) but is severely under-indexable with only ~15 public pages compared to Atlantis NDT's 366. The three biggest wins are:</p>
+  <div style="margin-top:16px;">
+    <div class="gap-item gap-critical">
+      <strong>1. Technical basics: sitemap.xml + robots.txt + Google Search Console</strong>
+      <p>Takes 1-2 hours. Immediate impact on indexation.</p>
+    </div>
+    <div class="gap-item gap-critical">
+      <strong>2. Public provider directory (don't gate it behind login)</strong>
+      <p>Your most valuable SEO content is hidden behind authentication. Make provider listings public and crawlable.</p>
+    </div>
+    <div class="gap-item gap-critical">
+      <strong>3. Geographic + Service landing pages</strong>
+      <p>This is Atlantis NDT's #1 SEO strategy: city-specific pages targeting "NDT services [location]". Build template-driven pages that scale to 50-100+ locations.</p>
+    </div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/about)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/blog)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/login)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/contact)",
+      "Bash(xargs cat:*)",
+      "Bash(find 'C:\\\\Users\\\\anuan\\\\Documents\\\\software\\\\NDT Connect\\\\NDTConnect' -name recommendations* -o -name settings* -o -name admin*)",
+      "Bash(find 'C:\\\\Users\\\\anuan\\\\Documents\\\\software\\\\NDT Connect\\\\NDTConnect\\\\lib' -name *.ts -type f)",
+      "Bash(find 'C:\\\\Users\\\\anuan\\\\Documents\\\\software\\\\NDT Connect\\\\NDTConnect' -name *.rules -o -name *security*)"
+    ]
+  }
+}
