@@ -123,6 +123,59 @@ export async function sendRequestStatusUpdate(
   await t.sendMail(mailOptions);
 }
 
+export async function sendCertificationExpiryAlert(
+  email: string,
+  name: string,
+  expiringItems: Array<{ type: 'personnel' | 'company'; name: string; level?: string; expiryDate: string }>
+) {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://ndt-connect.com';
+
+  const itemsHtml = expiringItems.map(item => {
+    const label = item.type === 'personnel'
+      ? `${item.name} ${item.level || ''}`
+      : item.name;
+    return `<tr>
+      <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">${label}</td>
+      <td style="padding: 8px; border-bottom: 1px solid #e2e8f0;">${item.type === 'personnel' ? 'Personnel Qualification' : 'Company Certification'}</td>
+      <td style="padding: 8px; border-bottom: 1px solid #e2e8f0; color: #dc2626; font-weight: 600;">${new Date(item.expiryDate).toLocaleDateString()}</td>
+    </tr>`;
+  }).join('');
+
+  const mailOptions = {
+    from: 'NDT Connect <info@ndt-connect.com>',
+    to: email,
+    subject: `Action Required: ${expiringItems.length} Certification(s) Expiring Soon`,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <div style="background: #004aad; padding: 24px; text-align: center;">
+          <h1 style="color: white; margin: 0; font-size: 24px;">NDT Connect</h1>
+        </div>
+        <div style="padding: 24px; background: #f8fafc;">
+          <h2 style="color: #1e293b;">Certification Expiry Alert</h2>
+          <p style="color: #475569;">Hi ${name},</p>
+          <p style="color: #475569;">The following certifications/qualifications on your NDT Connect profile are expiring within <strong>30 days</strong>:</p>
+          <table style="width: 100%; border-collapse: collapse; background: white; border: 1px solid #e2e8f0; border-radius: 8px; margin: 16px 0;">
+            <thead>
+              <tr style="background: #f1f5f9;">
+                <th style="padding: 8px; text-align: left;">Certification</th>
+                <th style="padding: 8px; text-align: left;">Type</th>
+                <th style="padding: 8px; text-align: left;">Expiry Date</th>
+              </tr>
+            </thead>
+            <tbody>${itemsHtml}</tbody>
+          </table>
+          <p style="color: #475569;">Please renew these certifications to maintain your compliance status and continue receiving service requests.</p>
+          <a href="${baseUrl}/provider-dashboard/certifications" style="display: inline-block; background: #004aad; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600;">Manage Certifications</a>
+          <p style="color: #94a3b8; font-size: 12px; margin-top: 24px;">You received this email because you are a registered provider on NDT Connect.</p>
+        </div>
+      </div>
+    `,
+  };
+
+  const t = await getTransporter();
+  await t.sendMail(mailOptions);
+}
+
 export async function sendVerificationEmail(email: string, token: string) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
   const verifyUrl = `${baseUrl}/api/verify?token=${token}`;

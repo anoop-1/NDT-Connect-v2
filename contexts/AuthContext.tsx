@@ -3,7 +3,6 @@
 
 import type { Dispatch, ReactNode, SetStateAction } from 'react';
 import { createContext, useState, useEffect } from 'react';
-import { MOCK_DEMO_CLIENT, MOCK_DEMO_PROVIDER } from '@/lib/mockData';
 import type { User } from '../lib/types';
 
 interface RegisterDetails {
@@ -11,7 +10,6 @@ interface RegisterDetails {
   role: 'client' | 'provider' | 'inspector';
   name: string;
   password?: string;
-  isDemo?: boolean;
   profileData?: any;
 }
 
@@ -21,16 +19,11 @@ interface AuthContextType {
   loading: boolean;
   register: (details: RegisterDetails) => Promise<User | null>;
   loginWithEmail: (email: string, password?: string) => Promise<User | null>;
-  loginAsDemoUser: (role: 'client' | 'provider') => void;
   logout: () => void;
   updateUser: (userToUpdate: User) => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
-function sanitizeDemoUserRole<T extends User>(user: any, role: 'client' | 'provider'): T {
-  return { ...user, role } as T;
-}
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
@@ -54,13 +47,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const register = async (details: RegisterDetails): Promise<User | null> => {
-    const { email, role, name, password, isDemo, profileData } = details;
-    if (isDemo) {
-      const demoUser = role === 'client' ? sanitizeDemoUserRole(MOCK_DEMO_CLIENT, 'client') : sanitizeDemoUserRole(MOCK_DEMO_PROVIDER, 'provider');
-      setUser(demoUser);
-      localStorage.setItem('ndt-user', JSON.stringify(demoUser));
-      return demoUser;
-    }
+    const { email, role, name, password, profileData } = details;
     try {
       // Use API route instead of direct server import
       const response = await fetch('/api/auth/register', {
@@ -112,12 +99,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const loginAsDemoUser = (role: 'client' | 'provider') => {
-    const demoUser = role === 'client' ? sanitizeDemoUserRole(MOCK_DEMO_CLIENT, 'client') : sanitizeDemoUserRole(MOCK_DEMO_PROVIDER, 'provider');
-    setUser(demoUser);
-    localStorage.setItem('ndt-user', JSON.stringify(demoUser));
-  };
-
   const logout = () => {
     setUser(null);
     localStorage.removeItem('ndt-user');
@@ -151,7 +132,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       loading,
       register,
       loginWithEmail,
-      loginAsDemoUser,
       logout,
       updateUser,
     }}>

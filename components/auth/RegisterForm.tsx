@@ -23,10 +23,14 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useState, useEffect } from "react";
 import type { ClientProfileData, ProviderProfileData, InspectorProfileData, ServiceOffering, PersonnelQualification, CompanyCertification } from "@/lib/types";
-import { ListChecks, PlusCircle, Trash2, Award, Users2, FileText, User as UserIcon, Building, Activity } from "lucide-react";
+import { ListChecks, PlusCircle, Trash2, Award, Users2, FileText, User as UserIcon, Building, Activity, CalendarIcon } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { format } from "date-fns";
+import { cn } from "@/lib/utils";
 
 // --- ZOD SCHEMAS ---
 const generateUniqueId = () => Date.now().toString(36) + Math.random().toString(36).substring(2);
@@ -265,10 +269,28 @@ const ProviderFields = ({ form, lists }: { form: UseFormReturn<any>, lists: type
                 <CardContent className="space-y-2">
                     {personnelFields.map((item, index) => (
                         <div key={item.id} className="flex gap-2 items-start">
-                            <div className="grid flex-grow grid-cols-1 md:grid-cols-3 gap-2">
+                            <div className="grid flex-grow grid-cols-1 md:grid-cols-4 gap-2">
                                 <FormField control={form.control} name={`personnelQualifications.${index}.quantity`} render={({ field }) => (<FormItem><FormControl><Input type="number" placeholder="Qty" {...field} /></FormControl><FormMessage/></FormItem>)} />
                                 <FormField control={form.control} name={`personnelQualifications.${index}.certificationBody`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Body"/></SelectTrigger></FormControl><SelectContent>{lists.qualificationBodies.map(b=><SelectItem key={b} value={b}>{b}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
                                 <FormField control={form.control} name={`personnelQualifications.${index}.level`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Level"/></SelectTrigger></FormControl><SelectContent>{lists.qualificationLevels.map(l=><SelectItem key={l} value={l}>{l}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`personnelQualifications.${index}.expiryDate`} render={({ field }) => (
+                                    <FormItem className="flex flex-col">
+                                      <Popover>
+                                        <PopoverTrigger asChild>
+                                          <FormControl>
+                                            <Button variant="outline" className={cn("w-full pl-3 text-left font-normal", !field.value && "text-muted-foreground")}>
+                                              {field.value ? format(field.value, "PPP") : <span>Expiry Date</span>}
+                                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                            </Button>
+                                          </FormControl>
+                                        </PopoverTrigger>
+                                        <PopoverContent className="w-auto p-0" align="start">
+                                          <Calendar mode="single" selected={field.value ?? undefined} onSelect={field.onChange} autoFocus />
+                                        </PopoverContent>
+                                      </Popover>
+                                      <FormMessage />
+                                    </FormItem>
+                                )} />
                             </div>
                             <Button type="button" variant="ghost" size="icon" onClick={() => removePersonnel(index)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
                         </div>
@@ -281,9 +303,27 @@ const ProviderFields = ({ form, lists }: { form: UseFormReturn<any>, lists: type
                 <CardContent className="space-y-2">
                     {certFields.map((item, index) => (
                         <div key={item.id} className="flex gap-2 items-start">
-                            <div className="grid flex-grow grid-cols-1 md:grid-cols-2 gap-2">
+                            <div className="grid flex-grow grid-cols-1 md:grid-cols-3 gap-2">
                                 <FormField control={form.control} name={`certifications.${index}.name`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Name"/></SelectTrigger></FormControl><SelectContent>{lists.companyCertifications.map(c=><SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
                                 <FormField control={form.control} name={`certifications.${index}.category`} render={({ field }) => (<FormItem><FormControl><Input placeholder="e.g. Quality Mgmt" {...field}/></FormControl><FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`certifications.${index}.expiryDate`} render={({ field }) => (
+                                    <FormItem className="flex flex-col">
+                                      <Popover>
+                                        <PopoverTrigger asChild>
+                                          <FormControl>
+                                            <Button variant="outline" className={cn("w-full pl-3 text-left font-normal", !field.value && "text-muted-foreground")}>
+                                              {field.value ? format(field.value, "PPP") : <span>Expiry Date</span>}
+                                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                            </Button>
+                                          </FormControl>
+                                        </PopoverTrigger>
+                                        <PopoverContent className="w-auto p-0" align="start">
+                                          <Calendar mode="single" selected={field.value ?? undefined} onSelect={field.onChange} autoFocus />
+                                        </PopoverContent>
+                                      </Popover>
+                                      <FormMessage />
+                                    </FormItem>
+                                )} />
                             </div>
                             <Button type="button" variant="ghost" size="icon" onClick={() => removeCert(index)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
                         </div>

@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Briefcase, UserCircle, Settings, Activity, FileSignature } from "lucide-react";
+import { Briefcase, UserCircle, Settings, Activity, FileSignature, Wrench, CalendarClock, Award } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 
@@ -56,33 +56,41 @@ export default function ProviderDashboardPage() {
         />
         <DashboardActionCard
           title="AI Procedure Writer"
-          description="Use AI to generate comprehensive NDT procedures."
+          description="Use Claude AI to generate comprehensive NDT procedures."
           href="/provider-dashboard/ai-procedure-writer"
           icon={<FileSignature className="h-8 w-8 text-primary" />}
         />
         <DashboardActionCard
+          title="Certifications"
+          description="Manage NDT Level I/II/III and company certifications with expiry tracking."
+          href="/provider-dashboard/certifications"
+          icon={<Award className="h-8 w-8 text-primary" />}
+        />
+        <DashboardActionCard
+          title="Equipment Management"
+          description="Track your NDT equipment inventory, serial numbers, and status."
+          href="/provider-dashboard/equipment"
+          icon={<Wrench className="h-8 w-8 text-primary" />}
+        />
+        <DashboardActionCard
+          title="Calibration Alerts"
+          description="Monitor calibration due dates and set up email reminders."
+          href="/provider-dashboard/calibration"
+          icon={<CalendarClock className="h-8 w-8 text-primary" />}
+        />
+        <DashboardActionCard
           title="Manage Profile"
           description="Update your company details, services offered, and availability."
-          href="/provider-profile" 
+          href="/provider-profile"
           icon={<UserCircle className="h-8 w-8 text-primary" />}
         />
         <DashboardActionCard
           title="Account Settings"
           description="Manage your NDT Connect account settings and preferences."
-          href="/settings" // Placeholder
+          href="/settings"
           icon={<Settings className="h-8 w-8 text-primary" />}
         />
       </div>
-
-      {/* Placeholder for future content like statistics, earnings, etc. */}
-      <Card>
-        <CardHeader>
-          <CardTitle>More Features Coming Soon!</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-muted-foreground">We are continuously working to enhance the NDT Connect platform for our service providers. Stay tuned for more tools and features to help you grow your business.</p>
-        </CardContent>
-      </Card>
     </div>
   );
 }

@@ -11,15 +11,42 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Activity, Save, Building, Mail, Globe, ImageIcon, ListChecks, PlusCircle, Trash2, PenTool, CalendarIcon, Users2, Award, Info } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { format } from "date-fns";
+import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import type { ProviderUser } from '../../lib/types';
 
 const CURRENCIES = [ "USD", "EUR", "GBP", "INR", "CAD", "AUD", "JPY", "CNY", "CHF", "AED", "SGD", "BRL", "ZAR", "SAR", "QAR", "OMR", "KWD", "BHD" ];
 const PREDEFINED_NDT_SERVICES_TABLE = [ "Radiographic Testing", "Ultrasonic Testing", "Magnetic Particle Testing", "Liquid Penetrant Testing", "Visual Testing", "Eddy Current Testing" ];
 const SERVICE_UNITS = [ "per hour", "per day", "per project", "per item" ];
-const COMPANY_CERTIFICATIONS = [ "ISO 9001", "API Q1", "Nadcap", "AS9100" ];
-const QUALIFICATION_BODIES = [ "ASNT", "PCN", "ISO 9712", "CSWIP" ];
-const QUALIFICATION_LEVELS = ["Level I", "Level II", "Level III", "Technician"];
+const COMPANY_CERTIFICATIONS = [
+  "API Q1",
+  "AS9100",
+  "IACS - American Bureau of Shipping (ABS)",
+  "IACS - Bureau Veritas (BV)",
+  "IACS - China Classification Society (CCS)",
+  "IACS - Croatian Register of Shipping (CRS)",
+  "IACS - DNV",
+  "IACS - Indian Register of Shipping (IRS)",
+  "IACS - Korean Register of Shipping (KR)",
+  "IACS - Lloyd's Register (LR)",
+  "IACS - Nippon Kaiji Kyokai (ClassNK)",
+  "IACS - Polski Rejestr Statków (PRS)",
+  "IACS - RINA Services (RINA)",
+  "IACS - Russian Maritime Register of Shipping (RS)",
+  "ISO 9001",
+  "ISO 14001",
+  "ISO 45001",
+  "ISO/IEC 17020",
+  "ISO/IEC 17024",
+  "ISO/IEC 17025",
+  "Nadcap",
+  "NAS 410",
+];
+const QUALIFICATION_BODIES = [ "ASNT", "PCN", "ISO 9712", "CSWIP", "ACCP", "NAS 410" ];
+const QUALIFICATION_LEVELS = ["Level I", "Level II", "Level III", "Technician", "Trainee"];
 
 const generateUniqueId = () => Date.now().toString(36) + Math.random().toString(36).substring(2);
 
@@ -139,9 +166,9 @@ export default function ProviderProfilePage() {
       if (listName === 'servicesOffered') {
         newItem = { id: generateUniqueId(), name: '', rate: '', unit: '', currency: 'USD', tax: '' };
       } else if (listName === 'personnelQualifications') {
-        newItem = { id: generateUniqueId(), quantity: 1, certificationBody: '', level: '' };
+        newItem = { id: generateUniqueId(), quantity: 1, certificationBody: '', level: '', expiryDate: null };
       } else {
-        newItem = { id: generateUniqueId(), name: '', category: '' };
+        newItem = { id: generateUniqueId(), name: '', category: '', expiryDate: null };
       }
       const currentList = (profile[listName] as any[]) || [];
       const updatedList = [...currentList, newItem];
@@ -310,15 +337,27 @@ export default function ProviderProfilePage() {
                       <Label className="font-semibold">Company Certifications</Label>
                       {(profile.certifications || []).map((cert) => (
                            <div key={cert.id} className="grid grid-cols-[1fr_auto] gap-2 items-end mb-2">
-                              <div className="grid grid-cols-2 gap-2">
+                              <div className="grid grid-cols-3 gap-2">
                                   <div><Label>Name</Label><Select value={cert.name} onValueChange={(v) => handleDynamicListChange('certifications', cert.id, 'name', v)}><SelectTrigger/><SelectContent>{COMPANY_CERTIFICATIONS.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent></Select></div>
                                   <div><Label>Category</Label><Input value={cert.category || ''} onChange={(e) => handleDynamicListChange('certifications', cert.id, 'category', e.target.value)} /></div>
+                                  <div><Label>Expiry Date</Label>
+                                    <Popover>
+                                      <PopoverTrigger asChild>
+                                        <Button variant="outline" className={cn("w-full pl-3 text-left font-normal", !cert.expiryDate && "text-muted-foreground")}>
+                                          {cert.expiryDate ? format(new Date(cert.expiryDate), "PPP") : <span>Pick date</span>}
+                                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                        </Button>
+                                      </PopoverTrigger>
+                                      <PopoverContent className="w-auto p-0" align="start">
+                                        <Calendar mode="single" selected={cert.expiryDate ? new Date(cert.expiryDate) : undefined} onSelect={(date) => handleDynamicListChange('certifications', cert.id, 'expiryDate', date ?? null)} />
+                                      </PopoverContent>
+                                    </Popover>
+                                  </div>
                               </div>
                               <Button type="button" variant="ghost" size="icon" onClick={() => removeDynamicListItem('certifications', cert.id)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
                           </div>
                       ))}
                       <Button type="button" variant="outline" onClick={() => {
-                        console.log('Adding certification item...');
                         addDynamicListItem('certifications');
                       }}>
                         <PlusCircle className="mr-2 h-4 w-4"/>Add Certification
@@ -328,16 +367,28 @@ export default function ProviderProfilePage() {
                       <Label className="font-semibold">Personnel Qualifications</Label>
                       {(profile.personnelQualifications || []).map((qual) => (
                            <div key={qual.id} className="grid grid-cols-[1fr_auto] gap-2 items-end mb-2">
-                              <div className="grid grid-cols-3 gap-2">
+                              <div className="grid grid-cols-4 gap-2">
                                   <div><Label>Qty</Label><Input type="number" value={qual.quantity} onChange={(e) => handleDynamicListChange('personnelQualifications', qual.id, 'quantity', parseInt(e.target.value))} /></div>
                                   <div><Label>Body</Label><Select value={qual.certificationBody} onValueChange={(v) => handleDynamicListChange('personnelQualifications', qual.id, 'certificationBody', v)}><SelectTrigger/><SelectContent>{QUALIFICATION_BODIES.map(b => <SelectItem key={b} value={b}>{b}</SelectItem>)}</SelectContent></Select></div>
                                   <div><Label>Level</Label><Select value={qual.level} onValueChange={(v) => handleDynamicListChange('personnelQualifications', qual.id, 'level', v)}><SelectTrigger/><SelectContent>{QUALIFICATION_LEVELS.map(l => <SelectItem key={l} value={l}>{l}</SelectItem>)}</SelectContent></Select></div>
+                                  <div><Label>Expiry Date</Label>
+                                    <Popover>
+                                      <PopoverTrigger asChild>
+                                        <Button variant="outline" className={cn("w-full pl-3 text-left font-normal", !qual.expiryDate && "text-muted-foreground")}>
+                                          {qual.expiryDate ? format(new Date(qual.expiryDate), "PPP") : <span>Pick date</span>}
+                                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                        </Button>
+                                      </PopoverTrigger>
+                                      <PopoverContent className="w-auto p-0" align="start">
+                                        <Calendar mode="single" selected={qual.expiryDate ? new Date(qual.expiryDate) : undefined} onSelect={(date) => handleDynamicListChange('personnelQualifications', qual.id, 'expiryDate', date ?? null)} />
+                                      </PopoverContent>
+                                    </Popover>
+                                  </div>
                               </div>
                               <Button type="button" variant="ghost" size="icon" onClick={() => removeDynamicListItem('personnelQualifications', qual.id)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
                           </div>
                       ))}
                       <Button type="button" variant="outline" onClick={() => {
-                        console.log('Adding qualification item...');
                         addDynamicListItem('personnelQualifications');
                       }}>
                         <PlusCircle className="mr-2 h-4 w-4"/>Add Qualification

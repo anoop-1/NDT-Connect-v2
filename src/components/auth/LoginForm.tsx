@@ -1,3 +1,4 @@
+// src/components/auth/LoginForm.tsx
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -7,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -18,7 +18,6 @@ import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
-import { Separator } from "@/components/ui/separator";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
@@ -26,7 +25,6 @@ const formSchema = z.object({
 });
 
 type FormSchemaType = z.infer<typeof formSchema>;
-
 
 export function LoginForm() {
   const { loginWithEmail } = useAuth();
@@ -41,24 +39,27 @@ export function LoginForm() {
       password: "",
     },
   });
-  
+
   async function onSubmit(values: FormSchemaType) {
     setIsLoading(true);
+
     try {
-      let user = await loginWithEmail(values.email, values.password);
-      if (user) {
-        toast({ title: "Login Successful", description: `Welcome back, ${user.name || user.email}!` });           
-        if (user?.role === 'admin') 
-          router.push("/admin/dashboard"); 
-        else 
-          router.push("/dashboard");       	
-      } else {
-        toast({ title: "Login Failed", description: "User not found or password incorrect. Please register if you don't have an account.", variant: "destructive" });
-      }
+        const user = await loginWithEmail(values.email, values.password);
+        if (user) {
+            toast({ title: "Login Successful", description: `Welcome back, ${user.name || user.email}!` });
+            // Route to role-appropriate dashboard
+            if (user.role === 'admin') {
+              router.push("/admin/dashboard");
+            } else if (user.role === 'provider') {
+              router.push("/provider-dashboard");
+            } else {
+              router.push("/dashboard");
+            }
+        }
     } catch (error: any) {
-      toast({ title: "Login Failed", description: error.message, variant: "destructive" });
+        toast({ title: "Login Failed", description: error.message, variant: "destructive" });
     } finally {
-      setIsLoading(false);
+        setIsLoading(false);
     }
   }
 
@@ -97,6 +98,7 @@ export function LoginForm() {
           </Button>
         </form>
       </Form>
+
     </>
   );
 }

@@ -3,23 +3,22 @@
 
 import type { Dispatch, ReactNode, SetStateAction } from 'react';
 import { createContext, useState, useEffect } from 'react';
-import { MOCK_DEMO_CLIENT, MOCK_DEMO_PROVIDER } from '@/lib/mockData';
-import type { User } from '@/lib/types';
+import type { User } from '../lib/types';
 
 interface RegisterDetails {
   email: string;
-  role: 'client' | 'provider' | 'admin' | 'inspector';
+  role: 'client' | 'provider' | 'inspector';
   name: string;
-  isDemo?: boolean;
+  password?: string;
+  profileData?: any;
 }
 
 interface AuthContextType {
   user: User | null;
   setUser: Dispatch<SetStateAction<User | null>>;
   loading: boolean;
-  register: (details: RegisterDetails) => Promise<User>;
-  loginWithEmail: (email: string) => Promise<User | null>;
-  loginAsDemoUser: (role: 'client' | 'provider') => void;
+  register: (details: RegisterDetails) => Promise<User | null>;
+  loginWithEmail: (email: string, password?: string) => Promise<User | null>;
   logout: () => void;
   updateUser: (userToUpdate: User) => Promise<void>;
 }
@@ -41,117 +40,101 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           setUser(storedUser);
         }
       } catch (error: any) {
-        console.error("Error parsing user from localStorage", error);
-        localStorage.removeItem('ndt-user');
+        console.error('Error parsing stored user:', error);
       }
     }
     setLoading(false);
   }, []);
 
-  const storeUserSession = (userToStore: User) => {
-    setUser(userToStore);
-    localStorage.setItem('ndt-user', JSON.stringify(userToStore));
-  };
-
-  const register = async (details: { email: string; role: string; name: string; isDemo?: boolean }) => {
+  const register = async (details: RegisterDetails): Promise<User | null> => {
+    const { email, role, name, password, profileData } = details;
     try {
-      const res = await fetch('/api/register', {
+      // Use API route instead of direct server import
+      const response = await fetch('/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(details),
+        body: JSON.stringify({ email, role, name, password, profileData }),
       });
-      let errorMsg = 'Registration failed';
-      if (!res.ok) {
-        try {
-          const err = await res.json();
-          if (err && err.message) errorMsg = err.message;
-        } catch {}
-        throw new Error(errorMsg);
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Registration failed');
       }
-      const data = await res.json();
-      return data;
+
+      const newUser = await response.json();
+      if (newUser) {
+        setUser(newUser);
+        localStorage.setItem('ndt-user', JSON.stringify(newUser));
+      }
+      return newUser;
     } catch (error: any) {
       console.error('Registration error:', error);
       throw error;
     }
   };
-  
-  const loginWithEmail = async (email: string, password: string): Promise<User> => {
+
+  const loginWithEmail = async (email: string, password?: string): Promise<User | null> => {
     try {
-      const res = await fetch('/api/login', {
+      // Use API route instead of direct server import
+      const response = await fetch('/api/auth/login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
-  
-      const data = await res.json();
-  
-      if (!res.ok) {
-        throw new Error(data.error || 'Login failed');
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Login failed');
       }
-  
-      if (data.user) {
-        setUser(data.user);
-        localStorage.setItem('ndt-user', JSON.stringify(data.user));
-        return data.user;
+
+      const userData = await response.json();
+      if (userData) {
+        setUser(userData);
+        localStorage.setItem('ndt-user', JSON.stringify(userData));
       }
-  
-      throw new Error('No user data returned');
+      return userData;
     } catch (error: any) {
       console.error('Login error:', error);
       throw error;
     }
   };
 
-  // Define proper demo users for demo login
-  const DEMO_CLIENT_USER: User = {
-    id: 'demo-client',
-    email: 'demo-client@example.com',
-    name: 'Demo Client',
-    role: 'client',
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    verified: true,
-    verificationToken: null,
-  };
-  const DEMO_PROVIDER_USER: User = {
-    id: 'demo-provider',
-    email: 'demo-provider@example.com',
-    name: 'Demo Provider',
-    role: 'provider',
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    verified: true,
-    verificationToken: null,
-  };
-
-  const loginAsDemoUser = (role: 'client' | 'provider') => {
-    const demoUser = role === 'client' ? DEMO_CLIENT_USER : DEMO_PROVIDER_USER;
-    storeUserSession(demoUser);
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem('ndt-user');
   };
 
   const updateUser = async (userToUpdate: User) => {
-    // For demo users, just update session
-    if (userToUpdate.id === 'demo-client' || userToUpdate.id === 'demo-provider') {
-      storeUserSession(userToUpdate);
-      return;
+    try {
+      // Use API route instead of direct server import
+      const response = await fetch('/api/auth/update', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userToUpdate),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update user');
+      }
+
+      setUser(userToUpdate);
+      localStorage.setItem('ndt-user', JSON.stringify(userToUpdate));
+    } catch (error: any) {
+      console.error('Error updating user:', error);
+      throw error;
     }
-
-    // Removed Firestore logic
-
-    storeUserSession(userToUpdate);
-  };
-
-  const logout = async () => {
-    setUser(null);
-    localStorage.removeItem('ndt-user');
-    await fetch('/api/logout');
   };
 
   return (
-    <AuthContext.Provider value={{ user, setUser, loading, register, loginWithEmail, loginAsDemoUser, logout, updateUser }}>
+    <AuthContext.Provider value={{
+      user,
+      setUser,
+      loading,
+      register,
+      loginWithEmail,
+      logout,
+      updateUser,
+    }}>
       {children}
     </AuthContext.Provider>
   );

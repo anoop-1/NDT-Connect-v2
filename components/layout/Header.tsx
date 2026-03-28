@@ -55,8 +55,10 @@ export function Header() {
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="relative h-9 w-9 rounded-full ring-2 ring-brand/20 hover:ring-brand/40 transition-all">
                   <Avatar className="h-9 w-9">
-                    <AvatarImage src={user.profileImageUrl || "https://placehold.co/40x40.png"} alt={user.name ?? 'User'} data-ai-hint="user avatar" />
-                    <AvatarFallback className="bg-brand/10 text-brand font-semibold">{user.name?.[0].toUpperCase() ?? 'U'}</AvatarFallback>
+                    {user.profileImageUrl && <AvatarImage src={user.profileImageUrl} alt={user.name ?? 'User'} data-ai-hint="user avatar" />}
+                    <AvatarFallback className="bg-brand/10 text-brand">
+                      <UserCircle className="h-6 w-6" />
+                    </AvatarFallback>
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>

@@ -22,10 +22,15 @@ import { useToast } from "@/hooks/use-toast";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ListChecks, PlusCircle, Upload,  Trash2, Award, Users2, FileText, User as UserIcon, Building, Activity } from "lucide-react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import type { ClientProfileData, ProviderProfileData, InspectorProfileData, ServiceOffering, PersonnelQualification, CompanyCertification } from "@/lib/types";
+import { ListChecks, PlusCircle, Trash2, Award, Users2, FileText, User as UserIcon, Building, Activity, CalendarIcon } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { format } from "date-fns";
+import { cn } from "@/lib/utils";
 
 // --- ZOD SCHEMAS ---
 const generateUniqueId = () => Date.now().toString(36) + Math.random().toString(36).substring(2);
@@ -90,6 +95,7 @@ const inspectorSchema = baseSchema.extend({
     designation: z.string().optional(),
 });
 
+
 const formSchema = z.discriminatedUnion("role", [clientSchema, providerSchema, inspectorSchema])
   .superRefine((data, ctx) => {
     if (data.role === 'inspector' && data.association === "company") {
@@ -108,6 +114,38 @@ const formSchema = z.discriminatedUnion("role", [clientSchema, providerSchema, i
 
 type FormSchemaType = z.infer<typeof formSchema>;
 
+const CURRENCIES = [ "USD", "EUR", "GBP", "INR", "CAD", "AUD", "JPY", "CNY", "CHF", "AED", "SGD", "BRL", "ZAR", "SAR", "QAR", "OMR", "KWD", "BHD" ];
+
+const BUILT_IN_LISTS = {
+    providerNdtServices: [ "Radiographic Testing", "Ultrasonic Testing", "Magnetic Particle Testing", "Liquid Penetrant Testing", "Visual Testing", "Eddy Current Testing", "Leak Testing", "Acoustic Emission" ],
+    serviceUnits: [ "per hour", "per day", "per project", "per item", "per foot", "per weld" ],
+    qualificationBodies: [ "ASNT", "PCN", "ISO 9712", "CSWIP", "ACCP", "NAS 410" ],
+    qualificationLevels: ["Level I", "Level II", "Level III", "Technician", "Trainee"],
+    companyCertifications: [
+      "API Q1",
+      "AS9100",
+      "IACS - American Bureau of Shipping (ABS)",
+      "IACS - Bureau Veritas (BV)",
+      "IACS - China Classification Society (CCS)",
+      "IACS - Croatian Register of Shipping (CRS)",
+      "IACS - DNV",
+      "IACS - Indian Register of Shipping (IRS)",
+      "IACS - Korean Register of Shipping (KR)",
+      "IACS - Lloyd's Register (LR)",
+      "IACS - Nippon Kaiji Kyokai (ClassNK)",
+      "IACS - Polski Rejestr Statków (PRS)",
+      "IACS - RINA Services (RINA)",
+      "IACS - Russian Maritime Register of Shipping (RS)",
+      "ISO 9001",
+      "ISO 14001",
+      "ISO 45001",
+      "ISO/IEC 17020",
+      "ISO/IEC 17024",
+      "ISO/IEC 17025",
+      "Nadcap",
+      "NAS 410",
+    ],
+};
 const agreementTexts = {
   client: `Terms of Service for Clients
 
@@ -198,9 +236,7 @@ const ClientFields = ({ form }: { form: UseFormReturn<any> }) => (
   </div>
 );
 
-const ProviderFields = ({ form, lists }: { form: UseFormReturn<any>, lists: any }) => {
-     const [logoImage, setLogoImage] = useState<string | null>(null);
-    const [logoImageFile, setLogoImageFile] = useState<File | null>(null);
+const ProviderFields = ({ form, lists }: { form: UseFormReturn<any>, lists: typeof BUILT_IN_LISTS }) => {
     const { fields: serviceFields, append: appendService, remove: removeService } = useFieldArray({ control: form.control, name: "servicesOffered" });
     const { fields: personnelFields, append: appendPersonnel, remove: removePersonnel } = useFieldArray({ control: form.control, name: "personnelQualifications" });
     const { fields: certFields, append: appendCert, remove: removeCert } = useFieldArray({ control: form.control, name: "certifications" });
@@ -216,10 +252,10 @@ const ProviderFields = ({ form, lists }: { form: UseFormReturn<any>, lists: any 
                     {serviceFields.map((item, index) => (
                         <div key={item.id} className="flex gap-2 items-start">
                             <div className="grid flex-grow grid-cols-1 md:grid-cols-5 gap-2">
-                                <FormField control={form.control} name={`servicesOffered.${index}.name`} render={({ field }) => (<FormItem>{(item as any).isCustom ? <FormControl><Input placeholder="Custom service name" {...field}/></FormControl> : <Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select service"/></SelectTrigger></FormControl><SelectContent>{lists.providerNdtServices.map((s: string) => <SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent></Select>}<FormMessage/></FormItem>)} />
-                                <FormField control={form.control} name={`servicesOffered.${index}.unit`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select unit"/></SelectTrigger></FormControl><SelectContent>{lists.serviceUnits.map((u: string) => <SelectItem key={u} value={u}>{u}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`servicesOffered.${index}.name`} render={({ field }) => (<FormItem>{(item as any).isCustom ? <FormControl><Input placeholder="Custom service name" {...field}/></FormControl> : <Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select service"/></SelectTrigger></FormControl><SelectContent>{lists.providerNdtServices.map(s=><SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent></Select>}<FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`servicesOffered.${index}.unit`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Select unit"/></SelectTrigger></FormControl><SelectContent>{lists.serviceUnits.map(u=><SelectItem key={u} value={u}>{u}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
                                 <FormField control={form.control} name={`servicesOffered.${index}.rate`} render={({ field }) => (<FormItem><FormControl><Input type="number" placeholder="e.g. 100" {...field} /></FormControl><FormMessage/></FormItem>)} />
-                                <FormField control={form.control} name={`servicesOffered.${index}.currency`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} placeholder="e.g. USD" defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Curr."/></SelectTrigger></FormControl><SelectContent>{lists.currencies.map((c: string) => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`servicesOffered.${index}.currency`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Curr."/></SelectTrigger></FormControl><SelectContent>{CURRENCIES.map(c=><SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
                                 <FormField control={form.control} name={`servicesOffered.${index}.tax`} render={({ field }) => (<FormItem><FormControl><Input type="number" placeholder="Tax %" {...field} /></FormControl><FormMessage/></FormItem>)} />
                             </div>
                             <Button type="button" variant="ghost" size="icon" onClick={() => removeService(index)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
@@ -233,10 +269,28 @@ const ProviderFields = ({ form, lists }: { form: UseFormReturn<any>, lists: any 
                 <CardContent className="space-y-2">
                     {personnelFields.map((item, index) => (
                         <div key={item.id} className="flex gap-2 items-start">
-                            <div className="grid flex-grow grid-cols-1 md:grid-cols-3 gap-2">
+                            <div className="grid flex-grow grid-cols-1 md:grid-cols-4 gap-2">
                                 <FormField control={form.control} name={`personnelQualifications.${index}.quantity`} render={({ field }) => (<FormItem><FormControl><Input type="number" placeholder="Qty" {...field} /></FormControl><FormMessage/></FormItem>)} />
-                                <FormField control={form.control} name={`personnelQualifications.${index}.certificationBody`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Body"/></SelectTrigger></FormControl><SelectContent>{lists.qualificationBodies.map((b: string) => <SelectItem key={b} value={b}>{b}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
-                                <FormField control={form.control} name={`personnelQualifications.${index}.level`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Level"/></SelectTrigger></FormControl><SelectContent>{lists.qualificationLevels.map((l: string) => <SelectItem key={l} value={l}>{l}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`personnelQualifications.${index}.certificationBody`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Body"/></SelectTrigger></FormControl><SelectContent>{lists.qualificationBodies.map(b=><SelectItem key={b} value={b}>{b}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`personnelQualifications.${index}.level`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Level"/></SelectTrigger></FormControl><SelectContent>{lists.qualificationLevels.map(l=><SelectItem key={l} value={l}>{l}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`personnelQualifications.${index}.expiryDate`} render={({ field }) => (
+                                    <FormItem className="flex flex-col">
+                                      <Popover>
+                                        <PopoverTrigger asChild>
+                                          <FormControl>
+                                            <Button variant="outline" className={cn("w-full pl-3 text-left font-normal", !field.value && "text-muted-foreground")}>
+                                              {field.value ? format(field.value, "PPP") : <span>Expiry Date</span>}
+                                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                            </Button>
+                                          </FormControl>
+                                        </PopoverTrigger>
+                                        <PopoverContent className="w-auto p-0" align="start">
+                                          <Calendar mode="single" selected={field.value ?? undefined} onSelect={field.onChange} autoFocus />
+                                        </PopoverContent>
+                                      </Popover>
+                                      <FormMessage />
+                                    </FormItem>
+                                )} />
                             </div>
                             <Button type="button" variant="ghost" size="icon" onClick={() => removePersonnel(index)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
                         </div>
@@ -249,9 +303,27 @@ const ProviderFields = ({ form, lists }: { form: UseFormReturn<any>, lists: any 
                 <CardContent className="space-y-2">
                     {certFields.map((item, index) => (
                         <div key={item.id} className="flex gap-2 items-start">
-                            <div className="grid flex-grow grid-cols-1 md:grid-cols-2 gap-2">
-                                <FormField control={form.control} name={`certifications.${index}.name`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Name"/></SelectTrigger></FormControl><SelectContent>{lists.companyCertifications.map((c: string) => <SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
+                            <div className="grid flex-grow grid-cols-1 md:grid-cols-3 gap-2">
+                                <FormField control={form.control} name={`certifications.${index}.name`} render={({ field }) => (<FormItem><Select onValueChange={field.onChange} defaultValue={field.value}><FormControl><SelectTrigger><SelectValue placeholder="Cert Name"/></SelectTrigger></FormControl><SelectContent>{lists.companyCertifications.map(c=><SelectItem key={c} value={c}>{c}</SelectItem>)}</SelectContent></Select><FormMessage/></FormItem>)} />
                                 <FormField control={form.control} name={`certifications.${index}.category`} render={({ field }) => (<FormItem><FormControl><Input placeholder="e.g. Quality Mgmt" {...field}/></FormControl><FormMessage/></FormItem>)} />
+                                <FormField control={form.control} name={`certifications.${index}.expiryDate`} render={({ field }) => (
+                                    <FormItem className="flex flex-col">
+                                      <Popover>
+                                        <PopoverTrigger asChild>
+                                          <FormControl>
+                                            <Button variant="outline" className={cn("w-full pl-3 text-left font-normal", !field.value && "text-muted-foreground")}>
+                                              {field.value ? format(field.value, "PPP") : <span>Expiry Date</span>}
+                                              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                            </Button>
+                                          </FormControl>
+                                        </PopoverTrigger>
+                                        <PopoverContent className="w-auto p-0" align="start">
+                                          <Calendar mode="single" selected={field.value ?? undefined} onSelect={field.onChange} autoFocus />
+                                        </PopoverContent>
+                                      </Popover>
+                                      <FormMessage />
+                                    </FormItem>
+                                )} />
                             </div>
                             <Button type="button" variant="ghost" size="icon" onClick={() => removeCert(index)}><Trash2 className="h-4 w-4 text-destructive"/></Button>
                         </div>
@@ -259,72 +331,9 @@ const ProviderFields = ({ form, lists }: { form: UseFormReturn<any>, lists: any 
                     <Button type="button" variant="outline" size="sm" onClick={() => appendCert({ id: generateUniqueId(), name: "", category: "", expiryDate: null })}><PlusCircle className="mr-2 h-4 w-4"/>Add Certification</Button>
                 </CardContent>
             </Card>
+            
             <FormField control={form.control} name="procedureInfoUrl" render={({ field }) => (<FormItem><FormLabel>Procedures/Bio URL (Optional)</FormLabel><FormControl><Input placeholder="https://example.com/about" {...field} /></FormControl><FormMessage/></FormItem>)} />
-            <FormField
-                  control={form.control}
-                  name="companyLogoUrl"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Company Logo</FormLabel>
-                      <div className="flex flex-col items-start gap-4">
-                        {logoImage ? (
-                          <div className="w-32 h-32 border rounded-lg overflow-hidden">
-                            <img 
-                              src={logoImage} 
-                              alt="Company logo preview" 
-                              className="w-full h-full object-contain"
-                            />
-                          </div>
-                        ) : (
-                          <div className="w-32 h-32 bg-muted/50 flex items-center justify-center rounded-lg">
-                            <span className="text-muted-foreground text-sm">No logo</span>
-                          </div>
-                        )}
-                        
-                        <input
-                          id="companyLogoUpload"
-                          type="file"
-                          accept="image/*"
-                          className="hidden"
-                          onChange={(e) => {
-                            const file = e.target.files?.[0];
-                            if (file) {
-                              const reader = new FileReader();
-                              reader.onload = (event) => {
-                                const result = event.target?.result as string;
-                                setLogoImage(result);
-                                setLogoImageFile(file);
-                                field.onChange(result); // This sets the base64 string to the form field
-                              };
-                              reader.readAsDataURL(file);
-                            }
-                          }}
-                        />
-                        <Label 
-                          htmlFor="companyLogoUpload" 
-                          className="cursor-pointer"
-                        >
-                          <Button 
-                            type="button" 
-                            variant="outline" 
-                            size="sm"
-                            onClick={() => document.getElementById('companyLogoUpload')?.click()}
-                          >
-                            <Upload className="mr-2 h-4 w-4" />
-                            {logoImage ? 'Change Logo' : 'Upload Logo'}
-                          </Button>
-                        </Label>
-                        
-                        {logoImageFile && (
-                          <p className="text-sm text-muted-foreground">
-                            {logoImageFile.name} ({Math.round(logoImageFile.size / 1024)}KB)
-                          </p>
-                        )}
-                      </div>
-                      <FormMessage />
-                    </FormItem>
-              )}
-            />
+            <FormField control={form.control} name="companyLogoUrl" render={({ field }) => (<FormItem><FormLabel>Company Logo URL (Optional)</FormLabel><FormControl><Input placeholder="https://example.com/logo.png" {...field} /></FormControl><FormMessage/></FormItem>)} />
         </div>
     );
 };
@@ -357,19 +366,13 @@ const InspectorFields = ({ form }: { form: UseFormReturn<any> }) => {
 
 // --- MAIN FORM COMPONENT ---
 export function RegisterForm() {
-  const { register, loading } = useAuth();
+  const { register } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
-  const [predefinedLists, setPredefinedLists] = useState({
-    providerNdtServices: [],
-    serviceUnits: [],
-    currencies: [],
-    companyCertifications: [],
-    qualificationBodies: [],
-    qualificationLevels: ["Level I", "Level II", "Level III", "Technician", "Trainee"]
-  });
-  const [isLoadingLists, setIsLoadingLists] = useState(false);
+  // Use only built-in lists, no async fetch
+  const [predefinedLists] = useState(BUILT_IN_LISTS);
+  const [isLoadingLists] = useState(false);
   
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
@@ -389,6 +392,8 @@ export function RegisterForm() {
   });
 
   const currentRole = form.watch("role");
+
+  // REMOVE: useEffect that fetches lists from Firestore
 
   useEffect(() => {
     const baseValues = {
@@ -432,57 +437,20 @@ export function RegisterForm() {
     }
   }, [currentRole, form]);
 
-  useEffect(() => {
-    setIsLoadingLists(true);
-    fetch("/api/lists/all")
-      .then(r => r.json())
-      .then(data => {
-        const lists = {
-          providerNdtServices: data.find((list: any) => list.id === "providerNdtServices")?.items || [],
-          serviceUnits: data.find((list: any) => list.id === "serviceUnits")?.items || [],
-          currencies: data.find((list: any) => list.id === "currency")?.items || [],
-          companyCertifications: data.find((list: any) => list.id === "companyCertifications")?.items || [],
-          qualificationBodies: data.find((list: any) => list.id === "personnelQualificationBodies")?.items || [],
-          qualificationLevels: data.find((list: any) => list.id === "personnelQualificationLevels")?.items || ["Level I", "Level II", "Level III", "Technician", "Trainee"]
-        };
-        setPredefinedLists(lists);
-      })
-      .catch((error) => {
-        toast({ title: "Error loading options", description: "There was an error loading the registration options. Please try again later.", variant: "destructive" });
-      })
-      .finally(() => {
-        setIsLoadingLists(false);
-      });
-  }, []);
-  
   async function onSubmit(values: FormSchemaType) {
     setIsLoading(true);
     try {
-      // Remove profileData if not in RegisterDetails type:
-      const x = { ...values };
-      delete x['confirmPassword'];
-      const registeredUser = await register(x);
+      const registeredUser = await register({ email: values.email, role: values.role, name: values.name });
       if (registeredUser) {
-        toast({ title: "Registration Successful!", description: `Please click on the verification link on your email ${values.email} to verify your account.`, duration: 7000 });
-        router.push(`/login?status=verification_pending&email=${encodeURIComponent(values.email)}`);
+          toast({ title: "Registration Successful!", description: `Please 'verify' your email on the login page for ${values.email}.`, duration: 7000 });
+          router.push(`/login?status=verification_pending&email=${encodeURIComponent(values.email)}`);
       } else {
-        toast({ title: "Registration Failed", description: "An account with this email may already exist.", variant: "destructive" });
+          toast({ title: "Registration Failed", description: "An account with this email may already exist.", variant: "destructive" });
       }
-    } catch (error: any) {
-      toast({ title: "Registration Failed", description: error?.message || "An error occurred.", variant: "destructive" });
-    } finally {
-      setIsLoading(false);
+    } catch (e: any) {
+      toast({ title: "Registration Error", description: String(e), variant: "destructive" });
     }
-  }
-  
-
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center py-10">
-        <Activity className="mr-2 h-6 w-6 animate-spin" />
-        <span>Loading...</span>
-      </div>
-    );
+    setIsLoading(false); // This must always run
   }
 
   return (
@@ -515,8 +483,8 @@ export function RegisterForm() {
             <FormField control={form.control} name="acceptTerms" render={({ field }) => ( <FormItem className="flex flex-row items-center space-x-3 space-y-0 rounded-md border p-3 shadow-sm"><FormControl><Checkbox checked={field.value} onCheckedChange={field.onChange}/></FormControl><div className="space-y-1 leading-none"><FormLabel className="font-normal">I have read and agree to the User Agreement.</FormLabel><FormMessage/></div></FormItem> )} />
         </div>
 
-        <Button type="submit" className="w-full" disabled={isLoading || isLoadingLists}>
-          {isLoading ? <><Activity className="mr-2 h-4 w-4 animate-spin"/> Submitting...</> : isLoadingLists ? <><Activity className="mr-2 h-4 w-4 animate-spin"/> Loading Form...</> : "Create Account"}
+        <Button type="submit" className="w-full" disabled={isLoading}>
+          {isLoading ? <><Activity className="mr-2 h-4 w-4 animate-spin"/> Submitting...</> : "Create Account"}
         </Button>
       </form>
     </Form>
