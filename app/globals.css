@@ -1,0 +1,389 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: var(--font-sans), sans-serif;
+  overflow-x: hidden;
+}
+
+/* Shared layout wrapper — used by header, main, and footer for consistent edge alignment */
+@layer components {
+  .layout-wrapper {
+    @apply w-full max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16;
+  }
+
+  /* Full-bleed escape — cancels layout-wrapper padding so sections go edge-to-edge */
+  .full-bleed {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 224 71.4% 4.1%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 224 71.4% 4.1%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71.4% 4.1%;
+
+    --primary: 215 100% 33.9%;
+    --primary-foreground: 210 20% 98%;
+
+    --secondary: 215 27.9% 90%;
+    --secondary-foreground: 216.8 91.7% 30.6%;
+
+    --muted: 215 27.9% 90%;
+    --muted-foreground: 215 20.2% 38%;
+
+    --accent: 217 91.2% 59.8%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 215 25% 85.7%;
+    --input: 215 25% 85.7%;
+    --ring: 217 91.2% 59.8%;
+
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.625rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 224 71.4% 4.1%;
+    --foreground: 0 0% 98%;
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 0 0% 98%;
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 217 91.2% 59.8%;
+    --primary-foreground: 224 71.4% 4.1%;
+    --secondary: 215 25% 20%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 215 25% 20%;
+    --muted-foreground: 215 20.2% 64.7%;
+    --accent: 215 100% 33.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 215 25% 25.7%;
+    --input: 215 25% 25.7%;
+    --ring: 217 91.2% 59.8%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ============================================
+   FUTURISTIC ANIMATION SYSTEM
+   ============================================ */
+
+/* --- Scroll-triggered fade-in animations --- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.animate-fade-in-left {
+  animation: fadeInLeft 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.animate-fade-in-right {
+  animation: fadeInRight 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.animate-fade-in-scale {
+  animation: fadeInScale 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Stagger delays for grid children */
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+.stagger-5 { animation-delay: 0.25s; }
+.stagger-6 { animation-delay: 0.3s; }
+.stagger-7 { animation-delay: 0.35s; }
+.stagger-8 { animation-delay: 0.4s; }
+
+/* --- Floating / Pulse / Glow animations --- */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 74, 173, 0.15); }
+  50% { box-shadow: 0 0 40px rgba(0, 74, 173, 0.35); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-float-slow { animation: floatSlow 8s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 25%, rgba(0, 74, 173, 0.08) 50%, transparent 75%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+.animate-rotate-slow { animation: rotate-slow 20s linear infinite; }
+.animate-count-up { animation: count-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+/* --- 3D Perspective & Tilt effects --- */
+.perspective-1000 { perspective: 1000px; }
+.preserve-3d { transform-style: preserve-3d; }
+
+/* --- Glassmorphism --- */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.glass-strong {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(0, 74, 173, 0.1);
+}
+.glass-dark {
+  background: rgba(0, 74, 173, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 74, 173, 0.12);
+}
+
+/* --- Modern card hover effects --- */
+.card-hover-lift {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px -15px rgba(0, 74, 173, 0.2);
+}
+
+.card-hover-3d {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover-3d:hover {
+  transform: perspective(1000px) rotateX(2deg) rotateY(-2deg) translateY(-4px);
+  box-shadow: 0 25px 50px -12px rgba(0, 74, 173, 0.2);
+}
+
+/* --- Gradient text --- */
+.gradient-text {
+  background: linear-gradient(135deg, #004aad 0%, #0066ff 50%, #004aad 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-text-accent {
+  background: linear-gradient(135deg, #004aad 0%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* --- Decorative elements --- */
+.hero-grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 74, 173, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 74, 173, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.hero-dots-bg {
+  background-image: radial-gradient(rgba(0, 74, 173, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.hero-radial-glow {
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0, 74, 173, 0.08) 0%, transparent 70%);
+}
+
+/* --- Animated borders --- */
+.animated-border {
+  position: relative;
+  overflow: hidden;
+}
+.animated-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #004aad, #60a5fa, #004aad);
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* --- Button glow effect --- */
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.btn-glow::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(0, 74, 173, 0.4), rgba(96, 165, 250, 0.4));
+  filter: blur(15px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+.btn-glow:hover::after {
+  opacity: 1;
+}
+
+/* --- Orb decorations --- */
+.orb {
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.15;
+  pointer-events: none;
+  position: absolute;
+}
+.orb-primary { background: #004aad; }
+.orb-accent { background: #60a5fa; }
+
+/* --- Smooth scroll --- */
+html { scroll-behavior: smooth; }
+
+/* --- Section divider --- */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 74, 173, 0.15), transparent);
+}
+
+/* --- Number counter style --- */
+.stat-number {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* --- Icon container with glow --- */
+.icon-glow {
+  position: relative;
+}
+.icon-glow::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  background: rgba(0, 74, 173, 0.12);
+  filter: blur(10px);
+  z-index: -1;
+}
+
+/* --- Scrollbar styling --- */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #004aad40; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #004aad70; }
+
+/* --- Scroll reveal state --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --- Reduced motion support --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
