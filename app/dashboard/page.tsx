@@ -22,6 +22,8 @@ export default function DashboardPage() {
         router.push("/admin/dashboard");
       } else if (user.role === 'provider') {
         router.push("/provider-dashboard");
+      } else if (user.role === 'inspector') {
+        router.push("/inspector-dashboard");
       }
       // Clients will remain on this page
     }

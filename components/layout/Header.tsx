@@ -18,6 +18,8 @@ import {
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { useAuth } from '@/hooks/useAuth';
 import { Logo } from '@/components/shared/Logo';
+import { NotificationBell } from '@/components/shared/NotificationBell';
+import { DefaultAvatar } from '@/components/shared/DefaultAvatar';
 
 const navLinks = [
   { label: 'Find Providers', href: '/find-providers' },
@@ -51,13 +53,21 @@ export function Header() {
           {loading ? (
             <div className="h-8 w-20 animate-pulse rounded-lg bg-brand/10"></div>
           ) : user ? (
-            <DropdownMenu>
+            <>
+              <NotificationBell />
+              <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-9 w-9 rounded-full ring-2 ring-brand/20 hover:ring-brand/40 transition-all">
-                  <Avatar className="h-9 w-9">
-                    <AvatarImage src={user.profileImageUrl || "https://placehold.co/40x40.png"} alt={user.name ?? 'User'} data-ai-hint="user avatar" />
-                    <AvatarFallback className="bg-brand/10 text-brand font-semibold">{user.name?.[0].toUpperCase() ?? 'U'}</AvatarFallback>
-                  </Avatar>
+                <Button variant="ghost" className="relative h-9 w-9 rounded-full ring-2 ring-brand/20 hover:ring-brand/40 transition-all p-0">
+                  {user.profileImageUrl ? (
+                    <Avatar className="h-9 w-9">
+                      <AvatarImage src={user.profileImageUrl} alt={user.name ?? 'User'} data-ai-hint="user avatar" />
+                      <AvatarFallback className="bg-brand/10 text-brand">
+                        <UserCircle className="h-6 w-6" />
+                      </AvatarFallback>
+                    </Avatar>
+                  ) : (
+                    <DefaultAvatar name={user.name} size={36} />
+                  )}
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56 rounded-xl border-brand/10 shadow-xl" align="end" forceMount>
@@ -112,6 +122,7 @@ export function Header() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+            </>
           ) : (
             <>
               <Button variant="ghost" size="sm" asChild className="hidden sm:inline-flex rounded-lg hover:text-brand hover:bg-brand/5">

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Users, Briefcase, Settings, Shield, Activity, BarChart, Image as ImageIcon, Save, ListChecks, Upload } from "lucide-react";
+import { Users, Briefcase, Settings, Shield, Activity, BarChart, Image as ImageIcon, Save, ListChecks, Upload, CheckCircle, Clock, AlertCircle } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
@@ -26,19 +26,14 @@ export default function AdminDashboardPage() {
     initial: true
   });
 
-  const [metrics, setMetrics] = useState<{
-    total_users: number;
-    active_providers: number;
-    open_requests: number;
-    system_status: string;
-  } | null>(null);
+  const [metrics, setMetrics] = useState<any | null>(null);
 
   const fetchMetrics = async () => {
     try {
       const response = await fetch('/api/admin/info');
       if (response.ok) {
-        const data = await response.json();
-        setMetrics(data);
+        const result = await response.json();
+        setMetrics(result.data);
       }
     } catch (error: any) {
       console.error('Failed to fetch metrics:', error);
@@ -181,6 +176,17 @@ export default function AdminDashboardPage() {
         </CardContent>
       </Card>
 
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <StatCard title="Total Users" value={metrics?.totalUsers?.toLocaleString() || "0"} icon={<Users className="h-5 w-5" />} />
+        <StatCard title="Active Providers" value={metrics?.usersByRole?.providers?.toLocaleString() || "0"} icon={<Briefcase className="h-5 w-5" />} />
+        <StatCard title="Active Clients" value={metrics?.usersByRole?.clients?.toLocaleString() || "0"} icon={<Users className="h-5 w-5" />} />
+        <StatCard title="Active Inspectors" value={metrics?.usersByRole?.inspectors?.toLocaleString() || "0"} icon={<CheckCircle className="h-5 w-5" />} />
+        <StatCard title="Open Requests" value={metrics?.serviceRequests?.byStatus?.pending?.toLocaleString() || "0"} icon={<ListChecks className="h-5 w-5" />} />
+        <StatCard title="Completed Requests" value={metrics?.serviceRequests?.byStatus?.completed?.toLocaleString() || "0"} icon={<CheckCircle className="h-5 w-5" />} />
+        <StatCard title="Expiring Certs" value={metrics?.equipment?.expiringCertifications?.toLocaleString() || "0"} icon={<AlertCircle className="h-5 w-5" />} />
+        <StatCard title="Recent Signups (7d)" value={metrics?.recentRegistrations?.lastSevenDays?.toLocaleString() || "0"} icon={<Clock className="h-5 w-5" />} />
+      </div>
+
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         <AdminActionCard
           title="Manage Users"
@@ -201,7 +207,7 @@ export default function AdminDashboardPage() {
           icon={<Settings className="h-8 w-8 text-primary" />}
         />
         <AdminActionCard
-          title="View Analytics"
+          title="Analytics"
           description="Access platform usage statistics and reports."
           href="/admin/analytics"
           icon={<BarChart className="h-8 w-8 text-primary" />}
@@ -211,6 +217,12 @@ export default function AdminDashboardPage() {
           description="View lists used for dropdowns and selections (e.g., NDT services, certifications)."
           href="/admin/manage-predefined-lists"
           icon={<ListChecks className="h-8 w-8 text-primary" />}
+        />
+        <AdminActionCard
+          title="View All Users"
+          description="Comprehensive user view with activity logs and details."
+          href="/admin/view-users"
+          icon={<Activity className="h-8 w-8 text-primary" />}
         />
       </div>
       
@@ -352,31 +364,32 @@ export default function AdminDashboardPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Platform Overview</CardTitle>
-          <CardDescription>Key metrics and system status</CardDescription>
+          <CardTitle>Recent User Registrations (Last 7 Days)</CardTitle>
+          <CardDescription>Latest signup activity on the platform</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            {metrics ? (
-              <>
-                <StatCard title="Total Users" value={metrics.total_users.toLocaleString()} icon={<Users className="h-5 w-5" />} />
-                <StatCard title="Active Providers" value={metrics.active_providers.toLocaleString()} icon={<Briefcase className="h-5 w-5" />} />
-                <StatCard title="Open Requests" value={metrics.open_requests.toLocaleString()} icon={<ListChecks className="h-5 w-5" />} />
-                <StatCard title="System Status" value={metrics.system_status} icon={<Shield className="h-5 w-5" />} />
-              </>
-            ) : (
-              Array(4).fill(0).map((_, i) => (
-                <Card key={i}>
-                  <CardContent className="p-4 flex items-center justify-center h-full">
-                    <Activity className="h-5 w-5 animate-spin" />
-                  </CardContent>
-                </Card>
-              ))
-            )}
-          </div>
-          <div className="p-6 border border-dashed rounded-lg text-center bg-muted/50">
-            <p className="text-muted-foreground">[Analytics Dashboard Will Appear Here]</p>
-          </div>
+          {metrics && metrics.recentRegistrations?.recentSignups && metrics.recentRegistrations.recentSignups.length > 0 ? (
+            <div className="space-y-3">
+              {metrics.recentRegistrations.recentSignups.map((signup: any, idx: number) => (
+                <div key={idx} className="flex items-center justify-between p-3 border rounded-lg hover:bg-muted/50">
+                  <div className="flex-1">
+                    <p className="font-medium">{signup.name || signup.email}</p>
+                    <p className="text-sm text-muted-foreground">{signup.email}</p>
+                  </div>
+                  <div className="flex flex-col items-end gap-1">
+                    <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">{signup.role}</span>
+                    <span className="text-xs text-muted-foreground">
+                      {new Date(signup.createdAt).toLocaleDateString()}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-8 text-muted-foreground">
+              <p>No recent signups in the last 7 days</p>
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>
