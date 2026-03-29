@@ -3,7 +3,7 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://da40au40:XiNeV7t72lBnAhxN@cluster0.dtd6ixg.mongodb.net/NDTConnect2?retryWrites=true&w=majority&appName=Cluster0';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://NdtConnectV2:LjWVV62ub05905jQ@ndtconnect.qpbvncb.mongodb.net/NDTConnect2?retryWrites=true&w=majority&appName=NDTConnect';
 
 async function seedAdmin() {
   await mongoose.connect(MONGODB_URI);
