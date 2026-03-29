@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 // app/api/admin/users/[id]/status/route.ts
 import { NextResponse } from 'next/server';
 import dbConnect from '../../../../../../lib/mongodb';
