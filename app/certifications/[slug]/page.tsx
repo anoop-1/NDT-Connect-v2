@@ -28,7 +28,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       cert.name.toLowerCase(), `${cert.abbreviation} certification`, `${cert.abbreviation} exam`,
       `${cert.abbreviation} requirements`, 'NDT certification', 'NDT certification guide',
     ],
-    openGraph: { title, description, url: `https://ndt-connect.com/certifications/${cert.slug}` },
+    openGraph: { title, description, url: `https://ndt-connect.com/certifications/${cert.slug}`, type: 'website', siteName: 'NDT Connect' },
+    twitter: { card: 'summary_large_image', title, description },
     alternates: { canonical: `https://ndt-connect.com/certifications/${cert.slug}` },
   };
 }
