@@ -5,6 +5,18 @@ import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/S
 export const metadata: Metadata = {
     title: 'NDT Certifications Explained: ASNT, ISO 9712, and More | NDT Connect',
     description: 'Understanding the different certification bodies and levels in non-destructive testing.',
+    openGraph: {
+      title: 'NDT Certifications Explained: ASNT, ISO 9712, and More | NDT Connect',
+      description: 'Understanding the different certification bodies and levels in non-destructive testing.',
+      url: 'https://ndt-connect.com/blog/ndt-certifications-explained',
+      type: 'article',
+      siteName: 'NDT Connect',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'NDT Certifications Explained: ASNT, ISO 9712, and More | NDT Connect',
+      description: 'Understanding the different certification bodies and levels in non-destructive testing.',
+    },
     alternates: { canonical: 'https://ndt-connect.com/blog/ndt-certifications-explained' },
     keywords: ['NDT certifications', 'ASNT certification', 'ISO 9712', 'NDT Level I II III'],
 };
