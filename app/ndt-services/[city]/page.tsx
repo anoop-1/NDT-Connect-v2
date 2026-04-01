@@ -40,6 +40,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       url: `https://ndt-connect.com/ndt-services/${city.slug}`,
       type: 'website',
+      siteName: 'NDT Connect',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
     },
     alternates: {
       canonical: `https://ndt-connect.com/ndt-services/${city.slug}`,
