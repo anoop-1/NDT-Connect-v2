@@ -8,6 +8,13 @@ export const metadata: Metadata = {
     title: 'NDT Certification Pathway Planner | NDT Connect',
     description: 'Plan your NDT certification journey. Get personalized certification recommendations.',
     url: 'https://ndt-connect.com/tools/certification-pathway',
+    type: 'website',
+    siteName: 'NDT Connect',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'NDT Certification Pathway Planner | NDT Connect',
+    description: 'Plan your NDT certification journey. Get personalized certification recommendations.',
   },
   alternates: { canonical: 'https://ndt-connect.com/tools/certification-pathway' },
 };
