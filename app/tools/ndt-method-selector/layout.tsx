@@ -8,6 +8,13 @@ export const metadata: Metadata = {
     title: 'NDT Method Selector Tool | NDT Connect',
     description: 'Find the right NDT method for your application with our free interactive selector tool.',
     url: 'https://ndt-connect.com/tools/ndt-method-selector',
+    type: 'website',
+    siteName: 'NDT Connect',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'NDT Method Selector Tool | NDT Connect',
+    description: 'Interactive tool to find the best NDT method for your needs.',
   },
   alternates: { canonical: 'https://ndt-connect.com/tools/ndt-method-selector' },
 };
