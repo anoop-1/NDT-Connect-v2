@@ -6,6 +6,18 @@ export const metadata: Metadata = {
   title: 'Magnetic Particle Testing (MT): The Complete Guide | NDT Connect',
   description: 'Everything you need to know about magnetic particle testing. Methods, equipment, procedures, standards, applications, and how to find certified MT inspectors.',
   keywords: ['magnetic particle testing', 'MPI', 'MT inspection', 'magnetic particle inspection', 'magnetic testing NDT'],
+  openGraph: {
+    title: 'Magnetic Particle Testing (MT): The Complete Guide | NDT Connect',
+    description: 'Everything you need to know about magnetic particle testing. Methods, equipment, procedures, standards, applications, and how to find certified MT inspectors.',
+    url: 'https://ndt-connect.com/blog/magnetic-particle-testing-complete-guide',
+    type: 'article',
+    siteName: 'NDT Connect',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Magnetic Particle Testing (MT): The Complete Guide | NDT Connect',
+    description: 'Everything you need to know about magnetic particle testing. Methods, equipment, procedures, standards, applications, and how to find certified MT inspectors.',
+  },
   alternates: { canonical: 'https://ndt-connect.com/blog/magnetic-particle-testing-complete-guide' },
 };
 
