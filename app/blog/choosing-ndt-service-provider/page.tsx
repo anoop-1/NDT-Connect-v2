@@ -5,6 +5,18 @@ import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/S
 export const metadata: Metadata = {
     title: 'How to Choose the Right NDT Service Provider | NDT Connect',
     description: 'Key factors to consider when selecting an NDT company: certifications, experience, equipment, insurance.',
+    openGraph: {
+      title: 'How to Choose the Right NDT Service Provider | NDT Connect',
+      description: 'Key factors to consider when selecting an NDT company: certifications, experience, equipment, insurance.',
+      url: 'https://ndt-connect.com/blog/choosing-ndt-service-provider',
+      type: 'article',
+      siteName: 'NDT Connect',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'How to Choose the Right NDT Service Provider | NDT Connect',
+      description: 'Key factors to consider when selecting an NDT company: certifications, experience, equipment, insurance.',
+    },
     alternates: { canonical: 'https://ndt-connect.com/blog/choosing-ndt-service-provider' },
     keywords: ['choose NDT provider', 'NDT company selection', 'certified NDT company'],
 };
