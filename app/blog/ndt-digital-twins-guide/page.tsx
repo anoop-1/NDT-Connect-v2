@@ -5,6 +5,18 @@ import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/S
 export const metadata: Metadata = {
     title: 'Digital Twins in NDT: Revolutionizing Asset Integrity Management | NDT Connect',
     description: 'Discover how digital twins integrate with NDT data for predictive maintenance, real-time monitoring, and optimal asset performance. Complete guide for industrial operators.',
+    openGraph: {
+      title: 'Digital Twins in NDT: Revolutionizing Asset Integrity Management | NDT Connect',
+      description: 'Discover how digital twins integrate with NDT data for predictive maintenance, real-time monitoring, and optimal asset performance. Complete guide for industrial operators.',
+      url: 'https://ndt-connect.com/blog/ndt-digital-twins-guide',
+      type: 'article',
+      siteName: 'NDT Connect',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Digital Twins in NDT: Revolutionizing Asset Integrity Management | NDT Connect',
+      description: 'Discover how digital twins integrate with NDT data for predictive maintenance, real-time monitoring, and optimal asset performance. Complete guide for industrial operators.',
+    },
     alternates: { canonical: 'https://ndt-connect.com/blog/ndt-digital-twins-guide' },
     keywords: ['digital twins NDT', 'predictive maintenance', 'asset integrity management', 'digital twin technology', 'NDT data integration'],
 };
