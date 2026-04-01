@@ -27,6 +27,11 @@ export const metadata: Metadata = {
     url: 'https://ndt-connect.com',
     type: 'website',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'NDT Connect | #1 NDT Inspection Marketplace',
+    description: 'Find certified NDT inspectors worldwide. Instant quotes, real-time tracking.',
+  },
   alternates: { canonical: 'https://ndt-connect.com' },
 };
 
