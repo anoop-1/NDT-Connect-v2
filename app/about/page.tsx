@@ -17,9 +17,28 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://ndt-connect.com/about' },
 };
 
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'NDT Connect',
+  url: 'https://ndt-connect.com',
+  logo: 'https://ndt-connect.com/logo.png',
+  description: 'The world\'s first and only marketplace for non-destructive testing (NDT) inspection services. Connecting asset owners with certified NDT inspectors worldwide.',
+  foundingDate: '2024',
+  contactPoint: [
+    { '@type': 'ContactPoint', telephone: '+1-281-840-8969', contactType: 'customer service', email: 'support@ndt-connect.com', availableLanguage: 'English' },
+    { '@type': 'ContactPoint', telephone: '+1-281-840-8969', contactType: 'sales', email: 'partnerships@ndt-connect.com', availableLanguage: 'English' },
+  ],
+  address: { '@type': 'PostalAddress', addressLocality: 'Houston', addressRegion: 'TX', addressCountry: 'US' },
+  sameAs: ['https://www.linkedin.com/company/ndt-connect'],
+  areaServed: { '@type': 'GeoCircle', geoMidpoint: { '@type': 'GeoCoordinates', latitude: 29.7604, longitude: -95.3698 }, geoRadius: '50000' },
+  knowsAbout: ['Non-Destructive Testing', 'Ultrasonic Testing', 'Radiographic Testing', 'Magnetic Particle Testing', 'Liquid Penetrant Testing', 'NDT Inspection Services'],
+};
+
 export default function AboutPage() {
   return (
     <div className="max-w-5xl mx-auto space-y-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
       <PageHero
         title="About NDT Connect"
         description="Facilitating seamless connections between Non-Destructive Testing (NDT) service providers and clients who require specialized inspection services."
