@@ -6,6 +6,18 @@ export const metadata: Metadata = {
   title: "What is NDT Testing? A Beginner's Complete Guide | NDT Connect",
   description: 'Learn what non-destructive testing (NDT) is, how it works, the main methods used, and why it matters for industrial safety and quality assurance.',
   keywords: ['what is NDT', 'non-destructive testing explained', 'NDT methods', 'NDT basics', 'NDT for beginners'],
+  openGraph: {
+    title: "What is NDT Testing? A Beginner's Complete Guide | NDT Connect",
+    description: 'Learn what non-destructive testing (NDT) is, how it works, the main methods used, and why it matters for industrial safety and quality assurance.',
+    url: 'https://ndt-connect.com/blog/what-is-ndt-testing',
+    type: 'article',
+    siteName: 'NDT Connect',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "What is NDT Testing? A Beginner's Complete Guide | NDT Connect",
+    description: 'Learn what non-destructive testing (NDT) is, how it works, the main methods used, and why it matters for industrial safety and quality assurance.',
+  },
   alternates: { canonical: 'https://ndt-connect.com/blog/what-is-ndt-testing' },
 };
 
