@@ -57,7 +57,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         `${method.name} ${city.region}`,
         `certified NDT ${city.name}`,
       ],
-      openGraph: { title, description, url: `https://ndt-connect.com/ndt-services/${citySlug}/${slug}`, type: 'website' },
+      openGraph: { title, description, url: `https://ndt-connect.com/ndt-services/${citySlug}/${slug}`, type: 'website', siteName: 'NDT Connect' },
+      twitter: { card: 'summary_large_image', title, description },
       alternates: { canonical: `https://ndt-connect.com/ndt-services/${citySlug}/${slug}` },
     };
   }
@@ -76,7 +77,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         ...industry.commonMethods.slice(0, 3),
         `${city.name} inspection services`,
       ],
-      openGraph: { title, description, url: `https://ndt-connect.com/ndt-services/${citySlug}/${slug}` },
+      openGraph: { title, description, url: `https://ndt-connect.com/ndt-services/${citySlug}/${slug}`, type: 'website', siteName: 'NDT Connect' },
+      twitter: { card: 'summary_large_image', title, description },
       alternates: { canonical: `https://ndt-connect.com/ndt-services/${citySlug}/${slug}` },
     };
   }
