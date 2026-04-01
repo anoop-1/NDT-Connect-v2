@@ -8,6 +8,13 @@ export const metadata: Metadata = {
     title: 'NDT Inspection Cost Estimator | NDT Connect',
     description: 'Get instant cost estimates for your NDT inspection project. Free online calculator.',
     url: 'https://ndt-connect.com/tools/inspection-cost-estimator',
+    type: 'website',
+    siteName: 'NDT Connect',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'NDT Inspection Cost Estimator | NDT Connect',
+    description: 'Free calculator to estimate NDT inspection costs by method, quantity, and complexity.',
   },
   alternates: { canonical: 'https://ndt-connect.com/tools/inspection-cost-estimator' },
 };
