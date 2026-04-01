@@ -5,8 +5,19 @@ import { NDTConnectOrganizationSchema, FAQSchema, ArticleSchema } from '@/compon
 export const metadata: Metadata = {
   title: 'API 510 Exam Preparation: Complete Study Guide for 2026 | NDT Connect',
   description: 'Everything you need to pass the API 510 Pressure Vessel Inspector exam. Study topics, exam format, recommended resources, and preparation strategies.',
-  keywords: ['API 510 exam', 'API 510 study guide', 'pressure vessel inspector certification', 'API 510 preparation', 'API 510 exam tips'],
-  alternates: { canonical: 'https://ndt-connect.com/blog/api-510-exam-preparation-guide' },
+  keywords: ['API 510 exam', 'API 510 study guide', 'pressure vessel inspector certification', 'API 510 preparation', 'API 510 exam tips'],    openGraph: {
+      title: 'API 510 Exam Preparation: Complete Study Guide for 2026 | NDT Connect',
+      description: 'Everything you need to pass the API 510 Pressure Vessel Inspector exam. Study topics, exam format, recommended resources, and preparation strategies.',
+      url: 'https://ndt-connect.com/blog/api-510-exam-preparation-guide',
+      type: 'article',
+      siteName: 'NDT Connect',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'API 510 Exam Preparation: Complete Study Guide for 2026 | NDT Connect',
+      description: 'Everything you need to pass the API 510 Pressure Vessel Inspector exam. Study topics, exam format, recommended resources, and preparation strategies.',
+    },
+    alternates: { canonical: 'https://ndt-connect.com/blog/api-510-exam-preparation-guide' },
 };
 
 export default function Page() {
