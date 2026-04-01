@@ -6,7 +6,12 @@ export const metadata: Metadata = {
   title: 'Corrosion Under Insulation (CUI): Detection & Prevention Guide | NDT Connect',
   description: 'Complete guide to Corrosion Under Insulation. Learn CUI detection methods, NDT techniques, prevention strategies, and inspection best practices for insulated piping and equipment.',
   keywords: ['corrosion under insulation', 'CUI detection', 'CUI NDT', 'CUI inspection', 'insulated pipe corrosion', 'CUI prevention'],
-  openGraph: { title: 'Corrosion Under Insulation Guide | NDT Connect', description: 'Complete CUI detection and prevention guide for industrial assets.', url: 'https://ndt-connect.com/blog/corrosion-under-insulation-guide' },
+  openGraph: { title: 'Corrosion Under Insulation Guide | NDT Connect', description: 'Complete CUI detection and prevention guide for industrial assets.', url: 'https://ndt-connect.com/blog/corrosion-under-insulation-guide', type: 'article', siteName: 'NDT Connect' },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Corrosion Under Insulation (CUI): Detection & Prevention Guide | NDT Connect',
+    description: 'Complete guide to Corrosion Under Insulation. Learn CUI detection methods, NDT techniques, prevention strategies, and inspection best practices for insulated piping and equipment.',
+  },
   alternates: { canonical: 'https://ndt-connect.com/blog/corrosion-under-insulation-guide' },
 };
 
