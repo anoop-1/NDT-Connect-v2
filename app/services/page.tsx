@@ -28,6 +28,13 @@ export const metadata: Metadata = {
     title: 'NDT Testing Services | NDT Connect',
     description: 'Book any NDT inspection method online. Certified inspectors worldwide.',
     url: 'https://ndt-connect.com/services',
+    type: 'website',
+    siteName: 'NDT Connect',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'NDT Testing Services | UT RT MT PT ET VT PAUT TOFD',
+    description: 'Book any NDT inspection method online. Certified inspectors worldwide.',
   },
   alternates: { canonical: 'https://ndt-connect.com/services' },
 };
