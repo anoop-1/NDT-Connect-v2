@@ -5,6 +5,18 @@ import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/S
 export const metadata: Metadata = {
     title: 'NDT Career Guide 2026: Salaries, Certifications & Growth Path | NDT Connect',
     description: 'Complete guide to NDT careers - salary ranges, required certifications, career progression, and job market outlook. Everything you need to start an NDT career.',
+    openGraph: {
+      title: 'NDT Career Guide 2026: Salaries, Certifications & Growth Path | NDT Connect',
+      description: 'Complete guide to NDT careers - salary ranges, required certifications, career progression, and job market outlook. Everything you need to start an NDT career.',
+      url: 'https://ndt-connect.com/blog/ndt-career-guide-2026',
+      type: 'article',
+      siteName: 'NDT Connect',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'NDT Career Guide 2026: Salaries, Certifications & Growth Path | NDT Connect',
+      description: 'Complete guide to NDT careers - salary ranges, required certifications, career progression, and job market outlook. Everything you need to start an NDT career.',
+    },
     alternates: { canonical: 'https://ndt-connect.com/blog/ndt-career-guide-2026' },
     keywords: ['NDT career', 'NDT salary', 'NDT certifications', 'NDT jobs', 'non-destructive testing career'],
 };
