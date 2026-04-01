@@ -20,6 +20,13 @@ export const metadata: Metadata = {
     title: 'NDT Career Paths & Salary Guide | NDT Connect',
     description: 'Explore NDT career paths, salary ranges, and job opportunities',
     url: 'https://ndt-connect.com/careers',
+    type: 'website',
+    siteName: 'NDT Connect',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'NDT Career Paths & Salary Guide | NDT Connect',
+    description: 'Explore NDT career paths, salary ranges, and job opportunities.',
   },
   alternates: { canonical: 'https://ndt-connect.com/careers' },
 };
