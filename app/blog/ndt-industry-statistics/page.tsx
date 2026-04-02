@@ -5,6 +5,18 @@ import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/S
 export const metadata: Metadata = {
     title: 'NDT Industry Statistics & Market Size 2026: Complete Analysis | NDT Connect',
     description: 'Comprehensive analysis of the NDT market - global market size, growth rates, regional breakdown, employment data, and industry trends for 2026.',
+    openGraph: {
+      title: 'NDT Industry Statistics & Market Size 2026: Complete Analysis | NDT Connect',
+      description: 'Comprehensive analysis of the NDT market - global market size, growth rates, regional breakdown, employment data, and industry trends for 2026.',
+      url: 'https://ndt-connect.com/blog/ndt-industry-statistics',
+      type: 'article',
+      siteName: 'NDT Connect',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'NDT Industry Statistics & Market Size 2026: Complete Analysis | NDT Connect',
+      description: 'Comprehensive analysis of the NDT market - global market size, growth rates, regional breakdown, employment data, and industry trends for 2026.',
+    },
     alternates: { canonical: 'https://ndt-connect.com/blog/ndt-industry-statistics' },
     keywords: ['NDT market size', 'NDT industry statistics', 'non-destructive testing market', 'NDT growth rate', 'NDT employment'],
 };
