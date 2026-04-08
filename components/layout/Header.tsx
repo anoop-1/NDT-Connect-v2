@@ -57,7 +57,7 @@ export function Header() {
               <NotificationBell />
               <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-9 w-9 rounded-full ring-2 ring-brand/20 hover:ring-brand/40 transition-all p-0">
+                <Button variant="ghost" className="relative h-9 w-9 rounded-full ring-2 ring-brand/20 hover:ring-brand/40 transition-all p-0" aria-label="User menu">
                   {user.profileImageUrl ? (
                     <Avatar className="h-9 w-9">
                       <AvatarImage src={user.profileImageUrl} alt={user.name ?? 'User'} data-ai-hint="user avatar" />
@@ -137,7 +137,7 @@ export function Header() {
           {/* Mobile hamburger menu */}
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="sm" className="md:hidden h-11 w-11 p-0">
+              <Button variant="ghost" size="sm" className="md:hidden h-11 w-11 p-0" aria-label="Open menu">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Open menu</span>
               </Button>
