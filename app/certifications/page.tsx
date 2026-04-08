@@ -19,7 +19,18 @@ export const metadata: Metadata = {
   title: 'NDT Certifications Guide | ASNT, ISO 9712, API, PCN | NDT Connect',
   description: 'Complete guide to NDT certifications. Learn about ASNT, ISO 9712, API 510/570/653, and PCN certification requirements, levels, and exam preparation.',
   keywords: ['NDT certification', 'ASNT certification', 'ISO 9712', 'API 510', 'API 570', 'API 653', 'PCN certification', 'NDT qualification'],
-  openGraph: { title: 'NDT Certifications Guide | NDT Connect', description: 'Complete guide to NDT certifications worldwide.', url: 'https://ndt-connect.com/certifications' },
+  openGraph: { 
+    title: 'NDT Certifications Guide | NDT Connect', 
+    description: 'Complete guide to NDT certifications including ASNT, ISO 9712, API, and PCN worldwide.', 
+    url: 'https://ndt-connect.com/certifications',
+    type: 'website',
+    siteName: 'NDT Connect',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'NDT Certifications Guide | ASNT, ISO 9712, API, PCN | NDT Connect',
+    description: 'Complete guide to NDT certifications including ASNT, ISO 9712, API, and PCN worldwide.',
+  },
   alternates: { canonical: 'https://ndt-connect.com/certifications' },
 };
 
