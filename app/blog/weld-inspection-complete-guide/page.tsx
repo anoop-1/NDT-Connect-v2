@@ -6,7 +6,12 @@ export const metadata: Metadata = {
   title: 'Complete Guide to Weld Inspection: NDT Methods & Standards | NDT Connect',
   description: 'Comprehensive weld inspection guide covering all NDT methods, acceptance criteria, common weld defects, applicable codes (AWS D1.1, ASME IX), and best practices.',
   keywords: ['weld inspection', 'weld NDT', 'weld testing', 'weld defects', 'AWS D1.1', 'ASME IX', 'weld quality', 'welding inspection'],
-  openGraph: { title: 'Complete Weld Inspection Guide | NDT Connect', description: 'Everything about weld inspection NDT methods, codes, and best practices.', url: 'https://ndt-connect.com/blog/weld-inspection-complete-guide' },
+  openGraph: { title: 'Complete Weld Inspection Guide | NDT Connect', description: 'Everything about weld inspection NDT methods, codes, and best practices.', url: 'https://ndt-connect.com/blog/weld-inspection-complete-guide', type: 'article', siteName: 'NDT Connect' },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Complete Guide to Weld Inspection: NDT Methods & Standards | NDT Connect',
+    description: 'Comprehensive weld inspection guide covering all NDT methods, acceptance criteria, common weld defects, applicable codes (AWS D1.1, ASME IX), and best practices.',
+  },
   alternates: { canonical: 'https://ndt-connect.com/blog/weld-inspection-complete-guide' },
 };
 
