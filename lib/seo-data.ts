@@ -383,6 +383,17 @@ export const industries: IndustryData[] = [
     standards: ['AS 3788', 'ASME Section V', 'ISO 9712', 'Mine Safety Regulations', 'API Standards'],
     whyNDT: 'Mining equipment failures can cause serious injuries, production losses worth millions per day, and environmental incidents. NDT programs are essential for predictive maintenance and worker safety in mining operations.',
   },
+  {
+    slug: 'nuclear',
+    name: 'Nuclear',
+    description: 'NDT for nuclear power plants, reactor components, containment vessels, and safety-critical systems requiring the highest inspection standards.',
+    longDescription: 'The nuclear industry demands the most rigorous NDT standards of any sector. Every component in a nuclear facility, from reactor pressure vessels to steam generators, piping systems, and containment structures, must meet extremely strict safety and quality requirements. NDT plays a vital role in ensuring the structural integrity of these components throughout their operational life, during construction, in-service inspections, and decommissioning phases.',
+    commonMethods: ['Ultrasonic Testing (UT)', 'Radiographic Testing (RT)', 'Eddy Current Testing (ET)', 'Visual Testing (VT)', 'Magnetic Particle Testing (MT)', 'Liquid Penetrant Testing (PT)', 'Acoustic Emission Testing (AET)', 'Phased Array UT (PAUT)'],
+    keyApplications: ['Reactor pressure vessel inspection', 'Steam generator tube inspection', 'Primary coolant piping assessment', 'Containment vessel integrity', 'Fuel rod inspection', 'Weld integrity verification', 'Turbine component inspection', 'Structural steel assessment'],
+    challenges: ['Radiation exposure limiting inspection time', 'Extremely strict regulatory compliance requirements', 'Remote and robotic inspection needs for high-radiation zones', 'Extended plant life management beyond original design', 'Component aging and degradation monitoring', 'Decommissioning inspection requirements'],
+    standards: ['ASME Section III', 'ASME Section XI', 'ASME Section V', '10 CFR 50', 'NRC Regulatory Guides', 'EPRI Guidelines', 'EN 13018', 'ISO 17636'],
+    whyNDT: 'Nuclear facilities contain safety-critical components where failure could lead to catastrophic consequences. NDT enables continuous monitoring of component integrity without compromising the protective barriers, ensuring safe operation throughout the plant lifecycle and compliance with stringent regulatory requirements from bodies like the NRC and IAEA.',
+  },
 ];
 
 export function getIndustryBySlug(slug: string): IndustryData | undefined {
