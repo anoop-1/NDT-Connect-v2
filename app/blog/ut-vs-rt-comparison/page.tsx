@@ -5,6 +5,18 @@ import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/S
 export const metadata: Metadata = {
     title: 'UT vs RT: Choosing Between Ultrasonic and Radiographic Testing | NDT Connect',
     description: 'Comprehensive comparison of ultrasonic testing (UT) and radiographic testing (RT) - advantages, limitations, applications, and selection criteria for volumetric inspection.',
+    openGraph: {
+      title: 'UT vs RT: Choosing Between Ultrasonic and Radiographic Testing | NDT Connect',
+      description: 'Comprehensive comparison of ultrasonic testing (UT) and radiographic testing (RT) - advantages, limitations, applications, and selection criteria for volumetric inspection.',
+      url: 'https://ndt-connect.com/blog/ut-vs-rt-comparison',
+      type: 'article',
+      siteName: 'NDT Connect',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'UT vs RT: Choosing Between Ultrasonic and Radiographic Testing | NDT Connect',
+      description: 'Comprehensive comparison of ultrasonic testing (UT) and radiographic testing (RT) - advantages, limitations, applications, and selection criteria for volumetric inspection.',
+    },
     alternates: { canonical: 'https://ndt-connect.com/blog/ut-vs-rt-comparison' },
     keywords: ['ultrasonic testing vs radiographic', 'UT vs RT', 'volumetric testing methods', 'weld inspection comparison', 'NDT method selection'],
 };
