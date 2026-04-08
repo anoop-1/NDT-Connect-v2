@@ -74,7 +74,7 @@ export default function FindProvidersPage() {
   useEffect(() => {
     if (!authLoading && !user) {
       router.push("/login?redirect=/find-providers");
-    } else if (user && user.role !== 'client') {
+    } else if (user && user.role !== 'client' && user.role !== 'admin') {
       router.push("/dashboard");
     }
   }, [user, authLoading, router]);
@@ -157,7 +157,7 @@ export default function FindProvidersPage() {
   if (authLoading || (!user && !authLoading)) {
     return <div className="flex justify-center items-center min-h-[calc(100vh-10rem)]"><Activity className="h-8 w-8 animate-spin text-primary" /><span className="ml-2">Loading...</span></div>;
   }
-  if (user && user.role !== 'client') {
+  if (user && user.role !== 'client' && user.role !== 'admin') {
     return <div className="text-center py-10">Access denied. This page is for clients.</div>;
   }
 
