@@ -5,6 +5,18 @@ import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/S
 export const metadata: Metadata = {
     title: 'The Ultimate Guide to Ultrasonic Testing (UT) in 2024 | NDT Connect',
     description: 'Learn everything about ultrasonic testing - from basic principles to advanced techniques like PAUT and TOFD. Complete guide for asset owners and inspectors.',
+    openGraph: {
+      title: 'The Ultimate Guide to Ultrasonic Testing (UT) in 2024 | NDT Connect',
+      description: 'Learn everything about ultrasonic testing - from basic principles to advanced techniques like PAUT and TOFD. Complete guide for asset owners and inspectors.',
+      url: 'https://ndt-connect.com/blog/ultimate-guide-ultrasonic-testing',
+      type: 'article',
+      siteName: 'NDT Connect',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'The Ultimate Guide to Ultrasonic Testing (UT) in 2024 | NDT Connect',
+      description: 'Learn everything about ultrasonic testing - from basic principles to advanced techniques like PAUT and TOFD. Complete guide for asset owners and inspectors.',
+    },
     alternates: { canonical: 'https://ndt-connect.com/blog/ultimate-guide-ultrasonic-testing' },
     keywords: ['ultrasonic testing', 'UT inspection', 'PAUT', 'TOFD', 'NDT'],
 };
