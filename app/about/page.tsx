@@ -13,6 +13,13 @@ export const metadata: Metadata = {
     title: 'About NDT Connect',
     description: 'The leading marketplace connecting asset owners with certified NDT inspectors worldwide.',
     url: 'https://ndt-connect.com/about',
+    type: 'website',
+    siteName: 'NDT Connect',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About NDT Connect | The Leading NDT Inspection Marketplace',
+    description: 'The leading marketplace connecting asset owners with certified NDT inspectors worldwide.',
   },
   alternates: { canonical: 'https://ndt-connect.com/about' },
 };
