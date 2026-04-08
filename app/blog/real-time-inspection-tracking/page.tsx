@@ -5,6 +5,18 @@ import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/S
 export const metadata: Metadata = {
     title: 'How Real-Time Tracking is Revolutionizing NDT Inspections | NDT Connect',
     description: 'Discover how platforms like NDT Connect use GPS, H3 indexing, and live updates to transform inspection workflows.',
+    openGraph: {
+      title: 'How Real-Time Tracking is Revolutionizing NDT Inspections | NDT Connect',
+      description: 'Discover how platforms like NDT Connect use GPS, H3 indexing, and live updates to transform inspection workflows.',
+      url: 'https://ndt-connect.com/blog/real-time-inspection-tracking',
+      type: 'article',
+      siteName: 'NDT Connect',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'How Real-Time Tracking is Revolutionizing NDT Inspections | NDT Connect',
+      description: 'Discover how platforms like NDT Connect use GPS, H3 indexing, and live updates to transform inspection workflows.',
+    },
     alternates: { canonical: 'https://ndt-connect.com/blog/real-time-inspection-tracking' },
     keywords: ['real-time inspection tracking', 'NDT technology', 'GPS tracking', 'H3 indexing'],
 };
