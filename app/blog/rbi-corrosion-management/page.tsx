@@ -5,6 +5,18 @@ import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/S
 export const metadata: Metadata = {
     title: 'Risk-Based Inspection (RBI): Complete Guide for Asset Owners | NDT Connect',
     description: 'Implement RBI strategies to prioritize inspections, reduce costs, and ensure asset integrity.',
+    openGraph: {
+      title: 'Risk-Based Inspection (RBI): Complete Guide for Asset Owners | NDT Connect',
+      description: 'Implement RBI strategies to prioritize inspections, reduce costs, and ensure asset integrity.',
+      url: 'https://ndt-connect.com/blog/rbi-corrosion-management',
+      type: 'article',
+      siteName: 'NDT Connect',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Risk-Based Inspection (RBI): Complete Guide for Asset Owners | NDT Connect',
+      description: 'Implement RBI strategies to prioritize inspections, reduce costs, and ensure asset integrity.',
+    },
     alternates: { canonical: 'https://ndt-connect.com/blog/rbi-corrosion-management' },
     keywords: ['risk-based inspection', 'RBI methodology', 'asset integrity', 'API 580'],
 };
