@@ -6,6 +6,18 @@ export const metadata: Metadata = {
   title: 'NDT Inspection Costs: Complete Pricing Guide for 2026 | NDT Connect',
   description: 'Detailed breakdown of NDT inspection costs by method, industry, and location. Learn what affects pricing for UT, RT, MT, PT, PAUT, and TOFD inspections.',
   keywords: ['ndt inspection cost', 'ndt testing price', 'ultrasonic testing cost', 'radiographic testing cost', 'ndt pricing guide'],
+  openGraph: {
+    title: 'NDT Inspection Costs: Complete Pricing Guide for 2026 | NDT Connect',
+    description: 'Detailed breakdown of NDT inspection costs by method, industry, and location. Learn what affects pricing for UT, RT, MT, PT, PAUT, and TOFD inspections.',
+    url: 'https://ndt-connect.com/blog/ndt-inspection-cost-guide',
+    type: 'article',
+    siteName: 'NDT Connect',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'NDT Inspection Costs: Complete Pricing Guide for 2026 | NDT Connect',
+    description: 'Detailed breakdown of NDT inspection costs by method, industry, and location. Learn what affects pricing for UT, RT, MT, PT, PAUT, and TOFD inspections.',
+  },
   alternates: { canonical: 'https://ndt-connect.com/blog/ndt-inspection-cost-guide' },
 };
 
