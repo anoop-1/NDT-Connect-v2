@@ -6,6 +6,18 @@ export const metadata: Metadata = {
   title: 'NDT vs Destructive Testing: When to Use Each Method | NDT Connect',
   description: 'Comprehensive comparison of non-destructive testing versus destructive testing. Learn the advantages, limitations, costs, and appropriate applications of each approach.',
   keywords: ['NDT vs destructive testing', 'non-destructive vs destructive', 'testing methods comparison', 'when to use NDT'],
+  openGraph: {
+    title: 'NDT vs Destructive Testing: When to Use Each Method | NDT Connect',
+    description: 'Comprehensive comparison of non-destructive testing versus destructive testing. Learn the advantages, limitations, costs, and appropriate applications of each approach.',
+    url: 'https://ndt-connect.com/blog/ndt-vs-destructive-testing',
+    type: 'article',
+    siteName: 'NDT Connect',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'NDT vs Destructive Testing: When to Use Each Method | NDT Connect',
+    description: 'Comprehensive comparison of non-destructive testing versus destructive testing. Learn the advantages, limitations, costs, and appropriate applications of each approach.',
+  },
   alternates: { canonical: 'https://ndt-connect.com/blog/ndt-vs-destructive-testing' },
 };
 
