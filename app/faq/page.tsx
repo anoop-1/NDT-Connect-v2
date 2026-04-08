@@ -7,7 +7,13 @@ export const metadata: Metadata = {
   title: 'FAQ - Frequently Asked Questions | NDT Connect',
   description: 'Get answers to common questions about NDT Connect, non-destructive testing services, booking inspections, NDT certifications, and how our marketplace works.',
   keywords: ['NDT FAQ', 'NDT questions', 'non-destructive testing FAQ', 'NDT inspection questions', 'NDT Connect help'],
-  openGraph: { title: 'FAQ | NDT Connect', description: 'Answers to common questions about NDT Connect and NDT services.', url: 'https://ndt-connect.com/faq' },
+  openGraph: { 
+    title: 'FAQ | NDT Connect', 
+    description: 'Answers to common questions about NDT Connect and NDT services.', 
+    url: 'https://ndt-connect.com/faq',
+    type: 'website',
+    siteName: 'NDT Connect',
+  },
   twitter: {
     card: 'summary_large_image',
     title: 'FAQ | NDT Connect',
