@@ -6,6 +6,18 @@ export const metadata: Metadata = {
   title: 'Phased Array Ultrasonic Testing (PAUT): Complete Technical Guide | NDT Connect',
   description: 'Comprehensive guide to phased array ultrasonic testing technology. Learn PAUT principles, advantages over conventional UT, applications, codes, and how to find PAUT service providers.',
   keywords: ['phased array ultrasonic testing', 'PAUT', 'phased array UT', 'PAUT inspection', 'advanced UT techniques'],
+  openGraph: {
+    title: 'Phased Array Ultrasonic Testing (PAUT): Complete Technical Guide | NDT Connect',
+    description: 'Comprehensive guide to phased array ultrasonic testing technology. Learn PAUT principles, advantages over conventional UT, applications, codes, and how to find PAUT service providers.',
+    url: 'https://ndt-connect.com/blog/phased-array-ultrasonic-testing-guide',
+    type: 'article',
+    siteName: 'NDT Connect',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Phased Array Ultrasonic Testing (PAUT): Complete Technical Guide | NDT Connect',
+    description: 'Comprehensive guide to phased array ultrasonic testing technology. Learn PAUT principles, advantages over conventional UT, applications, codes, and how to find PAUT service providers.',
+  },
   alternates: { canonical: 'https://ndt-connect.com/blog/phased-array-ultrasonic-testing-guide' },
 };
 
