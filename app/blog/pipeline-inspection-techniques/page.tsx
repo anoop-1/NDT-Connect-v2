@@ -5,6 +5,18 @@ import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/S
 export const metadata: Metadata = {
     title: 'Modern Pipeline Inspection Techniques You Need to Know | NDT Connect',
     description: 'From MFL to ILI, explore the latest technologies keeping pipelines safe and compliant.',
+    openGraph: {
+      title: 'Modern Pipeline Inspection Techniques You Need to Know | NDT Connect',
+      description: 'From MFL to ILI, explore the latest technologies keeping pipelines safe and compliant.',
+      url: 'https://ndt-connect.com/blog/pipeline-inspection-techniques',
+      type: 'article',
+      siteName: 'NDT Connect',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Modern Pipeline Inspection Techniques You Need to Know | NDT Connect',
+      description: 'From MFL to ILI, explore the latest technologies keeping pipelines safe and compliant.',
+    },
     alternates: { canonical: 'https://ndt-connect.com/blog/pipeline-inspection-techniques' },
     keywords: ['pipeline inspection', 'MFL testing', 'inline inspection ILI', 'smart pigging'],
 };
