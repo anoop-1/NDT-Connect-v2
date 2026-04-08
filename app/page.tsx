@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     description: 'Find certified NDT inspectors worldwide. Connect with qualified providers for UT, RT, MT, PT, PAUT, and more.',
     url: 'https://ndt-connect.com',
     type: 'website',
+    siteName: 'NDT Connect',
   },
   twitter: {
     card: 'summary_large_image',
