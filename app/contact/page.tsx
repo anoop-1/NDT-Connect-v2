@@ -9,7 +9,18 @@ export const metadata: Metadata = {
   title: 'Contact NDT Connect | Get in Touch | NDT Marketplace Support',
   description: 'Contact NDT Connect for support, partnership inquiries, or questions about our NDT inspection marketplace. Available worldwide for asset owners and NDT service providers.',
   keywords: ['contact NDT Connect', 'NDT support', 'NDT marketplace contact', 'NDT inspection help'],
-  openGraph: { title: 'Contact NDT Connect', description: 'Get in touch with NDT Connect.', url: 'https://ndt-connect.com/contact' },
+  openGraph: { 
+    title: 'Contact NDT Connect', 
+    description: 'Get in touch with NDT Connect for support, partnership inquiries, or questions about our NDT inspection marketplace.', 
+    url: 'https://ndt-connect.com/contact',
+    type: 'website',
+    siteName: 'NDT Connect',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact NDT Connect | Get in Touch | NDT Marketplace Support',
+    description: 'Contact NDT Connect for support, partnership inquiries, or questions about our NDT inspection marketplace.',
+  },
   alternates: { canonical: 'https://ndt-connect.com/contact' },
 };
 
