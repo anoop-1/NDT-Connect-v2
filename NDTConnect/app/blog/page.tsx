@@ -9,8 +9,21 @@ import { PageHero } from '@/components/shared/PageHero';
 
 export const metadata: Metadata = {
     title: 'NDT Inspection Blog | Industry Insights & Best Practices | NDT Connect',
-    description: 'Expert articles on non-destructive testing, inspection techniques, RBI strategies, and industry best practices.',
-    keywords: ['NDT blog', 'non-destructive testing articles', 'inspection best practices'],
+    description: 'Expert articles on non-destructive testing methods, inspection techniques, RBI strategies, certification guides, and industry best practices from NDT Connect.',
+    keywords: ['NDT blog', 'non-destructive testing articles', 'inspection best practices', 'NDT guides', 'NDT industry insights', 'NDT certification guides', 'ultrasonic testing articles', 'radiographic testing guides'],
+    openGraph: {
+        title: 'NDT Inspection Blog | Industry Insights & Best Practices',
+        description: 'Expert articles on NDT methods, inspection techniques, certification guides, and industry best practices.',
+        url: 'https://ndt-connect.com/blog',
+        type: 'website',
+        siteName: 'NDT Connect',
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'NDT Inspection Blog | NDT Connect',
+        description: 'Expert articles on NDT methods, certification guides, and industry best practices.',
+    },
+    alternates: { canonical: 'https://ndt-connect.com/blog' },
 };
 
 const blogPosts = [

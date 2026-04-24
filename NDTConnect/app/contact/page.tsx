@@ -13,9 +13,29 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://ndt-connect.com/contact' },
 };
 
+const contactSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contact NDT Connect',
+  url: 'https://ndt-connect.com/contact',
+  mainEntity: {
+    '@type': 'Organization',
+    name: 'NDT Connect',
+    url: 'https://ndt-connect.com',
+    telephone: '+1-281-840-8969',
+    email: 'support@ndt-connect.com',
+    address: { '@type': 'PostalAddress', addressLocality: 'Houston', addressRegion: 'TX', addressCountry: 'US' },
+    contactPoint: [
+      { '@type': 'ContactPoint', telephone: '+1-281-840-8969', contactType: 'customer service', email: 'support@ndt-connect.com', availableLanguage: 'English' },
+      { '@type': 'ContactPoint', contactType: 'sales', email: 'partnerships@ndt-connect.com', availableLanguage: 'English' },
+    ],
+  },
+};
+
 export default function ContactPage() {
   return (
     <div className="max-w-4xl mx-auto">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }} />
       <PageHero
         title="Contact Us"
         description="Have questions about NDT Connect? We are here to help asset owners, NDT service providers, and anyone interested in our platform."

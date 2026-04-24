@@ -12,6 +12,16 @@ export const config = {
 export default async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname;
 
+  // Allow admin seed endpoint without auth (it verifies credentials internally)
+  if (path === '/api/admin/seed') {
+    return NextResponse.next();
+  }
+
+  // Migration endpoint uses its own MIGRATION_TOKEN header check
+  if (path === '/api/admin/migrate') {
+    return NextResponse.next();
+  }
+
   // Admin routes require admin role
   if (path.startsWith('/api/admin')) {
     return checkRole(req, ['admin']);

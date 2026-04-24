@@ -10,16 +10,18 @@ export async function GET(request: Request) {
   try {
     await dbConnect();
 
-    // Get all users data
-    const totalUsers = await User.countDocuments({ verified: true });
-    const totalClients = await User.countDocuments({ verified: true, role: 'client' });
-    const totalProviders = await User.countDocuments({ verified: true, role: 'provider' });
-    const totalInspectors = await User.countDocuments({ verified: true, role: 'inspector' });
-    const totalAdmins = await User.countDocuments({ verified: true, role: 'admin' });
+    // Count all users regardless of verification status - admin needs full visibility
+    const totalUsers = await User.countDocuments({});
+    const totalClients = await User.countDocuments({ role: 'client' });
+    const totalProviders = await User.countDocuments({ role: 'provider' });
+    const totalInspectors = await User.countDocuments({ role: 'inspector' });
+    const totalAdmins = await User.countDocuments({ role: 'admin' });
 
     // Active vs inactive users
-    const activeUsers = await User.countDocuments({ verified: true, isActive: true });
-    const inactiveUsers = await User.countDocuments({ verified: true, isActive: false });
+    const activeUsers = await User.countDocuments({ isActive: { $ne: false } });
+    const inactiveUsers = await User.countDocuments({ isActive: false });
+    const verifiedUsers = await User.countDocuments({ verified: true });
+    const unverifiedUsers = await User.countDocuments({ verified: { $ne: true } });
 
     // Equipment stats
     const totalEquipment = await Equipment.countDocuments();
@@ -35,17 +37,16 @@ export async function GET(request: Request) {
       }
     });
 
-    // Recent registrations (last 7 days)
+    // Recent registrations (last 7 days) - include unverified so admin sees pending signups
     const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
     const recentRegistrations = await User.countDocuments({
       createdAt: { $gte: sevenDaysAgo },
-      verified: true
     });
 
     // Get recent signups (last 10) with details
     const recentSignups = await User.find(
-      { createdAt: { $gte: sevenDaysAgo }, verified: true },
-      { email: 1, name: 1, role: 1, createdAt: 1 }
+      { createdAt: { $gte: sevenDaysAgo } },
+      { email: 1, name: 1, role: 1, createdAt: 1, verified: 1 }
     )
       .sort({ createdAt: -1 })
       .limit(10)
@@ -90,7 +91,9 @@ export async function GET(request: Request) {
       },
       userStatus: {
         active: activeUsers,
-        inactive: inactiveUsers
+        inactive: inactiveUsers,
+        verified: verifiedUsers,
+        unverified: unverifiedUsers
       },
       equipment: {
         total: totalEquipment,

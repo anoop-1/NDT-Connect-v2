@@ -3,7 +3,11 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://da40au40:XiNeV7t72lBnAhxN@cluster0.dtd6ixg.mongodb.net/NDTConnect2?retryWrites=true&w=majority&appName=Cluster0';
+const MONGODB_URI = process.env.MONGODB_URI;
+if (!MONGODB_URI) {
+  console.error('MONGODB_URI env var required');
+  process.exit(1);
+}
 
 async function seedAdmin() {
   await mongoose.connect(MONGODB_URI);
