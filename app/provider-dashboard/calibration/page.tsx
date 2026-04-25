@@ -27,6 +27,7 @@ interface Equipment {
   manufacturer: string;
   model: string;
   serialNumber: string;
+  lastCalibrationDate?: string | null;
   calibrationDueDate: string;
   status: "Active" | "In Calibration" | "Out of Service" | "Retired";
   notes: string;
@@ -35,9 +36,18 @@ interface Equipment {
 interface CalibrationAlert {
   id: string;
   equipmentId: string;
+  equipmentName: string;
   emailTo: string;
-  daysBefore: number;
+  reminderDays: number;
   enabled: boolean;
+}
+
+const MS_PER_DAY = 24 * 60 * 60 * 1000;
+
+function daysBetween(dateStr: string) {
+  const due = new Date(dateStr);
+  const now = new Date();
+  return Math.floor((due.getTime() - now.getTime()) / MS_PER_DAY);
 }
 
 function CalibrationAlertsPage() {
@@ -48,8 +58,8 @@ function CalibrationAlertsPage() {
   const [equipment, setEquipment] = useState<Equipment[]>([]);
   const [alerts, setAlerts] = useState<CalibrationAlert[]>([]);
   const [selectedEquipmentId, setSelectedEquipmentId] = useState("");
-  const [alertEmail, setAlertEmail] = useState("");
-  const [daysBefore, setDaysBefore] = useState("30");
+  const [alertEmail, setAlertEmail] = useState("info@ndt-connect.com");
+  const [reminderDays, setReminderDays] = useState("30");
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
 
@@ -67,10 +77,6 @@ function CalibrationAlertsPage() {
     }
   }, [user]);
 
-  useEffect(() => {
-    if (user?.email) setAlertEmail(user.email);
-  }, [user]);
-
   const fetchData = async () => {
     if (!user || !user.id) return;
     try {
@@ -79,8 +85,8 @@ function CalibrationAlertsPage() {
         fetch(`/api/equipment?userId=${user.id}`),
         fetch(`/api/calibration-alerts?userId=${user.id}`),
       ]);
-      if (eqRes.ok) setEquipment(await eqRes.json());
-      if (alertsRes.ok) setAlerts(await alertsRes.json());
+      if (eqRes.ok) setEquipment((await eqRes.json()).data || []);
+      if (alertsRes.ok) setAlerts((await alertsRes.json()).data || []);
     } catch (error) {
       console.error("Error fetching data:", error);
       toast({ title: "Error", description: "Failed to load calibration data", variant: "destructive" });
@@ -102,6 +108,8 @@ function CalibrationAlertsPage() {
       return;
     }
 
+    const eq = equipment.find((e) => e.id === selectedEquipmentId);
+
     try {
       setIsSaving(true);
       const response = await fetch("/api/calibration-alerts", {
@@ -110,8 +118,9 @@ function CalibrationAlertsPage() {
         body: JSON.stringify({
           userId: user.id,
           equipmentId: selectedEquipmentId,
+          equipmentName: eq?.name || "",
           emailTo: alertEmail,
-          daysBefore: parseInt(daysBefore, 10),
+          reminderDays: parseInt(reminderDays, 10),
           enabled: true,
         }),
       });
@@ -160,7 +169,7 @@ function CalibrationAlertsPage() {
 
   const { overdue, dueSoon, upcoming } = useMemo(() => {
     const now = new Date();
-    const thirtyDays = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+    const thirtyDays = new Date(now.getTime() + 30 * MS_PER_DAY);
 
     const withDates = equipment.filter((e) => e.calibrationDueDate && e.status !== "Retired");
 
@@ -180,6 +189,13 @@ function CalibrationAlertsPage() {
   if (!user || (user.role !== "provider" && user.role !== "inspector")) {
     return <div className="text-center py-10">Access Denied. Redirecting...</div>;
   }
+
+  const daysCellClass = (days: number | null) => {
+    if (days === null) return "text-muted-foreground";
+    if (days < 0) return "text-red-600 font-semibold";
+    if (days <= 30) return "text-orange-500 font-semibold";
+    return "text-green-700";
+  };
 
   return (
     <div className="space-y-6">
@@ -250,6 +266,59 @@ function CalibrationAlertsPage() {
         </CardContent>
       </Card>
 
+      {/* Equipment Calibration Status table */}
+      {!isLoading && equipment.length > 0 && (
+        <Card>
+          <CardHeader>
+            <CardTitle>Equipment Calibration Status</CardTitle>
+            <CardDescription>All registered equipment with calibration timeline.</CardDescription>
+          </CardHeader>
+          <CardContent className="p-0">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b bg-muted/40">
+                    <th className="text-left px-4 py-3 font-semibold text-muted-foreground">Serial Number</th>
+                    <th className="text-left px-4 py-3 font-semibold text-muted-foreground">Name</th>
+                    <th className="text-left px-4 py-3 font-semibold text-muted-foreground">Make</th>
+                    <th className="text-left px-4 py-3 font-semibold text-muted-foreground">Model</th>
+                    <th className="text-left px-4 py-3 font-semibold text-muted-foreground">Status</th>
+                    <th className="text-left px-4 py-3 font-semibold text-muted-foreground">Last Calibration</th>
+                    <th className="text-left px-4 py-3 font-semibold text-muted-foreground">Calibration Due</th>
+                    <th className="text-right px-4 py-3 font-semibold text-muted-foreground">Days Remaining</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {equipment.map((e) => {
+                    const days = e.calibrationDueDate ? daysBetween(e.calibrationDueDate) : null;
+                    return (
+                      <tr key={e.id} className="border-b last:border-0 hover:bg-muted/20 transition-colors">
+                        <td className="px-4 py-3 font-mono">{e.serialNumber || "—"}</td>
+                        <td className="px-4 py-3 font-medium">{e.name}</td>
+                        <td className="px-4 py-3 text-muted-foreground">{e.manufacturer || "—"}</td>
+                        <td className="px-4 py-3 text-muted-foreground">{e.model || "—"}</td>
+                        <td className="px-4 py-3">
+                          <Badge variant="outline" className="text-xs">{e.status}</Badge>
+                        </td>
+                        <td className="px-4 py-3 text-muted-foreground">
+                          {e.lastCalibrationDate ? new Date(e.lastCalibrationDate).toLocaleDateString() : "—"}
+                        </td>
+                        <td className="px-4 py-3">
+                          {e.calibrationDueDate ? new Date(e.calibrationDueDate).toLocaleDateString() : "—"}
+                        </td>
+                        <td className={`px-4 py-3 text-right ${daysCellClass(days)}`}>
+                          {days === null ? "—" : days < 0 ? `${Math.abs(days)} overdue` : `${days} days`}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       {/* Set Up Alerts */}
       {equipment.length > 0 && (
         <Card>
@@ -279,7 +348,7 @@ function CalibrationAlertsPage() {
               </div>
               <div className="space-y-2">
                 <Label>Remind Days Before</Label>
-                <Select value={daysBefore} onValueChange={setDaysBefore}>
+                <Select value={reminderDays} onValueChange={setReminderDays}>
                   <SelectTrigger><SelectValue /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="7">7 days</SelectItem>
@@ -305,9 +374,9 @@ function CalibrationAlertsPage() {
                   return (
                     <div key={alert.id} className="flex items-center justify-between p-3 border rounded-lg">
                       <div>
-                        <p className="font-medium">{eq?.name || "Unknown Equipment"}</p>
+                        <p className="font-medium">{eq?.name || alert.equipmentName || "Unknown Equipment"}</p>
                         <p className="text-sm text-muted-foreground">
-                          Email: {alert.emailTo} | Remind: {alert.daysBefore} days before
+                          Email: {alert.emailTo} | Remind: {alert.reminderDays} days before
                         </p>
                       </div>
                       <div className="flex items-center gap-2">

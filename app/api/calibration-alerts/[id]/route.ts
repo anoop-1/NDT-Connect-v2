@@ -8,15 +8,22 @@ export async function PUT(request: NextRequest, context: { params: Promise<{ id:
         const { id } = await context.params;
         await dbConnect();
         const body = await request.json();
-        const { equipmentName, reminderDays, enabled } = body;
+        const { equipmentName, emailTo, reminderDays, daysBefore, enabled } = body;
 
         if (!ObjectId.isValid(id)) {
             return NextResponse.json({ message: 'Invalid alert ID' }, { status: 400 });
         }
 
+        const update: Record<string, any> = { updatedAt: new Date() };
+        if (equipmentName !== undefined) update.equipmentName = equipmentName;
+        if (emailTo !== undefined) update.emailTo = emailTo;
+        const days = reminderDays ?? daysBefore;
+        if (days !== undefined) update.reminderDays = days;
+        if (enabled !== undefined) update.enabled = enabled;
+
         const alert = await CalibrationAlert.findByIdAndUpdate(
             new ObjectId(id),
-            { equipmentName, reminderDays, enabled, updatedAt: new Date() },
+            update,
             { new: true }
         );
 

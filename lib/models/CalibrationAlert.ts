@@ -3,7 +3,8 @@ import mongoose, { Schema, model, models } from 'mongoose';
 const calibrationAlertSchema = new Schema({
   userId: { type: String, required: true, index: true },
   equipmentId: { type: String, required: true },
-  equipmentName: { type: String, required: true },
+  equipmentName: { type: String, default: '' },
+  emailTo: { type: String, default: '' },
   reminderDays: { type: Number, default: 30 },
   enabled: { type: Boolean, default: true },
   lastNotified: { type: Date, default: null },

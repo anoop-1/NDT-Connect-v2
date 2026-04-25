@@ -18,13 +18,15 @@ export async function POST(request: NextRequest) {
     try {
         await dbConnect();
         const body = await request.json();
-        const { userId, equipmentId, equipmentName, reminderDays, enabled } = body;
+        const { userId, equipmentId, equipmentName, emailTo, reminderDays, daysBefore, enabled } = body;
         if (!userId || !equipmentId) return NextResponse.json({ message: 'userId and equipmentId are required' }, { status: 400 });
+
+        const days = reminderDays ?? daysBefore ?? 30;
 
         // Upsert - update if exists, create if not
         const alert = await CalibrationAlert.findOneAndUpdate(
             { userId, equipmentId },
-            { userId, equipmentId, equipmentName, reminderDays: reminderDays || 30, enabled: enabled !== false, updatedAt: new Date() },
+            { userId, equipmentId, equipmentName: equipmentName || '', emailTo: emailTo || '', reminderDays: days, enabled: enabled !== false, updatedAt: new Date() },
             { upsert: true, new: true }
         );
         return NextResponse.json({ success: true, data: { ...alert.toObject(), id: alert._id.toString() } });

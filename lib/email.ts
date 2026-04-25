@@ -123,6 +123,56 @@ export async function sendRequestStatusUpdate(
   await t.sendMail(mailOptions);
 }
 
+export async function sendCalibrationAlert(
+  emailTo: string,
+  equipmentName: string,
+  serialNumber: string,
+  dueDate: string | Date,
+  daysRemaining: number
+) {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://ndt-connect.com';
+  const dueStr = new Date(dueDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+  const overdue = daysRemaining < 0;
+  const status = overdue
+    ? `Overdue by ${Math.abs(daysRemaining)} day${Math.abs(daysRemaining) === 1 ? '' : 's'}`
+    : daysRemaining === 0
+      ? 'Due today'
+      : `Due in ${daysRemaining} day${daysRemaining === 1 ? '' : 's'}`;
+  const accent = overdue ? '#dc2626' : daysRemaining <= 7 ? '#ea580c' : '#004aad';
+  const subject = overdue
+    ? `OVERDUE: Calibration for ${equipmentName} (S/N ${serialNumber})`
+    : `Calibration Reminder: ${equipmentName} ${status.toLowerCase()}`;
+
+  const mailOptions = {
+    from: 'NDT Connect <info@ndt-connect.com>',
+    to: emailTo,
+    subject,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <div style="background: #004aad; padding: 24px; text-align: center;">
+          <h1 style="color: white; margin: 0; font-size: 24px;">NDT Connect</h1>
+        </div>
+        <div style="padding: 24px; background: #f8fafc;">
+          <h2 style="color: #1e293b; margin-top: 0;">Equipment Calibration Reminder</h2>
+          <div style="background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin: 16px 0;">
+            <p style="margin: 0 0 8px 0;"><strong>Equipment:</strong> ${equipmentName}</p>
+            <p style="margin: 0 0 8px 0;"><strong>Serial Number:</strong> ${serialNumber}</p>
+            <p style="margin: 0 0 8px 0;"><strong>Calibration Due:</strong> ${dueStr}</p>
+            <p style="margin: 0; color: ${accent}; font-weight: 600;"><strong>Status:</strong> ${status}</p>
+          </div>
+          <p style="color: #475569;">Please schedule a calibration to keep this instrument compliant with ASNT, ISO, and customer requirements.</p>
+          <a href="${baseUrl}/provider-dashboard/calibration" style="display: inline-block; background: #004aad; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600;">Open Calibration Dashboard</a>
+          <p style="color: #94a3b8; font-size: 12px; margin-top: 24px;">You receive this email because a calibration alert is enabled for this equipment on NDT Connect.</p>
+        </div>
+      </div>
+    `,
+  };
+
+  const t = await getTransporter();
+  await t.sendMail(mailOptions);
+}
+
 export async function sendVerificationEmail(email: string, token: string) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
   const verifyUrl = `${baseUrl}/api/verify?token=${token}`;

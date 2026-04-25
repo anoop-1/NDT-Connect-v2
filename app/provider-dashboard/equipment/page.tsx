@@ -108,8 +108,8 @@ function EquipmentManagementPage() {
       setIsLoading(true);
       const response = await fetch(`/api/equipment?userId=${user.id}`);
       if (!response.ok) throw new Error("Failed to fetch equipment");
-      const data = await response.json();
-      setEquipment(data);
+      const json = await response.json();
+      setEquipment(json.data || []);
     } catch (error) {
       console.error("Error fetching equipment:", error);
       toast({ title: "Error", description: "Failed to load equipment", variant: "destructive" });
