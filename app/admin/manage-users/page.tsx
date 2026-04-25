@@ -46,7 +46,7 @@ export default function ManageUsersPage() {
     try {
       const response = await fetch('/api/admin/users');
       const data = await response.json();
-      setAllUsers(data);
+      setAllUsers(data.data || data || []);
     } catch (error: any) {
       console.error("Error fetching users:", error);
       toast({

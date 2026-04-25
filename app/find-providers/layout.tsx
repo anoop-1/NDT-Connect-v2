@@ -1,12 +1,13 @@
+// app/find-providers/layout.tsx
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Find NDT Providers — Certified Inspectors Worldwide | NDT Connect',
-  description: 'Search and connect with certified NDT inspection providers worldwide. Filter by location, testing method, industry, and certifications. Get quotes instantly on NDT Connect.',
-  keywords: ['find NDT providers', 'NDT inspectors near me', 'NDT service providers', 'certified NDT inspectors', 'book NDT inspection', 'NDT companies near me', 'hire NDT inspector', 'NDT testing companies'],
+  title: 'Find NDT Inspection Providers Near You | NDT Connect',
+  description: 'Search verified NDT service providers by location, method, and certification. Find ultrasonic testing, radiographic testing, and all NDT inspection companies near you.',
+  keywords: ['find NDT providers', 'NDT inspection near me', 'NDT service companies', 'find NDT inspector', 'NDT testing companies near me', 'hire NDT inspector'],
   openGraph: {
-    title: 'Find NDT Providers | Certified Inspectors Worldwide',
-    description: 'Search and connect with certified NDT providers worldwide. Filter by method, location, and certification. Get instant quotes.',
+    title: 'Find NDT Providers | NDT Connect',
+    description: 'Search verified NDT service providers by location, method, and certification.',
     url: 'https://ndt-connect.com/find-providers',
     type: 'website',
     siteName: 'NDT Connect',
@@ -14,35 +15,11 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Find NDT Providers | NDT Connect',
-    description: 'Search certified NDT providers worldwide. Get instant quotes.',
+    description: 'Search verified NDT service providers by location, method, and certification.',
   },
   alternates: { canonical: 'https://ndt-connect.com/find-providers' },
 };
 
-const searchActionSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebPage',
-  name: 'Find NDT Providers',
-  url: 'https://ndt-connect.com/find-providers',
-  description: 'Search and connect with certified NDT inspection providers worldwide.',
-  mainEntity: {
-    '@type': 'ItemList',
-    name: 'NDT Service Providers Directory',
-    description: 'Directory of verified and certified NDT inspection service providers',
-    itemListElement: [],
-  },
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: 'https://ndt-connect.com/find-providers?q={search_term_string}',
-    'query-input': 'required name=search_term_string',
-  },
-};
-
-export default function Layout({ children }: { children: React.ReactNode }) {
-  return (
-    <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(searchActionSchema) }} />
-      {children}
-    </>
-  );
+export default function FindProvidersLayout({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
 }

@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { MapPin, Building2, Search, ArrowRight, Shield, CheckCircle, Clock, Users, Zap, Globe, TrendingUp } from 'lucide-react';
+import { ServiceSchema, BreadcrumbSchema } from '@/components/seo/SchemaMarkup';
 
 interface Props {
   params: { city: string };
@@ -125,6 +126,17 @@ export default function CityPage({ params }: Props) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <ServiceSchema
+        serviceName={`NDT Inspection Services in ${city.name}`}
+        description={`Certified non-destructive testing services in ${city.name}, ${city.country}. Ultrasonic testing, radiographic testing, and all NDT methods available.`}
+        provider="NDT Connect"
+        areaServed={`${city.name}, ${city.country}`}
+      />
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://ndt-connect.com' },
+        { name: 'NDT Services', url: 'https://ndt-connect.com/ndt-services' },
+        { name: city.name, url: `https://ndt-connect.com/ndt-services/${city.slug}` },
+      ]} />
 
       <div className="max-w-5xl mx-auto">
         {/* Breadcrumb */}

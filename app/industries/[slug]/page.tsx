@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { CheckCircle, AlertTriangle, FileText, ArrowRight, Search, Shield } from 'lucide-react';
+import { ServiceSchema, BreadcrumbSchema } from '@/components/seo/SchemaMarkup';
 
 interface Props {
   params: { slug: string };
@@ -72,6 +73,17 @@ export default function IndustryPage({ params }: Props) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      <ServiceSchema
+        serviceName={`NDT Inspection for ${industry.name}`}
+        description={`Non-destructive testing services for the ${industry.name} industry. Find certified NDT inspectors on NDT Connect.`}
+        provider="NDT Connect"
+        areaServed="Worldwide"
+      />
+      <BreadcrumbSchema items={[
+        { name: 'Home', url: 'https://ndt-connect.com' },
+        { name: 'Industries', url: 'https://ndt-connect.com/industries' },
+        { name: industry.name, url: `https://ndt-connect.com/industries/${industry.slug}` },
+      ]} />
 
       <div className="max-w-5xl mx-auto">
         <nav className="flex items-center gap-2 text-sm text-slate-600 mb-6">

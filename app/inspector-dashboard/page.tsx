@@ -79,6 +79,12 @@ export default function InspectorDashboardPage() {
           icon={<FileSignature className="h-8 w-8 text-primary" />}
         />
         <DashboardActionCard
+          title="My Profile"
+          description="View and update your public inspector profile visible to clients."
+          href="/provider-profile"
+          icon={<UserCircle className="h-8 w-8 text-primary" />}
+        />
+        <DashboardActionCard
           title="AI Procedure Writer"
           description="Generate NDT procedures using AI assistance."
           href="/provider-dashboard/ai-procedure-writer"

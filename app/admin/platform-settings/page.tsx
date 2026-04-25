@@ -4,7 +4,7 @@
 
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -29,27 +29,48 @@ export default function PlatformSettingsPage() {
       router.push("/login?redirect=/admin/platform-settings");
     } else if (!loading && user && user.role !== 'admin') {
       router.push("/dashboard");
-    } else if (!loading && user && user.role === 'admin') {
-      // Load rates from localStorage
-      const storedClientRate = localStorage.getItem('clientCommissionRate');
-      if (storedClientRate) {
-        setClientCommissionRate(parseFloat(storedClientRate));
-      }
-      const storedProviderFee = localStorage.getItem('providerPlatformFee');
-      if (storedProviderFee) {
-        setProviderPlatformFee(parseFloat(storedProviderFee));
-      }
     }
   }, [user, loading, router]);
 
-  const handleSaveClientCommission = () => {
-    localStorage.setItem('clientCommissionRate', clientCommissionRate.toString());
-    toast({ title: "Client Commission Updated", description: "The new rate has been saved locally." });
+  useEffect(() => {
+    if (!loading && user && user.role === 'admin') {
+      fetch('/api/admin/systemwide')
+        .then(r => r.json())
+        .then(json => {
+          const records: any[] = json.data || [];
+          const cc = records.find((r: any) => r.id === 'client_commission_rate');
+          const pf = records.find((r: any) => r.id === 'provider_platform_fee');
+          if (cc?.data?.rate !== undefined) setClientCommissionRate(cc.data.rate);
+          if (pf?.data?.fee !== undefined) setProviderPlatformFee(pf.data.fee);
+        })
+        .catch(() => {});
+    }
+  }, [user, loading]);
+
+  const handleSaveClientCommission = async () => {
+    try {
+      await fetch('/api/admin/systemwide', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: 'client_commission_rate', data: { rate: clientCommissionRate } }),
+      });
+      toast({ title: "Client Commission Updated", description: `Rate saved to database: ${clientCommissionRate}%` });
+    } catch {
+      toast({ title: "Save Failed", description: "Could not save to database.", variant: "destructive" });
+    }
   };
 
-  const handleSaveProviderFee = () => {
-    localStorage.setItem('providerPlatformFee', providerPlatformFee.toString());
-    toast({ title: "Provider Platform Fee Updated", description: "The new fee has been saved locally." });
+  const handleSaveProviderFee = async () => {
+    try {
+      await fetch('/api/admin/systemwide', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: 'provider_platform_fee', data: { fee: providerPlatformFee } }),
+      });
+      toast({ title: "Provider Fee Updated", description: `Fee saved to database: ${providerPlatformFee}%` });
+    } catch {
+      toast({ title: "Save Failed", description: "Could not save to database.", variant: "destructive" });
+    }
   };
 
 
@@ -76,7 +97,7 @@ export default function PlatformSettingsPage() {
             Platform Settings
           </CardTitle>
           <CardDescription>
-            Configure global settings and fee structures for NDT Connect. Rates saved here are stored locally in your browser.
+            Configure global settings and fee structures for NDT Connect. Settings are persisted to the database.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-8">

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Users, Briefcase, Settings, Shield, Activity, BarChart, Image as ImageIcon, Save, ListChecks, Upload, CheckCircle, Clock, AlertCircle } from "lucide-react";
+import { Users, Briefcase, Settings, Shield, ShieldCheck, Activity, BarChart, Image as ImageIcon, Save, ListChecks, Upload, CheckCircle, Clock, AlertCircle } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
@@ -223,6 +223,12 @@ export default function AdminDashboardPage() {
           description="Comprehensive user view with activity logs and details."
           href="/admin/view-users"
           icon={<Activity className="h-8 w-8 text-primary" />}
+        />
+        <AdminActionCard
+          title="Compliance Dashboard"
+          description="Track certification expiry across all providers and inspectors."
+          href="/admin/compliance"
+          icon={<ShieldCheck className="h-8 w-8 text-primary" />}
         />
       </div>
       

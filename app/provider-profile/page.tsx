@@ -163,16 +163,48 @@ export default function ProviderProfilePage() {
       handleNestedChange(listName, updatedList);
   };
 
+
+  const geocodeLocation = async (locationStr: string): Promise<{ lat: number; lng: number } | null> => {
+    if (!locationStr || locationStr.trim().length < 3) return null;
+    try {
+      const encoded = encodeURIComponent(locationStr.trim());
+      const res = await fetch(
+        `https://nominatim.openstreetmap.org/search?q=${encoded}&format=json&limit=1`,
+        { headers: { 'User-Agent': 'NDT-Connect/1.0 (info@ndt-connect.com)' } }
+      );
+      const results = await res.json();
+      if (results && results.length > 0) {
+        return { lat: parseFloat(results[0].lat), lng: parseFloat(results[0].lon) };
+      }
+    } catch {
+      // geocoding failure is non-fatal
+    }
+    return null;
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!profile) return;
 
     setIsSubmitting(true);
     try {
-        await updateUser(profile);
+        // Geocode the location if it changed
+        let geoCoords: { lat: number; lng: number } | null = null;
+        if (profile.location && profile.location.trim()) {
+          geoCoords = await geocodeLocation(profile.location);
+        }
+
+        const profileToSave = {
+          ...profile,
+          ...(geoCoords ? { lat: geoCoords.lat, lng: geoCoords.lng } : {}),
+        };
+
+        await updateUser(profileToSave);
         toast({
             title: "Profile Updated",
-            description: "Your provider profile has been saved to the database.",
+            description: geoCoords
+              ? `Profile saved. Location geocoded to (${geoCoords.lat.toFixed(4)}, ${geoCoords.lng.toFixed(4)}) — you'll appear on the map.`
+              : "Profile saved successfully.",
         });
     } catch (error: any) {
         console.error("Error updating profile:", error);
