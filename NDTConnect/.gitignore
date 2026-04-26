@@ -49,3 +49,7 @@ package-lock.json
 .env
 .env.local
 .env.*.local
+
+# Service-account keys for Google Indexing API — NEVER commit
+scripts/secrets/
+scripts/output/

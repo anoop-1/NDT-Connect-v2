@@ -1,4 +1,6 @@
 import { MetadataRoute } from 'next';
+import { FREE_TOOLS } from '@/data/freeTools';
+import { CITIES, REGIONS, COUNTRIES } from '@/data/cities';
 
 // ============================================================
 // NDT Connect - Comprehensive Sitemap
@@ -276,6 +278,41 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
+  // ---- Free Tools (pillar + features + city/region/country rollups) ----
+  const freeToolsLanding: MetadataRoute.Sitemap = [
+    { url: `${baseUrl}/free-tools`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
+  ];
+  const freeToolFeatures: MetadataRoute.Sitemap = FREE_TOOLS.map((t) => ({
+    url: `${baseUrl}/free-tools/${t.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.9,
+  }));
+  const freeToolCities: MetadataRoute.Sitemap = FREE_TOOLS.flatMap((t) =>
+    CITIES.map((c) => ({
+      url: `${baseUrl}/free-tools/${t.slug}/${c.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }))
+  );
+  const freeToolRegions: MetadataRoute.Sitemap = FREE_TOOLS.flatMap((t) =>
+    REGIONS.map((r) => ({
+      url: `${baseUrl}/free-tools/${t.slug}/region/${r.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.65,
+    }))
+  );
+  const freeToolCountries: MetadataRoute.Sitemap = FREE_TOOLS.flatMap((t) =>
+    COUNTRIES.map((c) => ({
+      url: `${baseUrl}/free-tools/${t.slug}/country/${c.code.toLowerCase()}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    }))
+  );
+
   return [
     ...staticPages,
     ...cityPages,
@@ -293,5 +330,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...careerCityPages,
     ...glossaryPages,
     ...standardPages,
+    ...freeToolsLanding,
+    ...freeToolFeatures,
+    ...freeToolCities,
+    ...freeToolRegions,
+    ...freeToolCountries,
   ];
 }
