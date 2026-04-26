@@ -74,7 +74,7 @@ dependencies:
   # Plausible / Umami at the marketing-site level for product analytics if
   # needed; the app sends typed events to /api/analytics/event for any
   # backend-side aggregation.
-  sentry_flutter: ^8.7.0
+  sentry_flutter: ^9.0.0
 
 dev_dependencies:
   flutter_test:

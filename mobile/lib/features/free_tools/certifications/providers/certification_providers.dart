@@ -30,7 +30,7 @@ class CertListNotifier
     return created;
   }
 
-  Future<Certification> update(String id, Map<String, dynamic> partial) async {
+  Future<Certification> updateItem(String id, Map<String, dynamic> partial) async {
     final updated =
         await ref.read(certRepositoryProvider).update(id, partial);
     state = AsyncValue.data([

@@ -30,7 +30,7 @@ class EquipmentListNotifier extends AsyncNotifier<List<Equipment>> {
     return created;
   }
 
-  Future<Equipment> update(String id, Map<String, dynamic> partial) async {
+  Future<Equipment> updateItem(String id, Map<String, dynamic> partial) async {
     final repo = ref.read(equipmentRepositoryProvider);
     final updated = await repo.update(id, partial);
     state = AsyncValue.data([

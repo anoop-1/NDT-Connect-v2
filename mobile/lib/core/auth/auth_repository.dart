@@ -90,7 +90,7 @@ class AuthRepository {
   }
 }
 
-final authRepositoryProvider = Provider<AuthRepository>((ref) {
+final authRepositoryProvider = Provider<AuthRepository>((Ref ref) {
   return AuthRepository(
     dio: ref.watch(apiClientProvider),
     storage: ref.watch(secureStorageProvider),

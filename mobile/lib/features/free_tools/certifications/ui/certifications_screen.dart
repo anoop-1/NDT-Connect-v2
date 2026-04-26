@@ -308,7 +308,7 @@ class _CertFormSheetState extends ConsumerState<_CertFormSheet> {
       if (widget.existing == null) {
         await notifier.create(draft);
       } else {
-        await notifier.update(widget.existing!.id, draft.toJson());
+        await notifier.updateItem(widget.existing!.id, draft.toJson());
       }
       if (mounted) Navigator.pop(context);
     } on ApiException catch (e) {
