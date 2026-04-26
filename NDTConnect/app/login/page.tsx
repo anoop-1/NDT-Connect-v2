@@ -1,68 +1,91 @@
-
 import { LoginViewManager } from "@/components/auth/LoginViewManager";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Suspense } from 'react';
-import { Activity, CheckCircle, Globe, ShieldCheck, Zap } from "lucide-react";
-import Image from "next/image";
+import { Suspense } from "react";
+import { Activity, Globe2, Zap, ShieldCheck } from "lucide-react";
 
 export default function LoginPage() {
   return (
-    <div className="flex min-h-[calc(100vh-10rem)] full-bleed -my-8">
-      {/* Left branding panel */}
-      <div className="hidden lg:flex lg:w-1/2 bg-slate-800 relative overflow-hidden flex-col justify-center px-12 xl:px-16">
-        <div className="absolute inset-0 hero-grid-bg opacity-5" />
-        <div className="relative z-10">
-          <img src="/logo-globe-animated.svg" alt="NDT Connect" className="h-24 w-auto mb-8" />
-          <h2 className="text-3xl font-bold text-white mb-4">
-            Welcome Back
-          </h2>
-          <p className="text-slate-300 text-lg mb-10 leading-relaxed">
-            Access your NDT Connect dashboard to manage inspections, track requests, and connect with providers.
-          </p>
-          <div className="space-y-5">
-            {[
-              { icon: Globe, text: '75+ cities with certified inspectors' },
-              { icon: Zap, text: 'Instant quotes and real-time tracking' },
-              { icon: ShieldCheck, text: '100% verified NDT providers' },
-            ].map((item) => (
-              <div key={item.text} className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center shrink-0">
-                  <item.icon className="h-4.5 w-4.5 text-blue-400" />
-                </div>
-                <span className="text-slate-300 text-sm">{item.text}</span>
-              </div>
-            ))}
-          </div>
+    <div className="-mx-4 -my-8 grid min-h-[calc(100vh-8rem)] grid-cols-1 lg:grid-cols-2">
+      {/* Brand pane */}
+      <aside
+        className="relative flex flex-col justify-between overflow-hidden p-10 text-white lg:p-16"
+        style={{ background: "linear-gradient(160deg, #0B1E33 0%, #003680 60%, #004AAD 100%)" }}
+      >
+        <div className="flex items-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/logo-globe-animated.svg"
+            alt="NDT Connect"
+            width={320}
+            height={100}
+            style={{ width: 320, height: 100, display: "block" }}
+          />
         </div>
-      </div>
 
-      {/* Right form panel */}
-      <div className="flex-1 flex items-center justify-center px-4 sm:px-8 py-12">
-        <div className="w-full max-w-md">
-          <div className="lg:hidden mb-8 text-center">
-            <Image src="/logo.png" alt="NDT Connect" width={140} height={35} className="h-8 w-auto mx-auto mb-4" />
+        <div className="space-y-6">
+          <div>
+            <h1 className="text-4xl font-extrabold tracking-tight md:text-5xl">Welcome Back</h1>
+            <p className="mt-3 max-w-md text-base text-white/80 md:text-lg">
+              Access your NDT Connect dashboard to manage inspections, track requests, and connect with providers.
+            </p>
           </div>
-          <Card className="shadow-lg border-slate-200">
-            <CardHeader className="text-center pb-4">
-              <CardTitle className="text-2xl">Login to NDT Connect</CardTitle>
-              <CardDescription>Enter your credentials to access your account.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Suspense fallback={<div className="flex justify-center items-center py-10"><Activity className="h-6 w-6 animate-spin text-primary" /> <span className="ml-2 text-sm text-muted-foreground">Loading...</span></div>}>
-                <LoginViewManager />
-              </Suspense>
-              <p className="mt-6 text-center text-sm text-muted-foreground">
-                Don&apos;t have an account?{" "}
-                <Button variant="link" asChild className="p-0">
-                  <Link href="/register">Register here</Link>
-                </Button>
-              </p>
-            </CardContent>
-          </Card>
+
+          <ul className="space-y-4 text-sm md:text-base">
+            <li className="flex items-start gap-3">
+              <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/10">
+                <Globe2 className="h-5 w-5" />
+              </span>
+              <span>75+ cities with certified inspectors</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/10">
+                <Zap className="h-5 w-5" />
+              </span>
+              <span>Instant quotes and real-time tracking</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/10">
+                <ShieldCheck className="h-5 w-5" />
+              </span>
+              <span>100% verified NDT providers</span>
+            </li>
+          </ul>
         </div>
-      </div>
+
+        <p className="text-xs text-white/60">
+          Free tools for NDT companies — equipment, calibration, and certificate management. All you need is a user ID.
+        </p>
+      </aside>
+
+      {/* Form pane */}
+      <section className="flex items-center justify-center bg-background px-6 py-12 lg:px-12">
+        <div className="w-full max-w-md">
+          <div className="text-center">
+            <h2 className="text-2xl font-bold tracking-tight">Login to NDT Connect</h2>
+            <p className="mt-2 text-sm text-muted-foreground">Enter your credentials to access your account.</p>
+          </div>
+
+          <div className="mt-8">
+            <Suspense
+              fallback={
+                <div className="flex items-center justify-center py-10">
+                  <Activity className="h-6 w-6 animate-spin text-primary" />
+                  <span className="ml-2 text-sm text-muted-foreground">Loading...</span>
+                </div>
+              }
+            >
+              <LoginViewManager />
+            </Suspense>
+
+            <p className="mt-6 text-center text-sm text-muted-foreground">
+              Don&apos;t have an account?{" "}
+              <Link href="/register" className="font-medium text-primary hover:underline">
+                Register here
+              </Link>
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
