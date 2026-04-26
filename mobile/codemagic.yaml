@@ -1,0 +1,107 @@
+workflows:
+  ios-release:
+    name: iOS App Store
+    instance_type: mac_mini_m2
+    max_build_duration: 60
+    integrations:
+      app_store_connect: codemagic_app_store_connect
+    environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.ndtconnect.mobile
+      vars:
+        XCODE_WORKSPACE: "Runner.xcworkspace"
+        XCODE_SCHEME: "Runner"
+        APP_STORE_APP_ID: "$APP_STORE_APP_ID"
+        API_BASE_URL: "https://ndt-connect.com"
+        MAPBOX_PUBLIC_TOKEN: "$MAPBOX_PUBLIC_TOKEN"
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+    triggering:
+      events:
+        - tag
+      tag_patterns:
+        - pattern: 'v*'
+          include: true
+    scripts:
+      - name: Get Flutter packages
+        script: |
+          cd mobile
+          flutter pub get
+      - name: Build runner (Freezed / Riverpod / json_serializable)
+        script: |
+          cd mobile
+          dart run build_runner build --delete-conflicting-outputs
+      - name: Pod install
+        script: |
+          cd mobile/ios
+          pod install
+      - name: Set up signing
+        script: |
+          cd mobile/ios
+          xcode-project use-profiles
+      - name: Bump build number
+        script: |
+          cd mobile
+          BUILD_NUMBER=$(($(app-store-connect get-latest-app-store-build-number "$APP_STORE_APP_ID" 2>/dev/null || echo 0) + 1))
+          flutter build ipa \
+            --release \
+            --build-number=$BUILD_NUMBER \
+            --dart-define=API_BASE_URL=$API_BASE_URL \
+            --dart-define=MAPBOX_PUBLIC_TOKEN=$MAPBOX_PUBLIC_TOKEN \
+            --export-options-plist=/Users/builder/export_options.plist
+    artifacts:
+      - mobile/build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - mobile/flutter_drive.log
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
+        beta_groups:
+          - Internal
+        submit_to_app_store: false
+
+  android-release:
+    name: Android Play Store
+    instance_type: linux_x2
+    max_build_duration: 60
+    environment:
+      android_signing:
+        - ndtconnect_upload
+      groups:
+        - mapbox
+        - api
+      flutter: stable
+      java: 17
+    triggering:
+      events:
+        - tag
+      tag_patterns:
+        - pattern: 'v*'
+          include: true
+    scripts:
+      - name: Get Flutter packages
+        script: |
+          cd mobile
+          flutter pub get
+      - name: Build runner
+        script: |
+          cd mobile
+          dart run build_runner build --delete-conflicting-outputs
+      - name: Build AAB
+        script: |
+          cd mobile
+          flutter build appbundle \
+            --release \
+            --dart-define=API_BASE_URL=https://ndt-connect.com \
+            --dart-define=MAPBOX_PUBLIC_TOKEN=$MAPBOX_PUBLIC_TOKEN
+    artifacts:
+      - mobile/build/app/outputs/bundle/release/*.aab
+      - mobile/build/app/outputs/mapping/release/mapping.txt
+    publishing:
+      google_play:
+        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+        track: internal
+        submit_as_draft: false

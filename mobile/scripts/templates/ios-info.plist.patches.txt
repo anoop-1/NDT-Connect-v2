@@ -1,0 +1,72 @@
+==============================================================================
+MERGE INSTRUCTIONS — mobile/ios/Runner/Info.plist
+==============================================================================
+After running: flutter create . --platforms=ios --org com.ndtconnect
+Flutter generates ios/Runner/Info.plist with a top-level <dict>...</dict>.
+
+Insert each of the key/value blocks below INSIDE that <dict>, before </dict>.
+
+Notes:
+ - CFBundleIdentifier in Info.plist is normally set to
+   $(PRODUCT_BUNDLE_IDENTIFIER), which is controlled by the Xcode project
+   (project.pbxproj -> PBXProject -> PRODUCT_BUNDLE_IDENTIFIER). Set that
+   to com.ndtconnect.mobile in Xcode (Runner target -> General -> Bundle
+   Identifier) — do NOT hardcode the literal string in Info.plist.
+ - The microphone usage description is OPTIONAL — pubspec.yaml currently
+   only declares image_picker, not audio recording. Include it ONLY if you
+   add an audio package later (record, flutter_sound, etc.). Leaving it in
+   without a corresponding capability is harmless but App Store reviewers
+   may ask why it is requested.
+==============================================================================
+
+<!-- ===== App display name & version ===== -->
+<key>CFBundleDisplayName</key>
+<string>NDT Connect</string>
+
+<key>CFBundleShortVersionString</key>
+<string>1.0.0</string>
+
+<key>CFBundleVersion</key>
+<string>1</string>
+
+<!--
+  CFBundleIdentifier — already present from Flutter scaffold as:
+      <key>CFBundleIdentifier</key>
+      <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+  Leave that line alone. Set the actual identifier (com.ndtconnect.mobile)
+  in Xcode -> Runner target -> General -> Bundle Identifier.
+-->
+
+<!-- ===== Privacy usage descriptions (REQUIRED for App Store) ===== -->
+<key>NSCameraUsageDescription</key>
+<string>Capture inspection photos for reports</string>
+
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>Show nearby NDT providers and inspection sites</string>
+
+<key>NSPhotoLibraryUsageDescription</key>
+<string>Attach inspection photos to your reports</string>
+
+<key>NSPhotoLibraryAddUsageDescription</key>
+<string>Save report photos to your library</string>
+
+<!-- OPTIONAL — add ONLY if pubspec includes an audio recording package.
+     Current pubspec.yaml has image_picker only, so this is commented out.
+<key>NSMicrophoneUsageDescription</key>
+<string>Record voice notes for inspection findings</string>
+-->
+
+<!-- ===== Encryption export compliance =====
+     Setting this to false avoids the App Store Connect encryption
+     export questionnaire on every release. Only valid if the app uses
+     ONLY exempt encryption (HTTPS / standard OS APIs), which is true
+     for this app. =====-->
+<key>ITSAppUsesNonExemptEncryption</key>
+<false/>
+
+<!-- ===== Background modes (for future push notifications) ===== -->
+<key>UIBackgroundModes</key>
+<array>
+    <string>fetch</string>
+    <string>remote-notification</string>
+</array>

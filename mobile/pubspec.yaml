@@ -40,7 +40,7 @@ dependencies:
   shared_preferences: ^2.2.3
 
   # Models
-  freezed_annotation: ^2.4.4
+  freezed_annotation: ^3.0.0
   json_annotation: ^4.9.0
 
   # Maps —
@@ -51,7 +51,7 @@ dependencies:
 
   # UI
   google_fonts: ^6.2.1
-  intl: ^0.19.0
+  intl: ^0.20.0
   reactive_forms: ^17.0.1
   cached_network_image: ^3.3.1
   flutter_svg: ^2.0.10+1   # render the rotating-globe SVG inside the app
@@ -85,11 +85,11 @@ dev_dependencies:
 
   # Code generation
   build_runner: ^2.4.11
-  freezed: ^2.5.7
+  freezed: ^3.1.0
   json_serializable: ^6.8.0
   riverpod_generator: ^2.4.0
-  custom_lint: ^0.6.4
-  riverpod_lint: ^2.3.10
+  custom_lint: ^0.7.3
+  riverpod_lint: ^2.6.5
 
   # Test
   mocktail: ^1.0.4

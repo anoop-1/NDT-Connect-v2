@@ -1,0 +1,38 @@
+// =============================================================================
+// MERGE INSTRUCTIONS — mobile/android/build.gradle (root project)
+// =============================================================================
+// After `flutter create` scaffolds android/, replace android/build.gradle
+// with this content (or merge: AGP 8.3.2, Kotlin 1.9.22).
+// File: android/build.gradle  (NOT android/app/build.gradle)
+// =============================================================================
+
+buildscript {
+    ext.kotlin_version = '1.9.22'
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.3.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(':app')
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}

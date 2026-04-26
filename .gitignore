@@ -54,8 +54,27 @@ package-lock.json
 # Flutter build outputs + secrets
 mobile/build/
 mobile/.dart_tool/
+mobile/.flutter-plugins
+mobile/.flutter-plugins-dependencies
+mobile/android/local.properties
+mobile/android/.gradle/
 mobile/android/upload-keystore.jks
+mobile/android/app/upload-keystore.jks
 mobile/android/key.properties
+mobile/ios/Pods/
+mobile/ios/.symlinks/
+mobile/ios/Flutter/Flutter.framework
+mobile/ios/Flutter/Flutter.podspec
+mobile/ios/Runner.xcworkspace/xcuserdata/
+mobile/ios/Runner.xcodeproj/project.xcworkspace/xcuserdata/
+
+# Keystore + signing secrets (any location)
+**/key.properties
+**/*.jks
+**/*.keystore
+
+# Mobile build artifacts
 *.aab
 *.apk
 *.ipa
+flutter-init.log

@@ -1,42 +1,89 @@
-# Flutter / Dart
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+Thumbs.db
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# VS Code (commented out by default — uncomment if you don't want launch.json shared)
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
 .dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.metadata
 .packages
 .pub-cache/
 .pub/
 build/
-.flutter-plugins
-.flutter-plugins-dependencies
-.metadata
 
-# Generated
+# Symbolication / Obfuscation
+app.*.symbols
+app.*.map.json
+
+# Generated files (build_runner)
 *.g.dart
 *.freezed.dart
 *.gr.dart
 *.config.dart
 *.mocks.dart
 
-# IDE
-.idea/
-.vscode/
-*.iml
-*.iws
-*.ipr
-
-# Platform
+# Android build artifacts + local config
+/android/app/debug
+/android/app/profile
+/android/app/release
 android/.gradle/
+android/captures/
 android/local.properties
-android/key.properties
-android/app/upload-keystore.jks
+
+# iOS / macOS Pods + symlinks + xcuser data
 ios/Pods/
 ios/.symlinks/
 ios/Flutter/Flutter.framework
 ios/Flutter/Flutter.podspec
+ios/Runner.xcworkspace/xcuserdata/
+ios/Runner.xcodeproj/project.xcworkspace/xcuserdata/
+ios/Runner.xcodeproj/xcuserdata/
+macos/Pods/
+macos/Flutter/ephemeral/
 
-# Firebase / signing secrets
+# Web
+/web/.dart_tool/
+
+# Signing secrets — NEVER commit
+key.properties
+upload-keystore.jks
+*.jks
+*.keystore
+android/key.properties
+android/app/upload-keystore.jks
+
+# Firebase / Google service configs
 **/google-services.json
 **/GoogleService-Info.plist
 **/firebase_options.dart
 
-# OS
-.DS_Store
-Thumbs.db
+# Build outputs
+*.aab
+*.apk
+*.ipa
+
+# Logs
+flutter-init.log
