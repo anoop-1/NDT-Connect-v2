@@ -12,7 +12,14 @@
       "Bash(node -e \":*)",
       "Bash(cp components/auth/LoginViewManager.tsx src/components/auth/LoginViewManager.tsx)",
       "Bash(npm uninstall:*)",
-      "mcp__windows-mcp__Screenshot"
+      "mcp__windows-mcp__Screenshot",
+      "Bash(git ls-tree *)",
+      "Bash(npx tsc *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(git stash *)",
+      "Bash(git reset *)"
     ],
     "additionalDirectories": [
       "c:\\Users\\anuan\\Documents\\software\\NDT Connect\\NDTConnect\\app\\provider-dashboard\\requests\\[id]"

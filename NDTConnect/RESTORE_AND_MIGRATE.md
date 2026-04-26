@@ -14,7 +14,15 @@ Additionally: the OLD cluster DNS (`cluster0.dtd6ixg.mongodb.net`) no longer res
 | Cluster | Host | Status |
 |---|---|---|
 | OLD | `cluster0.dtd6ixg.mongodb.net` | SRV lookup fails — cluster deleted. |
-| NEW (prod) | `ndtconnect.qpbvncb.mongodb.net` | Healthy. Reachable from Vercel. |
+| NEW (Atlas) | `ndtconnect.qpbvncb.mongodb.net` | **Stuck in "configuring MongoDB" state** since ≥2026-04-24 — all 3 replica IPs (159.41.79.69/96/112) unreachable on 27017. Atlas Data Explorer reports "Connection failure" on its own UI. No Resume/Restart option exposed; cluster actions locked during deploy. Likely cause: M0 auto-upgrade 7→8 stuck. |
+| **VPS (new primary)** | `mail.atlantisndt.com:27017` (148.230.122.172) | Up 2026-04-24. MongoDB 7.0.25, auth + TLS (LE cert for mail.atlantisndt.com), bound 0.0.0.0. Users: `appAdmin` (root), `ndtApp` (rw NDTConnect/NDTConnect2). Local connection verified working. **Pending: port 27017 in Hostinger cloud firewall** to let Vercel reach it. |
+
+## Current live state (2026-04-24)
+
+- Vercel deployment `4ETVkXCig` (commit ba33a38) is Production Current and points at the stuck Atlas cluster.
+- Homepage / static pages load fine. Any endpoint that touches the DB (e.g. `/api/lists/units`, admin dashboard, login) hangs until 504 because the Atlas nodes aren't answering.
+- `NDTConnect FW` firewall config created in Hostinger hPanel with the name set but rules still pending — need to add Accept rules for 22, 80, 443, 465, 587, 993, 995, 27017 then enable.
+- VPS now has nightly backups: `/opt/ndt-ops/mongo-backup.sh` runs at `0 0 * * *` (00:00 UTC), writes `/var/backups/mongodb/ndt-*.gz`, keeps last 14, logs to `/var/log/mongo-backup.log`. Restore via `/opt/ndt-ops/mongo-restore.sh`.
 
 ## Immediate next step
 
