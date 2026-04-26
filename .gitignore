@@ -45,3 +45,17 @@ firestore-debug.log
 package-lock.json
 
 .claude/scheduled_tasks.lock
+
+# Audit output files (binary docs, not source)
+/NDT-Connect-Audit-Report.docx
+/NDT_Connect_Comprehensive_Audit_Report.docx
+/NDT_Connect_OnPage_SEO_Action_Plan.html
+
+# Flutter build outputs + secrets
+mobile/build/
+mobile/.dart_tool/
+mobile/android/upload-keystore.jks
+mobile/android/key.properties
+*.aab
+*.apk
+*.ipa

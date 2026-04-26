@@ -3,17 +3,39 @@
 
 import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowLeft, Activity, Award, Users2, AlertTriangle, CheckCircle, Clock, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import type { ProviderUser, PersonnelQualification, CompanyCertification } from "@/lib/types";
+import { useToast } from "@/hooks/use-toast";
+import { apiGet, ApiError } from "@/lib/api-client";
+
+// Server-side certification record. Covers both personnel qualifications
+// (kind = 'personnel') and company certifications (kind = 'company').
+interface CertificationRecord {
+  id: string;
+  kind: "personnel" | "company";
+  // Personnel fields
+  certificationBody?: string;
+  level?: string;
+  quantity?: string;
+  // Company fields
+  name?: string;
+  category?: string;
+  // Shared
+  expiryDate?: string | Date | null;
+}
 
 function CertificationsPage() {
   const { user, loading: authLoading } = useAuth();
   const router = useRouter();
+  const { toast } = useToast();
+
+  const [personnelQuals, setPersonnelQuals] = useState<CertificationRecord[]>([]);
+  const [companyCerts, setCompanyCerts] = useState<CertificationRecord[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -23,26 +45,42 @@ function CertificationsPage() {
     }
   }, [user, authLoading, router]);
 
-  const provider = user as ProviderUser | null;
+  useEffect(() => {
+    if (!user || user.role !== "provider") return;
+    const ctrl = new AbortController();
+    setIsLoading(true);
+    Promise.all([
+      apiGet<{ certifications: CertificationRecord[] }>("/api/certifications?kind=personnel", ctrl.signal),
+      apiGet<{ certifications: CertificationRecord[] }>("/api/certifications?kind=company", ctrl.signal),
+    ])
+      .then(([p, c]) => {
+        setPersonnelQuals(p?.certifications ?? []);
+        setCompanyCerts(c?.certifications ?? []);
+      })
+      .catch((err) => {
+        if (err?.name === "AbortError") return;
+        if (err instanceof ApiError && err.status === 401) return;
+        toast({
+          title: "Couldn't load certifications",
+          description: err?.message || "Please try again.",
+          variant: "destructive",
+        });
+      })
+      .finally(() => setIsLoading(false));
+    return () => ctrl.abort();
+  }, [user, toast]);
 
-  const { personnelQuals, companyCerts, expiringPersonnel, expiredPersonnel, expiringCompany, expiredCompany } = useMemo(() => {
-    if (!provider) return { personnelQuals: [], companyCerts: [], expiringPersonnel: [], expiredPersonnel: [], expiringCompany: [], expiredCompany: [] };
-
+  const { expiringPersonnel, expiredPersonnel, expiringCompany, expiredCompany } = useMemo(() => {
     const now = new Date();
     const thirtyDays = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
 
-    const pq = provider.personnelQualifications || [];
-    const cc = provider.certifications || [];
-
     return {
-      personnelQuals: pq,
-      companyCerts: cc,
-      expiringPersonnel: pq.filter(q => q.expiryDate && new Date(q.expiryDate) > now && new Date(q.expiryDate) <= thirtyDays),
-      expiredPersonnel: pq.filter(q => q.expiryDate && new Date(q.expiryDate) <= now),
-      expiringCompany: cc.filter(c => c.expiryDate && new Date(c.expiryDate) > now && new Date(c.expiryDate) <= thirtyDays),
-      expiredCompany: cc.filter(c => c.expiryDate && new Date(c.expiryDate) <= now),
+      expiringPersonnel: personnelQuals.filter(q => q.expiryDate && new Date(q.expiryDate) > now && new Date(q.expiryDate) <= thirtyDays),
+      expiredPersonnel: personnelQuals.filter(q => q.expiryDate && new Date(q.expiryDate) <= now),
+      expiringCompany: companyCerts.filter(c => c.expiryDate && new Date(c.expiryDate) > now && new Date(c.expiryDate) <= thirtyDays),
+      expiredCompany: companyCerts.filter(c => c.expiryDate && new Date(c.expiryDate) <= now),
     };
-  }, [provider]);
+  }, [personnelQuals, companyCerts]);
 
   const totalExpiring = expiringPersonnel.length + expiringCompany.length;
   const totalExpired = expiredPersonnel.length + expiredCompany.length;
@@ -83,35 +121,43 @@ function CertificationsPage() {
       </div>
 
       {/* Summary */}
-      <div className="grid sm:grid-cols-3 gap-4">
-        <Card className="border-red-200 bg-red-50">
-          <CardContent className="pt-6">
-            <div className="flex items-center gap-2 mb-1">
-              <AlertTriangle className="h-5 w-5 text-red-600" />
-              <span className="font-semibold text-red-800">Expired</span>
-            </div>
-            <p className="text-3xl font-bold text-red-900">{totalExpired}</p>
-          </CardContent>
-        </Card>
-        <Card className="border-yellow-200 bg-yellow-50">
-          <CardContent className="pt-6">
-            <div className="flex items-center gap-2 mb-1">
-              <Clock className="h-5 w-5 text-yellow-600" />
-              <span className="font-semibold text-yellow-800">Expiring in 30 Days</span>
-            </div>
-            <p className="text-3xl font-bold text-yellow-900">{totalExpiring}</p>
-          </CardContent>
-        </Card>
-        <Card className="border-green-200 bg-green-50">
-          <CardContent className="pt-6">
-            <div className="flex items-center gap-2 mb-1">
-              <CheckCircle className="h-5 w-5 text-green-600" />
-              <span className="font-semibold text-green-800">Valid</span>
-            </div>
-            <p className="text-3xl font-bold text-green-900">{totalValid < 0 ? 0 : totalValid}</p>
-          </CardContent>
-        </Card>
-      </div>
+      {isLoading ? (
+        <div className="grid sm:grid-cols-3 gap-4" aria-busy="true">
+          {[0, 1, 2].map((i) => (
+            <div key={i} className="h-28 rounded-lg border bg-muted/40 animate-pulse" />
+          ))}
+        </div>
+      ) : (
+        <div className="grid sm:grid-cols-3 gap-4">
+          <Card className="border-red-200 bg-red-50">
+            <CardContent className="pt-6">
+              <div className="flex items-center gap-2 mb-1">
+                <AlertTriangle className="h-5 w-5 text-red-600" />
+                <span className="font-semibold text-red-800">Expired</span>
+              </div>
+              <p className="text-3xl font-bold text-red-900">{totalExpired}</p>
+            </CardContent>
+          </Card>
+          <Card className="border-yellow-200 bg-yellow-50">
+            <CardContent className="pt-6">
+              <div className="flex items-center gap-2 mb-1">
+                <Clock className="h-5 w-5 text-yellow-600" />
+                <span className="font-semibold text-yellow-800">Expiring in 30 Days</span>
+              </div>
+              <p className="text-3xl font-bold text-yellow-900">{totalExpiring}</p>
+            </CardContent>
+          </Card>
+          <Card className="border-green-200 bg-green-50">
+            <CardContent className="pt-6">
+              <div className="flex items-center gap-2 mb-1">
+                <CheckCircle className="h-5 w-5 text-green-600" />
+                <span className="font-semibold text-green-800">Valid</span>
+              </div>
+              <p className="text-3xl font-bold text-green-900">{totalValid < 0 ? 0 : totalValid}</p>
+            </CardContent>
+          </Card>
+        </div>
+      )}
 
       {/* Personnel Qualifications */}
       <Card>
@@ -123,7 +169,13 @@ function CertificationsPage() {
           <CardDescription>Track your team's NDT certification levels and expiry dates.</CardDescription>
         </CardHeader>
         <CardContent>
-          {personnelQuals.length === 0 ? (
+          {isLoading ? (
+            <div className="space-y-3" aria-busy="true">
+              {[0, 1].map((i) => (
+                <div key={i} className="h-16 rounded-lg border bg-muted/40 animate-pulse" />
+              ))}
+            </div>
+          ) : personnelQuals.length === 0 ? (
             <p className="text-muted-foreground text-center py-6">No personnel qualifications added. <Link href="/provider-profile" className="text-primary underline">Add in your profile</Link>.</p>
           ) : (
             <div className="space-y-3">
@@ -161,7 +213,13 @@ function CertificationsPage() {
           <CardDescription>ISO, IACS, API, and other company-level certifications.</CardDescription>
         </CardHeader>
         <CardContent>
-          {companyCerts.length === 0 ? (
+          {isLoading ? (
+            <div className="space-y-3" aria-busy="true">
+              {[0, 1].map((i) => (
+                <div key={i} className="h-16 rounded-lg border bg-muted/40 animate-pulse" />
+              ))}
+            </div>
+          ) : companyCerts.length === 0 ? (
             <p className="text-muted-foreground text-center py-6">No company certifications added. <Link href="/provider-profile" className="text-primary underline">Add in your profile</Link>.</p>
           ) : (
             <div className="space-y-3">

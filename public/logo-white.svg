@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 100" width="340" height="100" role="img" aria-label="NDT Connect">
+  <g fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round">
+    <circle cx="50" cy="50" r="40"/>
+    <line x1="10" y1="50" x2="90" y2="50"/>
+    <ellipse cx="50" cy="50" rx="40" ry="14"/>
+    <ellipse cx="50" cy="50" rx="40" ry="28"/>
+    <ellipse cx="50" cy="50" rx="14" ry="40"/>
+    <ellipse cx="50" cy="50" rx="28" ry="40"/>
+    <line x1="50" y1="10" x2="50" y2="90"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" font-weight="800" fill="#FFFFFF">
+    <text x="115" y="55" font-size="42" letter-spacing="2">NDT</text>
+    <text x="115" y="86" font-size="24" letter-spacing="1">Connect</text>
+  </g>
+</svg>

@@ -1,0 +1,102 @@
+name: ndt_connect_mobile
+description: NDT Connect — Android, iOS, and web app for inspection companies, technicians, and clients.
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+  flutter: ">=3.22.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # State / DI
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+
+  # Routing — Flutter web routes via go_router's URL strategy.
+  go_router: ^14.2.0
+
+  # HTTP + auth
+  dio: ^5.5.0
+  dio_smart_retry: ^6.0.0
+
+  # Storage
+  # flutter_secure_storage works on web (uses crypto + IndexedDB) but is not
+  # actually secure in browsers. We document the security caveat and keep it
+  # as the cross-platform abstraction. Long-lived secrets must be re-issued
+  # via short-lived JWTs anyway.
+  flutter_secure_storage: ^9.2.2
+  # sqflite has NO web support. Use sqflite_common_ffi_web on web only via
+  # conditional setup (see core/storage/local_db.dart). The package below
+  # provides the IndexedDB-backed shim.
+  sqflite: ^2.3.3
+  sqflite_common_ffi_web: ^0.4.5
+  path_provider: ^2.1.4
+  shared_preferences: ^2.2.3
+
+  # Models
+  freezed_annotation: ^2.4.4
+  json_annotation: ^4.9.0
+
+  # Maps —
+  # mapbox_maps_flutter does NOT support web. We wrap map UI behind a
+  # platform-aware abstraction (core/maps/) and use mapbox-gl-js via dart:html
+  # interop on web.
+  mapbox_maps_flutter: ^2.0.0
+
+  # UI
+  google_fonts: ^6.2.1
+  intl: ^0.19.0
+  reactive_forms: ^17.0.1
+  cached_network_image: ^3.3.1
+  flutter_svg: ^2.0.10+1   # render the rotating-globe SVG inside the app
+
+  # Notifications + uploads —
+  # NO Firebase. Push delivery is via the backend's existing nodemailer
+  # email pipeline + (future) self-hosted Web Push using the W3C Push API
+  # plus a service worker. flutter_local_notifications still works for
+  # in-app banners on all three platforms without FCM.
+  flutter_local_notifications: ^17.2.2
+  image_picker: ^1.1.2
+  # On web, image_picker uses the <input type="file"> element. No camera
+  # access without HTTPS.
+
+  # Web-only platform detection helper — let us branch between Material
+  # adaptive layout and slim-tablet layout when running in a browser.
+  universal_io: ^2.2.2
+
+  # Telemetry — Sentry only. No Firebase Analytics. Use self-hosted
+  # Plausible / Umami at the marketing-site level for product analytics if
+  # needed; the app sends typed events to /api/analytics/event for any
+  # backend-side aggregation.
+  sentry_flutter: ^8.7.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+  # Code generation
+  build_runner: ^2.4.11
+  freezed: ^2.5.7
+  json_serializable: ^6.8.0
+  riverpod_generator: ^2.4.0
+  custom_lint: ^0.6.4
+  riverpod_lint: ^2.3.10
+
+  # Test
+  mocktail: ^1.0.4
+
+flutter:
+  uses-material-design: true
+  generate: true
+  assets:
+    - assets/images/
+    - web/logo-globe-animated.svg

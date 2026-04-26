@@ -12,6 +12,16 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 
+// 2026-04-26 — Defaults now sourced from src/data/* so admin and user lists
+// share a single source of truth. To extend a list, edit ndtMethods.ts or
+// ndtCertifications.ts; the admin UI picks up additions on the next deploy.
+import { NDT_METHODS } from "@/data/ndtMethods";
+import {
+  PERSONNEL_CERT_BODIES,
+  PERSONNEL_LEVELS,
+  COMPANY_CERTIFICATIONS,
+} from "@/data/ndtCertifications";
+
 interface PredefinedList {
   id: string;
   name: string;
@@ -27,36 +37,19 @@ const listConfigurations = [
   { id: "personnelQualificationLevels", name: "Personnel Qualification Levels", itemTypeName: "Level", placeholder: "e.g., Trainee" },
 ];
 
+const ALL_NDT_METHOD_NAMES = NDT_METHODS.map(m => m.name);
+
 const BUILT_IN_DEFAULTS: Record<string, string[]> = {
-  clientNdtServices: ["Ultrasonic Testing (UT)", "Magnetic Particle Testing (MT)", "Liquid Penetrant Testing (PT)", "Radiographic Testing (RT)", "Eddy Current Testing (ET)", "Visual Testing (VT)"],
-  providerNdtServices: ["Radiographic Testing", "Ultrasonic Testing", "Magnetic Particle Testing", "Liquid Penetrant Testing", "Visual Testing", "Eddy Current Testing", "Leak Testing", "Acoustic Emission"],
-  serviceUnits: ["per hour", "per day", "per project", "per item", "per foot", "per weld"],
-  companyCertifications: [
-    "API Q1",
-    "AS9100",
-    "IACS - American Bureau of Shipping (ABS)",
-    "IACS - Bureau Veritas (BV)",
-    "IACS - China Classification Society (CCS)",
-    "IACS - Croatian Register of Shipping (CRS)",
-    "IACS - DNV",
-    "IACS - Indian Register of Shipping (IRS)",
-    "IACS - Korean Register of Shipping (KR)",
-    "IACS - Lloyd's Register (LR)",
-    "IACS - Nippon Kaiji Kyokai (ClassNK)",
-    "IACS - Polski Rejestr Statków (PRS)",
-    "IACS - RINA Services (RINA)",
-    "IACS - Russian Maritime Register of Shipping (RS)",
-    "ISO 9001",
-    "ISO 14001",
-    "ISO 45001",
-    "ISO/IEC 17020",
-    "ISO/IEC 17024",
-    "ISO/IEC 17025",
-    "Nadcap",
-    "NAS 410",
+  clientNdtServices: ALL_NDT_METHOD_NAMES,
+  providerNdtServices: ALL_NDT_METHOD_NAMES,
+  serviceUnits: [
+    "per hour", "per day", "per shift", "per project", "per item",
+    "per foot", "per metre", "per weld", "per joint",
+    "per square foot", "per square metre", "per inspection", "lump sum",
   ],
-  personnelQualificationBodies: ["ASNT", "PCN", "ISO 9712", "CSWIP", "ACCP", "NAS 410"],
-  personnelQualificationLevels: ["Level I", "Level II", "Level III", "Technician", "Trainee"],
+  companyCertifications: COMPANY_CERTIFICATIONS,
+  personnelQualificationBodies: PERSONNEL_CERT_BODIES.map(b => b.name),
+  personnelQualificationLevels: PERSONNEL_LEVELS,
 };
 
 export default function ManagePredefinedListsPage() {

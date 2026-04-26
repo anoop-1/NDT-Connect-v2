@@ -1,0 +1,43 @@
+{
+  "name": "NDT Connect",
+  "short_name": "NDT Connect",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0B1E33",
+  "theme_color": "#004AAD",
+  "description": "Free tools and marketplace for NDT inspection companies. Equipment, calibration, and certificate management. User ID only.",
+  "categories": ["business", "productivity"],
+  "lang": "en-US",
+  "icons": [
+    { "src": "icons/Icon-192.png",          "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/Icon-512.png",          "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/Icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icons/Icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Free tools",
+      "short_name": "Tools",
+      "description": "Equipment, calibration, certificate management",
+      "url": "/free-tools",
+      "icons": [{ "src": "icons/Icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Find providers",
+      "short_name": "Providers",
+      "description": "Browse verified NDT service providers",
+      "url": "/find-providers",
+      "icons": [{ "src": "icons/Icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "My requests",
+      "short_name": "Requests",
+      "description": "Track your service requests",
+      "url": "/my-requests",
+      "icons": [{ "src": "icons/Icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

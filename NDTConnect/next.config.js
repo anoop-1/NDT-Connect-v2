@@ -17,8 +17,21 @@ const nextConfig = {
           { key: 'X-Content-Type-Options', value: 'nosniff' },
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'X-XSS-Protection', value: '1; mode=block' },
-          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(self)' },
+          { key: 'Permissions-Policy', value: 'camera=(self), microphone=(), geolocation=(self)' },
           { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains; preload' },
+        ],
+      },
+      // CORS for the Flutter app at app.ndt-connect.com — required so the
+      // PWA, native iOS, and native Android builds can hit /api/*.
+      {
+        source: '/api/:path*',
+        headers: [
+          { key: 'Access-Control-Allow-Origin', value: 'https://app.ndt-connect.com' },
+          { key: 'Access-Control-Allow-Credentials', value: 'true' },
+          { key: 'Access-Control-Allow-Methods', value: 'GET,POST,PATCH,PUT,DELETE,OPTIONS' },
+          { key: 'Access-Control-Allow-Headers', value: 'Content-Type, Authorization, X-Requested-With' },
+          { key: 'Access-Control-Max-Age', value: '86400' },
+          { key: 'Vary', value: 'Origin' },
         ],
       },
     ];

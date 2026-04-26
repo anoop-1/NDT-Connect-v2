@@ -29,6 +29,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
+import { EditableSelect } from "@/components/shared/EditableSelect";
+import { apiGet, apiPost, apiPatch, apiDelete, ApiError } from "@/lib/api-client";
 
 interface Equipment {
   id: string;
@@ -42,38 +44,14 @@ interface Equipment {
   notes: string;
 }
 
-const EQUIPMENT_TYPES = [
-  "Ultrasonic Flaw Detector",
-  "Ultrasonic Thickness Gauge",
-  "Phased Array System",
-  "TOFD System",
-  "Radiographic Source (Ir-192)",
-  "Radiographic Source (Co-60)",
-  "X-Ray Generator",
-  "Magnetic Yoke",
-  "MT Bench Unit",
-  "PT Kit",
-  "Eddy Current Instrument",
-  "Borescope / Videoscope",
-  "Hardness Tester",
-  "Calibration Block (V1/V2/IIW)",
-  "Step Wedge",
-  "Reference Standard",
-  "Densitometer",
-  "Light Meter / Lux Meter",
-  "UV-A Light Meter",
-  "Thermometer / Pyrometer",
-  "Other",
-];
-
-const STORAGE_KEY = "ndtconnect_equipment";
-
 function EquipmentManagementPage() {
   const { user, loading: authLoading } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
 
   const [equipment, setEquipment] = useState<Equipment[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSaving, setIsSaving] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState<Omit<Equipment, "id">>({
@@ -96,16 +74,23 @@ function EquipmentManagementPage() {
   }, [user, authLoading, router]);
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      setEquipment(JSON.parse(stored));
-    }
-  }, []);
-
-  const saveToStorage = (items: Equipment[]) => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-    setEquipment(items);
-  };
+    if (!user || user.role !== "provider") return;
+    const ctrl = new AbortController();
+    setIsLoading(true);
+    apiGet<{ equipment: Equipment[] }>("/api/equipment", ctrl.signal)
+      .then((data) => setEquipment(data?.equipment ?? []))
+      .catch((err) => {
+        if (err?.name === "AbortError") return;
+        if (err instanceof ApiError && err.status === 401) return; // redirect already triggered
+        toast({
+          title: "Couldn't load equipment",
+          description: err?.message || "Please try again.",
+          variant: "destructive",
+        });
+      })
+      .finally(() => setIsLoading(false));
+    return () => ctrl.abort();
+  }, [user, toast]);
 
   const resetForm = () => {
     setForm({
@@ -121,25 +106,40 @@ function EquipmentManagementPage() {
     setEditingId(null);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!form.name || !form.type || !form.serialNumber) {
       toast({ title: "Missing Fields", description: "Name, type, and serial number are required.", variant: "destructive" });
       return;
     }
 
-    let updated: Equipment[];
-    if (editingId) {
-      updated = equipment.map((e) => (e.id === editingId ? { ...form, id: editingId } : e));
-      toast({ title: "Equipment Updated", description: `${form.name} has been updated.` });
-    } else {
-      const newItem: Equipment = { ...form, id: `eq-${Date.now()}` };
-      updated = [...equipment, newItem];
-      toast({ title: "Equipment Added", description: `${form.name} has been added to your inventory.` });
+    setIsSaving(true);
+    try {
+      if (editingId) {
+        const { equipment: updated } = await apiPatch<{ equipment: Equipment }>(
+          `/api/equipment/${editingId}`,
+          form,
+        );
+        setEquipment((prev) => prev.map((e) => (e.id === editingId ? updated : e)));
+        toast({ title: "Equipment Updated", description: `${form.name} has been updated.` });
+      } else {
+        const { equipment: created } = await apiPost<{ equipment: Equipment }>(
+          "/api/equipment",
+          form,
+        );
+        setEquipment((prev) => [...prev, created]);
+        toast({ title: "Equipment Added", description: `${form.name} has been added to your inventory.` });
+      }
+      resetForm();
+      setIsDialogOpen(false);
+    } catch (err: any) {
+      toast({
+        title: "Save failed",
+        description: err?.message || "Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSaving(false);
     }
-
-    saveToStorage(updated);
-    resetForm();
-    setIsDialogOpen(false);
   };
 
   const handleEdit = (item: Equipment) => {
@@ -157,10 +157,20 @@ function EquipmentManagementPage() {
     setIsDialogOpen(true);
   };
 
-  const handleDelete = (id: string) => {
-    const updated = equipment.filter((e) => e.id !== id);
-    saveToStorage(updated);
-    toast({ title: "Equipment Removed", description: "The equipment has been removed from your inventory." });
+  const handleDelete = async (id: string) => {
+    const previous = equipment;
+    setEquipment((prev) => prev.filter((e) => e.id !== id));
+    try {
+      await apiDelete(`/api/equipment/${id}`);
+      toast({ title: "Equipment Removed", description: "The equipment has been removed from your inventory." });
+    } catch (err: any) {
+      setEquipment(previous);
+      toast({
+        title: "Delete failed",
+        description: err?.message || "Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   const getStatusColor = (status: string) => {
@@ -221,12 +231,12 @@ function EquipmentManagementPage() {
               </div>
               <div className="space-y-2">
                 <Label>Equipment Type *</Label>
-                <Select value={form.type} onValueChange={(v) => setForm({ ...form, type: v })}>
-                  <SelectTrigger><SelectValue placeholder="Select type..." /></SelectTrigger>
-                  <SelectContent>
-                    {EQUIPMENT_TYPES.map((t) => <SelectItem key={t} value={t}>{t}</SelectItem>)}
-                  </SelectContent>
-                </Select>
+                <EditableSelect
+                  listKey="equipmentTypes"
+                  value={form.type}
+                  onChange={(v) => setForm({ ...form, type: v })}
+                  placeholder="Select equipment type..."
+                />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
@@ -266,10 +276,10 @@ function EquipmentManagementPage() {
               </div>
             </div>
             <DialogFooter>
-              <Button variant="outline" onClick={() => { setIsDialogOpen(false); resetForm(); }}>Cancel</Button>
-              <Button onClick={handleSave}>
+              <Button variant="outline" onClick={() => { setIsDialogOpen(false); resetForm(); }} disabled={isSaving}>Cancel</Button>
+              <Button onClick={handleSave} disabled={isSaving}>
                 <Save className="mr-2 h-4 w-4" />
-                {editingId ? "Update" : "Add"} Equipment
+                {isSaving ? "Saving..." : `${editingId ? "Update" : "Add"} Equipment`}
               </Button>
             </DialogFooter>
           </DialogContent>
@@ -287,7 +297,13 @@ function EquipmentManagementPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {equipment.length === 0 ? (
+          {isLoading ? (
+            <div className="space-y-3" aria-busy="true" aria-live="polite">
+              {[0, 1, 2].map((i) => (
+                <div key={i} className="h-20 rounded-lg border bg-muted/40 animate-pulse" />
+              ))}
+            </div>
+          ) : equipment.length === 0 ? (
             <div className="text-center py-12 text-muted-foreground">
               <Wrench className="h-12 w-12 mx-auto mb-4 opacity-30" />
               <p className="text-lg font-medium">No equipment added yet</p>
