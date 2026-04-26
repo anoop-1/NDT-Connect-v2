@@ -13,7 +13,8 @@ export default function RegisterPage() {
       <div className="hidden lg:flex lg:w-5/12 bg-slate-800 relative overflow-hidden flex-col justify-center px-12 xl:px-16">
         <div className="absolute inset-0 hero-grid-bg opacity-5" />
         <div className="relative z-10">
-          <Image src="/logo.png" alt="NDT Connect" width={180} height={45} className="h-10 w-auto mb-10 brightness-0 invert" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo-globe-animated.svg" alt="NDT Connect" width={320} height={100} style={{ width: 320, height: 100, display: "block" }} className="mb-8" />
           <h2 className="text-3xl font-bold text-white mb-4">
             Join the NDT Marketplace
           </h2>
