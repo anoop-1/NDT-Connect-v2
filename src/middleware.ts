@@ -12,8 +12,8 @@ export const config = {
 export default async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname;
 
-  // Allow admin seed endpoint without auth (it verifies credentials internally)
-  if (path === '/api/admin/seed') {
+  // Allow seed endpoints without auth (they verify credentials internally)
+  if (path === '/api/admin/seed' || path === '/api/admin/seed-legacy-users') {
     return NextResponse.next();
   }
 
