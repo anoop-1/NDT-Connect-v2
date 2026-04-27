@@ -44,7 +44,7 @@ firebase-debug.log
 firestore-debug.log
 package-lock.json
 
-.claude/scheduled_tasks.lock
+.claude/
 
 # Audit output files (binary docs, not source)
 /NDT-Connect-Audit-Report.docx
