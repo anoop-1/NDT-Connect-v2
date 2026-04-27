@@ -29,7 +29,7 @@ workflows:
         script: |
           cd mobile
           flutter pub get
-      - name: Build runner (Freezed / Riverpod / json_serializable)
+      - name: Code generation
         script: |
           cd mobile
           dart run build_runner build --delete-conflicting-outputs
@@ -41,7 +41,7 @@ workflows:
         script: |
           cd mobile/ios
           xcode-project use-profiles
-      - name: Bump build number
+      - name: Build IPA
         script: |
           cd mobile
           BUILD_NUMBER=$(($(app-store-connect get-latest-app-store-build-number "$APP_STORE_APP_ID" 2>/dev/null || echo 0) + 1))
@@ -54,7 +54,6 @@ workflows:
     artifacts:
       - mobile/build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
-      - mobile/flutter_drive.log
     publishing:
       app_store_connect:
         auth: integration
@@ -86,10 +85,18 @@ workflows:
         script: |
           cd mobile
           flutter pub get
-      - name: Build runner
+      - name: Code generation
         script: |
           cd mobile
           dart run build_runner build --delete-conflicting-outputs
+      - name: Set up Android signing
+        script: |
+          cat > "$CM_BUILD_DIR/mobile/android/key.properties" <<EOF
+          storePassword=$CM_KEYSTORE_PASSWORD
+          keyPassword=$CM_KEY_PASSWORD
+          keyAlias=$CM_KEY_ALIAS
+          storeFile=$CM_KEYSTORE_PATH
+          EOF
       - name: Build AAB
         script: |
           cd mobile
