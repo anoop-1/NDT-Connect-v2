@@ -97,6 +97,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       if (!response.ok) {
         const error = await response.json();
+        if (error.requiresPasswordSetup) {
+          const err: any = new Error(error.message || 'Password setup required');
+          err.requiresPasswordSetup = true;
+          throw err;
+        }
         throw new Error(error.message || 'Login failed');
       }
 

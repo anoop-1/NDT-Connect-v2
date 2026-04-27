@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getUserByEmail } from '@/lib/auth-service';
+import { getUserByEmail, generatePasswordResetToken } from '@/lib/auth-service';
 import bcrypt from 'bcryptjs';
 import { SignJWT } from 'jose';
 
@@ -23,6 +23,15 @@ export async function POST(request: NextRequest) {
             return NextResponse.json(
                 { message: 'Invalid email or password.' },
                 { status: 401 }
+            );
+        }
+
+        // Legacy user needs to set a password
+        if (user.mustResetPassword) {
+            await generatePasswordResetToken(user.email);
+            return NextResponse.json(
+                { requiresPasswordSetup: true, message: 'We\'ve sent a password setup link to your email. Please check your inbox.' },
+                { status: 403 }
             );
         }
 

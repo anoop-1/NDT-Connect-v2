@@ -47,7 +47,19 @@ const baseUserSchema = new Schema({
   isActive: {
     type: Boolean,
     default: true,
-  },  
+  },
+  mustResetPassword: {
+    type: Boolean,
+    default: false,
+  },
+  resetPasswordToken: {
+    type: String,
+    default: null,
+  },
+  resetPasswordExpiry: {
+    type: Date,
+    default: null,
+  },
 });
 
 export const User = models?.User || model('User', baseUserSchema);

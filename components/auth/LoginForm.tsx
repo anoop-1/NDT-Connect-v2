@@ -17,6 +17,8 @@ import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { MailCheck } from "lucide-react";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address." }),
@@ -30,6 +32,8 @@ export function LoginForm() {
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
+  const [setupEmailSent, setSetupEmailSent] = useState(false);
+  const [setupEmail, setSetupEmail] = useState("");
 
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
@@ -56,10 +60,26 @@ export function LoginForm() {
         }
       }
     } catch (error: any) {
-      toast({ title: "Login Failed", description: error.message || "Invalid credentials", variant: "destructive" });
+      if (error?.requiresPasswordSetup) {
+        setSetupEmail(values.email);
+        setSetupEmailSent(true);
+      } else {
+        toast({ title: "Login Failed", description: error.message || "Invalid credentials", variant: "destructive" });
+      }
     } finally {
       setIsLoading(false);
     }
+  }
+
+  if (setupEmailSent) {
+    return (
+      <Alert className="bg-blue-50 border-blue-200">
+        <MailCheck className="h-5 w-5 text-blue-600" />
+        <AlertDescription className="text-blue-800 text-sm">
+          <strong>Check your email!</strong> We sent a password setup link to <strong>{setupEmail}</strong>. Click the link in the email to set your password and access your account.
+        </AlertDescription>
+      </Alert>
+    );
   }
 
   return (
@@ -97,6 +117,9 @@ export function LoginForm() {
           </Button>
         </form>
       </Form>
+      <p className="mt-4 text-center text-sm text-muted-foreground">
+        <a href="/forgot-password" className="font-medium text-primary hover:underline">Forgot password?</a>
+      </p>
     </>
   );
 }

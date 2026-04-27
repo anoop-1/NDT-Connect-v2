@@ -2,7 +2,7 @@
 import dbConnect from './mongodb';
 import { User } from './models/User';
 import crypto from 'crypto';
-import { sendVerificationEmail } from './email';
+import { sendVerificationEmail, sendPasswordSetupEmail } from './email';
 import bcrypt from 'bcryptjs';
 
 export async function registerUser(details: {
@@ -66,6 +66,47 @@ export async function updateUser(user: any): Promise<void> {
     console.error('Error updating user:', error);
     throw error;
   }
+}
+
+export async function generatePasswordResetToken(email: string): Promise<{ sent: boolean }> {
+  await dbConnect();
+  const user = await User.findOne({ email });
+  if (!user) return { sent: false };
+
+  const token = crypto.randomBytes(32).toString('hex');
+  const expiry = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24h
+
+  await User.findByIdAndUpdate(user._id, {
+    resetPasswordToken: token,
+    resetPasswordExpiry: expiry,
+    updatedAt: new Date(),
+  });
+
+  await sendPasswordSetupEmail(email, user.name, token);
+  return { sent: true };
+}
+
+export async function resetPasswordWithToken(token: string, newPassword: string): Promise<{ success: boolean; message: string }> {
+  await dbConnect();
+
+  const user = await User.findOne({
+    resetPasswordToken: token,
+    resetPasswordExpiry: { $gt: new Date() },
+  });
+
+  if (!user) return { success: false, message: 'Invalid or expired reset link.' };
+
+  const hashed = await bcrypt.hash(newPassword, 10);
+  await User.findByIdAndUpdate(user._id, {
+    password: hashed,
+    mustResetPassword: false,
+    resetPasswordToken: null,
+    resetPasswordExpiry: null,
+    verified: true,
+    updatedAt: new Date(),
+  });
+
+  return { success: true, message: 'Password updated.' };
 }
 
 export async function getAllUsers(): Promise<any[]> {

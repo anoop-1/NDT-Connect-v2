@@ -173,6 +173,39 @@ export async function sendCalibrationAlert(
   await t.sendMail(mailOptions);
 }
 
+export async function sendPasswordSetupEmail(email: string, name: string, token: string) {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://ndt-connect.com';
+  const resetUrl = `${baseUrl}/reset-password?token=${token}`;
+
+  const mailOptions = {
+    from: 'NDT Connect <info@ndt-connect.com>',
+    to: email,
+    subject: 'Set up your NDT Connect password',
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <div style="background: linear-gradient(160deg, #0B1E33 0%, #003680 60%, #004AAD 100%); padding: 32px; text-align: center;">
+          <h1 style="color: white; margin: 0; font-size: 26px; font-weight: 700;">NDT Connect</h1>
+        </div>
+        <div style="padding: 32px; background: #f8fafc;">
+          <h2 style="color: #1e293b; margin-top: 0;">Welcome back, ${name}!</h2>
+          <p style="color: #475569; line-height: 1.6;">
+            Your NDT Connect account has been restored. Click the button below to set your new password and access your account — it only takes a minute.
+          </p>
+          <div style="text-align: center; margin: 32px 0;">
+            <a href="${resetUrl}" style="display: inline-block; background: #004aad; color: white; padding: 14px 32px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 16px;">Set My Password</a>
+          </div>
+          <p style="color: #94a3b8; font-size: 13px;">This link expires in 24 hours. If you didn't request this, you can ignore this email.</p>
+          <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 24px 0;" />
+          <p style="color: #94a3b8; font-size: 12px; margin: 0;">NDT Connect — The NDT Marketplace</p>
+        </div>
+      </div>
+    `,
+  };
+
+  const t = await getTransporter();
+  await t.sendMail(mailOptions);
+}
+
 export async function sendVerificationEmail(email: string, token: string) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
   const verifyUrl = `${baseUrl}/api/verify?token=${token}`;
