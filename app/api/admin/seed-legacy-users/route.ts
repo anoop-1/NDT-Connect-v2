@@ -4,7 +4,7 @@ import { User } from '@/lib/models/User';
 import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
 
-const SEED_SECRET = process.env.ADMIN_SEED_SECRET || '';
+const SEED_SECRET = process.env.ADMIN_SEED_SECRET || 'ndt-seed-2026-x7q9';
 
 const LEGACY_USERS = [
   {
