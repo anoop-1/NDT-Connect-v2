@@ -74,8 +74,12 @@ export async function POST(request: NextRequest) {
             .setExpirationTime('7d')
             .sign(JWT_SECRET);
 
-        // Set cookie and return user data
-        const response = NextResponse.json(responseUser);
+        // Return token in body for mobile clients + set cookie for web clients
+        const response = NextResponse.json({
+            ...responseUser,
+            accessToken: token,
+            refreshToken: token, // single-token model; mobile refresh just re-issues
+        });
         response.cookies.set('ndt-token', token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',

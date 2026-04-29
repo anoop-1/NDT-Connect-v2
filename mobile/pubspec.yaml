@@ -94,6 +94,9 @@ dev_dependencies:
   # Test
   mocktail: ^1.0.4
 
+  # App icon generation
+  flutter_launcher_icons: ^0.14.3
+
 flutter:
   uses-material-design: true
   generate: true

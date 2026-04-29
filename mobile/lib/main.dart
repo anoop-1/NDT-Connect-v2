@@ -5,6 +5,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 
 import 'app.dart';
 import 'core/api/api_client.dart';
@@ -13,8 +14,16 @@ import 'core/auth/auth_repository.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Defer heavy boot until after first frame so the splash unblocks ASAP.
-  // Sentry / Firebase init goes here once their config files are in place.
+  // Must be called before runApp — Mapbox checks the token when the first
+  // MapWidget is created; without it the app crashes on that screen.
+  const mapboxToken = String.fromEnvironment(
+    'MAPBOX_PUBLIC_TOKEN',
+    defaultValue: '',
+  );
+  if (mapboxToken.isNotEmpty) {
+    MapboxOptions.setAccessToken(mapboxToken);
+  }
+
   runApp(
     ProviderScope(
       overrides: [

@@ -29,6 +29,10 @@ workflows:
         script: |
           cd mobile
           flutter pub get
+      - name: Generate app icons
+        script: |
+          cd mobile
+          dart run flutter_launcher_icons
       - name: Code generation
         script: |
           cd mobile
@@ -85,6 +89,10 @@ workflows:
         script: |
           cd mobile
           flutter pub get
+      - name: Generate app icons
+        script: |
+          cd mobile
+          dart run flutter_launcher_icons
       - name: Code generation
         script: |
           cd mobile

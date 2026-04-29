@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:label="ndt_connect_mobile"
+        android:label="NDT Connect"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
