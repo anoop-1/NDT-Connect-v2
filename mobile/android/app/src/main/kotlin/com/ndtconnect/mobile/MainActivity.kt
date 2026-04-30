@@ -1,4 +1,4 @@
-package com.ndtconnect.ndt_connect_mobile
+package com.ndtconnect.mobile
 
 import io.flutter.embedding.android.FlutterActivity
 
