@@ -9,10 +9,11 @@ class EquipmentRepository {
   EquipmentRepository(this._dio);
   final Dio _dio;
 
-  Future<List<Equipment>> list() async {
+  Future<List<Equipment>> list({required String userId}) async {
     try {
-      final res = await _dio.get('/api/equipment');
-      final list = (res.data['equipment'] as List?) ?? const [];
+      final res =
+          await _dio.get('/api/equipment', queryParameters: {'userId': userId});
+      final list = (res.data['data'] as List?) ?? const [];
       return list
           .map((e) => Equipment.fromJson(e as Map<String, dynamic>))
           .toList();
@@ -21,11 +22,11 @@ class EquipmentRepository {
     }
   }
 
-  Future<Equipment> create(Equipment input) async {
+  Future<Equipment> create({required String userId, required Equipment input}) async {
     try {
-      final body = input.toJson()..remove('id');
+      final body = {...input.toJson(), 'userId': userId}..remove('id');
       final res = await _dio.post('/api/equipment', data: body);
-      return Equipment.fromJson(res.data['equipment'] as Map<String, dynamic>);
+      return Equipment.fromJson(res.data['data'] as Map<String, dynamic>);
     } on DioException catch (e) {
       throw ApiException.fromDio(e);
     }
@@ -33,8 +34,8 @@ class EquipmentRepository {
 
   Future<Equipment> update(String id, Map<String, dynamic> partial) async {
     try {
-      final res = await _dio.patch('/api/equipment/$id', data: partial);
-      return Equipment.fromJson(res.data['equipment'] as Map<String, dynamic>);
+      final res = await _dio.put('/api/equipment/$id', data: partial);
+      return Equipment.fromJson(res.data['data'] as Map<String, dynamic>);
     } on DioException catch (e) {
       throw ApiException.fromDio(e);
     }

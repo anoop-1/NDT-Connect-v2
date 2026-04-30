@@ -3,6 +3,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/api/api_client.dart';
+import '../../../../core/auth/auth_repository.dart';
+import '../../../../core/auth/auth_state.dart';
 import '../models/calibration_alert.dart';
 import '../repositories/calibration_repository.dart';
 
@@ -12,21 +14,33 @@ final calibrationRepositoryProvider = Provider<CalibrationRepository>((ref) {
 
 class CalibrationAlertsNotifier
     extends AsyncNotifier<List<CalibrationAlert>> {
+  String? get _userId {
+    final auth = ref.read(authControllerProvider).value;
+    return auth is AuthAuthenticated ? auth.user.id : null;
+  }
+
   @override
   Future<List<CalibrationAlert>> build() {
-    return ref.read(calibrationRepositoryProvider).listAlerts();
+    final id = _userId;
+    if (id == null) return Future.value(const []);
+    return ref.read(calibrationRepositoryProvider).listAlerts(userId: id);
   }
 
   Future<void> refresh() async {
     state = const AsyncValue.loading();
-    state = await AsyncValue.guard(
-      () => ref.read(calibrationRepositoryProvider).listAlerts(),
-    );
+    state = await AsyncValue.guard(() {
+      final id = _userId;
+      if (id == null) return Future.value(const <CalibrationAlert>[]);
+      return ref.read(calibrationRepositoryProvider).listAlerts(userId: id);
+    });
   }
 
   Future<CalibrationAlert> create(CalibrationAlert alert) async {
-    final created =
-        await ref.read(calibrationRepositoryProvider).createAlert(alert);
+    final id = _userId;
+    if (id == null) throw StateError('Not signed in');
+    final created = await ref
+        .read(calibrationRepositoryProvider)
+        .createAlert(userId: id, input: alert);
     state = AsyncValue.data([...?state.value, created]);
     return created;
   }

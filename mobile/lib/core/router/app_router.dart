@@ -9,10 +9,15 @@ import 'package:go_router/go_router.dart';
 
 import '../auth/auth_repository.dart';
 import '../auth/auth_state.dart';
+import '../../features/auth/forgot_password_screen.dart';
 import '../../features/auth/login_screen.dart';
 import '../../features/auth/register_screen.dart';
+import '../../features/auth/reset_password_screen.dart';
 import '../../features/home/home_screen.dart';
 import '../../features/marketplace/ui/find_providers_screen.dart';
+import '../../features/notifications/ui/notifications_screen.dart';
+import '../../features/recommendations/recommendations_screen.dart';
+import '../../features/settings/ui/profile_edit_screen.dart';
 import '../../features/free_tools/free_tools_screen.dart';
 import '../../features/free_tools/equipment/ui/equipment_list_screen.dart';
 import '../../features/free_tools/calibration/ui/calibration_screen.dart';
@@ -46,6 +51,13 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/', builder: (_, __) => const HomeScreen()),
       GoRoute(path: '/login', builder: (_, __) => const LoginScreen()),
       GoRoute(path: '/register', builder: (_, __) => const RegisterScreen()),
+      GoRoute(path: '/forgot-password', builder: (_, __) => const ForgotPasswordScreen()),
+      GoRoute(
+        path: '/reset-password',
+        builder: (_, state) => ResetPasswordScreen(
+          token: state.uri.queryParameters['token'] ?? '',
+        ),
+      ),
       GoRoute(path: '/find-providers', builder: (_, __) => const FindProvidersScreen()),
       GoRoute(
         path: '/provider/:id',
@@ -65,6 +77,9 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/my-requests', builder: (_, __) => const MyRequestsScreen()),
       GoRoute(path: '/provider-dashboard', builder: (_, __) => const ProviderDashboardScreen()),
       GoRoute(path: '/settings', builder: (_, __) => const SettingsScreen()),
+      GoRoute(path: '/profile', builder: (_, __) => const ProfileEditScreen()),
+      GoRoute(path: '/notifications', builder: (_, __) => const NotificationsScreen()),
+      GoRoute(path: '/recommendations', builder: (_, __) => const RecommendationsScreen()),
     ],
     errorBuilder: (_, state) => Scaffold(
       appBar: AppBar(title: const Text('Not found')),
@@ -78,7 +93,10 @@ bool _requiresAuth(String location) {
     '/',
     '/login',
     '/register',
+    '/forgot-password',
+    '/reset-password',
     '/find-providers',
+    '/recommendations',
     '/free-tools',
   ];
   for (final prefix in publicPrefixes) {

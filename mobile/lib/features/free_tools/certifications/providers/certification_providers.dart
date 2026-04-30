@@ -3,6 +3,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/api/api_client.dart';
+import '../../../../core/auth/auth_repository.dart';
+import '../../../../core/auth/auth_state.dart';
 import '../models/certification.dart';
 import '../repositories/certification_repository.dart';
 
@@ -10,46 +12,81 @@ final certRepositoryProvider = Provider<CertificationRepository>((ref) {
   return CertificationRepository(ref.watch(apiClientProvider));
 });
 
-class CertListNotifier
-    extends FamilyAsyncNotifier<List<Certification>, CertificationKind> {
+class CertBundleNotifier extends AsyncNotifier<CertificationBundle> {
+  String? get _userId {
+    final auth = ref.read(authControllerProvider).value;
+    return auth is AuthAuthenticated ? auth.user.id : null;
+  }
+
   @override
-  Future<List<Certification>> build(CertificationKind arg) {
-    return ref.read(certRepositoryProvider).list(arg);
+  Future<CertificationBundle> build() async {
+    final id = _userId;
+    if (id == null) {
+      return const CertificationBundle(personnel: [], company: []);
+    }
+    return ref.read(certRepositoryProvider).fetch(userId: id);
   }
 
   Future<void> refresh() async {
     state = const AsyncValue.loading();
-    state = await AsyncValue.guard(
-      () => ref.read(certRepositoryProvider).list(arg),
-    );
+    state = await AsyncValue.guard(() async {
+      final id = _userId;
+      if (id == null) {
+        return const CertificationBundle(personnel: [], company: []);
+      }
+      return ref.read(certRepositoryProvider).fetch(userId: id);
+    });
   }
 
-  Future<Certification> create(Certification input) async {
-    final created = await ref.read(certRepositoryProvider).create(input);
-    state = AsyncValue.data([...?state.value, created]);
-    return created;
+  List<Certification> _list(CertificationKind kind) {
+    final v = state.value;
+    if (v == null) return const [];
+    return kind == CertificationKind.personnel ? v.personnel : v.company;
   }
 
-  Future<Certification> updateItem(String id, Map<String, dynamic> partial) async {
-    final updated =
-        await ref.read(certRepositoryProvider).update(id, partial);
-    state = AsyncValue.data([
-      for (final c in (state.value ?? const <Certification>[]))
-        if (c.id == id) updated else c
-    ]);
-    return updated;
+  Future<void> upsert(Certification cert) async {
+    final id = _userId;
+    if (id == null) throw StateError('Not signed in');
+    final personnel = [..._list(CertificationKind.personnel)];
+    final company = [..._list(CertificationKind.company)];
+    final list = cert.kind == CertificationKind.personnel ? personnel : company;
+    final idx = int.tryParse(cert.id);
+    if (idx != null && idx >= 0 && idx < list.length) {
+      list[idx] = cert;
+    } else {
+      list.add(cert);
+    }
+    final updated = await ref
+        .read(certRepositoryProvider)
+        .save(userId: id, personnel: personnel, company: company);
+    state = AsyncValue.data(updated);
   }
 
-  Future<void> delete(String id) async {
-    await ref.read(certRepositoryProvider).delete(id);
-    state = AsyncValue.data([
-      for (final c in (state.value ?? const <Certification>[]))
-        if (c.id != id) c
-    ]);
+  Future<void> delete(Certification cert) async {
+    final id = _userId;
+    if (id == null) throw StateError('Not signed in');
+    final personnel = [..._list(CertificationKind.personnel)];
+    final company = [..._list(CertificationKind.company)];
+    final list = cert.kind == CertificationKind.personnel ? personnel : company;
+    final idx = int.tryParse(cert.id);
+    if (idx != null && idx >= 0 && idx < list.length) {
+      list.removeAt(idx);
+    }
+    final updated = await ref
+        .read(certRepositoryProvider)
+        .save(userId: id, personnel: personnel, company: company);
+    state = AsyncValue.data(updated);
   }
 }
 
-final certListProvider = AsyncNotifierProvider.family<
-    CertListNotifier, List<Certification>, CertificationKind>(
-  CertListNotifier.new,
+final certBundleProvider =
+    AsyncNotifierProvider<CertBundleNotifier, CertificationBundle>(
+  CertBundleNotifier.new,
 );
+
+final certListProvider =
+    Provider.family<AsyncValue<List<Certification>>, CertificationKind>(
+        (ref, kind) {
+  return ref.watch(certBundleProvider).whenData((b) =>
+      kind == CertificationKind.personnel ? b.personnel : b.company);
+});

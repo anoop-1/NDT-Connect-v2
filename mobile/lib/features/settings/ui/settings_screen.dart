@@ -18,12 +18,14 @@ class SettingsScreen extends ConsumerWidget {
           ListTile(
             leading: const Icon(Icons.person_outline),
             title: const Text('Profile'),
-            onTap: () {},
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => context.push('/profile'),
           ),
           ListTile(
             leading: const Icon(Icons.notifications_outlined),
             title: const Text('Notifications'),
-            onTap: () {},
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => context.push('/notifications'),
           ),
           const Divider(),
           ListTile(

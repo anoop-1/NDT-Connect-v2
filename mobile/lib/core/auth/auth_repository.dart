@@ -28,6 +28,7 @@ class AuthRepository {
   Future<AppUser> register({
     required String email,
     required String password,
+    required String name,
     required UserRole role,
     String? companyName,
   }) async {
@@ -35,8 +36,10 @@ class AuthRepository {
       final res = await dio.post('/api/auth/register', data: {
         'email': email,
         'password': password,
+        'name': name,
         'role': role.name,
-        if (companyName != null) 'companyName': companyName,
+        if (companyName != null)
+          'profileData': {'companyName': companyName},
       });
       return _persistAndDecode(res);
     } on DioException catch (e) {
@@ -80,13 +83,14 @@ class AuthRepository {
   }
 
   Future<AppUser> _persistAndDecode(Response res) async {
-    final access = res.data['accessToken'] as String?;
-    final refresh = res.data['refreshToken'] as String?;
+    final body = res.data as Map<String, dynamic>;
+    final access = body['accessToken'] as String?;
+    final refresh = body['refreshToken'] as String?;
     if (access == null || refresh == null) {
       throw ApiException(message: 'Login response missing tokens');
     }
     await storage.writeTokens(accessToken: access, refreshToken: refresh);
-    return AppUser.fromJson(res.data['user'] as Map<String, dynamic>);
+    return AppUser.fromJson(body);
   }
 }
 
@@ -116,13 +120,18 @@ class AuthController extends AsyncNotifier<AuthState> {
   Future<void> register({
     required String email,
     required String password,
+    required String name,
     required UserRole role,
     String? companyName,
   }) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       final user = await ref.read(authRepositoryProvider).register(
-        email: email, password: password, role: role, companyName: companyName,
+        email: email,
+        password: password,
+        name: name,
+        role: role,
+        companyName: companyName,
       );
       return AuthAuthenticated(user);
     });

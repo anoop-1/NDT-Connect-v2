@@ -3,7 +3,7 @@
 // Immutable representation of who is logged in, if anyone, plus a coarse
 // loading indicator for app boot.
 
-enum UserRole { client, provider, admin, unknown }
+enum UserRole { client, provider, inspector, admin, unknown }
 
 UserRole roleFromString(String? raw) {
   switch (raw) {
@@ -11,6 +11,8 @@ UserRole roleFromString(String? raw) {
       return UserRole.client;
     case 'provider':
       return UserRole.provider;
+    case 'inspector':
+      return UserRole.inspector;
     case 'admin':
       return UserRole.admin;
     default:

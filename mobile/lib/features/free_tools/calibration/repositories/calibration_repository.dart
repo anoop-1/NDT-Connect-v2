@@ -9,10 +9,11 @@ class CalibrationRepository {
   CalibrationRepository(this._dio);
   final Dio _dio;
 
-  Future<List<CalibrationAlert>> listAlerts() async {
+  Future<List<CalibrationAlert>> listAlerts({required String userId}) async {
     try {
-      final res = await _dio.get('/api/calibration-alerts');
-      final list = (res.data['alerts'] as List?) ?? const [];
+      final res = await _dio.get('/api/calibration-alerts',
+          queryParameters: {'userId': userId});
+      final list = (res.data['data'] as List?) ?? const [];
       return list
           .map((e) => CalibrationAlert.fromJson(e as Map<String, dynamic>))
           .toList();
@@ -21,12 +22,12 @@ class CalibrationRepository {
     }
   }
 
-  Future<CalibrationAlert> createAlert(CalibrationAlert input) async {
+  Future<CalibrationAlert> createAlert(
+      {required String userId, required CalibrationAlert input}) async {
     try {
-      final body = input.toJson()..remove('id');
+      final body = {...input.toJson(), 'userId': userId}..remove('id');
       final res = await _dio.post('/api/calibration-alerts', data: body);
-      return CalibrationAlert.fromJson(
-          res.data['alert'] as Map<String, dynamic>);
+      return CalibrationAlert.fromJson(res.data['data'] as Map<String, dynamic>);
     } on DioException catch (e) {
       throw ApiException.fromDio(e);
     }

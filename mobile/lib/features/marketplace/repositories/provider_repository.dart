@@ -15,20 +15,24 @@ class ProviderRepository {
     int page = 1,
   }) async {
     try {
-      final res = await _dio.get(
-        '/api/providers',
-        queryParameters: {
-          if (method != null && method.isNotEmpty) 'method': method,
-          if (city != null && city.isNotEmpty) 'city': city,
-          'page': page,
-        },
-      );
-      final list = (res.data['providers'] as List?) ?? const [];
-      final providers = list
+      final res = await _dio.get('/api/providers');
+      final list = (res.data['data'] as List?) ?? const [];
+      var providers = list
           .map((e) => ServiceProvider.fromJson(e as Map<String, dynamic>))
           .toList();
-      final hasMore = res.data['hasMore'] == true;
-      return ProviderListPage(providers: providers, hasMore: hasMore);
+      if (method != null && method.isNotEmpty) {
+        providers = providers
+            .where((p) => p.services.any((s) =>
+                s.toLowerCase().contains(method.toLowerCase())))
+            .toList();
+      }
+      if (city != null && city.isNotEmpty) {
+        providers = providers
+            .where((p) =>
+                p.location.toLowerCase().contains(city.toLowerCase()))
+            .toList();
+      }
+      return ProviderListPage(providers: providers, hasMore: false);
     } on DioException catch (e) {
       throw ApiException.fromDio(e);
     }
@@ -36,8 +40,25 @@ class ProviderRepository {
 
   Future<ServiceProvider> get(String id) async {
     try {
-      final res = await _dio.get('/api/providers/$id');
-      return ServiceProvider.fromJson(res.data['provider'] as Map<String, dynamic>);
+      final res = await _dio.get('/api/users/$id');
+      final data = res.data['data'] as Map<String, dynamic>;
+      final profile = (data['providerProfile'] as Map?)?.cast<String, dynamic>() ?? {};
+      final merged = {
+        'id': data['id'],
+        'name': profile['companyName'] ?? data['name'],
+        'email': data['email'],
+        'role': data['role'],
+        'location': profile['location'],
+        'services': profile['servicesOffered'],
+        'specialization': profile['specialization'],
+        'rating': profile['rating'],
+        'description': profile['description'],
+        'imageUrl': profile['companyLogoUrl'],
+        'isVerified': profile['isVerified'],
+        'contactNumber': profile['contactNumber'],
+        'availableDocuments': profile['availableDocuments'],
+      };
+      return ServiceProvider.fromJson(merged);
     } on DioException catch (e) {
       throw ApiException.fromDio(e);
     }

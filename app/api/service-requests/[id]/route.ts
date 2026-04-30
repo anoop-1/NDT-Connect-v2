@@ -42,7 +42,7 @@ export async function PUT(
     const { id } = params;
     const body = await req.json();
 
-    const { status, providerId, providerName } = body;
+    const { status, providerId, providerName, estimatedCost, requestedDate, location, description, serviceType } = body;
 
     const updateData: Record<string, any> = {
       updatedAt: new Date(),
@@ -51,6 +51,11 @@ export async function PUT(
     if (status !== undefined) updateData.status = status;
     if (providerId !== undefined) updateData.providerId = providerId;
     if (providerName !== undefined) updateData.providerName = providerName;
+    if (estimatedCost !== undefined) updateData.estimatedCost = estimatedCost;
+    if (requestedDate !== undefined) updateData.requestedDate = requestedDate ? new Date(requestedDate) : null;
+    if (location !== undefined) updateData.location = location;
+    if (description !== undefined) updateData.description = description;
+    if (serviceType !== undefined) updateData.serviceType = serviceType;
 
     const doc = await ServiceRequest.findByIdAndUpdate(id, updateData, {
       new: true,

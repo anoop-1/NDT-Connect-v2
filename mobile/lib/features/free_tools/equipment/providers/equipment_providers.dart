@@ -3,6 +3,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/api/api_client.dart';
+import '../../../../core/auth/auth_repository.dart';
+import '../../../../core/auth/auth_state.dart';
 import '../models/equipment.dart';
 import '../repositories/equipment_repository.dart';
 
@@ -11,21 +13,32 @@ final equipmentRepositoryProvider = Provider<EquipmentRepository>((ref) {
 });
 
 class EquipmentListNotifier extends AsyncNotifier<List<Equipment>> {
+  String? get _userId {
+    final auth = ref.read(authControllerProvider).value;
+    return auth is AuthAuthenticated ? auth.user.id : null;
+  }
+
   @override
   Future<List<Equipment>> build() async {
-    return ref.read(equipmentRepositoryProvider).list();
+    final id = _userId;
+    if (id == null) return const [];
+    return ref.read(equipmentRepositoryProvider).list(userId: id);
   }
 
   Future<void> refresh() async {
     state = const AsyncValue.loading();
-    state = await AsyncValue.guard(
-      () => ref.read(equipmentRepositoryProvider).list(),
-    );
+    state = await AsyncValue.guard(() async {
+      final id = _userId;
+      if (id == null) return const <Equipment>[];
+      return ref.read(equipmentRepositoryProvider).list(userId: id);
+    });
   }
 
   Future<Equipment> create(Equipment input) async {
+    final id = _userId;
+    if (id == null) throw StateError('Not signed in');
     final repo = ref.read(equipmentRepositoryProvider);
-    final created = await repo.create(input);
+    final created = await repo.create(userId: id, input: input);
     state = AsyncValue.data([...?state.value, created]);
     return created;
   }

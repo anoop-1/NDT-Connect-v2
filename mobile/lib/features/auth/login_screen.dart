@@ -83,16 +83,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   ),
                   const SizedBox(height: 4),
                   TextButton(
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text(
-                            'Password reset is coming soon. Email '
-                            'support@ndt-connect.com to reset for now.',
-                          ),
-                        ),
-                      );
-                    },
+                    onPressed: () => context.go('/forgot-password'),
                     child: const Text('Forgot password?'),
                   ),
                   const SizedBox(height: 4),

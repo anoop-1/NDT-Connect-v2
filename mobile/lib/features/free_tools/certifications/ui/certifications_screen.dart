@@ -62,7 +62,7 @@ class _CertTab extends ConsumerWidget {
         error: (e, _) => ErrorRetry(
           message:
               e is ApiException ? e.message : 'Could not load certifications',
-          onRetry: () => ref.read(certListProvider(kind).notifier).refresh(),
+          onRetry: () => ref.read(certBundleProvider.notifier).refresh(),
         ),
         data: (items) {
           if (items.isEmpty) {
@@ -86,7 +86,7 @@ class _CertTab extends ConsumerWidget {
             });
           return RefreshIndicator(
             onRefresh: () =>
-                ref.read(certListProvider(kind).notifier).refresh(),
+                ref.read(certBundleProvider.notifier).refresh(),
             child: ListView.separated(
               padding: const EdgeInsets.fromLTRB(16, 12, 16, 96),
               itemCount: sorted.length,
@@ -290,7 +290,7 @@ class _CertFormSheetState extends ConsumerState<_CertFormSheet> {
     if (!_form.currentState!.validate()) return;
     setState(() => _saving = true);
     try {
-      final notifier = ref.read(certListProvider(widget.kind).notifier);
+      final notifier = ref.read(certBundleProvider.notifier);
       final draft = Certification(
         id: widget.existing?.id ?? '',
         kind: widget.kind,
@@ -305,11 +305,7 @@ class _CertFormSheetState extends ConsumerState<_CertFormSheet> {
         body: _body,
         notes: _notes.text.trim().isEmpty ? null : _notes.text.trim(),
       );
-      if (widget.existing == null) {
-        await notifier.create(draft);
-      } else {
-        await notifier.updateItem(widget.existing!.id, draft.toJson());
-      }
+      await notifier.upsert(draft);
       if (mounted) Navigator.pop(context);
     } on ApiException catch (e) {
       if (mounted) {
@@ -344,9 +340,7 @@ class _CertFormSheetState extends ConsumerState<_CertFormSheet> {
     if (ok != true) return;
     setState(() => _saving = true);
     try {
-      await ref
-          .read(certListProvider(widget.kind).notifier)
-          .delete(widget.existing!.id);
+      await ref.read(certBundleProvider.notifier).delete(widget.existing!);
       if (mounted) Navigator.pop(context);
     } on ApiException catch (e) {
       if (mounted) {

@@ -12,6 +12,8 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
 import '../../../core/api/api_exception.dart';
+import '../../../core/auth/auth_repository.dart';
+import '../../../core/auth/auth_state.dart';
 import '../../../core/predefined_lists/predefined_lists_repository.dart';
 import '../../../core/ui/loading_indicator.dart';
 import '../models/service_request.dart';
@@ -66,9 +68,21 @@ class _RequestServiceScreenState extends ConsumerState<RequestServiceScreen> {
   }
 
   Future<void> _submit() async {
+    final authValue = ref.read(authControllerProvider).value;
+    if (authValue is! AuthAuthenticated) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Sign in to submit a request')),
+      );
+      context.go('/login');
+      return;
+    }
+    final user = authValue.user;
     setState(() => _submitting = true);
     try {
       final body = {
+        'clientId': user.id,
+        'clientName': user.name,
+        'clientEmail': user.email,
         'serviceType': _method,
         'location': _location.text.trim(),
         'description':

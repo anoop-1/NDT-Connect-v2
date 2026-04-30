@@ -12,17 +12,31 @@ class ServiceRequestRepository {
   Future<ServiceRequest> create(Map<String, dynamic> body) async {
     try {
       final res = await _dio.post('/api/service-requests', data: body);
-      return ServiceRequest.fromJson(
-          res.data['request'] as Map<String, dynamic>);
+      final data = res.data['data'] as Map<String, dynamic>? ??
+          res.data as Map<String, dynamic>;
+      return ServiceRequest.fromJson(data);
     } on DioException catch (e) {
       throw ApiException.fromDio(e);
     }
   }
 
-  Future<List<ServiceRequest>> list() async {
+  Future<List<ServiceRequest>> list({
+    String? clientId,
+    String? providerId,
+    String? status,
+    bool includeOpen = false,
+  }) async {
     try {
-      final res = await _dio.get('/api/service-requests');
-      final list = (res.data['requests'] as List?) ?? const [];
+      final res = await _dio.get(
+        '/api/service-requests',
+        queryParameters: {
+          if (clientId != null) 'clientId': clientId,
+          if (providerId != null) 'providerId': providerId,
+          if (status != null) 'status': status,
+          if (includeOpen) 'includeOpen': 'true',
+        },
+      );
+      final list = (res.data['data'] as List?) ?? const [];
       return list
           .map((e) => ServiceRequest.fromJson(e as Map<String, dynamic>))
           .toList();
@@ -34,8 +48,47 @@ class ServiceRequestRepository {
   Future<ServiceRequest> get(String id) async {
     try {
       final res = await _dio.get('/api/service-requests/$id');
-      return ServiceRequest.fromJson(
-          res.data['request'] as Map<String, dynamic>);
+      final data = res.data['data'] as Map<String, dynamic>? ??
+          res.data as Map<String, dynamic>;
+      return ServiceRequest.fromJson(data);
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  Future<ServiceRequest> updateStatus(String id, ServiceRequestStatus status) async {
+    try {
+      final res = await _dio.put(
+        '/api/service-requests/$id',
+        data: {'status': status.apiValue},
+      );
+      final data = res.data['data'] as Map<String, dynamic>? ??
+          res.data as Map<String, dynamic>;
+      return ServiceRequest.fromJson(data);
+    } on DioException catch (e) {
+      throw ApiException.fromDio(e);
+    }
+  }
+
+  Future<ServiceRequest> assignProvider(
+    String id, {
+    required String providerId,
+    String? providerName,
+    num? estimatedCost,
+  }) async {
+    try {
+      final res = await _dio.put(
+        '/api/service-requests/$id',
+        data: {
+          'providerId': providerId,
+          if (providerName != null) 'providerName': providerName,
+          if (estimatedCost != null) 'estimatedCost': estimatedCost,
+          'status': 'Confirmed',
+        },
+      );
+      final data = res.data['data'] as Map<String, dynamic>? ??
+          res.data as Map<String, dynamic>;
+      return ServiceRequest.fromJson(data);
     } on DioException catch (e) {
       throw ApiException.fromDio(e);
     }

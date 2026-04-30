@@ -60,9 +60,11 @@ class _ShortcutGrid extends StatelessWidget {
     final tiles = <_Shortcut>[
       _Shortcut('Free tools', Icons.build_outlined, '/free-tools'),
       _Shortcut('Find providers', Icons.search, '/find-providers'),
+      _Shortcut('Recommendations', Icons.auto_awesome_outlined, '/recommendations'),
       if (loggedIn) _Shortcut('Request service', Icons.add_task, '/request-service'),
       if (loggedIn) _Shortcut('My requests', Icons.list_alt, '/my-requests'),
-      if (loggedIn && role == UserRole.provider)
+      if (loggedIn) _Shortcut('Notifications', Icons.notifications_outlined, '/notifications'),
+      if (loggedIn && (role == UserRole.provider || role == UserRole.inspector))
         _Shortcut('Provider dashboard', Icons.dashboard_customize_outlined, '/provider-dashboard'),
       if (!loggedIn) _Shortcut('Create free account', Icons.person_add_outlined, '/register'),
     ];
