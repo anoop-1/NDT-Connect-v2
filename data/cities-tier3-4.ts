@@ -164,20 +164,7 @@ export const CITIES_TIER_3_4: City[] = [
   },
 
   // ---------------- Tier 3 — Idaho ----------------
-  {
-    slug: "idaho-falls-id",
-    name: "Idaho Falls", state: "ID", country: "US",
-    region: "mountain-west", tier: 3,
-    industries: ["Nuclear research (INL)", "DOE operations", "Manufacturing"],
-    codeAuthorities: ["ASME Section III / XI", "DOE 10 CFR 830", "ASNT SNT-TC-1A"],
-    namedFacilities: [
-      { name: "Idaho National Laboratory (INL)", type: "DOE nuclear research lab" },
-      { name: "Advanced Test Reactor", type: "Research reactor" },
-      { name: "Materials and Fuels Complex (MFC)", type: "Nuclear research" },
-    ],
-    localPainQuote: "INL inspection scopes blend DOE, NRC and ASME jurisdictions — the only way to defend a UT exam record is single-pane traceability from technician cert to instrument cal to scan plan.",
-    latitude: 43.4917, longitude: -112.0339,
-  },
+  // idaho-falls-id: defined in cities-tier2.ts — duplicate removed.
   {
     slug: "pocatello-id",
     name: "Pocatello", state: "ID", country: "US",
@@ -191,18 +178,7 @@ export const CITIES_TIER_3_4: City[] = [
     localPainQuote: "Phosphate-acid piping in Pocatello degrades fast — UT cal cycles have to keep up with thinning rates that don't tolerate a slipped re-inspection date.",
     latitude: 42.8713, longitude: -112.4455,
   },
-  {
-    slug: "boise-id",
-    name: "Boise", state: "ID", country: "US",
-    region: "mountain-west", tier: 3,
-    industries: ["Semiconductor (Micron HQ)", "Manufacturing", "Aerospace components"],
-    codeAuthorities: ["SEMI standards", "ASME", "FAA Part 145"],
-    namedFacilities: [
-      { name: "Micron Technology Boise Fab", type: "Semiconductor fab" },
-    ],
-    localPainQuote: "Micron's gas and chemical distribution piping runs to fab-grade cleanliness specs — a UT/PT inspection record without instrument-level cal traceability fails the SEMI audit.",
-    latitude: 43.6150, longitude: -116.2023,
-  },
+  // boise-id: defined in cities-tier2.ts — duplicate removed.
   {
     slug: "provo-ut",
     name: "Provo", state: "UT", country: "US",
@@ -285,20 +261,7 @@ export const CITIES_TIER_3_4: City[] = [
     localPainQuote: "Lima's refinery and the Abrams-tank plant share a contractor pool — tracking which Level II is current under API vs MIL-STD on which day is a daily scheduling problem.",
     latitude: 40.7426, longitude: -84.1052,
   },
-  {
-    slug: "toledo-oh",
-    name: "Toledo", state: "OH", country: "US",
-    region: "great-lakes", tier: 3,
-    industries: ["Refining", "Glass", "Auto manufacturing"],
-    codeAuthorities: ["API 510 / 570 / 653", "ASME", "Ohio EPA"],
-    namedFacilities: [
-      { name: "BP-Cenovus Toledo Refinery", type: "Refinery" },
-      { name: "PBF Toledo Refinery", type: "Refinery" },
-      { name: "Stellantis Toledo Assembly Complex", type: "Auto manufacturing" },
-    ],
-    localPainQuote: "Two refineries inside the city limits means two parallel pre-job qualification systems — a single private cert vault is the only way to keep the same crew compliant at both gates.",
-    latitude: 41.6528, longitude: -83.5379,
-  },
+  // toledo-oh: defined in cities-tier2.ts — duplicate removed.
   {
     slug: "findlay-oh",
     name: "Findlay", state: "OH", country: "US",
@@ -416,7 +379,7 @@ export const CITIES_TIER_3_4: City[] = [
     slug: "rockford-il",
     name: "Rockford", state: "IL", country: "US",
     region: "midwest", tier: 3,
-    industries: ["Aerospace components", "Manufacturing"],
+    industries: ["Aerospace components", "Manufacturing", "Heavy fasteners and machined parts"],
     codeAuthorities: ["FAA Part 145", "NAS 410", "AS9100"],
     namedFacilities: [
       { name: "Collins Aerospace Rockford", type: "Aerospace systems" },
@@ -503,60 +466,10 @@ export const CITIES_TIER_3_4: City[] = [
   },
 
   // ---------------- Tier 3 — Southeast / Mid-Atlantic ----------------
-  {
-    slug: "mobile-al",
-    name: "Mobile", state: "AL", country: "US",
-    region: "gulf-coast", tier: 3,
-    industries: ["Aerospace (Airbus)", "Shipbuilding", "Refining", "Steel"],
-    codeAuthorities: ["FAA Part 145", "NAS 410", "ABS", "API 510 / 570"],
-    namedFacilities: [
-      { name: "Airbus Mobile Final Assembly Line", type: "Aerospace assembly" },
-      { name: "Austal USA Shipyard", type: "Shipbuilding (USN LCS / EPF)" },
-      { name: "Outokumpu Calvert (regional)", type: "Stainless steel" },
-      { name: "ExxonMobil Mobile Bay assets", type: "Upstream / processing" },
-    ],
-    localPainQuote: "Mobile straddles aerospace, Navy shipbuilding and Gulf petrochem in one labour shed — keeping NAS 410, ABS and API cert paths current on the same crew is a daily exercise.",
-    latitude: 30.6954, longitude: -88.0399,
-  },
-  {
-    slug: "pascagoula-ms",
-    name: "Pascagoula", state: "MS", country: "US",
-    region: "gulf-coast", tier: 3,
-    industries: ["Shipbuilding", "Refining", "Petrochemical"],
-    codeAuthorities: ["NAVSEA", "ABS", "API 510 / 570 / 653"],
-    namedFacilities: [
-      { name: "Ingalls Shipbuilding (HII)", type: "USN shipbuilding (DDG / LHA / NSC)" },
-      { name: "Chevron Pascagoula Refinery", type: "Refinery" },
-      { name: "Mississippi Phosphates / Enviva (regional)", type: "Industrial" },
-    ],
-    localPainQuote: "Ingalls Navy work runs on NAVSEA T9074 weld-NDT specs while Chevron next door runs API — same labour pool, two cert systems, and missing one cert closes one of two gates.",
-    latitude: 30.3658, longitude: -88.5561,
-  },
-  {
-    slug: "augusta-ga",
-    name: "Augusta", state: "GA", country: "US",
-    region: "southeast", tier: 3,
-    industries: ["Nuclear power generation (Vogtle)", "DOE Savannah River (regional)", "Pulp and paper"],
-    codeAuthorities: ["ASME Section III / XI", "10 CFR 50 Appendix B", "NRC"],
-    namedFacilities: [
-      { name: "Plant Vogtle (Georgia Power / Southern Nuclear)", type: "Nuclear power plant (incl. AP1000 Units 3 & 4)" },
-      { name: "Savannah River Site (regional, DOE)", type: "DOE nuclear" },
-    ],
-    localPainQuote: "Vogtle Units 3 and 4 newly online means Appendix B-grade NDT records are under fresh NRC scrutiny — every UT cal trace has to defend against a first-of-fleet operating-period audit.",
-    latitude: 33.4735, longitude: -82.0105,
-  },
-  {
-    slug: "marietta-ga",
-    name: "Marietta", state: "GA", country: "US",
-    region: "southeast", tier: 3,
-    industries: ["Aerospace (Lockheed Martin)", "Defense"],
-    codeAuthorities: ["NAS 410", "AS9100", "MIL-STD-2154"],
-    namedFacilities: [
-      { name: "Lockheed Martin Marietta (C-130, F-22 mods)", type: "Aerospace / defense" },
-    ],
-    localPainQuote: "C-130 production and F-22 sustainment under one roof — NAS 410 Level II/III rosters have to satisfy both program offices, and a missed renewal locks a tech out of one or both.",
-    latitude: 33.9526, longitude: -84.5499,
-  },
+  // mobile-al: defined in cities-tier2.ts — duplicate removed.
+  // pascagoula-ms: defined in cities-tier2.ts — duplicate removed.
+  // augusta-ga: defined in cities-tier2.ts — duplicate removed.
+  // marietta-ga: defined in cities-tier2.ts — duplicate removed.
   {
     slug: "columbia-sc",
     name: "Columbia", state: "SC", country: "US",
@@ -582,18 +495,7 @@ export const CITIES_TIER_3_4: City[] = [
     localPainQuote: "WR-ALC depot-level MRO at Robins runs to MIL-STD-2219 weld specs and NAS 410 cert paths — every contractor NDT roster has to map both at audit.",
     latitude: 32.8407, longitude: -83.6324,
   },
-  {
-    slug: "memphis-tn",
-    name: "Memphis", state: "TN", country: "US",
-    region: "southeast", tier: 3,
-    industries: ["Logistics / aerospace cargo", "Power generation", "Manufacturing"],
-    codeAuthorities: ["FAA Part 145", "ASME", "TVA standards"],
-    namedFacilities: [
-      { name: "FedEx Express Superhub (Memphis World Hub)", type: "Aerospace MRO / cargo" },
-    ],
-    localPainQuote: "FedEx Memphis runs a 24/7 MRO floor — FAA Part 145 NDT visibility has to be real-time across shifts, not a Monday-morning spreadsheet exercise.",
-    latitude: 35.1495, longitude: -90.0490,
-  },
+  // memphis-tn: defined in cities-tier2.ts — duplicate removed.
   {
     slug: "jackson-ms",
     name: "Jackson", state: "MS", country: "US",
@@ -612,7 +514,7 @@ export const CITIES_TIER_3_4: City[] = [
     slug: "melbourne-fl",
     name: "Melbourne", state: "FL", country: "US",
     region: "southeast", tier: 3,
-    industries: ["Aerospace and defense", "Composites"],
+    industries: ["Aerospace and defense", "Composites manufacturing", "Space launch operations (Space Coast)"],
     codeAuthorities: ["NAS 410", "AS9100", "FAA Part 145"],
     namedFacilities: [
       { name: "L3Harris Technologies Melbourne", type: "Defense electronics" },
@@ -622,19 +524,7 @@ export const CITIES_TIER_3_4: City[] = [
     localPainQuote: "Space-Coast aerospace primes synchronise NAS 410 audit cycles — a single missed Level III renewal at one prime cascades to AVL removal across the corridor.",
     latitude: 28.0836, longitude: -80.6081,
   },
-  {
-    slug: "pensacola-fl",
-    name: "Pensacola", state: "FL", country: "US",
-    region: "southeast", tier: 3,
-    industries: ["Naval aviation MRO", "Aerospace", "Petrochemical"],
-    codeAuthorities: ["NAVAIR 4790", "FAA Part 145", "API 570"],
-    namedFacilities: [
-      { name: "Naval Air Station Pensacola (FRC Southeast)", type: "Naval aviation MRO" },
-      { name: "ST Engineering Pensacola (commercial MRO)", type: "Aerospace MRO" },
-    ],
-    localPainQuote: "FRC Southeast NAVAIR work runs alongside ST Engineering commercial MRO — same NDT crews, two qualification matrices, and a single expired cert closes one of two hangars.",
-    latitude: 30.4213, longitude: -87.2169,
-  },
+  // pensacola-fl: defined in cities-tier2.ts — duplicate removed.
   {
     slug: "mayport-fl",
     name: "Mayport", state: "FL", country: "US",
@@ -661,26 +551,16 @@ export const CITIES_TIER_3_4: City[] = [
   },
 
   // ---------------- Tier 3 — Northeast / Mid-Atlantic ports & shipyards ----------------
-  {
-    slug: "newport-news-va",
-    name: "Newport News", state: "VA", country: "US",
-    region: "northeast", tier: 3,
-    industries: ["Nuclear shipbuilding", "USN aircraft carriers", "Submarines"],
-    codeAuthorities: ["NAVSEA", "ABS", "10 CFR 50 Appendix B"],
-    namedFacilities: [
-      { name: "HII Newport News Shipbuilding", type: "Nuclear aircraft carrier and submarine builder" },
-    ],
-    localPainQuote: "Newport News carrier and submarine work runs to the most exacting NAVSEA NDT specs anywhere — every UT and RT cal record has to defend a NAVSEA SUBSAFE-equivalent audit chain.",
-    latitude: 36.9787, longitude: -76.4283,
-  },
+  // newport-news-va: defined in cities-tier2.ts — duplicate removed.
   {
     slug: "portsmouth-va",
     name: "Portsmouth", state: "VA", country: "US",
     region: "northeast", tier: 3,
-    industries: ["USN ship repair", "Shipyard"],
-    codeAuthorities: ["NAVSEA T9074", "ABS"],
+    industries: ["USN ship repair (nuclear)", "Commercial shipyard", "Coal export terminals"],
+    codeAuthorities: ["NAVSEA T9074", "ABS", "AAR M-1003"],
     namedFacilities: [
       { name: "Norfolk Naval Shipyard (Portsmouth)", type: "USN ship repair / nuclear" },
+      { name: "BAE Systems Norfolk Ship Repair (regional)", type: "Commercial / Navy ship repair" },
     ],
     localPainQuote: "Norfolk Naval Shipyard runs nuclear-submarine availabilities on the tightest NDT cal-traceability standards in the Navy — a missing cert kills a dry-dock day, not just a shift.",
     latitude: 36.8354, longitude: -76.2983,
@@ -689,7 +569,7 @@ export const CITIES_TIER_3_4: City[] = [
     slug: "groton-ct",
     name: "Groton", state: "CT", country: "US",
     region: "northeast", tier: 3,
-    industries: ["Submarine construction", "USN"],
+    industries: ["Submarine construction", "USN submarine base", "Pharmaceutical manufacturing"],
     codeAuthorities: ["NAVSEA SUBSAFE", "ABS", "ASME Section III"],
     namedFacilities: [
       { name: "General Dynamics Electric Boat", type: "Nuclear submarine builder (Virginia / Columbia class)" },
@@ -702,10 +582,11 @@ export const CITIES_TIER_3_4: City[] = [
     slug: "bath-me",
     name: "Bath", state: "ME", country: "US",
     region: "northeast", tier: 3,
-    industries: ["USN shipbuilding", "Heavy fabrication"],
-    codeAuthorities: ["NAVSEA T9074", "ABS", "AWS D1.1"],
+    industries: ["USN shipbuilding (destroyer construction)", "Heavy fabrication", "Defense supply chain"],
+    codeAuthorities: ["NAVSEA T9074", "ABS", "AWS D1.1", "DCMA"],
     namedFacilities: [
       { name: "Bath Iron Works (General Dynamics)", type: "USN destroyer builder (DDG-51 / DDG-1000)" },
+      { name: "Portsmouth Naval Shipyard (regional, Kittery)", type: "Submarine overhaul yard" },
     ],
     localPainQuote: "BIW destroyer construction packs NDT scopes into a tight Maine winter schedule — an out-of-cal UT unit during a pre-launch hull survey reshuffles the entire ship's delivery curve.",
     latitude: 43.9106, longitude: -69.8214,
@@ -792,7 +673,7 @@ export const CITIES_TIER_3_4: City[] = [
     slug: "fort-mcmurray-ab",
     name: "Fort McMurray", state: "AB", country: "CA",
     region: "frontier-us", tier: 4,
-    industries: ["Oil sands mining and SAGD", "Upgrading"],
+    industries: ["Oil sands mining and SAGD", "Bitumen upgrading and refining", "Pipelines (Athabasca / Trans Mountain)"],
     codeAuthorities: ["ABSA", "CSA Z662", "API 570 / 653"],
     namedFacilities: [
       { name: "Syncrude Mildred Lake", type: "Oil sands mine and upgrader" },
@@ -807,7 +688,7 @@ export const CITIES_TIER_3_4: City[] = [
     slug: "sarnia-on",
     name: "Sarnia", state: "ON", country: "CA",
     region: "great-lakes", tier: 4,
-    industries: ["Refining", "Petrochemical (Chemical Valley)"],
+    industries: ["Refining", "Petrochemical (Chemical Valley)", "Pipelines and midstream"],
     codeAuthorities: ["TSSA (Technical Standards & Safety Authority)", "CSA B51", "API 510 / 570 / 653"],
     namedFacilities: [
       { name: "Imperial Oil Sarnia Refinery", type: "Refinery" },
@@ -823,7 +704,7 @@ export const CITIES_TIER_3_4: City[] = [
     slug: "montreal-qc",
     name: "Montreal", state: "QC", country: "CA",
     region: "northeast", tier: 4,
-    industries: ["Aerospace (Bombardier, Pratt & Whitney Canada)", "Refining"],
+    industries: ["Aerospace (Bombardier, Pratt & Whitney Canada)", "Refining", "Port and rail logistics"],
     codeAuthorities: ["Transport Canada CAR 573", "NAS 410", "AS9100", "RBQ"],
     namedFacilities: [
       { name: "Bombardier Aerospace Mirabel / Dorval", type: "Business jet manufacturing" },
@@ -1174,10 +1055,12 @@ export const CITIES_TIER_3_4: City[] = [
     slug: "jamnagar-in",
     name: "Jamnagar", state: "India", country: "IN",
     region: "southwest", tier: 4,
-    industries: ["Refining (largest single-site refining complex in the world)", "Petrochemical"],
-    codeAuthorities: ["PESO", "OISD-130 / OISD-128", "API 510 / 570 / 653"],
+    industries: ["Refining (largest single-site refining complex in the world)", "Petrochemical", "Pipelines and product export"],
+    codeAuthorities: ["PESO", "OISD-130 / OISD-128", "API 510 / 570 / 653", "PNGRB"],
     namedFacilities: [
-      { name: "Reliance Jamnagar Refinery Complex (DTA + SEZ)", type: "Refinery / petrochemical" },
+      { name: "Reliance Jamnagar Refinery (DTA)", type: "Refinery" },
+      { name: "Reliance Jamnagar SEZ Refinery", type: "Export-oriented refinery" },
+      { name: "Sikka Marine Terminal (Reliance)", type: "Crude / product import-export terminal" },
     ],
     localPainQuote: "Jamnagar runs the largest refining complex on Earth on tight OISD turnaround clocks — a single calibration miss at this scale ripples across hundreds of vessels and miles of piping.",
     latitude: 22.4707, longitude: 70.0577,
@@ -1217,7 +1100,7 @@ export const CITIES_TIER_3_4: City[] = [
     slug: "villahermosa-mx",
     name: "Villahermosa", state: "Mexico", country: "MX",
     region: "gulf-coast", tier: 4,
-    industries: ["Pemex upstream and gas processing", "Offshore services (Bay of Campeche)"],
+    industries: ["Pemex upstream and gas processing", "Offshore services (Bay of Campeche)", "Refining (Dos Bocas / Olmeca)"],
     codeAuthorities: ["ASEA (Agencia de Seguridad, Energía y Ambiente)", "NOM standards", "API 510 / 570", "Pemex NRF"],
     namedFacilities: [
       { name: "Pemex Región Sur HQ Villahermosa", type: "Upstream regional HQ" },

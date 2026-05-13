@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { procedureExamples, getExampleBySlug } from '@/data/procedure-examples';
 import {
   BreadcrumbSchema,
@@ -120,13 +122,9 @@ export default function ExampleDetailPage({ params }: PageProps) {
         <p className="mt-3 max-w-3xl text-lg text-muted-foreground">{ex.summary}</p>
       </header>
 
-      <article className="prose prose-slate max-w-none">
+      <article className="prose prose-slate max-w-none prose-headings:scroll-mt-20 prose-h2:mt-8 prose-h2:text-2xl prose-h3:text-lg prose-pre:bg-slate-900 prose-pre:text-slate-100">
         {ex.body.trim() ? (
-          // Render markdown body as plain pre for now (no markdown renderer wired here).
-          // The data file expects ReactMarkdown-compatible content.
-          <pre className="whitespace-pre-wrap rounded-lg bg-slate-50 p-5 text-sm leading-relaxed text-slate-800">
-            {ex.body}
-          </pre>
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{ex.body}</ReactMarkdown>
         ) : (
           <div className="rounded-xl border border-amber-200 bg-amber-50 p-5 not-prose">
             <h2 className="text-base font-semibold text-amber-900">
