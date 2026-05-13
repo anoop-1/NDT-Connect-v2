@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ArrowLeft, Calendar, Clock, Tag } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import AuthorByline from '@/components/AuthorByline';
 
 interface BlogLayoutProps {
     children: React.ReactNode;
@@ -12,6 +13,10 @@ interface BlogLayoutProps {
     date: string;
     readTime: string;
     description: string;
+    /** Optional ISO date string for AuthorByline schema; falls back to `date` text. */
+    publishedDate?: string;
+    /** Optional ISO date string for last-updated label / schema. */
+    updatedDate?: string;
 }
 
 export function BlogLayout({
@@ -21,6 +26,8 @@ export function BlogLayout({
     date,
     readTime,
     description,
+    publishedDate,
+    updatedDate,
 }: BlogLayoutProps) {
     return (
         <div className="max-w-3xl mx-auto px-4">
@@ -73,6 +80,14 @@ export function BlogLayout({
                 <p className="text-lg text-muted-foreground leading-relaxed">
                     {description}
                 </p>
+
+                {/* Author byline — E-E-A-T signal (Person schema embedded) */}
+                <div className="mt-6">
+                    <AuthorByline
+                        publishedDate={publishedDate ?? date}
+                        updatedDate={updatedDate}
+                    />
+                </div>
             </header>
 
             {/* Divider */}
@@ -91,6 +106,14 @@ export function BlogLayout({
       ">
                 {children}
             </article>
+
+            {/* Bottom author byline — repeats credential trust signal at end of article */}
+            <div className="mt-12">
+                <AuthorByline
+                    publishedDate={publishedDate ?? date}
+                    updatedDate={updatedDate}
+                />
+            </div>
 
             {/* Footer */}
             <div className="mt-16 pt-10 border-t text-center">

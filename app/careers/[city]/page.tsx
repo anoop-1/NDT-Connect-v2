@@ -1,7 +1,8 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { cities } from '@/lib/seo-data';
+import { cities, getCityBySlug } from '@/lib/seo-data';
+import { PUBLISHABLE_CITIES } from '@/data/cities';
 import { careerRoles, adjustSalaryByRegion } from '@/lib/careers-data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -14,11 +15,16 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  return cities.map((city) => ({ city: city.slug }));
+  // Sourced from the canonical 180-city publishable set (data/cities.ts) so
+  // this route lines up with the sitemap. Lookups via `cities.find(...)`
+  // need a fallback — see below where we use getCityBySlug.
+  return PUBLISHABLE_CITIES.map((c) => ({ city: c.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const city = cities.find((c) => c.slug === params.city);
+  // getCityBySlug falls back to the canonical dataset for slugs not in
+  // this file's legacy `cities` array.
+  const city = getCityBySlug(params.city);
   if (!city) return {};
 
   const title = `NDT Jobs & Careers in ${city.name} | Salary Guide | NDT Connect`;
@@ -46,7 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default function CityCareerPage({ params }: Props) {
-  const city = cities.find((c) => c.slug === params.city);
+  const city = getCityBySlug(params.city);
   if (!city) notFound();
 
   // Regional multiplier for salary adjustments

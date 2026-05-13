@@ -22,6 +22,7 @@ import { NotificationBell } from '@/components/shared/NotificationBell';
 import { DefaultAvatar } from '@/components/shared/DefaultAvatar';
 
 const navLinks = [
+  { label: 'Free Tools', href: '/free-tools', badge: 'FREE' as const },
   { label: 'Find Providers', href: '/find-providers' },
   { label: 'Services', href: '/services' },
   { label: 'Industries', href: '/industries' },
@@ -46,6 +47,17 @@ export function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group" aria-label="NDT Connect Home">
           <Logo size="sm" />
+        </Link>
+
+        {/* Desktop: Free Tools quick-access link */}
+        <Link
+          href="/free-tools"
+          className="hidden md:inline-flex items-center gap-2 ml-6 mr-auto px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:text-brand hover:bg-brand/5 transition-colors"
+        >
+          Free Tools
+          <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700 tracking-wide">
+            FREE
+          </span>
         </Link>
 
         {/* Right Side Actions */}
@@ -152,9 +164,14 @@ export function Header() {
                     <SheetClose asChild key={link.href}>
                       <Link
                         href={link.href}
-                        className="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-brand transition-colors"
+                        className="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100 hover:text-brand transition-colors"
                       >
-                        {link.label}
+                        <span>{link.label}</span>
+                        {'badge' in link && link.badge && (
+                          <span className="inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700 tracking-wide">
+                            {link.badge}
+                          </span>
+                        )}
                       </Link>
                     </SheetClose>
                   ))}

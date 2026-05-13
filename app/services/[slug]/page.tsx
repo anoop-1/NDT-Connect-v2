@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { CheckCircle, AlertTriangle, FileText, ArrowRight, Search, BookOpen } from 'lucide-react';
+import AuthorByline from '@/components/AuthorByline';
+import { BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 
 interface Props {
   params: { slug: string };
@@ -104,6 +106,11 @@ export default function MethodPage({ params }: Props) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <BreadcrumbListSchema items={[
+        { name: 'Home', url: 'https://ndt-connect.com' },
+        { name: 'Services', url: 'https://ndt-connect.com/services' },
+        { name: method.name, url: `https://ndt-connect.com/services/${method.slug}` },
+      ]} />
 
       <div className="max-w-5xl mx-auto">
         {/* Breadcrumb */}
@@ -250,6 +257,11 @@ export default function MethodPage({ params }: Props) {
               </Card>
             ))}
           </div>
+        </section>
+
+        {/* Author byline — E-E-A-T signal (Person schema embedded) */}
+        <section className="mb-12">
+          <AuthorByline />
         </section>
       </div>
     </>

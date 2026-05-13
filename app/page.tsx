@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import {
   CheckCircle, Search, Users, ShieldCheck, Globe, Award, Zap, ArrowRight,
   MapPin, Star, Clock, TrendingUp, Briefcase, FileText, ChevronRight, Activity,
-  Radar, Eye, Waves, Atom, Layers, FileBarChart
+  Radar, Eye, Waves, Atom, Layers, FileBarChart, Wrench, BellRing, Sparkles
 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -152,13 +152,27 @@ export default function HomePage() {
               </p>
 
               {/* CTA buttons with glow */}
-              <div className="flex flex-col sm:flex-row justify-center gap-4 mb-10 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+              <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
                 <Button size="lg" className="text-base px-6 sm:px-10 py-5 sm:py-6 btn-glow bg-brand hover:bg-brand-dark text-white rounded-xl shadow-lg shadow-brand/20" asChild>
                   <Link href="/request-service">Request Inspection <ArrowRight className="ml-2 h-5 w-5" /></Link>
                 </Button>
                 <Button size="lg" variant="outline" className="text-base px-6 sm:px-10 py-5 sm:py-6 rounded-xl bg-white border-2 border-brand text-brand font-semibold hover:bg-brand hover:text-white transition-all shadow-md" asChild>
                   <Link href="/find-providers">Find NDT Providers</Link>
                 </Button>
+              </div>
+
+              {/* Secondary CTA — Free tools for providers */}
+              <div className="mb-10 animate-fade-in-up" style={{ animationDelay: '0.35s' }}>
+                <Link
+                  href="/register"
+                  className="inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-brand hover:text-brand-dark underline underline-offset-4 decoration-2 decoration-brand/40 hover:decoration-brand transition-all"
+                >
+                  <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700 tracking-wide">
+                    FREE
+                  </span>
+                  Get free equipment + cert tracking — sign up in 30 seconds
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
 
               {/* Trust signals */}
@@ -177,6 +191,84 @@ export default function HomePage() {
 
           {/* Bottom gradient fade */}
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+        </section>
+
+        {/* ============================================
+            FREE TOOLS HIGHLIGHT - 3 marketing tiles
+            ============================================ */}
+        <section className="py-14 bg-white border-b border-slate-100">
+          <div className="layout-wrapper">
+            <div className="text-center mb-10">
+              <Badge className="mb-4 px-4 py-1.5 bg-emerald-100 rounded-full border border-emerald-300 text-emerald-700 font-semibold">
+                Free Forever — No Card Required
+              </Badge>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-3">
+                Free tools for NDT service providers
+              </h2>
+              <p className="text-slate-600 max-w-2xl mx-auto text-base sm:text-lg">
+                Track equipment, never miss a calibration, generate procedures — sign up in 30 seconds.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                {
+                  icon: Wrench,
+                  title: 'Equipment Tracking',
+                  desc: 'Track instruments, calibration due dates, certificates.',
+                  href: '/free-tools/equipment-management',
+                },
+                {
+                  icon: BellRing,
+                  title: 'Cert Expiry Alerts',
+                  desc: 'Email reminders 30/14/7/1 days before personnel + company certs expire.',
+                  href: '/free-tools/certificate-management',
+                },
+                {
+                  icon: Sparkles,
+                  title: 'AI Procedure Writer',
+                  desc: 'ASME/ASNT/AWS-compliant procedures in 60 seconds.',
+                  href: '/tools/ndt-procedure-generator',
+                },
+              ].map((tool, idx) => (
+                <Link
+                  key={tool.href}
+                  href={tool.href}
+                  className={`block group animate-fade-in-up stagger-${idx + 1}`}
+                >
+                  <div className="h-full p-7 rounded-2xl border border-slate-200 shadow-sm card-hover-lift group-hover:border-brand/40 group-hover:shadow-md bg-white relative overflow-hidden">
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 animate-shimmer" />
+                    <div className="relative">
+                      <div className="flex items-center justify-between mb-5">
+                        <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#004aad]/10 to-[#60a5fa]/10 flex items-center justify-center group-hover:from-[#004aad] group-hover:to-[#0066ff] transition-all duration-500">
+                          <tool.icon className="h-7 w-7 text-brand group-hover:text-white transition-colors duration-500" />
+                        </div>
+                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700 tracking-wide">
+                          FREE
+                        </span>
+                      </div>
+                      <h3 className="text-lg font-bold mb-2 text-slate-900 group-hover:text-brand transition-colors">
+                        {tool.title}
+                      </h3>
+                      <p className="text-slate-600 text-sm leading-relaxed mb-4">{tool.desc}</p>
+                      <span className="inline-flex items-center text-sm font-medium text-brand opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-[-8px] group-hover:translate-x-0">
+                        Learn more <ArrowRight className="ml-1 h-4 w-4" />
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            <div className="text-center mt-10">
+              <Link
+                href="/free-tools"
+                className="inline-flex items-center text-sm font-semibold text-brand hover:underline underline-offset-4"
+              >
+                See all free tools <ChevronRight className="inline h-4 w-4 ml-1" />
+              </Link>
+            </div>
+          </div>
         </section>
 
         {/* ============================================

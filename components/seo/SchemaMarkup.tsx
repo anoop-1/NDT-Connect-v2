@@ -289,3 +289,148 @@ export function FAQSchema({ questions }: FAQSchemaProps) {
         />
     );
 }
+
+// FAQPage schema — alias used by some city pages
+interface FAQPageSchemaProps {
+    questions: Array<{ question: string; answer: string }>;
+}
+
+export function FAQPageSchema({ questions }: FAQPageSchemaProps) {
+    return <FAQSchema questions={questions} />;
+}
+
+// BreadcrumbList schema (canonical name per schema.org)
+// Same shape as BreadcrumbSchema but exported under the schema.org type name.
+interface BreadcrumbListSchemaProps {
+    items: Array<{ name: string; url: string }>;
+}
+
+export function BreadcrumbListSchema({ items }: BreadcrumbListSchemaProps) {
+    const schema = {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: items.map((item, i) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            name: item.name,
+            item: item.url,
+        })),
+    };
+    return (
+        <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+    );
+}
+
+// SoftwareApplication schema — for free-tool feature pages and other SaaS pages.
+interface SoftwareApplicationSchemaProps {
+    name: string;
+    description: string;
+    applicationCategory: string;
+    operatingSystem?: string;
+    price?: string; // string form per schema.org Offer.price
+    priceCurrency?: string;
+    url?: string;
+    ratingValue?: number;
+    reviewCount?: number;
+}
+
+export function SoftwareApplicationSchema({
+    name,
+    description,
+    applicationCategory,
+    operatingSystem = 'Web, iOS, Android',
+    price = '0',
+    priceCurrency = 'USD',
+    url,
+    ratingValue,
+    reviewCount,
+}: SoftwareApplicationSchemaProps) {
+    const schema: Record<string, unknown> = {
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name,
+        description,
+        applicationCategory,
+        operatingSystem,
+        offers: {
+            '@type': 'Offer',
+            price,
+            priceCurrency,
+            availability: 'https://schema.org/InStock',
+        },
+    };
+
+    if (url) schema.url = url;
+    if (typeof ratingValue === 'number' && typeof reviewCount === 'number') {
+        schema.aggregateRating = {
+            '@type': 'AggregateRating',
+            ratingValue,
+            reviewCount,
+        };
+    }
+
+    return (
+        <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+    );
+}
+
+// HowTo schema — for procedural / step-by-step content (NDT procedures, tools).
+interface HowToSchemaProps {
+    name: string;
+    description: string;
+    steps: Array<{ name: string; text: string; url?: string; image?: string }>;
+    supply?: string[];
+    tool?: string[];
+    totalTime?: string; // ISO 8601 duration, e.g. "PT30M"
+    image?: string;
+}
+
+export function HowToSchema({
+    name,
+    description,
+    steps,
+    supply,
+    tool,
+    totalTime,
+    image,
+}: HowToSchemaProps) {
+    const schema: Record<string, unknown> = {
+        '@context': 'https://schema.org',
+        '@type': 'HowTo',
+        name,
+        description,
+        step: steps.map((s, i) => {
+            const step: Record<string, unknown> = {
+                '@type': 'HowToStep',
+                position: i + 1,
+                name: s.name,
+                text: s.text,
+            };
+            if (s.url) step.url = s.url;
+            if (s.image) step.image = s.image;
+            return step;
+        }),
+    };
+
+    if (supply && supply.length) {
+        schema.supply = supply.map((s) => ({ '@type': 'HowToSupply', name: s }));
+    }
+    if (tool && tool.length) {
+        schema.tool = tool.map((t) => ({ '@type': 'HowToTool', name: t }));
+    }
+    if (totalTime) schema.totalTime = totalTime;
+    if (image) schema.image = image;
+
+    return (
+        <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+    );
+}

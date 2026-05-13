@@ -173,6 +173,90 @@ export async function sendCalibrationAlert(
   await t.sendMail(mailOptions);
 }
 
+export async function sendCertExpiryAlert(params: {
+  to: string;
+  recipientName: string;
+  certType: 'personnel' | 'company';
+  personOrCompany: string;
+  certName: string;
+  expiryDate: Date | string;
+  daysRemaining: number;
+  dashboardUrl?: string;
+}) {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://ndt-connect.com';
+  const {
+    to,
+    recipientName,
+    certType,
+    personOrCompany,
+    certName,
+    expiryDate,
+    daysRemaining,
+  } = params;
+  const dashboardUrl = params.dashboardUrl || `${baseUrl}/dashboard`;
+
+  const expiryStr = new Date(expiryDate).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
+  const overdue = daysRemaining < 0;
+  const status = overdue
+    ? `Expired ${Math.abs(daysRemaining)} day${Math.abs(daysRemaining) === 1 ? '' : 's'} ago`
+    : daysRemaining === 0
+      ? 'Expires today'
+      : daysRemaining === 1
+        ? 'Expires tomorrow'
+        : `Expires in ${daysRemaining} day${daysRemaining === 1 ? '' : 's'}`;
+
+  const accent = overdue ? '#dc2626' : daysRemaining <= 7 ? '#ea580c' : '#004aad';
+
+  let subject: string;
+  if (overdue) {
+    subject = `ACTION REQUIRED: ${certName} expired ${Math.abs(daysRemaining)} day${Math.abs(daysRemaining) === 1 ? '' : 's'} ago`;
+  } else if (daysRemaining <= 1) {
+    subject = `ACTION REQUIRED: ${certName} expires ${daysRemaining === 0 ? 'today' : 'tomorrow'}`;
+  } else if (daysRemaining <= 7) {
+    subject = `URGENT: ${certName} expires in ${daysRemaining} days`;
+  } else {
+    subject = `Renew ${certName} — expires in ${daysRemaining} days`;
+  }
+
+  const certLabel = certType === 'personnel' ? 'Personnel Qualification' : 'Company Certification';
+  const ownerLabel = certType === 'personnel' ? 'Technician / Personnel' : 'Company';
+
+  const mailOptions = {
+    from: 'NDT Connect <info@ndt-connect.com>',
+    to,
+    subject,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <div style="background: #004aad; padding: 24px; text-align: center;">
+          <h1 style="color: white; margin: 0; font-size: 24px;">NDT Connect</h1>
+        </div>
+        <div style="padding: 24px; background: #f8fafc;">
+          <h2 style="color: #1e293b; margin-top: 0;">${certLabel} Expiry Reminder</h2>
+          <p style="color: #475569;">Hi ${recipientName},</p>
+          <p style="color: #475569;">A certification on your NDT Connect profile is approaching its expiry date. Keeping certifications current is required to stay visible to clients and remain eligible for inspection jobs.</p>
+          <div style="background: white; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin: 16px 0;">
+            <p style="margin: 0 0 8px 0;"><strong>${ownerLabel}:</strong> ${personOrCompany}</p>
+            <p style="margin: 0 0 8px 0;"><strong>Certification:</strong> ${certName}</p>
+            <p style="margin: 0 0 8px 0;"><strong>Expiry Date:</strong> ${expiryStr}</p>
+            <p style="margin: 0; color: ${accent}; font-weight: 600;"><strong>Status:</strong> ${status}</p>
+          </div>
+          <p style="color: #475569;">Please renew this certification and update the expiry date in your NDT Connect profile to keep your listing compliant with ASNT, ISO, and client requirements.</p>
+          <a href="${dashboardUrl}" style="display: inline-block; background: #004aad; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600;">Open Dashboard</a>
+          <p style="color: #94a3b8; font-size: 12px; margin-top: 24px;">You receive this email because a certification on your NDT Connect profile is nearing or past its expiry date. To stop receiving these reminders, remove or update the certification in your profile.</p>
+        </div>
+      </div>
+    `,
+  };
+
+  const t = await getTransporter();
+  await t.sendMail(mailOptions);
+}
+
 export async function sendPasswordSetupEmail(email: string, name: string, token: string) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://ndt-connect.com';
   const resetUrl = `${baseUrl}/reset-password?token=${token}`;

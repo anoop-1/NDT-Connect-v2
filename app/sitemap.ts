@@ -1,26 +1,27 @@
 import { MetadataRoute } from 'next';
 import { FREE_TOOLS } from '@/data/freeTools';
-import { CITIES, REGIONS, COUNTRIES } from '@/data/cities';
+import { CITIES, PUBLISHABLE_CITIES, REGIONS, COUNTRIES } from '@/data/cities';
+import { procedureExamples } from '@/data/procedure-examples';
 
 // ============================================================
 // NDT Connect - Comprehensive Sitemap
-// Generates ALL URLs for ~4,000+ pages
+// Generates URLs for the full programmatic-SEO footprint, gated by the
+// city quality bar in data/cities.ts (isCityPublishable).
+//
+// Cities that fail the gate (industries < 3, namedFacilities < 2, or
+// missing localPainQuote) are excluded — they would render thin pages and
+// hurt domain-wide rankings.
 // ============================================================
 
-// All city pages for geographic SEO
-const cities = [
-  'houston', 'los-angeles', 'new-orleans', 'denver', 'chicago', 'seattle', 'dallas', 'phoenix',
-  'philadelphia', 'san-francisco', 'detroit', 'pittsburgh', 'baton-rouge', 'corpus-christi',
-  'tulsa', 'beaumont', 'new-york', 'boston', 'atlanta', 'miami',
-  'dubai', 'abu-dhabi', 'saudi-arabia', 'qatar', 'kuwait', 'bahrain', 'oman', 'jubail', 'yanbu', 'dammam',
-  'mumbai', 'hyderabad', 'bangalore', 'chennai', 'delhi', 'kolkata', 'pune', 'ahmedabad', 'kochi', 'vizag', 'jamnagar',
-  'singapore', 'malaysia', 'indonesia', 'thailand', 'vietnam', 'philippines',
-  'london', 'aberdeen', 'norway', 'netherlands', 'germany', 'france', 'spain', 'italy',
-  'calgary', 'edmonton', 'toronto', 'vancouver',
-  'sydney', 'melbourne', 'brisbane', 'perth',
-  'nigeria', 'south-africa', 'cape-town', 'johannesburg', 'nairobi', 'egypt',
-  'brazil', 'argentina', 'chile', 'colombia', 'mexico', 'trinidad',
-];
+// City slugs to use for every city-shaped URL family. Single source of truth.
+const cities = PUBLISHABLE_CITIES.map((c) => c.slug);
+
+// Build-log surface area for the quality gate. Mirrors the line emitted
+// from data/cities.ts so the count is visible in two places during builds.
+// eslint-disable-next-line no-console
+console.log(
+  `[sitemap] using ${cities.length}/${CITIES.length} publishable cities (rest pruned by isCityPublishable)`,
+);
 
 // All NDT method pages
 const methods = [
@@ -28,6 +29,14 @@ const methods = [
   'penetrant-testing', 'eddy-current-testing', 'visual-testing',
   'phased-array-ut', 'tofd-testing', 'guided-wave-testing',
   'acoustic-emission-testing', 'magnetic-flux-leakage', 'corrosion-mapping',
+];
+
+// City × method routes only generate static params for these six. Must
+// stay in sync with METHODS in app/ndt-services/[city]/[slug]/page.tsx and
+// app/cost-guide/[city]/[service]/page.tsx so sitemap entries don't 404.
+const cityMethods = [
+  'ultrasonic-testing', 'radiographic-testing', 'magnetic-particle-testing',
+  'penetrant-testing', 'visual-testing', 'phased-array-ut',
 ];
 
 // Industry pages
@@ -160,9 +169,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  // ---- City x Service Pages (900) ----
+  // ---- City × Method Pages ----
+  // Uses cityMethods (subset of methods) — these are the slugs that the
+  // /ndt-services/[city]/[slug] route generates static params for.
   const cityServicePages: MetadataRoute.Sitemap = cities.flatMap((city) =>
-    methods.map((method) => ({
+    cityMethods.map((method) => ({
       url: `${baseUrl}/ndt-services/${city}/${method}`,
       lastModified: new Date(),
       changeFrequency: 'weekly' as const,
@@ -170,15 +181,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  // ---- City x Industry Pages (525) ----
-  const cityIndustryPages: MetadataRoute.Sitemap = cities.flatMap((city) =>
-    industries.map((industry) => ({
-      url: `${baseUrl}/ndt-services/${city}/${industry}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    }))
-  );
+  // ---- City x Industry Pages (deprecated) ----
+  // The /ndt-services/[city]/[slug] route now only accepts NDT method slugs
+  // (UT, RT, MT, PT, VT, PAUT) — industry slugs would 404. City-level
+  // industry context already lives on /ndt-services/[city]. Keeping the
+  // identifier so the return list below compiles, but emitting no URLs.
+  const cityIndustryPages: MetadataRoute.Sitemap = [];
 
   // ---- Method Pages (12) ----
   const methodPages: MetadataRoute.Sitemap = methods.map((method) => ({
@@ -228,9 +236,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  // ---- Cost Guide Pages (900) ----
+  // ---- Cost Guide Pages ----
+  // Same method coverage as city × method (cityMethods, not methods).
   const costGuidePages: MetadataRoute.Sitemap = cities.flatMap((city) =>
-    methods.map((method) => ({
+    cityMethods.map((method) => ({
       url: `${baseUrl}/cost-guide/${city}/${method}`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
@@ -289,7 +298,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
   const freeToolCities: MetadataRoute.Sitemap = FREE_TOOLS.flatMap((t) =>
-    CITIES.map((c) => ({
+    PUBLISHABLE_CITIES.map((c) => ({
       url: `${baseUrl}/free-tools/${t.slug}/${c.slug}`,
       lastModified: new Date(),
       changeFrequency: 'monthly' as const,
@@ -313,6 +322,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
+  // ---- AI Procedure Generator (landing + examples) ----
+  const procedureGeneratorPages: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/tools/ndt-procedure-generator`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.95,
+    },
+    {
+      url: `${baseUrl}/tools/ndt-procedure-generator/examples`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    },
+    ...procedureExamples.map((ex) => ({
+      url: `${baseUrl}/tools/ndt-procedure-generator/examples/${ex.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.75,
+    })),
+  ];
+
   return [
     ...staticPages,
     ...cityPages,
@@ -335,5 +366,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...freeToolCities,
     ...freeToolRegions,
     ...freeToolCountries,
+    ...procedureGeneratorPages,
   ];
 }

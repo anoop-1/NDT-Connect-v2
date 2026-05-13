@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { cities, methods, getCityBySlug } from '@/lib/seo-data';
+import { PUBLISHABLE_CITIES } from '@/data/cities';
 import { ChevronRight, CheckCircle, BookOpen, Users, Award, MapPin } from 'lucide-react';
 
 interface PageProps {
@@ -10,9 +11,10 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return cities.map((city) => ({
-    city: city.slug,
-  }));
+  // Use the canonical 180-city publishable set so this route matches the
+  // sitemap and the city × method routes. getCityBySlug falls back to the
+  // canonical data set for slugs not in this file's legacy `cities` array.
+  return PUBLISHABLE_CITIES.map((c) => ({ city: c.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

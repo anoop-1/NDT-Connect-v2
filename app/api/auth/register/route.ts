@@ -1,13 +1,42 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { registerUser } from '@/lib/auth-service';
 import { SignJWT } from 'jose';
+import dbConnect from '@/lib/mongodb';
+import { ProcedureDraft } from '@/lib/models/ProcedureDraft';
 
 const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || 'fallback-secret-change-me');
+
+/**
+ * Try to "claim" an anonymous ProcedureDraft for a freshly registered user.
+ * Silent on failure — registration itself must never fail because of a missing
+ * or bad draftId.
+ */
+async function claimPendingProcedure(
+    draftId: string | null,
+    userId: string
+): Promise<{ id: string; body: string } | null> {
+    if (!draftId) return null;
+    try {
+        await dbConnect();
+        const draft = await ProcedureDraft.findById(draftId);
+        if (!draft) return null;
+        // Already claimed by someone else — leave alone.
+        if (draft.userId && draft.userId !== userId) return null;
+        draft.userId = userId;
+        // Bump expiry — claimed drafts persist 90 days for the new owner.
+        draft.expiresAt = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000);
+        await draft.save();
+        return { id: String(draft._id), body: draft.body };
+    } catch (err) {
+        console.error('claimPendingProcedure failed (non-fatal):', err);
+        return null;
+    }
+}
 
 export async function POST(request: NextRequest) {
     try {
         const body = await request.json();
-        const { email, role, name, password, profileData } = body;
+        const { email, role, name, password, profileData, pendingProcedure } = body;
 
         if (!email || !role || !name || !password) {
             return NextResponse.json(
@@ -52,10 +81,23 @@ export async function POST(request: NextRequest) {
             .setExpirationTime('7d')
             .sign(JWT_SECRET);
 
+        // Resolve pendingProcedure draftId from JSON body OR ?pendingProcedure= query.
+        const draftIdFromQuery = request.nextUrl.searchParams.get('pendingProcedure');
+        const draftId =
+            (typeof pendingProcedure === 'string' && pendingProcedure) ||
+            (pendingProcedure && typeof pendingProcedure === 'object' && pendingProcedure.id) ||
+            draftIdFromQuery ||
+            null;
+        const claimed = await claimPendingProcedure(draftId, responseUser.id);
+
+        // IMPORTANT: do NOT change the existing keys on this response shape —
+        // mobile clients depend on it. We append `pendingProcedure` only if a
+        // claim succeeded.
         const response = NextResponse.json({
             ...responseUser,
             accessToken: token,
             refreshToken: token,
+            ...(claimed ? { pendingProcedure: claimed } : {}),
         });
         response.cookies.set('ndt-token', token, {
             httpOnly: true,

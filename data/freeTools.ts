@@ -68,7 +68,7 @@ export const FREE_TOOLS: FreeTool[] = [
       { q: "How many instruments can I track?", a: "There is no hard cap. Larger inspection companies running 200+ instruments use the same tool as solo Level III consultants tracking a single UT-1." },
       { q: "Does this replace my existing calibration certificates?", a: "No. The tool tracks the metadata (serial, due-date, status, location) and links each instrument to its source-of-truth calibration certificate. We do not generate the certificates themselves." },
       { q: "Can I export to Excel or PDF?", a: "Yes. The full registry exports to CSV for Excel; per-instrument records export to PDF for client packages." },
-      { q: "Is data stored in the cloud or locally?", a: "Today, equipment data is stored locally in your browser (localStorage) so it never leaves your machine. Cloud-sync is on the roadmap and will remain optional and free for the basic tier." },
+      { q: "Where is my data stored?", a: "Your data is stored securely in your free account and accessible from any device — phone, tablet, or laptop." },
       { q: "What instrument types are supported?", a: "Ultrasonic flaw detector, ultrasonic thickness gauge, phased array, TOFD, Ir-192 / Co-60 sources, X-ray generator, magnetic yoke, MT bench, PT kit, eddy current, borescope, hardness tester, calibration blocks (V1/V2/IIW), step wedge, densitometer, light meter, UV-A meter, thermometer, and more." },
     ],
     appPath: "/provider-dashboard/equipment",

@@ -1,7 +1,25 @@
 // ============================================================
 // NDT Connect - Comprehensive SEO Data
 // Powers city pages, service pages, industry pages, certifications
+//
+// @deprecated for city data. New city pages should pull from
+// `@/data/cities` (CITIES, PUBLISHABLE_CITIES, findCity, findPublishableCity)
+// which holds the canonical 180-city dataset with code authorities, named
+// facilities, lat/long, and a quality gate.
+//
+// This file is kept as a backwards-compat shim for routes that haven't been
+// migrated yet (training/[city], careers/[city], services/[slug],
+// industries/[slug], certifications, glossary, compare). The `cities` array
+// here is a small (75) hand-curated subset with longer descriptive prose.
+// `getCityBySlug` falls back to `@/data/cities` for slugs not present here
+// so generateStaticParams using PUBLISHABLE_CITIES still resolves to a
+// rendered page rather than a 404.
+//
+// Method, industry, certification data below is still authoritative — those
+// concepts haven't been split into separate data files yet.
 // ============================================================
+
+import { CITIES as CANONICAL_CITIES } from '@/data/cities';
 
 // ---- CITY DATA ----
 export interface CityData {
@@ -102,12 +120,74 @@ export const cities: CityData[] = [
   { slug: 'trinidad', name: 'Trinidad & Tobago', country: 'Trinidad and Tobago', region: 'Caribbean', description: 'Trinidad is the Caribbean\'s largest oil and gas producer with major LNG and petrochemical facilities.', industries: ['Oil & Gas', 'LNG', 'Petrochemical', 'Marine'], keyFacilities: ['Atlantic LNG', 'Petrotrin Refinery', 'Point Lisas Industrial Estate', 'bpTT Platforms'], coordinates: { lat: 10.6918, lng: -61.2225 } },
 ];
 
+/**
+ * Synthesises a CityData (legacy shape) from a canonical City row in
+ * data/cities.ts. Used by getCityBySlug when the requested slug isn't in
+ * the legacy hand-curated `cities` array above. Keeps training/careers/
+ * services/glossary routes working with PUBLISHABLE_CITIES-driven sitemaps
+ * without rewriting every consumer.
+ */
+function canonicalToLegacyCityData(slug: string): CityData | undefined {
+  const c = CANONICAL_CITIES.find((x) => x.slug === slug);
+  if (!c) return undefined;
+  // Map canonical fields onto the legacy shape. `region` in legacy is a
+  // long-form string (state name or region label); canonical uses a slug
+  // (e.g. "gulf-coast"). We humanise the slug so legacy consumers that
+  // display the field render reasonable text.
+  const humanRegion =
+    c.country === 'US' || c.country === 'CA'
+      ? c.state
+      : c.region
+          .split('-')
+          .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
+          .join(' ');
+  // Country in legacy is a long-form name (e.g. "United States"); canonical
+  // uses ISO alpha-2. Map the common cases; default to the ISO code so
+  // schema markup doesn't break.
+  const countryName: Record<string, string> = {
+    US: 'United States',
+    CA: 'Canada',
+    GB: 'United Kingdom',
+    NO: 'Norway',
+    NL: 'Netherlands',
+    DE: 'Germany',
+    AE: 'United Arab Emirates',
+    SA: 'Saudi Arabia',
+    QA: 'Qatar',
+    KW: 'Kuwait',
+    OM: 'Oman',
+    BH: 'Bahrain',
+    IN: 'India',
+    SG: 'Singapore',
+    MY: 'Malaysia',
+    BR: 'Brazil',
+    MX: 'Mexico',
+    AU: 'Australia',
+    KR: 'South Korea',
+  };
+  return {
+    slug: c.slug,
+    name: c.name,
+    country: countryName[c.country] ?? c.country,
+    region: humanRegion,
+    description:
+      c.localPainQuote +
+      ` Local NDT scopes in ${c.name} cluster around ${c.industries.slice(0, 2).join(' and ')}.`,
+    industries: c.industries.slice(0, 4),
+    keyFacilities: c.namedFacilities.map((f) => f.name).slice(0, 6),
+    coordinates: {
+      lat: c.latitude ?? 0,
+      lng: c.longitude ?? 0,
+    },
+  };
+}
+
 export function getCityBySlug(slug: string): CityData | undefined {
-  return cities.find(c => c.slug === slug);
+  return cities.find((c) => c.slug === slug) ?? canonicalToLegacyCityData(slug);
 }
 
 export function getAllCitySlugs(): string[] {
-  return cities.map(c => c.slug);
+  return cities.map((c) => c.slug);
 }
 
 // ---- NDT METHOD DATA ----

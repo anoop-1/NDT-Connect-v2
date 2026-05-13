@@ -351,17 +351,19 @@ export function FreeToolCityPage({ tool, city, alternateFeatures }: Props) {
       {/* Closing CTA */}
       <section className="container text-center py-10 rounded-lg" style={{ backgroundColor: "#F5F7FA" }}>
         <h2 className="text-2xl font-semibold mb-3" style={{ color: "#004aad" }}>
-          Free for {cityLabel} inspection companies
+          Sign up free in 60 seconds — verify email and start
         </h2>
         <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-          Create a user ID and start tracking your {city.name} fleet today. No credit card. No trial expiry. Built for {city.industries[0]?.toLowerCase()} crews working under {city.codeAuthorities[0]} and audited by {city.namedFacilities[0]?.type.toLowerCase()} customers.
+          Free for {cityLabel} inspection companies. No credit card. No trial expiry. Built for{" "}
+          {city.industries[0]?.toLowerCase()} crews working under {city.codeAuthorities[0]} and audited by{" "}
+          {city.namedFacilities[0]?.type.toLowerCase()} customers.
         </p>
         <Link
           href="/register"
           className="inline-block px-6 py-3 text-white text-base font-medium rounded-lg hover:opacity-90 transition-colors"
           style={{ backgroundColor: "#004aad" }}
         >
-          Create your free user ID
+          Sign up free — verify email and start
         </Link>
         <p className="text-xs text-muted-foreground mt-4">
           Last updated {byline.updatedAt} · Reviewed for {cityLabel}

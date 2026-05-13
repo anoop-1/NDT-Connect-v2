@@ -1,7 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { jwtVerify } from 'jose';
+import dbConnect from '@/lib/mongodb';
+import { ProcedureDraft } from '@/lib/models/ProcedureDraft';
+import {
+  checkAnonRate,
+  checkUserRate,
+  checkGlobalRate,
+  recordSuccessfulCall,
+  hashIp,
+} from '@/lib/rate-limit';
 
 export const dynamic = 'force-dynamic';
 export const maxDuration = 60;
+
+const JWT_SECRET = new TextEncoder().encode(
+  process.env.JWT_SECRET || 'fallback-secret-change-me'
+);
 
 const SYSTEM_PROMPT = `You are a senior NDT (Non-Destructive Testing) procedure writer with 25+ years of industry experience. You write comprehensive, technically accurate NDT written procedures that comply with industry codes and standards (ASME Section V, API 1104, AWS D1.1, ASTM, ISO 9712, ASNT SNT-TC-1A, EN 4179, and others as applicable).
 
@@ -119,6 +133,28 @@ ${additionalNotes ? `\n## Additional Notes\n${additionalNotes}` : ''}
 `;
 }
 
+/** Extract userId from either Bearer header or ndt-token cookie. Returns null if anon. */
+async function getCallerUserId(request: NextRequest): Promise<string | null> {
+  const authHeader = request.headers.get('authorization');
+  const cookieToken = request.cookies.get('ndt-token')?.value;
+  const token = authHeader?.replace('Bearer ', '') ?? cookieToken;
+  if (!token) return null;
+  try {
+    const { payload } = await jwtVerify(token, JWT_SECRET);
+    return (payload.userId as string) || null;
+  } catch {
+    return null;
+  }
+}
+
+function getClientIp(request: NextRequest): string {
+  const forwarded = request.headers.get('x-forwarded-for');
+  if (forwarded) return forwarded.split(',')[0]!.trim();
+  const real = request.headers.get('x-real-ip');
+  if (real) return real;
+  return '0.0.0.0';
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -128,15 +164,70 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'testMethod and scopeOfWork are required' }, { status: 400 });
     }
 
-    const groqApiKey = process.env.GROQ_API_KEY;
+    // ── Identify caller ───────────────────────────────────────────────────
+    const userId = await getCallerUserId(request);
+    const ip = getClientIp(request);
+    const ua = request.headers.get('user-agent');
+    const ipHash = hashIp(ip, ua);
 
-    if (!groqApiKey) {
-      // Fallback: high-quality template
-      const procedure = generateTemplateProcedure({ testMethod, scopeOfWork, materialType, applicableStandard, acceptanceCriteria, additionalNotes });
-      return NextResponse.json({ procedure, source: 'template' });
+    // ── Global token-bucket guard (Groq quota) ────────────────────────────
+    const globalRate = await checkGlobalRate();
+    if (!globalRate.allowed) {
+      return NextResponse.json(
+        {
+          message: 'Service is at capacity. Please try again in a minute.',
+          resetAt: new Date(Date.now() + 60 * 1000).toISOString(),
+        },
+        { status: 429 }
+      );
     }
 
-    const userPrompt = `Write a comprehensive NDT written procedure for the following:
+    // ── Per-caller guard ──────────────────────────────────────────────────
+    let dayRemaining = 0;
+    let monthRemaining: number | undefined;
+    let resetAt: Date;
+
+    if (userId) {
+      const userRate = await checkUserRate(userId);
+      if (!userRate.allowed) {
+        return NextResponse.json(
+          {
+            message: 'Daily limit reached (5/day). Resets in 24h.',
+            resetAt: userRate.resetAt.toISOString(),
+          },
+          { status: 429 }
+        );
+      }
+      dayRemaining = userRate.dayRemaining - 1; // about to consume one
+      monthRemaining = userRate.monthRemaining - 1;
+      resetAt = userRate.resetAt;
+    } else {
+      const anonRate = await checkAnonRate(ipHash);
+      if (!anonRate.allowed) {
+        return NextResponse.json(
+          {
+            message: 'Daily limit reached. Sign up free for 5 per day.',
+            resetAt: anonRate.resetAt.toISOString(),
+          },
+          { status: 429 }
+        );
+      }
+      dayRemaining = 0; // anon gets 1 — once spent, it's zero
+      resetAt = anonRate.resetAt;
+    }
+
+    // ── Generate ──────────────────────────────────────────────────────────
+    const groqApiKey = process.env.GROQ_API_KEY;
+    let procedure: string;
+    let source: 'groq_ai' | 'template' | 'template_fallback' = 'template';
+
+    if (!groqApiKey) {
+      procedure = generateTemplateProcedure({
+        testMethod, scopeOfWork, materialType, applicableStandard, acceptanceCriteria, additionalNotes,
+      });
+      source = 'template';
+    } else {
+      const userPrompt = `Write a comprehensive NDT written procedure for the following:
 
 Test Method: ${testMethod}
 Scope of Work: ${scopeOfWork}
@@ -147,36 +238,62 @@ Additional Notes: ${additionalNotes || 'None'}
 
 Please write a complete, professional NDT written procedure following all the required sections. Make it technically detailed and specific to the method and scope described.`;
 
-    const groqResponse = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${groqApiKey}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: 'llama-3.3-70b-versatile',
-        messages: [
-          { role: 'system', content: SYSTEM_PROMPT },
-          { role: 'user', content: userPrompt },
-        ],
-        max_tokens: 4000,
-        temperature: 0.3,
-      }),
-    });
+      const groqResponse = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${groqApiKey}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          model: 'llama-3.3-70b-versatile',
+          messages: [
+            { role: 'system', content: SYSTEM_PROMPT },
+            { role: 'user', content: userPrompt },
+          ],
+          max_tokens: 4000,
+          temperature: 0.3,
+        }),
+      });
 
-    if (!groqResponse.ok) {
-      const errText = await groqResponse.text();
-      console.error('Groq API error:', errText);
-      // Fall back to template on API failure
-      const procedure = generateTemplateProcedure({ testMethod, scopeOfWork, materialType, applicableStandard, acceptanceCriteria, additionalNotes });
-      return NextResponse.json({ procedure, source: 'template_fallback' });
+      if (!groqResponse.ok) {
+        const errText = await groqResponse.text();
+        console.error('Groq API error:', errText);
+        procedure = generateTemplateProcedure({
+          testMethod, scopeOfWork, materialType, applicableStandard, acceptanceCriteria, additionalNotes,
+        });
+        source = 'template_fallback';
+      } else {
+        const groqData = await groqResponse.json();
+        procedure = groqData.choices?.[0]?.message?.content || generateTemplateProcedure({
+          testMethod, scopeOfWork, materialType, applicableStandard, acceptanceCriteria, additionalNotes,
+        });
+        source = 'groq_ai';
+      }
     }
 
-    const groqData = await groqResponse.json();
-    const procedure = groqData.choices?.[0]?.message?.content || generateTemplateProcedure({ testMethod, scopeOfWork, materialType, applicableStandard, acceptanceCriteria, additionalNotes });
+    // ── Persist draft + record quota consumption ──────────────────────────
+    await dbConnect();
+    const draft = await ProcedureDraft.create({
+      body: procedure,
+      params: { testMethod, scopeOfWork, materialType, applicableStandard, acceptanceCriteria, additionalNotes },
+      ipHash,
+      userId: userId || null,
+      source,
+    });
 
-    return NextResponse.json({ procedure, source: 'groq_ai' });
+    await recordSuccessfulCall(userId ? 'user' : 'anon', userId || ipHash);
 
+    return NextResponse.json({
+      success: true,
+      draftId: String(draft._id),
+      procedure,
+      source,
+      remaining: {
+        daily: dayRemaining,
+        ...(monthRemaining !== undefined ? { monthly: monthRemaining } : {}),
+        resetAt: resetAt.toISOString(),
+      },
+    });
   } catch (error: any) {
     console.error('Procedure generation error:', error);
     return NextResponse.json({ error: 'Failed to generate procedure', details: error.message }, { status: 500 });

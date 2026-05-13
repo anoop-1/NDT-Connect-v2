@@ -6,6 +6,10 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { FREE_TOOLS, findFreeTool, FreeToolSlug } from "@/data/freeTools";
 import { FreeToolFeaturePage } from "@/components/free-tools/FreeToolFeaturePage";
+import {
+  BreadcrumbListSchema,
+  SoftwareApplicationSchema,
+} from "@/components/seo/SchemaMarkup";
 
 const SITE = "https://ndt-connect.com";
 
@@ -43,5 +47,24 @@ export default async function FeaturePage({ params }: Params) {
   const { feature } = await params;
   const tool = findFreeTool(feature);
   if (!tool) return notFound();
-  return <FreeToolFeaturePage tool={tool} />;
+  const url = `${SITE}/free-tools/${tool.slug}`;
+  return (
+    <>
+      <BreadcrumbListSchema
+        items={[
+          { name: "Home", url: SITE },
+          { name: "Free Tools", url: `${SITE}/free-tools` },
+          { name: tool.name, url },
+        ]}
+      />
+      <SoftwareApplicationSchema
+        name={tool.titlePrefix}
+        description={tool.metaDescriptionPrefix}
+        applicationCategory="BusinessApplication"
+        price="0"
+        url={url}
+      />
+      <FreeToolFeaturePage tool={tool} />
+    </>
+  );
 }

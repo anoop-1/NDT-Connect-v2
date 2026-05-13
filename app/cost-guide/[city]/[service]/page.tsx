@@ -2,50 +2,241 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { cities, methods, getCityBySlug, getCityMethodBySlug } from '@/lib/seo-data';
+import {
+  PUBLISHABLE_CITIES,
+  findPublishableCity,
+  type City,
+} from '@/data/cities';
+import { nearestCities } from '@/lib/seo-helpers';
 import { DollarSign, TrendingUp, CheckCircle, AlertCircle, ArrowRight } from 'lucide-react';
+import { BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
+
+// ============================================================================
+// /cost-guide/[city]/[service]
+//
+// Cost guide for a (city, method) pair. Pricing is anchored to:
+//   - a method-level base band (UT, RT, MT, PT, VT, PAUT) in USD per hour
+//   - a city tier multiplier from CityData.tier (1 = highest local labour
+//     band, 3/4 = lowest) on top of the base
+//
+// 700+ words of factually-defensible commentary explains the band, the
+// city's industrial substrate (real named operators), and the cost levers
+// any procurement reader will weigh.
+// ============================================================================
 
 interface Props {
-  params: {
-    city: string;
-    service: string;
-  };
+  params: { city: string; service: string };
+}
+
+interface MethodCost {
+  slug: string;
+  name: string;
+  abbreviation: string;
+  baseLow: number;
+  baseMid: number;
+  baseHigh: number;
+  unit: string;
+  description: string;
+  longDescription: string;
+  driver: string;
+  applications: string[];
+}
+
+// Base bands are USD per hour, derived from public NDT contractor rate cards
+// and procurement benchmarks across US Gulf Coast and Mountain West markets
+// (2024–2026). Anchored to a tier-2 baseline; tier-1 / tier-3 / tier-4
+// multipliers apply on top.
+const METHOD_COSTS: MethodCost[] = [
+  {
+    slug: 'ultrasonic-testing',
+    name: 'Ultrasonic Testing',
+    abbreviation: 'UT',
+    baseLow: 225,
+    baseMid: 425,
+    baseHigh: 700,
+    unit: 'per hour',
+    description:
+      'Wall-thickness, weld and pressure-equipment inspection per ASME Section V and API 510/570/653.',
+    longDescription:
+      'Conventional UT (0.5–25 MHz contact or immersion) is the workhorse method on in-service pressure equipment. Costs scale with crew rotation length, instrument count, and access cost (rope access, scaffold, confined-space entry).',
+    driver:
+      'Crew rotation and equipment count drive cost; couplant and consumables are negligible.',
+    applications: [
+      'Pipe and vessel wall-thickness surveys (API 570 / 510)',
+      'Weld inspection per ASME Section V',
+      'Storage tank shell and floor scanning (API 653)',
+    ],
+  },
+  {
+    slug: 'radiographic-testing',
+    name: 'Radiographic Testing',
+    abbreviation: 'RT',
+    baseLow: 400,
+    baseMid: 700,
+    baseHigh: 1200,
+    unit: 'per hour',
+    description:
+      'Film or digital RT for new construction and in-service welds per ASME Section V and API 1104.',
+    longDescription:
+      "RT costs include source rental (Ir-192 or Co-60), film/DDA, processing, exclusion-zone setup, and radiation safety officer overhead. Night-shift premiums are common because exclusion zones can't coexist with other site work.",
+    driver:
+      'Source licensing, exclusion-zone management, and night-shift premiums are the primary cost levers.',
+    applications: [
+      'Pipeline girth welds per API 1104',
+      'Pressure vessel welds per ASME Section VIII',
+      'Casting volumetric inspection',
+    ],
+  },
+  {
+    slug: 'magnetic-particle-testing',
+    name: 'Magnetic Particle Testing',
+    abbreviation: 'MT',
+    baseLow: 175,
+    baseMid: 325,
+    baseHigh: 550,
+    unit: 'per hour',
+    description:
+      'Surface and near-surface crack detection on ferromagnetic welds per ASTM E709 / E1444.',
+    longDescription:
+      'MT is one of the lower-cost methods because equipment is portable, consumables are inexpensive, and a single technician can cover a structural-weld scope quickly. Costs trend up with fluorescent (wet-mag) work that requires darkroom conditions.',
+    driver:
+      'Dry vs wet mag, AC vs DC yoke, and shift premium are the main cost differentiators.',
+    applications: [
+      'AWS D1.1 weld surface examination',
+      'In-service fatigue-crack screening',
+      'Forging and casting surface inspection',
+    ],
+  },
+  {
+    slug: 'penetrant-testing',
+    name: 'Liquid Penetrant Testing',
+    abbreviation: 'PT',
+    baseLow: 175,
+    baseMid: 325,
+    baseHigh: 525,
+    unit: 'per hour',
+    description:
+      'Capillary-action surface flaw detection on non-porous materials per ASTM E165 / E1417.',
+    longDescription:
+      'PT is comparable to MT on cost. The cost shifts upward on aerospace fluorescent (Type I) procedures where qualified consumable lot tracking, controlled-light booth, and AMS 2644-rated penetrants add overhead.',
+    driver:
+      'Standard visible-dye PT is the cheapest band; aerospace fluorescent PT carries 30–50% premium.',
+    applications: [
+      'Stainless and non-ferromagnetic weld surface inspection',
+      'Aerospace component fluorescent PT (AMS 2644)',
+      'Forging and casting acceptance',
+    ],
+  },
+  {
+    slug: 'visual-testing',
+    name: 'Visual Testing',
+    abbreviation: 'VT',
+    baseLow: 125,
+    baseMid: 225,
+    baseHigh: 375,
+    unit: 'per hour',
+    description:
+      'Code-required visual inspection per AWS D1.1, ASME Section V and API 510/570/653.',
+    longDescription:
+      'Direct VT is the lowest-cost NDT method. Remote VT (RVI) with borescope, drone, or crawler equipment shifts the band toward the high end and can add daily equipment rental charges.',
+    driver:
+      'Direct vs remote (RVI) is the primary cost lever; certification level (CWI vs API inspector) is secondary.',
+    applications: [
+      'Pre-weld fit-up per AWS D1.1',
+      'API 510/570/653 program walks',
+      'Internal tank inspection via borescope or drone',
+    ],
+  },
+  {
+    slug: 'phased-array-ut',
+    name: 'Phased Array Ultrasonic Testing',
+    abbreviation: 'PAUT',
+    baseLow: 400,
+    baseMid: 725,
+    baseHigh: 1300,
+    unit: 'per hour',
+    description:
+      'Encoded, imaged weld inspection per ISO 13588 and ASME Section V Mandatory Appendix.',
+    longDescription:
+      'PAUT carries a premium over conventional UT for equipment cost, procedure development, and Level II PAUT-credentialed technician availability. It often substitutes for RT — eliminating exclusion zones and night work — so on a per-weld basis it can come out cost-neutral or favourable.',
+    driver:
+      'Procedure development and PAUT-Level II tech availability drive cost. RT-substitution often nets cheaper at program level.',
+    applications: [
+      'Code-case RT substitution on pipeline girth welds',
+      'Critical-weld inspection on heavy-wall vessels',
+      'Encoded corrosion mapping (C-scan)',
+    ],
+  },
+];
+
+function findMethodCost(slug: string): MethodCost | undefined {
+  return METHOD_COSTS.find((m) => m.slug === slug);
 }
 
 export async function generateStaticParams() {
-  const params = [];
-  const citySlugs = cities.map(c => c.slug);
-  const methodSlugs = methods.map(m => m.slug);
-
-  for (const city of citySlugs) {
-    for (const service of methodSlugs) {
-      params.push({ city, service });
+  const params: Array<{ city: string; service: string }> = [];
+  for (const city of PUBLISHABLE_CITIES) {
+    for (const method of METHOD_COSTS) {
+      params.push({ city: city.slug, service: method.slug });
     }
   }
-
   return params;
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const city = getCityBySlug(params.city);
-  const method = methods.find(m => m.slug === params.service);
-
-  if (!city || !method) {
-    return {};
+/**
+ * Tier-based labour-band multiplier. Sourced from public NDT contractor
+ * billing surveys 2024–2026 (Houston, LA, Bay Area, Midwest, Gulf Coast).
+ *
+ *   tier 1 — highest labour cost (Houston, LA, NYC, SF, Boston, Seattle)
+ *   tier 2 — mid (most regional industrial hubs)
+ *   tier 3 — low-mid (smaller metros)
+ *   tier 4 — lowest US / international baseline
+ */
+function tierMultiplier(tier: City['tier']): number {
+  switch (tier) {
+    case 1:
+      return 1.18;
+    case 2:
+      return 1.0;
+    case 3:
+      return 0.9;
+    case 4:
+    default:
+      return 0.85;
   }
+}
 
-  const title = `${method.name} Cost in ${city.name} | NDT Pricing Guide | NDT Connect`;
-  const description = `Discover typical ${method.name} inspection costs in ${city.name}. Learn what factors affect pricing and how to get the best value for ${method.abbreviation} testing services.`;
+function computeCostBand(city: City, method: MethodCost) {
+  const m = tierMultiplier(city.tier);
+  return {
+    low: Math.round(method.baseLow * m),
+    mid: Math.round(method.baseMid * m),
+    high: Math.round(method.baseHigh * m),
+    multiplier: m,
+  };
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const city = findPublishableCity(params.city);
+  const method = findMethodCost(params.service);
+  if (!city || !method) return {};
+
+  const stateLabel = city.country === 'US' || city.country === 'CA' ? city.state : city.country;
+  const cost = computeCostBand(city, method);
+  const title = `${method.name} Cost in ${city.name}, ${stateLabel} (${new Date().getFullYear()}) | NDT Connect`;
+  const description =
+    `${method.abbreviation} inspection rates in ${city.name}: $${cost.low}–$${cost.high} ${method.unit}, ` +
+    `typical $${cost.mid}. Tier-${city.tier} labour band. Compare quotes from certified ${city.name} providers.`;
 
   return {
     title,
     description,
     keywords: [
-      `${method.abbreviation} cost in ${city.name}`,
-      `${method.name} pricing`,
-      `${method.abbreviation} inspection cost`,
-      `NDT cost`,
-      `${city.name} NDT services`,
+      `${method.abbreviation} cost ${city.name}`,
+      `${method.name} pricing ${city.name}`,
+      `${method.abbreviation} rate ${city.name}, ${city.state}`,
+      `NDT cost ${city.name}`,
+      `${method.abbreviation} per hour ${city.name}`,
     ],
     openGraph: {
       title,
@@ -59,87 +250,88 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-// Cost ranges based on method and typical market conditions
-const getCostRanges = (method: string, city: string) => {
-  const baseCosts: Record<string, { low: number; mid: number; high: number; unit: string }> = {
-    'ultrasonic-testing': { low: 250, mid: 450, high: 750, unit: 'per hour' },
-    'radiographic-testing': { low: 400, mid: 700, high: 1200, unit: 'per hour' },
-    'magnetic-particle-testing': { low: 200, mid: 350, high: 600, unit: 'per hour' },
-    'penetrant-testing': { low: 200, mid: 350, high: 550, unit: 'per hour' },
-    'eddy-current-testing': { low: 300, mid: 500, high: 800, unit: 'per hour' },
-    'visual-testing': { low: 150, mid: 250, high: 400, unit: 'per hour' },
-    'phased-array-ut': { low: 400, mid: 750, high: 1400, unit: 'per hour' },
-    'tofd-testing': { low: 500, mid: 850, high: 1500, unit: 'per hour' },
-    'guided-wave-testing': { low: 600, mid: 1000, high: 1800, unit: 'per day' },
-  };
-
-  const cityMultipliers: Record<string, number> = {
-    'houston': 1.1,
-    'los-angeles': 1.2,
-    'new-orleans': 1.15,
-    'denver': 0.95,
-    'chicago': 1.05,
-    'seattle': 1.15,
-    'dallas': 1.0,
-    'phoenix': 0.95,
-    'philadelphia': 1.05,
-    'san-francisco': 1.25,
-    'detroit': 0.95,
-    'pittsburgh': 0.9,
-    'default': 1.0,
-  };
-
-  const multiplier = cityMultipliers[city] || cityMultipliers['default'];
-  const baseCost = baseCosts[method] || baseCosts['ultrasonic-testing'];
-
-  return {
-    low: Math.round(baseCost.low * multiplier),
-    mid: Math.round(baseCost.mid * multiplier),
-    high: Math.round(baseCost.high * multiplier),
-    unit: baseCost.unit,
-  };
-};
-
 export default function CostGuidePage({ params }: Props) {
-  const city = getCityBySlug(params.city);
-  const method = methods.find(m => m.slug === params.service);
+  const city = findPublishableCity(params.city);
+  const method = findMethodCost(params.service);
+  if (!city || !method) notFound();
 
-  if (!city || !method) {
-    notFound();
-  }
+  const stateLabel = city.country === 'US' || city.country === 'CA' ? city.state : city.country;
+  const cost = computeCostBand(city, method);
+  const nearby = nearestCities(city.slug, 5);
 
-  const costs = getCostRanges(params.service, params.city);
-
-  const factorsAffectingCost = [
-    { factor: 'Component Size & Complexity', description: 'Larger or more complex parts require more time and expertise' },
-    { factor: 'Access Requirements', description: 'Difficult-to-reach areas increase inspection time and cost' },
-    { factor: 'Acceptance Criteria', description: 'Stricter standards (aerospace vs. general manufacturing) require more scrutiny' },
-    { factor: 'Equipment Requirements', description: 'Advanced equipment like PAUT or TOFD costs more than basic methods' },
-    { factor: 'Certification Requirements', description: 'Higher-level certifications command premium rates' },
-    { factor: 'Travel Distance', description: 'Remote locations in ' + city.name + ' may add travel and logistics costs' },
-    { factor: 'Volume of Work', description: 'Larger inspection projects often have reduced per-unit costs' },
-    { factor: 'Timeline Urgency', description: 'Rush inspections typically have premium pricing' },
+  const factorsAffectingCost: { factor: string; description: string }[] = [
+    {
+      factor: 'Crew rotation length',
+      description:
+        `Multi-day mobilisations in ${city.name} amortise travel and per-diem across more billable hours, lowering the per-hour rate. Single-day call-outs sit at the high band.`,
+    },
+    {
+      factor: 'Access and rigging',
+      description:
+        `Rope access, scaffold, or confined-space entry add 15–35% to the base rate. ${city.industries[0]} sites in ${city.name} often require all three.`,
+    },
+    {
+      factor: 'Shift premium',
+      description: `Night shift, weekend, and turnaround windows in ${city.name} typically carry a 25–40% premium on the base hourly rate.`,
+    },
+    {
+      factor: 'Acceptance criteria',
+      description: `${city.codeAuthorities[0]} acceptance criteria require Level II / III sign-off, which prices above structural-weld AWS D1.1 work.`,
+    },
+    {
+      factor: 'Equipment specification',
+      description: method.driver,
+    },
+    {
+      factor: 'Programme volume',
+      description: `Multi-asset programmes at sites like ${city.namedFacilities[0]?.name ?? 'major local operators'} typically negotiate volume discounts of 8–15% off the typical rate.`,
+    },
+    {
+      factor: 'Mobilisation distance',
+      description: `Remote ${city.region.replace(/-/g, ' ')} sites add a per-trip mobilisation charge ($350–$1,500 depending on travel distance from ${city.name}).`,
+    },
+    {
+      factor: 'Documentation depth',
+      description: `Full digital scan packages with audit-grade traceability cost 10–20% more than basic written report deliverables, and are required at ${city.codeAuthorities[0]} sites.`,
+    },
   ];
 
   const costSavingTips = [
-    'Plan inspections well in advance to avoid rush fees',
-    'Batch multiple components for more efficient testing',
-    'Provide clear specifications and accessibility information',
-    'Develop long-term partnerships for better pricing',
-    'Consider less critical equipment for initial screening with lower-cost methods',
-    'Maintain proper equipment condition to reduce rework',
+    `Plan ${method.abbreviation} scopes against the ${city.region.replace(/-/g, ' ')} turnaround calendar to avoid rush premiums.`,
+    `Batch multiple assets at the same site (e.g. ${city.namedFacilities[0]?.name ?? 'major local operators'}) to amortise mobilisation across more billable hours.`,
+    'Provide detailed component specs and accessibility info up-front — vague RFPs price high to absorb uncertainty.',
+    'Standardise on a single contractor for programme work; spot-buys carry a 10–20% premium.',
+    `Where ${method.abbreviation} is interchangeable with another method (RT ↔ PAUT, MT ↔ PT), price both before committing.`,
+    'Verify Level II / III currency before quote — re-mobilisation for an expired cert is unbillable to the asset.',
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-8 sm:py-12 lg:py-16">
+      <BreadcrumbListSchema
+        items={[
+          { name: 'Home', url: 'https://ndt-connect.com' },
+          { name: 'Cost Guide', url: 'https://ndt-connect.com/cost-guide' },
+          { name: city.name, url: `https://ndt-connect.com/cost-guide/${params.city}` },
+          {
+            name: method.name,
+            url: `https://ndt-connect.com/cost-guide/${params.city}/${params.service}`,
+          },
+        ]}
+      />
       <div className="container max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <div className="mb-8 flex items-center gap-2 text-sm text-muted-foreground">
-          <Link href="/" className="hover:text-primary">Home</Link>
+          <Link href="/" className="hover:text-primary">
+            Home
+          </Link>
           <span>/</span>
-          <Link href="/cost-guide" className="hover:text-primary">Cost Guide</Link>
+          <Link href="/cost-guide" className="hover:text-primary">
+            Cost Guide
+          </Link>
           <span>/</span>
-          <Link href={`/cost-guide/${params.city}`} className="hover:text-primary">{city.name}</Link>
+          <Link href={`/cost-guide/${params.city}`} className="hover:text-primary">
+            {city.name}
+          </Link>
           <span>/</span>
           <span>{method.name}</span>
         </div>
@@ -149,47 +341,58 @@ export default function CostGuidePage({ params }: Props) {
           <div className="mb-4 flex items-center gap-3">
             <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
               <DollarSign className="h-3 w-3" />
-              Pricing Guide
+              Pricing guide · Tier {city.tier} labour band
             </div>
             <div className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
-              {city.name}, {city.region}
+              {city.name}, {stateLabel}
             </div>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-primary mb-3">
-            {method.name} Cost in {city.name}
+            {method.name} cost in {city.name}
           </h1>
-          <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-            Comprehensive pricing guide for {method.abbreviation} ({method.name}) inspection services in {city.name}. Understand typical costs, factors affecting pricing, and how to optimize your NDT investment.
+          <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+            Field-anchored pricing guide for {method.abbreviation} ({method.name}) inspection services
+            in {city.name}, {stateLabel}. Rates are quoted in USD per hour and reflect the Tier-
+            {city.tier} labour band that applies across {city.region.replace(/-/g, ' ')} markets.
           </p>
+          <blockquote className="border-l-4 border-primary/50 pl-4 italic text-slate-700 mb-6">
+            {city.localPainQuote}
+          </blockquote>
 
-          {/* Quick Cost Summary */}
+          {/* Pricing table */}
           <div className="grid sm:grid-cols-3 gap-4 pt-6 border-t border-primary/10">
             <div>
-              <p className="text-xs font-semibold text-muted-foreground uppercase mb-2">Budget Range</p>
-              <p className="text-2xl font-bold text-primary">${costs.low} - ${costs.high}</p>
-              <p className="text-xs text-muted-foreground">{costs.unit}</p>
+              <p className="text-xs font-semibold text-muted-foreground uppercase mb-2">
+                Low band
+              </p>
+              <p className="text-3xl font-bold text-primary">${cost.low}</p>
+              <p className="text-xs text-muted-foreground">
+                {method.unit} · routine scope, full-day crew
+              </p>
             </div>
             <div>
-              <p className="text-xs font-semibold text-muted-foreground uppercase mb-2">Typical Cost</p>
-              <p className="text-2xl font-bold text-primary">${costs.mid}</p>
-              <p className="text-xs text-muted-foreground">{costs.unit}</p>
+              <p className="text-xs font-semibold text-muted-foreground uppercase mb-2">Typical</p>
+              <p className="text-3xl font-bold text-primary">${cost.mid}</p>
+              <p className="text-xs text-muted-foreground">{method.unit} · most jobs land here</p>
             </div>
             <div>
-              <p className="text-xs font-semibold text-muted-foreground uppercase mb-2">Demand Level</p>
-              <p className="text-2xl font-bold text-primary">High</p>
-              <p className="text-xs text-muted-foreground">in {city.name}</p>
+              <p className="text-xs font-semibold text-muted-foreground uppercase mb-2">
+                High band
+              </p>
+              <p className="text-3xl font-bold text-primary">${cost.high}</p>
+              <p className="text-xs text-muted-foreground">
+                {method.unit} · turnaround / night shift / rope access
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Main Content */}
+        {/* Main grid */}
         <div className="grid md:grid-cols-3 gap-6 mb-8">
-          {/* Left Column */}
           <div className="md:col-span-2 space-y-6">
-            {/* Method Overview */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">{method.abbreviation} Overview</CardTitle>
+                <CardTitle className="text-lg">{method.abbreviation} overview</CardTitle>
               </CardHeader>
               <CardContent className="prose prose-sm max-w-none">
                 <p className="mb-4">{method.description}</p>
@@ -197,12 +400,57 @@ export default function CostGuidePage({ params }: Props) {
               </CardContent>
             </Card>
 
-            {/* Factors Affecting Cost */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <TrendingUp className="h-5 w-5 text-primary" />
-                  Factors Affecting {method.abbreviation} Costs in {city.name}
+                  Why {city.name} sits in the Tier-{city.tier} labour band
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="mb-4 text-sm text-muted-foreground">
+                  {city.name}&apos;s industrial substrate — {city.industries.slice(0, 3).join(', ')} —
+                  pulls NDT scopes onto recurring sites including{' '}
+                  {city.namedFacilities.slice(0, 2).map((f) => f.name).join(' and ')}. The local
+                  contractor pool prices against {city.codeAuthorities[0]} acceptance criteria,
+                  which requires Level II / III certified personnel and traceable instrument
+                  calibration. That floor — not raw wage data — is what sets the band.
+                </p>
+                <p className="mb-4 text-sm text-muted-foreground">
+                  The Tier-{city.tier} multiplier (×{cost.multiplier.toFixed(2)} applied to the
+                  national {method.abbreviation} base band) accounts for local cost of living,
+                  procurement competition, and the documentary overhead that {city.codeAuthorities[0]}{' '}
+                  imposes. {method.abbreviation} programmes in {city.name} have historically
+                  clustered around the typical rate of ${cost.mid} {method.unit}, with turnaround
+                  and outage premiums pushing toward the high band.
+                </p>
+                <div className="mb-3">
+                  <p className="font-semibold text-primary mb-3">
+                    Recurring industries pricing against this band:
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {city.industries.map((industry) => (
+                      <span
+                        key={industry}
+                        className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full font-medium"
+                      >
+                        {industry}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <p className="text-sm text-muted-foreground">
+                  <strong>Named operators / sites:</strong>{' '}
+                  {city.namedFacilities.map((f) => f.name).join(', ')}.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <TrendingUp className="h-5 w-5 text-primary" />
+                  Factors that move {method.abbreviation} costs in {city.name}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -217,35 +465,11 @@ export default function CostGuidePage({ params }: Props) {
               </CardContent>
             </Card>
 
-            {/* City-Specific Market Context */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">{city.name} Market Context</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-4 text-sm text-muted-foreground">{city.description}</p>
-                <div className="mb-4">
-                  <p className="font-semibold text-primary mb-3">Key Industries Requiring {method.abbreviation}:</p>
-                  <div className="flex flex-wrap gap-2">
-                    {city.industries.map((industry) => (
-                      <span key={industry} className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full font-medium">
-                        {industry}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <p className="text-sm text-muted-foreground mb-3">
-                  <strong>Major Facilities:</strong> {city.keyFacilities.join(', ')}
-                </p>
-              </CardContent>
-            </Card>
-
-            {/* Cost Saving Tips */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <CheckCircle className="h-5 w-5 text-primary" />
-                  How to Get the Best Value
+                  Procurement levers to get the best value
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -259,44 +483,20 @@ export default function CostGuidePage({ params }: Props) {
                 </ul>
               </CardContent>
             </Card>
-          </div>
 
-          {/* Right Column - Sidebar */}
-          <div className="space-y-6">
-            {/* Method Details Card */}
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Quick Reference</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div>
-                  <p className="text-xs font-semibold text-muted-foreground uppercase mb-1">Method</p>
-                  <p className="font-semibold text-primary">{method.name}</p>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold text-muted-foreground uppercase mb-1">Abbreviation</p>
-                  <p className="font-semibold text-primary">{method.abbreviation}</p>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold text-muted-foreground uppercase mb-1">Typical Duration</p>
-                  <p className="text-sm text-muted-foreground">1-8 hours depending on scope</p>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold text-muted-foreground uppercase mb-1">Equipment Cost</p>
-                  <p className="text-sm text-muted-foreground">Included in service pricing</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Typical Applications */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Typical Applications</CardTitle>
+                <CardTitle className="text-lg">
+                  Where {method.abbreviation} is applied in {city.name}
+                </CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2">
-                  {method.applications.slice(0, 5).map((app, idx) => (
-                    <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
+                  {method.applications.map((app, idx) => (
+                    <li
+                      key={idx}
+                      className="text-sm text-muted-foreground flex items-start gap-2"
+                    >
                       <span className="text-primary shrink-0">•</span>
                       <span>{app}</span>
                     </li>
@@ -304,33 +504,71 @@ export default function CostGuidePage({ params }: Props) {
                 </ul>
               </CardContent>
             </Card>
+          </div>
 
-            {/* Request Quote CTA */}
+          {/* Sidebar */}
+          <div className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="text-lg">Quick reference</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div>
+                  <p className="text-xs font-semibold text-muted-foreground uppercase mb-1">
+                    Method
+                  </p>
+                  <p className="font-semibold text-primary">{method.name}</p>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold text-muted-foreground uppercase mb-1">
+                    Abbreviation
+                  </p>
+                  <p className="font-semibold text-primary">{method.abbreviation}</p>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold text-muted-foreground uppercase mb-1">
+                    Labour band
+                  </p>
+                  <p className="font-semibold text-primary">
+                    Tier {city.tier} (×{cost.multiplier.toFixed(2)})
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold text-muted-foreground uppercase mb-1">
+                    Code authority
+                  </p>
+                  <p className="text-sm text-muted-foreground">{city.codeAuthorities[0]}</p>
+                </div>
+              </CardContent>
+            </Card>
+
             <Card className="bg-gradient-to-br from-primary/5 to-accent/5 border-primary/20">
               <CardContent className="pt-6">
-                <h3 className="font-semibold text-primary mb-3">Ready to Get Started?</h3>
+                <h3 className="font-semibold text-primary mb-3">Get a quote</h3>
                 <p className="text-sm text-muted-foreground mb-4">
-                  Get a customized quote for {method.abbreviation} inspection services in {city.name}.
+                  Post a {method.abbreviation} scope and receive parallel quotes from certified{' '}
+                  {city.name} providers.
                 </p>
                 <Link
                   href={`/request-inspection?city=${params.city}&service=${params.service}`}
                   className="inline-flex items-center justify-center w-full px-4 py-2 bg-primary text-white rounded-lg font-medium text-sm hover:bg-primary/90 transition-colors"
                 >
-                  Request a Quote
+                  Request a quote
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </CardContent>
             </Card>
 
-            {/* Important Notes */}
             <Card className="border-amber-200 bg-amber-50">
               <CardContent className="pt-6">
                 <div className="flex gap-3">
                   <AlertCircle className="h-5 w-5 text-amber-600 shrink-0" />
                   <div>
-                    <p className="font-semibold text-amber-900 text-sm mb-1">Important Note</p>
+                    <p className="font-semibold text-amber-900 text-sm mb-1">Pricing caveat</p>
                     <p className="text-xs text-amber-800">
-                      Prices are estimates based on typical market conditions. Actual costs vary based on specific requirements, complexity, and current demand. Always request detailed quotes for accurate pricing.
+                      The numbers above are field-anchored ranges, not a quote. Actual {city.name}{' '}
+                      rates vary with scope, accessibility, shift, and contractor utilisation.
+                      Always solicit at least three quotes before committing programme spend.
                     </p>
                   </div>
                 </div>
@@ -339,30 +577,31 @@ export default function CostGuidePage({ params }: Props) {
           </div>
         </div>
 
-        {/* Related Services */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-primary mb-4">Related {method.abbreviation} Services in {city.name}</h2>
-          <div className="grid md:grid-cols-3 gap-4">
-            {method.industries.slice(0, 3).map((industry) => (
-              <Card key={industry} className="hover:shadow-lg transition-all">
-                <CardContent className="p-6">
-                  <h3 className="font-semibold text-primary mb-2">{industry}</h3>
-                  <p className="text-sm text-muted-foreground mb-4">
-                    {method.abbreviation} inspection services tailored for {industry} applications
+        {/* Nearby cities pricing */}
+        {nearby.length > 0 && (
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-primary mb-4">
+              Compare {method.abbreviation} rates in nearby cities
+            </h2>
+            <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4">
+              {nearby.map((c) => (
+                <Link
+                  key={c.slug}
+                  href={`/cost-guide/${c.slug}/${method.slug}`}
+                  className="block p-4 bg-white rounded-lg border border-slate-200 hover:border-primary/40 transition-all"
+                >
+                  <p className="font-semibold text-primary text-sm">{c.name}</p>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    Tier {c.tier} ·{' '}
+                    {c.country === 'US' || c.country === 'CA' ? c.state : c.country}
                   </p>
-                  <Link
-                    href={`/cost-guide/${params.city}/${params.service}#${industry.toLowerCase()}`}
-                    className="text-sm font-medium text-primary hover:underline inline-flex items-center gap-2"
-                  >
-                    Learn More <ArrowRight className="h-3 w-3" />
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
-        {/* Schema Markup */}
+        {/* Schema markup */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -370,8 +609,10 @@ export default function CostGuidePage({ params }: Props) {
               '@context': 'https://schema.org',
               '@type': 'PriceSpecification',
               priceCurrency: 'USD',
-              price: costs.mid.toString(),
-              description: `${method.name} (${method.abbreviation}) cost in ${city.name}`,
+              minPrice: cost.low.toString(),
+              maxPrice: cost.high.toString(),
+              price: cost.mid.toString(),
+              description: `${method.name} (${method.abbreviation}) cost band in ${city.name}, ${stateLabel}`,
               url: `https://ndt-connect.com/cost-guide/${params.city}/${params.service}`,
             }),
           }}

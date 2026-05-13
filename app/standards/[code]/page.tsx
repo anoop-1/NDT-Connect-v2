@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ndtStandards, getStandardBySlug, getAllStandardSlugs } from '@/lib/standards-data';
 import { CheckCircle, FileText, Globe, Zap, ArrowRight } from 'lucide-react';
+import AuthorByline from '@/components/AuthorByline';
 
 interface Props {
   params: {
@@ -291,6 +292,11 @@ export default function StandardPage({ params }: Props) {
               </CardContent>
             </Card>
           </div>
+        </div>
+
+        {/* Author byline — E-E-A-T signal (Person schema embedded) */}
+        <div className="mt-10 mb-4">
+          <AuthorByline />
         </div>
 
         {/* Schema Markup */}

@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { FREE_TOOLS } from "@/data/freeTools";
 import { StructuredData } from "@/components/free-tools/StructuredData";
+import { BreadcrumbListSchema } from "@/components/seo/SchemaMarkup";
 
 const SITE = "https://ndt-connect.com";
 
@@ -30,14 +31,6 @@ export const metadata: Metadata = {
 };
 
 export default function FreeToolsPillarPage() {
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: SITE },
-      { "@type": "ListItem", position: 2, name: "Free Tools", item: `${SITE}/free-tools` },
-    ],
-  };
   const collectionSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -52,7 +45,10 @@ export default function FreeToolsPillarPage() {
 
   return (
     <article className="space-y-12">
-      <StructuredData data={breadcrumbSchema} />
+      <BreadcrumbListSchema items={[
+        { name: "Home", url: SITE },
+        { name: "Free Tools", url: `${SITE}/free-tools` },
+      ]} />
       <StructuredData data={collectionSchema} />
 
       <header className="text-center py-12 bg-gradient-to-br from-primary/10 to-accent/10 rounded-lg shadow-sm">

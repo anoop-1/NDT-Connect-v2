@@ -1,0 +1,18 @@
+# SEO analysis local artifacts — never commit data or credentials.
+
+# Credentials (service account JSON keys)
+credentials/
+credentials/*
+*.key.json
+
+# Data outputs
+output/
+*.csv
+*.json
+
+# But always keep these tracked
+!.gitignore
+!README.md
+!requirements.txt
+!*.py
+!*.md

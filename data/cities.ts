@@ -27,6 +27,11 @@ export interface City {
   longitude?: number;
 }
 
+// Canonical type alias used by SEO routes. lat/long are the canonical names;
+// latitude/longitude on the data rows are accepted and normalised by helpers
+// in lib/seo-helpers.ts (see getCityLatLong).
+export type CityData = City & { lat?: number; long?: number };
+
 // Tier-1 cities are inlined in this file. Tier 2 / 3 / 4 live in dedicated
 // extension files so the diff-per-PR stays reviewable. They are merged into
 // the exported CITIES at module load.
@@ -675,8 +680,51 @@ if (process.env.NODE_ENV !== "production") {
   }
 }
 
+/**
+ * Quality gate. A City is publishable only if it has enough substrate to
+ * generate a non-thin programmatic SEO page that survives Google's
+ * helpful-content review. Three checks:
+ *
+ *   - At least 3 named local industries (so the page can talk about a real
+ *     industrial mix, not a single generic vertical).
+ *   - At least 2 named facilities/operators (so the page can cite real
+ *     operators by name — the strongest local-SEO signal we have).
+ *   - A non-empty localPainQuote (the hand-authored hook that makes the page
+ *     read like local trade journalism rather than a doorway).
+ *
+ * Rows that fail the gate are excluded from sitemap.xml and from
+ * generateStaticParams. They stay in CITIES so future curation can fill the
+ * gaps without re-issuing slugs.
+ */
+export function isCityPublishable(city: City): boolean {
+  if (!Array.isArray(city.industries) || city.industries.length < 3) return false;
+  if (!Array.isArray(city.namedFacilities) || city.namedFacilities.length < 2) return false;
+  if (typeof city.localPainQuote !== 'string' || city.localPainQuote.trim() === '') return false;
+  return true;
+}
+
+export const PUBLISHABLE_CITIES: City[] = CITIES.filter(isCityPublishable);
+
+// Build-time visibility into how many cities were pruned by the quality gate.
+// Surfaces in `next build` logs (and `next dev` first compile). We log
+// unconditionally so the production build output also confirms the count
+// — silent prunes are how thin pages sneak back in.
+{
+  const pruned = CITIES.length - PUBLISHABLE_CITIES.length;
+  // eslint-disable-next-line no-console
+  console.log(
+    `[cities] quality gate: ${PUBLISHABLE_CITIES.length}/${CITIES.length} publishable` +
+      (pruned > 0
+        ? ` (${pruned} pruned for missing industries/facilities/localPainQuote)`
+        : ` (no rows pruned)`),
+  );
+}
+
 export const findCity = (slug: string): City | undefined =>
   CITIES.find(c => c.slug === slug);
+
+export const findPublishableCity = (slug: string): City | undefined =>
+  PUBLISHABLE_CITIES.find(c => c.slug === slug);
 
 export const citiesByRegion = (region: string): City[] =>
   CITIES.filter(c => c.region === region);
