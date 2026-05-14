@@ -28,9 +28,15 @@ KEY_LOCATION = f'https://{INDEXNOW_HOST}/{INDEXNOW_KEY}.txt'
 SITEMAP_URL = f'https://{INDEXNOW_HOST}/sitemap.xml'
 BATCH = 10000  # IndexNow per-POST limit
 
-# Submit to Bing — it shares with Yandex, DuckDuckGo, Naver via the
-# IndexNow consortium so we only need one POST.
-ENDPOINT = 'https://api.indexnow.org/IndexNow'
+# IndexNow consortium endpoints. The api.indexnow.org generic endpoint
+# requires verification to complete (can lag hours on first POST). The
+# bing-direct endpoint accepts the same payload but tends to verify
+# faster. Yandex direct is included as a third fallback.
+ENDPOINTS = [
+    'https://www.bing.com/indexnow',
+    'https://yandex.com/indexnow',
+    'https://api.indexnow.org/IndexNow',
+]
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s  %(levelname)-7s %(message)s', datefmt='%H:%M:%S')
 log = logging.getLogger('indexnow')
@@ -54,7 +60,7 @@ def fetch_sitemap_urls() -> list[str]:
     return locs
 
 
-def submit_batch(urls: list[str]) -> tuple[int, str]:
+def submit_batch_to(endpoint: str, urls: list[str]) -> tuple[int, str]:
     payload = json.dumps({
         'host': INDEXNOW_HOST,
         'key': INDEXNOW_KEY,
@@ -62,7 +68,7 @@ def submit_batch(urls: list[str]) -> tuple[int, str]:
         'urlList': urls,
     }).encode('utf-8')
     req = Request(
-        ENDPOINT,
+        endpoint,
         data=payload,
         method='POST',
         headers={'Content-Type': 'application/json; charset=utf-8'},
@@ -78,6 +84,17 @@ def submit_batch(urls: list[str]) -> tuple[int, str]:
         return e.code, body
     except Exception as e:
         return 0, str(e)
+
+
+def submit_batch(urls: list[str]) -> tuple[int, str]:
+    last_code, last_body = 0, ''
+    for ep in ENDPOINTS:
+        code, body = submit_batch_to(ep, urls)
+        log.info('  endpoint=%s -> HTTP %d', ep, code)
+        if 200 <= code < 300:
+            return code, f'[{ep}] {body}'
+        last_code, last_body = code, body
+    return last_code, last_body
 
 
 def main() -> int:
