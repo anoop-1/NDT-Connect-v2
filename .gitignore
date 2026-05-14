@@ -1,3 +1,11 @@
+# Secrets / credential files — NEVER commit
+Tokens.docx
+Tokens.*
+*.token
+*.token.*
+.env.local
+.env.*.local
+
 # Dependencies
 node_modules/
 .pnp
