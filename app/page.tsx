@@ -688,6 +688,84 @@ export default function HomePage() {
         </section>
 
         {/* ============================================
+            TOP CITIES — internal-link surface to programmatic SEO pages.
+            Distributes home-page authority to /ndt-services/[city] hubs
+            and gives Google an obvious crawl path into the city network.
+            ============================================ */}
+        <section className="py-16 bg-white border-t border-slate-100">
+          <div className="layout-wrapper">
+            <div className="text-center mb-10">
+              <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-2">Coverage</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">NDT inspection services by city</h2>
+              <p className="text-slate-600 max-w-2xl mx-auto">
+                170+ cities across the US Gulf Coast, GCC, India, UK, Canada, and ANZ — each with locally-grounded
+                provider listings, named-facility context, and tier-anchored cost guides.
+              </p>
+            </div>
+
+            {/* Region columns */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div>
+                <h3 className="font-semibold text-primary text-sm uppercase tracking-wide mb-3">US Gulf Coast</h3>
+                <ul className="space-y-2 text-sm">
+                  <li><Link href="/ndt-services/houston-tx" className="text-slate-700 hover:text-primary hover:underline">NDT services in Houston</Link></li>
+                  <li><Link href="/ndt-services/beaumont-tx" className="text-slate-700 hover:text-primary hover:underline">NDT services in Beaumont</Link></li>
+                  <li><Link href="/ndt-services/corpus-christi-tx" className="text-slate-700 hover:text-primary hover:underline">NDT services in Corpus Christi</Link></li>
+                  <li><Link href="/ndt-services/baton-rouge-la" className="text-slate-700 hover:text-primary hover:underline">NDT services in Baton Rouge</Link></li>
+                  <li><Link href="/ndt-services/lake-charles-la" className="text-slate-700 hover:text-primary hover:underline">NDT services in Lake Charles</Link></li>
+                  <li><Link href="/ndt-services/new-orleans-la" className="text-slate-700 hover:text-primary hover:underline">NDT services in New Orleans</Link></li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-primary text-sm uppercase tracking-wide mb-3">US Other</h3>
+                <ul className="space-y-2 text-sm">
+                  <li><Link href="/ndt-services/tulsa-ok" className="text-slate-700 hover:text-primary hover:underline">NDT services in Tulsa</Link></li>
+                  <li><Link href="/ndt-services/dallas-tx" className="text-slate-700 hover:text-primary hover:underline">NDT services in Dallas</Link></li>
+                  <li><Link href="/ndt-services/midland-tx" className="text-slate-700 hover:text-primary hover:underline">NDT services in Midland (Permian)</Link></li>
+                  <li><Link href="/ndt-services/denver-co" className="text-slate-700 hover:text-primary hover:underline">NDT services in Denver</Link></li>
+                  <li><Link href="/ndt-services/pittsburgh-pa" className="text-slate-700 hover:text-primary hover:underline">NDT services in Pittsburgh</Link></li>
+                  <li><Link href="/ndt-services/wichita-ks" className="text-slate-700 hover:text-primary hover:underline">NDT services in Wichita</Link></li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-primary text-sm uppercase tracking-wide mb-3">GCC & Saudi</h3>
+                <ul className="space-y-2 text-sm">
+                  <li><Link href="/ndt-services/dubai-ae" className="text-slate-700 hover:text-primary hover:underline">NDT services in Dubai</Link></li>
+                  <li><Link href="/ndt-services/abu-dhabi-ae" className="text-slate-700 hover:text-primary hover:underline">NDT services in Abu Dhabi</Link></li>
+                  <li><Link href="/ndt-services/doha-qa" className="text-slate-700 hover:text-primary hover:underline">NDT services in Doha</Link></li>
+                  <li><Link href="/ndt-services/jubail-sa" className="text-slate-700 hover:text-primary hover:underline">NDT services in Jubail</Link></li>
+                  <li><Link href="/ndt-services/yanbu-sa" className="text-slate-700 hover:text-primary hover:underline">NDT services in Yanbu</Link></li>
+                  <li><Link href="/ndt-services/manama-bh" className="text-slate-700 hover:text-primary hover:underline">NDT services in Manama</Link></li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-primary text-sm uppercase tracking-wide mb-3">India, UK, ANZ, Africa</h3>
+                <ul className="space-y-2 text-sm">
+                  <li><Link href="/ndt-services/mumbai-in" className="text-slate-700 hover:text-primary hover:underline">NDT services in Mumbai</Link></li>
+                  <li><Link href="/ndt-services/jamnagar-in" className="text-slate-700 hover:text-primary hover:underline">NDT services in Jamnagar</Link></li>
+                  <li><Link href="/ndt-services/bangalore-in" className="text-slate-700 hover:text-primary hover:underline">NDT services in Bangalore</Link></li>
+                  <li><Link href="/ndt-services/london-uk" className="text-slate-700 hover:text-primary hover:underline">NDT services in London</Link></li>
+                  <li><Link href="/ndt-services/aberdeen-uk" className="text-slate-700 hover:text-primary hover:underline">NDT services in Aberdeen</Link></li>
+                  <li><Link href="/ndt-services/perth-au" className="text-slate-700 hover:text-primary hover:underline">NDT services in Perth</Link></li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="text-center mt-10">
+              <Link
+                href="/find-providers"
+                className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all"
+              >
+                Browse all 170+ cities <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================
             FINAL CTA - Full-width gradient with glow
             ============================================ */}
         <section className="relative overflow-hidden py-16">
