@@ -226,10 +226,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // Lead with the impression-driving query "NDT inspection cost in <city>"
   // (GSC: this phrase pulls thousands of impressions across the cost-guide
   // network at CTRs well below the 3-4% SERP-position-7 benchmark). Putting
-  // it first in the title closes the CTR gap.
+  // it first in the title closes the CTR gap. Kept ≤60 chars so Google
+  // doesn't truncate it in SERPs.
   const title =
-    `NDT Inspection Cost in ${city.name} — ${method.name} ` +
-    `$${cost.low}–$${cost.high}/hr (${new Date().getFullYear()}) | NDT Connect`;
+    `${method.abbreviation} Cost in ${city.name} — $${cost.low}-$${cost.high}/hr (${new Date().getFullYear()})`;
   const description =
     `NDT inspection cost in ${city.name}: ${method.abbreviation} ${method.unit} ` +
     `$${cost.low}–$${cost.high} (typical $${cost.mid}), tier-${city.tier} ` +

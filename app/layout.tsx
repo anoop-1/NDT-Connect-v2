@@ -8,6 +8,8 @@ import { Footer } from '@/components/layout/Footer';
 import { Toaster } from '@/components/ui/toaster';
 import AdSenseScript from '@/components/ads/AdSenseScript';
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics';
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/react';
 
 
 const fontSans = Inter({
@@ -114,6 +116,8 @@ export default function RootLayout({
           <Footer />
           <Toaster />
         </AuthProvider>
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
