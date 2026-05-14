@@ -238,6 +238,58 @@ export default function MethodPage({ params }: Props) {
           </div>
         </section>
 
+        {/* City providers — internal-link surface from method hub
+            to top city × method pages. 18 anchor links from this hub feed
+            crawl path into the city network. */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-primary mb-6">
+            {method.abbreviation} ({method.name}) services by city
+          </h2>
+          <p className="text-slate-600 mb-6">
+            {method.abbreviation} inspection providers in the cities where this
+            method sees the most demand. Click any link for a locally-anchored
+            scope, named-facility list, and rate band.
+          </p>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-2 text-sm">
+            {[
+              ['houston-tx', 'Houston'],
+              ['beaumont-tx', 'Beaumont'],
+              ['baton-rouge-la', 'Baton Rouge'],
+              ['corpus-christi-tx', 'Corpus Christi'],
+              ['dallas-tx', 'Dallas-Fort Worth'],
+              ['tulsa-ok', 'Tulsa'],
+              ['midland-tx', 'Midland (Permian)'],
+              ['pittsburgh-pa', 'Pittsburgh'],
+              ['denver-co', 'Denver'],
+              ['dubai-ae', 'Dubai'],
+              ['abu-dhabi-ae', 'Abu Dhabi'],
+              ['jubail-sa', 'Jubail'],
+              ['yanbu-sa', 'Yanbu'],
+              ['mumbai-in', 'Mumbai'],
+              ['jamnagar-in', 'Jamnagar'],
+              ['london-uk', 'London'],
+              ['aberdeen-uk', 'Aberdeen'],
+              ['perth-au', 'Perth'],
+            ].map(([slug, label]) => (
+              <Link
+                key={slug}
+                href={`/ndt-services/${slug}/${method.slug}`}
+                className="text-slate-700 hover:text-primary hover:underline"
+              >
+                {method.abbreviation} services in {label}
+              </Link>
+            ))}
+          </div>
+          <div className="mt-4">
+            <Link
+              href="/find-providers"
+              className="inline-flex items-center gap-1.5 text-primary font-semibold hover:gap-2 transition-all text-sm"
+            >
+              All 170+ cities <ArrowRight className="h-3 w-3" />
+            </Link>
+          </div>
+        </section>
+
         {/* Related Methods */}
         <section className="mb-12">
           <h2 className="text-2xl font-bold text-primary mb-6">Other NDT Methods</h2>
