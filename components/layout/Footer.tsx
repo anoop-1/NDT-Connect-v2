@@ -109,15 +109,15 @@ export function Footer() {
               <div className="h-0.5 w-8 bg-gradient-to-r from-blue-500/60 to-transparent rounded-full"></div>
             </div>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/ndt-services/houston" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Houston</Link></li>
-              <li><Link href="/ndt-services/los-angeles" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Los Angeles</Link></li>
-              <li><Link href="/ndt-services/new-york" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">New York</Link></li>
-              <li><Link href="/ndt-services/dubai" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Dubai</Link></li>
-              <li><Link href="/ndt-services/abu-dhabi" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Abu Dhabi</Link></li>
-              <li><Link href="/ndt-services/saudi-arabia" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Saudi Arabia</Link></li>
-              <li><Link href="/ndt-services/london" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">London</Link></li>
-              <li><Link href="/ndt-services/singapore" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Singapore</Link></li>
-              <li><Link href="/ndt-services/mumbai" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Mumbai</Link></li>
+              <li><Link href="/ndt-services/houston-tx" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Houston</Link></li>
+              <li><Link href="/ndt-services/los-angeles-ca" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Los Angeles</Link></li>
+              <li><Link href="/ndt-services/new-york-ny" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">New York</Link></li>
+              <li><Link href="/ndt-services/dubai-ae" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Dubai</Link></li>
+              <li><Link href="/ndt-services/abu-dhabi-ae" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Abu Dhabi</Link></li>
+              <li><Link href="/ndt-services/jubail-sa" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Jubail (Saudi)</Link></li>
+              <li><Link href="/ndt-services/london-uk" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">London</Link></li>
+              <li><Link href="/ndt-services/singapore-sg" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Singapore</Link></li>
+              <li><Link href="/ndt-services/mumbai-in" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Mumbai</Link></li>
               <li><Link href="/find-providers" className="text-blue-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-1 inline-block font-medium">All Locations →</Link></li>
             </ul>
           </div>
@@ -184,27 +184,33 @@ export function Footer() {
               Popular NDT Services by City
             </h4>
             <div className="flex flex-wrap gap-x-3 gap-y-2 text-xs">
-              <Link href="/ndt-services/houston/ultrasonic-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">UT in Houston</Link>
-              <Link href="/ndt-services/houston/radiographic-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">RT in Houston</Link>
-              <Link href="/ndt-services/los-angeles/ultrasonic-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">UT in Los Angeles</Link>
-              <Link href="/ndt-services/dubai/ultrasonic-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">UT in Dubai</Link>
-              <Link href="/ndt-services/dubai/radiographic-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">RT in Dubai</Link>
-              <Link href="/ndt-services/new-york/magnetic-particle-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">MT in New York</Link>
-              <Link href="/ndt-services/chicago/penetrant-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">PT in Chicago</Link>
-              <Link href="/ndt-services/dallas/phased-array-ut" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">PAUT in Dallas</Link>
-              <Link href="/ndt-services/abu-dhabi/corrosion-mapping" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">CM in Abu Dhabi</Link>
-              <Link href="/ndt-services/saudi-arabia/ultrasonic-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">UT in Saudi Arabia</Link>
-              <Link href="/ndt-services/london/eddy-current-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">ET in London</Link>
-              <Link href="/ndt-services/singapore/radiographic-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">RT in Singapore</Link>
-              <Link href="/ndt-services/mumbai/ultrasonic-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">UT in Mumbai</Link>
-              <Link href="/ndt-services/calgary/magnetic-flux-leakage" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">MFL in Calgary</Link>
-              <Link href="/ndt-services/perth/guided-wave-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">GWT in Perth</Link>
-              <Link href="/cost-guide/houston/ultrasonic-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">UT Cost Houston</Link>
-              <Link href="/cost-guide/dubai/radiographic-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">RT Cost Dubai</Link>
+              <Link href="/ndt-services/houston-tx/ultrasonic-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">UT in Houston</Link>
+              <Link href="/ndt-services/houston-tx/radiographic-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">RT in Houston</Link>
+              <Link href="/ndt-services/los-angeles-ca/ultrasonic-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">UT in Los Angeles</Link>
+              <Link href="/ndt-services/dubai-ae/ultrasonic-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">UT in Dubai</Link>
+              <Link href="/ndt-services/dubai-ae/radiographic-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">RT in Dubai</Link>
+              <Link href="/ndt-services/new-york-ny/magnetic-particle-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">MT in New York</Link>
+              <Link href="/ndt-services/chicago-il/penetrant-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">PT in Chicago</Link>
+              <Link href="/ndt-services/dallas-tx/phased-array-ut" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">PAUT in Dallas</Link>
+              <Link href="/ndt-services/abu-dhabi-ae/phased-array-ut" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">PAUT in Abu Dhabi</Link>
+              <Link href="/ndt-services/jubail-sa/ultrasonic-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">UT in Jubail</Link>
+              <Link href="/ndt-services/yanbu-sa/radiographic-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">RT in Yanbu</Link>
+              <Link href="/ndt-services/london-uk/visual-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">VT in London</Link>
+              <Link href="/ndt-services/aberdeen-uk/ultrasonic-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">UT in Aberdeen</Link>
+              <Link href="/ndt-services/singapore-sg/radiographic-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">RT in Singapore</Link>
+              <Link href="/ndt-services/mumbai-in/ultrasonic-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">UT in Mumbai</Link>
+              <Link href="/ndt-services/bangalore-in/phased-array-ut" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">PAUT in Bangalore</Link>
+              <Link href="/ndt-services/jamnagar-in/radiographic-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">RT in Jamnagar</Link>
+              <Link href="/ndt-services/calgary-ab/magnetic-particle-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">MT in Calgary</Link>
+              <Link href="/ndt-services/perth-au/penetrant-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">PT in Perth</Link>
+              <Link href="/cost-guide/houston-tx/ultrasonic-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">UT Cost Houston</Link>
+              <Link href="/cost-guide/dubai-ae/radiographic-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">RT Cost Dubai</Link>
+              <Link href="/tools/ndt-procedure-generator" className="text-blue-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block font-medium">AI Procedure Generator</Link>
+              <Link href="/free-tools" className="text-blue-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block font-medium">Free NDT Tools</Link>
               <Link href="/compare/ultrasonic-testing-vs-radiographic-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">UT vs RT</Link>
               <Link href="/compare/magnetic-particle-testing-vs-penetrant-testing" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">MT vs PT</Link>
-              <Link href="/training/houston" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">NDT Training Houston</Link>
-              <Link href="/careers/houston" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">NDT Careers Houston</Link>
+              <Link href="/training/houston-tx" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">NDT Training Houston</Link>
+              <Link href="/careers/houston-tx" className="text-slate-300 hover:text-blue-200 transition-all duration-200 hover:translate-x-0.5 inline-block">NDT Careers Houston</Link>
             </div>
           </div>
         </div>
