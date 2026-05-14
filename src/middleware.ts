@@ -1,16 +1,40 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { jwtVerify } from 'jose';
+import { resolveLegacyRedirect } from '../lib/legacy-slug-redirects';
 
 export const config = {
   matcher: [
+    // Auth-protected API surface.
     '/api/admin/:path*',
     '/api/notify/:path*',
     '/api/upload/:path*',
+    // Legacy-slug 301s. Middleware-level redirect bypasses the Vercel
+    // routes-cap (2048) that the previous next.config.js-based approach
+    // blew past with 3,167 enumerated rules.
+    '/ndt-services/:path*',
+    '/cost-guide/:path*',
+    '/training/:path*',
+    '/careers/:path*',
   ],
 };
 
 export default async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname;
+
+  // 1) Legacy-slug 301 — fast object lookup. resolveLegacyRedirect returns
+  //    null for canonical slugs (e.g. /ndt-services/houston-tx/...) and the
+  //    new canonical path for legacy slugs (e.g. /ndt-services/houston/...).
+  const dest = resolveLegacyRedirect(path);
+  if (dest) {
+    const target = new URL(dest, req.url);
+    return NextResponse.redirect(target, 301);
+  }
+
+  // 2) Non-API public paths covered by the matcher (ndt-services, cost-guide,
+  //    training, careers) — pass through, no auth required.
+  if (!path.startsWith('/api/')) {
+    return NextResponse.next();
+  }
 
   // Allow seed endpoints without auth (they verify credentials internally)
   if (path === '/api/admin/seed' || path === '/api/admin/seed-legacy-users') {

@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
-const { buildLegacyRedirects } = require('./lib/legacy-slug-redirects');
+// Legacy-slug 301s moved to src/middleware.ts (Vercel route cap is 2048 and
+// the enumerated redirect set is 3,000+).
 
 const nextConfig = {
   /* config options here */
@@ -9,9 +10,6 @@ const nextConfig = {
   },
   eslint: {
     ignoreDuringBuilds: true,
-  },
-  async redirects() {
-    return buildLegacyRedirects();
   },
   async headers() {
     return [

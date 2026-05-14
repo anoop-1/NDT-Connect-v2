@@ -2,10 +2,7 @@
 // exists in data/cities.ts. Catches typos before a build ships dead 301s.
 
 import { CITIES } from '../data/cities';
-// @ts-ignore — CommonJS interop with .js file
-import legacyMap from '../lib/legacy-slug-redirects';
-
-const { CITY_SLUG_MAP, COUNTRY_FALLBACK_MAP } = legacyMap;
+import { CITY_SLUG_MAP, COUNTRY_FALLBACK_MAP, resolveLegacyRedirect } from '../lib/legacy-slug-redirects';
 
 const slugs = new Set(CITIES.map((c) => c.slug));
 
@@ -30,3 +27,28 @@ if (bad === 0) {
 
 console.log('');
 console.log(`COUNTRY_FALLBACK_MAP: ${Object.keys(COUNTRY_FALLBACK_MAP).length} entries (manually verified, no slug check needed).`);
+
+// Smoke-test the resolver against a few representative legacy paths.
+console.log('');
+console.log('Smoke-tests:');
+const cases: [string, string][] = [
+  ['/ndt-services/houston', '/ndt-services/houston-tx'],
+  ['/ndt-services/houston/radiographic-testing', '/ndt-services/houston-tx/radiographic-testing'],
+  ['/ndt-services/houston/eddy-current-testing', '/ndt-services/houston-tx'],
+  ['/ndt-services/saudi-arabia', '/find-providers?country=sa'],
+  ['/cost-guide/dubai/radiographic-testing', '/cost-guide/dubai-ae/radiographic-testing'],
+  ['/training/bangalore', '/training/bangalore-in'],
+  ['/careers/sydney', '/careers/sydney-au'],
+  ['/ndt-services/houston-tx', null as unknown as string],  // canonical, no redirect
+];
+let smokeFails = 0;
+for (const [input, expected] of cases) {
+  const got = resolveLegacyRedirect(input);
+  const ok = got === expected;
+  if (!ok) smokeFails += 1;
+  console.log(`  ${ok ? 'OK ' : 'FAIL'}  ${input}  ->  ${got ?? '(no redirect)'}${ok ? '' : `  (expected ${expected ?? '(no redirect)'})`}`);
+}
+if (smokeFails > 0) {
+  console.log(`Smoke-test failures: ${smokeFails}`);
+  process.exit(1);
+}
