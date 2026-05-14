@@ -223,13 +223,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const stateLabel = city.country === 'US' || city.country === 'CA' ? city.state : city.country;
   const cost = computeCostBand(city, method);
-  // Lead with the impression-driving query "NDT inspection cost in <city>"
-  // (GSC: this phrase pulls thousands of impressions across the cost-guide
-  // network at CTRs well below the 3-4% SERP-position-7 benchmark). Putting
-  // it first in the title closes the CTR gap. Kept ≤60 chars so Google
-  // doesn't truncate it in SERPs.
+  // Lead with impression-driving exact-match query "NDT inspection cost in
+  // <city>" — GSC shows thousands of impressions across cost-guide pages at
+  // CTRs well below the 3.8% pos-7 benchmark. Old title led with "UT Cost"
+  // which doesn't match how procurement actually searches. ≤60 chars so it
+  // doesn't truncate in SERPs.
   const title =
-    `${method.abbreviation} Cost in ${city.name} — $${cost.low}-$${cost.high}/hr (${new Date().getFullYear()})`;
+    `NDT Inspection Cost in ${city.name} (${method.abbreviation}): $${cost.low}-$${cost.high}/hr ${new Date().getFullYear()}`;
   const description =
     `NDT inspection cost in ${city.name}: ${method.abbreviation} ${method.unit} ` +
     `$${cost.low}–$${cost.high} (typical $${cost.mid}), tier-${city.tier} ` +

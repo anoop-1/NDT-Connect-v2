@@ -23,8 +23,12 @@ const fontMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'NDT Connect - Real-Time NDT Inspection Services Platform',
-  description: 'Book NDT inspection online. Connect with certified NDT service providers and freelance inspectors for UT, RT, PT, MT testing. Real-time tracking, instant quotes, and verified experts.',
+  metadataBase: new URL('https://ndt-connect.com'),
+  title: {
+    default: 'NDT Connect — Hire Certified NDT Inspectors in 180+ Cities',
+    template: '%s | NDT Connect',
+  },
+  description: 'Post your NDT inspection job, get parallel quotes from certified UT, RT, MT, PT, PAUT providers in 180+ cities. Free to post — no signup to browse.',
   keywords: [
     'NDT services platform',
     'book NDT inspection online',

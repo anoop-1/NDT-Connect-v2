@@ -12,26 +12,26 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'NDT Connect | #1 Marketplace for Non-Destructive Testing Services',
-  description: 'Find certified NDT inspectors worldwide. NDT Connect is the leading marketplace connecting asset owners with qualified non-destructive testing providers for UT, RT, MT, PT, PAUT, TOFD, and more. Instant quotes, real-time tracking.',
+  title: 'NDT Connect — Hire Certified NDT Inspectors in 180+ Cities',
+  description: 'Post your NDT inspection job, get parallel quotes from certified UT, RT, MT, PT, PAUT, TOFD providers in 180+ cities. Free to post — no signup to browse rates.',
   keywords: [
-    'NDT marketplace', 'non-destructive testing', 'NDT services', 'NDT inspectors',
-    'ultrasonic testing', 'radiographic testing', 'magnetic particle testing',
-    'NDT provider', 'NDT inspection', 'find NDT services', 'book NDT inspection',
-    'certified NDT inspectors', 'NDT service marketplace', 'industrial inspection',
-    'NDT inspection near me', 'NDT testing companies', 'NDT inspection cost',
+    'NDT Connect', 'NDT marketplace', 'NDT services', 'NDT inspectors near me',
+    'find NDT provider', 'hire NDT inspector', 'NDT inspection quotes',
+    'ultrasonic testing services', 'radiographic testing', 'magnetic particle testing',
+    'phased array UT', 'NDT inspection cost', 'certified NDT inspectors',
+    'industrial inspection marketplace', 'oil gas NDT services',
   ],
   openGraph: {
-    title: 'NDT Connect | The #1 NDT Inspection Marketplace',
-    description: 'Find certified NDT inspectors worldwide. Connect with qualified providers for UT, RT, MT, PT, PAUT, and more.',
+    title: 'NDT Connect — Hire Certified NDT Inspectors in 180+ Cities',
+    description: 'Post a job, receive parallel quotes from certified UT, RT, MT, PT, PAUT providers worldwide. Free to post.',
     url: 'https://ndt-connect.com',
     type: 'website',
     siteName: 'NDT Connect',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'NDT Connect | #1 NDT Inspection Marketplace',
-    description: 'Find certified NDT inspectors worldwide. Instant quotes, real-time tracking.',
+    title: 'NDT Connect — Hire Certified NDT Inspectors in 180+ Cities',
+    description: 'Parallel quotes from certified NDT inspectors. UT, RT, MT, PT, PAUT, TOFD. Free to post.',
   },
   alternates: { canonical: 'https://ndt-connect.com' },
 };
