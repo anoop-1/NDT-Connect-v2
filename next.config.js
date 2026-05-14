@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const { buildLegacyRedirects } = require('./lib/legacy-slug-redirects');
+
 const nextConfig = {
   /* config options here */
   typescript: {
@@ -7,6 +9,9 @@ const nextConfig = {
   },
   eslint: {
     ignoreDuringBuilds: true,
+  },
+  async redirects() {
+    return buildLegacyRedirects();
   },
   async headers() {
     return [

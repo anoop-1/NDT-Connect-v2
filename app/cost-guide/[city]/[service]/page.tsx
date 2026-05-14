@@ -223,20 +223,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const stateLabel = city.country === 'US' || city.country === 'CA' ? city.state : city.country;
   const cost = computeCostBand(city, method);
-  const title = `${method.name} Cost in ${city.name}, ${stateLabel} (${new Date().getFullYear()}) | NDT Connect`;
+  // Lead with the impression-driving query "NDT inspection cost in <city>"
+  // (GSC: this phrase pulls thousands of impressions across the cost-guide
+  // network at CTRs well below the 3-4% SERP-position-7 benchmark). Putting
+  // it first in the title closes the CTR gap.
+  const title =
+    `NDT Inspection Cost in ${city.name} — ${method.name} ` +
+    `$${cost.low}–$${cost.high}/hr (${new Date().getFullYear()}) | NDT Connect`;
   const description =
-    `${method.abbreviation} inspection rates in ${city.name}: $${cost.low}–$${cost.high} ${method.unit}, ` +
-    `typical $${cost.mid}. Tier-${city.tier} labour band. Compare quotes from certified ${city.name} providers.`;
+    `NDT inspection cost in ${city.name}: ${method.abbreviation} ${method.unit} ` +
+    `$${cost.low}–$${cost.high} (typical $${cost.mid}), tier-${city.tier} ` +
+    `${city.country === 'US' ? city.state : city.country} labour band. ` +
+    `Compare quotes from certified ${city.name} providers — free, no signup to view.`;
 
   return {
     title,
     description,
     keywords: [
-      `${method.abbreviation} cost ${city.name}`,
+      `NDT inspection cost ${city.name}`,
+      `NDT cost in ${city.name}`,
+      `${method.abbreviation} inspection cost ${city.name}`,
       `${method.name} pricing ${city.name}`,
-      `${method.abbreviation} rate ${city.name}, ${city.state}`,
-      `NDT cost ${city.name}`,
+      `${method.abbreviation} rate ${city.name} ${stateLabel}`,
       `${method.abbreviation} per hour ${city.name}`,
+      `NDT services cost ${city.name}`,
     ],
     openGraph: {
       title,
@@ -348,12 +358,13 @@ export default function CostGuidePage({ params }: Props) {
             </div>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-primary mb-3">
-            {method.name} cost in {city.name}
+            NDT inspection cost in {city.name}: {method.name} rates
           </h1>
           <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-            Field-anchored pricing guide for {method.abbreviation} ({method.name}) inspection services
-            in {city.name}, {stateLabel}. Rates are quoted in USD per hour and reflect the Tier-
-            {city.tier} labour band that applies across {city.region.replace(/-/g, ' ')} markets.
+            Field-anchored pricing guide for {method.abbreviation} ({method.name}) and the
+            other five common NDT methods in {city.name}, {stateLabel}. Rates are quoted in
+            USD per hour and reflect the Tier-{city.tier} labour band that applies across{' '}
+            {city.region.replace(/-/g, ' ')} markets.
           </p>
           <blockquote className="border-l-4 border-primary/50 pl-4 italic text-slate-700 mb-6">
             {city.localPainQuote}
