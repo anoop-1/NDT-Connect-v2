@@ -375,28 +375,28 @@ export default async function CitySlugPage({ params }: PageProps) {
 
       <div className="space-y-16">
         {/* Breadcrumb */}
-        <div className="glass py-4 px-0 sticky top-0 z-40 backdrop-blur-xl border-b border-white/10">
+        <div className="bg-white/95 py-4 px-0 sticky top-0 z-40 backdrop-blur-md border-b border-slate-200 shadow-sm">
           <div className="container">
             <nav className="flex items-center space-x-2 text-sm">
-              <Link href="/" className="text-brand hover:text-brand-dark font-medium transition">
+              <Link href="/" className="text-primary hover:text-primary/80 font-medium transition">
                 Home
               </Link>
-              <ChevronRight className="w-4 h-4 text-white/40" />
+              <ChevronRight className="w-4 h-4 text-slate-400" />
               <Link
                 href={`/ndt-services/${city.slug}`}
-                className="text-brand hover:text-brand-dark font-medium transition"
+                className="text-primary hover:text-primary/80 font-medium transition"
               >
                 {city.name}
               </Link>
-              <ChevronRight className="w-4 h-4 text-white/40" />
+              <ChevronRight className="w-4 h-4 text-slate-400" />
               <Link
                 href={`/services/${method.slug}`}
-                className="text-brand hover:text-brand-dark font-medium transition"
+                className="text-primary hover:text-primary/80 font-medium transition"
               >
                 {method.name}
               </Link>
-              <ChevronRight className="w-4 h-4 text-white/40" />
-              <span className="text-white/60">
+              <ChevronRight className="w-4 h-4 text-slate-400" />
+              <span className="text-slate-500">
                 {method.abbreviation} in {city.name}
               </span>
             </nav>
@@ -404,37 +404,64 @@ export default async function CitySlugPage({ params }: PageProps) {
         </div>
 
         {/* Hero */}
-        <section className="relative overflow-hidden pt-20 pb-20">
-          <div className="hero-grid-bg absolute inset-0 opacity-5"></div>
-          <div className="absolute inset-0 hero-radial-glow"></div>
+        <section className="relative overflow-hidden pt-20 pb-20 bg-gradient-to-br from-[#003680] via-[#004aad] to-[#0066ff]">
+          <div className="absolute inset-0 opacity-10"
+            style={{
+              backgroundImage:
+                'linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px)',
+              backgroundSize: '40px 40px',
+            }}
+          ></div>
           <div className="container relative z-10">
             <div className="max-w-4xl">
-              <div className="inline-block mb-6 px-4 py-2 glass-dark rounded-full text-sm font-semibold text-brand border border-brand/20 backdrop-blur-sm">
+              <div className="inline-block mb-6 px-4 py-2 bg-white/15 rounded-full text-sm font-semibold text-white border border-white/30 backdrop-blur-sm">
                 {method.abbreviation} services in {city.name}, {stateLabel}
               </div>
-              <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-6 gradient-text text-slate-900">
+              <h1 className="text-5xl md:text-6xl font-bold tracking-tight mb-6 text-white drop-shadow-md">
                 {method.name} in {city.name}
               </h1>
-              <p className="text-xl text-white/80 mb-6 leading-relaxed max-w-3xl">
+              <p className="text-xl text-white/95 mb-6 leading-relaxed max-w-3xl">
                 {method.shortDescription}
               </p>
-              <blockquote className="border-l-4 border-brand pl-4 italic text-white/75 max-w-3xl mb-8">
+              <blockquote className="border-l-4 border-white/60 pl-4 italic text-white/90 max-w-3xl mb-8">
                 {city.localPainQuote}
               </blockquote>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link
                   href="/request-service"
-                  className="px-8 py-4 bg-brand text-white rounded-xl font-semibold hover:bg-brand-dark transition btn-glow text-center"
+                  className="px-8 py-4 bg-white text-primary rounded-xl font-semibold hover:bg-slate-100 transition text-center shadow-lg"
                 >
                   Request a {method.abbreviation} quote
                 </Link>
                 <Link
                   href={`/services/${method.slug}`}
-                  className="px-8 py-4 glass-strong rounded-xl font-semibold hover:glass text-brand border border-brand/30 transition text-center"
+                  className="px-8 py-4 bg-white/10 backdrop-blur-sm rounded-xl font-semibold hover:bg-white/20 text-white border border-white/40 transition text-center"
                 >
                   Method reference: {method.abbreviation}
                 </Link>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Stat strip — visual anchor under hero */}
+        <section className="container -mt-8 relative z-20">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-white rounded-2xl shadow-lg border border-slate-200 p-6">
+            <div className="text-center border-r border-slate-100 last:border-r-0 md:border-r">
+              <div className="text-3xl font-extrabold text-primary">{city.industries.length}</div>
+              <div className="text-xs font-medium text-slate-600 uppercase tracking-wide mt-1">Local industries</div>
+            </div>
+            <div className="text-center border-r border-slate-100 last:border-r-0 md:border-r">
+              <div className="text-3xl font-extrabold text-primary">{city.namedFacilities.length}+</div>
+              <div className="text-xs font-medium text-slate-600 uppercase tracking-wide mt-1">Named facilities</div>
+            </div>
+            <div className="text-center border-r border-slate-100 last:border-r-0 md:border-r">
+              <div className="text-3xl font-extrabold text-primary">T{city.tier}</div>
+              <div className="text-xs font-medium text-slate-600 uppercase tracking-wide mt-1">Labour band</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-extrabold text-primary">{city.codeAuthorities.length}</div>
+              <div className="text-xs font-medium text-slate-600 uppercase tracking-wide mt-1">Code authorities</div>
             </div>
           </div>
         </section>
@@ -445,45 +472,45 @@ export default async function CitySlugPage({ params }: PageProps) {
         <section className="container">
           <div className="grid lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
-              <h2 className="text-4xl font-bold mb-6 gradient-text text-slate-900">
+              <h2 className="text-4xl font-bold mb-6 text-primary">
                 How {method.name} works
               </h2>
-              <p className="text-base text-white/80 mb-6 leading-relaxed">{method.principle}</p>
-              <h3 className="text-2xl font-bold mb-4 text-brand">
+              <p className="text-base text-slate-700 mb-6 leading-relaxed">{method.principle}</p>
+              <h3 className="text-2xl font-bold mb-4 text-primary">
                 {method.abbreviation} in {city.name}
               </h3>
-              <p className="text-base text-white/80 leading-relaxed">{methodInCityCopy}</p>
+              <p className="text-base text-slate-700 leading-relaxed">{methodInCityCopy}</p>
             </div>
-            <div className="glass-strong backdrop-blur-xl rounded-2xl p-8 h-fit border border-brand/20">
-              <h3 className="font-bold mb-6 flex items-center text-xl text-brand">
+            <div className="bg-white shadow-md rounded-2xl p-8 h-fit border border-primary/20">
+              <h3 className="font-bold mb-6 flex items-center text-xl text-primary">
                 <Zap className="w-6 h-6 mr-3" />
                 Quick facts
               </h3>
               <ul className="space-y-4 text-sm">
                 <li className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-white/90">
-                    <strong className="text-brand">Method:</strong> {method.abbreviation} —{' '}
+                  <CheckCircle className="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                  <span className="text-slate-800">
+                    <strong className="text-primary">Method:</strong> {method.abbreviation} —{' '}
                     {method.name}
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-white/90">
-                    <strong className="text-brand">Service area:</strong> {city.name}, {stateLabel}
+                  <CheckCircle className="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                  <span className="text-slate-800">
+                    <strong className="text-primary">Service area:</strong> {city.name}, {stateLabel}
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-white/90">
-                    <strong className="text-brand">Primary industries:</strong>{' '}
+                  <CheckCircle className="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                  <span className="text-slate-800">
+                    <strong className="text-primary">Primary industries:</strong>{' '}
                     {city.industries.slice(0, 2).join(', ')}
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-white/90">
-                    <strong className="text-brand">Key standards:</strong>{' '}
+                  <CheckCircle className="w-5 h-5 text-emerald-600 mt-0.5 flex-shrink-0" />
+                  <span className="text-slate-800">
+                    <strong className="text-primary">Key standards:</strong>{' '}
                     {method.standards.slice(0, 2).join(', ')}
                   </span>
                 </li>
@@ -496,36 +523,36 @@ export default async function CitySlugPage({ params }: PageProps) {
 
         {/* Local applications */}
         <section className="container">
-          <h2 className="text-4xl font-bold mb-12 gradient-text text-center">
+          <h2 className="text-4xl font-bold mb-12 text-primary text-center">
             Where {method.abbreviation} shows up on {city.name} jobs
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="glass-dark rounded-2xl p-8 backdrop-blur-xl border border-brand/20">
-              <h3 className="text-2xl font-bold mb-4 flex items-center text-brand">
+            <div className="bg-primary/5 rounded-2xl p-8 border border-primary/20">
+              <h3 className="text-2xl font-bold mb-4 flex items-center text-primary">
                 <Target className="w-6 h-6 mr-3" />
                 Industry relevance
               </h3>
-              <p className="text-white/80 leading-relaxed mb-4">
+              <p className="text-slate-700 leading-relaxed mb-4">
                 {city.industries.slice(0, 2).join(' and ')} operators in {city.name} pull{' '}
                 {method.abbreviation} into routine and turnaround scopes. The named recurring sites
                 include {city.namedFacilities.slice(0, 2).map((f) => f.name).join(' and ')}.
               </p>
-              <p className="text-white/75 leading-relaxed">
+              <p className="text-slate-600 leading-relaxed">
                 Acceptance criteria are written against {city.codeAuthorities[0]} and ratified at
                 Level III sign-off for procedure qualification.
               </p>
             </div>
-            <div className="glass-dark rounded-2xl p-8 backdrop-blur-xl border border-brand/20">
-              <h3 className="text-2xl font-bold mb-4 flex items-center text-brand">
+            <div className="bg-primary/5 rounded-2xl p-8 border border-primary/20">
+              <h3 className="text-2xl font-bold mb-4 flex items-center text-primary">
                 <Shield className="w-6 h-6 mr-3" />
                 Compliance and safety
               </h3>
-              <p className="text-white/80 leading-relaxed mb-4">
+              <p className="text-slate-700 leading-relaxed mb-4">
                 {method.name} inspections in {city.name} reference{' '}
                 {method.standards.slice(0, 3).join(', ')}. Site-specific qualification matrices add
                 operator-specific requirements on top.
               </p>
-              <p className="text-white/75 leading-relaxed">
+              <p className="text-slate-600 leading-relaxed">
                 Working with NDT Connect-listed providers ensures Level II/III currency,
                 instrument-level calibration traceability, and digital record packages that survive
                 audit retention demands.
@@ -538,11 +565,11 @@ export default async function CitySlugPage({ params }: PageProps) {
 
         {/* Named facilities */}
         <section className="container">
-          <h2 className="text-4xl font-bold mb-12 gradient-text text-center">
+          <h2 className="text-4xl font-bold mb-12 text-primary text-center">
             Named {city.name} facilities served
           </h2>
-          <div className="glass-dark rounded-2xl p-8 backdrop-blur-xl border border-brand/20">
-            <p className="text-white/80 mb-8 leading-relaxed text-lg">
+          <div className="bg-primary/5 rounded-2xl p-8 border border-primary/20">
+            <p className="text-slate-700 mb-8 leading-relaxed text-lg">
               {method.name} scopes in {city.name} recur at the following operators and sites.
               Local contractors are pre-qualified at most of these gates.
             </p>
@@ -550,12 +577,12 @@ export default async function CitySlugPage({ params }: PageProps) {
               {city.namedFacilities.map((f, idx) => (
                 <div
                   key={idx}
-                  className="flex items-start p-4 glass rounded-xl border border-white/10"
+                  className="flex items-start p-4 bg-white rounded-xl border border-slate-200 shadow-sm"
                 >
-                  <CheckCircle className="w-5 h-5 text-emerald-400 mr-3 mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="w-5 h-5 text-emerald-600 mr-3 mt-0.5 flex-shrink-0" />
                   <div>
-                    <p className="font-semibold text-white">{f.name}</p>
-                    <p className="text-xs text-white/60 mt-1">
+                    <p className="font-semibold text-slate-900">{f.name}</p>
+                    <p className="text-xs text-slate-500 mt-1">
                       {f.type} — {method.abbreviation} scope routine
                     </p>
                   </div>
@@ -569,32 +596,32 @@ export default async function CitySlugPage({ params }: PageProps) {
 
         {/* Applicable standards */}
         <section className="container">
-          <h2 className="text-4xl font-bold mb-12 gradient-text text-center">
+          <h2 className="text-4xl font-bold mb-12 text-primary text-center">
             Applicable standards and codes
           </h2>
-          <p className="text-white/75 mb-8 leading-relaxed text-center text-lg">
+          <p className="text-slate-600 mb-8 leading-relaxed text-center text-lg">
             {method.name} inspections in {city.name} are written and accepted against:
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {method.standards.map((s) => (
               <div
                 key={s}
-                className="glass rounded-xl p-5 backdrop-blur-xl border border-brand/20 flex items-center gap-3"
+                className="bg-white rounded-xl p-5 border border-primary/20 shadow-sm flex items-center gap-3"
               >
-                <Shield className="w-5 h-5 text-brand flex-shrink-0" />
-                <p className="font-semibold text-sm text-white">{s}</p>
+                <Shield className="w-5 h-5 text-primary flex-shrink-0" />
+                <p className="font-semibold text-sm text-slate-900">{s}</p>
               </div>
             ))}
           </div>
           <div className="mt-10">
-            <h3 className="text-xl font-bold mb-3 text-brand text-center">
+            <h3 className="text-xl font-bold mb-3 text-primary text-center">
               Local code authorities
             </h3>
             <div className="flex flex-wrap gap-3 justify-center">
               {city.codeAuthorities.map((c, i) => (
                 <Badge
                   key={i}
-                  className="glass border border-brand/30 bg-brand/5 text-brand font-medium py-2 px-4"
+                  className="border border-primary/30 bg-primary/10 text-primary font-medium py-2 px-4"
                 >
                   {c}
                 </Badge>
@@ -609,32 +636,32 @@ export default async function CitySlugPage({ params }: PageProps) {
         <section className="container">
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h2 className="text-3xl font-bold mb-6 gradient-text text-slate-900">
+              <h2 className="text-3xl font-bold mb-6 text-primary">
                 Why {method.abbreviation} is chosen
               </h2>
               <ul className="space-y-3">
                 {method.advantages.map((a, i) => (
                   <li
                     key={i}
-                    className="flex items-start p-4 glass rounded-xl border border-white/10"
+                    className="flex items-start p-4 bg-white rounded-xl border border-slate-200 shadow-sm"
                   >
-                    <CheckCircle className="w-5 h-5 text-emerald-400 mr-3 mt-0.5 flex-shrink-0" />
-                    <p className="text-sm text-white/90">{a}</p>
+                    <CheckCircle className="w-5 h-5 text-emerald-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <p className="text-sm text-slate-800">{a}</p>
                   </li>
                 ))}
               </ul>
             </div>
             <div>
-              <h2 className="text-3xl font-bold mb-6 gradient-text text-slate-900">
+              <h2 className="text-3xl font-bold mb-6 text-primary">
                 Typical applications
               </h2>
               <ul className="space-y-3">
                 {method.applications.map((a, i) => (
                   <li
                     key={i}
-                    className="p-4 glass rounded-xl border border-white/10 text-sm text-white/90 flex items-start gap-3"
+                    className="p-4 bg-white rounded-xl border border-slate-200 shadow-sm text-sm text-slate-800 flex items-start gap-3"
                   >
-                    <span className="text-brand font-bold mt-0.5">•</span>
+                    <span className="text-primary font-bold mt-0.5">•</span>
                     <span>{a}</span>
                   </li>
                 ))}
@@ -647,17 +674,17 @@ export default async function CitySlugPage({ params }: PageProps) {
 
         {/* FAQ */}
         <section className="container">
-          <h2 className="text-4xl font-bold mb-12 gradient-text text-center">
+          <h2 className="text-4xl font-bold mb-12 text-primary text-center">
             Frequently asked questions
           </h2>
           <div className="space-y-4">
             {faqs.map((f, i) => (
               <div
                 key={i}
-                className="glass rounded-xl p-6 backdrop-blur-xl border border-white/10"
+                className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm"
               >
-                <h3 className="font-bold text-lg mb-3 text-brand">{f.q}</h3>
-                <p className="text-white/80 leading-relaxed">{f.a}</p>
+                <h3 className="font-bold text-lg mb-3 text-primary">{f.q}</h3>
+                <p className="text-slate-700 leading-relaxed">{f.a}</p>
               </div>
             ))}
           </div>
@@ -669,16 +696,16 @@ export default async function CitySlugPage({ params }: PageProps) {
         <section className="relative overflow-hidden rounded-3xl p-12 md:p-20">
           <div className="absolute inset-0 bg-gradient-to-br from-[#004aad]/30 via-transparent to-[#004aad]/10"></div>
           <div className="relative z-10 text-center max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 gradient-text text-slate-900">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-primary">
               Ready for {method.abbreviation} inspection in {city.name}?
             </h2>
-            <p className="text-lg text-white/80 mb-8 leading-relaxed">
+            <p className="text-lg text-slate-700 mb-8 leading-relaxed">
               Connect with certified {method.abbreviation} providers in {city.name}. Parallel
               quotes, traceable calibration, audit-grade records.
             </p>
             <Link
               href="/request-service"
-              className="px-10 py-4 bg-brand text-white rounded-xl font-bold hover:bg-brand-dark transition btn-glow inline-block"
+              className="px-10 py-4 bg-primary text-white rounded-xl font-bold hover:bg-primary/90 transition shadow-lg inline-block"
             >
               Get a free quote today
             </Link>
@@ -689,7 +716,7 @@ export default async function CitySlugPage({ params }: PageProps) {
 
         {/* Other methods in this city */}
         <section className="container">
-          <h2 className="text-3xl font-bold mb-8 gradient-text text-center text-slate-900">
+          <h2 className="text-3xl font-bold mb-8 text-primary text-center">
             Other NDT methods in {city.name}
           </h2>
           <div className="grid md:grid-cols-2 gap-6">
@@ -697,14 +724,14 @@ export default async function CitySlugPage({ params }: PageProps) {
               <Link
                 key={m.slug}
                 href={`/ndt-services/${city.slug}/${m.slug}`}
-                className="glass rounded-2xl p-6 backdrop-blur-xl border border-brand/20 card-hover-3d transition-all group block"
+                className="bg-white rounded-2xl p-6 border border-primary/20 shadow-sm hover:shadow-lg hover:border-primary/40 transition-all group block"
               >
-                <h3 className="font-bold text-xl mb-2 text-brand group-hover:text-emerald-400 transition">
+                <h3 className="font-bold text-xl mb-2 text-primary group-hover:text-emerald-600 transition">
                   {m.name}
                 </h3>
-                <p className="text-sm text-white/70 mb-3">{m.abbreviation}</p>
-                <p className="text-sm text-white/80 leading-relaxed">{m.shortDescription}</p>
-                <div className="mt-4 flex items-center gap-2 text-brand text-sm font-semibold">
+                <p className="text-sm text-slate-600 mb-3">{m.abbreviation}</p>
+                <p className="text-sm text-slate-700 leading-relaxed">{m.shortDescription}</p>
+                <div className="mt-4 flex items-center gap-2 text-primary text-sm font-semibold">
                   {m.abbreviation} in {city.name} <ArrowRight className="w-4 h-4" />
                 </div>
               </Link>
@@ -717,7 +744,7 @@ export default async function CitySlugPage({ params }: PageProps) {
         {/* Same method, nearest cities */}
         {nearby.length > 0 && (
           <section className="container">
-            <h2 className="text-3xl font-bold mb-8 gradient-text text-center text-slate-900">
+            <h2 className="text-3xl font-bold mb-8 text-primary text-center">
               {method.name} in nearby cities
             </h2>
             <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -725,10 +752,10 @@ export default async function CitySlugPage({ params }: PageProps) {
                 <Link
                   key={c.slug}
                   href={`/ndt-services/${c.slug}/${method.slug}`}
-                  className="glass rounded-xl p-4 border border-white/10 card-hover-lift group flex flex-col items-center gap-2 text-center text-sm"
+                  className="bg-white rounded-xl p-4 border border-slate-200 shadow-sm hover:shadow-md hover:border-primary/30 transition-all group flex flex-col items-center gap-2 text-center text-sm"
                 >
-                  <MapPin className="w-5 h-5 text-brand" />
-                  <span className="font-semibold text-foreground group-hover:text-brand transition">
+                  <MapPin className="w-5 h-5 text-primary" />
+                  <span className="font-semibold text-foreground group-hover:text-primary transition">
                     {method.abbreviation} in {c.name}
                   </span>
                   <span className="text-xs text-slate-500">

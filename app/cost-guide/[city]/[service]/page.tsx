@@ -360,7 +360,7 @@ export default function CostGuidePage({ params }: Props) {
           <h1 className="text-4xl md:text-5xl font-bold text-primary mb-3">
             NDT inspection cost in {city.name}: {method.name} rates
           </h1>
-          <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+          <p className="text-lg text-slate-700 leading-relaxed mb-4">
             Field-anchored pricing guide for {method.abbreviation} ({method.name}) and the
             other five common NDT methods in {city.name}, {stateLabel}. Rates are quoted in
             USD per hour and reflect the Tier-{city.tier} labour band that applies across{' '}
@@ -407,7 +407,7 @@ export default function CostGuidePage({ params }: Props) {
               </CardHeader>
               <CardContent className="prose prose-sm max-w-none">
                 <p className="mb-4">{method.description}</p>
-                <p className="text-muted-foreground text-sm">{method.longDescription}</p>
+                <p className="text-slate-700 text-sm">{method.longDescription}</p>
               </CardContent>
             </Card>
 
@@ -419,7 +419,7 @@ export default function CostGuidePage({ params }: Props) {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="mb-4 text-sm text-muted-foreground">
+                <p className="mb-4 text-sm text-slate-700">
                   {city.name}&apos;s industrial substrate — {city.industries.slice(0, 3).join(', ')} —
                   pulls NDT scopes onto recurring sites including{' '}
                   {city.namedFacilities.slice(0, 2).map((f) => f.name).join(' and ')}. The local
@@ -427,7 +427,7 @@ export default function CostGuidePage({ params }: Props) {
                   which requires Level II / III certified personnel and traceable instrument
                   calibration. That floor — not raw wage data — is what sets the band.
                 </p>
-                <p className="mb-4 text-sm text-muted-foreground">
+                <p className="mb-4 text-sm text-slate-700">
                   The Tier-{city.tier} multiplier (×{cost.multiplier.toFixed(2)} applied to the
                   national {method.abbreviation} base band) accounts for local cost of living,
                   procurement competition, and the documentary overhead that {city.codeAuthorities[0]}{' '}
@@ -450,7 +450,7 @@ export default function CostGuidePage({ params }: Props) {
                     ))}
                   </div>
                 </div>
-                <p className="text-sm text-muted-foreground">
+                <p className="text-sm text-slate-700">
                   <strong>Named operators / sites:</strong>{' '}
                   {city.namedFacilities.map((f) => f.name).join(', ')}.
                 </p>
@@ -467,9 +467,9 @@ export default function CostGuidePage({ params }: Props) {
               <CardContent>
                 <div className="grid sm:grid-cols-2 gap-4">
                   {factorsAffectingCost.map((factor, idx) => (
-                    <div key={idx} className="p-4 bg-slate-50 rounded-lg">
+                    <div key={idx} className="p-4 bg-white border border-slate-200 shadow-sm rounded-lg">
                       <h4 className="font-semibold text-primary mb-2">{factor.factor}</h4>
-                      <p className="text-sm text-muted-foreground">{factor.description}</p>
+                      <p className="text-sm text-slate-700">{factor.description}</p>
                     </div>
                   ))}
                 </div>
@@ -488,7 +488,7 @@ export default function CostGuidePage({ params }: Props) {
                   {costSavingTips.map((tip, idx) => (
                     <li key={idx} className="flex items-start gap-3">
                       <span className="text-primary font-bold shrink-0">{idx + 1}.</span>
-                      <span className="text-sm text-muted-foreground">{tip}</span>
+                      <span className="text-sm text-slate-700">{tip}</span>
                     </li>
                   ))}
                 </ul>
@@ -506,7 +506,7 @@ export default function CostGuidePage({ params }: Props) {
                   {method.applications.map((app, idx) => (
                     <li
                       key={idx}
-                      className="text-sm text-muted-foreground flex items-start gap-2"
+                      className="text-sm text-slate-700 flex items-start gap-2"
                     >
                       <span className="text-primary shrink-0">•</span>
                       <span>{app}</span>
@@ -548,7 +548,7 @@ export default function CostGuidePage({ params }: Props) {
                   <p className="text-xs font-semibold text-muted-foreground uppercase mb-1">
                     Code authority
                   </p>
-                  <p className="text-sm text-muted-foreground">{city.codeAuthorities[0]}</p>
+                  <p className="text-sm text-slate-700">{city.codeAuthorities[0]}</p>
                 </div>
               </CardContent>
             </Card>

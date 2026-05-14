@@ -299,46 +299,73 @@ export default async function CityPage({ params }: Props) {
         </nav>
 
         {/* Hero */}
-        <section className="relative overflow-hidden rounded-2xl mb-16 px-4 md:px-0">
-          <div className="absolute inset-0 hero-grid-bg opacity-10"></div>
-          <div
-            className="absolute top-10 right-10 w-72 h-72 orb opacity-20 rounded-full blur-3xl"
-            style={{ backgroundColor: '#004aad' }}
-          ></div>
-          <div className="relative z-10 glass glass-strong rounded-2xl p-8 md:p-12 border border-white/10">
-            <div className="flex items-center gap-2 mb-4">
-              <Badge className="glass border border-white/20 bg-white/5 text-primary font-medium">
-                <MapPin className="h-3 w-3 mr-1.5" />
-                {city.region.replace(/-/g, ' ')} · {city.country}
-              </Badge>
+        <section className="relative overflow-hidden rounded-2xl mb-12 px-4 md:px-0">
+          <div className="relative z-10 rounded-2xl p-8 md:p-12 bg-gradient-to-br from-[#003680] via-[#004aad] to-[#0066ff] text-white shadow-xl">
+            <div
+              className="absolute inset-0 opacity-10 rounded-2xl"
+              style={{
+                backgroundImage:
+                  'linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px)',
+                backgroundSize: '40px 40px',
+              }}
+            ></div>
+            <div className="relative z-10">
+              <div className="flex items-center gap-2 mb-4">
+                <Badge className="bg-white/15 border border-white/30 text-white font-medium">
+                  <MapPin className="h-3 w-3 mr-1.5" />
+                  {city.region.replace(/-/g, ' ')} · {city.country}
+                </Badge>
+              </div>
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight drop-shadow-md">
+                NDT Services in {city.name}, {stateLabel}
+              </h1>
+              <p className="text-lg text-white/95 max-w-3xl mb-4 leading-relaxed">
+                {introParagraphs[0]}
+              </p>
+              <blockquote className="border-l-4 border-white/60 pl-4 italic text-white/90 max-w-3xl mb-6">
+                {city.localPainQuote}
+              </blockquote>
+              <div className="flex flex-wrap gap-4">
+                <Button size="lg" className="bg-white text-primary hover:bg-slate-100 shadow-lg" asChild>
+                  <Link href="/find-providers">
+                    <Search className="h-4 w-4 mr-2" />
+                    Find Inspectors in {city.name}
+                  </Link>
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="bg-white/10 backdrop-blur-sm border-white/40 text-white hover:bg-white/20"
+                  asChild
+                >
+                  <Link href="/request-service">
+                    <Zap className="h-4 w-4 mr-2" />
+                    Post a Service Request
+                  </Link>
+                </Button>
+              </div>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold gradient-text mb-6 leading-tight text-slate-900">
-              NDT Services in {city.name}, {stateLabel}
-            </h1>
-            <p className="text-lg text-slate-600 max-w-3xl mb-4 leading-relaxed">
-              {introParagraphs[0]}
-            </p>
-            <blockquote className="border-l-4 border-brand pl-4 italic text-slate-700 max-w-3xl mb-6">
-              {city.localPainQuote}
-            </blockquote>
-            <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="btn-glow bg-brand hover:bg-brand-dark text-white" asChild>
-                <Link href="/find-providers">
-                  <Search className="h-4 w-4 mr-2" />
-                  Find Inspectors in {city.name}
-                </Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="glass border-white/20 hover:bg-white/5"
-                asChild
-              >
-                <Link href="/request-service">
-                  <Zap className="h-4 w-4 mr-2" />
-                  Post a Service Request
-                </Link>
-              </Button>
+          </div>
+        </section>
+
+        {/* Stat strip — visual anchor under hero */}
+        <section className="-mt-6 mb-12 px-4 md:px-0">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-white rounded-2xl shadow-lg border border-slate-200 p-6">
+            <div className="text-center md:border-r border-slate-100">
+              <div className="text-3xl font-extrabold text-primary">{city.industries.length}</div>
+              <div className="text-xs font-medium text-slate-600 uppercase tracking-wide mt-1">Industries</div>
+            </div>
+            <div className="text-center md:border-r border-slate-100">
+              <div className="text-3xl font-extrabold text-primary">{city.namedFacilities.length}+</div>
+              <div className="text-xs font-medium text-slate-600 uppercase tracking-wide mt-1">Named facilities</div>
+            </div>
+            <div className="text-center md:border-r border-slate-100">
+              <div className="text-3xl font-extrabold text-primary">T{city.tier}</div>
+              <div className="text-xs font-medium text-slate-600 uppercase tracking-wide mt-1">Labour band</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-extrabold text-primary">{city.codeAuthorities.length}</div>
+              <div className="text-xs font-medium text-slate-600 uppercase tracking-wide mt-1">Code authorities</div>
             </div>
           </div>
         </section>
@@ -348,36 +375,36 @@ export default async function CityPage({ params }: Props) {
         {/* Local context */}
         <section className="mb-16 px-4 md:px-0">
           <div className="mb-10">
-            <h2 className="text-3xl font-bold gradient-text mb-4 text-slate-900">
+            <h2 className="text-3xl font-bold text-primary mb-4">
               Local NDT context in {city.name}
             </h2>
             <p className="text-slate-600 leading-relaxed text-lg mb-4">{introParagraphs[2]}</p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="glass rounded-xl p-6 border border-white/10 card-hover-lift">
-              <Users className="h-8 w-8 text-brand mb-3" />
+            <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+              <Users className="h-8 w-8 text-primary mb-3" />
               <p className="font-semibold text-slate-900 mb-1">Verified inspectors</p>
               <p className="text-sm text-slate-600">
                 ASNT Level II / III on file before mobilisation
               </p>
             </div>
-            <div className="glass rounded-xl p-6 border border-white/10 card-hover-lift">
-              <Clock className="h-8 w-8 text-brand mb-3" />
+            <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+              <Clock className="h-8 w-8 text-primary mb-3" />
               <p className="font-semibold text-slate-900 mb-1">Parallel quotes</p>
               <p className="text-sm text-slate-600">
                 Post a scope, receive quotes in hours not days
               </p>
             </div>
-            <div className="glass rounded-xl p-6 border border-white/10 card-hover-lift">
-              <Shield className="h-8 w-8 text-brand mb-3" />
+            <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+              <Shield className="h-8 w-8 text-primary mb-3" />
               <p className="font-semibold text-slate-900 mb-1">Code coverage</p>
               <p className="text-sm text-slate-600">
                 {city.codeAuthorities.slice(0, 2).join(' · ')}
               </p>
             </div>
-            <div className="glass rounded-xl p-6 border border-white/10 card-hover-lift">
-              <Globe className="h-8 w-8 text-brand mb-3" />
+            <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all">
+              <Globe className="h-8 w-8 text-primary mb-3" />
               <p className="font-semibold text-slate-900 mb-1">Local crews</p>
               <p className="text-sm text-slate-600">
                 Based in {city.name} and the wider {city.region.replace(/-/g, ' ')}
@@ -390,7 +417,7 @@ export default async function CityPage({ params }: Props) {
 
         {/* Industries + named facilities */}
         <section className="mb-16 px-4 md:px-0">
-          <h2 className="text-3xl font-bold gradient-text mb-4 text-slate-900">
+          <h2 className="text-3xl font-bold text-primary mb-4">
             Industries we cover in {city.name}
           </h2>
           <p className="text-slate-600 mb-8">
@@ -404,11 +431,11 @@ export default async function CityPage({ params }: Props) {
             {industryBlocks.map(({ industry, copy }, i) => (
               <div
                 key={i}
-                className="glass-dark rounded-xl p-5 border border-white/10 card-hover-3d"
+                className="bg-primary/5 rounded-xl p-5 border border-primary/20 hover:border-primary/40 transition-all"
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="p-3 glass-strong rounded-lg">
-                    <Building2 className="h-5 w-5 text-brand" />
+                  <div className="p-3 bg-white border border-primary/20 rounded-lg shadow-sm">
+                    <Building2 className="h-5 w-5 text-primary" />
                   </div>
                   <span className="font-semibold text-foreground">{industry}</span>
                 </div>
@@ -425,9 +452,9 @@ export default async function CityPage({ params }: Props) {
               {city.namedFacilities.map((f, i) => (
                 <div
                   key={i}
-                  className="glass rounded-xl p-4 border border-white/10 flex items-start gap-3"
+                  className="bg-white rounded-xl p-4 border border-slate-200 shadow-sm flex items-start gap-3"
                 >
-                  <CheckCircle className="h-5 w-5 text-brand mt-0.5 flex-shrink-0" />
+                  <CheckCircle className="h-5 w-5 text-primary mt-0.5 flex-shrink-0" />
                   <div>
                     <p className="font-semibold text-slate-900">{f.name}</p>
                     <p className="text-xs text-slate-600 mt-0.5">{f.type}</p>
@@ -442,7 +469,7 @@ export default async function CityPage({ params }: Props) {
 
         {/* Code authorities */}
         <section className="mb-16 px-4 md:px-0">
-          <h2 className="text-3xl font-bold gradient-text mb-4 text-slate-900">
+          <h2 className="text-3xl font-bold text-primary mb-4">
             Codes, standards and regulators that drive NDT in {city.name}
           </h2>
           <p className="text-slate-600 mb-6">
@@ -454,7 +481,7 @@ export default async function CityPage({ params }: Props) {
             {city.codeAuthorities.map((code, i) => (
               <Badge
                 key={i}
-                className="glass border border-brand/30 bg-brand/5 text-brand font-medium py-2 px-4 text-sm"
+                className="border border-primary/30 bg-primary/10 text-primary font-medium py-2 px-4 text-sm"
               >
                 {code}
               </Badge>
@@ -466,7 +493,7 @@ export default async function CityPage({ params }: Props) {
 
         {/* NDT methods grid */}
         <section className="mb-16 px-4 md:px-0">
-          <h2 className="text-3xl font-bold gradient-text mb-4 text-slate-900">
+          <h2 className="text-3xl font-bold text-primary mb-4">
             NDT methods available in {city.name}
           </h2>
           <p className="text-slate-600 mb-8">
@@ -479,19 +506,19 @@ export default async function CityPage({ params }: Props) {
               <Link
                 key={m.slug}
                 href={`/ndt-services/${city.slug}/${m.slug}`}
-                className="glass rounded-xl border border-white/10 overflow-hidden card-hover-lift group block p-6"
+                className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-lg hover:-translate-y-0.5 hover:border-primary/30 transition-all group block p-6 relative"
                 style={{ transitionDelay: `${i * 80}ms` }}
               >
                 <div className="mb-3">
-                  <Badge className="glass-strong border border-brand/30 bg-brand/10 text-brand font-bold text-xs">
+                  <Badge className="border border-primary/30 bg-primary/10 text-primary font-bold text-xs">
                     {m.abbr}
                   </Badge>
                 </div>
-                <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-brand transition-colors">
+                <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
                   {m.name}
                 </h3>
                 <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{m.blurb}</p>
-                <span className="inline-flex items-center gap-2 text-brand font-semibold text-sm">
+                <span className="inline-flex items-center gap-2 text-primary font-semibold text-sm">
                   {m.abbr} in {city.name}
                   <ArrowRight className="h-4 w-4" />
                 </span>
@@ -499,7 +526,7 @@ export default async function CityPage({ params }: Props) {
             ))}
           </div>
           <div className="text-center">
-            <Button variant="outline" size="lg" className="glass border-white/20" asChild>
+            <Button variant="outline" size="lg" className="bg-white border-primary/30 text-primary hover:bg-primary/5" asChild>
               <Link href="/services" className="flex items-center gap-2">
                 View all NDT methods <ArrowRight className="h-4 w-4" />
               </Link>
@@ -511,16 +538,16 @@ export default async function CityPage({ params }: Props) {
 
         {/* FAQ */}
         <section className="mb-16 px-4 md:px-0">
-          <h2 className="text-3xl font-bold gradient-text mb-8 text-slate-900">
+          <h2 className="text-3xl font-bold text-primary mb-8">
             Frequently asked questions — NDT in {city.name}
           </h2>
           <div className="space-y-4">
             {faqs.map((faq, i) => (
               <div
                 key={i}
-                className="glass rounded-xl p-6 border border-white/10 card-hover-lift group"
+                className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all group"
               >
-                <h3 className="font-bold text-foreground mb-3 group-hover:text-brand transition-colors">
+                <h3 className="font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
                   {faq.q}
                 </h3>
                 <p className="text-sm text-slate-600 leading-relaxed">{faq.a}</p>
@@ -545,7 +572,7 @@ export default async function CityPage({ params }: Props) {
             <div className="flex flex-wrap justify-center gap-4">
               <Button
                 size="lg"
-                className="bg-white text-brand hover:bg-gray-100 font-semibold"
+                className="bg-white text-primary hover:bg-slate-100 font-semibold"
                 asChild
               >
                 <Link href="/find-providers">
@@ -573,7 +600,7 @@ export default async function CityPage({ params }: Props) {
         {/* Nearest cities via Haversine */}
         {nearby.length > 0 && (
           <section className="px-4 md:px-0 mb-12">
-            <h2 className="text-3xl font-bold gradient-text mb-4 text-slate-900">
+            <h2 className="text-3xl font-bold text-primary mb-4">
               Also serving nearby cities
             </h2>
             <p className="text-slate-600 mb-6">
@@ -585,10 +612,10 @@ export default async function CityPage({ params }: Props) {
                 <Link
                   key={c.slug}
                   href={`/ndt-services/${c.slug}`}
-                  className="glass rounded-xl p-4 border border-white/10 card-hover-lift group flex flex-col items-center gap-2 text-center text-sm transition-all"
+                  className="bg-white rounded-xl p-4 border border-slate-200 shadow-sm hover:shadow-md hover:border-primary/30 group flex flex-col items-center gap-2 text-center text-sm transition-all"
                 >
-                  <MapPin className="h-5 w-5 text-brand" />
-                  <span className="font-semibold text-foreground group-hover:text-brand transition-colors">
+                  <MapPin className="h-5 w-5 text-primary" />
+                  <span className="font-semibold text-foreground group-hover:text-primary transition-colors">
                     NDT in {c.name}
                   </span>
                   <span className="text-xs text-slate-500">
