@@ -1,0 +1,3769 @@
+{
+  "albuquerque-nm": {
+    "displayName": "Albuquerque, NM",
+    "country": "US",
+    "state": "New Mexico",
+    "stateCode": "NM",
+    "tier": 2,
+    "region": "southwest",
+    "metroPopulation": 920000,
+    "industries": [
+      {
+        "name": "Defense & Nuclear",
+        "weight": 0.4,
+        "context": "Sandia National Labs, Kirtland AFB Nuclear Weapons Center"
+      },
+      {
+        "name": "Semiconductor",
+        "weight": 0.2,
+        "context": "Intel Rio Rancho fab"
+      },
+      {
+        "name": "Aerospace",
+        "weight": 0.15,
+        "context": "Boeing Albuquerque, Northrop Grumman"
+      }
+    ],
+    "majorEmployers": [
+      "Sandia National Labs",
+      "Kirtland AFB",
+      "Intel Rio Rancho",
+      "Boeing",
+      "L3Harris"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 58000,
+      "level2": 80000,
+      "level3": 124000
+    },
+    "wageBandSource": "BLS OES NM state 2024",
+    "regionalCodes": [
+      "DOE 10 CFR 830 (nuclear safety)",
+      "DoD MIL-STD-2154 (UT)",
+      "ASME Section V",
+      "Nadcap NDT"
+    ],
+    "asntChapter": "Sandia/ASNT Albuquerque Section",
+    "awsSection": "AWS NM regional",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 92,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Sandia National Labs",
+        "type": "nuclear-r&d",
+        "scale": "Major DOE/NNSA lab"
+      },
+      {
+        "name": "Intel Rio Rancho",
+        "type": "semi",
+        "scale": "DRAM/foundry fab"
+      }
+    ],
+    "pricingMultiplier": 1.05,
+    "uniqueAngles": [
+      "Nuclear weapons stockpile stewardship work — DOE Q-clearance often required",
+      "Semiconductor UHP gas line inspection at Intel",
+      "NM is hub for nuclear waste transportation NDT (WIPP)"
+    ],
+    "nearbyMajorCities": [
+      "Santa Fe (95km)",
+      "El Paso TX (430km)",
+      "Carlsbad NM (470km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "carlsbad-nm": {
+    "displayName": "Carlsbad, NM",
+    "country": "US",
+    "state": "New Mexico",
+    "stateCode": "NM",
+    "tier": 3,
+    "region": "permian",
+    "metroPopulation": 72000,
+    "industries": [
+      {
+        "name": "Permian Oil & Gas",
+        "weight": 0.55,
+        "context": "Eastern Permian Basin (Delaware sub-basin)"
+      },
+      {
+        "name": "Nuclear Waste (WIPP)",
+        "weight": 0.2,
+        "context": "Waste Isolation Pilot Plant — only US TRU waste repository"
+      },
+      {
+        "name": "Potash Mining",
+        "weight": 0.15,
+        "context": "Mosaic, Intrepid potash operations"
+      }
+    ],
+    "majorEmployers": [
+      "WIPP DOE site",
+      "Mosaic Potash Carlsbad",
+      "Intrepid Potash",
+      "Devon Energy Permian",
+      "EOG Resources",
+      "ConocoPhillips Permian"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 60000,
+      "level2": 82000,
+      "level3": 124000
+    },
+    "wageBandSource": "BLS OES NM state 2024",
+    "regionalCodes": [
+      "DOE 10 CFR 830 (WIPP)",
+      "TX RR Commission (cross-border)",
+      "API 510/570/653"
+    ],
+    "asntChapter": "Regional ASNT chapter",
+    "awsSection": "AWS NM regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "high",
+    "costOfLivingIndex": 88,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "WIPP",
+        "type": "nuclear-waste",
+        "scale": "Only US TRU waste repository"
+      },
+      {
+        "name": "Delaware Basin",
+        "type": "oil-field",
+        "scale": "Hottest part of Permian"
+      }
+    ],
+    "pricingMultiplier": 1.1,
+    "uniqueAngles": [
+      "Delaware Basin is the most active drilling part of Permian",
+      "WIPP — only US deep geologic repository for TRU waste; unique transport NDT scope",
+      "Potash mining headgear and conveyor inspection"
+    ],
+    "nearbyMajorCities": [
+      "Hobbs (70km)",
+      "El Paso (240km)",
+      "Albuquerque (470km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "farmington-nm": {
+    "displayName": "Farmington, NM",
+    "country": "US",
+    "state": "New Mexico",
+    "stateCode": "NM",
+    "tier": 3,
+    "region": "southwest",
+    "metroPopulation": 120000,
+    "industries": [
+      {
+        "name": "San Juan Basin Oil & Gas",
+        "weight": 0.55,
+        "context": "Mature gas + coalbed methane basin"
+      },
+      {
+        "name": "Coal Power",
+        "weight": 0.22,
+        "context": "Four Corners + San Juan power stations (closing)"
+      }
+    ],
+    "majorEmployers": [
+      "Hilcorp Energy",
+      "BP Lower 48",
+      "Enterprise Products",
+      "PNM Four Corners Power Plant"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 56000,
+      "level2": 78000,
+      "level3": 118000
+    },
+    "wageBandSource": "BLS OES NM state 2024",
+    "regionalCodes": [
+      "NM Oil Conservation Division",
+      "API 510/570/653",
+      "MSHA (mining)"
+    ],
+    "asntChapter": "Regional ASNT chapter",
+    "awsSection": "AWS NM regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 88,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "San Juan Basin",
+        "type": "gas-field",
+        "scale": "Major US dry gas/CBM basin"
+      },
+      {
+        "name": "San Juan Power Plant",
+        "type": "power",
+        "scale": "1,540 MW (closing 2022-2027)"
+      }
+    ],
+    "pricingMultiplier": 1.05,
+    "uniqueAngles": [
+      "San Juan Basin coalbed methane — gas wellhead + gathering NDT",
+      "Power plant decommissioning creates demolition NDT scope",
+      "Navajo Nation jurisdictional work — distinct regulatory layer"
+    ],
+    "nearbyMajorCities": [
+      "Albuquerque (290km)",
+      "Durango CO (75km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "augusta-ga": {
+    "displayName": "Augusta, GA",
+    "country": "US",
+    "state": "Georgia",
+    "stateCode": "GA",
+    "tier": 2,
+    "region": "southeast",
+    "metroPopulation": 611000,
+    "industries": [
+      {
+        "name": "Nuclear (SRS)",
+        "weight": 0.4,
+        "context": "Savannah River Site — major DOE nuclear complex"
+      },
+      {
+        "name": "Manufacturing",
+        "weight": 0.22,
+        "context": "Plant Vogtle nuclear power station"
+      },
+      {
+        "name": "Defense",
+        "weight": 0.18,
+        "context": "Fort Eisenhower (formerly Fort Gordon)"
+      }
+    ],
+    "majorEmployers": [
+      "Savannah River Site (SRS)",
+      "Plant Vogtle (Southern Nuclear)",
+      "Bechtel SRS",
+      "Centerra-SRS",
+      "International Paper"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 56000,
+      "level2": 78000,
+      "level3": 122000
+    },
+    "wageBandSource": "BLS OES GA state 2024",
+    "regionalCodes": [
+      "DOE 10 CFR 830",
+      "ASME Section III/XI (nuclear)",
+      "10 CFR 50 (commercial nuclear)"
+    ],
+    "asntChapter": "ASNT South Carolina/Georgia (Augusta-Aiken area)",
+    "awsSection": "AWS GA regional",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 88,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Savannah River Site",
+        "type": "nuclear",
+        "scale": "Major DOE/NNSA complex — 800 km²"
+      },
+      {
+        "name": "Plant Vogtle",
+        "type": "nuclear-power",
+        "scale": "Vogtle 3+4 — newest US reactors"
+      }
+    ],
+    "pricingMultiplier": 1.05,
+    "uniqueAngles": [
+      "Plant Vogtle 3+4 — first new US reactors in 30+ years; ongoing inspection scope",
+      "SRS H-Canyon — only operating production-scale nuclear reprocessing in US",
+      "DOE Q-clearance often required for SRS work"
+    ],
+    "nearbyMajorCities": [
+      "Columbia SC (140km)",
+      "Atlanta (250km)",
+      "Aiken SC (35km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "columbia-sc": {
+    "displayName": "Columbia, SC",
+    "country": "US",
+    "state": "South Carolina",
+    "stateCode": "SC",
+    "tier": 3,
+    "region": "southeast",
+    "metroPopulation": 850000,
+    "industries": [
+      {
+        "name": "Nuclear Fuel",
+        "weight": 0.32,
+        "context": "Westinghouse Columbia Fuel Fabrication Facility"
+      },
+      {
+        "name": "Manufacturing",
+        "weight": 0.25,
+        "context": "Mahindra Tractor, Owens Corning"
+      },
+      {
+        "name": "Defense",
+        "weight": 0.18,
+        "context": "Fort Jackson Army training base"
+      }
+    ],
+    "majorEmployers": [
+      "Westinghouse Columbia",
+      "Mahindra USA",
+      "International Paper",
+      "Fort Jackson"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 50000,
+      "level2": 70000,
+      "level3": 108000
+    },
+    "wageBandSource": "BLS OES SC state 2024",
+    "regionalCodes": [
+      "NRC 10 CFR 70 (fuel fab)",
+      "ASME Section III",
+      "API 510/570/653"
+    ],
+    "asntChapter": "Regional ASNT chapter",
+    "awsSection": "AWS SC regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 86,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Westinghouse Columbia Fuel Fab",
+        "type": "nuclear-fuel",
+        "scale": "Major US LWR fuel manufacturer"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "Westinghouse fuel fabrication — uranium handling NDT (zircaloy cladding UT)",
+      "Adjacent to Vogtle and Summer nuclear plants — mutual aid contractor pool",
+      "Fort Jackson basic training facility — military aerospace + ground vehicle NDT"
+    ],
+    "nearbyMajorCities": [
+      "Charleston SC (200km)",
+      "Augusta GA (140km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "charleston-sc": {
+    "displayName": "Charleston, SC",
+    "country": "US",
+    "state": "South Carolina",
+    "stateCode": "SC",
+    "tier": 2,
+    "region": "southeast",
+    "metroPopulation": 820000,
+    "industries": [
+      {
+        "name": "Aerospace",
+        "weight": 0.42,
+        "context": "Boeing 787 Final Assembly Line + Mid-body fab"
+      },
+      {
+        "name": "Naval & Defense",
+        "weight": 0.22,
+        "context": "Naval Information Warfare Center, Joint Base Charleston"
+      },
+      {
+        "name": "Port",
+        "weight": 0.18,
+        "context": "Port of Charleston — top-10 US container port"
+      }
+    ],
+    "majorEmployers": [
+      "Boeing South Carolina",
+      "Mercedes-Benz Vans Charleston",
+      "Naval Information Warfare Center",
+      "Bosch Charleston"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 54000,
+      "level2": 76000,
+      "level3": 118000
+    },
+    "wageBandSource": "BLS OES SC state 2024",
+    "regionalCodes": [
+      "AS9100 (Boeing)",
+      "Nadcap NDT",
+      "ABS class rules (port)",
+      "API 510/570/653"
+    ],
+    "asntChapter": "ASNT South Carolina Section",
+    "awsSection": "AWS SC regional",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 92,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Boeing Charleston 787 FAL",
+        "type": "aerospace",
+        "scale": "Final assembly + mid-body fab for 787"
+      },
+      {
+        "name": "Port of Charleston",
+        "type": "port",
+        "scale": "Top-10 US container port"
+      }
+    ],
+    "pricingMultiplier": 1.05,
+    "uniqueAngles": [
+      "Boeing Charleston is one of two 787 final assembly lines globally",
+      "Composite NDT (UT C-scan, thermography) is dominant skill demand",
+      "Joint Base Charleston aviation MRO scope (C-17 Globemaster fleet)"
+    ],
+    "nearbyMajorCities": [
+      "Savannah GA (170km)",
+      "Columbia (200km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "charleston-wv": {
+    "displayName": "Charleston, WV",
+    "country": "US",
+    "state": "West Virginia",
+    "stateCode": "WV",
+    "tier": 2,
+    "region": "appalachia",
+    "metroPopulation": 210000,
+    "industries": [
+      {
+        "name": "Chemical Valley",
+        "weight": 0.45,
+        "context": "Kanawha Valley — Dow, Bayer CropScience, Union Carbide legacy"
+      },
+      {
+        "name": "Coal",
+        "weight": 0.2,
+        "context": "Central Appalachian coal — declining"
+      },
+      {
+        "name": "Natural Gas (Marcellus)",
+        "weight": 0.18,
+        "context": "Marcellus + Utica shale gas processing"
+      }
+    ],
+    "majorEmployers": [
+      "Dow Chemical Charleston (Institute)",
+      "Bayer CropScience",
+      "Union Carbide South Charleston",
+      "Mountaineer NGL Storage",
+      "Toyota Buffalo Plant"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 52000,
+      "level2": 72000,
+      "level3": 110000
+    },
+    "wageBandSource": "BLS OES WV state 2024",
+    "regionalCodes": [
+      "WV DEP",
+      "Marcellus midstream codes",
+      "API 510/570/653",
+      "ASME"
+    ],
+    "asntChapter": "Regional ASNT chapter",
+    "awsSection": "AWS WV regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 82,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Dow Institute (Charleston)",
+        "type": "petrochem",
+        "scale": "Major chemical manufacturing"
+      },
+      {
+        "name": "Bayer CropScience Institute",
+        "type": "chemical",
+        "scale": "Pesticide manufacturing"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "Kanawha Valley historically dense chemical cluster — legacy 'Chemical Alley'",
+      "Toxic chemical service (MIC after Bhopal-style review) — strict inspection regime",
+      "Marcellus/Utica gas processing creates new midstream NDT scope"
+    ],
+    "nearbyMajorCities": [
+      "Huntington (90km)",
+      "Pittsburgh (340km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "huntington-wv": {
+    "displayName": "Huntington, WV",
+    "country": "US",
+    "state": "West Virginia",
+    "stateCode": "WV",
+    "tier": 3,
+    "region": "appalachia",
+    "metroPopulation": 350000,
+    "industries": [
+      {
+        "name": "Refining (Marathon)",
+        "weight": 0.42,
+        "context": "Marathon Catlettsburg KY across the river — major scope"
+      },
+      {
+        "name": "Heavy Manufacturing",
+        "weight": 0.22,
+        "context": "Steel of West Virginia, Special Metals (nickel alloys)"
+      },
+      {
+        "name": "Aluminum",
+        "weight": 0.15,
+        "context": "Marshall University engineering programs"
+      }
+    ],
+    "majorEmployers": [
+      "Marathon Catlettsburg Refinery (across Ohio River)",
+      "Special Metals Corporation (Inconel)",
+      "Steel of West Virginia",
+      "AK Steel (Ashland KY)"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 50000,
+      "level2": 70000,
+      "level3": 108000
+    },
+    "wageBandSource": "BLS OES WV state 2024",
+    "regionalCodes": [
+      "WV DEP",
+      "KY DEP (refinery across river)",
+      "API 510/570/653"
+    ],
+    "asntChapter": "Regional ASNT chapter",
+    "awsSection": "AWS WV regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 80,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Marathon Catlettsburg Refinery",
+        "type": "refinery",
+        "scale": "291,000 bpd (in KY, services Huntington area)"
+      },
+      {
+        "name": "Special Metals Huntington",
+        "type": "alloy",
+        "scale": "Major nickel superalloy producer (Inconel, Monel)"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "Marathon Catlettsburg is one of largest US refineries — across Ohio River from Huntington",
+      "Special Metals is global nickel superalloy producer — unique HiTemp NDT specialty",
+      "Steel of WV pipe mill UT inspection scope"
+    ],
+    "nearbyMajorCities": [
+      "Charleston WV (90km)",
+      "Cincinnati (250km)",
+      "Lexington KY (180km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "steubenville-oh": {
+    "displayName": "Steubenville, OH",
+    "country": "US",
+    "state": "Ohio",
+    "stateCode": "OH",
+    "tier": 3,
+    "region": "appalachia",
+    "metroPopulation": 120000,
+    "industries": [
+      {
+        "name": "Steel Manufacturing",
+        "weight": 0.42,
+        "context": "JSW Steel Mingo Junction (former Wheeling-Pitt)"
+      },
+      {
+        "name": "Coal Mining",
+        "weight": 0.22,
+        "context": "Murray Energy operations historically"
+      },
+      {
+        "name": "Power",
+        "weight": 0.18,
+        "context": "Cardinal Power Plant, Mountaineer Plant"
+      }
+    ],
+    "majorEmployers": [
+      "JSW Steel Mingo Junction",
+      "AEP Cardinal Power Plant",
+      "Mountaineer Power Plant",
+      "Mid-Atlantic Carbon"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 48000,
+      "level2": 68000,
+      "level3": 105000
+    },
+    "wageBandSource": "BLS OES OH state 2024",
+    "regionalCodes": [
+      "Ohio EPA",
+      "API 510/570/653",
+      "ASME Section I (boilers)"
+    ],
+    "asntChapter": "Regional ASNT chapter",
+    "awsSection": "AWS OH regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 78,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "JSW Steel Mingo Junction",
+        "type": "steel",
+        "scale": "EAF + finishing"
+      },
+      {
+        "name": "Cardinal Power Plant",
+        "type": "power",
+        "scale": "1,830 MW coal-fired"
+      }
+    ],
+    "pricingMultiplier": 0.95,
+    "uniqueAngles": [
+      "Ohio Valley steel and coal corridor — legacy industrial inspection cluster",
+      "Coal-fired power plant tube inspection (boiler, super-heater)",
+      "Mountaineer Plant — major IGCC inspection scope"
+    ],
+    "nearbyMajorCities": [
+      "Pittsburgh (60km)",
+      "Wheeling WV (15km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "bath-me": {
+    "displayName": "Bath, ME",
+    "country": "US",
+    "state": "Maine",
+    "stateCode": "ME",
+    "tier": 2,
+    "region": "northeast",
+    "metroPopulation": 8500,
+    "industries": [
+      {
+        "name": "Navy Shipbuilding",
+        "weight": 0.85,
+        "context": "Bath Iron Works — DDG-51 Burke-class destroyers"
+      }
+    ],
+    "majorEmployers": [
+      "Bath Iron Works (General Dynamics)"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 56000,
+      "level2": 78000,
+      "level3": 118000
+    },
+    "wageBandSource": "BLS OES ME state 2024",
+    "regionalCodes": [
+      "NAVSEA Tech Pubs",
+      "Mil-Spec NDT (T9074-AS-GIB-010/271)",
+      "ABS class"
+    ],
+    "asntChapter": "ASNT New England Section",
+    "awsSection": "AWS ME regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 88,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Bath Iron Works",
+        "type": "shipyard",
+        "scale": "Builds DDG-51 Burke-class destroyers for US Navy"
+      }
+    ],
+    "pricingMultiplier": 1.1,
+    "uniqueAngles": [
+      "BIW is one of two US yards building destroyers — Mil-Spec NDT dominant",
+      "Welder/inspector ratios per Navy spec",
+      "Cold-weather Maine work — winter conditions affect outdoor scope"
+    ],
+    "nearbyMajorCities": [
+      "Portland ME (60km)",
+      "Boston (240km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "groton-ct": {
+    "displayName": "Groton, CT",
+    "country": "US",
+    "state": "Connecticut",
+    "stateCode": "CT",
+    "tier": 2,
+    "region": "northeast",
+    "metroPopulation": 39000,
+    "industries": [
+      {
+        "name": "Submarine Construction",
+        "weight": 0.92,
+        "context": "General Dynamics Electric Boat — Virginia-class + Columbia-class submarines"
+      }
+    ],
+    "majorEmployers": [
+      "Electric Boat (General Dynamics)",
+      "US Naval Submarine Base New London"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 62000,
+      "level2": 85000,
+      "level3": 130000
+    },
+    "wageBandSource": "BLS OES CT state 2024",
+    "regionalCodes": [
+      "NAVSEA SubSafe program",
+      "Mil-Spec NDT",
+      "DoD NDT requirements"
+    ],
+    "asntChapter": "ASNT Connecticut Section",
+    "awsSection": "AWS CT regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 98,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Electric Boat Groton",
+        "type": "shipyard",
+        "scale": "Designs + builds US nuclear submarines"
+      }
+    ],
+    "pricingMultiplier": 1.15,
+    "uniqueAngles": [
+      "Electric Boat is the design + lead-yard for all US nuclear submarines",
+      "SubSafe program — most rigorous structural NDT regime in any US program",
+      "Often requires DoD secret/TS clearance"
+    ],
+    "nearbyMajorCities": [
+      "New Haven (75km)",
+      "Providence RI (95km)",
+      "New London (5km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "newport-news-va": {
+    "displayName": "Newport News, VA",
+    "country": "US",
+    "state": "Virginia",
+    "stateCode": "VA",
+    "tier": 1,
+    "region": "south-atlantic",
+    "metroPopulation": 185000,
+    "industries": [
+      {
+        "name": "Navy Shipbuilding",
+        "weight": 0.55,
+        "context": "HII Newport News — only US builder of CVN aircraft carriers + Virginia-class subs"
+      },
+      {
+        "name": "Aerospace MRO",
+        "weight": 0.15,
+        "context": "Northrop Grumman Newport News"
+      },
+      {
+        "name": "Refining",
+        "weight": 0.12,
+        "context": "Yorktown refinery converted to terminal"
+      }
+    ],
+    "majorEmployers": [
+      "HII Newport News Shipbuilding (largest in US)",
+      "Naval Weapons Station Yorktown",
+      "Jefferson Lab"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 60000,
+      "level2": 82000,
+      "level3": 125000
+    },
+    "wageBandSource": "BLS OES VA state 2024",
+    "regionalCodes": [
+      "NAVSEA Tech Pubs",
+      "Mil-Spec NDT",
+      "ASME Section III (nuclear refueling)"
+    ],
+    "asntChapter": "ASNT Hampton Roads Section",
+    "awsSection": "AWS VA regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 92,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "HII Newport News Shipbuilding",
+        "type": "shipyard",
+        "scale": "Only US CVN builder — Ford-class"
+      },
+      {
+        "name": "Naval Weapons Station Yorktown",
+        "type": "naval",
+        "scale": "Ammunition + ordnance"
+      }
+    ],
+    "pricingMultiplier": 1.1,
+    "uniqueAngles": [
+      "Newport News — largest industrial site in Virginia; only US carrier shipyard",
+      "Nuclear-powered carrier reactor refueling — ASME Section III scope",
+      "CVN-78 Ford-class commissioning still being worked through"
+    ],
+    "nearbyMajorCities": [
+      "Norfolk (35km)",
+      "Virginia Beach (55km)",
+      "Richmond (110km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "norfolk-va": {
+    "displayName": "Norfolk, VA",
+    "country": "US",
+    "state": "Virginia",
+    "stateCode": "VA",
+    "tier": 2,
+    "region": "south-atlantic",
+    "metroPopulation": 1810000,
+    "industries": [
+      {
+        "name": "Naval Operations",
+        "weight": 0.4,
+        "context": "Norfolk Naval Shipyard — fleet repair + nuclear refueling"
+      },
+      {
+        "name": "Port",
+        "weight": 0.22,
+        "context": "Port of Virginia — major US container port"
+      },
+      {
+        "name": "Defense Manufacturing",
+        "weight": 0.15,
+        "context": "Multiple defense contractor offices"
+      }
+    ],
+    "majorEmployers": [
+      "Norfolk Naval Shipyard (Portsmouth)",
+      "Port of Virginia",
+      "BAE Systems Norfolk Ship Repair",
+      "Lyon Shipyard"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 56000,
+      "level2": 78000,
+      "level3": 120000
+    },
+    "wageBandSource": "BLS OES VA state 2024",
+    "regionalCodes": [
+      "NAVSEA Tech Pubs",
+      "Mil-Spec NDT",
+      "ASME Section III/XI",
+      "ABS class"
+    ],
+    "asntChapter": "ASNT Hampton Roads Section",
+    "awsSection": "AWS VA regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 92,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Norfolk Naval Shipyard (Portsmouth)",
+        "type": "naval-shipyard",
+        "scale": "One of 4 US public shipyards — fleet repair, nuclear"
+      },
+      {
+        "name": "Port of Virginia",
+        "type": "port",
+        "scale": "Top-5 US container port"
+      }
+    ],
+    "pricingMultiplier": 1.05,
+    "uniqueAngles": [
+      "Norfolk Naval Shipyard — only US public yard performing CVN refueling on East Coast",
+      "Nuclear-trained NDT inspectors — ASME Section XI ISI specialty",
+      "Naval Region Mid-Atlantic — fleet inspection scope"
+    ],
+    "nearbyMajorCities": [
+      "Newport News (35km)",
+      "Virginia Beach (25km)",
+      "Richmond (170km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "portsmouth-va": {
+    "displayName": "Portsmouth, VA",
+    "country": "US",
+    "state": "Virginia",
+    "stateCode": "VA",
+    "tier": 3,
+    "region": "south-atlantic",
+    "metroPopulation": 98000,
+    "industries": [
+      {
+        "name": "Naval Shipbuilding/Repair",
+        "weight": 0.65,
+        "context": "Norfolk Naval Shipyard located here"
+      }
+    ],
+    "majorEmployers": [
+      "Norfolk Naval Shipyard",
+      "BAE Systems Norfolk Ship Repair"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 54000,
+      "level2": 76000,
+      "level3": 116000
+    },
+    "wageBandSource": "BLS OES VA state 2024",
+    "regionalCodes": [
+      "NAVSEA Tech Pubs",
+      "Mil-Spec NDT",
+      "ASME Section XI"
+    ],
+    "asntChapter": "Regional ASNT chapter",
+    "awsSection": "AWS VA regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 88,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Norfolk Naval Shipyard",
+        "type": "naval-shipyard",
+        "scale": "US Navy's oldest continuously operating shipyard"
+      }
+    ],
+    "pricingMultiplier": 1.05,
+    "uniqueAngles": [
+      "Often confused with Portsmouth NH — this Portsmouth hosts Norfolk Naval Shipyard",
+      "Naval reactor refueling on East Coast carriers",
+      "Fleet repair and overhaul — diverse vessel types"
+    ],
+    "nearbyMajorCities": [
+      "Norfolk (10km)",
+      "Newport News (30km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "cape-canaveral-fl": {
+    "displayName": null,
+    "country": "US",
+    "state": null,
+    "stateCode": null,
+    "tier": 3,
+    "region": "us-other",
+    "metroPopulation": 100000,
+    "industries": [],
+    "majorEmployers": [],
+    "avgInspectorWageUSD": {
+      "level1": 48000,
+      "level2": 68000,
+      "level3": 102000
+    },
+    "wageBandSource": "BLS OES None state 2024",
+    "regionalCodes": [
+      "State DEQ",
+      "API 510/570/653",
+      "ASME Section V/VIII"
+    ],
+    "asntChapter": "Regional ASNT chapter",
+    "awsSection": "AWS None regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 88,
+    "majorPortsRefineriesPlants": [],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [],
+    "nearbyMajorCities": [],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "melbourne-fl": {
+    "displayName": "Melbourne, FL",
+    "country": "US",
+    "state": "Florida",
+    "stateCode": "FL",
+    "tier": 2,
+    "region": "southeast",
+    "metroPopulation": 550000,
+    "industries": [
+      {
+        "name": "Aerospace & Defense",
+        "weight": 0.45,
+        "context": "L3Harris HQ, Northrop Grumman Melbourne, Embraer"
+      },
+      {
+        "name": "Space Coast Support",
+        "weight": 0.2,
+        "context": "Adjacent to Cape Canaveral; SpaceX, ULA suppliers"
+      }
+    ],
+    "majorEmployers": [
+      "L3Harris Technologies HQ",
+      "Northrop Grumman Melbourne",
+      "Embraer Executive Aircraft Melbourne",
+      "DRS Technologies"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 56000,
+      "level2": 78000,
+      "level3": 122000
+    },
+    "wageBandSource": "BLS OES FL state 2024",
+    "regionalCodes": [
+      "AS9100",
+      "Nadcap NDT",
+      "DoD MIL-STD-2154"
+    ],
+    "asntChapter": "ASNT Florida East Coast",
+    "awsSection": "AWS FL regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 92,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "L3Harris Melbourne",
+        "type": "defense",
+        "scale": "Defense electronics + EW"
+      },
+      {
+        "name": "Embraer Melbourne",
+        "type": "aerospace",
+        "scale": "Phenom + Praetor business jet final assembly"
+      }
+    ],
+    "pricingMultiplier": 1.05,
+    "uniqueAngles": [
+      "L3Harris HQ — major US defense electronics + EW contractor",
+      "Embraer is only foreign OEM with US business-jet final assembly",
+      "Northrop Grumman E-2 Hawkeye + radar systems work"
+    ],
+    "nearbyMajorCities": [
+      "Cape Canaveral (60km)",
+      "Orlando (105km)",
+      "Miami (320km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "huntsville-al": {
+    "displayName": "Huntsville, AL",
+    "country": "US",
+    "state": "Alabama",
+    "stateCode": "AL",
+    "tier": 2,
+    "region": "southeast",
+    "metroPopulation": 510000,
+    "industries": [
+      {
+        "name": "Aerospace (NASA + DoD)",
+        "weight": 0.42,
+        "context": "NASA Marshall Space Flight Center, Redstone Arsenal"
+      },
+      {
+        "name": "Defense Manufacturing",
+        "weight": 0.25,
+        "context": "Boeing, Lockheed, Aerojet Rocketdyne, Dynetics"
+      },
+      {
+        "name": "Auto Manufacturing",
+        "weight": 0.15,
+        "context": "Mazda Toyota Manufacturing Huntsville"
+      }
+    ],
+    "majorEmployers": [
+      "NASA Marshall Space Flight Center",
+      "Redstone Arsenal (Army)",
+      "Boeing Huntsville (SLS)",
+      "Aerojet Rocketdyne",
+      "Dynetics",
+      "Mazda Toyota Manufacturing"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 58000,
+      "level2": 80000,
+      "level3": 124000
+    },
+    "wageBandSource": "BLS OES AL state 2024",
+    "regionalCodes": [
+      "NASA-STD-5009",
+      "MIL-STD-2154",
+      "AS9100",
+      "Nadcap NDT"
+    ],
+    "asntChapter": "ASNT Tennessee Valley Section",
+    "awsSection": "AWS AL regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 88,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "NASA Marshall Space Flight Center",
+        "type": "aerospace-r&d",
+        "scale": "Lead center for SLS rocket"
+      },
+      {
+        "name": "Redstone Arsenal",
+        "type": "military-r&d",
+        "scale": "Army aviation + missile R&D"
+      }
+    ],
+    "pricingMultiplier": 1.05,
+    "uniqueAngles": [
+      "NASA Marshall — lead center for SLS rocket; major heritage in propulsion",
+      "Aerojet Rocketdyne — RS-25 (Shuttle/SLS) engine inspection",
+      "Dual NASA + DoD aerospace ecosystem"
+    ],
+    "nearbyMajorCities": [
+      "Birmingham (150km)",
+      "Nashville (200km)",
+      "Atlanta (330km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "marietta-ga": {
+    "displayName": "Marietta, GA",
+    "country": "US",
+    "state": "Georgia",
+    "stateCode": "GA",
+    "tier": 3,
+    "region": "southeast",
+    "metroPopulation": 60000,
+    "industries": [
+      {
+        "name": "Aerospace Manufacturing",
+        "weight": 0.65,
+        "context": "Lockheed Martin Marietta — F-22, C-130, P-3"
+      }
+    ],
+    "majorEmployers": [
+      "Lockheed Martin Aeronautics Marietta",
+      "Dobbins ARB"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 56000,
+      "level2": 78000,
+      "level3": 122000
+    },
+    "wageBandSource": "BLS OES GA state 2024",
+    "regionalCodes": [
+      "AS9100",
+      "Nadcap NDT",
+      "MIL-STD-2154",
+      "USAF Tech Orders"
+    ],
+    "asntChapter": "ASNT Atlanta Section",
+    "awsSection": "AWS GA regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 88,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Lockheed Marietta",
+        "type": "aerospace",
+        "scale": "F-22 Raptor depot, C-130 Hercules production"
+      }
+    ],
+    "pricingMultiplier": 1.05,
+    "uniqueAngles": [
+      "Lockheed Marietta is C-130 birthplace + sole F-22 depot",
+      "Composite NDT + airframe weld inspection",
+      "Dobbins ARB — Air Force Reserve testing"
+    ],
+    "nearbyMajorCities": [
+      "Atlanta (30km)",
+      "Birmingham (250km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "hartford-ct": {
+    "displayName": "Hartford, CT",
+    "country": "US",
+    "state": "Connecticut",
+    "stateCode": "CT",
+    "tier": 2,
+    "region": "northeast",
+    "metroPopulation": 1210000,
+    "industries": [
+      {
+        "name": "Aerospace (Pratt & Whitney)",
+        "weight": 0.4,
+        "context": "P&W HQ + Middletown manufacturing"
+      },
+      {
+        "name": "Insurance HQ",
+        "weight": 0.25,
+        "context": "The Hartford, Aetna, Travelers"
+      },
+      {
+        "name": "Defense",
+        "weight": 0.15,
+        "context": "Sikorsky Aircraft (Stratford), Otis Aerospace"
+      }
+    ],
+    "majorEmployers": [
+      "Pratt & Whitney HQ + Middletown plant",
+      "Collins Aerospace (Windsor Locks)",
+      "Sikorsky Aircraft Stratford",
+      "Electric Boat Groton (90km)"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 60000,
+      "level2": 84000,
+      "level3": 128000
+    },
+    "wageBandSource": "BLS OES CT state 2024",
+    "regionalCodes": [
+      "AS9100",
+      "Nadcap NDT",
+      "Mil-Spec NDT (Sikorsky)",
+      "EASA Part-145"
+    ],
+    "asntChapter": "ASNT Connecticut Section",
+    "awsSection": "AWS CT regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 98,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Pratt & Whitney Middletown",
+        "type": "aero-engines",
+        "scale": "PW1000G GTF + F135 (F-35) manufacturing"
+      },
+      {
+        "name": "Sikorsky Stratford",
+        "type": "helicopter",
+        "scale": "Black Hawk + commercial helicopter"
+      }
+    ],
+    "pricingMultiplier": 1.1,
+    "uniqueAngles": [
+      "P&W is one of the 'Big Three' jet engine makers — F-35 sole-source engine",
+      "Engine UT (turbine disk inspection) is highest-stakes NDT in aerospace",
+      "Connecticut Aerospace Cluster — densest aerospace NDT market in NE"
+    ],
+    "nearbyMajorCities": [
+      "New Haven (60km)",
+      "Boston (160km)",
+      "New York (185km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "rockford-il": {
+    "displayName": "Rockford, IL",
+    "country": "US",
+    "state": "Illinois",
+    "stateCode": "IL",
+    "tier": 3,
+    "region": "midwest",
+    "metroPopulation": 340000,
+    "industries": [
+      {
+        "name": "Aerospace",
+        "weight": 0.3,
+        "context": "Collins Aerospace (Hamilton Sundstrand)"
+      },
+      {
+        "name": "Heavy Manufacturing",
+        "weight": 0.25,
+        "context": "Woodward Inc, Stenstrom"
+      }
+    ],
+    "majorEmployers": [
+      "Collins Aerospace Rockford (Hamilton Sundstrand)",
+      "Woodward Inc",
+      "Sundstrand Aerospace"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 50000,
+      "level2": 70000,
+      "level3": 108000
+    },
+    "wageBandSource": "BLS OES IL state 2024",
+    "regionalCodes": [
+      "AS9100",
+      "Nadcap NDT"
+    ],
+    "asntChapter": "ASNT Northern Illinois",
+    "awsSection": "AWS IL regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 82,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Collins Aerospace Rockford",
+        "type": "aerospace",
+        "scale": "Aircraft electrical, environmental, engine systems"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "Collins Aerospace Rockford — major aircraft systems supplier",
+      "Sundstrand legacy in APUs and constant-speed drives",
+      "Mid-volume aerospace component manufacturing"
+    ],
+    "nearbyMajorCities": [
+      "Chicago (140km)",
+      "Madison WI (110km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "dayton-oh": {
+    "displayName": "Dayton, OH",
+    "country": "US",
+    "state": "Ohio",
+    "stateCode": "OH",
+    "tier": 2,
+    "region": "midwest",
+    "metroPopulation": 815000,
+    "industries": [
+      {
+        "name": "Aerospace (USAF)",
+        "weight": 0.42,
+        "context": "Wright-Patterson AFB — Air Force Materiel Command HQ"
+      },
+      {
+        "name": "Auto & Manufacturing",
+        "weight": 0.22,
+        "context": "GM Moraine, Honda Anna engine plant nearby"
+      }
+    ],
+    "majorEmployers": [
+      "Wright-Patterson AFB",
+      "GE Aviation Dayton",
+      "Honda Anna Engine Plant (90km)",
+      "Air Force Research Lab"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 54000,
+      "level2": 76000,
+      "level3": 116000
+    },
+    "wageBandSource": "BLS OES OH state 2024",
+    "regionalCodes": [
+      "USAF Tech Orders",
+      "MIL-STD-2154",
+      "AS9100",
+      "ASTM E1444 (MT)"
+    ],
+    "asntChapter": "ASNT Dayton Section (founded 1948 — one of oldest)",
+    "awsSection": "AWS OH regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 82,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Wright-Patterson AFB",
+        "type": "military-aerospace",
+        "scale": "AFMC HQ — depot maintenance + R&D"
+      },
+      {
+        "name": "Air Force Research Lab",
+        "type": "r&d",
+        "scale": "USAF NDT R&D — many ASNT standards originated here"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "AFRL Materials & Manufacturing Directorate — birthplace of many NDT standards",
+      "Wright-Patt depot maintenance — F-15, F-22, C-17 service",
+      "Founding ASNT chapter — long-standing inspector training tradition"
+    ],
+    "nearbyMajorCities": [
+      "Cincinnati (90km)",
+      "Columbus (115km)",
+      "Indianapolis (175km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "cincinnati-oh": {
+    "displayName": "Cincinnati, OH",
+    "country": "US",
+    "state": "Ohio",
+    "stateCode": "OH",
+    "tier": 2,
+    "region": "midwest",
+    "metroPopulation": 2260000,
+    "industries": [
+      {
+        "name": "Aerospace Engines",
+        "weight": 0.32,
+        "context": "GE Aviation HQ + Evendale plant"
+      },
+      {
+        "name": "Consumer Goods",
+        "weight": 0.22,
+        "context": "P&G HQ, Kroger HQ"
+      },
+      {
+        "name": "Steel & Manufacturing",
+        "weight": 0.15,
+        "context": "AK Steel/Cleveland-Cliffs Middletown"
+      }
+    ],
+    "majorEmployers": [
+      "GE Aviation HQ (Evendale)",
+      "Cleveland-Cliffs Middletown",
+      "Procter & Gamble HQ",
+      "Kroger HQ"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 54000,
+      "level2": 76000,
+      "level3": 116000
+    },
+    "wageBandSource": "BLS OES OH state 2024",
+    "regionalCodes": [
+      "AS9100",
+      "Nadcap NDT",
+      "API 510/570/653",
+      "ASME"
+    ],
+    "asntChapter": "ASNT Cincinnati Section",
+    "awsSection": "AWS OH regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 82,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "GE Aviation Evendale",
+        "type": "aero-engines",
+        "scale": "GE9X, GEnx, F110 engine manufacturing"
+      },
+      {
+        "name": "Cleveland-Cliffs Middletown Works",
+        "type": "steel",
+        "scale": "Integrated steel mill"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "GE Aviation Evendale — major US commercial + military jet engine producer",
+      "Engine disk inspection (UT phased array, ECT) is high-stakes NDT",
+      "Cleveland-Cliffs Middletown — flat-rolled steel mill UT scope"
+    ],
+    "nearbyMajorCities": [
+      "Dayton (90km)",
+      "Indianapolis (185km)",
+      "Lexington (140km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "indianapolis-in": {
+    "displayName": "Indianapolis, IN",
+    "country": "US",
+    "state": "Indiana",
+    "stateCode": "IN",
+    "tier": 2,
+    "region": "midwest",
+    "metroPopulation": 2120000,
+    "industries": [
+      {
+        "name": "Aerospace Engines",
+        "weight": 0.3,
+        "context": "Rolls-Royce Indianapolis — military + commercial engines"
+      },
+      {
+        "name": "Pharmaceuticals",
+        "weight": 0.25,
+        "context": "Eli Lilly HQ, Roche Diagnostics"
+      },
+      {
+        "name": "Auto & Heavy Manufacturing",
+        "weight": 0.18,
+        "context": "Allison Transmission, Cummins Columbus"
+      }
+    ],
+    "majorEmployers": [
+      "Rolls-Royce North America Indianapolis",
+      "Eli Lilly",
+      "Allison Transmission",
+      "Cummins (Columbus, 70km)"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 52000,
+      "level2": 72000,
+      "level3": 112000
+    },
+    "wageBandSource": "BLS OES IN state 2024",
+    "regionalCodes": [
+      "AS9100",
+      "Nadcap NDT",
+      "FDA cGMP (pharma)",
+      "ASME"
+    ],
+    "asntChapter": "ASNT Indianapolis Section",
+    "awsSection": "AWS IN regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 84,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Rolls-Royce Indianapolis",
+        "type": "aero-engines",
+        "scale": "AE2100 (C-130J), AE3007, F405 (T-45)"
+      },
+      {
+        "name": "Allison Transmission",
+        "type": "manufacturing",
+        "scale": "World leader in commercial transmissions"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "Rolls-Royce Indianapolis — only US Rolls-Royce military engine manufacturing",
+      "Allison Transmission test cells — high-cycle fatigue NDT",
+      "Pharma SS welding (USP Class VI compliance)"
+    ],
+    "nearbyMajorCities": [
+      "Cincinnati (185km)",
+      "Chicago (300km)",
+      "Louisville (180km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "lima-oh": {
+    "displayName": "Lima, OH",
+    "country": "US",
+    "state": "Ohio",
+    "stateCode": "OH",
+    "tier": 3,
+    "region": "midwest",
+    "metroPopulation": 104000,
+    "industries": [
+      {
+        "name": "Refining",
+        "weight": 0.42,
+        "context": "Cenovus Lima Refinery — 175,000 bpd"
+      },
+      {
+        "name": "Defense Manufacturing",
+        "weight": 0.3,
+        "context": "Joint Systems Manufacturing Center (Abrams tank plant)"
+      }
+    ],
+    "majorEmployers": [
+      "Cenovus Lima Refinery",
+      "Joint Systems Manufacturing Center (GD Land Systems)"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 56000,
+      "level2": 78000,
+      "level3": 118000
+    },
+    "wageBandSource": "BLS OES OH state 2024",
+    "regionalCodes": [
+      "Ohio EPA",
+      "API 510/570/653",
+      "Mil-Spec (tank plant)"
+    ],
+    "asntChapter": "ASNT Lima Section",
+    "awsSection": "AWS OH regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 78,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Cenovus Lima Refinery",
+        "type": "refinery",
+        "scale": "175,000 bpd"
+      },
+      {
+        "name": "Lima Army Tank Plant",
+        "type": "defense",
+        "scale": "Only US M1 Abrams tank manufacturer"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "Lima is the ONLY US Abrams tank manufacturing plant",
+      "Cenovus Lima — well-engineered mid-size Midwestern refinery",
+      "Tank armor weld inspection — very thick-section UT specialty"
+    ],
+    "nearbyMajorCities": [
+      "Toledo (130km)",
+      "Dayton (130km)",
+      "Indianapolis (290km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "toledo-oh": {
+    "displayName": "Toledo, OH",
+    "country": "US",
+    "state": "Ohio",
+    "stateCode": "OH",
+    "tier": 2,
+    "region": "midwest",
+    "metroPopulation": 600000,
+    "industries": [
+      {
+        "name": "Refining",
+        "weight": 0.3,
+        "context": "BP-Husky Toledo + PBF Toledo"
+      },
+      {
+        "name": "Glass Manufacturing",
+        "weight": 0.22,
+        "context": "Pilkington/NSG, Owens-Illinois HQ — 'Glass Capital'"
+      },
+      {
+        "name": "Auto",
+        "weight": 0.2,
+        "context": "Stellantis Toledo Assembly (Jeep Wrangler)"
+      }
+    ],
+    "majorEmployers": [
+      "BP-Husky Toledo Refinery",
+      "PBF Toledo Refinery",
+      "Pilkington/NSG",
+      "Owens-Illinois",
+      "Owens Corning HQ",
+      "Stellantis Toledo Assembly"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 54000,
+      "level2": 76000,
+      "level3": 116000
+    },
+    "wageBandSource": "BLS OES OH state 2024",
+    "regionalCodes": [
+      "Ohio EPA",
+      "API 510/570/653",
+      "ASME"
+    ],
+    "asntChapter": "ASNT Toledo Section",
+    "awsSection": "AWS OH regional",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 80,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "BP-Husky Toledo Refinery",
+        "type": "refinery",
+        "scale": "160,000 bpd"
+      },
+      {
+        "name": "PBF Toledo Refinery",
+        "type": "refinery",
+        "scale": "175,000 bpd"
+      },
+      {
+        "name": "Stellantis Toledo Assembly",
+        "type": "auto",
+        "scale": "Jeep Wrangler + Gladiator"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "Two adjacent refineries in metro area — combined ~335k bpd capacity",
+      "Glass furnace inspection — unique high-temp ceramic/refractory NDT",
+      "Auto stamping plant weldment NDT for body-in-white"
+    ],
+    "nearbyMajorCities": [
+      "Detroit (90km)",
+      "Cleveland (180km)",
+      "Cincinnati (300km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "gary-in": {
+    "displayName": "Gary, IN",
+    "country": "US",
+    "state": "Indiana",
+    "stateCode": "IN",
+    "tier": 2,
+    "region": "midwest",
+    "metroPopulation": 265000,
+    "industries": [
+      {
+        "name": "Integrated Steel",
+        "weight": 0.85,
+        "context": "U.S. Steel Gary Works — largest integrated steel mill in US"
+      }
+    ],
+    "majorEmployers": [
+      "U.S. Steel Gary Works",
+      "ArcelorMittal Indiana Harbor East Chicago",
+      "BP Whiting Refinery (Whiting, 25km)"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 58000,
+      "level2": 80000,
+      "level3": 124000
+    },
+    "wageBandSource": "BLS OES IN state 2024",
+    "regionalCodes": [
+      "Indiana DEM",
+      "ASME Section I (boilers)",
+      "API 510 (limited)",
+      "AISI standards"
+    ],
+    "asntChapter": "ASNT Calumet Section",
+    "awsSection": "AWS IN regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 82,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "U.S. Steel Gary Works",
+        "type": "steel",
+        "scale": "Largest integrated steel mill in US — 7.5 MTPA"
+      },
+      {
+        "name": "ArcelorMittal Indiana Harbor",
+        "type": "steel",
+        "scale": "Largest US steel complex by area"
+      }
+    ],
+    "pricingMultiplier": 1.05,
+    "uniqueAngles": [
+      "Gary Works is the largest integrated steel mill in US",
+      "BOF, BF, hot strip mill, coke plant — all on one site",
+      "Diverse NDT scope: ladles, casters, rolls, mill cranes"
+    ],
+    "nearbyMajorCities": [
+      "Chicago (50km)",
+      "Indianapolis (240km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "youngstown-oh": {
+    "displayName": null,
+    "country": "US",
+    "state": null,
+    "stateCode": null,
+    "tier": 3,
+    "region": "us-other",
+    "metroPopulation": 100000,
+    "industries": [],
+    "majorEmployers": [],
+    "avgInspectorWageUSD": {
+      "level1": 48000,
+      "level2": 68000,
+      "level3": 102000
+    },
+    "wageBandSource": "BLS OES None state 2024",
+    "regionalCodes": [
+      "State DEQ",
+      "API 510/570/653",
+      "ASME Section V/VIII"
+    ],
+    "asntChapter": "Regional ASNT chapter",
+    "awsSection": "AWS None regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 88,
+    "majorPortsRefineriesPlants": [],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [],
+    "nearbyMajorCities": [],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "pueblo-co": {
+    "displayName": "Pueblo, CO",
+    "country": "US",
+    "state": "Colorado",
+    "stateCode": "CO",
+    "tier": 3,
+    "region": "rockies",
+    "metroPopulation": 170000,
+    "industries": [
+      {
+        "name": "Steel",
+        "weight": 0.42,
+        "context": "EVRAZ Rocky Mountain Steel (long products)"
+      },
+      {
+        "name": "Defense Storage",
+        "weight": 0.2,
+        "context": "Pueblo Chemical Depot (chemical weapons destruction site)"
+      }
+    ],
+    "majorEmployers": [
+      "EVRAZ Rocky Mountain Steel",
+      "Pueblo Chemical Depot",
+      "Vestas Wind Towers Pueblo"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 50000,
+      "level2": 70000,
+      "level3": 108000
+    },
+    "wageBandSource": "BLS OES CO state 2024",
+    "regionalCodes": [
+      "Colorado DPHE",
+      "AISI",
+      "ASME",
+      "Mil-Spec (depot)"
+    ],
+    "asntChapter": "ASNT Rocky Mountain Section",
+    "awsSection": "AWS CO regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 82,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "EVRAZ Rocky Mountain Steel",
+        "type": "steel",
+        "scale": "Long products: rail, rod, bar"
+      },
+      {
+        "name": "Vestas Pueblo",
+        "type": "wind-tower",
+        "scale": "Wind tower manufacturing"
+      }
+    ],
+    "pricingMultiplier": 0.95,
+    "uniqueAngles": [
+      "EVRAZ Pueblo — major US rail manufacturer",
+      "Vestas wind tower welding inspection (large-scale circumferential UT)",
+      "Pueblo Chemical Depot — destruction of legacy chemical weapons"
+    ],
+    "nearbyMajorCities": [
+      "Colorado Springs (75km)",
+      "Denver (180km)",
+      "Albuquerque (480km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "spartanburg-sc": {
+    "displayName": "Spartanburg, SC",
+    "country": "US",
+    "state": "South Carolina",
+    "stateCode": "SC",
+    "tier": 2,
+    "region": "southeast",
+    "metroPopulation": 350000,
+    "industries": [
+      {
+        "name": "Auto Manufacturing",
+        "weight": 0.55,
+        "context": "BMW Spartanburg — largest BMW plant globally; Michelin"
+      }
+    ],
+    "majorEmployers": [
+      "BMW Manufacturing (Plant Spartanburg)",
+      "Michelin Greenville-Spartanburg",
+      "Adidas / Nutramax",
+      "AFL Telecommunications"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 50000,
+      "level2": 70000,
+      "level3": 108000
+    },
+    "wageBandSource": "BLS OES SC state 2024",
+    "regionalCodes": [
+      "IATF 16949 (auto)",
+      "VDA 6.1 (German auto NDT)",
+      "ASTM E114 (UT)"
+    ],
+    "asntChapter": "ASNT Carolinas Section",
+    "awsSection": "AWS SC regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 80,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "BMW Plant Spartanburg",
+        "type": "auto",
+        "scale": "Largest BMW plant globally — X3, X5, X6, X7"
+      },
+      {
+        "name": "Michelin North America HQ",
+        "type": "tire",
+        "scale": "Tire R&D + manufacturing"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "BMW Spartanburg — only US BMW plant; X-series exports globally",
+      "Auto industry weld inspection (resistance, MIG, robotic UT)",
+      "Michelin tire steel cord radiographic inspection"
+    ],
+    "nearbyMajorCities": [
+      "Greenville SC (40km)",
+      "Charlotte (130km)",
+      "Atlanta (290km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "nashville-tn": {
+    "displayName": "Nashville, TN",
+    "country": "US",
+    "state": "Tennessee",
+    "stateCode": "TN",
+    "tier": 2,
+    "region": "southeast",
+    "metroPopulation": 2010000,
+    "industries": [
+      {
+        "name": "Auto",
+        "weight": 0.32,
+        "context": "Nissan Smyrna, Bridgestone HQ, GM Spring Hill"
+      },
+      {
+        "name": "Healthcare HQs",
+        "weight": 0.22,
+        "context": "HCA Healthcare HQ, Vanderbilt Health"
+      }
+    ],
+    "majorEmployers": [
+      "Nissan North America (Smyrna)",
+      "Bridgestone Americas HQ",
+      "GM Spring Hill Manufacturing",
+      "HCA Healthcare"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 50000,
+      "level2": 70000,
+      "level3": 108000
+    },
+    "wageBandSource": "BLS OES TN state 2024",
+    "regionalCodes": [
+      "IATF 16949",
+      "API 510/570/653",
+      "ASME"
+    ],
+    "asntChapter": "ASNT Tennessee Section",
+    "awsSection": "AWS TN regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 88,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Nissan Smyrna",
+        "type": "auto",
+        "scale": "Largest US Nissan plant — 800k vehicles/year"
+      },
+      {
+        "name": "GM Spring Hill",
+        "type": "auto",
+        "scale": "GM SUV + EV production"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "Multiple major auto plants — Nissan, GM, Bridgestone",
+      "EV battery pack inspection (laser welds, UT thru weld)",
+      "Healthcare equipment NDT — Vanderbilt research"
+    ],
+    "nearbyMajorCities": [
+      "Memphis (340km)",
+      "Atlanta (400km)",
+      "Louisville (290km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "memphis-tn": {
+    "displayName": "Memphis, TN",
+    "country": "US",
+    "state": "Tennessee",
+    "stateCode": "TN",
+    "tier": 2,
+    "region": "southeast",
+    "metroPopulation": 1340000,
+    "industries": [
+      {
+        "name": "Logistics & Aviation",
+        "weight": 0.32,
+        "context": "FedEx World Hub — busiest cargo airport"
+      },
+      {
+        "name": "Auto",
+        "weight": 0.22,
+        "context": "Ford BlueOval City Stanton (under construction)"
+      },
+      {
+        "name": "Refining",
+        "weight": 0.18,
+        "context": "Valero Memphis Refinery"
+      }
+    ],
+    "majorEmployers": [
+      "FedEx (HQ + Memphis hub)",
+      "Valero Memphis Refinery",
+      "Ford BlueOval City (Stanton)",
+      "International Paper",
+      "AutoZone HQ"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 50000,
+      "level2": 70000,
+      "level3": 108000
+    },
+    "wageBandSource": "BLS OES TN state 2024",
+    "regionalCodes": [
+      "TN DEC",
+      "API 510/570/653",
+      "FAA Part 145"
+    ],
+    "asntChapter": "ASNT Memphis Section",
+    "awsSection": "AWS TN regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 82,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Valero Memphis Refinery",
+        "type": "refinery",
+        "scale": "195,000 bpd"
+      },
+      {
+        "name": "FedEx World Hub",
+        "type": "aviation",
+        "scale": "Busiest cargo airport globally"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "FedEx hub — air cargo aircraft heavy maintenance NDT",
+      "BlueOval City — Ford F-150 Lightning EV mega-plant under construction",
+      "Mississippi River barge inspection scope"
+    ],
+    "nearbyMajorCities": [
+      "Nashville (340km)",
+      "Little Rock (220km)",
+      "Jackson MS (340km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "chattanooga-tn": {
+    "displayName": "Chattanooga, TN",
+    "country": "US",
+    "state": "Tennessee",
+    "stateCode": "TN",
+    "tier": 2,
+    "region": "southeast",
+    "metroPopulation": 565000,
+    "industries": [
+      {
+        "name": "Auto",
+        "weight": 0.32,
+        "context": "Volkswagen Chattanooga Assembly"
+      },
+      {
+        "name": "Nuclear (Sequoyah/Watts Bar)",
+        "weight": 0.22,
+        "context": "TVA Sequoyah + Watts Bar nuclear plants nearby"
+      },
+      {
+        "name": "Manufacturing",
+        "weight": 0.18,
+        "context": "Komatsu, Wacker Polysilicon"
+      }
+    ],
+    "majorEmployers": [
+      "Volkswagen Chattanooga",
+      "TVA Sequoyah Nuclear (40km)",
+      "TVA Watts Bar Nuclear",
+      "Komatsu America"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 50000,
+      "level2": 70000,
+      "level3": 108000
+    },
+    "wageBandSource": "BLS OES TN state 2024",
+    "regionalCodes": [
+      "10 CFR 50 (nuclear)",
+      "ASME Section III/XI",
+      "IATF 16949 (auto)"
+    ],
+    "asntChapter": "ASNT Tennessee Valley Section",
+    "awsSection": "AWS TN regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 84,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "TVA Sequoyah Nuclear",
+        "type": "nuclear-power",
+        "scale": "2,200 MW (2 PWRs)"
+      },
+      {
+        "name": "TVA Watts Bar Nuclear",
+        "type": "nuclear-power",
+        "scale": "2,300 MW (2 PWRs — Unit 2 newest US reactor pre-Vogtle 3)"
+      },
+      {
+        "name": "Volkswagen Chattanooga",
+        "type": "auto",
+        "scale": "Atlas + ID.4 EV production"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "TVA Sequoyah + Watts Bar — major commercial nuclear inspection scope",
+      "ASME Section XI ISI (in-service inspection) is dominant credential",
+      "VW EV production drives battery NDT scope"
+    ],
+    "nearbyMajorCities": [
+      "Knoxville (180km)",
+      "Atlanta (190km)",
+      "Nashville (220km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "lynchburg-va": {
+    "displayName": "Lynchburg, VA",
+    "country": "US",
+    "state": "Virginia",
+    "stateCode": "VA",
+    "tier": 3,
+    "region": "south-atlantic",
+    "metroPopulation": 265000,
+    "industries": [
+      {
+        "name": "Nuclear Manufacturing",
+        "weight": 0.55,
+        "context": "BWXT (naval nuclear), Framatome (commercial nuclear)"
+      }
+    ],
+    "majorEmployers": [
+      "BWXT Lynchburg (formerly Babcock & Wilcox)",
+      "Framatome Lynchburg",
+      "Areva NP legacy"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 58000,
+      "level2": 82000,
+      "level3": 128000
+    },
+    "wageBandSource": "BLS OES VA state 2024",
+    "regionalCodes": [
+      "NRC 10 CFR 50/70",
+      "ASME Section III/XI",
+      "NAVSEA NIM (Nuclear Inspection Manual)"
+    ],
+    "asntChapter": "ASNT Virginia Section",
+    "awsSection": "AWS VA regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 84,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "BWXT Lynchburg",
+        "type": "nuclear-naval",
+        "scale": "Sole US naval reactor manufacturer"
+      },
+      {
+        "name": "Framatome Lynchburg",
+        "type": "nuclear-commercial",
+        "scale": "Reactor + steam generator components"
+      }
+    ],
+    "pricingMultiplier": 1.05,
+    "uniqueAngles": [
+      "BWXT — sole US manufacturer of naval nuclear reactor components",
+      "Framatome — commercial nuclear steam generator + reactor internals",
+      "Highest-rigor nuclear NDT in US — naval + commercial"
+    ],
+    "nearbyMajorCities": [
+      "Roanoke (90km)",
+      "Richmond (180km)",
+      "Charlotte (260km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "monroeville-pa": {
+    "displayName": "Monroeville, PA",
+    "country": "US",
+    "state": "Pennsylvania",
+    "stateCode": "PA",
+    "tier": 3,
+    "region": "appalachia",
+    "metroPopulation": 28000,
+    "industries": [
+      {
+        "name": "Nuclear (Westinghouse)",
+        "weight": 0.65,
+        "context": "Westinghouse Cranberry Township HQ + Monroeville lab"
+      }
+    ],
+    "majorEmployers": [
+      "Westinghouse Electric (HQ Cranberry Township)",
+      "Bechtel Pittsburgh",
+      "AECOM"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 58000,
+      "level2": 82000,
+      "level3": 128000
+    },
+    "wageBandSource": "BLS OES PA state 2024",
+    "regionalCodes": [
+      "NRC 10 CFR 50",
+      "ASME Section III/XI",
+      "10 CFR 21"
+    ],
+    "asntChapter": "ASNT Pittsburgh Section",
+    "awsSection": "AWS PA regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 88,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Westinghouse HQ (Cranberry Township)",
+        "type": "nuclear-r&d",
+        "scale": "AP1000 reactor design + R&D"
+      }
+    ],
+    "pricingMultiplier": 1.1,
+    "uniqueAngles": [
+      "Westinghouse — designer of AP1000 reactors (Vogtle 3+4, China, India)",
+      "Reactor vessel + steam generator design originate here",
+      "Pittsburgh-area nuclear engineering hub"
+    ],
+    "nearbyMajorCities": [
+      "Pittsburgh (20km)",
+      "Steubenville (60km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "rochester-ny": {
+    "displayName": "Rochester, NY",
+    "country": "US",
+    "state": "New York",
+    "stateCode": "NY",
+    "tier": 3,
+    "region": "northeast",
+    "metroPopulation": 1080000,
+    "industries": [
+      {
+        "name": "Optics & Imaging",
+        "weight": 0.25,
+        "context": "Eastman Kodak (legacy), L3Harris, Bausch & Lomb"
+      },
+      {
+        "name": "Manufacturing",
+        "weight": 0.2,
+        "context": "Xerox (legacy HQ), Constellation Brands"
+      },
+      {
+        "name": "Nuclear (Ginna)",
+        "weight": 0.15,
+        "context": "Ginna Nuclear Plant 30km east"
+      }
+    ],
+    "majorEmployers": [
+      "L3Harris Communication Systems",
+      "Eastman Kodak",
+      "Bausch & Lomb",
+      "Xerox",
+      "Constellation Energy Ginna"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 50000,
+      "level2": 70000,
+      "level3": 108000
+    },
+    "wageBandSource": "BLS OES NY state 2024",
+    "regionalCodes": [
+      "10 CFR 50 (Ginna)",
+      "AS9100",
+      "ASME"
+    ],
+    "asntChapter": "ASNT Rochester Section",
+    "awsSection": "AWS NY regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 86,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Ginna Nuclear Plant",
+        "type": "nuclear-power",
+        "scale": "582 MW PWR (one of oldest US plants)"
+      },
+      {
+        "name": "L3Harris Rochester",
+        "type": "defense",
+        "scale": "Tactical radio + comm systems"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "Ginna is oldest operating US PWR — extensive aging-management inspection",
+      "L3Harris communications systems — defense electronics",
+      "Optics manufacturing — surface roughness inspection (interferometry)"
+    ],
+    "nearbyMajorCities": [
+      "Buffalo (110km)",
+      "Syracuse (140km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "buffalo-ny": {
+    "displayName": "Buffalo, NY",
+    "country": "US",
+    "state": "New York",
+    "stateCode": "NY",
+    "tier": 3,
+    "region": "northeast",
+    "metroPopulation": 1130000,
+    "industries": [
+      {
+        "name": "Steel & Heavy Manufacturing",
+        "weight": 0.3,
+        "context": "Tonawanda Coke (closed), GM Tonawanda Engine"
+      },
+      {
+        "name": "Chemicals",
+        "weight": 0.22,
+        "context": "Praxair-Linde, DuPont Yerkes"
+      },
+      {
+        "name": "Auto",
+        "weight": 0.18,
+        "context": "Ford Stamping Plant"
+      }
+    ],
+    "majorEmployers": [
+      "GM Tonawanda Engine",
+      "Praxair-Linde",
+      "DuPont Yerkes",
+      "Ford Buffalo Stamping"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 50000,
+      "level2": 70000,
+      "level3": 108000
+    },
+    "wageBandSource": "BLS OES NY state 2024",
+    "regionalCodes": [
+      "NY DEC",
+      "API 510/570/653",
+      "ASME"
+    ],
+    "asntChapter": "ASNT Western NY Section",
+    "awsSection": "AWS NY regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 82,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "GM Tonawanda Engine",
+        "type": "auto",
+        "scale": "Engine block + head manufacturing"
+      },
+      {
+        "name": "Praxair-Linde Tonawanda",
+        "type": "industrial-gas",
+        "scale": "Major US air separation site"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "Industrial gas plant inspection — cryogenic vessel UT specialty",
+      "Niagara Falls hydropower — turbine + draft tube inspection",
+      "GM Tonawanda — major engine cast iron RT"
+    ],
+    "nearbyMajorCities": [
+      "Rochester (110km)",
+      "Niagara Falls (35km)",
+      "Toronto (150km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "birmingham-al": {
+    "displayName": "Birmingham, AL",
+    "country": "US",
+    "state": "Alabama",
+    "stateCode": "AL",
+    "tier": 2,
+    "region": "southeast",
+    "metroPopulation": 1115000,
+    "industries": [
+      {
+        "name": "Steel",
+        "weight": 0.3,
+        "context": "U.S. Steel Fairfield, U.S. Pipe (legacy), Outokumpu"
+      },
+      {
+        "name": "Healthcare",
+        "weight": 0.2,
+        "context": "UAB Health System"
+      },
+      {
+        "name": "Auto",
+        "weight": 0.18,
+        "context": "Mercedes-Benz Tuscaloosa, Honda Lincoln (regional)"
+      }
+    ],
+    "majorEmployers": [
+      "U.S. Steel Fairfield Works",
+      "U.S. Pipe & Foundry",
+      "Outokumpu Calvert",
+      "Mercedes-Benz Tuscaloosa",
+      "ACIPCO Pipe"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 50000,
+      "level2": 70000,
+      "level3": 108000
+    },
+    "wageBandSource": "BLS OES AL state 2024",
+    "regionalCodes": [
+      "ADEM",
+      "API 5L (line pipe)",
+      "AISI",
+      "ASTM"
+    ],
+    "asntChapter": "ASNT Alabama Section",
+    "awsSection": "AWS AL regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 80,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "U.S. Steel Fairfield Works",
+        "type": "steel",
+        "scale": "Major US flat steel + tubular"
+      },
+      {
+        "name": "ACIPCO",
+        "type": "iron-pipe",
+        "scale": "Largest ductile iron pipe plant in US"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "Birmingham steel/iron heritage — multiple mills + foundries",
+      "ACIPCO ductile iron pipe — UT thickness gauging on cast wall",
+      "Mercedes-Benz Tuscaloosa drives auto inspection scope (90km away)"
+    ],
+    "nearbyMajorCities": [
+      "Atlanta (240km)",
+      "Nashville (290km)",
+      "Mobile (470km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "st-louis-mo": {
+    "displayName": "St. Louis, MO",
+    "country": "US",
+    "state": "Missouri",
+    "stateCode": "MO",
+    "tier": 2,
+    "region": "midwest",
+    "metroPopulation": 2820000,
+    "industries": [
+      {
+        "name": "Aerospace & Defense",
+        "weight": 0.32,
+        "context": "Boeing Defense (F/A-18, F-15EX, T-7A)"
+      },
+      {
+        "name": "Brewing & Food",
+        "weight": 0.22,
+        "context": "AB-InBev HQ, Nestle Purina"
+      },
+      {
+        "name": "Refining",
+        "weight": 0.1,
+        "context": "P66 Wood River Refinery (40km east)"
+      }
+    ],
+    "majorEmployers": [
+      "Boeing Defense Space & Security HQ",
+      "AB-InBev North America HQ",
+      "Phillips 66 Wood River Refinery (40km)",
+      "Express Scripts",
+      "Emerson Electric HQ"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 54000,
+      "level2": 76000,
+      "level3": 116000
+    },
+    "wageBandSource": "BLS OES MO state 2024",
+    "regionalCodes": [
+      "AS9100",
+      "Nadcap NDT",
+      "MIL-STD-2154",
+      "API 510/570/653"
+    ],
+    "asntChapter": "ASNT St. Louis Section",
+    "awsSection": "AWS MO regional",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 86,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Boeing Defense St. Louis",
+        "type": "aerospace-defense",
+        "scale": "F-15EX, F/A-18, T-7A, 777X tail"
+      },
+      {
+        "name": "Phillips 66 Wood River Refinery",
+        "type": "refinery",
+        "scale": "356,000 bpd (40km east in IL)"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "Boeing Defense HQ — F-15EX + F/A-18 + T-7A trainer production",
+      "Anheuser-Busch SS welding (food contact, 3-A Sanitary)",
+      "Wood River Refinery is major Midwest crude processor"
+    ],
+    "nearbyMajorCities": [
+      "Kansas City (385km)",
+      "Indianapolis (400km)",
+      "Chicago (475km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "milwaukee-wi": {
+    "displayName": "Milwaukee, WI",
+    "country": "US",
+    "state": "Wisconsin",
+    "stateCode": "WI",
+    "tier": 2,
+    "region": "midwest",
+    "metroPopulation": 1570000,
+    "industries": [
+      {
+        "name": "Heavy Manufacturing",
+        "weight": 0.3,
+        "context": "Rockwell Automation HQ, Harley-Davidson HQ, GE Healthcare"
+      },
+      {
+        "name": "Power Generation Equipment",
+        "weight": 0.2,
+        "context": "P&H Mining Equipment (now Komatsu), Caterpillar"
+      }
+    ],
+    "majorEmployers": [
+      "Rockwell Automation HQ",
+      "Harley-Davidson HQ",
+      "GE Healthcare HQ (Waukesha)",
+      "Komatsu Mining",
+      "Briggs & Stratton"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 52000,
+      "level2": 72000,
+      "level3": 110000
+    },
+    "wageBandSource": "BLS OES WI state 2024",
+    "regionalCodes": [
+      "IATF 16949",
+      "ASME Section V/VIII",
+      "FDA (medical devices)"
+    ],
+    "asntChapter": "ASNT Milwaukee Section",
+    "awsSection": "AWS WI regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 84,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "GE Healthcare Waukesha",
+        "type": "medical-devices",
+        "scale": "MRI + CT scanner manufacturing HQ"
+      },
+      {
+        "name": "Komatsu Mining (P&H)",
+        "type": "mining-equipment",
+        "scale": "Electric mining shovels, draglines"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "GE Healthcare Waukesha — MRI/CT scanner NDT (cryostat helium leak, magnet weld)",
+      "Mining shovel boom NDT — high-cycle fatigue UT/MT",
+      "Harley-Davidson engine castings — RT for porosity"
+    ],
+    "nearbyMajorCities": [
+      "Chicago (140km)",
+      "Madison (130km)",
+      "Green Bay (190km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "minneapolis-mn": {
+    "displayName": "Minneapolis, MN",
+    "country": "US",
+    "state": "Minnesota",
+    "stateCode": "MN",
+    "tier": 2,
+    "region": "upper-midwest",
+    "metroPopulation": 3690000,
+    "industries": [
+      {
+        "name": "Industrial Manufacturing",
+        "weight": 0.28,
+        "context": "3M HQ, Polaris, Pentair, Honeywell Aerospace"
+      },
+      {
+        "name": "Refining",
+        "weight": 0.18,
+        "context": "Flint Hills Pine Bend, Marathon St. Paul Park"
+      },
+      {
+        "name": "Medical Devices",
+        "weight": 0.18,
+        "context": "Medtronic HQ, Boston Scientific"
+      }
+    ],
+    "majorEmployers": [
+      "3M HQ (Maplewood)",
+      "Polaris Industries",
+      "Honeywell Aerospace Minneapolis",
+      "Medtronic HQ",
+      "Flint Hills Pine Bend Refinery",
+      "Marathon St. Paul Park Refinery"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 54000,
+      "level2": 76000,
+      "level3": 116000
+    },
+    "wageBandSource": "BLS OES MN state 2024",
+    "regionalCodes": [
+      "MN PCA",
+      "API 510/570/653",
+      "AS9100",
+      "FDA medical devices"
+    ],
+    "asntChapter": "ASNT Twin Cities Section",
+    "awsSection": "AWS MN regional",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 92,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Flint Hills Pine Bend Refinery",
+        "type": "refinery",
+        "scale": "375,000 bpd"
+      },
+      {
+        "name": "Marathon St. Paul Park",
+        "type": "refinery",
+        "scale": "98,000 bpd"
+      },
+      {
+        "name": "Medtronic HQ Minneapolis",
+        "type": "medical",
+        "scale": "World's largest medical device company"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "Pine Bend is largest Midwestern refinery serving Minnesota + Dakotas",
+      "Medtronic — implantable device NDT (Ti weld, hermetic seal leak)",
+      "3M industrial process inspection scope"
+    ],
+    "nearbyMajorCities": [
+      "St. Paul (15km)",
+      "Duluth (250km)",
+      "Fargo (390km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "duluth-mn": {
+    "displayName": "Duluth, MN",
+    "country": "US",
+    "state": "Minnesota",
+    "stateCode": "MN",
+    "tier": 3,
+    "region": "upper-midwest",
+    "metroPopulation": 290000,
+    "industries": [
+      {
+        "name": "Iron Ore Shipping",
+        "weight": 0.42,
+        "context": "Port of Duluth — largest US Great Lakes port; iron ore export"
+      },
+      {
+        "name": "Power",
+        "weight": 0.18,
+        "context": "Minnesota Power generation"
+      },
+      {
+        "name": "Shipbuilding (legacy)",
+        "weight": 0.12,
+        "context": "Fraser Shipyards"
+      }
+    ],
+    "majorEmployers": [
+      "U.S. Steel Minntac (Mountain Iron MN)",
+      "Cliffs Hibbing Taconite",
+      "Fraser Shipyards Duluth",
+      "Minnesota Power"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 50000,
+      "level2": 70000,
+      "level3": 108000
+    },
+    "wageBandSource": "BLS OES MN state 2024",
+    "regionalCodes": [
+      "MN PCA",
+      "MSHA (mining)",
+      "USCG (Great Lakes)"
+    ],
+    "asntChapter": "ASNT Twin Ports/Northeastern MN",
+    "awsSection": "AWS MN regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 82,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Port of Duluth-Superior",
+        "type": "port",
+        "scale": "Largest US Great Lakes port"
+      },
+      {
+        "name": "Iron Range mines (regional)",
+        "type": "mine",
+        "scale": "Mesabi Range — major US iron ore"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "Great Lakes ore boats — UT thickness gauging on cargo holds",
+      "Iron Range taconite plants (Minntac, Hibbing) — pelletizing inspection",
+      "Cold-weather Great Lakes operations"
+    ],
+    "nearbyMajorCities": [
+      "Minneapolis (250km)",
+      "Winnipeg (440km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "el-paso-tx": {
+    "displayName": "El Paso, TX",
+    "country": "US",
+    "state": "Texas",
+    "stateCode": "TX",
+    "tier": 2,
+    "region": "southwest",
+    "metroPopulation": 870000,
+    "industries": [
+      {
+        "name": "Refining",
+        "weight": 0.3,
+        "context": "Marathon El Paso Refinery"
+      },
+      {
+        "name": "Defense",
+        "weight": 0.22,
+        "context": "Fort Bliss + Biggs Army Airfield"
+      },
+      {
+        "name": "Border Logistics",
+        "weight": 0.15,
+        "context": "Major US-Mexico trade corridor"
+      }
+    ],
+    "majorEmployers": [
+      "Marathon El Paso Refinery",
+      "Fort Bliss",
+      "Western Refining Pipeline (now MPC)"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 50000,
+      "level2": 70000,
+      "level3": 108000
+    },
+    "wageBandSource": "BLS OES TX state 2024",
+    "regionalCodes": [
+      "TPSC",
+      "TCEQ",
+      "API 510/570/653",
+      "Mil-Spec (Fort Bliss)"
+    ],
+    "asntChapter": "ASNT West Texas/Southern NM",
+    "awsSection": "AWS TX regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 82,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Marathon El Paso Refinery",
+        "type": "refinery",
+        "scale": "133,000 bpd"
+      },
+      {
+        "name": "Fort Bliss",
+        "type": "military",
+        "scale": "Largest mounted formation Army post"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "Border-area refinery — serves NM + Mexico fuel markets",
+      "Permian crude takeaway pipelines terminate near El Paso",
+      "Fort Bliss aviation maintenance"
+    ],
+    "nearbyMajorCities": [
+      "Las Cruces NM (75km)",
+      "Albuquerque (430km)",
+      "Odessa (450km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "el-dorado-ar": {
+    "displayName": "El Dorado, AR",
+    "country": "US",
+    "state": "Arkansas",
+    "stateCode": "AR",
+    "tier": 3,
+    "region": "south-central",
+    "metroPopulation": 18000,
+    "industries": [
+      {
+        "name": "Refining",
+        "weight": 0.55,
+        "context": "Lion Oil Refinery — 80,000 bpd"
+      },
+      {
+        "name": "Chemicals",
+        "weight": 0.22,
+        "context": "Great Lakes Chemical, Albemarle bromine"
+      }
+    ],
+    "majorEmployers": [
+      "Lion Oil Refinery",
+      "Albemarle El Dorado",
+      "Great Lakes Chemical (LANXESS)"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 54000,
+      "level2": 76000,
+      "level3": 116000
+    },
+    "wageBandSource": "BLS OES AR state 2024",
+    "regionalCodes": [
+      "AR DEQ",
+      "API 510/570/653",
+      "ASME"
+    ],
+    "asntChapter": "ASNT Arkansas Section",
+    "awsSection": "AWS AR regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 78,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Lion Oil Refinery",
+        "type": "refinery",
+        "scale": "80,000 bpd"
+      },
+      {
+        "name": "Albemarle bromine plant",
+        "type": "chemical",
+        "scale": "Major US bromine producer"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "Lion Oil — small refinery, every TAR is high-impact",
+      "Bromine production — wet bromine corrosion inspection (Hastelloy)",
+      "South Arkansas oil/gas legacy region"
+    ],
+    "nearbyMajorCities": [
+      "Little Rock (200km)",
+      "Shreveport LA (140km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "bartlesville-ok": {
+    "displayName": "Bartlesville, OK",
+    "country": "US",
+    "state": "Oklahoma",
+    "stateCode": "OK",
+    "tier": 3,
+    "region": "south-central",
+    "metroPopulation": 37000,
+    "industries": [
+      {
+        "name": "Energy HQ Heritage",
+        "weight": 0.55,
+        "context": "Phillips 66 (legacy HQ), ConocoPhillips, Frontier Oil legacy"
+      }
+    ],
+    "majorEmployers": [
+      "Phillips 66 (Research + tech ops)",
+      "ConocoPhillips legacy ops",
+      "Diversified Energy"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 54000,
+      "level2": 76000,
+      "level3": 116000
+    },
+    "wageBandSource": "BLS OES OK state 2024",
+    "regionalCodes": [
+      "OK Corporation Commission",
+      "API 510/570/653",
+      "ASME"
+    ],
+    "asntChapter": "ASNT Oklahoma Section",
+    "awsSection": "AWS OK regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 78,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Phillips 66 Research Center",
+        "type": "r&d",
+        "scale": "Major refining + chemicals R&D"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "Phillips 66 R&D centre — refining technology development",
+      "Birthplace of Phillips Petroleum — historical industry heritage",
+      "Mid-Continent oil regional inspection scope"
+    ],
+    "nearbyMajorCities": [
+      "Tulsa (75km)",
+      "Oklahoma City (220km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "decatur-il": {
+    "displayName": "Decatur, IL",
+    "country": "US",
+    "state": "Illinois",
+    "stateCode": "IL",
+    "tier": 3,
+    "region": "midwest",
+    "metroPopulation": 104000,
+    "industries": [
+      {
+        "name": "Heavy Manufacturing",
+        "weight": 0.4,
+        "context": "Caterpillar, ADM"
+      },
+      {
+        "name": "Agribusiness",
+        "weight": 0.25,
+        "context": "ADM corn processing — largest in world"
+      }
+    ],
+    "majorEmployers": [
+      "Caterpillar Decatur",
+      "ADM (Archer Daniels Midland) HQ",
+      "Tate & Lyle"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 50000,
+      "level2": 70000,
+      "level3": 108000
+    },
+    "wageBandSource": "BLS OES IL state 2024",
+    "regionalCodes": [
+      "IL EPA",
+      "FDA food contact",
+      "ASME"
+    ],
+    "asntChapter": "ASNT Central Illinois",
+    "awsSection": "AWS IL regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 78,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "ADM Decatur",
+        "type": "agribusiness",
+        "scale": "Largest corn processing plant in world"
+      },
+      {
+        "name": "Caterpillar Decatur",
+        "type": "heavy-equip",
+        "scale": "Off-highway truck assembly"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "ADM Decatur — sterile food-grade SS welding inspection",
+      "Caterpillar truck frame UT (high-cycle fatigue)",
+      "Ethanol production NDT — distillation column scope"
+    ],
+    "nearbyMajorCities": [
+      "Springfield IL (60km)",
+      "St Louis (220km)",
+      "Indianapolis (250km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "peoria-il": {
+    "displayName": "Peoria, IL",
+    "country": "US",
+    "state": "Illinois",
+    "stateCode": "IL",
+    "tier": 3,
+    "region": "midwest",
+    "metroPopulation": 400000,
+    "industries": [
+      {
+        "name": "Heavy Equipment (Caterpillar)",
+        "weight": 0.65,
+        "context": "Caterpillar HQ + multiple plants"
+      }
+    ],
+    "majorEmployers": [
+      "Caterpillar HQ",
+      "Komatsu",
+      "RLI Corporation"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 50000,
+      "level2": 70000,
+      "level3": 108000
+    },
+    "wageBandSource": "BLS OES IL state 2024",
+    "regionalCodes": [
+      "IL EPA",
+      "ASME",
+      "ASTM"
+    ],
+    "asntChapter": "ASNT Central Illinois",
+    "awsSection": "AWS IL regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 78,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Caterpillar Mossville",
+        "type": "heavy-equip",
+        "scale": "Engine + transmission HQ"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "Caterpillar HQ region — heavy-equipment frame, axle, engine NDT",
+      "Diesel engine block RT for porosity",
+      "Hydraulic cylinder UT (rod welds, end caps)"
+    ],
+    "nearbyMajorCities": [
+      "Chicago (270km)",
+      "Springfield IL (110km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "erie-pa": {
+    "displayName": "Erie, PA",
+    "country": "US",
+    "state": "Pennsylvania",
+    "stateCode": "PA",
+    "tier": 3,
+    "region": "appalachia",
+    "metroPopulation": 270000,
+    "industries": [
+      {
+        "name": "Heavy Manufacturing",
+        "weight": 0.42,
+        "context": "Wabtec (formerly GE Locomotive)"
+      },
+      {
+        "name": "Insurance",
+        "weight": 0.2,
+        "context": "Erie Insurance HQ"
+      }
+    ],
+    "majorEmployers": [
+      "Wabtec Erie (Locomotive Plant)",
+      "Erie Insurance HQ",
+      "Lord Corporation"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 50000,
+      "level2": 70000,
+      "level3": 108000
+    },
+    "wageBandSource": "BLS OES PA state 2024",
+    "regionalCodes": [
+      "PA DEP",
+      "AAR (Association of American Railroads)",
+      "ASME"
+    ],
+    "asntChapter": "ASNT Erie Section",
+    "awsSection": "AWS PA regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 78,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Wabtec Erie",
+        "type": "rail",
+        "scale": "Major US locomotive manufacturing"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "Wabtec Erie — major US locomotive manufacturing (former GE Transportation)",
+      "Locomotive frame UT, axle inspection, traction motor",
+      "Lord Corporation — composite + adhesive bond NDT"
+    ],
+    "nearbyMajorCities": [
+      "Cleveland (160km)",
+      "Pittsburgh (200km)",
+      "Buffalo (170km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "columbus-oh": {
+    "displayName": "Columbus, OH",
+    "country": "US",
+    "state": "Ohio",
+    "stateCode": "OH",
+    "tier": 2,
+    "region": "midwest",
+    "metroPopulation": 2150000,
+    "industries": [
+      {
+        "name": "Auto",
+        "weight": 0.3,
+        "context": "Honda Marysville/Anna nearby; Intel Ohio fab building"
+      },
+      {
+        "name": "R&D / Battelle",
+        "weight": 0.22,
+        "context": "Battelle Memorial Institute — largest US R&D org"
+      },
+      {
+        "name": "Aerospace",
+        "weight": 0.15,
+        "context": "Rickenbacker AFB"
+      }
+    ],
+    "majorEmployers": [
+      "Honda Marysville/Anna",
+      "Intel Ohio (under construction)",
+      "Battelle Memorial Institute",
+      "JPMorgan Chase Columbus"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 52000,
+      "level2": 72000,
+      "level3": 110000
+    },
+    "wageBandSource": "BLS OES OH state 2024",
+    "regionalCodes": [
+      "Ohio EPA",
+      "IATF 16949",
+      "AS9100"
+    ],
+    "asntChapter": "ASNT Columbus Section",
+    "awsSection": "AWS OH regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 82,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Battelle Memorial Institute",
+        "type": "r&d",
+        "scale": "Largest US private R&D org"
+      },
+      {
+        "name": "Intel Ohio (under construction)",
+        "type": "semi",
+        "scale": "Major US semiconductor fab"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "Battelle — major NDT R&D centre, ASNT publishing partner",
+      "Intel Ohio fab construction — UHP gas line + structural NDT scope",
+      "Honda regional auto plants drive ongoing scope"
+    ],
+    "nearbyMajorCities": [
+      "Cincinnati (170km)",
+      "Cleveland (220km)",
+      "Pittsburgh (300km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "long-beach-ca": {
+    "displayName": "Long Beach, CA",
+    "country": "US",
+    "state": "California",
+    "stateCode": "CA",
+    "tier": 2,
+    "region": "west-coast",
+    "metroPopulation": 460000,
+    "industries": [
+      {
+        "name": "Refining + Port",
+        "weight": 0.5,
+        "context": "Phillips 66 Carson, ExxonMobil Torrance, Port of Long Beach"
+      }
+    ],
+    "majorEmployers": [
+      "Phillips 66 Carson Refinery",
+      "Marathon Carson Refinery (former Tesoro)",
+      "ExxonMobil Torrance",
+      "Port of Long Beach"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 62000,
+      "level2": 86000,
+      "level3": 132000
+    },
+    "wageBandSource": "BLS OES CA state 2024",
+    "regionalCodes": [
+      "CARB Air Permits",
+      "Cal/OSHA Title 8",
+      "API 510/570/653"
+    ],
+    "asntChapter": "Regional ASNT chapter",
+    "awsSection": "AWS CA regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 130,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Phillips 66 Carson",
+        "type": "refinery",
+        "scale": "139,000 bpd"
+      },
+      {
+        "name": "Port of Long Beach",
+        "type": "port",
+        "scale": "2nd busiest US container port"
+      }
+    ],
+    "pricingMultiplier": 1.2,
+    "uniqueAngles": [
+      "Tightest US air emission controls (CARB + SCAQMD)",
+      "California Cal/OSHA Title 8 stricter than federal OSHA",
+      "Port + 4 refineries within 30km — densest US west-coast cluster"
+    ],
+    "nearbyMajorCities": [
+      "Los Angeles (35km)",
+      "San Diego (170km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "sacramento-ca": {
+    "displayName": "Sacramento, CA",
+    "country": "US",
+    "state": "California",
+    "stateCode": "CA",
+    "tier": 3,
+    "region": "west-coast",
+    "metroPopulation": 2410000,
+    "industries": [
+      {
+        "name": "Defense + Government",
+        "weight": 0.4,
+        "context": "McClellan AFB legacy; Aerojet Rocketdyne Rancho Cordova"
+      }
+    ],
+    "majorEmployers": [
+      "Aerojet Rocketdyne Rancho Cordova",
+      "VSP Vision",
+      "Sutter Health",
+      "Sacramento Municipal Utility District"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 58000,
+      "level2": 80000,
+      "level3": 124000
+    },
+    "wageBandSource": "BLS OES CA state 2024",
+    "regionalCodes": [
+      "Cal/OSHA Title 8",
+      "ASME"
+    ],
+    "asntChapter": "Regional ASNT chapter",
+    "awsSection": "AWS CA regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 120,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Aerojet Rocketdyne Rancho Cordova",
+        "type": "aerospace",
+        "scale": "RS-25 + RL10 + AR1 engine work"
+      }
+    ],
+    "pricingMultiplier": 1.1,
+    "uniqueAngles": [
+      "Aerojet Rocketdyne RS-25 (SLS) + RL10 engines",
+      "California-specific stricter inspection regulations",
+      "Solar/wind power inspection growing scope"
+    ],
+    "nearbyMajorCities": [
+      "San Francisco (140km)",
+      "Reno NV (210km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "reno-nv": {
+    "displayName": "Reno, NV",
+    "country": "US",
+    "state": "Nevada",
+    "stateCode": "NV",
+    "tier": 3,
+    "region": "west-coast",
+    "metroPopulation": 515000,
+    "industries": [
+      {
+        "name": "EV Manufacturing",
+        "weight": 0.35,
+        "context": "Tesla Gigafactory + Panasonic battery"
+      },
+      {
+        "name": "Aerospace",
+        "weight": 0.18,
+        "context": "Sierra Nevada Corporation"
+      }
+    ],
+    "majorEmployers": [
+      "Tesla Gigafactory Nevada",
+      "Panasonic Energy",
+      "Sierra Nevada Corporation"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 56000,
+      "level2": 78000,
+      "level3": 122000
+    },
+    "wageBandSource": "BLS OES NV state 2024",
+    "regionalCodes": [
+      "NV DEP",
+      "AS9100",
+      "IATF 16949"
+    ],
+    "asntChapter": "Regional ASNT chapter",
+    "awsSection": "AWS NV regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 98,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Tesla Gigafactory",
+        "type": "battery",
+        "scale": "Largest EV battery factory globally"
+      }
+    ],
+    "pricingMultiplier": 1.05,
+    "uniqueAngles": [
+      "Tesla Gigafactory — largest EV battery factory; battery cell laser weld inspection",
+      "Sierra Nevada — Dream Chaser spacecraft, ISR aircraft",
+      "Mining inspection scope (Nevada gold mines regional)"
+    ],
+    "nearbyMajorCities": [
+      "Sacramento (210km)",
+      "Las Vegas (700km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "spokane-wa": {
+    "displayName": "Spokane, WA",
+    "country": "US",
+    "state": "Washington",
+    "stateCode": "WA",
+    "tier": 3,
+    "region": "west-coast",
+    "metroPopulation": 560000,
+    "industries": [
+      {
+        "name": "Aluminum & Aerospace",
+        "weight": 0.4,
+        "context": "Kaiser Aluminum Trentwood, Boeing Spokane"
+      }
+    ],
+    "majorEmployers": [
+      "Kaiser Aluminum Trentwood",
+      "Boeing Spokane (former Triumph)",
+      "Avista Corporation"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 54000,
+      "level2": 76000,
+      "level3": 116000
+    },
+    "wageBandSource": "BLS OES WA state 2024",
+    "regionalCodes": [
+      "WA Ecology",
+      "AS9100",
+      "Nadcap"
+    ],
+    "asntChapter": "Regional ASNT chapter",
+    "awsSection": "AWS WA regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 86,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Kaiser Trentwood",
+        "type": "aluminum",
+        "scale": "Major US aerospace aluminum plate"
+      },
+      {
+        "name": "Boeing Spokane",
+        "type": "aerospace",
+        "scale": "787 floor structure + composite parts"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "Kaiser Trentwood — aerospace aluminum plate UT + ECT",
+      "Boeing Spokane composite NDT for 787 floor",
+      "Hydropower equipment inspection (Avista, BPA)"
+    ],
+    "nearbyMajorCities": [
+      "Seattle (450km)",
+      "Portland (570km)",
+      "Boise (610km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "tacoma-wa": {
+    "displayName": "Tacoma, WA",
+    "country": "US",
+    "state": "Washington",
+    "stateCode": "WA",
+    "tier": 3,
+    "region": "west-coast",
+    "metroPopulation": 920000,
+    "industries": [
+      {
+        "name": "Port + Manufacturing",
+        "weight": 0.45,
+        "context": "Port of Tacoma, Boeing nearby"
+      }
+    ],
+    "majorEmployers": [
+      "Port of Tacoma",
+      "Joint Base Lewis-McChord",
+      "Boeing Auburn (regional)"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 58000,
+      "level2": 80000,
+      "level3": 124000
+    },
+    "wageBandSource": "BLS OES WA state 2024",
+    "regionalCodes": [
+      "WA Ecology",
+      "AS9100"
+    ],
+    "asntChapter": "Regional ASNT chapter",
+    "awsSection": "AWS WA regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 110,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Port of Tacoma",
+        "type": "port",
+        "scale": "Major US west-coast container port"
+      }
+    ],
+    "pricingMultiplier": 1.1,
+    "uniqueAngles": [
+      "Port + Joint Base Lewis-McChord military aviation MRO",
+      "Pacific Northwest Cascade aerospace cluster",
+      "Boeing Auburn machined parts NDT"
+    ],
+    "nearbyMajorCities": [
+      "Seattle (50km)",
+      "Olympia (50km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "tucson-az": {
+    "displayName": "Tucson, AZ",
+    "country": "US",
+    "state": "Arizona",
+    "stateCode": "AZ",
+    "tier": 2,
+    "region": "southwest",
+    "metroPopulation": 1050000,
+    "industries": [
+      {
+        "name": "Defense Manufacturing",
+        "weight": 0.45,
+        "context": "Raytheon Missiles & Defense — Tucson is missile capital of US"
+      },
+      {
+        "name": "Aviation MRO + Boneyard",
+        "weight": 0.2,
+        "context": "Davis-Monthan AFB AMARG ('Boneyard')"
+      }
+    ],
+    "majorEmployers": [
+      "Raytheon Missiles & Defense Tucson",
+      "Davis-Monthan AFB",
+      "Bombardier Tucson Service Centre"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 56000,
+      "level2": 78000,
+      "level3": 122000
+    },
+    "wageBandSource": "BLS OES AZ state 2024",
+    "regionalCodes": [
+      "MIL-STD-2154",
+      "AS9100",
+      "Nadcap NDT"
+    ],
+    "asntChapter": "ASNT Arizona Section",
+    "awsSection": "AWS AZ regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 88,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Raytheon Tucson",
+        "type": "defense",
+        "scale": "Major US missile manufacturer — Tomahawk, Standard, AMRAAM"
+      },
+      {
+        "name": "Davis-Monthan AFB AMARG",
+        "type": "military",
+        "scale": "World's largest aircraft storage facility"
+      }
+    ],
+    "pricingMultiplier": 1.05,
+    "uniqueAngles": [
+      "Raytheon — primary US tactical missile manufacturer",
+      "AMARG 'Boneyard' — long-term aircraft storage NDT for re-deployment",
+      "Composite + propellant tank NDT"
+    ],
+    "nearbyMajorCities": [
+      "Phoenix (190km)",
+      "El Paso TX (510km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "richmond-va": {
+    "displayName": "Richmond, VA",
+    "country": "US",
+    "state": "Virginia",
+    "stateCode": "VA",
+    "tier": 3,
+    "region": "south-atlantic",
+    "metroPopulation": 1320000,
+    "industries": [
+      {
+        "name": "Government + Tobacco",
+        "weight": 0.32,
+        "context": "Altria HQ, Federal Reserve Bank, Capital One"
+      }
+    ],
+    "majorEmployers": [
+      "Altria Group HQ",
+      "Capital One HQ",
+      "Dominion Energy",
+      "Honeywell Hopewell (50km)"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 50000,
+      "level2": 70000,
+      "level3": 108000
+    },
+    "wageBandSource": "BLS OES VA state 2024",
+    "regionalCodes": [
+      "VA DEQ",
+      "API 510/570/653",
+      "ASME"
+    ],
+    "asntChapter": "Regional ASNT chapter",
+    "awsSection": "AWS VA regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 88,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Honeywell Hopewell",
+        "type": "chemical",
+        "scale": "Caprolactam + nylon resin"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "Honeywell Hopewell caprolactam — nylon manufacturing inspection",
+      "Dominion Energy nuclear plants (Surry, North Anna) regional",
+      "VCU + state agency procurement scope"
+    ],
+    "nearbyMajorCities": [
+      "Norfolk (170km)",
+      "Washington DC (170km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  },
+  "pensacola-fl": {
+    "displayName": "Pensacola, FL",
+    "country": "US",
+    "state": "Florida",
+    "stateCode": "FL",
+    "tier": 3,
+    "region": "southeast",
+    "metroPopulation": 510000,
+    "industries": [
+      {
+        "name": "Naval Aviation",
+        "weight": 0.55,
+        "context": "NAS Pensacola — naval aviation training"
+      },
+      {
+        "name": "MRO",
+        "weight": 0.15,
+        "context": "ST Engineering MRO at Pensacola"
+      }
+    ],
+    "majorEmployers": [
+      "NAS Pensacola",
+      "ST Engineering MRO Pensacola",
+      "International Paper"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 50000,
+      "level2": 70000,
+      "level3": 108000
+    },
+    "wageBandSource": "BLS OES FL state 2024",
+    "regionalCodes": [
+      "NAVAIR Tech Pubs",
+      "Mil-Spec NDT",
+      "FAA Part 145"
+    ],
+    "asntChapter": "ASNT Florida Panhandle",
+    "awsSection": "AWS FL regional",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 82,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "NAS Pensacola",
+        "type": "naval-aviation",
+        "scale": "Naval flight school + Blue Angels"
+      },
+      {
+        "name": "ST Engineering MRO",
+        "type": "aviation-mro",
+        "scale": "Heavy maintenance for commercial aircraft"
+      }
+    ],
+    "pricingMultiplier": 1.0,
+    "uniqueAngles": [
+      "NAS Pensacola — Naval flight training (T-6 Texan, T-45 Goshawk)",
+      "ST Engineering Pensacola — large-aircraft heavy MRO",
+      "Coastal hurricane resilience scope"
+    ],
+    "nearbyMajorCities": [
+      "Mobile AL (90km)",
+      "New Orleans (320km)"
+    ],
+    "turnaroundSeasons": [
+      "Spring/Fall TARs"
+    ]
+  }
+}

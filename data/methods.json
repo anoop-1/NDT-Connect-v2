@@ -1,0 +1,510 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-05-15",
+    "source": "Compiled from ASNT SNT-TC-1A (2024 ed.), ASME BPVC Section V (2023), AWS D1.1 (2020), API 510/570/653 (current eds.), ISO 9712:2021. Day-rate ranges reflect mid-2025 US market data from ASNT salary survey + industry contractor schedules; international rates approximate.",
+    "currency": "USD"
+  },
+  "UT": {
+    "code": "UT",
+    "name": "Ultrasonic Testing",
+    "fullName": "Conventional Ultrasonic Testing (Pulse-Echo / Through-Transmission)",
+    "category": "Volumetric",
+    "discoveryYear": 1929,
+    "principle": "High-frequency sound waves (0.5-20 MHz) transmitted through material reflect from internal discontinuities or back-walls; transit time and amplitude reveal flaw depth and size.",
+    "typicalUseCases": [
+      "Weld inspection (full penetration butt welds, fillet welds)",
+      "Wall-thickness corrosion mapping on piping and pressure vessels",
+      "Lamination detection in plate and pipe",
+      "Forging and casting volumetric inspection",
+      "Bond testing in composites and bonded structures",
+      "In-service vessel scanning during turnarounds"
+    ],
+    "primaryIndustries": ["Oil & Gas refining", "Pipeline integrity", "Power generation (fossil + nuclear)", "Aerospace", "Heavy fabrication", "Shipbuilding"],
+    "equipmentRanges": {
+      "flawDetectorPriceUSD": {"low": 4500, "mid": 12000, "high": 28000},
+      "thicknessGaugePriceUSD": {"low": 800, "mid": 2400, "high": 6500},
+      "probesPriceUSD": {"low": 150, "mid": 450, "high": 1800},
+      "couplantCostUSDPerGallon": 35,
+      "calBlockSet": {"low": 600, "high": 3500, "note": "V1, V2, IIW, step wedge"}
+    },
+    "calibrationRequirements": {
+      "frequency": "Daily verification at start of shift; full calibration min. annually per ASNT recommended",
+      "referenceBlocks": ["IIW V1", "IIW V2", "DSC", "Step wedge", "DAC/TVG block"],
+      "asmeRef": "ASME BPVC Section V Article 4 — sensitivity per T-462",
+      "linearityChecks": "Vertical/horizontal linearity per Article 4 Mandatory Appendix I; amplitude control linearity ±20%",
+      "tempCorrection": "Velocity correction needed if material/wedge differ >25°F from cal-block temperature"
+    },
+    "codeReferences": {
+      "asme": ["BPVC Sec V Art. 4 (UT general)", "BPVC Sec V Art. 5 (UT thickness)", "BPVC Sec VIII Div 1 UW-53", "ASME B31.3 para 344.6"],
+      "aws": ["D1.1 Clause 8 (statically loaded)", "D1.1 Clause 9 (dynamically loaded)", "D1.5 Clause 6 for bridges"],
+      "api": ["API 510 (vessels)", "API 570 (piping)", "API 653 (tanks)", "API RP 2X (offshore)"],
+      "iso": ["ISO 17640 (welds)", "ISO 16809 (thickness)", "ISO 11666 (acceptance)"],
+      "military": ["MIL-STD-2154 (wrought aluminium)"]
+    },
+    "dayRateRangeUSD": {"level1": {"low": 380, "high": 520}, "level2": {"low": 520, "high": 780}, "level3": {"low": 850, "high": 1400}, "notes": "Field call-out + per-diem typically adds 20-35%"},
+    "trainingHoursMinimum": {"level1": 40, "level2": 40, "level3": 40, "experienceL1Hours": 210, "experienceL2Hours": 630, "totalL2": 880},
+    "prerequisiteCertifications": ["High-school physics or equivalent", "Vision: near 20/30 each eye, color contrast (Ishihara)", "ASNT SNT-TC-1A or NAS 410 employer-written practice"],
+    "outputArtifacts": ["A-scan trace", "Thickness reading log (CMLs)", "Calibration sheet", "Inspection report w/ DAC plot"],
+    "limitationsAndCaveats": ["Difficult on coarse-grain austenitic stainless and Inconel welds", "Surface finish must be Ra <12.5 µm typically", "Couplant required (water, gel, glycol)", "Operator-skill dependent"],
+    "complementaryMethods": ["RT (for volumetric crosscheck)", "PAUT (for sizing)", "TOFD (for through-wall sizing)", "MT/PT (for surface flaws missed by UT)"],
+    "averageInspectionRateSqFtPerHour": 35,
+    "typicalProjectMix": {"refineryTurnaround": 0.40, "pipelineAUT": 0.20, "newConstruction": 0.25, "inspection&Audit": 0.15}
+  },
+  "RT": {
+    "code": "RT",
+    "name": "Radiographic Testing",
+    "fullName": "Industrial Radiography (X-ray and Gamma-ray)",
+    "category": "Volumetric",
+    "discoveryYear": 1895,
+    "principle": "Penetrating ionising radiation (X-rays from generator OR gamma rays from Ir-192/Co-60/Se-75 isotope) attenuates differentially through material; film or digital detector captures latent image showing density variations from internal discontinuities.",
+    "typicalUseCases": [
+      "Butt-weld inspection on pipe and plate",
+      "Casting porosity, shrinkage, and inclusion detection",
+      "Pipeline construction (girth weld qualification per API 1104)",
+      "Field RT on refinery and petchem turnarounds",
+      "Aerospace casting and forging inspection",
+      "Nozzle-to-shell weld inspection"
+    ],
+    "primaryIndustries": ["Pipeline construction", "Refineries", "Power generation", "Aerospace castings", "Shipbuilding", "Nuclear"],
+    "equipmentRanges": {
+      "iridiumSourcePriceUSD": {"newSource": 4500, "leasedAnnual": 18000, "note": "Ir-192 ~75-day half-life — new source every 90 days typical"},
+      "exposureDevicePriceUSD": {"low": 22000, "high": 48000, "models": "QSA Sentinel 880, Source Production"},
+      "xrayGeneratorPriceUSD": {"portable": 18000, "panoramic": 65000, "constantPotential": 140000},
+      "filmCostUSDPerSheet": {"agfa-d4": 3.2, "agfa-d7": 2.4, "kodak-aa400": 2.1, "size": "4x10 inch typical"},
+      "drDetectorPriceUSD": {"low": 35000, "high": 95000}
+    },
+    "calibrationRequirements": {
+      "frequency": "Source-strength decay calculated at every exposure; survey meter cal annual; densitometer cal monthly + at use",
+      "iqi": "Hole-type or wire IQI per ASTM E1025/E747; sensitivity 2-2T typically",
+      "filmDensity": "Single-film: 1.8-4.0 H&D; double-viewing: 2.6-4.0",
+      "asmeRef": "ASME BPVC Section V Article 2",
+      "geometricUnsharpness": "Ug < 0.020 in. for materials <2 in.; calculated from source size, OFD, FFD"
+    },
+    "codeReferences": {
+      "asme": ["BPVC Sec V Art. 2 (RT)", "BPVC Sec VIII Div 1 UW-51", "B31.3 para 344.5"],
+      "aws": ["D1.1 Clause 8 Part E", "D1.5 Clause 6 Part C"],
+      "api": ["API 1104 (pipelines)", "API 510", "API 570"],
+      "iso": ["ISO 17636-1 (film)", "ISO 17636-2 (digital)", "ISO 19232 (IQI)"],
+      "regulatory": ["NRC 10 CFR 34 (industrial radiography licensing)", "DOT 49 CFR 173 (transport)", "OSHA 29 CFR 1910.1096"]
+    },
+    "dayRateRangeUSD": {"level1": {"low": 420, "high": 580}, "level2": {"low": 620, "high": 920}, "level3": {"low": 950, "high": 1500}, "crewMin": "2-person team always (RIW + Asst.) per 10 CFR 34.42"},
+    "trainingHoursMinimum": {"level1": 40, "level2": 40, "level3": 40, "radSafetyHours": 32, "experienceL2Hours": 680},
+    "prerequisiteCertifications": ["Radiation Safety training", "State or NRC RAM license (employer)", "Radiographer's certification card", "Vision per SNT-TC-1A"],
+    "outputArtifacts": ["Radiograph (film or DICONDE digital)", "Reader sheet", "Source utilization log", "Survey records (10 CFR 34.79)", "Density readings"],
+    "limitationsAndCaveats": ["Radiation hazard — exclusion zones up to 200+ ft", "Double-wall single-image limit ~0.75 in. wall", "Tight cracks parallel to film plane often missed", "Material thickness limits (Ir-192 max ~2.5 in. steel)", "Slow vs. UT for thickness mapping"],
+    "complementaryMethods": ["UT/PAUT (for laminar flaws)", "MT (surface complement)"],
+    "averageInspectionRateExposuresPerShift": 22,
+    "typicalProjectMix": {"newPipelineGirthWelds": 0.45, "refineryTurnaround": 0.20, "fabricationShop": 0.25, "casting&forging": 0.10}
+  },
+  "MT": {
+    "code": "MT",
+    "name": "Magnetic Particle Testing",
+    "fullName": "Magnetic Particle Inspection (Wet Fluorescent / Dry Visible)",
+    "category": "Surface / Near-Surface",
+    "discoveryYear": 1929,
+    "principle": "Ferromagnetic component is magnetised; surface or near-surface discontinuities create flux leakage that attracts iron-oxide particles (dry powder, wet bath, or fluorescent suspension), revealing crack-like indications.",
+    "typicalUseCases": [
+      "Weld surface inspection (toe cracks, undercut)",
+      "Forging and casting surface flaw detection",
+      "In-service crack detection on cranes, drilling rigs, structural steel",
+      "Pre/post-PWHT verification on pressure equipment",
+      "Crankshaft and rotating-component inspection"
+    ],
+    "primaryIndustries": ["Structural steel fabrication", "Oil & gas drilling (BOP, drill pipe)", "Heavy equipment (cranes)", "Power gen rotating equipment", "Automotive forgings"],
+    "equipmentRanges": {
+      "yokeACPriceUSD": {"low": 350, "high": 1100, "note": "Magnaflux Y-7, Parker B310"},
+      "yokeDCPermPriceUSD": {"low": 380, "high": 950},
+      "benchUnitPriceUSD": {"low": 18000, "high": 65000, "note": "Coil + headstock + bath"},
+      "particlesCostUSDPerLb": {"dryVisible": 18, "wetFluorescent": 42},
+      "uvLamp": {"low": 280, "high": 850, "wavelength": "365 nm ±5"}
+    },
+    "calibrationRequirements": {
+      "frequency": "Yoke lift test daily (10 lb AC, 40 lb DC per ASTM E709); UV lamp 1000+ µW/cm² at 15 in.; particle bath concentration twice per shift via centrifuge tube",
+      "ketosRing": "Pie-gauge or QQI shim verification at start of shift",
+      "asmeRef": "ASME BPVC Section V Article 7 / Article 25 SE-709",
+      "ambientLightMax": "<2 fc (20 lux) for fluorescent; >100 fc for visible"
+    },
+    "codeReferences": {
+      "asme": ["BPVC Sec V Art. 7", "BPVC Sec VIII Div 1 Appx 6", "B31.3 para 344.3"],
+      "aws": ["D1.1 Clause 8 Part C"],
+      "astm": ["ASTM E709 (practice)", "ASTM E1444 (aerospace)", "ASTM E3024 (rail)"],
+      "api": ["API 5L Annex E (line pipe)", "API Q1"],
+      "iso": ["ISO 9934-1/2/3", "ISO 17638"]
+    },
+    "dayRateRangeUSD": {"level1": {"low": 320, "high": 460}, "level2": {"low": 460, "high": 680}, "level3": {"low": 800, "high": 1200}},
+    "trainingHoursMinimum": {"level1": 16, "level2": 16, "level3": 24, "experienceL2Hours": 210, "totalL2": 280},
+    "prerequisiteCertifications": ["Vision: near 20/30, color (Ishihara) for visible particles", "Employer-written practice per SNT-TC-1A"],
+    "outputArtifacts": ["MT report w/ part marking", "Cal verification log", "Lift-test record", "Particle bath concentration log"],
+    "limitationsAndCaveats": ["Ferromagnetic only (no austenitic stainless, aluminium, copper)", "Demagnetisation often required after", "Surface prep: Ra <6.3 µm typical", "Thin coatings <0.003 in. tolerable"],
+    "complementaryMethods": ["PT (for non-ferrous)", "ACFM (through-coating alternative)", "ET surface scan"],
+    "averageInspectionRateLinearFtPerHour": 90,
+    "typicalProjectMix": {"newWelds": 0.45, "inServiceCranes": 0.20, "drillingEquipment": 0.20, "fabricationQA": 0.15}
+  },
+  "PT": {
+    "code": "PT",
+    "name": "Liquid Penetrant Testing",
+    "fullName": "Dye Penetrant Inspection (Solvent-Removable, Water-Washable, Post-Emulsifiable)",
+    "category": "Surface",
+    "discoveryYear": 1942,
+    "principle": "Low-viscosity dye is applied to clean surface; capillary action draws penetrant into surface-breaking discontinuities; excess removed; developer pulls penetrant back to surface revealing flaw outline (visible red-on-white or fluorescent under UV-A).",
+    "typicalUseCases": [
+      "Stainless and non-ferrous weld inspection",
+      "Casting surface porosity and crack detection",
+      "Aerospace machined-part inspection",
+      "Tube-to-tubesheet weld verification",
+      "Glass and ceramic crack inspection"
+    ],
+    "primaryIndustries": ["Aerospace", "Pharmaceutical (sanitary stainless)", "Petrochemical (stainless services)", "Power generation", "Automotive aluminium castings"],
+    "equipmentRanges": {
+      "kitVisibleCostUSD": {"low": 28, "high": 65, "components": "cleaner + penetrant + developer aerosol set"},
+      "kitFluorescentCostUSD": {"low": 65, "high": 180},
+      "uvLampPriceUSD": {"low": 280, "high": 850},
+      "stationaryLineUSD": {"low": 25000, "high": 120000}
+    },
+    "calibrationRequirements": {
+      "frequency": "Per-shift system performance check on TAM/PSM panel; UV-A intensity ≥1000 µW/cm² at 15 in.; ambient white light <2 fc for fluorescent",
+      "dwellTime": "Penetrant 5-30 min per material/temp; developer 7-30 min minimum",
+      "tempRange": "40-125°F standard; outside range requires qualification per ASTM E1417",
+      "asmeRef": "ASME BPVC Section V Article 6",
+      "comparator": "PSM-5 panel monthly"
+    },
+    "codeReferences": {
+      "asme": ["BPVC Sec V Art. 6", "BPVC Sec VIII Div 1 Appx 8"],
+      "aws": ["D1.1 Clause 8 Part D", "D17.1 (aerospace fusion welding)"],
+      "astm": ["ASTM E165 (visible)", "ASTM E1417 (fluorescent)", "ASTM E1208/1209/1210"],
+      "iso": ["ISO 3452-1 to -6"],
+      "military": ["MIL-STD-1907", "AMS 2644"]
+    },
+    "dayRateRangeUSD": {"level1": {"low": 300, "high": 440}, "level2": {"low": 440, "high": 640}, "level3": {"low": 760, "high": 1150}},
+    "trainingHoursMinimum": {"level1": 4, "level2": 8, "level3": 16, "experienceL2Hours": 130, "totalL2": 140},
+    "prerequisiteCertifications": ["Color vision (Ishihara) for visible PT", "Employer-written practice", "Hazmat awareness for solvents"],
+    "outputArtifacts": ["PT report with indication map", "Cal of UV lamp", "PSM panel sensitivity check log"],
+    "limitationsAndCaveats": ["Surface-breaking flaws only", "No porous materials (ceramics, powder metals)", "Surface prep critical — no oils, paint, scale", "Slower than MT on ferromagnetic parts"],
+    "complementaryMethods": ["MT (for ferromagnetic)", "VT (for gross flaws)", "ET (subsurface complement)"],
+    "averageInspectionRateSqFtPerHour": 25,
+    "typicalProjectMix": {"stainlessWelds": 0.40, "aerospaceCastings": 0.25, "fabricationQA": 0.20, "inServiceInspection": 0.15}
+  },
+  "ET": {
+    "code": "ET",
+    "name": "Eddy Current Testing",
+    "fullName": "Electromagnetic / Eddy Current Testing (Single-Frequency, Multi-Frequency, Eddy Current Array)",
+    "category": "Surface / Subsurface (electromagnetic)",
+    "discoveryYear": 1879,
+    "principle": "Alternating current in a probe coil induces eddy currents in conductive material; surface or near-surface flaws disrupt eddy-current flow, producing measurable impedance change displayed on impedance plane.",
+    "typicalUseCases": [
+      "Heat-exchanger tube inspection (refinery, petchem, nuclear)",
+      "Aerospace fastener-hole crack detection",
+      "Surface crack detection through thin coatings",
+      "Conductivity / sorting verification (heat-treat, alloy)",
+      "Aircraft structural inspection (wing skins, lap joints)"
+    ],
+    "primaryIndustries": ["Aerospace MRO", "Nuclear power (steam generator tubing)", "Refining (heat exchangers)", "Power generation", "Chemical processing"],
+    "equipmentRanges": {
+      "instrumentSingleFreqUSD": {"low": 8500, "high": 22000, "models": "Olympus NORTEC 600, ETher NDE H-Scan"},
+      "instrumentMultiFreqUSD": {"low": 28000, "high": 68000},
+      "ecaSystemUSD": {"low": 45000, "high": 145000, "models": "Eddyfi Ectane 2, Olympus OmniScan ECA"},
+      "probesUSD": {"low": 250, "high": 4500, "rotating": 8500}
+    },
+    "calibrationRequirements": {
+      "frequency": "Reference standard with known EDM notches verified at start of every job; freq./gain noted per inspection",
+      "referenceStandards": ["ASME E215 EDM notch sets (0.005, 0.010, 0.020 in.)", "ASTM E243 reference tubes for HX work"],
+      "asmeRef": "ASME BPVC Section V Article 8 (ET) / Article 26 SE-243",
+      "frequencyRange": "100 Hz to 10 MHz typical; HX tubing 5-400 kHz",
+      "fillFactor": "Bobbin probe fill factor >0.85 for HX tubes"
+    },
+    "codeReferences": {
+      "asme": ["BPVC Sec V Art. 8 (ET)", "BPVC Sec V Art. 26 (HX tubing)", "BPVC Sec VIII Div 2"],
+      "aws": ["D1.1 Annex (limited)"],
+      "astm": ["ASTM E243 (HX tubes)", "ASTM E309 (electromagnetic)", "ASTM E376 (coating thickness)"],
+      "api": ["API RP 572 (HX inspection)", "API RP 573"],
+      "aerospace": ["NAS 410", "AS3071", "Boeing/Airbus OEM specs"]
+    },
+    "dayRateRangeUSD": {"level1": {"low": 420, "high": 580}, "level2": {"low": 620, "high": 920}, "level3": {"low": 950, "high": 1500}, "ecaSpecialist": {"low": 1100, "high": 1750}},
+    "trainingHoursMinimum": {"level1": 40, "level2": 40, "level3": 40, "experienceL2Hours": 630, "totalL2": 880},
+    "prerequisiteCertifications": ["Math through trig (vectors / impedance plane)", "Vision per SNT-TC-1A", "Employer practice per SNT-TC-1A or NAS 410"],
+    "outputArtifacts": ["Impedance-plane signal plots", "C-scan strip charts (HX tubing)", "Indication call list w/ tube map", "Reference cal records"],
+    "limitationsAndCaveats": ["Conductive materials only", "Limited depth of penetration (~3 mm in steel at 100 kHz)", "Lift-off and edge effects require operator skill", "Ferromagnetic substrate requires saturation"],
+    "complementaryMethods": ["IRIS (HX tube wall mapping)", "RFT (ferromagnetic HX tubes)", "ACFM (through-coating)"],
+    "averageInspectionRateTubesPerShift": 280,
+    "typicalProjectMix": {"hxTubeBundles": 0.45, "aerospaceFastenerHoles": 0.25, "surfaceCrackInService": 0.20, "conductivitySorting": 0.10}
+  },
+  "VT": {
+    "code": "VT",
+    "name": "Visual Testing",
+    "fullName": "Visual Inspection (Direct, Remote, Translucent)",
+    "category": "Surface",
+    "discoveryYear": -3000,
+    "principle": "Direct or aided visual examination of accessible surfaces using natural or artificial light, optionally augmented by mirrors, borescopes, videoscopes, magnifiers, or remote cameras; the foundational NDT method preceding all others.",
+    "typicalUseCases": [
+      "Weld visual per AWS D1.1 (CWI)",
+      "In-service piping external inspection (API 570)",
+      "Tank shell external + internal inspection (API 653)",
+      "Borescope inspection of turbine blades, vessel internals, HX shell-side",
+      "Coating condition surveys",
+      "Pre-test prep verification for all other NDT methods"
+    ],
+    "primaryIndustries": ["All industrial sectors", "Refining (API 570/653)", "Construction (AWS CWI)", "Aerospace (engine borescope)", "Marine (USCG)"],
+    "equipmentRanges": {
+      "weldGaugeUSD": {"low": 35, "high": 220, "models": "Cambridge, Bridge Cam"},
+      "borescopeRigidUSD": {"low": 850, "high": 4500},
+      "videoscopeUSD": {"low": 8500, "high": 65000, "models": "Olympus IPLEX, Karl Storz Techno Pack"},
+      "lightMeterUSD": {"low": 180, "high": 650, "wavelengthRange": "white 100+ fc / UV 1000+ µW/cm²"},
+      "pitGaugeUSD": {"low": 95, "high": 350}
+    },
+    "calibrationRequirements": {
+      "frequency": "Light meter cal annual; weld gauges visual verification per use; borescope optical cal annual",
+      "lightingMin": "100 fc (1000 lux) at examination surface per ASME V Art. 9",
+      "asmeRef": "ASME BPVC Section V Article 9",
+      "remoteVTResolution": "Discriminate 1/32 in. wire at max examination distance per Article 9",
+      "vision": "Annual Jaeger J2 near vision (SNT-TC-1A)"
+    },
+    "codeReferences": {
+      "asme": ["BPVC Sec V Art. 9", "BPVC Sec VIII Div 1 UW-37"],
+      "aws": ["AWS D1.1 Clause 8 Part B (visual)", "AWS QC1 (CWI program)"],
+      "api": ["API 510, 570, 653", "API RP 577 (welding inspection)"],
+      "astm": ["ASTM E165, E1316 (terminology)"],
+      "iso": ["ISO 17637", "ISO 5817 (acceptance)"]
+    },
+    "dayRateRangeUSD": {"cwi": {"low": 540, "high": 880}, "api510": {"low": 720, "high": 1200}, "api570": {"low": 720, "high": 1200}, "api653": {"low": 760, "high": 1300}, "borescopeTech": {"low": 620, "high": 1100}},
+    "trainingHoursMinimum": {"level1": 8, "level2": 16, "level3": 24, "experienceL2Hours": 70, "cwiPrep": 80},
+    "prerequisiteCertifications": ["Vision: Jaeger J2 (or equiv) at 12 in.", "Color contrast (Ishihara/Farnsworth)", "AWS CWI (for code-required visual)", "API 510/570/653 for in-service"],
+    "outputArtifacts": ["Visual inspection report", "Weld map", "Photographs (timestamped)", "Borescope still / video", "API condition report"],
+    "limitationsAndCaveats": ["Surface-only — no subsurface", "Operator subjectivity high", "Lighting / access critical", "Surface prep + cleanliness essential"],
+    "complementaryMethods": ["Performed before every other NDT method", "MT/PT for confirming surface indications", "UT/RT for sub-surface confirmation"],
+    "averageInspectionRateLinearFtPerHour": 200,
+    "typicalProjectMix": {"weldVT": 0.40, "inServiceAPI": 0.30, "borescope": 0.15, "coatingSurvey": 0.15}
+  },
+  "PAUT": {
+    "code": "PAUT",
+    "name": "Phased Array Ultrasonic Testing",
+    "fullName": "Phased Array Ultrasonic Testing (Linear, Sectorial, Compound, Matrix)",
+    "category": "Volumetric (advanced)",
+    "discoveryYear": 1959,
+    "principle": "Multi-element transducer (16-256 piezo elements) fired with controlled time delays steers and focuses ultrasonic beam electronically; produces sectorial (S-scan), linear (L-scan), and compound images of weld volume in real time.",
+    "typicalUseCases": [
+      "Code-replacement for RT on heavy-wall pipe and pressure vessel welds (per ASME Code Case 2235)",
+      "Pipeline AUT on cross-country construction (per API 1104 Annex)",
+      "Corrosion mapping on vessels and tank floors",
+      "Composite inspection (aerospace)",
+      "Nozzle and HAZ inspection",
+      "Weld overlay (cladding) bond inspection"
+    ],
+    "primaryIndustries": ["Pipeline construction (AUT)", "Refineries (turnaround weld replacement)", "Aerospace composites", "Offshore (platform & subsea welds)", "Power generation (Code Case 2235)"],
+    "equipmentRanges": {
+      "instrument16x16USD": {"low": 38000, "high": 65000, "models": "Olympus OmniScan MX2, Eddyfi M2M Gekko"},
+      "instrument32x128USD": {"low": 75000, "high": 145000, "models": "Sonatest VEO+, Olympus OmniScan X3 64"},
+      "probesUSD": {"low": 4500, "high": 14000, "wedges": "1500-3500"},
+      "scannerCrawlerUSD": {"low": 18000, "high": 72000, "models": "Jireh Navic, Phoenix RMS"},
+      "encoderUSD": {"low": 1200, "high": 4500}
+    },
+    "calibrationRequirements": {
+      "frequency": "Wedge delay + element check at every job; sensitivity cal on weld-specific block",
+      "blocks": ["Custom weld-mockup block w/ EDM notches matching weld profile + thickness", "Wedge-delay block per probe geometry"],
+      "asmeRef": "ASME BPVC Section V Article 4 + Mandatory Appendix IV (PAUT)",
+      "elementHealth": "Active element check at start of shift; <25% dead elements typically allowed in code applications",
+      "tcgDac": "TCG (Time Corrected Gain) plot built per code-case requirements"
+    },
+    "codeReferences": {
+      "asme": ["BPVC Sec V Art. 4 Mand. Appx IV", "ASME Code Case 2235 (PAUT in lieu of RT)", "Code Case 2541 (corrosion mapping)"],
+      "api": ["API 1104 Annex on AUT", "API 1163 (UT in-line inspection qual.)"],
+      "iso": ["ISO 13588 (PAUT welds)", "ISO 19285 (acceptance levels)"],
+      "regulatory": ["DNV-OS-F101 (offshore pipeline)", "DNVGL-ST-F101"]
+    },
+    "dayRateRangeUSD": {"level2": {"low": 850, "high": 1200}, "level3": {"low": 1200, "high": 1800}, "autSpecialist": {"low": 1400, "high": 2200}, "scannerOpAddl": 350},
+    "trainingHoursMinimum": {"level2": 80, "level3": 80, "experienceL2Hours": 800, "totalL2Build": 1280, "industry": "ASNT recommended; ISO 9712 mandates similar"},
+    "prerequisiteCertifications": ["UT Level II current", "PAUT-specific written practice + procedure qual", "Body of Knowledge per ASNT TC-1A latest"],
+    "outputArtifacts": ["S-scan/L-scan/C-scan images", ".OPD or .nde data file (DICONDE)", "Encoded data set with positional record", "Calibration report"],
+    "limitationsAndCaveats": ["Capital equipment cost barrier", "Operator skill gap — PAUT Level II rarer than UT", "Setup time longer than conventional UT", "Procedure qualification required per code-application"],
+    "complementaryMethods": ["TOFD (paired for weld coverage)", "Conventional UT (verification)", "RT (legacy crosscheck)"],
+    "averageInspectionRateInchesWeldPerHour": 18,
+    "typicalProjectMix": {"pipelineGirthAUT": 0.35, "vesselWelds": 0.30, "corrosionMapping": 0.20, "fabricationShop": 0.15}
+  },
+  "TOFD": {
+    "code": "TOFD",
+    "name": "Time-of-Flight Diffraction",
+    "fullName": "Time-of-Flight Diffraction Ultrasonic Testing",
+    "category": "Volumetric (advanced)",
+    "discoveryYear": 1977,
+    "principle": "Pitch-catch transducer pair on opposite sides of weld; defects diffract ultrasonic energy from crack tips; arrival time of diffracted signals precisely sizes through-wall depth; produces D-scan grayscale image with lateral wave + back-wall reference.",
+    "typicalUseCases": [
+      "Weld inspection on heavy-wall pressure vessels and pipe (paired with PAUT)",
+      "Through-wall sizing of crack-like flaws",
+      "In-service detection of growing cracks",
+      "Fatigue crack monitoring on offshore structures",
+      "Code-Case PAUT+TOFD combos for RT replacement"
+    ],
+    "primaryIndustries": ["Offshore platforms", "Refineries (heavy-wall reactors, drums)", "Pipeline construction", "Power generation (boiler drums)"],
+    "equipmentRanges": {
+      "tofdSystemUSD": {"low": 48000, "high": 85000, "note": "Often integrated with PAUT instrument"},
+      "tofdProbesUSD": {"low": 1800, "high": 4500, "perPair": true},
+      "scannerUSD": {"low": 12000, "high": 38000, "encoded": true}
+    },
+    "calibrationRequirements": {
+      "frequency": "PCS (Probe Center Spacing) verified per weld thickness; lateral wave + back wall identified at start of each weld",
+      "blocks": ["Weld-specific block w/ side-drilled holes (SDH) at known depths"],
+      "asmeRef": "ASME BPVC Section V Article 4 + Mand. Appx III (TOFD)",
+      "deadZones": "Surface dead zone (lateral wave) + back-wall dead zone — typically 5-10% of thickness each end"
+    },
+    "codeReferences": {
+      "asme": ["BPVC Sec V Art. 4 Mand. Appx III", "Code Case 2235"],
+      "iso": ["ISO 10863", "ISO 15626 (acceptance)"],
+      "api": ["API 1104 Annex"]
+    },
+    "dayRateRangeUSD": {"level2": {"low": 900, "high": 1300}, "level3": {"low": 1250, "high": 1850}, "combinedPaut": {"low": 1450, "high": 2200}},
+    "trainingHoursMinimum": {"level2": 40, "experienceHours": 200, "prerequisitePAUT": "PAUT Level II strongly preferred"},
+    "prerequisiteCertifications": ["UT Level II current", "PAUT background recommended", "TOFD-specific practical exam"],
+    "outputArtifacts": ["D-scan image", "Encoded data file", "Sizing reports w/ depth measurements"],
+    "limitationsAndCaveats": ["Surface and back-wall dead zones", "Not effective for porosity (omnidirectional) — needs PAUT pair", "Two-sided access required", "Coarse-grain materials problematic"],
+    "complementaryMethods": ["PAUT (mandatory pairing for full coverage)", "Conventional UT"],
+    "averageInspectionRateInchesWeldPerHour": 24,
+    "typicalProjectMix": {"vesselWelds": 0.40, "pipelineGirthAUT": 0.35, "inServiceCrack": 0.25}
+  },
+  "ECT": {
+    "code": "ECT",
+    "name": "Eddy Current Array (ECA / ECT)",
+    "fullName": "Eddy Current Array Testing",
+    "category": "Surface / Subsurface (electromagnetic, multi-element)",
+    "discoveryYear": 1995,
+    "principle": "Multi-element ET probe (8-128 coils) fired in multiplex pattern; produces C-scan image of surface and near-surface flaws in single pass; eliminates raster scanning vs. single-coil ET.",
+    "typicalUseCases": [
+      "Aerospace lap-joint and skin inspection (corrosion + cracks)",
+      "Weld toe crack scanning (in lieu of MT on coated parts)",
+      "Tank floor scanning under coating (thin floors)",
+      "Composite skin inspection on aircraft"
+    ],
+    "primaryIndustries": ["Aerospace MRO (737 NG, A320 lap joints)", "Petrochemical (under-coating)", "Power generation (turbine blade roots)"],
+    "equipmentRanges": {
+      "ecaInstrumentUSD": {"low": 45000, "high": 95000, "models": "Eddyfi Ectane 2, Olympus OmniScan ECA"},
+      "ecaProbesUSD": {"low": 6500, "high": 22000}
+    },
+    "calibrationRequirements": {
+      "frequency": "Reference notch standard at start of each setup; channel-balance + null check on every probe",
+      "asmeRef": "ASME BPVC Section V Art. 8 + Mand. Appx",
+      "channelHealth": "All channels balanced; <10% dead channels"
+    },
+    "codeReferences": {
+      "asme": ["BPVC Sec V Art. 8"],
+      "aerospace": ["NAS 410", "OEM (Boeing, Airbus, Embraer)"],
+      "astm": ["ASTM E2884 (composites)"]
+    },
+    "dayRateRangeUSD": {"level2": {"low": 950, "high": 1400}, "level3": {"low": 1300, "high": 1900}},
+    "trainingHoursMinimum": {"level2": 40, "experienceHours": 240, "prereq": "ET Level II"},
+    "prerequisiteCertifications": ["ET Level II", "ECA-specific practical"],
+    "outputArtifacts": ["C-scan image", "Encoded data file", "Indication call list"],
+    "limitationsAndCaveats": ["Conductive materials only", "Probe geometry must match scan surface", "Lift-off sensitivity"],
+    "complementaryMethods": ["Single-coil ET", "MT (ferromagnetic)", "ACFM (through-thicker-coatings)"],
+    "averageInspectionRateSqFtPerHour": 75,
+    "typicalProjectMix": {"aerospaceMRO": 0.50, "underCoatingScanning": 0.25, "weldScanning": 0.25}
+  },
+  "GWT": {
+    "code": "GWT",
+    "name": "Guided Wave Testing",
+    "fullName": "Long-Range Guided Wave Ultrasonic Testing",
+    "category": "Volumetric (long-range screening)",
+    "discoveryYear": 1998,
+    "principle": "Low-frequency (20-100 kHz) torsional/longitudinal guided ultrasonic waves propagate along pipe axis from collar of transducers; reflections from corrosion, cracks, welds, and supports indicate flaw locations up to 50+ m each direction; pipe acts as waveguide.",
+    "typicalUseCases": [
+      "Inaccessible pipe screening (under road crossings, insulated, buried)",
+      "Refinery/petrochem in-service piping screening",
+      "Offshore riser and caisson inspection",
+      "Storage-tank chime / annular ring inspection"
+    ],
+    "primaryIndustries": ["Refineries", "Petrochemical", "Offshore", "Pipeline (selective)", "Power gen (boiler drums)"],
+    "equipmentRanges": {
+      "instrumentUSD": {"low": 45000, "high": 145000, "models": "Guided Ultrasonics Wavemaker, Eddyfi Teletest, Olympus QSR1"},
+      "ringsCollarsUSD": {"low": 8500, "high": 28000, "perPipeSize": true}
+    },
+    "calibrationRequirements": {
+      "frequency": "DAC built per pipe diameter / wall / coating per scan; weld signal used as cal reference",
+      "asmeRef": "ASME BPVC Section V Art. 18 (Acoustic Pulse Reflectometry adjacent)",
+      "qual": "ISO 18211 / ASTM E2775"
+    },
+    "codeReferences": {
+      "astm": ["ASTM E2775", "ASTM E2929"],
+      "iso": ["ISO 18211"],
+      "api": ["API RP 581 (RBI usage)"]
+    },
+    "dayRateRangeUSD": {"level2": {"low": 1100, "high": 1600}, "level3": {"low": 1500, "high": 2200}},
+    "trainingHoursMinimum": {"level2": 40, "vendor": "OEM-specific (GUL, Eddyfi)", "experienceHours": 320},
+    "prerequisiteCertifications": ["UT Level II", "Vendor / GWT operator card", "ASNT GWT level II recommended"],
+    "outputArtifacts": ["A-scan w/ DAC overlay", "Distance-amplitude plot", "Indication call list with %CSA estimate"],
+    "limitationsAndCaveats": ["Screening method — not for sizing", "Coatings reduce range significantly (bitumen, CTE)", "Branches/welds reduce signal", "Buried/wet pipe attenuates fast"],
+    "complementaryMethods": ["UT for follow-up sizing of GWT calls", "Excavate + visual"],
+    "averageInspectionRateLinearFtPerShift": 600,
+    "typicalProjectMix": {"refineryPiping": 0.55, "buriedPipelines": 0.25, "offshoreRisers": 0.20}
+  },
+  "LT": {
+    "code": "LT",
+    "name": "Leak Testing",
+    "fullName": "Leak Testing (Bubble, Helium Mass Spec, Pressure Decay, Ultrasonic Leak Detection)",
+    "category": "Other",
+    "discoveryYear": 1937,
+    "principle": "Pressure differential creates fluid flow through leak path; detected by bubble formation in soap film, helium tracer gas via mass spectrometer, pressure decay over time, or acoustic emission from leak.",
+    "typicalUseCases": [
+      "Pressure vessel hydrostatic / pneumatic leak qualification",
+      "Vacuum-system commissioning (helium mass spec)",
+      "Tank-bottom leak testing (vacuum box)",
+      "Aerospace fuel tank leak certification"
+    ],
+    "primaryIndustries": ["Petrochemical", "Aerospace", "Cryogenics / LNG", "Semiconductor (vacuum)", "Pressure equipment manufacturing"],
+    "equipmentRanges": {
+      "vacuumBoxUSD": {"low": 350, "high": 1800},
+      "heliumMassSpecUSD": {"low": 28000, "high": 145000, "models": "Pfeiffer ASM 340, Inficon UL5000"},
+      "bubbleSolutionUSDperGal": 22
+    },
+    "calibrationRequirements": {
+      "frequency": "Helium leak detector cal per shift via calibrated leak; pressure gauges annual",
+      "asmeRef": "ASME BPVC Section V Art. 10",
+      "sensitivity": "Helium mass spec: 1×10⁻¹⁰ atm·cc/sec achievable"
+    },
+    "codeReferences": {
+      "asme": ["BPVC Sec V Art. 10"],
+      "astm": ["ASTM E432 (leak testing)", "ASTM E498/499 (helium)"]
+    },
+    "dayRateRangeUSD": {"level2": {"low": 580, "high": 850}, "level3": {"low": 850, "high": 1300}, "heliumSpecialist": {"low": 1100, "high": 1700}},
+    "trainingHoursMinimum": {"level1": 16, "level2": 24, "experienceL2Hours": 280},
+    "prerequisiteCertifications": ["SNT-TC-1A practice", "Hazmat for tracer gases"],
+    "outputArtifacts": ["Leak rate report", "Pressure-time chart", "Helium response curve"],
+    "limitationsAndCaveats": ["Method-specific sensitivity vastly different (bubble ~1e-4 vs helium 1e-10)", "Temperature stability critical for pressure decay"],
+    "complementaryMethods": ["Hydrostatic test", "Vacuum hold"],
+    "typicalProjectMix": {"newConstruction": 0.40, "inServiceTank": 0.35, "vacuumSystem": 0.25}
+  },
+  "AE": {
+    "code": "AE",
+    "name": "Acoustic Emission Testing",
+    "fullName": "Acoustic Emission (Stress-Wave) Testing",
+    "category": "Other (passive)",
+    "discoveryYear": 1950,
+    "principle": "Active flaws under stress emit transient elastic waves (stress waves); piezo sensors mounted on structure detect bursts; source location triangulated from time-of-arrival differences across sensor array; identifies actively growing defects (not static).",
+    "typicalUseCases": [
+      "Pressure vessel proof-test monitoring (per ASME Sec V Art. 11/12)",
+      "Storage tank floor leak detection (LCC scan)",
+      "Composite vessel CNG/H2 cylinder qualification (per CARB/PRD)",
+      "Bridge fatigue monitoring",
+      "Reactor in-service monitoring"
+    ],
+    "primaryIndustries": ["Pressure equipment manufacturing", "Tank storage", "Composite cylinder makers (H2/CNG)", "Civil infrastructure"],
+    "equipmentRanges": {
+      "aeSystem4chUSD": {"low": 18000, "high": 38000},
+      "aeSystem32chUSD": {"low": 95000, "high": 220000, "models": "MISTRAS PCI-2, Vallen AMSY-6"},
+      "sensorsUSD": {"low": 450, "high": 1800}
+    },
+    "calibrationRequirements": {
+      "frequency": "Pencil-lead break (Hsu-Nielsen source) at every sensor at start of test per ASTM E976",
+      "asmeRef": "ASME BPVC Section V Art. 11 (Fiber-Reinforced) / Art. 12 (Metal Vessels) / Art. 13 (Continuous Monitoring)",
+      "sensorCal": "Annual frequency-response check"
+    },
+    "codeReferences": {
+      "asme": ["BPVC Sec V Art. 11/12/13"],
+      "astm": ["ASTM E976 (pencil source)", "ASTM E1932 (pressure vessels)", "ASTM E2191 (AE for composite vessels)"]
+    },
+    "dayRateRangeUSD": {"level2": {"low": 950, "high": 1400}, "level3": {"low": 1400, "high": 2100}},
+    "trainingHoursMinimum": {"level1": 40, "level2": 40, "experienceL2Hours": 800},
+    "prerequisiteCertifications": ["SNT-TC-1A AE Level II", "Math through trig (source loc.)"],
+    "outputArtifacts": ["Source location plot", "Hit-rate vs. pressure curve", "Felicity ratio calculation", "Pass/fail per code"],
+    "limitationsAndCaveats": ["Detects only active flaws", "Background noise sensitive", "Source location accuracy ±1 sensor spacing", "Material-specific attenuation"],
+    "complementaryMethods": ["UT/PAUT for follow-up of AE calls", "Visual"],
+    "typicalProjectMix": {"pressureVesselProofTest": 0.40, "tankFloor": 0.30, "compositeCylinders": 0.30}
+  }
+}
