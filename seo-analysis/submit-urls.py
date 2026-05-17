@@ -173,28 +173,52 @@ def load_credentials() -> list[Credential]:
 # ----------------------------- URL sources ------------------------------------
 
 
-def fetch_sitemap_urls(property_url: str) -> list[str]:
-    sitemap_url = property_url.rstrip('/') + '/sitemap.xml'
-    log.info('Fetching sitemap: %s', sitemap_url)
+def _fetch_loc_tags(sitemap_url: str) -> tuple[str, list[str]]:
+    """Returns (root_tag_localname, list_of_loc_strings). root_tag tells us
+    whether this is a <sitemapindex> (loc = sub-sitemap URLs) or <urlset>
+    (loc = page URLs)."""
     req = Request(sitemap_url, headers={'User-Agent': 'NDT-Connect-Indexer/1.0'})
     with urlopen(req, timeout=30) as r:
         body = r.read()
     root = ET.fromstring(body)
-    # Strip namespace.
     ns = ''
     if root.tag.startswith('{'):
         ns = root.tag.split('}')[0].strip('{')
+    local_name = root.tag.split('}', 1)[-1]
     locs: list[str] = []
-    if ns:
-        for loc in root.findall(f'.//{{{ns}}}loc'):
-            if loc.text:
-                locs.append(loc.text.strip())
-    else:
-        for loc in root.findall('.//loc'):
-            if loc.text:
-                locs.append(loc.text.strip())
-    log.info('Sitemap returned %d URLs', len(locs))
-    return locs
+    finder = f'.//{{{ns}}}loc' if ns else './/loc'
+    for loc in root.findall(finder):
+        if loc.text:
+            locs.append(loc.text.strip())
+    return local_name, locs
+
+
+def fetch_sitemap_urls(property_url: str) -> list[str]:
+    """Fetch all page URLs. Auto-detects <sitemapindex> and recurses into each
+    sub-sitemap. Handles the Next.js generateSitemaps split layout."""
+    root_url = property_url.rstrip('/') + '/sitemap.xml'
+    log.info('Fetching sitemap: %s', root_url)
+    root_kind, root_locs = _fetch_loc_tags(root_url)
+
+    if root_kind == 'urlset':
+        log.info('Sitemap (urlset) returned %d URLs', len(root_locs))
+        return root_locs
+
+    if root_kind != 'sitemapindex':
+        log.warning('Unknown sitemap root <%s>; treating as urlset', root_kind)
+        return root_locs
+
+    log.info('Sitemap index with %d sub-sitemaps; fetching each', len(root_locs))
+    all_urls: list[str] = []
+    for sub in root_locs:
+        try:
+            kind, locs = _fetch_loc_tags(sub)
+            log.info('  %s -> %d URLs', sub, len(locs))
+            all_urls.extend(locs)
+        except Exception as e:  # noqa: BLE001
+            log.warning('  %s failed: %s', sub, e)
+    log.info('Sitemap index returned %d URLs total', len(all_urls))
+    return all_urls
 
 
 def url_priority(url: str) -> int:
