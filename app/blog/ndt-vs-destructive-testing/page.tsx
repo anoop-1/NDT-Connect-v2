@@ -1,13 +1,13 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, FeatureGrid, FeatureCard, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema, FAQSchema, ArticleSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema, FAQSchema, ArticleSchema, BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
-  title: 'NDT vs Destructive Testing: When to Use Each Method | NDT Connect',
+  title: 'NDT vs Destructive Testing: When to Use Each Method',
   description: 'Comprehensive comparison of non-destructive testing versus destructive testing. Learn the advantages, limitations, costs, and appropriate applications of each approach.',
   keywords: ['NDT vs destructive testing', 'non-destructive vs destructive', 'testing methods comparison', 'when to use NDT'],
   openGraph: {
-    title: 'NDT vs Destructive Testing: When to Use Each Method | NDT Connect',
+    title: 'NDT vs Destructive Testing: When to Use Each Method',
     description: 'Comprehensive comparison of non-destructive testing versus destructive testing. Learn the advantages, limitations, costs, and appropriate applications of each approach.',
     url: 'https://ndt-connect.com/blog/ndt-vs-destructive-testing',
     type: 'article',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'NDT vs Destructive Testing: When to Use Each Method | NDT Connect',
+    title: 'NDT vs Destructive Testing: When to Use Each Method',
     description: 'Comprehensive comparison of non-destructive testing versus destructive testing. Learn the advantages, limitations, costs, and appropriate applications of each approach.',
   },
   alternates: { canonical: 'https://ndt-connect.com/blog/ndt-vs-destructive-testing' },
@@ -31,6 +31,11 @@ export default function Page() {
   return (
     <>
       <ArticleSchema title="NDT vs Destructive Testing: When to Use Each Method" description="Comprehensive comparison of non-destructive testing versus destructive testing. Learn the advantages, limitations, costs, and appropriate applications of each approach." url="https://ndt-connect.com/blog/ndt-vs-destructive-testing" datePublished="2026-02-25" category="Education" />
+      <BreadcrumbListSchema items={[
+        { name: 'Home', url: 'https://ndt-connect.com' },
+        { name: 'Blog', url: 'https://ndt-connect.com/blog' },
+        { name: 'NDT vs Destructive Testing: When to Use Each Method', url: 'https://ndt-connect.com/blog/ndt-vs-destructive-testing' },
+      ]} />
       <NDTConnectOrganizationSchema />
       <FAQSchema questions={faqs} />
       <BlogLayout

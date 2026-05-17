@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, FeatureGrid, FeatureCard, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema , ArticleSchema, BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
-    title: 'Digital Twins in NDT: Revolutionizing Asset Integrity Management | NDT Connect',
+    title: 'Digital Twins in NDT: Revolutionizing Asset Integrity Management',
     description: 'Discover how digital twins integrate with NDT data for predictive maintenance, real-time monitoring, and optimal asset performance. Complete guide for industrial operators.',
     openGraph: {
-      title: 'Digital Twins in NDT: Revolutionizing Asset Integrity Management | NDT Connect',
+      title: 'Digital Twins in NDT: Revolutionizing Asset Integrity Management',
       description: 'Discover how digital twins integrate with NDT data for predictive maintenance, real-time monitoring, and optimal asset performance. Complete guide for industrial operators.',
       url: 'https://ndt-connect.com/blog/ndt-digital-twins-guide',
       type: 'article',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Digital Twins in NDT: Revolutionizing Asset Integrity Management | NDT Connect',
+      title: 'Digital Twins in NDT: Revolutionizing Asset Integrity Management',
       description: 'Discover how digital twins integrate with NDT data for predictive maintenance, real-time monitoring, and optimal asset performance. Complete guide for industrial operators.',
     },
     alternates: { canonical: 'https://ndt-connect.com/blog/ndt-digital-twins-guide' },
@@ -25,6 +25,11 @@ export default function NDTDigitalTwinsGuide() {
     return (
         <>
             <ArticleSchema title="NDT and Digital Twins: The Complete Guide" description="How digital twins are transforming non-destructive testing and asset integrity." url="https://ndt-connect.com/blog/ndt-digital-twins-guide" datePublished="2026-02-15" category="Technology" />
+            <BreadcrumbListSchema items={[
+                { name: 'Home', url: 'https://ndt-connect.com' },
+                { name: 'Blog', url: 'https://ndt-connect.com/blog' },
+                { name: 'Digital Twins in NDT: Revolutionizing Asset Integrity Management', url: 'https://ndt-connect.com/blog/ndt-digital-twins-guide' },
+            ]} />
             <NDTConnectOrganizationSchema />
             <BlogLayout
                 title="Digital Twins in NDT: Revolutionizing Asset Integrity Management"

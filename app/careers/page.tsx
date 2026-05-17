@@ -9,7 +9,7 @@ import { ArrowRight, Briefcase, TrendingUp, Users, Award } from 'lucide-react';
 import { BreadcrumbSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
-  title: 'NDT Career Paths & Salary Guide | NDT Jobs & Opportunities | NDT Connect',
+  title: 'NDT Career Paths & Salary Guide | NDT Jobs & Opportunities',
   description: 'Explore NDT career paths, salary ranges, and job opportunities. Learn about NDT technician roles, certifications, and industry demand.',
   keywords: [
     'NDT careers', 'NDT technician jobs', 'NDT salary', 'NDT Level 1', 'NDT Level 2', 'NDT Level 3',
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     'pipeline inspector', 'aerospace NDT specialist', 'NDT training'
   ],
   openGraph: {
-    title: 'NDT Career Paths & Salary Guide | NDT Connect',
+    title: 'NDT Career Paths & Salary Guide',
     description: 'Explore NDT career paths, salary ranges, and job opportunities',
     url: 'https://ndt-connect.com/careers',
     type: 'website',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'NDT Career Paths & Salary Guide | NDT Connect',
+    title: 'NDT Career Paths & Salary Guide',
     description: 'Explore NDT career paths, salary ranges, and job opportunities.',
   },
   alternates: { canonical: 'https://ndt-connect.com/careers' },

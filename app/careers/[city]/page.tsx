@@ -2,358 +2,302 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { cities, getCityBySlug } from '@/lib/seo-data';
-import { PUBLISHABLE_CITIES } from '@/data/cities';
-import { careerRoles, adjustSalaryByRegion } from '@/lib/careers-data';
+import { PUBLISHABLE_CITIES, findPublishableCity } from '@/data/cities';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { BreadcrumbSchema } from '@/components/seo/SchemaMarkup';
-import { MapPin, TrendingUp, DollarSign, Briefcase, ArrowRight } from 'lucide-react';
+import { BreadcrumbSchema, FAQSchema } from '@/components/seo/SchemaMarkup';
+import {
+  toCityView,
+  rolesForCity,
+  localMarketProse,
+  certificationsForCity,
+  applicationChecklist,
+  cityFaqs,
+  methodsForIndustries,
+} from '@/lib/content/city-content';
+import { MapPin, DollarSign, Briefcase, ArrowRight, ListChecks, Award, HelpCircle } from 'lucide-react';
 
 interface Props {
   params: { city: string };
 }
 
 export async function generateStaticParams() {
-  // Sourced from the canonical 180-city publishable set (data/cities.ts) so
-  // this route lines up with the sitemap. Lookups via `cities.find(...)`
-  // need a fallback — see below where we use getCityBySlug.
   return PUBLISHABLE_CITIES.map((c) => ({ city: c.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  // getCityBySlug falls back to the canonical dataset for slugs not in
-  // this file's legacy `cities` array.
-  const city = getCityBySlug(params.city);
-  if (!city) return {};
+  // Prefer the canonical curated row (richer fields) and fall back to the
+  // legacy CityData via getCityBySlug so older slugs keep resolving.
+  const canonical = findPublishableCity(params.city);
+  const legacy = canonical ? null : getCityBySlug(params.city);
+  if (!canonical && !legacy) return {};
+  const name = canonical?.name ?? legacy!.name;
+  const region = canonical?.state ?? legacy!.region;
 
-  const title = `NDT Jobs & Careers in ${city.name} | Salary Guide | NDT Connect`;
-  const description = `Explore NDT career opportunities in ${city.name}, ${city.region}. View local salary ranges, industry context, and available NDT roles.`;
+  const title = `NDT Jobs & Salaries in ${name} (2026) — Level I-III Pay, Open Roles, Local Demand`;
+  const description = `Find NDT jobs in ${name}, ${region}. Level I-III salary ranges, current openings, top employers, and local industry demand. Updated 2026 — apply free.`;
 
   return {
     title,
     description,
     keywords: [
-      `NDT jobs ${city.name}`,
-      `NDT careers ${city.name}`,
-      `NDT salary ${city.name}`,
-      `NDT technician ${city.name}`,
-      `${city.name} ${city.region} NDT`,
+      `NDT jobs ${name}`,
+      `NDT careers ${name}`,
+      `NDT salary ${name}`,
+      `NDT technician ${name}`,
+      `${name} ${region} NDT`,
       'NDT career',
       'NDT technician jobs',
     ],
     openGraph: {
       title,
       description,
-      url: `https://ndt-connect.com/careers/${city.slug}`,
+      url: `https://ndt-connect.com/careers/${params.city}`,
     },
-    alternates: { canonical: `https://ndt-connect.com/careers/${city.slug}` },
+    alternates: { canonical: `https://ndt-connect.com/careers/${params.city}` },
   };
 }
 
 export default function CityCareerPage({ params }: Props) {
-  const city = getCityBySlug(params.city);
-  if (!city) notFound();
+  // Normalise either data source into the shared CityView shape.
+  const canonical = findPublishableCity(params.city);
+  const legacy = canonical ? null : getCityBySlug(params.city);
+  if (!canonical && !legacy) notFound();
+  const view = toCityView(canonical ?? legacy);
 
-  // Regional multiplier for salary adjustments
-  const regionMultiplier = city.region === 'Texas' && city.name === 'Houston' ? 1.2 :
-    city.region === 'California' ? 1.25 :
-      city.region === 'New York' ? 1.25 :
-        city.region === 'Washington' ? 1.15 :
-          city.region === 'Massachusetts' ? 1.1 :
-            city.region === 'Pennsylvania' && city.name === 'Pittsburgh' ? 1.05 :
-              1.0;
+  const roles = rolesForCity(view);
+  const market = localMarketProse(view);
+  const certs = certificationsForCity(view);
+  const checklist = applicationChecklist(view);
+  const faqs = cityFaqs(view, 'careers');
+  const methods = methodsForIndustries(view.industries);
+  const fac = view.namedFacilities && view.namedFacilities.length > 0
+    ? view.namedFacilities
+    : (view.keyFacilities || []).map(n => ({ name: n, type: '' }));
 
-  const relevantIndustries = city.industries || ['Oil & Gas', 'Manufacturing', 'Construction'];
-  const topRoles = careerRoles.slice(0, 8);
+  // JobPosting schema — one per role band, rooted in the city.
+  // Stable build-time date so SSG output is deterministic. validThrough = +90 days.
+  const buildDate = new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), 1));
+  const datePosted = buildDate.toISOString().slice(0, 10);
+  const validThrough = new Date(buildDate.getTime() + 90 * 24 * 3600 * 1000).toISOString().slice(0, 10);
 
-  const cityContext: Record<string, { demand: string; keyFocus: string; description: string }> = {
-    houston: { demand: 'Very High', keyFocus: 'Oil & Gas, Petrochemical, Pipeline', description: 'Houston is the energy capital with exceptional demand for NDT services.' },
-    'los-angeles': { demand: 'High', keyFocus: 'Aerospace, Manufacturing, Port', description: 'Los Angeles requires specialized aerospace and marine NDT expertise.' },
-    denver: { demand: 'High', keyFocus: 'Pipeline, Mining, Construction', description: 'Denver is a hub for pipeline and mining NDT operations.' },
-    seattle: { demand: 'High', keyFocus: 'Aerospace, Marine, Manufacturing', description: 'Seattle\'s Boeing presence drives strong aerospace NDT demand.' },
-    default: { demand: 'Growing', keyFocus: 'Multiple Industries', description: `${city.name} offers diverse NDT career opportunities across multiple industries.` },
-  };
-
-  const context = cityContext[city.slug] || cityContext.default;
-
-  const jobPostingSchema = careerRoles.slice(0, 5).map(role => {
-    const adjustedSalary = adjustSalaryByRegion(role.salaryRange.min, role.salaryRange.max, city.name);
-    return {
-      '@context': 'https://schema.org',
-      '@type': 'JobPosting',
-      title: `${role.title} in ${city.name}`,
-      description: role.description,
-      jobLocation: {
-        '@type': 'Place',
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: city.name,
-          addressRegion: city.region,
-          addressCountry: city.country,
-        },
+  const jobPostingSchemas = roles.slice(0, 5).map(role => ({
+    '@context': 'https://schema.org',
+    '@type': 'JobPosting',
+    title: `${role.role} in ${view.name}`,
+    description: `${role.role} position in ${view.name}. Required: ${role.cert}. Typical experience ${role.exp}.`,
+    datePosted,
+    validThrough,
+    employmentType: 'FULL_TIME',
+    directApply: false,
+    identifier: {
+      '@type': 'PropertyValue',
+      name: 'NDT Connect',
+      value: `ndtc-${view.slug}-${role.role.toLowerCase().replace(/\s+/g, '-')}`,
+    },
+    hiringOrganization: {
+      '@type': 'Organization',
+      name: 'NDT Connect Marketplace',
+      sameAs: 'https://ndt-connect.com',
+      logo: 'https://ndt-connect.com/logo.png',
+    },
+    jobLocation: {
+      '@type': 'Place',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: view.name,
+        addressRegion: view.state,
+        addressCountry: view.country || 'US',
       },
-      baseSalary: {
-        '@type': 'PriceSpecification',
-        priceCurrency: 'USD',
-        price: `${adjustedSalary.min}-${adjustedSalary.max}`,
+    },
+    baseSalary: {
+      '@type': 'MonetaryAmount',
+      currency: 'USD',
+      value: {
+        '@type': 'QuantitativeValue',
+        minValue: role.min,
+        maxValue: role.max,
+        unitText: 'YEAR',
       },
-    };
-  });
+    },
+  }));
 
   return (
     <>
       <BreadcrumbSchema items={[
         { name: 'Home', url: 'https://ndt-connect.com' },
         { name: 'Careers', url: 'https://ndt-connect.com/careers' },
-        { name: `${city.name} Jobs`, url: `https://ndt-connect.com/careers/${city.slug}` },
+        { name: `${view.name} Jobs`, url: `https://ndt-connect.com/careers/${view.slug}` },
       ]} />
-
-      {jobPostingSchema.map((schema, i) => (
+      {jobPostingSchemas.map((schema, i) => (
         <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       ))}
+      <FAQSchema questions={faqs.map(f => ({ question: f.q, answer: f.a }))} />
 
-      <script type="application/ld+json" dangerouslySetInnerHTML={{
-        __html: JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'LocalBusiness',
-          name: `NDT Careers in ${city.name}`,
-          areaServed: {
-            '@type': 'City',
-            name: city.name,
-            addressRegion: city.region,
-          },
-          geo: {
-            '@type': 'GeoCoordinates',
-            latitude: city.coordinates.lat,
-            longitude: city.coordinates.lng,
-          },
-        })
-      }} />
-
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto py-8">
         <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6 flex-wrap">
           <Link href="/" className="hover:text-primary">Home</Link>
           <span>/</span>
           <Link href="/careers" className="hover:text-primary">Careers</Link>
           <span>/</span>
-          <span className="text-foreground">{city.name}</span>
+          <span className="text-foreground">{view.name}</span>
         </nav>
 
-        {/* Hero Section */}
+        {/* Hero */}
         <section className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-10 md:p-14 mb-12">
-          <div className="flex items-start justify-between gap-4 mb-4 flex-wrap">
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-3">
-                <MapPin className="h-5 w-5 text-primary" />
-                <Badge>{city.region}</Badge>
+          <div className="flex items-center gap-2 mb-3">
+            <MapPin className="h-5 w-5 text-primary" />
+            <Badge>{view.state}</Badge>
+          </div>
+          <h1 className="text-3xl md:text-5xl font-bold text-primary mb-4">
+            NDT Jobs &amp; Salaries in {view.name}, {view.state}
+          </h1>
+          <p className="text-lg text-muted-foreground max-w-3xl">{market}</p>
+        </section>
+
+        {/* Local market */}
+        <section className="mb-12 grid md:grid-cols-2 gap-8">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg flex items-center gap-2">
+                <Briefcase className="h-5 w-5" />
+                Industry mix driving demand
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <h3 className="font-semibold text-foreground mb-2">Local industries</h3>
+                <div className="flex flex-wrap gap-2">
+                  {view.industries.map((industry, i) => (
+                    <Badge key={i} variant="secondary">{industry}</Badge>
+                  ))}
+                </div>
               </div>
-              <h1 className="text-3xl md:text-5xl font-bold text-primary mb-4">NDT Careers & Jobs in {city.name}</h1>
-              <p className="text-lg text-muted-foreground max-w-2xl">{context.description}</p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm mt-8">
-            <div className="bg-white/50 rounded-lg p-3">
-              <div className="font-semibold text-primary">{context.demand}</div>
-              <div className="text-muted-foreground text-xs">Local Demand</div>
-            </div>
-            <div className="bg-white/50 rounded-lg p-3">
-              <div className="font-semibold text-primary">{relevantIndustries.slice(0, 2).join(', ')}</div>
-              <div className="text-muted-foreground text-xs">Top Industries</div>
-            </div>
-            <div className="bg-white/50 rounded-lg p-3">
-              <div className="font-semibold text-primary">{city.keyFacilities?.length || 3}+</div>
-              <div className="text-muted-foreground text-xs">Major Facilities</div>
-            </div>
-            <div className="bg-white/50 rounded-lg p-3">
-              <div className="font-semibold text-primary">{Math.round(regionMultiplier * 100)}%</div>
-              <div className="text-muted-foreground text-xs">Salary Adjustment</div>
-            </div>
-          </div>
-        </section>
-
-        {/* City Context */}
-        <section className="mb-12">
-          <h2 className="text-3xl font-bold text-primary mb-6">About NDT Opportunities in {city.name}</h2>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg flex items-center gap-2">
-                  <Briefcase className="h-5 w-5" />
-                  Industry Context
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
+              {fac.length > 0 && (
                 <div>
-                  <h3 className="font-semibold text-foreground mb-2">Key Industries</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {relevantIndustries.map((industry, i) => (
-                      <Badge key={i} variant="secondary">{industry}</Badge>
+                  <h3 className="font-semibold text-foreground mb-2">Top local employers / asset owners</h3>
+                  <ul className="text-sm text-muted-foreground space-y-1">
+                    {fac.slice(0, 5).map((f, i) => (
+                      <li key={i}>• {f.name}{f.type ? ` (${f.type})` : ''}</li>
                     ))}
-                  </div>
+                  </ul>
                 </div>
-                {city.keyFacilities && city.keyFacilities.length > 0 && (
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-2">Major Facilities</h3>
-                    <ul className="text-sm text-muted-foreground space-y-1">
-                      {city.keyFacilities.map((facility, i) => (
-                        <li key={i}>• {facility}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg flex items-center gap-2">
-                  <DollarSign className="h-5 w-5" />
-                  Salary Information
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
+              )}
+              {methods.length > 0 && (
                 <div>
-                  <div className="text-xs font-semibold text-muted-foreground mb-1">REGIONAL ADJUSTMENT</div>
-                  <div className="text-lg font-bold text-primary">{Math.round((regionMultiplier - 1) * 100)}% {regionMultiplier > 1 ? 'higher' : 'average'}</div>
-                  <div className="text-xs text-muted-foreground">vs. national average</div>
+                  <h3 className="font-semibold text-foreground mb-2">Methods most-used locally</h3>
+                  <p className="text-sm text-muted-foreground">{methods.slice(0, 8).join('; ')}.</p>
                 </div>
-                <div className="border-t pt-3">
-                  <div className="text-xs font-semibold text-muted-foreground mb-1">EXAMPLE: LEVEL 2 TECHNICIAN</div>
-                  <div className="text-sm text-foreground">
-                    <div>National: $55K-$80K</div>
-                    <div className="text-primary font-semibold">
-                      {city.name}: ${Math.round(55000 * regionMultiplier / 1000)}K-${Math.round(80000 * regionMultiplier / 1000)}K
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+              )}
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg flex items-center gap-2">
+                <DollarSign className="h-5 w-5" />
+                Salary bands in {view.name}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="text-left py-2 font-semibold">Role</th>
+                      <th className="text-right py-2 font-semibold">Pay (USD)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {roles.map((r, i) => (
+                      <tr key={i} className="border-b last:border-0">
+                        <td className="py-2 pr-2">
+                          <div className="font-medium text-foreground">{r.role}</div>
+                          <div className="text-xs text-muted-foreground">{r.exp} • {r.cert}</div>
+                        </td>
+                        <td className="py-2 text-right text-primary font-semibold whitespace-nowrap">
+                          ${(r.min / 1000).toFixed(0)}K–${(r.max / 1000).toFixed(0)}K
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Required certifications */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-primary mb-4 flex items-center gap-2">
+            <Award className="h-6 w-6" /> Certifications worth holding for the {view.name} market
+          </h2>
+          <ul className="space-y-2 text-sm text-muted-foreground">
+            {certs.map((c, i) => (
+              <li key={i} className="border-l-2 border-primary/40 pl-4">{c}</li>
+            ))}
+          </ul>
+        </section>
+
+        {/* Application checklist */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-primary mb-4 flex items-center gap-2">
+            <ListChecks className="h-6 w-6" /> Application checklist
+          </h2>
+          <ol className="list-decimal list-outside ml-5 space-y-2 text-sm text-muted-foreground">
+            {checklist.map((c, i) => (
+              <li key={i}>{c}</li>
+            ))}
+          </ol>
+        </section>
+
+        {/* FAQ */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-primary mb-4 flex items-center gap-2">
+            <HelpCircle className="h-6 w-6" /> Frequently asked
+          </h2>
+          <div className="space-y-4">
+            {faqs.map((f, i) => (
+              <div key={i} className="border-l-4 border-primary/30 pl-4">
+                <p className="font-semibold text-foreground mb-1">{f.q}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">{f.a}</p>
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* Popular Roles in City */}
-        <section className="mb-12">
-          <h2 className="text-3xl font-bold text-primary mb-8">Popular NDT Roles in {city.name}</h2>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {topRoles.map((role) => {
-              const adjustedSalary = adjustSalaryByRegion(role.salaryRange.min, role.salaryRange.max, city.name);
-              return (
-                <Card key={role.slug} className="hover:shadow-lg transition-shadow group flex flex-col">
-                  <CardHeader>
-                    <div className="flex items-start justify-between gap-2 mb-2">
-                      <Badge variant="outline">{role.experience}+ yrs</Badge>
-                      <TrendingUp className="h-4 w-4 text-primary opacity-60" />
-                    </div>
-                    <CardTitle className="text-lg">{role.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="flex-1 flex flex-col">
-                    <p className="text-sm text-muted-foreground mb-4 flex-1">{role.description}</p>
-
-                    <div className="space-y-3 mb-4">
-                      <div>
-                        <div className="text-xs font-semibold text-muted-foreground mb-1">Salary in {city.name}</div>
-                        <div className="text-sm font-bold text-primary">
-                          ${(adjustedSalary.min / 1000).toFixed(0)}K - ${(adjustedSalary.max / 1000).toFixed(0)}K
-                        </div>
-                        <div className="text-xs text-muted-foreground">
-                          Adjusted for regional cost of living
-                        </div>
-                      </div>
-
-                      <div>
-                        <div className="text-xs font-semibold text-muted-foreground mb-1">Key Skills</div>
-                        <div className="flex flex-wrap gap-1">
-                          {role.skills.slice(0, 3).map((skill, i) => (
-                            <Badge key={i} variant="secondary" className="text-xs">{skill}</Badge>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    <Link
-                      href={`/careers/roles/${role.slug}`}
-                      className="text-sm text-primary font-medium flex items-center group-hover:underline"
-                    >
-                      View Role Details <ArrowRight className="h-3 w-3 ml-1" />
-                    </Link>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
-
-          <div className="text-center mt-8">
-            <Button asChild>
-              <Link href="/careers">View All {careerRoles.length} NDT Career Roles</Link>
-            </Button>
-          </div>
+        {/* Cross-link: training in the same city */}
+        <section className="mb-12 grid md:grid-cols-2 gap-4">
+          <Link href={`/training/${view.slug}`} className="block">
+            <Card className="hover:shadow-md transition-shadow">
+              <CardContent className="pt-6">
+                <p className="font-semibold text-primary mb-1">NDT Training in {view.name}</p>
+                <p className="text-sm text-muted-foreground">Local courses, fees, and accreditation pathways feeding the same employer base.</p>
+              </CardContent>
+            </Card>
+          </Link>
+          <Link href={`/ndt-services/${view.slug}`} className="block">
+            <Card className="hover:shadow-md transition-shadow">
+              <CardContent className="pt-6">
+                <p className="font-semibold text-primary mb-1">NDT Services in {view.name}</p>
+                <p className="text-sm text-muted-foreground">The companies hiring inspectors — see the local service catalogue.</p>
+              </CardContent>
+            </Card>
+          </Link>
         </section>
 
-        {/* Local Opportunities */}
+        {/* Other cities */}
         <section className="mb-12">
-          <h2 className="text-3xl font-bold text-primary mb-6">How to Find NDT Jobs in {city.name}</h2>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">1. Get Certified</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <p className="text-sm text-muted-foreground">
-                  Earn ASNT, ISO 9712, or API certifications relevant to {city.name}'s industries.
-                </p>
-                <Button variant="outline" size="sm" asChild className="w-full">
-                  <Link href="/certifications">View Certifications</Link>
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">2. Find Training</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <p className="text-sm text-muted-foreground">
-                  Connect with NDT training providers in {city.name} area.
-                </p>
-                <Button variant="outline" size="sm" asChild className="w-full">
-                  <Link href="/find-providers">Find Providers</Link>
-                </Button>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">3. Register Profile</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <p className="text-sm text-muted-foreground">
-                  Create your professional profile and connect with employers in {city.name}.
-                </p>
-                <Button variant="outline" size="sm" asChild className="w-full">
-                  <Link href="/register">Create Profile</Link>
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        {/* More Cities */}
-        <section className="mb-12">
-          <h2 className="text-3xl font-bold text-primary mb-8">Explore Careers in Other Cities</h2>
-
+          <h3 className="text-xl font-bold text-primary mb-4">Explore Careers in Other Cities</h3>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-            {cities.slice(0, 20).filter(c => c.slug !== city.slug).slice(0, 12).map((otherCity) => (
+            {cities.slice(0, 20).filter(c => c.slug !== view.slug).slice(0, 12).map((otherCity) => (
               <Link
                 key={otherCity.slug}
                 href={`/careers/${otherCity.slug}`}
                 className="p-4 rounded-lg border border-border hover:border-primary hover:bg-primary/5 transition-all group"
               >
-                <div className="font-semibold text-foreground group-hover:text-primary transition-colors text-sm">{otherCity.name}</div>
+                <div className="font-semibold text-foreground group-hover:text-primary text-sm">{otherCity.name}</div>
                 <div className="text-xs text-muted-foreground">{otherCity.region}</div>
               </Link>
             ))}
@@ -362,16 +306,16 @@ export default function CityCareerPage({ params }: Props) {
 
         {/* CTA */}
         <section className="bg-primary rounded-2xl p-10 text-primary-foreground text-center">
-          <h2 className="text-2xl font-bold mb-4">Start Your NDT Career in {city.name}</h2>
+          <h2 className="text-2xl font-bold mb-4">Start Your NDT Career in {view.name}</h2>
           <p className="mb-8 opacity-90 max-w-lg mx-auto">
-            Get certified, gain experience, and join the growing community of NDT professionals in {city.name}.
+            Get certified, gain documented experience, and connect with the local employers above.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button size="lg" variant="secondary" asChild>
-              <Link href="/certifications">Get Certified</Link>
+              <Link href="/certifications">View Certifications</Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
-              <Link href="/find-providers">Find Local Training</Link>
+              <Link href={`/training/${view.slug}`}>Find Local Training</Link>
             </Button>
           </div>
         </section>

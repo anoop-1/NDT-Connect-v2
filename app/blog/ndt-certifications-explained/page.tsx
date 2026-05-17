@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema , ArticleSchema, BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
-    title: 'NDT Certifications Explained: ASNT, ISO 9712, and More | NDT Connect',
+    title: 'NDT Certifications Explained: ASNT, ISO 9712, and More',
     description: 'Understanding the different certification bodies and levels in non-destructive testing.',
     openGraph: {
-      title: 'NDT Certifications Explained: ASNT, ISO 9712, and More | NDT Connect',
+      title: 'NDT Certifications Explained: ASNT, ISO 9712, and More',
       description: 'Understanding the different certification bodies and levels in non-destructive testing.',
       url: 'https://ndt-connect.com/blog/ndt-certifications-explained',
       type: 'article',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'NDT Certifications Explained: ASNT, ISO 9712, and More | NDT Connect',
+      title: 'NDT Certifications Explained: ASNT, ISO 9712, and More',
       description: 'Understanding the different certification bodies and levels in non-destructive testing.',
     },
     alternates: { canonical: 'https://ndt-connect.com/blog/ndt-certifications-explained' },
@@ -25,6 +25,11 @@ export default function NDTCertificationsArticle() {
     return (
         <>
             <ArticleSchema title="NDT Certifications Explained: ASNT, ISO 9712, PCN, and More" description="Understanding NDT certifications including ASNT, ISO 9712, PCN, and more." url="https://ndt-connect.com/blog/ndt-certifications-explained" datePublished="2023-12-15" category="Certifications" />
+            <BreadcrumbListSchema items={[
+                { name: 'Home', url: 'https://ndt-connect.com' },
+                { name: 'Blog', url: 'https://ndt-connect.com/blog' },
+                { name: 'NDT Certifications Explained: ASNT, ISO 9712, and More', url: 'https://ndt-connect.com/blog/ndt-certifications-explained' },
+            ]} />
             <NDTConnectOrganizationSchema />
             <BlogLayout
                 title="NDT Certifications Explained: ASNT, ISO 9712, and More"

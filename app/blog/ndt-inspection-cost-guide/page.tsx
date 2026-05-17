@@ -1,13 +1,13 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, FeatureGrid, FeatureCard, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema, FAQSchema, ArticleSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema, FAQSchema, ArticleSchema, BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
-  title: 'NDT Inspection Costs: Complete Pricing Guide for 2026 | NDT Connect',
+  title: 'NDT Inspection Costs: Complete Pricing Guide for 2026',
   description: 'Detailed breakdown of NDT inspection costs by method, industry, and location. Learn what affects pricing for UT, RT, MT, PT, PAUT, and TOFD inspections.',
   keywords: ['ndt inspection cost', 'ndt testing price', 'ultrasonic testing cost', 'radiographic testing cost', 'ndt pricing guide'],
   openGraph: {
-    title: 'NDT Inspection Costs: Complete Pricing Guide for 2026 | NDT Connect',
+    title: 'NDT Inspection Costs: Complete Pricing Guide for 2026',
     description: 'Detailed breakdown of NDT inspection costs by method, industry, and location. Learn what affects pricing for UT, RT, MT, PT, PAUT, and TOFD inspections.',
     url: 'https://ndt-connect.com/blog/ndt-inspection-cost-guide',
     type: 'article',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'NDT Inspection Costs: Complete Pricing Guide for 2026 | NDT Connect',
+    title: 'NDT Inspection Costs: Complete Pricing Guide for 2026',
     description: 'Detailed breakdown of NDT inspection costs by method, industry, and location. Learn what affects pricing for UT, RT, MT, PT, PAUT, and TOFD inspections.',
   },
   alternates: { canonical: 'https://ndt-connect.com/blog/ndt-inspection-cost-guide' },
@@ -31,6 +31,11 @@ export default function Page() {
   return (
     <>
       <ArticleSchema title="NDT Inspection Costs: Complete Pricing Guide for 2026" description="Detailed breakdown of NDT inspection costs by method, industry, and location. Learn what affects pricing for UT, RT, MT, PT, PAUT, and TOFD inspections." url="https://ndt-connect.com/blog/ndt-inspection-cost-guide" datePublished="2026-03-05" category="Guide" />
+      <BreadcrumbListSchema items={[
+        { name: 'Home', url: 'https://ndt-connect.com' },
+        { name: 'Blog', url: 'https://ndt-connect.com/blog' },
+        { name: 'NDT Inspection Costs: Complete Pricing Guide for 2026', url: 'https://ndt-connect.com/blog/ndt-inspection-cost-guide' },
+      ]} />
       <NDTConnectOrganizationSchema />
       <FAQSchema questions={faqs} />
       <BlogLayout

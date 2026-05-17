@@ -331,7 +331,7 @@ def main() -> int:
     random.shuffle(cred_cycle)
     cred_idx = 0
 
-    save_every = 25
+    save_every = 5
     for u in eligible[:plan]:
         # Pick next non-exhausted credential.
         attempts = 0

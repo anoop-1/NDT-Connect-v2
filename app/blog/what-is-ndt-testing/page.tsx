@@ -1,13 +1,13 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, FeatureGrid, FeatureCard, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema, FAQSchema, ArticleSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema, FAQSchema, ArticleSchema, BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
-  title: "What is NDT Testing? A Beginner's Complete Guide | NDT Connect",
+  title: "What is NDT Testing? A Beginner's Complete Guide",
   description: 'Learn what non-destructive testing (NDT) is, how it works, the main methods used, and why it matters for industrial safety and quality assurance.',
   keywords: ['what is NDT', 'non-destructive testing explained', 'NDT methods', 'NDT basics', 'NDT for beginners'],
   openGraph: {
-    title: "What is NDT Testing? A Beginner's Complete Guide | NDT Connect",
+    title: "What is NDT Testing? A Beginner's Complete Guide",
     description: 'Learn what non-destructive testing (NDT) is, how it works, the main methods used, and why it matters for industrial safety and quality assurance.',
     url: 'https://ndt-connect.com/blog/what-is-ndt-testing',
     type: 'article',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "What is NDT Testing? A Beginner's Complete Guide | NDT Connect",
+    title: "What is NDT Testing? A Beginner's Complete Guide",
     description: 'Learn what non-destructive testing (NDT) is, how it works, the main methods used, and why it matters for industrial safety and quality assurance.',
   },
   alternates: { canonical: 'https://ndt-connect.com/blog/what-is-ndt-testing' },
@@ -32,6 +32,11 @@ export default function Page() {
   return (
     <>
       <ArticleSchema title="What is NDT Testing? A Beginner's Complete Guide" description="Learn what non-destructive testing (NDT) is, how it works, the main methods used, and why it matters for industrial safety and quality assurance." url="https://ndt-connect.com/blog/what-is-ndt-testing" datePublished="2026-03-07" category="Education" />
+      <BreadcrumbListSchema items={[
+        { name: 'Home', url: 'https://ndt-connect.com' },
+        { name: 'Blog', url: 'https://ndt-connect.com/blog' },
+        { name: "What is NDT Testing? A Beginner's Complete Guide", url: 'https://ndt-connect.com/blog/what-is-ndt-testing' },
+      ]} />
       <NDTConnectOrganizationSchema />
       <FAQSchema questions={faqs} />
       <BlogLayout

@@ -1,0 +1,351 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-05-15",
+    "purpose": "Per-standard fact rows that enrich /standards/[code] pages with revision/edition years, scope summaries, and acceptance/calibration specifics. Read by lib/content/standards-facts.ts.",
+    "schemaFields": [
+      "latestEdition — current published year",
+      "scope — one-line authoritative scope",
+      "originYear — year first published",
+      "keyClauses — most-cited sections with one-line summary",
+      "acceptanceCriteria — where pass/fail tables live",
+      "calibrationOrQualification — what must be qualified before use",
+      "relatedStandards — companion / parent / referenced standards",
+      "typicalContractLanguage — sample purchase-order line"
+    ]
+  },
+  "asme-section-v": {
+    "latestEdition": "2023",
+    "originYear": 1968,
+    "scope": "Defines the NDE methods (RT, UT, MT, PT, ET, VT, LT, AE) used by every other ASME construction code; written-procedure + qualified-personnel framework.",
+    "keyClauses": [
+      "Article 1 — General Requirements (procedure qualification, personnel)",
+      "Article 2 — Radiographic Examination",
+      "Article 4 — Ultrasonic Examination of Welds",
+      "Article 4 Mandatory Appendix III — TOFD",
+      "Article 4 Mandatory Appendix VIII — PAUT",
+      "Article 6 — Liquid Penetrant Examination",
+      "Article 7 — Magnetic Particle Examination",
+      "Article 8 — Eddy Current Examination",
+      "Article 9 — Visual Examination"
+    ],
+    "acceptanceCriteria": "None — Section V contains *examination* requirements only; acceptance lives in the construction code (I, III, VIII, XI, B31.x) that invokes it.",
+    "calibrationOrQualification": "Procedure qualification per T-150; personnel qualified to a written practice (typically SNT-TC-1A or CP-189); equipment verified per the article's calibration table.",
+    "relatedStandards": ["ASME BPVC Section I", "ASME BPVC Section III", "ASME BPVC Section VIII", "ASME BPVC Section IX", "ASME BPVC Section XI", "ASME B31.1", "ASME B31.3"],
+    "typicalContractLanguage": "All NDE shall be performed in accordance with ASME BPVC Section V, latest edition, with acceptance criteria per ASME Section VIII Division 1, UW-51."
+  },
+  "asme-bpvc": {
+    "latestEdition": "2023",
+    "originYear": 1914,
+    "scope": "Boiler and Pressure Vessel Code — 13 sections covering construction, materials, welding, NDE, in-service inspection, and nuclear components.",
+    "keyClauses": [
+      "Section I — Power Boilers",
+      "Section II — Materials",
+      "Section III — Nuclear Components",
+      "Section V — Nondestructive Examination",
+      "Section VIII — Pressure Vessels (Div 1, 2, 3)",
+      "Section IX — Welding/Brazing/Fusing Qualifications",
+      "Section XI — In-service Inspection of Nuclear Components"
+    ],
+    "acceptanceCriteria": "Each construction section publishes its own NDE acceptance tables (e.g. UW-51 in VIII Div 1 for full RT).",
+    "calibrationOrQualification": "All welding procedures qualified per Section IX; all NDE per Section V with acceptance per the construction section.",
+    "relatedStandards": ["ASME B31.1", "ASME B31.3", "API 510", "API 570", "NB-23 (NBIC)"],
+    "typicalContractLanguage": "Vessel shall be designed, fabricated, inspected and stamped in accordance with ASME BPVC Section VIII Division 1, latest edition + applicable addenda, U-stamped."
+  },
+  "api-510": {
+    "latestEdition": "11th edition (2022 with addenda)",
+    "originYear": 1958,
+    "scope": "In-service inspection, repair, alteration, and rerating of pressure vessels in the petroleum and chemical industries.",
+    "keyClauses": [
+      "Sec. 5 — Inspection, Examination, and Pressure Testing",
+      "Sec. 6 — Interval/Frequency of Inspection",
+      "Sec. 7 — Inspection Data Evaluation, Analysis and Recording",
+      "Sec. 8 — Repair, Alteration, Rerating",
+      "Sec. 9 — Documentation"
+    ],
+    "acceptanceCriteria": "Minimum thickness from original construction code (ASME VIII); fitness-for-service via API 579-1/ASME FFS-1 when below code minimum.",
+    "calibrationOrQualification": "Authorised Pressure Vessel Inspector certified per API 510 (separate certification body — API ICP); supporting NDE personnel per ASME Section V.",
+    "relatedStandards": ["API 572 (vessel inspection practices)", "API 576 (pressure relief)", "API 579-1/ASME FFS-1", "API 580/581 (RBI)", "ASME VIII"],
+    "typicalContractLanguage": "Vessel inspection plan and intervals shall comply with API 510 11th edition; corrosion rates established per Sec. 7; FFS per API 579-1/ASME FFS-1."
+  },
+  "api-570": {
+    "latestEdition": "5th edition (2021 with addenda)",
+    "originYear": 1993,
+    "scope": "In-service inspection, repair, alteration, and rerating of metallic and FRP piping systems.",
+    "keyClauses": [
+      "Sec. 5 — Inspection and Testing Practices",
+      "Sec. 6 — Frequency and Extent of Inspection",
+      "Sec. 7 — Inspection Data Evaluation, Analysis, Recording",
+      "Sec. 8 — Repairs, Alterations, Rerating"
+    ],
+    "acceptanceCriteria": "Minimum thickness per ASME B31.3 calculation; circuit-based intervals per service-class table (Class 1/2/3/4).",
+    "calibrationOrQualification": "API 570 Authorised Piping Inspector (separate ICP certification); supporting NDE per Section V.",
+    "relatedStandards": ["API 574 (piping inspection practices)", "API 578 (PMI)", "API 579-1/ASME FFS-1", "API 580/581 (RBI)", "ASME B31.3"],
+    "typicalContractLanguage": "Piping inspection per API 570 5th ed.; thickness monitoring per Sec. 5; circuit classification documented per Sec. 6."
+  },
+  "api-653": {
+    "latestEdition": "5th edition (2014, errata 2018)",
+    "originYear": 1991,
+    "scope": "Tank inspection, repair, alteration, and reconstruction of aboveground welded steel storage tanks built to API 650.",
+    "keyClauses": [
+      "Sec. 4 — Suitability for Service",
+      "Sec. 6 — Inspection",
+      "Sec. 9 — Tank Repair and Alteration",
+      "Sec. 10 — Dismantling and Reconstruction"
+    ],
+    "acceptanceCriteria": "Floor MFL + UT for sub-floor corrosion; shell UT-thickness vs API 653 minimum; settlement evaluation per Annex B.",
+    "calibrationOrQualification": "API 653 Authorised Tank Inspector (ICP); MFL operators trained per ASNT SNT-TC-1A.",
+    "relatedStandards": ["API 650 (welded tank construction)", "API 575 (atmospheric tank inspection)", "API 651 (cathodic protection)", "API 652 (linings)"],
+    "typicalContractLanguage": "Internal tank inspection per API 653 5th ed., Sec. 6; floor MFL with UT confirmation; reconciliation report per Sec. 4."
+  },
+  "api-1104": {
+    "latestEdition": "22nd edition (2021)",
+    "originYear": 1953,
+    "scope": "Welding of pipelines and related facilities; covers procedure qualification, welder qualification, NDE, and acceptance criteria for cross-country girth welds.",
+    "keyClauses": [
+      "Sec. 5 — Qualification of Welding Procedures",
+      "Sec. 6 — Qualification of Welders",
+      "Sec. 9 — Acceptance Standards for NDT",
+      "Sec. 11 — Repair and Removal of Defects"
+    ],
+    "acceptanceCriteria": "Sec. 9 tables for porosity, slag, undercut, cracks, lack of fusion/penetration; alternative criteria via Annex A (ECA).",
+    "calibrationOrQualification": "Welding procedures per Sec. 5; welders per Sec. 6; NDE personnel per ASNT SNT-TC-1A or equivalent.",
+    "relatedStandards": ["ASME B31.4 (liquid pipelines)", "ASME B31.8 (gas pipelines)", "API 5L (line pipe)", "BS 7910 (ECA)"],
+    "typicalContractLanguage": "Girth welds shall be welded and inspected per API 1104 22nd ed.; AUT acceptance per Annex A (ECA) where applicable."
+  },
+  "api-579": {
+    "latestEdition": "API 579-1/ASME FFS-1 (2021)",
+    "originYear": 2000,
+    "scope": "Fitness-for-service assessment for in-service equipment with damage or deviations from new-construction code.",
+    "keyClauses": [
+      "Part 4 — Brittle Fracture",
+      "Part 5 — General Metal Loss",
+      "Part 6 — Local Metal Loss",
+      "Part 7 — Pitting",
+      "Part 9 — Crack-like Flaws",
+      "Part 10 — High-Temperature Operation"
+    ],
+    "acceptanceCriteria": "Three-level assessments: Level 1 (screening), Level 2 (closed-form), Level 3 (advanced FEA + fracture mechanics); RSF ≥ 0.9 typical pass.",
+    "calibrationOrQualification": "Performed by qualified engineer (typically PE or chartered with FFS experience); inputs from API 510/570/653 inspection.",
+    "relatedStandards": ["BS 7910", "R6", "WES 2805", "API 510", "API 570", "API 653"],
+    "typicalContractLanguage": "Indications exceeding code acceptance shall be evaluated per API 579-1/ASME FFS-1 prior to repair/disposition."
+  },
+  "aws-d1-1": {
+    "latestEdition": "2025",
+    "originYear": 1928,
+    "scope": "Structural Welding Code — Steel; covers design, qualification, fabrication, inspection of welded steel structures (≥ 1/8 inch thick).",
+    "keyClauses": [
+      "Cl. 4 — Qualification (WPS, PQR, welder)",
+      "Cl. 5 — Fabrication",
+      "Cl. 6 — Inspection (NDE methods, acceptance)",
+      "Cl. 6.12.2 — Statically Loaded Acceptance",
+      "Cl. 6.12.3 — Cyclically Loaded Acceptance"
+    ],
+    "acceptanceCriteria": "Cl. 6.12 tables — separate static vs cyclic; UT acceptance via Table 6.2 with dB rating system.",
+    "calibrationOrQualification": "Welding personnel per Cl. 4; CWI inspectors per AWS QC1; NDE per AWS D1.1 + AWS QC1 / SNT-TC-1A.",
+    "relatedStandards": ["AWS D1.5 (bridge welding)", "AWS D1.6 (stainless)", "AWS D1.8 (seismic supplement)", "AISC 360", "AWS QC1 (CWI)"],
+    "typicalContractLanguage": "All welding shall comply with AWS D1.1/D1.1M:2025; NDE per Cl. 6 with cyclically-loaded acceptance criteria; CWI present during fabrication."
+  },
+  "aws-d1-5": {
+    "latestEdition": "2020",
+    "originYear": 1995,
+    "scope": "Bridge Welding Code — fracture-critical and non-fracture-critical members of steel highway bridges; co-published with AASHTO.",
+    "keyClauses": [
+      "Cl. 5 — Welding Process Requirements",
+      "Cl. 6 — NDE",
+      "Cl. 12 — Fracture Control Plan (FCP) for FCM",
+      "Annex 1 — Fracture Control Plan"
+    ],
+    "acceptanceCriteria": "Stricter than D1.1 — fracture-critical members require CVN-toughness-qualified WPS, RT/UT on every CJP weld, zero tolerance for cracks.",
+    "calibrationOrQualification": "Welders per Cl. 5; NDE personnel per AWS QC1; fabricators must be AISC certified for major bridges in many jurisdictions.",
+    "relatedStandards": ["AWS D1.1", "AASHTO LRFD Bridge Design Specs", "AISC 360"],
+    "typicalContractLanguage": "All welding of fracture-critical members shall conform to AWS D1.5:2020 Cl. 12 Fracture Control Plan; 100% NDE; CVN-qualified procedures."
+  },
+  "iso-9712": {
+    "latestEdition": "2021",
+    "originYear": 1992,
+    "scope": "Qualification and certification of NDT personnel — third-party certification scheme (vs employer-based SNT-TC-1A).",
+    "keyClauses": [
+      "Cl. 7 — Eligibility (training + experience tables)",
+      "Cl. 8 — Qualification Examinations",
+      "Cl. 9 — Certification",
+      "Cl. 10 — Renewal and Recertification",
+      "Annex A — Training hours by method/level",
+      "Annex B — Experience by sector"
+    ],
+    "acceptanceCriteria": "Pass each exam part ≥70%, composite ≥70%; vision Jaeger #1 or equivalent + colour annual.",
+    "calibrationOrQualification": "Certification body must be accredited per ISO/IEC 17024; certificate held by individual, portable across employers.",
+    "relatedStandards": ["EN ISO 9712 (EU adoption)", "ISO/IEC 17024 (CB accreditation)", "ASNT SNT-TC-1A (US comparison)", "NAS 410 (aerospace)"],
+    "typicalContractLanguage": "All NDT personnel shall be certified to ISO 9712:2021, Level 2 minimum, in the relevant method and industrial sector."
+  },
+  "iso-17636": {
+    "latestEdition": "ISO 17636-1:2022 (film) and ISO 17636-2:2022 (DDA/CR)",
+    "originYear": 2003,
+    "scope": "Radiographic testing of fusion welds — methods, IQI selection, exposure parameters, image quality classes A and B.",
+    "keyClauses": [
+      "Sec. 6 — Source position and direction",
+      "Sec. 7 — Image quality (with reference to ISO 19232)",
+      "Sec. 8 — Examination procedures",
+      "Annex B — Recommended techniques"
+    ],
+    "acceptanceCriteria": "None — references ISO 5817 (acceptance for steel welds) and ISO 10675-1 (RT acceptance).",
+    "calibrationOrQualification": "Personnel per ISO 9712; equipment per ISO 11699 (film) or ISO 17636-2 detector classes.",
+    "relatedStandards": ["ISO 5817 (weld acceptance)", "ISO 10675-1 (RT acceptance)", "ISO 19232 (IQI)", "ISO 11699-1 (film classification)"],
+    "typicalContractLanguage": "RT shall be performed per ISO 17636-1:2022 Class B technique; acceptance per ISO 10675-1 Level B."
+  },
+  "iso-13588": {
+    "latestEdition": "2019",
+    "originYear": 2012,
+    "scope": "Ultrasonic testing of welds — Use of automated phased array technology (PAUT).",
+    "keyClauses": [
+      "Sec. 5 — Personnel qualification",
+      "Sec. 7 — Equipment characterisation",
+      "Sec. 8 — Test setup and qualification",
+      "Sec. 9 — Examination",
+      "Annex A — Reporting",
+      "Annex B — Test block design"
+    ],
+    "acceptanceCriteria": "References ISO 19285 (acceptance for PAUT) or contract-specific criteria.",
+    "calibrationOrQualification": "PAUT-specific qualification per ISO 9712 or equivalent; focal-law verification on a representative test block.",
+    "relatedStandards": ["ISO 19285 (PAUT acceptance)", "ISO 16811 (sensitivity setting)", "ASME Section V Article 4 Mandatory Appendix VIII"],
+    "typicalContractLanguage": "Encoded PAUT shall be performed per ISO 13588:2019 Testing Level B; acceptance per ISO 19285."
+  },
+  "iso-3452": {
+    "latestEdition": "ISO 3452-1:2021",
+    "originYear": 1984,
+    "scope": "Penetrant testing — general principles, products, equipment, technique.",
+    "keyClauses": [
+      "Sec. 4 — Personnel",
+      "Sec. 5 — Penetrant materials",
+      "Sec. 8 — Examination procedure",
+      "Sec. 9 — Indications evaluation"
+    ],
+    "acceptanceCriteria": "References ISO 23277 (PT acceptance for welded joints) or product specification.",
+    "calibrationOrQualification": "Personnel per ISO 9712; products controlled per ISO 3452-2 (testing materials); test blocks per ISO 3452-3.",
+    "relatedStandards": ["ISO 3452-2 (materials)", "ISO 3452-3 (reference test blocks)", "ISO 23277 (acceptance)", "ASTM E165"],
+    "typicalContractLanguage": "PT shall be performed per ISO 3452-1:2021, sensitivity level 2; acceptance per ISO 23277 Level 2X."
+  },
+  "iso-9934": {
+    "latestEdition": "ISO 9934-1:2016",
+    "originYear": 2001,
+    "scope": "Magnetic particle testing — general principles, materials, equipment.",
+    "keyClauses": [
+      "Sec. 5 — Personnel",
+      "Sec. 7 — Magnetisation",
+      "Sec. 8 — Indication recording and evaluation",
+      "Sec. 10 — Demagnetisation"
+    ],
+    "acceptanceCriteria": "References ISO 23278 (MT acceptance for welded joints).",
+    "calibrationOrQualification": "Personnel per ISO 9712; tangential field strength 2–6 kA/m verified per ISO 9934-3; reference blocks per ISO 9934-2.",
+    "relatedStandards": ["ISO 9934-2 (testing media)", "ISO 9934-3 (equipment)", "ISO 23278 (acceptance)", "ASTM E709", "ASTM E1444"],
+    "typicalContractLanguage": "MT shall be performed per ISO 9934-1:2016 with tangential field strength verified per ISO 9934-3; acceptance per ISO 23278 Level 2X."
+  },
+  "asme-b31-3": {
+    "latestEdition": "2024",
+    "originYear": 1955,
+    "scope": "Process Piping — design, materials, fabrication, examination, and testing of piping in chemical, petroleum, and related processing plants.",
+    "keyClauses": [
+      "Cl. 304 — Pressure design of piping components",
+      "Cl. 331 — Welding",
+      "Cl. 341 — Examination",
+      "Cl. 344 — Types of Examination",
+      "Cl. 345 — Testing"
+    ],
+    "acceptanceCriteria": "Table 341.3.2 — acceptance criteria for welds by service category (Normal, Cat-D, Cat-M, Severe Cyclic).",
+    "calibrationOrQualification": "Welding per ASME IX; NDE per ASME V; examiner per Owner's Inspector or qualified per Owner's program.",
+    "relatedStandards": ["ASME B31.1", "ASME B31.4", "ASME B31.8", "ASME Section V", "ASME Section IX", "API 570"],
+    "typicalContractLanguage": "All process piping shall be designed, fabricated, inspected and tested per ASME B31.3-2024, Normal Fluid Service; examination per Cl. 341 Table 341.3.2."
+  },
+  "astm-e1444": {
+    "latestEdition": "ASTM E1444/E1444M-22",
+    "originYear": 1991,
+    "scope": "Standard practice for magnetic particle testing — the U.S. companion to ASTM E709 (guide); E1444 is the *practice* (mandatory language).",
+    "keyClauses": [
+      "Sec. 6 — Personnel qualification",
+      "Sec. 7 — Written procedure",
+      "Sec. 8 — Equipment",
+      "Sec. 9 — Magnetic field adequacy",
+      "Sec. 10 — Examination procedures"
+    ],
+    "acceptanceCriteria": "References the customer specification or governing code; E1444 is silent on accept/reject sizing.",
+    "calibrationOrQualification": "Yoke lift test (4.5 kg AC, 18 kg DC); ammeter ±10% per E709; QQI or pie gauge field-direction verification.",
+    "relatedStandards": ["ASTM E709 (guide)", "ASTM E3024 (procedure qualification)", "ISO 9934", "MIL-STD-1949"],
+    "typicalContractLanguage": "MT shall be performed per ASTM E1444/E1444M-22, wet-fluorescent technique, with continuous magnetisation."
+  },
+  "astm-e1417": {
+    "latestEdition": "ASTM E1417/E1417M-21",
+    "originYear": 1991,
+    "scope": "Standard practice for liquid penetrant testing — U.S. mandatory-language practice (vs E165 guide).",
+    "keyClauses": [
+      "Sec. 6 — Personnel qualification",
+      "Sec. 7 — Materials",
+      "Sec. 8 — Process control",
+      "Sec. 9 — Examination",
+      "Sec. 10 — Acceptance criteria reference"
+    ],
+    "acceptanceCriteria": "References AMS 2647 (aerospace), customer spec, or governing construction code.",
+    "calibrationOrQualification": "Penetrant batch certified to AMS 2644; sensitivity verified on TAM panel; UV-A intensity ≥1000 µW/cm² @ 15 inch for fluorescent.",
+    "relatedStandards": ["ASTM E165 (guide)", "AMS 2644 (penetrant materials)", "AMS 2647 (aerospace acceptance)", "ISO 3452-1"],
+    "typicalContractLanguage": "PT shall be performed per ASTM E1417/E1417M-21, Type I (fluorescent) Method C (solvent removable), Sensitivity Level 3."
+  },
+  "astm-e709": {
+    "latestEdition": "ASTM E709-21",
+    "originYear": 1980,
+    "scope": "Standard guide for magnetic particle testing — non-mandatory tutorial; companion to mandatory practice E1444.",
+    "keyClauses": [
+      "Sec. 7 — Magnetisation methods (yoke, prods, central conductor, coil, multidirectional)",
+      "Sec. 8 — Particle systems (dry, wet, fluorescent)",
+      "Sec. 11 — Indication interpretation"
+    ],
+    "acceptanceCriteria": "Not in E709 — guide only; acceptance from E1444 contract or governing code.",
+    "calibrationOrQualification": "Refers to E1444 for mandatory equipment qualification.",
+    "relatedStandards": ["ASTM E1444 (practice)", "ASTM E3024 (procedure qualification)", "ISO 9934-1"],
+    "typicalContractLanguage": "MT inspector training shall reference ASTM E709 as background; mandatory examination per ASTM E1444."
+  },
+  "astm-e94": {
+    "latestEdition": "ASTM E94/E94M-17 (2023)",
+    "originYear": 1947,
+    "scope": "Standard guide for radiographic examination using industrial X-ray and gamma-ray sources; broad tutorial covering film and digital.",
+    "keyClauses": [
+      "Sec. 5 — Personnel and equipment",
+      "Sec. 8 — Selecting radiographic technique",
+      "Sec. 9 — Geometric principles",
+      "Sec. 10 — Image quality and IQI"
+    ],
+    "acceptanceCriteria": "None — references E390/E1742 (film handling) and customer/code acceptance.",
+    "calibrationOrQualification": "References ASTM E747 (wire IQI) and E1025 (plaque IQI) for image quality verification.",
+    "relatedStandards": ["ASTM E1742 (film processing)", "ASTM E1032 (RT of weldments)", "ASTM E747 (wire IQI)", "ASTM E1025 (plaque IQI)", "ASME Section V Article 2"],
+    "typicalContractLanguage": "RT technique shall comply with ASTM E94, with image quality per ASTM E1025 essential hole 2T."
+  },
+  "nace-mrt-01-72": {
+    "latestEdition": "ANSI/NACE MR0175/ISO 15156:2020 (3 parts)",
+    "originYear": 1975,
+    "scope": "Materials for use in H2S-containing environments in oil and gas production — metallic materials selection and surface limits to avoid sulfide stress cracking (SSC).",
+    "keyClauses": [
+      "Part 1 — General principles",
+      "Part 2 — Carbon and low-alloy steels",
+      "Part 3 — CRAs and other alloys",
+      "Annex A — Environmental severity zones (SSC region 0/1/2/3)"
+    ],
+    "acceptanceCriteria": "Material hardness limits (e.g. ≤ 250 HV / 22 HRC for carbon steels); environmental partial pressure limits.",
+    "calibrationOrQualification": "Hardness testing per ASTM E140 with traceable reference blocks; PMI per API 578.",
+    "relatedStandards": ["NACE TM0177 (lab SSC test)", "NACE TM0284 (HIC test)", "API 578 (PMI)"],
+    "typicalContractLanguage": "All materials in sour service shall conform to NACE MR0175/ISO 15156:2020 Part 2; hardness verified by PMI on receipt and post-PWHT."
+  },
+  "asnt-cp-189": {
+    "latestEdition": "ANSI/ASNT CP-189-2020",
+    "originYear": 1989,
+    "scope": "Standard for qualification and certification of NDT personnel — the *standard* form of SNT-TC-1A's recommended practice (mandatory language, employer-based).",
+    "keyClauses": [
+      "Sec. 6 — Levels of qualification",
+      "Sec. 7 — Education, training, experience",
+      "Sec. 8 — Examinations",
+      "Sec. 9 — Certification",
+      "Sec. 10 — Recertification"
+    ],
+    "acceptanceCriteria": "Pass mark per part ≥ 70%, composite ≥ 80%; recertification 5-year cycle.",
+    "calibrationOrQualification": "Vision Jaeger #2 + colour annual; experience hours documented per Annex A; Level III via ASNT NDT Level III certificate.",
+    "relatedStandards": ["ASNT SNT-TC-1A (recommended practice)", "ANSI/ASNT CP-105 (topical outlines)", "ISO 9712 (third-party comparison)"],
+    "typicalContractLanguage": "All NDT personnel shall be qualified and certified per ANSI/ASNT CP-189-2020, Level II minimum, in the applicable method."
+  }
+}

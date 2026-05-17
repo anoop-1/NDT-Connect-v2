@@ -6,7 +6,7 @@ import { getTermsByAlphabet, getGlossaryTermsByCategory } from '@/lib/glossary-d
 import { Search, BookOpen, Filter } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'NDT Glossary | Complete NDT Terminology Database | NDT Connect',
+  title: 'NDT Glossary | Complete NDT Terminology Database',
   description: 'Comprehensive NDT glossary with 200+ terms covering ultrasonic testing, radiography, magnetic particle, penetrant testing, and all NDT methods. Search and browse NDT terminology by category.',
   keywords: ['NDT glossary', 'non-destructive testing terminology', 'UT terms', 'RT terms', 'MT terms', 'PT terms', 'NDT definitions', 'NDT terms'],
   openGraph: {

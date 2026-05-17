@@ -8,8 +8,19 @@ import {
   type City,
 } from '@/data/cities';
 import { nearestCities } from '@/lib/seo-helpers';
-import { DollarSign, TrendingUp, CheckCircle, AlertCircle, ArrowRight } from 'lucide-react';
+import { DollarSign, AlertCircle, ArrowRight } from 'lucide-react';
 import { BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
+import { CityMethodContentBlocks } from '@/components/seo/CityMethodContent';
+import {
+  composeCityMethodContent,
+  findMethodProfile,
+} from '@/lib/content/city-method';
+// V2 SEO content stack — reads the rich datasets in data/cities.json and
+// data/methods.json to produce per-(city, method) unique blocks. Returns
+// null when both rich entries are absent (the v1 composer above carries the
+// page in that case). See lib/seo/generate-page-content.ts for shape.
+import { generateCityMethodContent } from '@/lib/seo/generate-page-content';
+import { CityMethodContentBlocksV2 } from '@/components/seo/content-blocks';
 
 // ============================================================================
 // /cost-guide/[city]/[service]
@@ -223,18 +234,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const stateLabel = city.country === 'US' || city.country === 'CA' ? city.state : city.country;
   const cost = computeCostBand(city, method);
-  // Lead with impression-driving exact-match query "NDT inspection cost in
-  // <city>" — GSC shows thousands of impressions across cost-guide pages at
-  // CTRs well below the 3.8% pos-7 benchmark. Old title led with "UT Cost"
-  // which doesn't match how procurement actually searches. ≤60 chars so it
-  // doesn't truncate in SERPs.
+  // Title rewrite (SEO sprint 2026-05-15): lead with USER INTENT (provider
+  // count + free quote + 24h response) instead of price specificity. Prior
+  // title led with "$X-$Y/hr" which read as a calculator at SERP pos 7 and
+  // pulled CTR to 0.34% on Houston UT (877 impr / 90d). New variant tested
+  // against atlantis "free quote" pattern that GSC shows converts at 2-4%.
+  // Kept ≤65 chars to avoid SERP truncation.
   const title =
-    `NDT Inspection Cost in ${city.name} (${method.abbreviation}): $${cost.low}-$${cost.high}/hr ${new Date().getFullYear()}`;
+    `${city.name} ${method.abbreviation} Inspection Cost ${new Date().getFullYear()} — Free Quotes in 24h`;
   const description =
-    `NDT inspection cost in ${city.name}: ${method.abbreviation} ${method.unit} ` +
-    `$${cost.low}–$${cost.high} (typical $${cost.mid}), tier-${city.tier} ` +
-    `${city.country === 'US' ? city.state : city.country} labour band. ` +
-    `Compare quotes from certified ${city.name} providers — free, no signup to view.`;
+    `Get free ${method.abbreviation} (${method.name}) inspection quotes in ${city.name}, ${stateLabel} from certified providers. ` +
+    `Typical rate $${cost.mid}/${method.unit.replace('per ', '')} (range $${cost.low}–$${cost.high}). ` +
+    `Compare quotes in 24h — no signup required.`;
 
   return {
     title,
@@ -269,51 +280,87 @@ export default function CostGuidePage({ params }: Props) {
   const cost = computeCostBand(city, method);
   const nearby = nearestCities(city.slug, 5);
 
-  const factorsAffectingCost: { factor: string; description: string }[] = [
+  // Pull the per-(city, method) unique content body composed by
+  // lib/content/city-method.ts. The same hash key (city.slug + method.code)
+  // always returns the same prose, so the FAQ JSON-LD below stays in sync
+  // with the rendered FAQ accordion on every render.
+  const methodProfile = findMethodProfile(method.slug);
+  const uniqueContent = methodProfile ? composeCityMethodContent(city, methodProfile) : null;
+
+  // V2 content stack — rich-data driven. Preferred when available; the v1
+  // composer above is the fallback for cities/methods not yet present in
+  // data/cities.json or data/methods.json.
+  const v2Content = generateCityMethodContent(city.slug, method.slug);
+
+  // (Legacy `factorsAffectingCost` and `costSavingTips` arrays were
+  // removed alongside the static cards they fed — the composer's
+  // pricingBreakdown block now carries the equivalent content with
+  // per-(city, method) lexical variation. Recover from git history if a
+  // future block needs them back.)
+
+  // FAQ source priority: v2 rich-data FAQs > v1 composer FAQs > legacy static.
+  // The same source feeds both the rendered FAQ accordion and the FAQPage
+  // JSON-LD below, so they never drift out of sync.
+  const faqs: { q: string; a: string }[] = v2Content
+    ? v2Content.cityFAQ.map((f) => ({ q: f.question, a: f.answer }))
+    : uniqueContent
+    ? uniqueContent.faqs
+    : [
     {
-      factor: 'Crew rotation length',
-      description:
-        `Multi-day mobilisations in ${city.name} amortise travel and per-diem across more billable hours, lowering the per-hour rate. Single-day call-outs sit at the high band.`,
+      q: `How much does ${method.name} (${method.abbreviation}) cost in ${city.name}?`,
+      a:
+        `${method.abbreviation} inspection in ${city.name} runs $${cost.low}–$${cost.high} ${method.unit}, ` +
+        `with most jobs landing around $${cost.mid}. The Tier-${city.tier} multiplier ` +
+        `(×${cost.multiplier.toFixed(2)}) on the national base band reflects local labour, procurement competition, ` +
+        `and the documentary overhead that ${city.codeAuthorities[0]} imposes.`,
     },
     {
-      factor: 'Access and rigging',
-      description:
-        `Rope access, scaffold, or confined-space entry add 15–35% to the base rate. ${city.industries[0]} sites in ${city.name} often require all three.`,
+      q: `What drives the difference between low-band and high-band ${method.abbreviation} pricing in ${city.name}?`,
+      a:
+        `${method.driver} On top of that, shift premium (night / weekend / turnaround) adds 25–40%, ` +
+        `rope-access or confined-space rigging adds 15–35%, and full digital scan packages with audit-grade ` +
+        `traceability cost 10–20% more than basic written reports — required at ${city.codeAuthorities[0]} sites.`,
     },
     {
-      factor: 'Shift premium',
-      description: `Night shift, weekend, and turnaround windows in ${city.name} typically carry a 25–40% premium on the base hourly rate.`,
+      q: `Is ${method.abbreviation} priced per hour, per day, or per weld in ${city.name}?`,
+      a:
+        `Most ${city.name} contractors quote ${method.abbreviation} ${method.unit} for routine in-service scopes, ` +
+        `with a per-call-out minimum of 4–8 hours plus mobilisation. Per-weld or per-foot pricing shows up on ` +
+        `pipeline construction and large fabrication jobs where production rate is the relevant unit.`,
     },
     {
-      factor: 'Acceptance criteria',
-      description: `${city.codeAuthorities[0]} acceptance criteria require Level II / III sign-off, which prices above structural-weld AWS D1.1 work.`,
+      q: `Why are NDT rates in ${city.name} different from other cities?`,
+      a:
+        `${city.name} sits in the Tier-${city.tier} labour band because ${city.industries.slice(0, 2).join(' and ').toLowerCase()} ` +
+        `operators in ${city.region.replace(/-/g, ' ')} sustain a deep certified contractor pool. ` +
+        `Cost of living, ${city.codeAuthorities[0]} compliance overhead, and procurement competition all feed the multiplier — ` +
+        `not raw wage data alone.`,
     },
     {
-      factor: 'Equipment specification',
-      description: method.driver,
+      q: `How do I get an accurate ${method.abbreviation} quote for a ${city.name} job?`,
+      a:
+        `Post the scope to NDT Connect with component spec, access details, applicable code (${city.codeAuthorities[0]}), ` +
+        `and shift window. Certified ${city.name} providers respond with parallel quotes within 24–72 hours. ` +
+        `Always solicit at least three before committing programme spend — the numbers above are field-anchored ranges, not a quote.`,
     },
     {
-      factor: 'Programme volume',
-      description: `Multi-asset programmes at sites like ${city.namedFacilities[0]?.name ?? 'major local operators'} typically negotiate volume discounts of 8–15% off the typical rate.`,
-    },
-    {
-      factor: 'Mobilisation distance',
-      description: `Remote ${city.region.replace(/-/g, ' ')} sites add a per-trip mobilisation charge ($350–$1,500 depending on travel distance from ${city.name}).`,
-    },
-    {
-      factor: 'Documentation depth',
-      description: `Full digital scan packages with audit-grade traceability cost 10–20% more than basic written report deliverables, and are required at ${city.codeAuthorities[0]} sites.`,
+      q: `Can ${method.abbreviation} be substituted with a cheaper NDT method in ${city.name}?`,
+      a:
+        `Sometimes. PAUT can replace RT on many pipeline and pressure-vessel scopes, eliminating exclusion-zone overhead. ` +
+        `MT and PT cover the same surface-flaw scope on different materials. Where substitution is technically valid under ` +
+        `${city.codeAuthorities[0]}, price both methods before committing — the cheaper method often saves 20–40%.`,
     },
   ];
 
-  const costSavingTips = [
-    `Plan ${method.abbreviation} scopes against the ${city.region.replace(/-/g, ' ')} turnaround calendar to avoid rush premiums.`,
-    `Batch multiple assets at the same site (e.g. ${city.namedFacilities[0]?.name ?? 'major local operators'}) to amortise mobilisation across more billable hours.`,
-    'Provide detailed component specs and accessibility info up-front — vague RFPs price high to absorb uncertainty.',
-    'Standardise on a single contractor for programme work; spot-buys carry a 10–20% premium.',
-    `Where ${method.abbreviation} is interchangeable with another method (RT ↔ PAUT, MT ↔ PT), price both before committing.`,
-    'Verify Level II / III currency before quote — re-mobilisation for an expired cert is unbillable to the asset.',
-  ];
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-8 sm:py-12 lg:py-16">
@@ -398,123 +445,36 @@ export default function CostGuidePage({ params }: Props) {
           </div>
         </div>
 
-        {/* Main grid */}
+        {/* Main grid — body now sourced from the per-(city, method) composer
+            in lib/content/city-method.ts. The previous static cards (method
+            overview, factors, tips, applications) collapsed to <50% lexical
+            uniqueness across sibling pages and were replaced wholesale by
+            the seven composer blocks rendered inside CityMethodContentBlocks. */}
         <div className="grid md:grid-cols-3 gap-6 mb-8">
           <div className="md:col-span-2 space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">{method.abbreviation} overview</CardTitle>
-              </CardHeader>
-              <CardContent className="prose prose-sm max-w-none">
-                <p className="mb-4">{method.description}</p>
-                <p className="text-slate-700 text-sm">{method.longDescription}</p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <TrendingUp className="h-5 w-5 text-primary" />
-                  Why {city.name} sits in the Tier-{city.tier} labour band
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="mb-4 text-sm text-slate-700">
-                  {city.name}&apos;s industrial substrate — {city.industries.slice(0, 3).join(', ')} —
-                  pulls NDT scopes onto recurring sites including{' '}
-                  {city.namedFacilities.slice(0, 2).map((f) => f.name).join(' and ')}. The local
-                  contractor pool prices against {city.codeAuthorities[0]} acceptance criteria,
-                  which requires Level II / III certified personnel and traceable instrument
-                  calibration. That floor — not raw wage data — is what sets the band.
-                </p>
-                <p className="mb-4 text-sm text-slate-700">
-                  The Tier-{city.tier} multiplier (×{cost.multiplier.toFixed(2)} applied to the
-                  national {method.abbreviation} base band) accounts for local cost of living,
-                  procurement competition, and the documentary overhead that {city.codeAuthorities[0]}{' '}
-                  imposes. {method.abbreviation} programmes in {city.name} have historically
-                  clustered around the typical rate of ${cost.mid} {method.unit}, with turnaround
-                  and outage premiums pushing toward the high band.
-                </p>
-                <div className="mb-3">
-                  <p className="font-semibold text-primary mb-3">
-                    Recurring industries pricing against this band:
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {city.industries.map((industry) => (
-                      <span
-                        key={industry}
-                        className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full font-medium"
-                      >
-                        {industry}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <p className="text-sm text-slate-700">
-                  <strong>Named operators / sites:</strong>{' '}
-                  {city.namedFacilities.map((f) => f.name).join(', ')}.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <TrendingUp className="h-5 w-5 text-primary" />
-                  Factors that move {method.abbreviation} costs in {city.name}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  {factorsAffectingCost.map((factor, idx) => (
-                    <div key={idx} className="p-4 bg-white border border-slate-200 shadow-sm rounded-lg">
-                      <h4 className="font-semibold text-primary mb-2">{factor.factor}</h4>
-                      <p className="text-sm text-slate-700">{factor.description}</p>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <CheckCircle className="h-5 w-5 text-primary" />
-                  Procurement levers to get the best value
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
-                  {costSavingTips.map((tip, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <span className="text-primary font-bold shrink-0">{idx + 1}.</span>
-                      <span className="text-sm text-slate-700">{tip}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">
-                  Where {method.abbreviation} is applied in {city.name}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2">
-                  {method.applications.map((app, idx) => (
-                    <li
-                      key={idx}
-                      className="text-sm text-slate-700 flex items-start gap-2"
-                    >
-                      <span className="text-primary shrink-0">•</span>
-                      <span>{app}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+            {v2Content ? (
+              // V2 stack — rich-data per-(city, method) blocks. Renders its
+              // own FAQ accordion as the seventh block, so the standalone
+              // FAQ at the bottom of the page is suppressed below.
+              <CityMethodContentBlocksV2 content={v2Content} />
+            ) : uniqueContent && methodProfile ? (
+              <CityMethodContentBlocks
+                city={city}
+                method={methodProfile}
+                prebuilt={uniqueContent}
+                variant="full"
+              />
+            ) : (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">{method.abbreviation} overview</CardTitle>
+                </CardHeader>
+                <CardContent className="prose prose-sm max-w-none">
+                  <p className="mb-4">{method.description}</p>
+                  <p className="text-slate-700 text-sm">{method.longDescription}</p>
+                </CardContent>
+              </Card>
+            )}
           </div>
 
           {/* Sidebar */}
@@ -612,6 +572,31 @@ export default function CostGuidePage({ params }: Props) {
           </div>
         )}
 
+        {/* FAQ — only rendered as a standalone block when neither the v2
+            stack nor the v1 composer is available (legacy fallback path).
+            Both stacks render their own FAQ accordion as the final block,
+            so we skip the standalone version here to avoid double-rendering. */}
+        {!v2Content && !uniqueContent && (
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-primary mb-4">
+              {method.abbreviation} cost FAQ — {city.name}
+            </h2>
+            <div className="space-y-3">
+              {faqs.map((f, idx) => (
+                <details
+                  key={idx}
+                  className="bg-white rounded-lg border border-slate-200 p-4 open:shadow-sm"
+                >
+                  <summary className="font-semibold text-primary cursor-pointer text-sm">
+                    {f.q}
+                  </summary>
+                  <p className="mt-3 text-sm text-slate-700 leading-relaxed">{f.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Schema markup */}
         <script
           type="application/ld+json"
@@ -627,6 +612,10 @@ export default function CostGuidePage({ params }: Props) {
               url: `https://ndt-connect.com/cost-guide/${params.city}/${params.service}`,
             }),
           }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
       </div>
     </div>

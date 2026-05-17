@@ -6,20 +6,23 @@ import { Users, Target, Eye, CheckCircle } from 'lucide-react';
 import { PageHero } from '@/components/shared/PageHero';
 
 export const metadata: Metadata = {
-  title: 'About NDT Connect | The Leading NDT Inspection Marketplace',
-  description: 'NDT Connect is the world\'s leading marketplace for non-destructive testing services. We connect asset owners with certified NDT inspectors for UT, RT, MT, PT, and more.',
+  // Title rewrite (SEO sprint 2026-05-15): added concrete proof points
+  // (180+ cities, certified providers, founded year) so the snippet earns
+  // the click instead of just describing the page. Was 1.47% CTR.
+  title: 'About NDT Connect — 180+ Cities, Certified Providers, Free Quotes in 24h',
+  description: 'NDT Connect is the marketplace where asset owners hire certified NDT inspectors in 180+ cities. UT, RT, MT, PT, PAUT, TOFD providers — free quotes in 24h, no signup to browse rates.',
   keywords: ['about NDT Connect', 'NDT marketplace', 'NDT platform', 'non-destructive testing marketplace', 'NDT service provider platform'],
   openGraph: {
-    title: 'About NDT Connect',
-    description: 'The leading marketplace connecting asset owners with certified NDT inspectors worldwide.',
+    title: 'About NDT Connect — 180+ Cities, Certified Providers, Free Quotes in 24h',
+    description: 'The marketplace where asset owners hire certified NDT inspectors in 180+ cities. Free quotes in 24h.',
     url: 'https://ndt-connect.com/about',
     type: 'website',
     siteName: 'NDT Connect',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About NDT Connect | The Leading NDT Inspection Marketplace',
-    description: 'The leading marketplace connecting asset owners with certified NDT inspectors worldwide.',
+    title: 'About NDT Connect — 180+ Cities, Certified Providers, Free Quotes in 24h',
+    description: 'Hire certified NDT inspectors in 180+ cities. Free quotes in 24h, no signup to browse rates.',
   },
   alternates: { canonical: 'https://ndt-connect.com/about' },
 };

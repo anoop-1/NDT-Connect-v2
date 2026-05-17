@@ -18,6 +18,16 @@ import {
   Shield,
   ArrowRight,
 } from 'lucide-react';
+import { CityMethodContentBlocks } from '@/components/seo/CityMethodContent';
+import {
+  composeCityMethodContent,
+  findMethodProfile,
+} from '@/lib/content/city-method';
+// V2 SEO content stack — see lib/seo/generate-page-content.ts. Returns null
+// when the city/method are not yet present in data/cities.json or
+// data/methods.json; the v1 composer above carries the page in that case.
+import { generateCityMethodContent } from '@/lib/seo/generate-page-content';
+import { CityMethodContentBlocksV2 } from '@/components/seo/content-blocks';
 
 // ============================================================================
 // /ndt-services/[city]/[slug]
@@ -233,10 +243,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!city || !method) return { title: 'Not Found' };
 
   const stateLabel = city.country === 'US' || city.country === 'CA' ? city.state : city.country;
-  const title = `${method.name} (${method.abbreviation}) in ${city.name}, ${stateLabel} | NDT Connect`;
+  // Title rewrite (SEO sprint 2026-05-15): lead with user intent (free quote,
+  // mobilisation window, certified providers) so the SERP snippet reads as a
+  // service offering rather than a generic method label. 90d GSC: pages like
+  // /ndt-services/houston/radiographic-testing rank pos 13 with 96 impr at
+  // 0% CTR — title was descriptive but had no action verb to click on.
+  const title = `${city.name} ${method.abbreviation} Inspection — Certified Providers, Free Quotes in 24h`;
   const description =
-    `${method.abbreviation} inspection in ${city.name} for ${city.industries.slice(0, 2).join(' and ').toLowerCase()}. ` +
-    `Compliant with ${method.standards.slice(0, 2).join(' and ')}. Certified providers, mobilisation within 24–72 hours.`;
+    `Hire certified ${method.name} (${method.abbreviation}) inspectors in ${city.name}, ${stateLabel}. ` +
+    `Free quotes in 24h, mobilisation within 24–72 hours, ${method.standards.slice(0, 2).join(' / ')} compliant. ` +
+    `${city.industries[0]} & ${city.industries[1] ?? 'industrial'} sites covered.`;
 
   return {
     title,
@@ -323,9 +339,25 @@ export default async function CitySlugPage({ params }: PageProps) {
 
   const stateLabel = city.country === 'US' || city.country === 'CA' ? city.state : city.country;
   const methodInCityCopy = buildMethodInCityCopy(city, method);
-  const faqs = buildFaqs(city, method);
   const nearby = nearestCities(city.slug, 5);
   const otherMethodsHere = METHODS.filter((m) => m.slug !== method.slug).slice(0, 4);
+
+  // Per-(city, method) unique content body. Same composer used by the
+  // /cost-guide route — see lib/content/city-method.ts. The composer's FAQs
+  // become the page-level FAQ schema source so JSON-LD always reflects what
+  // the user actually sees in the rendered accordion.
+  const methodProfile = findMethodProfile(method.slug);
+  const uniqueContent = methodProfile ? composeCityMethodContent(city, methodProfile) : null;
+
+  // V2 content stack — preferred when both city and method are present in
+  // the rich datasets. The FAQ source priority used by the JSON-LD schema
+  // is: v2 rich-data > v1 composer > legacy static.
+  const v2Content = generateCityMethodContent(city.slug, method.slug);
+  const faqs = v2Content
+    ? v2Content.cityFAQ.map((f) => ({ q: f.question, a: f.answer }))
+    : uniqueContent
+    ? uniqueContent.faqs
+    : buildFaqs(city, method);
 
   const serviceSchema = {
     '@context': 'https://schema.org',
@@ -672,23 +704,43 @@ export default async function CitySlugPage({ params }: PageProps) {
 
         <div className="section-divider"></div>
 
-        {/* FAQ */}
-        <section className="container">
-          <h2 className="text-4xl font-bold mb-12 text-primary text-center">
-            Frequently asked questions
-          </h2>
-          <div className="space-y-4">
-            {faqs.map((f, i) => (
-              <div
-                key={i}
-                className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm"
-              >
-                <h3 className="font-bold text-lg mb-3 text-primary">{f.q}</h3>
-                <p className="text-slate-700 leading-relaxed">{f.a}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+        {/* Unique per-(city, method) content body. V2 stack (rich datasets in
+            data/cities.json + data/methods.json) is preferred; v1 composer
+            (lib/content/city-method.ts) is the fallback when those entries
+            are not yet present. Both render their own FAQ accordion as the
+            final block, so the standalone FAQ further down only renders in
+            the legacy fallback path. */}
+        {v2Content ? (
+          <section className="container">
+            <CityMethodContentBlocksV2 content={v2Content} />
+          </section>
+        ) : uniqueContent && methodProfile ? (
+          <section className="container">
+            <CityMethodContentBlocks
+              city={city}
+              method={methodProfile}
+              prebuilt={uniqueContent}
+              variant="full"
+            />
+          </section>
+        ) : (
+          <section className="container">
+            <h2 className="text-4xl font-bold mb-12 text-primary text-center">
+              Frequently asked questions
+            </h2>
+            <div className="space-y-4">
+              {faqs.map((f, i) => (
+                <div
+                  key={i}
+                  className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm"
+                >
+                  <h3 className="font-bold text-lg mb-3 text-primary">{f.q}</h3>
+                  <p className="text-slate-700 leading-relaxed">{f.a}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         <div className="section-divider"></div>
 

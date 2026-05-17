@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const cert = getCertificationBySlug(params.slug);
   if (!cert) return {};
 
-  const title = `${cert.name} (${cert.abbreviation}) Guide | NDT Certification | NDT Connect`;
+  const title = `${cert.name} (${cert.abbreviation}) Guide — NDT Certification`;
   const description = `Complete guide to ${cert.name}. Learn about requirements, exam topics, levels, and how to get certified. ${cert.description}`;
 
   return {

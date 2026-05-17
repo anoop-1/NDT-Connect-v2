@@ -1,15 +1,15 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, FeatureGrid, FeatureCard, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema, FAQSchema , ArticleSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema, FAQSchema , ArticleSchema, BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
-  title: 'Corrosion Under Insulation (CUI): Detection & Prevention Guide | NDT Connect',
+  title: 'Corrosion Under Insulation (CUI): Detection & Prevention Guide',
   description: 'Complete guide to Corrosion Under Insulation. Learn CUI detection methods, NDT techniques, prevention strategies, and inspection best practices for insulated piping and equipment.',
   keywords: ['corrosion under insulation', 'CUI detection', 'CUI NDT', 'CUI inspection', 'insulated pipe corrosion', 'CUI prevention'],
-  openGraph: { title: 'Corrosion Under Insulation Guide | NDT Connect', description: 'Complete CUI detection and prevention guide for industrial assets.', url: 'https://ndt-connect.com/blog/corrosion-under-insulation-guide', type: 'article', siteName: 'NDT Connect' },
+  openGraph: { title: 'Corrosion Under Insulation Guide', description: 'Complete CUI detection and prevention guide for industrial assets.', url: 'https://ndt-connect.com/blog/corrosion-under-insulation-guide', type: 'article', siteName: 'NDT Connect' },
   twitter: {
     card: 'summary_large_image',
-    title: 'Corrosion Under Insulation (CUI): Detection & Prevention Guide | NDT Connect',
+    title: 'Corrosion Under Insulation (CUI): Detection & Prevention Guide',
     description: 'Complete guide to Corrosion Under Insulation. Learn CUI detection methods, NDT techniques, prevention strategies, and inspection best practices for insulated piping and equipment.',
   },
   alternates: { canonical: 'https://ndt-connect.com/blog/corrosion-under-insulation-guide' },
@@ -25,6 +25,11 @@ export default function CUIGuide() {
   return (
     <>
             <ArticleSchema title="Corrosion Under Insulation: Detection and Prevention Guide" description="Complete guide to CUI detection and prevention for industrial assets." url="https://ndt-connect.com/blog/corrosion-under-insulation-guide" datePublished="2026-01-20" category="Techniques" />
+      <BreadcrumbListSchema items={[
+        { name: 'Home', url: 'https://ndt-connect.com' },
+        { name: 'Blog', url: 'https://ndt-connect.com/blog' },
+        { name: 'Corrosion Under Insulation (CUI): The Complete Detection & Prevention Guide', url: 'https://ndt-connect.com/blog/corrosion-under-insulation-guide' },
+      ]} />
       <NDTConnectOrganizationSchema />
       <FAQSchema questions={faqs} />
       <BlogLayout
@@ -60,7 +65,7 @@ export default function CUIGuide() {
             maintenance costs. In the United States alone, CUI-related damage costs the industry an estimated
             $2.7 billion annually. Despite this enormous impact, CUI remains one of the most challenging
             degradation mechanisms to manage because traditional visual inspection is impossible without
-            removing insulation.
+            removing insulation. The <a href="https://corrosion-engineering-guide.vercel.app/">Corrosion Engineering Guide</a> covers the underlying electrochemistry and material-selection levers that drive CUI rates; the <a href="https://industrial-coating-inspection.vercel.app/">Industrial Coating Inspection</a> reference walks through coating-specification choices that change the CUI risk profile from day one.
           </p>
           <InfoBox title="Industry Impact">
             CUI is responsible for approximately 81% of corrosion failures in refinery piping systems operating
@@ -141,6 +146,7 @@ export default function CUIGuide() {
             GWT can screen long sections of insulated piping from a single probe position. While it requires
             a small section of insulation to be removed for probe attachment, a single test can screen 30-50
             meters in each direction, identifying areas of wall loss that require detailed follow-up inspection.
+            For detailed scopes and budget anchors, <a href="https://ndt-connect.com/cost-guide/houston/ultrasonic-testing">Houston UT cost guide</a> sets the field rate and the <a href="https://ndt-connect.com/find-providers">find-providers directory</a> filters by GWT capability and refinery experience. CUI on pressure vessels and storage tanks specifically is covered in our <a href="https://ndt-connect.com/blog/rbi-corrosion-management">risk-based inspection guide</a>.
           </p>
 
           <h3>Infrared Thermography</h3>

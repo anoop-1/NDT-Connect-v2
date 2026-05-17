@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy | NDT Connect',
+  title: 'Privacy Policy',
   description: 'NDT Connect privacy policy. Learn how we collect, use, and protect your personal information on our NDT inspection marketplace.',
   openGraph: {
-    title: 'Privacy Policy | NDT Connect',
+    title: 'Privacy Policy',
     description: 'Learn how NDT Connect collects, uses, and protects your personal information.',
     url: 'https://ndt-connect.com/privacy',
     type: 'website',
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Privacy Policy | NDT Connect',
+    title: 'Privacy Policy',
     description: 'Learn how NDT Connect collects, uses, and protects your personal information.',
   },
   alternates: {

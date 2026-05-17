@@ -16,10 +16,10 @@ const industryFaqs = [
 ];
 
 export const metadata: Metadata = {
-  title: 'Industries We Serve | Oil & Gas, Aerospace, Power Gen NDT | NDT Connect',
+  title: 'Industries We Serve | Oil & Gas, Aerospace, Power Gen NDT',
   description: 'NDT Connect serves all major industries: oil & gas, aerospace, power generation, manufacturing, marine, construction, and mining. Find industry-specialized NDT inspectors.',
   keywords: ['NDT industries', 'oil and gas NDT', 'aerospace NDT', 'power generation NDT', 'manufacturing NDT', 'marine NDT', 'construction NDT', 'mining NDT'],
-  openGraph: { title: 'Industries We Serve | NDT Connect', description: 'NDT inspection services for all major industries worldwide.', url: 'https://ndt-connect.com/industries' },
+  openGraph: { title: 'Industries We Serve', description: 'NDT inspection services for all major industries worldwide.', url: 'https://ndt-connect.com/industries' },
   alternates: { canonical: 'https://ndt-connect.com/industries' },
 };
 

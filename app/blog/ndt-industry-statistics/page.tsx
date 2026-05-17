@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, FeatureGrid, FeatureCard, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema , ArticleSchema, BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
-    title: 'NDT Industry Statistics & Market Size 2026: Complete Analysis | NDT Connect',
+    title: 'NDT Industry Statistics & Market Size 2026: Complete Analysis',
     description: 'Comprehensive analysis of the NDT market - global market size, growth rates, regional breakdown, employment data, and industry trends for 2026.',
     openGraph: {
-      title: 'NDT Industry Statistics & Market Size 2026: Complete Analysis | NDT Connect',
+      title: 'NDT Industry Statistics & Market Size 2026: Complete Analysis',
       description: 'Comprehensive analysis of the NDT market - global market size, growth rates, regional breakdown, employment data, and industry trends for 2026.',
       url: 'https://ndt-connect.com/blog/ndt-industry-statistics',
       type: 'article',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'NDT Industry Statistics & Market Size 2026: Complete Analysis | NDT Connect',
+      title: 'NDT Industry Statistics & Market Size 2026: Complete Analysis',
       description: 'Comprehensive analysis of the NDT market - global market size, growth rates, regional breakdown, employment data, and industry trends for 2026.',
     },
     alternates: { canonical: 'https://ndt-connect.com/blog/ndt-industry-statistics' },
@@ -25,6 +25,11 @@ export default function NDTIndustryStatistics() {
     return (
         <>
             <ArticleSchema title="NDT Industry Statistics and Market Analysis" description="NDT industry statistics, market analysis, and growth projections." url="https://ndt-connect.com/blog/ndt-industry-statistics" datePublished="2026-03-01" category="Industry" />
+            <BreadcrumbListSchema items={[
+                { name: 'Home', url: 'https://ndt-connect.com' },
+                { name: 'Blog', url: 'https://ndt-connect.com/blog' },
+                { name: 'NDT Industry Statistics & Market Size 2026: Complete Analysis', url: 'https://ndt-connect.com/blog/ndt-industry-statistics' },
+            ]} />
             <NDTConnectOrganizationSchema />
             <BlogLayout
                 title="NDT Industry Statistics & Market Size 2026: Complete Analysis"

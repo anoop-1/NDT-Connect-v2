@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, FeatureGrid, FeatureCard, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema , ArticleSchema, BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
-    title: 'How Real-Time Tracking is Revolutionizing NDT Inspections | NDT Connect',
+    title: 'How Real-Time Tracking is Revolutionizing NDT Inspections',
     description: 'Discover how platforms like NDT Connect use GPS, H3 indexing, and live updates to transform inspection workflows.',
     openGraph: {
-      title: 'How Real-Time Tracking is Revolutionizing NDT Inspections | NDT Connect',
+      title: 'How Real-Time Tracking is Revolutionizing NDT Inspections',
       description: 'Discover how platforms like NDT Connect use GPS, H3 indexing, and live updates to transform inspection workflows.',
       url: 'https://ndt-connect.com/blog/real-time-inspection-tracking',
       type: 'article',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'How Real-Time Tracking is Revolutionizing NDT Inspections | NDT Connect',
+      title: 'How Real-Time Tracking is Revolutionizing NDT Inspections',
       description: 'Discover how platforms like NDT Connect use GPS, H3 indexing, and live updates to transform inspection workflows.',
     },
     alternates: { canonical: 'https://ndt-connect.com/blog/real-time-inspection-tracking' },
@@ -25,6 +25,11 @@ export default function RealTimeTrackingArticle() {
     return (
         <>
             <ArticleSchema title="Real-Time Inspection Tracking Technology" description="Real-time inspection tracking technology for NDT service management." url="https://ndt-connect.com/blog/real-time-inspection-tracking" datePublished="2024-01-10" category="Technology" />
+            <BreadcrumbListSchema items={[
+                { name: 'Home', url: 'https://ndt-connect.com' },
+                { name: 'Blog', url: 'https://ndt-connect.com/blog' },
+                { name: 'How Real-Time Tracking is Revolutionizing NDT Inspections', url: 'https://ndt-connect.com/blog/real-time-inspection-tracking' },
+            ]} />
             <NDTConnectOrganizationSchema />
             <BlogLayout
                 title="How Real-Time Tracking is Revolutionizing NDT Inspections"

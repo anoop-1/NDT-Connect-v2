@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, FeatureGrid, FeatureCard, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema , ArticleSchema, BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
-    title: 'The Ultimate Guide to Ultrasonic Testing (UT) in 2024 | NDT Connect',
+    title: 'The Ultimate Guide to Ultrasonic Testing (UT) in 2024',
     description: 'Learn everything about ultrasonic testing - from basic principles to advanced techniques like PAUT and TOFD. Complete guide for asset owners and inspectors.',
     openGraph: {
-      title: 'The Ultimate Guide to Ultrasonic Testing (UT) in 2024 | NDT Connect',
+      title: 'The Ultimate Guide to Ultrasonic Testing (UT) in 2024',
       description: 'Learn everything about ultrasonic testing - from basic principles to advanced techniques like PAUT and TOFD. Complete guide for asset owners and inspectors.',
       url: 'https://ndt-connect.com/blog/ultimate-guide-ultrasonic-testing',
       type: 'article',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'The Ultimate Guide to Ultrasonic Testing (UT) in 2024 | NDT Connect',
+      title: 'The Ultimate Guide to Ultrasonic Testing (UT) in 2024',
       description: 'Learn everything about ultrasonic testing - from basic principles to advanced techniques like PAUT and TOFD. Complete guide for asset owners and inspectors.',
     },
     alternates: { canonical: 'https://ndt-connect.com/blog/ultimate-guide-ultrasonic-testing' },
@@ -25,6 +25,11 @@ export default function UltrasonicTestingGuide() {
     return (
         <>
             <ArticleSchema title="The Ultimate Guide to Ultrasonic Testing (UT) in 2024" description="Learn everything about ultrasonic testing - from basic principles to advanced techniques like PAUT and TOFD." url="https://ndt-connect.com/blog/ultimate-guide-ultrasonic-testing" datePublished="2024-01-15" category="Techniques" />
+            <BreadcrumbListSchema items={[
+                { name: 'Home', url: 'https://ndt-connect.com' },
+                { name: 'Blog', url: 'https://ndt-connect.com/blog' },
+                { name: 'The Ultimate Guide to Ultrasonic Testing (UT) in 2024', url: 'https://ndt-connect.com/blog/ultimate-guide-ultrasonic-testing' },
+            ]} />
             <NDTConnectOrganizationSchema />
             <BlogLayout
                 title="The Ultimate Guide to Ultrasonic Testing (UT) in 2024"
@@ -51,11 +56,11 @@ export default function UltrasonicTestingGuide() {
                     <p>
                         Ultrasonic Testing (UT) is a non-destructive testing method that uses high-frequency sound waves
                         (typically 0.5-25 MHz) to detect internal flaws, measure material thickness, and characterize
-                        material properties without causing damage to the component being tested.
+                        material properties without causing damage to the component being tested. The <a href="https://ut-testing-academy.vercel.app/ut-fundamentals">UT Testing Academy fundamentals primer</a> covers the wave-physics groundwork in more depth for technicians moving toward Level II currency.
                     </p>
                     <p>
                         First developed in the 1940s, UT has evolved into one of the most versatile and widely-used
-                        NDT methods across industries including oil &amp; gas, aerospace, power generation, and manufacturing.
+                        NDT methods across industries including oil &amp; gas, aerospace, power generation, and manufacturing. For weld-specific UT scopes — code coverage, scan plans, defect interpretation — the <a href="https://weld-inspection-pro.vercel.app/weld-ut-inspection">Weld Inspection Pro UT-on-welds reference</a> ties the method back to AWS D1.1 and ASME Section IX acceptance criteria.
                     </p>
 
                     <InfoBox title="Key Fact">
@@ -90,6 +95,7 @@ export default function UltrasonicTestingGuide() {
                     <p>
                         Uses multiple transducer elements that can be electronically controlled to steer, focus, and
                         scan beams without physical movement. Provides real-time cross-sectional images and faster inspection speeds.
+                        Our dedicated <a href="https://ndt-connect.com/blog/phased-array-ultrasonic-testing-guide">PAUT complete guide</a> walks through equipment cost, code coverage, and the conventional-UT-vs-PAUT decision in detail; pricing for major US cities is anchored on the <a href="https://ndt-connect.com/cost-guide/houston/phased-array-ut">Houston PAUT cost guide</a>.
                     </p>
 
                     <h3>Time-of-Flight Diffraction (TOFD)</h3>
@@ -164,6 +170,7 @@ export default function UltrasonicTestingGuide() {
                         <li><strong>ISO 9712:</strong> International standard for NDT personnel</li>
                         <li><strong>PCN (UK):</strong> Personal Certification in NDT</li>
                     </ul>
+                    <p>The <a href="https://ndt-connect.com/certifications">NDT Connect certifications hub</a> covers each scheme&apos;s pathway and renewal cycle, and the <a href="https://ndt-connect.com/blog/ndt-certifications-explained">NDT certifications explained</a> post contrasts ASNT, ISO 9712 and PCN side-by-side for technicians choosing a credential track.</p>
                 </section>
 
                 <CTASection

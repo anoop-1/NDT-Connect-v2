@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, FeatureGrid, FeatureCard, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema , ArticleSchema, BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
-    title: 'UT vs RT: Choosing Between Ultrasonic and Radiographic Testing | NDT Connect',
+    title: 'UT vs RT: Choosing Between Ultrasonic and Radiographic Testing',
     description: 'Comprehensive comparison of ultrasonic testing (UT) and radiographic testing (RT) - advantages, limitations, applications, and selection criteria for volumetric inspection.',
     openGraph: {
-      title: 'UT vs RT: Choosing Between Ultrasonic and Radiographic Testing | NDT Connect',
+      title: 'UT vs RT: Choosing Between Ultrasonic and Radiographic Testing',
       description: 'Comprehensive comparison of ultrasonic testing (UT) and radiographic testing (RT) - advantages, limitations, applications, and selection criteria for volumetric inspection.',
       url: 'https://ndt-connect.com/blog/ut-vs-rt-comparison',
       type: 'article',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'UT vs RT: Choosing Between Ultrasonic and Radiographic Testing | NDT Connect',
+      title: 'UT vs RT: Choosing Between Ultrasonic and Radiographic Testing',
       description: 'Comprehensive comparison of ultrasonic testing (UT) and radiographic testing (RT) - advantages, limitations, applications, and selection criteria for volumetric inspection.',
     },
     alternates: { canonical: 'https://ndt-connect.com/blog/ut-vs-rt-comparison' },
@@ -25,6 +25,11 @@ export default function UTvsRTComparison() {
     return (
         <>
             <ArticleSchema title="Ultrasonic Testing vs Radiographic Testing Comparison" description="Comprehensive comparison of ultrasonic testing vs radiographic testing methods." url="https://ndt-connect.com/blog/ut-vs-rt-comparison" datePublished="2026-02-28" category="Techniques" />
+            <BreadcrumbListSchema items={[
+                { name: 'Home', url: 'https://ndt-connect.com' },
+                { name: 'Blog', url: 'https://ndt-connect.com/blog' },
+                { name: 'UT vs RT: Choosing Between Ultrasonic and Radiographic Testing', url: 'https://ndt-connect.com/blog/ut-vs-rt-comparison' },
+            ]} />
             <NDTConnectOrganizationSchema />
             <BlogLayout
                 title="UT vs RT: Choosing Between Ultrasonic and Radiographic Testing"
@@ -108,7 +113,7 @@ export default function UTvsRTComparison() {
 
                     <h3>How Ultrasonic Testing Works</h3>
                     <p>
-                        Ultrasonic testing uses high-frequency sound waves (0.5-25 MHz) transmitted through materials. A transducer converts electrical pulses into sound waves that travel through the material until they encounter a boundary (flaw, back wall, or discontinuity), where they reflect back to the transducer.
+                        Ultrasonic testing uses high-frequency sound waves (0.5-25 MHz) transmitted through materials. A transducer converts electrical pulses into sound waves that travel through the material until they encounter a boundary (flaw, back wall, or discontinuity), where they reflect back to the transducer. The <a href="https://ut-testing-academy.vercel.app/ut-fundamentals">UT Testing Academy fundamentals reference</a> covers wave physics, probe selection, and signal interpretation in more depth.
                     </p>
                     <ul>
                         <li>Sound travels at a known velocity through the material</li>
@@ -120,7 +125,7 @@ export default function UTvsRTComparison() {
 
                     <h3>How Radiographic Testing Works</h3>
                     <p>
-                        Radiographic testing uses penetrating radiation (X-rays or gamma rays) that passes through the material to expose film or a digital detector on the opposite side. The radiation is attenuated differently by dense materials versus voids.
+                        Radiographic testing uses penetrating radiation (X-rays or gamma rays) that passes through the material to expose film or a digital detector on the opposite side. The radiation is attenuated differently by dense materials versus voids. The <a href="https://rt-testing-hub.vercel.app/rt-fundamentals">RT Testing Hub fundamentals page</a> walks through source selection (Ir-192 vs Co-60 vs X-ray tubes), exposure technique, and image-quality indicators in detail.
                     </p>
                     <ul>
                         <li>Radiation source creates X-ray or gamma-ray beam</li>
@@ -254,6 +259,7 @@ export default function UTvsRTComparison() {
                         <li><strong>RT Preferred:</strong> For identifying porosity and gas pores</li>
                         <li><strong>Industry Practice:</strong> Often both methods used - UT for primary, RT for confirmation</li>
                     </ul>
+                    <p>For a side-by-side of UT and RT acceptance criteria on the same weld scope, our <a href="https://ndt-connect.com/blog/weld-inspection-complete-guide">complete weld-inspection guide</a> walks through both methods against AWS D1.1 and ASME Section IX. PAUT — increasingly the modern alternative to RT on pipeline girth welds — is covered separately in the <a href="https://ndt-connect.com/blog/phased-array-ultrasonic-testing-guide">PAUT complete guide</a>.</p>
 
                     <h4>Pressure Vessels</h4>
                     <ul>

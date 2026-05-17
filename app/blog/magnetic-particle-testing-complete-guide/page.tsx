@@ -1,13 +1,13 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, FeatureGrid, FeatureCard, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema, FAQSchema, ArticleSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema, FAQSchema, ArticleSchema, BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
-  title: 'Magnetic Particle Testing (MT): The Complete Guide | NDT Connect',
+  title: 'Magnetic Particle Testing (MT): The Complete Guide',
   description: 'Everything you need to know about magnetic particle testing. Methods, equipment, procedures, standards, applications, and how to find certified MT inspectors.',
   keywords: ['magnetic particle testing', 'MPI', 'MT inspection', 'magnetic particle inspection', 'magnetic testing NDT'],
   openGraph: {
-    title: 'Magnetic Particle Testing (MT): The Complete Guide | NDT Connect',
+    title: 'Magnetic Particle Testing (MT): The Complete Guide',
     description: 'Everything you need to know about magnetic particle testing. Methods, equipment, procedures, standards, applications, and how to find certified MT inspectors.',
     url: 'https://ndt-connect.com/blog/magnetic-particle-testing-complete-guide',
     type: 'article',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Magnetic Particle Testing (MT): The Complete Guide | NDT Connect',
+    title: 'Magnetic Particle Testing (MT): The Complete Guide',
     description: 'Everything you need to know about magnetic particle testing. Methods, equipment, procedures, standards, applications, and how to find certified MT inspectors.',
   },
   alternates: { canonical: 'https://ndt-connect.com/blog/magnetic-particle-testing-complete-guide' },
@@ -32,6 +32,11 @@ export default function Page() {
   return (
     <>
       <ArticleSchema title="Magnetic Particle Testing (MT): The Complete Guide" description="Everything you need to know about magnetic particle testing. Methods, equipment, procedures, standards, applications, and how to find certified MT inspectors." url="https://ndt-connect.com/blog/magnetic-particle-testing-complete-guide" datePublished="2026-03-03" category="Techniques" />
+      <BreadcrumbListSchema items={[
+        { name: 'Home', url: 'https://ndt-connect.com' },
+        { name: 'Blog', url: 'https://ndt-connect.com/blog' },
+        { name: 'Magnetic Particle Testing (MT): The Complete Guide', url: 'https://ndt-connect.com/blog/magnetic-particle-testing-complete-guide' },
+      ]} />
       <NDTConnectOrganizationSchema />
       <FAQSchema questions={faqs} />
       <BlogLayout
@@ -49,10 +54,10 @@ export default function Page() {
       <p>MT can be performed using several magnetization techniques. Yoke magnetization uses an electromagnet placed on the surface and is the most portable method. Prods apply current directly through the test piece via contact electrodes. Coils and central conductors are used for circumferential magnetization of cylindrical parts. For comprehensive coverage, inspections typically use two magnetization directions approximately 90 degrees apart. Equipment ranges from portable yokes ($500-$2,000) to bench units for production testing ($10,000-$50,000+).</p>
 
       <h2>MT Codes and Acceptance Criteria</h2>
-      <p>Major codes governing MT include ASTM E709 (standard guide), ASME Section V Article 7 (examination requirements), and specific acceptance criteria in fabrication codes like AWS D1.1, ASME Section VIII, and API standards. Acceptance criteria specify allowable indication sizes — typically based on linear and rounded indication dimensions. Understanding the applicable code and its acceptance criteria is essential for making proper accept/reject decisions.</p>
+      <p>Major codes governing MT include ASTM E709 (standard guide), ASME Section V Article 7 (examination requirements), and specific acceptance criteria in fabrication codes like AWS D1.1, ASME Section VIII, and API standards. Acceptance criteria specify allowable indication sizes — typically based on linear and rounded indication dimensions. Understanding the applicable code and its acceptance criteria is essential for making proper accept/reject decisions. Code-by-code clause references and revision history live in the <a href="https://ndt-standards-reference.vercel.app/">NDT Standards Reference</a>; the <a href="https://ndt-connect.com/standards/aws-d1-1">AWS D1.1 standards page</a> covers structural-steel acceptance criteria specifically.</p>
 
       <h2>Applications Across Industries</h2>
-      <p>MT is widely used across industries for weld inspection, casting examination, in-service crack detection, and maintenance inspection. In the oil and gas sector, MT is commonly used for inspecting pipeline welds, pressure vessel welds, and structural connections. In manufacturing, it is used for quality control of castings, forgings, and machined components. In construction, MT inspects structural steel welds per AWS D1.1. Find certified MT inspectors on NDT Connect for your next project.</p>
+      <p>MT is widely used across industries for weld inspection, casting examination, in-service crack detection, and maintenance inspection. In the oil and gas sector, MT is commonly used for inspecting pipeline welds, pressure vessel welds, and structural connections. In manufacturing, it is used for quality control of castings, forgings, and machined components. In construction, MT inspects structural steel welds per AWS D1.1 — the <a href="https://weld-inspection-pro.vercel.app/weld-mt-inspection">Weld Inspection Pro MT module</a> walks through structural-weld scan plans and prod / yoke selection. To source certified MT inspectors, post the scope on <a href="https://ndt-connect.com/find-providers">NDT Connect&apos;s find-providers directory</a>; for budget benchmarking, the <a href="https://ndt-connect.com/services">services overview</a> covers MT alongside complementary surface-NDT methods.</p>
 
 
       <InfoBox title="Find the Right NDT Method">

@@ -1,0 +1,277 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-05-15",
+    "purpose": "Per-term fact rows that enrich /glossary/[term] pages with unique, citable facts not present in glossary-data.ts. Read by lib/content/glossary-facts.ts.",
+    "schemaFields": [
+      "etymology — first recorded use / linguistic origin where known",
+      "formula — mathematical expression, with variables defined",
+      "units — SI / customary",
+      "typicalRange — numeric ranges seen in industrial NDT",
+      "measuredBy — instruments / methods that produce or measure this quantity",
+      "codeReferences — specific clauses where the term appears",
+      "workedExample — short numeric or scenario example",
+      "misconception — one common error and the correction"
+    ]
+  },
+  "acoustic-impedance": {
+    "etymology": "Borrowed from electrical impedance (Heaviside, 1886) and applied to acoustics by Webster, 1919; the symbol Z is a direct lift from electrical AC analysis.",
+    "formula": "Z = ρ × c (kg/m^2/s, also called rayls); ρ = density, c = sound velocity in the material.",
+    "units": "rayl (kg·m^-2·s^-1) or MRayl (10^6 rayl).",
+    "typicalRange": "Steel ≈ 45 MRayl; aluminium ≈ 17 MRayl; water ≈ 1.5 MRayl; air ≈ 0.0004 MRayl.",
+    "measuredBy": "Ultrasonic flaw detector (compute from velocity calibration on a known block) or impedance tube for couplant qualification.",
+    "codeReferences": ["ASTM E494 (sound velocity measurement)", "ISO 22232-1 (UT instrument characterisation)"],
+    "workedExample": "At a steel-water interface, reflection coefficient R = ((Z2-Z1)/(Z2+Z1))^2 = ((1.5-45)/(1.5+45))^2 ≈ 0.88, meaning ~88% of incident energy reflects.",
+    "misconception": "Higher impedance does not mean stronger reflection by itself — what matters is the *mismatch* between the two materials at the interface."
+  },
+  "a-scan": {
+    "etymology": "Coined in WWII RDF/sonar work; the 'A' simply labels the first display style standardised before B and C variants.",
+    "formula": "Time-of-flight t = 2d/c (pulse-echo); display amplitude A is plotted vs t along the horizontal axis.",
+    "units": "Amplitude in % FSH (full-screen height) or dB; horizontal axis in microseconds or millimetres of metal path.",
+    "typicalRange": "Range 0–500 mm steel-equivalent in pulse-echo contact UT; gain typically 30–80 dB.",
+    "measuredBy": "Single-channel UT flaw detector (Olympus Epoch, GE USM Go, Sonatest Masterscan).",
+    "codeReferences": ["ASME Section V Article 4 T-462 (calibration)", "ASTM E317 (instrument performance)"],
+    "workedExample": "A back-wall echo at 13.5 µs in steel (c=5920 m/s) corresponds to a thickness of (13.5e-6 × 5920)/2 = 39.96 mm.",
+    "misconception": "An A-scan amplitude is not a flaw size — it is a relative response that must be referenced to a calibration block (DAC/TCG/AVG) before any sizing call."
+  },
+  "b-scan": {
+    "etymology": "B for 'brightness' display; carried over from medical ultrasound notation where pixel brightness encodes echo amplitude.",
+    "formula": "Image is built by stacking A-scans along the scan axis x; pixel intensity I(x,t) = |A(x,t)|.",
+    "units": "Horizontal axis in scan distance (mm); vertical axis in time (µs) or depth (mm).",
+    "typicalRange": "Encoder pitch 0.5–2 mm typical for manual scanners; resolution limited by transducer beam width and pulse length.",
+    "measuredBy": "Encoded pulse-echo UT scanner with a wheel encoder, or a phased-array probe scanned mechanically.",
+    "codeReferences": ["ASME Section V Article 4 Mandatory Appendix VIII (PAUT)", "ISO 16811 (sensitivity setting)"],
+    "workedExample": "A 100 mm scan with 1 mm encoder pitch produces 100 A-scans; a 5 mm linear flaw aligned with the scan axis appears as a 5-pixel-wide bright stripe at its time-of-flight.",
+    "misconception": "B-scan is a side view, not a top view — the side-drilled hole reference flaw forms a hyperbola, not a dot, because the beam crosses it twice."
+  },
+  "c-scan": {
+    "etymology": "C-scan completed the A/B/C progression in early postwar UT instrumentation; the C display gives the plan-view (top-down) map.",
+    "formula": "I(x,y) = max_t |A(x,y,t)| within an evaluation gate; or amplitude at a fixed depth slice.",
+    "units": "Both axes in mm of scan distance; pixel value in % FSH or dB.",
+    "typicalRange": "Composite delamination C-scans: probe 5–15 MHz, raster 0.5–1 mm; coverage rate ~50–500 cm^2/min.",
+    "measuredBy": "X-Y scanning bridge with immersion or squirter UT, or a 2-axis encoded contact scanner using a PAUT or single-element probe.",
+    "codeReferences": ["ASTM E2580 (composite C-scan)", "AMS 2154 (composite UT acceptance)"],
+    "workedExample": "A 200 × 300 mm composite panel scanned at 1 mm pitch yields 60,000 A-scan readings; the C-scan colour-codes peak amplitude in the 1–3 mm depth gate to map a 12 × 25 mm delamination.",
+    "misconception": "C-scan does not show depth directly — depth information is collapsed into the gate selection, so a deep flaw outside the gate will not appear at all."
+  },
+  "amplitude": {
+    "etymology": "From Latin amplitudo (largeness); used in physics for wave magnitude since Fresnel's optical work (1820s).",
+    "formula": "In dB, A_dB = 20 × log10(A_signal / A_reference); pulse-echo amplitude follows the AVG/DGS curve as a function of distance and reflector size.",
+    "units": "% Full Screen Height (FSH), dB referenced to a calibration reflector.",
+    "typicalRange": "DAC reference reflectors are usually set at 80% FSH; rejectable indications often defined at 100% DAC or 50% reference depending on code.",
+    "measuredBy": "UT flaw detector amplitude gate; PAUT software peak-amplitude measurement.",
+    "codeReferences": ["ASME Section V T-471.4 (DAC)", "AWS D1.1 Table 6.2 (acceptance based on dB rating)"],
+    "workedExample": "If a reference reflector reads 80% FSH at 40 dB and an indication reads 80% FSH at 32 dB, the indication is 8 dB hotter — a +8 dB rating in AWS notation.",
+    "misconception": "Amplitude is not flaw area — orientation, surface roughness, and beam coverage all affect amplitude before flaw size does."
+  },
+  "attenuation": {
+    "etymology": "From Latin attenuare (to make thin); used in radio engineering (early 1900s) for signal loss along a transmission line, then carried into ultrasonics.",
+    "formula": "A(x) = A0 × e^(-αx); attenuation coefficient α in dB/mm or Nepers/m.",
+    "units": "dB/mm or dB/m; sometimes Nepers/m (1 Np = 8.686 dB).",
+    "typicalRange": "Carbon steel @ 5 MHz: ~0.01 dB/mm; austenitic stainless weld @ 5 MHz: 0.1–1 dB/mm; CFRP composite: 0.5–5 dB/mm.",
+    "measuredBy": "Two reflectors at known depths in the same material; attenuation = (dB difference) / (2 × depth difference).",
+    "codeReferences": ["ASME Section V T-433.2 (transfer correction)", "ISO 11666 (attenuation compensation)"],
+    "workedExample": "Reflectors at 25 mm and 75 mm depth read 80% and 30% FSH respectively (a 8.5 dB drop); attenuation = 8.5 / (2 × 50) = 0.085 dB/mm.",
+    "misconception": "Attenuation is frequency-dependent — doubling probe MHz on coarse-grained material can multiply attenuation by 4–8× and kill penetration entirely."
+  },
+  "couplant": {
+    "etymology": "Engineer's coinage from couple (to join); standardised in postwar industrial UT vocabulary, replacing 'contact medium'.",
+    "formula": "Acoustic transmission coefficient T = 1 - R = 4 Z1 Z2 / (Z1+Z2)^2; couplant fills the air gap so Z1 ≈ Z_couplant ≈ Z_steel.",
+    "units": "Viscosity in cP (centipoise); film thickness in µm.",
+    "typicalRange": "Glycerin ~1500 cP; ultrasonic gel ~10,000 cP; cellulose-based high-temp couplants up to 600°C.",
+    "measuredBy": "Not measured directly — controlled by procedure (type, viscosity, layer thickness) and verified through reference-block transfer correction.",
+    "codeReferences": ["ASME Section V T-432 (acceptable couplants)", "ASTM E114 (contact UT)"],
+    "workedExample": "Without couplant, the air gap reflects ~99.97% of the pulse; a 50 µm gel layer transmits ~88% (depending on frequency and viscosity).",
+    "misconception": "Couplant choice is not interchangeable across temperatures — using room-temp gel on a hot pipe (>60°C) flashes the water out and the inspection silently loses sensitivity."
+  },
+  "crack": {
+    "etymology": "Old English cracian (to make a sharp sound); the metallurgical sense (planar discontinuity) is industrial-era usage.",
+    "formula": "Stress intensity K = σ × √(π × a) × Y; a = crack half-length, Y = geometry factor; fracture toughness K_IC governs the critical size.",
+    "units": "Crack length in mm; depth in mm; K in MPa·√m.",
+    "typicalRange": "Detectable by MT/PT down to ~1 mm length; UT angle-beam reliable above ~3 mm height; PAUT/TOFD sizing accuracy ±1 mm in steel.",
+    "measuredBy": "MT (surface ferromagnetic), PT (surface non-magnetic), UT angle-beam (subsurface), PAUT/TOFD (sizing).",
+    "codeReferences": ["ASME Section XI IWB-3500 (crack sizing)", "API 579 Part 9 (crack-like flaw assessment)", "BS 7910 (engineering critical assessment)"],
+    "workedExample": "A 4 mm × 25 mm crack in a 25 mm wall with K_IC = 100 MPa·√m and applied stress 200 MPa: K = 200 × √(π × 0.002) × 1.12 ≈ 17.8 MPa·√m — well below toughness, but trending requires re-inspection.",
+    "misconception": "All cracks are not rejectable — code acceptance tables (AWS D1.1, ASME VIII Div 1, API 1104) all distinguish length, height, alignment, and proximity before a crack is dispositioned for repair."
+  },
+  "decibel": {
+    "etymology": "1/10th of a Bel, named after Alexander Graham Bell; introduced by Bell Labs (1928) for telephone-circuit signal loss.",
+    "formula": "dB = 20 × log10(A1/A2) for amplitude ratios; dB = 10 × log10(P1/P2) for power ratios.",
+    "units": "Dimensionless logarithmic ratio.",
+    "typicalRange": "UT flaw-detector gain range 0–110 dB; +6 dB doubles amplitude, +20 dB is 10×, +40 dB is 100×.",
+    "measuredBy": "Read directly from instrument gain control; verified against a reference block during calibration.",
+    "codeReferences": ["ASME Section V T-471.6 (gain settings)", "ASTM E317 (instrument linearity ±1 dB over 30 dB range)"],
+    "workedExample": "Indication at 40% FSH with 50 dB gain; reference at 80% FSH with 56 dB gain — indication is 6 dB lower amplitude AND 6 dB less gain, net rating −12 dB to reference.",
+    "misconception": "dB is not a fixed quantity — it is always a ratio to *something*, so 'an indication at +8 dB' is meaningless without naming the reference reflector."
+  },
+  "delamination": {
+    "etymology": "Latin de- + lamina (thin plate); coined for composite and laminate failure modes in the 1960s aerospace literature.",
+    "formula": "Detected by impedance mismatch at the ply-ply interface; reflection coefficient ≈ 1 at the air-filled gap.",
+    "units": "Areal extent in mm^2 or % of laminate area.",
+    "typicalRange": "Detectable ≥ 6 mm diameter in 4 mm CFRP at 5 MHz immersion UT; minimum reportable defined per AMS 2154.",
+    "measuredBy": "Through-transmission UT, pulse-echo C-scan, IR thermography, shearography, tap test (gross only).",
+    "codeReferences": ["AMS 2154 (composite UT acceptance)", "ASTM E2580 (CFRP UT)", "Boeing BSS 7037 (composite NDT)"],
+    "workedExample": "A 25 × 40 mm delamination in a wing skin spans 2 plies; C-scan shows a contiguous bright region with sharp edges, distinguishing it from porosity (diffuse, low-amplitude).",
+    "misconception": "Delamination and disbond are not synonyms — delamination is between plies in the laminate; disbond is between the laminate and an adjacent structure (skin-to-honeycomb)."
+  },
+  "eddy-current": {
+    "etymology": "Named after eddies in fluid flow; first observed by François Arago (1824), formalised by Foucault (1855) — sometimes called Foucault currents in older European texts.",
+    "formula": "δ = √(2ρ/(ωμ)) — standard depth of penetration; ρ resistivity, ω = 2πf, μ permeability.",
+    "units": "Frequency in Hz; depth of penetration in mm.",
+    "typicalRange": "Surface ET on aluminium @ 100 kHz: δ ≈ 0.3 mm; tube ECT @ 100–500 kHz; subsurface ET on Inconel @ 100–500 Hz down to ~5 mm.",
+    "measuredBy": "ET instrument (Olympus Nortec, Eddyfi Reddy) with absolute, differential, or array probe; impedance plane displays phase and amplitude.",
+    "codeReferences": ["ASME Section V Article 8 (ET)", "ASTM E309/E376/E2884", "ISO 15548-1 (ET equipment)"],
+    "workedExample": "Aluminium @ 200 kHz: δ = √(2 × 2.65e-8 / (2π × 200,000 × 4πe-7)) ≈ 0.18 mm — meaning a 0.5 mm subsurface flaw is below useful sensitivity.",
+    "misconception": "Eddy current is a surface/near-surface method — it does not see deep flaws like UT does, and lift-off variations can mask real indications if not nulled out."
+  },
+  "frequency": {
+    "etymology": "Latin frequentia (crowdedness); the cycle-per-second meaning is from Hertz (1888) for electromagnetic waves.",
+    "formula": "λ = c/f — wavelength = velocity ÷ frequency.",
+    "units": "Hz, kHz, MHz; UT typically 0.5–25 MHz; ET 100 Hz–10 MHz.",
+    "typicalRange": "UT thickness gauging 5 MHz; weld inspection 2.25–5 MHz; composites 5–15 MHz; coarse-grain austenitic 1–2 MHz.",
+    "measuredBy": "Set on the flaw detector; verified against a known-velocity block.",
+    "codeReferences": ["ASME Section V T-432.2 (transducer characteristics)", "ISO 22232-2 (probe characterisation)"],
+    "workedExample": "5 MHz in steel (c = 5920 m/s): λ = 5920 / 5e6 = 1.18 mm; smallest reliably resolvable flaw ≈ λ/2 = 0.6 mm.",
+    "misconception": "Higher MHz does not mean a 'better' inspection — it means finer resolution and shorter penetration, which can be the wrong trade-off for thick or coarse-grained material."
+  },
+  "gain": {
+    "etymology": "Engineering use of 'gain' for amplifier output predates electronics (mechanical advantage); standardised as dB gain in radio (1930s).",
+    "formula": "Gain_dB = 20 × log10(A_out / A_in); reference gain set against a calibration reflector.",
+    "units": "dB; instrument gain range typically 0–110 dB in 0.1 or 0.5 dB steps.",
+    "typicalRange": "Reference gain 30–60 dB on most steel inspections; scanning gain set +6 dB above reference.",
+    "measuredBy": "Read from the flaw-detector gain knob; verified by linearity test against a step-amplitude reflector.",
+    "codeReferences": ["ASME Section V T-461.2 (gain linearity ±5%)", "ASTM E317 (vertical linearity)"],
+    "workedExample": "Reference reflector set to 80% FSH at 42 dB; scanning gain = 42 + 6 = 48 dB; an indication at 80% FSH at scanning gain reads −6 dB to reference.",
+    "misconception": "Cranking gain to bring up an indication does not 'detect more flaws' — it raises noise equally, and above the calibration linearity range the dB readings are no longer trustworthy."
+  },
+  "phased-array": {
+    "etymology": "Phased-array antenna theory was developed for radar in WWII; the medical and industrial UT adaptations followed in the 1980s–2000s.",
+    "formula": "Beam steering: t_n = (n × d × sinθ)/c — element delay for steering angle θ; focal law combines steering and focusing.",
+    "units": "Elements (8–256 typical); pitch in mm; aperture in mm; angles 30–80° typical for weld inspection.",
+    "typicalRange": "Weld inspection: 5 MHz, 16–64 elements, 0.5–1 mm pitch; encoder pitch 1 mm; coverage rate 5–20 m of weld per shift.",
+    "measuredBy": "PAUT instrument (Olympus OmniScan, Eddyfi M2M Gekko, Zetec Topaz) with focal-law calculator and TomoView/UltraVision software.",
+    "codeReferences": ["ASME Section V Article 4 Mandatory Appendix VIII", "ISO 13588 (PAUT of welds)", "ASTM E2700 (PAUT contact)"],
+    "workedExample": "A 16-element 5 MHz probe with 0.6 mm pitch, sectorial scan 40–70°, focal depth 25 mm: focal laws auto-generated; sector image shows weld root, fill, and cap in a single shot.",
+    "misconception": "PAUT is not a one-button replacement for conventional UT — focal-law qualification and operator certification are explicit separate requirements (PAUT endorsement on top of UT Level II)."
+  },
+  "tofd-defect-sizing": {
+    "etymology": "Time-of-Flight Diffraction was patented by Maurice Silk at Harwell (UK Atomic Energy Authority, 1977) and commercialised through the 1980s.",
+    "formula": "Crack height h = c × Δt / 2, derived from the time difference between the upper-tip and lower-tip diffraction signals.",
+    "units": "Time in ns/µs; height in mm; sizing accuracy typically ±1 mm.",
+    "typicalRange": "Wall thickness 6–300 mm; PCS (probe centre separation) tuned to depth; transducer 5–15 MHz; 60–70° wedges typical.",
+    "measuredBy": "Pitch-catch UT pair with TOFD analysis software; D-scan display shows lateral wave, back-wall, and tip-diffraction signals.",
+    "codeReferences": ["ASME Section V Article 4 Mandatory Appendix III", "ISO 10863 (TOFD on welds)", "ASTM E2373 (TOFD)"],
+    "workedExample": "Upper tip at 18.4 µs, lower tip at 22.1 µs in steel: h = 5920 × (22.1 - 18.4)e-6 / 2 = 10.95 mm crack height.",
+    "misconception": "TOFD has dead zones at the surface (lateral wave) and at the back wall — using TOFD alone misses near-surface flaws, which is why it is paired with PAUT in the typical encoded weld scan."
+  },
+  "iridium-192": {
+    "etymology": "Element 77 (Ir) named for Greek iris (rainbow) due to its colourful salts; the 192 isotope is the workhorse industrial gamma source.",
+    "formula": "Activity A(t) = A0 × e^(-λt); λ = ln(2)/T_half; half-life 73.83 days.",
+    "units": "Activity in Curies (Ci) or Becquerels (Bq); 1 Ci = 3.7e10 Bq.",
+    "typicalRange": "Project source 50–100 Ci new; replaced when activity falls below ~30 Ci; effective energy 296–612 keV (mean 380 keV).",
+    "measuredBy": "Survey meter with isotope-specific dose rate at 1 m; activity verified against decay calculation.",
+    "codeReferences": ["10 CFR 34 (industrial radiography licensing)", "ASME Section V Article 2 (RT)", "ISO 17636-1 (RT of welds)"],
+    "workedExample": "100 Ci source after 90 days: A = 100 × e^(-ln2 × 90 / 73.83) ≈ 42.8 Ci — exposure times scale by ~2.3× from new.",
+    "misconception": "Ir-192 is not 'safer' than X-ray because it is gamma — the energy is higher than typical 250 kV X-ray, so exclusion zones and dose calculations are larger, not smaller."
+  },
+  "yoke": {
+    "etymology": "Old English geoc (a wooden bar across draught animals); the magnetic-particle yoke is named for its U-shape.",
+    "formula": "Magnetising force on test surface: lift power test ≥ 4.5 kg (10 lb) for AC yoke, ≥ 18 kg (40 lb) for DC yoke per ASTM E709.",
+    "units": "Lift in kg or lb; magnetising current in A; pole spacing 75–200 mm typical.",
+    "typicalRange": "AC yokes for surface cracks (skin depth ~0.5 mm in steel); DC/half-wave yokes for slightly subsurface flaws (~3 mm).",
+    "measuredBy": "Lift test on a known steel weight every shift or every 8 hours of use; pie-gauge field-direction check on the test piece.",
+    "codeReferences": ["ASTM E709 (MT guide)", "ASTM E1444 (MT practice)", "ISO 9934 (MT general principles)"],
+    "workedExample": "Pole spacing set at 150 mm; magnetic field is longitudinal between the legs; rotating the yoke 90° between shots gives multidirectional coverage of the bead.",
+    "misconception": "AC yokes do not detect subsurface flaws — the AC field collapses to a thin skin (~0.5 mm in mild steel), so any rep claim of ‘5 mm subsurface’ on an AC yoke is wrong."
+  },
+  "penetrameter": {
+    "etymology": "Coined in early industrial radiography (1930s) as a 'penetration meter' — a hardware sensitivity check for the radiograph.",
+    "formula": "Sensitivity = (smallest visible wire or hole)/(material thickness) × 100%; ASME requires ≤2% (or specific essential-hole visibility per Table T-276).",
+    "units": "Wire diameter in mm or mils; hole IQI sized 1T, 2T, 4T relative to penetrameter thickness.",
+    "typicalRange": "Plaque IQI thickness 1–4% of wall; wire IQI per ASTM E747 with 6 progressively-finer wires.",
+    "measuredBy": "Visible on the developed radiograph or DR image at the required sensitivity (e.g. essential hole 2T per ASME V T-276).",
+    "codeReferences": ["ASME Section V T-276 (IQI selection)", "ASTM E747 (wire IQI)", "ISO 19232 (image quality indicators)"],
+    "workedExample": "25 mm steel weld, source side: select ASTM E1025 #20 plaque IQI (0.020 inch ≈ 0.51 mm); 2T essential hole = 1.02 mm — must be visible on the radiograph.",
+    "misconception": "An IQI proves the technique was sensitive enough — it does not prove the radiograph is free of flaws. Missing the IQI invalidates the radiograph regardless of what indications were called."
+  },
+  "snells-law": {
+    "etymology": "Willebrord Snellius (1580–1626) derived the optical refraction law; carried into ultrasonics by analogy in the 20th century.",
+    "formula": "sin(θ1)/c1 = sin(θ2)/c2; first critical angle at sin(θ_c) = c1/c2 (longitudinal); second critical at the shear-wave conversion limit.",
+    "units": "Angles in degrees; velocities in m/s.",
+    "typicalRange": "Plexiglas wedge to steel: longitudinal critical ≈ 27.6°; shear critical ≈ 57.7° → wedges at 35–70° select pure shear-wave inspection.",
+    "measuredBy": "Calculated from material velocities; verified by measuring back-wall echo position on a known-thickness reference.",
+    "codeReferences": ["ASME Section V T-441 (angle-beam principles)", "ISO 22232-1 (UT instrument)"],
+    "workedExample": "Plexi (c1=2730 m/s) to steel shear (c2=3240 m/s) at 45° refracted: sin(θ1) = sin(45°) × 2730 / 3240 = 0.595 → wedge angle θ1 ≈ 36.5°.",
+    "misconception": "A '45° angle-beam wedge' is the wedge angle, not the refracted angle — the refracted shear angle in steel is what gets stamped on the wedge label."
+  },
+  "porosity": {
+    "etymology": "Latin porus (pore); used in metallurgy since the 19th century for gas voids trapped in solidifying metal.",
+    "formula": "Areal porosity = (sum of pore areas) / (evaluation area); often reported as % per AWS D1.1 Table 6.1.",
+    "units": "Pore size in mm; cluster area in mm^2; % areal coverage.",
+    "typicalRange": "Detectable by RT down to ~0.5 mm pore in moderate sections; UT detects only when porosity is dense enough to attenuate or scatter measurably.",
+    "measuredBy": "RT/DR (best for porosity), VT (large surface-breaking pores), UT (indirect — scatter and attenuation), PAUT (cluster mapping).",
+    "codeReferences": ["AWS D1.1 Cl. 6.12 (visual + RT acceptance for porosity)", "ASME Section IX Cl. QW-191 (radiographic acceptance)", "API 1104 Sec. 9 (girth weld porosity)"],
+    "workedExample": "Cluster of six 1 mm pores within a 25 mm length on a fillet weld: AWS D1.1 statically-loaded acceptance allows up to 9.5 mm pore in a 19 mm weld — cluster passes if no individual pore exceeds the limit.",
+    "misconception": "Porosity is not the same as a void — porosity is many small gas inclusions; a 'void' is a single larger absence of material with different acceptance criteria."
+  },
+  "asnt-certification": {
+    "etymology": "ASNT founded 1941 as 'American Industrial Radium and X-Ray Society'; renamed to ASNT in 1967 as the methods diversified beyond radiography.",
+    "formula": "SNT-TC-1A training-hours table: e.g. UT Level II requires 80 hours classroom + 400 experience hours (high-school grad) per the recommended practice.",
+    "units": "Training hours, experience hours, exam scores ≥70% general/specific/practical with composite ≥80%.",
+    "typicalRange": "Level I: 40 hours training; Level II: 80 hours; Level III: 40 hours additional + Basic + Method exam; recertification 5-year cycle.",
+    "measuredBy": "Documented training records, signed experience log, written and practical exams, vision (Jaeger #2 + colour) annual.",
+    "codeReferences": ["ASNT SNT-TC-1A (recommended practice)", "ANSI/ASNT CP-189 (employer-based standard)", "ANSI/ASNT CP-105 (topical outlines)"],
+    "workedExample": "UT Level II candidate with high-school diploma needs 80 training hours + 400 experience hours under a Level II/III; passes general (70%), specific (70%), practical (70%), composite ≥80%.",
+    "misconception": "ASNT does not 'certify' inspectors directly — SNT-TC-1A is a *recommended practice* that the employer follows under their Written Practice; the employer signs the certificate, not ASNT."
+  },
+  "iso-9712-certification": {
+    "etymology": "ISO 9712 first issued 1992, harmonising the EN 473 European scheme into a global standard; current edition ISO 9712:2021.",
+    "formula": "Sector-specific qualification: candidate sits a written + practical exam administered by a third-party Certification Body (NDT-A, BINDT, etc.).",
+    "units": "Training hours per Annex A; experience hours per Annex B; exam pass mark 70% per part, composite ≥70%.",
+    "typicalRange": "UT Level 2: 80 hrs training + 9 months experience; RT Level 2: 80 hrs + 9 months; recertification at 5 years (renewal); recertification + practical at 10 years.",
+    "measuredBy": "Third-party Certification Body holds the certificate (not the employer), making it portable between employers and across borders.",
+    "codeReferences": ["ISO 9712:2021 (NDT personnel)", "EN ISO 9712 (EU adoption)", "ISO 17024 (certification body accreditation)"],
+    "workedExample": "A UT Level 2 holder moving employer in Europe keeps the same certificate; the new employer issues a written authorisation under their procedures, but does not re-certify the inspector.",
+    "misconception": "ISO 9712 and ASNT SNT-TC-1A are not equivalent — ISO 9712 is third-party (portable); SNT-TC-1A is employer-based (certificate dies when you change employer)."
+  },
+  "asme-section-v": {
+    "etymology": "ASME BPVC Section V was first published in 1968 as the dedicated NDE volume of the Boiler & Pressure Vessel Code.",
+    "formula": "Section V references methods (Article 2 RT, Article 4 UT, Article 6 PT, Article 7 MT, Article 8 ET, Article 9 VT) and points to ASTM practices for execution detail.",
+    "units": "N/A (procedural code).",
+    "typicalRange": "Used across ASME Sections I, III, VIII, XI, B31.1, B31.3 wherever NDE is required; new edition every 3 years (2023 latest).",
+    "measuredBy": "Compliance demonstrated through written, qualified procedures + qualified personnel + documented examinations.",
+    "codeReferences": ["ASME BPVC Section V (NDE)", "Section V T-150 (procedure qualification)", "Article 1 General Requirements"],
+    "workedExample": "An ASME VIII Div 1 vessel weld requiring full RT under UW-51: the procedure cites ASME V Article 2, qualified per T-150, executed by SNT-TC-1A Level II, results dispositioned per UW-51 acceptance criteria.",
+    "misconception": "ASME V does not contain acceptance criteria — it contains the *examination* requirements; acceptance lives in the construction code (Section I, III, VIII, XI) that calls Section V."
+  },
+  "api-510-code": {
+    "etymology": "API 510 first published 1958 to address in-service inspection of refinery pressure vessels (the construction codes did not cover post-fabrication life).",
+    "formula": "Inspection interval ≤ remaining life / 2 OR ≤ 10 years (external) / 10 years (internal, half-life), whichever is shorter.",
+    "units": "Corrosion rate in mils/year; remaining life in years; thickness in inches/mm.",
+    "typicalRange": "Long-term corrosion rate based on ≥ 2 readings 5+ years apart; minimum thickness from ASME VIII calculation; inspection interval typically 5–10 years.",
+    "measuredBy": "Authorised Pressure Vessel Inspector (API 510 certified); UT thickness, internal VT, supporting NDE per the inspection plan.",
+    "codeReferences": ["API 510 (Pressure Vessel Inspection Code)", "API 572 (vessel inspection practices)", "API 579-1/ASME FFS-1 (FFS assessment)"],
+    "workedExample": "Vessel original wall 25 mm, current 22 mm after 10 years: corrosion rate 0.3 mm/yr; minimum allowable 18 mm; remaining life = 4/0.3 = 13.3 yr; max interval = min(13.3/2, 10) = 6.7 yr.",
+    "misconception": "API 510 inspectors are not free to extend intervals at will — extension requires documented RBI per API 580/581 and owner-user authorisation."
+  },
+  "lack-of-fusion": {
+    "etymology": "Welding-engineering term from the 1940s arc-welding handbooks; abbreviated LOF in modern weld inspection reports.",
+    "formula": "Detected as planar reflector at the bevel face or between weld passes; UT angle-beam amplitude can rival a back-wall echo at favourable orientation.",
+    "units": "Length and height in mm; orientation relative to the weld axis.",
+    "typicalRange": "Sidewall LOF most common in narrow-gap GMAW; inter-pass LOF in multi-pass SMAW/FCAW; detection threshold ~3 mm for UT, ~2% wall for RT.",
+    "measuredBy": "RT (favourable orientation), UT angle-beam (best for sidewall), PAUT (encoded sizing), MT/PT (only if surface-breaking).",
+    "codeReferences": ["AWS D1.1 Cl. 6.12 (LOF rejectable in static and cyclic)", "ASME B31.3 Table 341.3.2 (LOF acceptance)", "API 1104 Sec. 9.3.6"],
+    "workedExample": "Sidewall LOF at 22 mm depth in a 30 mm weld, UT 60° angle-beam: indication at 110% DAC, length 18 mm by 6 dB drop — rejectable under AWS D1.1 cyclic-load criteria.",
+    "misconception": "LOF does not show clearly on RT unless the source is aligned with the bond plane — that is why UT/PAUT is the workhorse for sidewall LOF, not radiography."
+  },
+  "fitness-for-service": {
+    "etymology": "Phrase used in fracture-mechanics engineering since the 1970s; codified as API 579 in 2000, then API 579-1/ASME FFS-1 (joint) in 2007.",
+    "formula": "Three-level assessment: Level 1 (screening tables), Level 2 (closed-form equations), Level 3 (full FEA + advanced fracture mechanics).",
+    "units": "Stress in MPa/ksi; thickness in mm/inch; flaw dimensions in mm; remaining strength factor (RSF) ≥ 0.9 typical pass.",
+    "typicalRange": "Used after NDE finds an indication exceeding code acceptance — alternative to immediate repair/replace.",
+    "measuredBy": "Engineering assessment (not a measurement); inputs are NDE-derived flaw dimensions, materials data, operating conditions.",
+    "codeReferences": ["API 579-1/ASME FFS-1 (fitness-for-service)", "BS 7910 (UK ECA)", "R6 (UK fracture assessment procedure)"],
+    "workedExample": "Local thin area 80 × 80 mm, depth 3 mm in a 25 mm vessel wall, MAWP 2 MPa: Level 1 screening using API 579 Part 5 — RSF calculated from t_min and t_avg; if RSF ≥ 0.9, accept-as-is until next inspection.",
+    "misconception": "FFS is not a substitute for NDE — it requires accurate flaw sizing as input; a poorly-sized indication input gives an unsafe FFS conclusion."
+  }
+}

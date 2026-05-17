@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema , ArticleSchema, BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
-    title: 'How to Choose the Right NDT Service Provider | NDT Connect',
+    title: 'How to Choose the Right NDT Service Provider',
     description: 'Key factors to consider when selecting an NDT company: certifications, experience, equipment, insurance.',
     openGraph: {
-      title: 'How to Choose the Right NDT Service Provider | NDT Connect',
+      title: 'How to Choose the Right NDT Service Provider',
       description: 'Key factors to consider when selecting an NDT company: certifications, experience, equipment, insurance.',
       url: 'https://ndt-connect.com/blog/choosing-ndt-service-provider',
       type: 'article',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'How to Choose the Right NDT Service Provider | NDT Connect',
+      title: 'How to Choose the Right NDT Service Provider',
       description: 'Key factors to consider when selecting an NDT company: certifications, experience, equipment, insurance.',
     },
     alternates: { canonical: 'https://ndt-connect.com/blog/choosing-ndt-service-provider' },
@@ -25,6 +25,11 @@ export default function ChoosingNDTProviderArticle() {
     return (
         <>
             <ArticleSchema title="How to Choose the Right NDT Service Provider" description="How to choose the right NDT service provider for your inspection needs." url="https://ndt-connect.com/blog/choosing-ndt-service-provider" datePublished="2023-12-28" category="Guide" />
+            <BreadcrumbListSchema items={[
+                { name: 'Home', url: 'https://ndt-connect.com' },
+                { name: 'Blog', url: 'https://ndt-connect.com/blog' },
+                { name: 'How to Choose the Right NDT Service Provider', url: 'https://ndt-connect.com/blog/choosing-ndt-service-provider' },
+            ]} />
             <NDTConnectOrganizationSchema />
             <BlogLayout
                 title="How to Choose the Right NDT Service Provider"

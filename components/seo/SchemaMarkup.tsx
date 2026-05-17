@@ -224,10 +224,12 @@ interface ArticleSchemaProps {
     dateModified?: string;
     category?: string;
     wordCount?: number;
+    image?: string;
+    author?: string;
 }
 
-export function ArticleSchema({ title, description, url, datePublished, dateModified, category, wordCount }: ArticleSchemaProps) {
-    const schema = {
+export function ArticleSchema({ title, description, url, datePublished, dateModified, category, wordCount, image, author }: ArticleSchemaProps) {
+    const schema: Record<string, unknown> = {
         '@context': 'https://schema.org',
         '@type': 'Article',
         headline: title,
@@ -235,9 +237,17 @@ export function ArticleSchema({ title, description, url, datePublished, dateModi
         url,
         datePublished,
         dateModified: dateModified || datePublished,
-        author: { '@type': 'Organization', name: 'NDT Connect', url: 'https://ndtconnect.com' },
-        publisher: { '@type': 'Organization', name: 'NDT Connect', url: 'https://ndtconnect.com', logo: { '@type': 'ImageObject', url: 'https://ndtconnect.com/logo.png' } },
+        author: author
+            ? { '@type': 'Person', name: author }
+            : { '@type': 'Organization', name: 'NDT Connect', url: 'https://ndt-connect.com' },
+        publisher: {
+            '@type': 'Organization',
+            name: 'NDT Connect',
+            url: 'https://ndt-connect.com',
+            logo: { '@type': 'ImageObject', url: 'https://ndt-connect.com/logo.png' },
+        },
         mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+        image: image ?? `${url.split('/blog/')[0]}/opengraph-image`,
         ...(category && { articleSection: category }),
         ...(wordCount && { wordCount }),
     };

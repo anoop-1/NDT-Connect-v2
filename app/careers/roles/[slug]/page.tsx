@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const role = getCareerBySlug(params.slug);
   if (!role) return {};
 
-  const title = `${role.title} - Salary, Skills & Career Path | NDT Connect`;
+  const title = `${role.title} - Salary, Skills & Career Path`;
   const description = `${role.description} Salary: $${(role.salaryRange.min / 1000).toFixed(0)}K-$${(role.salaryRange.max / 1000).toFixed(0)}K. Learn about requirements, skills, and career growth.`;
 
   return {
@@ -55,16 +55,52 @@ export default function CareerRolePage({ params }: Props) {
       r.certifications.some((c) => role.certifications.includes(c) || c.includes('NDT') || c.includes('ASNT'))
   ).slice(0, 3);
 
+  // Stable build-time date so SSG output is deterministic. validThrough = +90 days.
+  const buildDate = new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), 1));
+  const datePosted = buildDate.toISOString().slice(0, 10);
+  const validThrough = new Date(buildDate.getTime() + 90 * 24 * 3600 * 1000).toISOString().slice(0, 10);
+
   const jobPostingSchema = {
     '@context': 'https://schema.org',
     '@type': 'JobPosting',
     title: role.title,
     description: role.longDescription || role.description,
+    datePosted,
+    validThrough,
     employmentType: 'FULL_TIME',
+    directApply: false,
+    identifier: {
+      '@type': 'PropertyValue',
+      name: 'NDT Connect',
+      value: `ndtc-role-${role.slug}`,
+    },
+    hiringOrganization: {
+      '@type': 'Organization',
+      name: 'NDT Connect Marketplace',
+      sameAs: 'https://ndt-connect.com',
+      logo: 'https://ndt-connect.com/logo.png',
+    },
+    jobLocation: {
+      '@type': 'Place',
+      address: {
+        '@type': 'PostalAddress',
+        addressCountry: 'US',
+      },
+    },
+    applicantLocationRequirements: {
+      '@type': 'Country',
+      name: 'United States',
+    },
+    jobLocationType: 'TELECOMMUTE',
     baseSalary: {
-      '@type': 'PriceSpecification',
-      priceCurrency: 'USD',
-      price: `${role.salaryRange.min}-${role.salaryRange.max}`,
+      '@type': 'MonetaryAmount',
+      currency: 'USD',
+      value: {
+        '@type': 'QuantitativeValue',
+        minValue: role.salaryRange.min,
+        maxValue: role.salaryRange.max,
+        unitText: 'YEAR',
+      },
     },
     qualifications: {
       '@type': 'EducationalOccupationalCredential',

@@ -17,7 +17,7 @@ const serviceFaqs = [
 ];
 
 export const metadata: Metadata = {
-  title: 'NDT Testing Services | UT RT MT PT ET VT PAUT TOFD | NDT Connect',
+  title: 'NDT Testing Services | UT RT MT PT ET VT PAUT TOFD',
   description: 'Complete range of non-destructive testing services. Book UT, RT, MT, PT, ET, VT, PAUT, TOFD, and advanced NDT inspections online. Certified inspectors worldwide.',
   keywords: [
     'NDT services', 'non-destructive testing services', 'ultrasonic testing', 'radiographic testing',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     'phased array ultrasonic testing', 'TOFD testing', 'NDT inspection services', 'book NDT online',
   ],
   openGraph: {
-    title: 'NDT Testing Services | NDT Connect',
+    title: 'NDT Testing Services',
     description: 'Book any NDT inspection method online. Certified inspectors worldwide.',
     url: 'https://ndt-connect.com/services',
     type: 'website',

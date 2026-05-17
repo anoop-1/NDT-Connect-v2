@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, FeatureGrid, FeatureCard, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema , ArticleSchema, BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
-    title: 'NDT Career Guide 2026: Salaries, Certifications & Growth Path | NDT Connect',
+    title: 'NDT Career Guide 2026: Salaries, Certifications & Growth Path',
     description: 'Complete guide to NDT careers - salary ranges, required certifications, career progression, and job market outlook. Everything you need to start an NDT career.',
     openGraph: {
-      title: 'NDT Career Guide 2026: Salaries, Certifications & Growth Path | NDT Connect',
+      title: 'NDT Career Guide 2026: Salaries, Certifications & Growth Path',
       description: 'Complete guide to NDT careers - salary ranges, required certifications, career progression, and job market outlook. Everything you need to start an NDT career.',
       url: 'https://ndt-connect.com/blog/ndt-career-guide-2026',
       type: 'article',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'NDT Career Guide 2026: Salaries, Certifications & Growth Path | NDT Connect',
+      title: 'NDT Career Guide 2026: Salaries, Certifications & Growth Path',
       description: 'Complete guide to NDT careers - salary ranges, required certifications, career progression, and job market outlook. Everything you need to start an NDT career.',
     },
     alternates: { canonical: 'https://ndt-connect.com/blog/ndt-career-guide-2026' },
@@ -25,6 +25,11 @@ export default function NDTCareerGuide2026() {
     return (
         <>
             <ArticleSchema title="NDT Career Guide 2026" description="Complete career guide for NDT professionals in 2026 including salary and certifications." url="https://ndt-connect.com/blog/ndt-career-guide-2026" datePublished="2026-01-20" category="Careers" />
+            <BreadcrumbListSchema items={[
+                { name: 'Home', url: 'https://ndt-connect.com' },
+                { name: 'Blog', url: 'https://ndt-connect.com/blog' },
+                { name: 'NDT Career Guide 2026: Salaries, Certifications & Growth Path', url: 'https://ndt-connect.com/blog/ndt-career-guide-2026' },
+            ]} />
             <NDTConnectOrganizationSchema />
             <BlogLayout
                 title="NDT Career Guide 2026: Salaries, Certifications & Growth Path"
@@ -49,7 +54,7 @@ export default function NDTCareerGuide2026() {
                 <section id="why-ndt">
                     <h2>1. Why Choose an NDT Career?</h2>
                     <p>
-                        The non-destructive testing industry offers a rewarding career path with exceptional opportunities for growth, travel, and competitive compensation. NDT professionals are essential to maintaining safety and reliability across virtually every industrial sector.
+                        The non-destructive testing industry offers a rewarding career path with exceptional opportunities for growth, travel, and competitive compensation. NDT professionals are essential to maintaining safety and reliability across virtually every industrial sector. The <a href="https://ndt-career-portal.vercel.app/">NDT Career Portal</a> aggregates current openings by method, level, and region for technicians actively job-hunting.
                     </p>
 
                     <h3>Industry Demand</h3>
@@ -135,6 +140,9 @@ export default function NDTCareerGuide2026() {
                     </p>
 
                     <h3>Core Certification Pathways</h3>
+                    <p>
+                        For a side-by-side comparison of ASNT, ISO 9712 and PCN — schemes, methods covered, renewal cycles — see our <a href="https://ndt-connect.com/blog/ndt-certifications-explained">NDT certifications explained</a> post and the <a href="https://ndt-connect.com/certifications">NDT Connect certifications hub</a>. Equipment buyers preparing for a Level II practical can also benefit from the <a href="https://ndt-equipment-reviews.vercel.app/">NDT Equipment Reviews</a> reference, which covers gauge, scanner and probe selection for each method.
+                    </p>
 
                     <h4>ASNT Central Certification Program (ACCP)</h4>
                     <p>

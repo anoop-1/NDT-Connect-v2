@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const industry = getIndustryBySlug(params.slug);
   if (!industry) return {};
 
-  const title = `NDT for ${industry.name} | ${industry.name} Inspection Services | NDT Connect`;
+  const title = `NDT for ${industry.name} — ${industry.name} Inspection Services`;
   const description = `${industry.description} Find certified NDT inspectors specialized in ${industry.name.toLowerCase()} on NDT Connect.`;
 
   return {

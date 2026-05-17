@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, FeatureGrid, FeatureCard, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema , ArticleSchema, BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
-    title: 'Modern Pipeline Inspection Techniques You Need to Know | NDT Connect',
+    title: 'Modern Pipeline Inspection Techniques You Need to Know',
     description: 'From MFL to ILI, explore the latest technologies keeping pipelines safe and compliant.',
     openGraph: {
-      title: 'Modern Pipeline Inspection Techniques You Need to Know | NDT Connect',
+      title: 'Modern Pipeline Inspection Techniques You Need to Know',
       description: 'From MFL to ILI, explore the latest technologies keeping pipelines safe and compliant.',
       url: 'https://ndt-connect.com/blog/pipeline-inspection-techniques',
       type: 'article',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Modern Pipeline Inspection Techniques You Need to Know | NDT Connect',
+      title: 'Modern Pipeline Inspection Techniques You Need to Know',
       description: 'From MFL to ILI, explore the latest technologies keeping pipelines safe and compliant.',
     },
     alternates: { canonical: 'https://ndt-connect.com/blog/pipeline-inspection-techniques' },
@@ -25,6 +25,11 @@ export default function PipelineInspectionArticle() {
     return (
         <>
             <ArticleSchema title="Pipeline Inspection Techniques and Technologies" description="Pipeline inspection techniques and technologies for integrity management." url="https://ndt-connect.com/blog/pipeline-inspection-techniques" datePublished="2023-12-20" category="Techniques" />
+            <BreadcrumbListSchema items={[
+                { name: 'Home', url: 'https://ndt-connect.com' },
+                { name: 'Blog', url: 'https://ndt-connect.com/blog' },
+                { name: 'Modern Pipeline Inspection Techniques You Need to Know', url: 'https://ndt-connect.com/blog/pipeline-inspection-techniques' },
+            ]} />
             <NDTConnectOrganizationSchema />
             <BlogLayout
                 title="Modern Pipeline Inspection Techniques You Need to Know"
@@ -38,13 +43,16 @@ export default function PipelineInspectionArticle() {
                     <p>
                         The world&apos;s pipeline network spans millions of miles, transporting oil, gas, water, and
                         chemicals. These critical assets face constant threats from corrosion, third-party damage,
-                        and material degradation.
+                        and material degradation. The <a href="https://pipeline-integrity-hub.vercel.app/">Pipeline Integrity Hub</a> covers operator-side integrity-management programmes (ILI planning, assessment intervals, threat-by-threat mitigation) at depth.
                     </p>
 
                     <InfoBox title="Industry Statistic">
                         PHMSA data shows corrosion causes approximately 20% of
                         significant pipeline incidents. Effective inspection can prevent most failures.
                     </InfoBox>
+                    <p>
+                        Corrosion is the dominant integrity threat across cross-country pipelines and refinery piping alike. Mitigation strategy — selection of cathodic protection, coating systems, inhibitor programmes — is covered in the <a href="https://corrosion-engineering-guide.vercel.app/">Corrosion Engineering Guide</a>, and the cost-of-corrosion arithmetic that justifies inspection spend lives in our <a href="https://ndt-connect.com/blog/rbi-corrosion-management">risk-based inspection guide</a>.
+                    </p>
                 </section>
 
                 <section>
@@ -98,6 +106,9 @@ export default function PipelineInspectionArticle() {
                             Distributed acoustic and temperature sensing for real-time leak detection.
                         </FeatureCard>
                     </FeatureGrid>
+                    <p>
+                        For sourcing pipeline-experienced contractors, NDT Connect&apos;s <a href="https://ndt-connect.com/services">services overview</a> lists ILI, GWT and PAUT capabilities by region. Houston operators can jump straight to <a href="https://ndt-connect.com/ndt-services/houston/ultrasonic-testing">Houston UT</a> or compare cost bands on the <a href="https://ndt-connect.com/cost-guide/houston/ultrasonic-testing">Houston UT cost guide</a>.
+                    </p>
                 </section>
 
                 <CTASection

@@ -6,10 +6,10 @@ import { Button } from '@/components/ui/button';
 import { CheckCircle, Clock, MapPin, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'NDT Case Studies | Real Inspection Success Stories | NDT Connect',
+  title: 'NDT Case Studies | Real Inspection Success Stories',
   description: 'See how NDT Connect helps asset owners find certified inspectors and complete NDT inspections efficiently. Real-world case studies from oil & gas, aerospace, and more.',
   keywords: ['NDT case studies', 'NDT success stories', 'inspection case study', 'NDT Connect examples'],
-  openGraph: { title: 'NDT Case Studies | NDT Connect', description: 'Real-world NDT inspection success stories.', url: 'https://ndt-connect.com/case-studies' },
+  openGraph: { title: 'NDT Case Studies', description: 'Real-world NDT inspection success stories.', url: 'https://ndt-connect.com/case-studies' },
   alternates: { canonical: 'https://ndt-connect.com/case-studies' },
 };
 

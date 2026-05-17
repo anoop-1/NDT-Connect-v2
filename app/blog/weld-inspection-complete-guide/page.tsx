@@ -1,15 +1,15 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, FeatureGrid, FeatureCard, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema, FAQSchema , ArticleSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema, FAQSchema , ArticleSchema, BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
-  title: 'Complete Guide to Weld Inspection: NDT Methods & Standards | NDT Connect',
+  title: 'Complete Guide to Weld Inspection: NDT Methods & Standards',
   description: 'Comprehensive weld inspection guide covering all NDT methods, acceptance criteria, common weld defects, applicable codes (AWS D1.1, ASME IX), and best practices.',
   keywords: ['weld inspection', 'weld NDT', 'weld testing', 'weld defects', 'AWS D1.1', 'ASME IX', 'weld quality', 'welding inspection'],
-  openGraph: { title: 'Complete Weld Inspection Guide | NDT Connect', description: 'Everything about weld inspection NDT methods, codes, and best practices.', url: 'https://ndt-connect.com/blog/weld-inspection-complete-guide', type: 'article', siteName: 'NDT Connect' },
+  openGraph: { title: 'Complete Weld Inspection Guide', description: 'Everything about weld inspection NDT methods, codes, and best practices.', url: 'https://ndt-connect.com/blog/weld-inspection-complete-guide', type: 'article', siteName: 'NDT Connect' },
   twitter: {
     card: 'summary_large_image',
-    title: 'Complete Guide to Weld Inspection: NDT Methods & Standards | NDT Connect',
+    title: 'Complete Guide to Weld Inspection: NDT Methods & Standards',
     description: 'Comprehensive weld inspection guide covering all NDT methods, acceptance criteria, common weld defects, applicable codes (AWS D1.1, ASME IX), and best practices.',
   },
   alternates: { canonical: 'https://ndt-connect.com/blog/weld-inspection-complete-guide' },
@@ -25,6 +25,11 @@ export default function WeldInspectionGuide() {
   return (
     <>
             <ArticleSchema title="Weld Inspection Complete Guide" description="Complete guide to weld inspection methods, codes, and best practices." url="https://ndt-connect.com/blog/weld-inspection-complete-guide" datePublished="2026-03-01" category="Techniques" />
+      <BreadcrumbListSchema items={[
+        { name: 'Home', url: 'https://ndt-connect.com' },
+        { name: 'Blog', url: 'https://ndt-connect.com/blog' },
+        { name: 'The Complete Guide to Weld Inspection: NDT Methods, Standards & Best Practices', url: 'https://ndt-connect.com/blog/weld-inspection-complete-guide' },
+      ]} />
       <NDTConnectOrganizationSchema />
       <FAQSchema questions={faqs} />
       <BlogLayout
@@ -87,6 +92,7 @@ export default function WeldInspectionGuide() {
             <li><strong>Internal Porosity:</strong> Scattered or clustered gas pockets within the weld metal. Caused by contamination, moisture, or improper welding parameters.</li>
             <li><strong>Internal Cracks:</strong> Cracks within the weld metal or heat-affected zone not visible from the surface. May be longitudinal, transverse, or crater cracks.</li>
           </ul>
+          <p>For visual references and root-cause analysis on each defect family, the <a href="https://weld-inspection-pro.vercel.app/weld-defect-types">Weld Inspection Pro defect-types reference</a> ties indications back to welding-process variables (current, travel speed, gas flow) so inspectors can flag the procedure correction, not just the rejection.</p>
         </section>
 
         <section id="ndt-methods">
@@ -97,7 +103,7 @@ export default function WeldInspectionGuide() {
               <p>The first and most fundamental inspection. Required for 100% of welds by all codes. Checks alignment, profile, surface defects, and dimensional compliance. Cost: lowest.</p>
             </FeatureCard>
             <FeatureCard title="Ultrasonic Testing (UT)">
-              <p>Detects internal defects including lack of fusion, cracks, and inclusions. Excellent for thick sections and planar defects. Provides depth and size information. Most common volumetric method.</p>
+              <p>Detects internal defects including lack of fusion, cracks, and inclusions. Excellent for thick sections and planar defects. Provides depth and size information. Most common volumetric method. The <a href="https://ut-testing-academy.vercel.app/ut-weld-inspection">UT-on-welds module</a> details scan plans for groove, fillet and tube-to-tubesheet joints.</p>
             </FeatureCard>
             <FeatureCard title="Radiographic Testing (RT)">
               <p>Creates a permanent image of the weld interior. Excellent for detecting porosity, slag, and incomplete penetration. Required by many codes for qualification welds and critical joints.</p>
@@ -118,13 +124,14 @@ export default function WeldInspectionGuide() {
           <h2>4. Applicable Codes &amp; Standards</h2>
           <p>Key codes governing weld inspection include:</p>
           <ul>
-            <li><strong>AWS D1.1:</strong> Structural Welding Code for Steel. Defines inspection requirements, acceptance criteria, and NDE methods for structural steel welding.</li>
+            <li><strong>AWS D1.1:</strong> Structural Welding Code for Steel. Defines inspection requirements, acceptance criteria, and NDE methods for structural steel welding. Full clause-level breakdown on the <a href="https://ndt-connect.com/standards/aws-d1-1">AWS D1.1 standards page</a>.</li>
             <li><strong>ASME BPVC Section V:</strong> Nondestructive Examination. Provides NDE methodology requirements referenced by Sections I, VIII, and other construction codes.</li>
             <li><strong>ASME BPVC Section IX:</strong> Welding, Brazing, and Fusing Qualifications. Defines welder and procedure qualification requirements.</li>
             <li><strong>API 1104:</strong> Welding of Pipelines and Related Facilities. Governs field welding of cross-country pipelines including NDE requirements.</li>
             <li><strong>EN 1090:</strong> Execution of Steel Structures. European standard specifying inspection requirements for steel construction.</li>
             <li><strong>ASME B31.3:</strong> Process Piping. Defines NDE requirements for process plant piping based on fluid service category.</li>
           </ul>
+          <p>To source a contractor with current AWS D1.1 / ASME IX procedure-qualification packages, post the scope on <a href="https://ndt-connect.com/find-providers">NDT Connect&apos;s find-providers directory</a> — verified-only filtering returns companies with on-roster Level II/III welding inspectors. For a method-by-method primer beyond UT, the <a href="https://ndt-connect.com/services">NDT services overview</a> covers RT, MT, PT, PAUT and TOFD on weld scopes.</p>
           <InfoBox title="Code Selection">
             The applicable code is determined by the type of construction, service conditions, and jurisdiction.
             Always verify which code governs your project before specifying inspection requirements.

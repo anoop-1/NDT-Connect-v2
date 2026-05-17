@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Search, Home, ArrowRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Page Not Found | NDT Connect',
+  title: 'Page Not Found',
   description: 'The page you are looking for could not be found. Browse our NDT services, find providers, or explore our resources.',
 };
 

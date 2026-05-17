@@ -3,3 +3,4 @@
  */
 
 export * from './SchemaMarkup';
+export * from './content-blocks';

@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, FeatureGrid, FeatureCard, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema, FAQSchema, ArticleSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema, FAQSchema, ArticleSchema, BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
-  title: 'API 510 Exam Preparation: Complete Study Guide for 2026 | NDT Connect',
+  title: 'API 510 Exam Preparation: Complete Study Guide for 2026',
   description: 'Everything you need to pass the API 510 Pressure Vessel Inspector exam. Study topics, exam format, recommended resources, and preparation strategies.',
   keywords: ['API 510 exam', 'API 510 study guide', 'pressure vessel inspector certification', 'API 510 preparation', 'API 510 exam tips'],    openGraph: {
-      title: 'API 510 Exam Preparation: Complete Study Guide for 2026 | NDT Connect',
+      title: 'API 510 Exam Preparation: Complete Study Guide for 2026',
       description: 'Everything you need to pass the API 510 Pressure Vessel Inspector exam. Study topics, exam format, recommended resources, and preparation strategies.',
       url: 'https://ndt-connect.com/blog/api-510-exam-preparation-guide',
       type: 'article',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'API 510 Exam Preparation: Complete Study Guide for 2026 | NDT Connect',
+      title: 'API 510 Exam Preparation: Complete Study Guide for 2026',
       description: 'Everything you need to pass the API 510 Pressure Vessel Inspector exam. Study topics, exam format, recommended resources, and preparation strategies.',
     },
     alternates: { canonical: 'https://ndt-connect.com/blog/api-510-exam-preparation-guide' },
@@ -30,6 +30,11 @@ export default function Page() {
   return (
     <>
       <ArticleSchema title="API 510 Exam Preparation: Complete Study Guide for 2026" description="Everything you need to pass the API 510 Pressure Vessel Inspector exam. Study topics, exam format, recommended resources, and preparation strategies." url="https://ndt-connect.com/blog/api-510-exam-preparation-guide" datePublished="2026-02-20" category="Certifications" />
+      <BreadcrumbListSchema items={[
+        { name: 'Home', url: 'https://ndt-connect.com' },
+        { name: 'Blog', url: 'https://ndt-connect.com/blog' },
+        { name: 'API 510 Exam Preparation: Complete Study Guide for 2026', url: 'https://ndt-connect.com/blog/api-510-exam-preparation-guide' },
+      ]} />
       <NDTConnectOrganizationSchema />
       <FAQSchema questions={faqs} />
       <BlogLayout

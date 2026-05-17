@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, FeatureGrid, FeatureCard, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema , ArticleSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema , ArticleSchema, BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
-    title: 'Risk-Based Inspection (RBI): Complete Guide for Asset Owners | NDT Connect',
+    title: 'Risk-Based Inspection (RBI): Complete Guide for Asset Owners',
     description: 'Implement RBI strategies to prioritize inspections, reduce costs, and ensure asset integrity.',
     openGraph: {
-      title: 'Risk-Based Inspection (RBI): Complete Guide for Asset Owners | NDT Connect',
+      title: 'Risk-Based Inspection (RBI): Complete Guide for Asset Owners',
       description: 'Implement RBI strategies to prioritize inspections, reduce costs, and ensure asset integrity.',
       url: 'https://ndt-connect.com/blog/rbi-corrosion-management',
       type: 'article',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Risk-Based Inspection (RBI): Complete Guide for Asset Owners | NDT Connect',
+      title: 'Risk-Based Inspection (RBI): Complete Guide for Asset Owners',
       description: 'Implement RBI strategies to prioritize inspections, reduce costs, and ensure asset integrity.',
     },
     alternates: { canonical: 'https://ndt-connect.com/blog/rbi-corrosion-management' },
@@ -25,6 +25,11 @@ export default function RBIGuideArticle() {
     return (
         <>
             <ArticleSchema title="Risk-Based Inspection and Corrosion Management" description="Comprehensive guide to risk-based inspection and corrosion management for industrial assets." url="https://ndt-connect.com/blog/rbi-corrosion-management" datePublished="2024-01-05" category="Industry" />
+            <BreadcrumbListSchema items={[
+                { name: 'Home', url: 'https://ndt-connect.com' },
+                { name: 'Blog', url: 'https://ndt-connect.com/blog' },
+                { name: 'Risk-Based Inspection (RBI): A Complete Guide for Asset Owners', url: 'https://ndt-connect.com/blog/rbi-corrosion-management' },
+            ]} />
             <NDTConnectOrganizationSchema />
             <BlogLayout
                 title="Risk-Based Inspection (RBI): A Complete Guide for Asset Owners"
@@ -89,10 +94,10 @@ export default function RBIGuideArticle() {
                     </ul>
 
                     <h3>Step 3: Identify Damage Mechanisms</h3>
-                    <p>Determine what degradation mechanisms can affect each piece of equipment:</p>
+                    <p>Determine what degradation mechanisms can affect each piece of equipment. The <a href="https://corrosion-engineering-guide.vercel.app/">Corrosion Engineering Guide</a> covers the underlying chemistry and rate models for each mechanism, and the <a href="https://pressure-vessel-inspection.vercel.app/">Pressure Vessel Inspection</a> reference walks through the API 510 / API 579-1 fitness-for-service workflow that consumes the RBI output.</p>
                     <ul>
                         <li><strong>Internal corrosion:</strong> Uniform, pitting, erosion-corrosion</li>
-                        <li><strong>External corrosion:</strong> Under insulation, atmospheric</li>
+                        <li><strong>External corrosion:</strong> Under insulation, atmospheric — see our <a href="https://ndt-connect.com/blog/corrosion-under-insulation-guide">CUI complete guide</a> for detection and prevention specifics</li>
                         <li><strong>Stress corrosion cracking:</strong> Chloride SCC, caustic SCC</li>
                         <li><strong>High-temperature mechanisms:</strong> Creep, oxidation</li>
                     </ul>
@@ -101,7 +106,7 @@ export default function RBIGuideArticle() {
                     <p>Calculate likelihood of failure and evaluate impact across safety, environmental, and production dimensions.</p>
 
                     <h3>Step 5: Develop Inspection Plans</h3>
-                    <p>Create tailored inspection plans specifying techniques, coverage, intervals, and acceptance criteria.</p>
+                    <p>Create tailored inspection plans specifying techniques, coverage, intervals, and acceptance criteria. To staff the resulting scopes, post each work order on <a href="https://ndt-connect.com/find-providers">NDT Connect</a> for parallel quotes from API 510/570/653-experienced contractors; the <a href="https://ndt-connect.com/standards/api-510">API 510 standards page</a> covers the inspection-interval rules RBI is meant to optimise against.</p>
                 </section>
 
                 <CTASection

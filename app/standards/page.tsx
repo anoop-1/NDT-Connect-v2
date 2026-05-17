@@ -6,7 +6,7 @@ import { Search, BookOpen, Filter } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 
 export const metadata: Metadata = {
-  title: 'NDT Standards Database | ASME, API, AWS, ISO Standards | NDT Connect',
+  title: 'NDT Standards Database | ASME, API, AWS, ISO Standards',
   description: 'Comprehensive database of 100+ NDT inspection standards including ASME Section V, API 510/570/653, AWS D1.1, ISO, EN, DNVGL, and NACE standards. Browse by organization and industry.',
   keywords: ['NDT standards', 'ASME Section V', 'API 510', 'AWS D1.1', 'ISO standards', 'inspection standards', 'weld standards'],
   openGraph: {

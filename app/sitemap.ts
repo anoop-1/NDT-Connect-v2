@@ -4,26 +4,35 @@ import { CITIES, PUBLISHABLE_CITIES, REGIONS, COUNTRIES } from '@/data/cities';
 import { procedureExamples } from '@/data/procedure-examples';
 
 // ============================================================
-// NDT Connect - Comprehensive Sitemap
-// Generates URLs for the full programmatic-SEO footprint, gated by the
-// city quality bar in data/cities.ts (isCityPublishable).
+// NDT Connect — split sitemap (sitemap-index pattern).
 //
-// Cities that fail the gate (industries < 3, namedFacilities < 2, or
-// missing localPainQuote) are excluded — they would render thin pages and
-// hurt domain-wide rankings.
+// generateSitemaps() yields one bucket per template family. Next.js emits:
+//   /sitemap.xml         → sitemap index linking each bucket
+//   /sitemap/<id>.xml    → that bucket's URLs
+//
+// Why split:
+// 1. GSC reports indexation per submitted sitemap. With one mega-sitemap,
+//    "100/3558 indexed" is opaque. With buckets we see exactly which
+//    template family Google is ignoring (e.g. free-tool-country = 0/162).
+// 2. Per-bucket lastModified updates trigger targeted recrawls.
+// 3. Each bucket stays well under the 50k-URL / 50MB sitemap limits.
+//
+// Quality gate: cities failing isCityPublishable in data/cities.ts are
+// excluded site-wide via PUBLISHABLE_CITIES so we never sitemap a thin page.
 // ============================================================
 
-// City slugs to use for every city-shaped URL family. Single source of truth.
+const BASE_URL = 'https://ndt-connect.com';
+const NOW = new Date();
+
 const cities = PUBLISHABLE_CITIES.map((c) => c.slug);
 
-// Build-log surface area for the quality gate. Mirrors the line emitted
-// from data/cities.ts so the count is visible in two places during builds.
+// Build-log surface area for the quality gate. Visible in two places during
+// builds (also logged from data/cities.ts).
 // eslint-disable-next-line no-console
 console.log(
   `[sitemap] using ${cities.length}/${CITIES.length} publishable cities (rest pruned by isCityPublishable)`,
 );
 
-// All NDT method pages
 const methods = [
   'ultrasonic-testing', 'radiographic-testing', 'magnetic-particle-testing',
   'penetrant-testing', 'eddy-current-testing', 'visual-testing',
@@ -39,18 +48,15 @@ const cityMethods = [
   'penetrant-testing', 'visual-testing', 'phased-array-ut',
 ];
 
-// Industry pages
 const industries = [
   'oil-and-gas', 'aerospace', 'power-generation', 'manufacturing',
   'marine-and-offshore', 'construction', 'mining',
 ];
 
-// Certification pages
 const certifications = [
   'asnt-certification', 'iso-9712', 'api-510', 'api-570', 'api-653', 'pcn-certification',
 ];
 
-// Blog posts
 const blogPosts = [
   'ultimate-guide-ultrasonic-testing', 'rbi-corrosion-management',
   'choosing-ndt-service-provider', 'ndt-certifications-explained',
@@ -63,12 +69,10 @@ const blogPosts = [
   'magnetic-particle-testing-complete-guide', 'phased-array-ultrasonic-testing-guide',
 ];
 
-// Tool pages
 const tools = [
   'ndt-method-selector', 'inspection-cost-estimator', 'certification-pathway',
 ];
 
-// Career roles
 const careerSlugs = [
   'ndt-technician-level-1', 'ndt-technician-level-2', 'ndt-technician-level-3',
   'ndt-inspector', 'radiographic-technician', 'ultrasonic-technician',
@@ -77,7 +81,6 @@ const careerSlugs = [
   'aerospace-ndt-specialist', 'ndt-trainer',
 ];
 
-// Glossary terms (top-level slugs for sitemap - full list imported at build time)
 const glossaryTerms = [
   'acoustic-impedance', 'a-scan', 'b-scan', 'c-scan', 'amplitude', 'attenuation',
   'back-wall-echo', 'beam-spread', 'calibration-block', 'couplant', 'crack', 'creep',
@@ -107,7 +110,6 @@ const glossaryTerms = [
   'magnetization', 'material-characterization', 'mode-conversion', 'ndt-certification',
 ];
 
-// Standards
 const standardSlugs = [
   'asme-section-v', 'asme-bpvc', 'asme-b31-3', 'asme-b31-4', 'asme-b31-8',
   'api-510', 'api-570', 'api-653', 'api-1104', 'api-579', 'api-580', 'api-581',
@@ -128,7 +130,6 @@ const standardSlugs = [
   'nas-410', 'abs-rules', 'rina-rules',
 ];
 
-// Generate comparison slugs
 function generateComparisonSlugs(): string[] {
   const slugs: string[] = [];
   for (let i = 0; i < methods.length; i++) {
@@ -139,234 +140,158 @@ function generateComparisonSlugs(): string[] {
   return slugs;
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://ndt-connect.com';
+// ---------- bucket builders --------------------------------------------------
 
-  // ---- Static Pages ----
-  const staticPages: MetadataRoute.Sitemap = [
-    { url: baseUrl, lastModified: new Date(), changeFrequency: 'daily', priority: 1.0 },
-    { url: `${baseUrl}/about`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/find-providers`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.9 },
-    { url: `${baseUrl}/ndt-services`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.95 },
-    { url: `${baseUrl}/blog`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.8 },
-    { url: `${baseUrl}/register`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/login`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
-    { url: `${baseUrl}/services`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${baseUrl}/industries`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/certifications`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/faq`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/case-studies`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/contact`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/glossary`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
-    { url: `${baseUrl}/standards`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/careers`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
-  ];
+const url = (
+  path: string,
+  changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'],
+  priority: number,
+): MetadataRoute.Sitemap[number] => ({
+  url: `${BASE_URL}${path}`,
+  lastModified: NOW,
+  changeFrequency,
+  priority,
+});
 
-  // ---- City Pages (75) ----
-  const cityPages: MetadataRoute.Sitemap = cities.map((city) => ({
-    url: `${baseUrl}/ndt-services/${city}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.8,
-  }));
+const BUCKETS: Record<string, () => MetadataRoute.Sitemap> = {
+  // High-priority discovery surface.
+  static: () => [
+    url('', 'daily', 1.0),
+    url('/about', 'monthly', 0.8),
+    url('/find-providers', 'daily', 0.9),
+    url('/ndt-services', 'daily', 0.95),
+    url('/blog', 'weekly', 0.8),
+    url('/register', 'monthly', 0.7),
+    url('/login', 'monthly', 0.5),
+    url('/services', 'monthly', 0.9),
+    url('/industries', 'monthly', 0.8),
+    url('/certifications', 'monthly', 0.8),
+    url('/faq', 'monthly', 0.7),
+    url('/case-studies', 'monthly', 0.7),
+    url('/contact', 'monthly', 0.7),
+    url('/glossary', 'weekly', 0.7),
+    url('/standards', 'monthly', 0.7),
+    url('/careers', 'weekly', 0.7),
+  ],
 
-  // ---- City × Method Pages ----
-  // Uses cityMethods (subset of methods) — these are the slugs that the
-  // /ndt-services/[city]/[slug] route generates static params for.
-  const cityServicePages: MetadataRoute.Sitemap = cities.flatMap((city) =>
-    cityMethods.map((method) => ({
-      url: `${baseUrl}/ndt-services/${city}/${method}`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.7,
-    }))
-  );
+  // ---- city pages ----
+  'city-hubs': () =>
+    cities.map((c) => url(`/ndt-services/${c}`, 'weekly', 0.8)),
 
-  // ---- City x Industry Pages (deprecated) ----
-  // The /ndt-services/[city]/[slug] route now only accepts NDT method slugs
-  // (UT, RT, MT, PT, VT, PAUT) — industry slugs would 404. City-level
-  // industry context already lives on /ndt-services/[city]. Keeping the
-  // identifier so the return list below compiles, but emitting no URLs.
-  const cityIndustryPages: MetadataRoute.Sitemap = [];
+  // ---- city × method (highest-intent geo pages) ----
+  'city-methods': () =>
+    cities.flatMap((c) =>
+      cityMethods.map((m) => url(`/ndt-services/${c}/${m}`, 'weekly', 0.7)),
+    ),
 
-  // ---- Method Pages (12) ----
-  const methodPages: MetadataRoute.Sitemap = methods.map((method) => ({
-    url: `${baseUrl}/services/${method}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.9,
-  }));
+  // ---- cost-guide ----
+  'cost-guides': () =>
+    cities.flatMap((c) =>
+      cityMethods.map((m) => url(`/cost-guide/${c}/${m}`, 'monthly', 0.7)),
+    ),
 
-  // ---- Industry Pages (7) ----
-  const industryPages: MetadataRoute.Sitemap = industries.map((industry) => ({
-    url: `${baseUrl}/industries/${industry}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.8,
-  }));
+  // ---- careers city + role ----
+  'careers-cities': () =>
+    cities.map((c) => url(`/careers/${c}`, 'weekly', 0.7)),
 
-  // ---- Certification Pages (6) ----
-  const certPages: MetadataRoute.Sitemap = certifications.map((cert) => ({
-    url: `${baseUrl}/certifications/${cert}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }));
+  'careers-roles': () =>
+    careerSlugs.map((s) => url(`/careers/roles/${s}`, 'monthly', 0.7)),
 
-  // ---- Blog Pages (18) ----
-  const blogPages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
-    url: `${baseUrl}/blog/${post}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }));
+  // ---- training ----
+  training: () =>
+    cities.map((c) => url(`/training/${c}`, 'monthly', 0.6)),
 
-  // ---- Tool Pages (3) ----
-  const toolPages: MetadataRoute.Sitemap = tools.map((tool) => ({
-    url: `${baseUrl}/tools/${tool}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }));
+  // ---- method/industry/certification/blog/comparison ----
+  methods: () =>
+    methods.map((m) => url(`/services/${m}`, 'monthly', 0.9)),
 
-  // ---- Comparison Pages (66) ----
-  const comparisonPages: MetadataRoute.Sitemap = generateComparisonSlugs().map((slug) => ({
-    url: `${baseUrl}/compare/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
-  }));
+  industries: () =>
+    industries.map((i) => url(`/industries/${i}`, 'monthly', 0.8)),
 
-  // ---- Cost Guide Pages ----
-  // Same method coverage as city × method (cityMethods, not methods).
-  const costGuidePages: MetadataRoute.Sitemap = cities.flatMap((city) =>
-    cityMethods.map((method) => ({
-      url: `${baseUrl}/cost-guide/${city}/${method}`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-    }))
-  );
+  certifications: () =>
+    certifications.map((c) => url(`/certifications/${c}`, 'monthly', 0.7)),
 
-  // ---- Training Pages (75) ----
-  const trainingPages: MetadataRoute.Sitemap = cities.map((city) => ({
-    url: `${baseUrl}/training/${city}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
-  }));
+  blog: () => blogPosts.map((p) => url(`/blog/${p}`, 'monthly', 0.7)),
 
-  // ---- Career Role Pages (15) ----
-  const careerRolePages: MetadataRoute.Sitemap = careerSlugs.map((slug) => ({
-    url: `${baseUrl}/careers/roles/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
-  }));
+  comparisons: () =>
+    generateComparisonSlugs().map((s) => url(`/compare/${s}`, 'monthly', 0.6)),
 
-  // ---- Career City Pages (75) ----
-  const careerCityPages: MetadataRoute.Sitemap = cities.map((city) => ({
-    url: `${baseUrl}/careers/${city}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.6,
-  }));
+  // ---- glossary + standards ----
+  glossary: () => glossaryTerms.map((t) => url(`/glossary/${t}`, 'monthly', 0.5)),
+  standards: () => standardSlugs.map((s) => url(`/standards/${s}`, 'monthly', 0.5)),
 
-  // ---- Glossary Pages (120+) ----
-  const glossaryPages: MetadataRoute.Sitemap = glossaryTerms.map((term) => ({
-    url: `${baseUrl}/glossary/${term}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.5,
-  }));
+  // ---- tools ----
+  tools: () => tools.map((t) => url(`/tools/${t}`, 'monthly', 0.7)),
 
-  // ---- Standards Pages (90+) ----
-  const standardPages: MetadataRoute.Sitemap = standardSlugs.map((slug) => ({
-    url: `${baseUrl}/standards/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.5,
-  }));
+  // ---- free tools family ----
+  'free-tools-landing': () => [url('/free-tools', 'weekly', 0.95)],
 
-  // ---- Free Tools (pillar + features + city/region/country rollups) ----
-  const freeToolsLanding: MetadataRoute.Sitemap = [
-    { url: `${baseUrl}/free-tools`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.95 },
-  ];
-  const freeToolFeatures: MetadataRoute.Sitemap = FREE_TOOLS.map((t) => ({
-    url: `${baseUrl}/free-tools/${t.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.9,
-  }));
-  const freeToolCities: MetadataRoute.Sitemap = FREE_TOOLS.flatMap((t) =>
-    PUBLISHABLE_CITIES.map((c) => ({
-      url: `${baseUrl}/free-tools/${t.slug}/${c.slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    }))
-  );
-  const freeToolRegions: MetadataRoute.Sitemap = FREE_TOOLS.flatMap((t) =>
-    REGIONS.map((r) => ({
-      url: `${baseUrl}/free-tools/${t.slug}/region/${r.slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.65,
-    }))
-  );
-  const freeToolCountries: MetadataRoute.Sitemap = FREE_TOOLS.flatMap((t) =>
-    COUNTRIES.map((c) => ({
-      url: `${baseUrl}/free-tools/${t.slug}/country/${c.code.toLowerCase()}`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-    }))
-  );
+  'free-tools-features': () =>
+    FREE_TOOLS.map((t) => url(`/free-tools/${t.slug}`, 'weekly', 0.9)),
 
-  // ---- AI Procedure Generator (landing + examples) ----
-  const procedureGeneratorPages: MetadataRoute.Sitemap = [
-    {
-      url: `${baseUrl}/tools/ndt-procedure-generator`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.95,
-    },
-    {
-      url: `${baseUrl}/tools/ndt-procedure-generator/examples`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.85,
-    },
-    ...procedureExamples.map((ex) => ({
-      url: `${baseUrl}/tools/ndt-procedure-generator/examples/${ex.slug}`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.75,
-    })),
-  ];
+  // Standalone static free-tool landings (not driven by freeTools.ts). These
+  // are hand-authored long-form pages added alongside the dynamic [feature]
+  // route. They take precedence over the dynamic route via Next.js routing.
+  'free-tools-standalone': () => [
+    url('/free-tools/calibration-reminder', 'weekly', 0.9),
+    url('/free-tools/certificate-manager', 'weekly', 0.9),
+    url('/free-tools/equipment-tracker', 'weekly', 0.9),
+    url('/free-tools/ai-procedure-generator', 'weekly', 0.9),
+  ],
 
-  return [
-    ...staticPages,
-    ...cityPages,
-    ...cityServicePages,
-    ...cityIndustryPages,
-    ...methodPages,
-    ...industryPages,
-    ...certPages,
-    ...blogPages,
-    ...toolPages,
-    ...comparisonPages,
-    ...costGuidePages,
-    ...trainingPages,
-    ...careerRolePages,
-    ...careerCityPages,
-    ...glossaryPages,
-    ...standardPages,
-    ...freeToolsLanding,
-    ...freeToolFeatures,
-    ...freeToolCities,
-    ...freeToolRegions,
-    ...freeToolCountries,
-    ...procedureGeneratorPages,
-  ];
+  'free-tools-cities': () =>
+    FREE_TOOLS.flatMap((t) =>
+      PUBLISHABLE_CITIES.map((c) =>
+        url(`/free-tools/${t.slug}/${c.slug}`, 'monthly', 0.7),
+      ),
+    ),
+
+  'free-tools-regions': () =>
+    FREE_TOOLS.flatMap((t) =>
+      REGIONS.map((r) =>
+        url(`/free-tools/${t.slug}/region/${r.slug}`, 'monthly', 0.65),
+      ),
+    ),
+
+  'free-tools-countries': () =>
+    FREE_TOOLS.flatMap((t) =>
+      COUNTRIES.map((c) =>
+        url(
+          `/free-tools/${t.slug}/country/${c.code.toLowerCase()}`,
+          'monthly',
+          0.6,
+        ),
+      ),
+    ),
+
+  // ---- AI procedure generator ----
+  'procedure-generator': () => [
+    url('/tools/ndt-procedure-generator', 'weekly', 0.95),
+    url('/tools/ndt-procedure-generator/examples', 'weekly', 0.85),
+    ...procedureExamples.map((ex) =>
+      url(
+        `/tools/ndt-procedure-generator/examples/${ex.slug}`,
+        'monthly',
+        0.75,
+      ),
+    ),
+  ],
+};
+
+// ---------- Next.js sitemap-index entrypoints --------------------------------
+
+export async function generateSitemaps() {
+  return Object.keys(BUCKETS).map((id) => ({ id }));
+}
+
+export default function sitemap({
+  id,
+}: {
+  id: string;
+}): MetadataRoute.Sitemap {
+  const build = BUCKETS[id];
+  if (!build) {
+    throw new Error(`[sitemap] unknown bucket id="${id}"`);
+  }
+  return build();
 }

@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | NDT Connect',
+  title: 'Terms of Service',
   description: 'NDT Connect terms of service. Read the terms and conditions governing use of our NDT inspection marketplace platform.',
   openGraph: {
-    title: 'Terms of Service | NDT Connect',
+    title: 'Terms of Service',
     description: 'Terms and conditions governing use of the NDT Connect marketplace platform.',
     url: 'https://ndt-connect.com/terms',
     type: 'website',
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Terms of Service | NDT Connect',
+    title: 'Terms of Service',
     description: 'Terms and conditions governing use of the NDT Connect marketplace platform.',
   },
   alternates: {

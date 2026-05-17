@@ -59,8 +59,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const { method1, method2 } = comparison;
-  const title = `${method1.name} vs ${method2.name} - NDT Method Comparison | NDT Connect`;
-  const description = `Compare ${method1.abbreviation} and ${method2.abbreviation} NDT methods. Explore differences in applications, advantages, limitations, and which method is best for your inspection needs.`;
+  // Title rewrite (SEO sprint 2026-05-15): switched from descriptive label
+  // ("X vs Y - NDT Method Comparison") to a click-worthy question that names
+  // decision criteria (cost, speed, detection). Compare pages have ~300 impr
+  // at 0% CTR despite pos 10 — title gave readers no reason to click.
+  const title = `${method1.abbreviation} vs ${method2.abbreviation} — Which NDT Method to Choose? Cost, Speed & Detection Compared`;
+  const description = `${method1.name} (${method1.abbreviation}) vs ${method2.name} (${method2.abbreviation}): side-by-side comparison of cost, inspection speed, defect detection, code coverage, and which method fits your scope. 2026 buyer's guide.`;
 
   return {
     title,
@@ -304,10 +308,10 @@ export default async function ComparisonPage({ params }: PageProps) {
           <div className="container">
             <div className="max-w-4xl">
               <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-                {method1.name} vs {method2.name}
+                {method1.name} vs {method2.name} — Choosing Between {method1.abbreviation} and {method2.abbreviation}
               </h1>
               <p className="text-xl text-muted-foreground mb-6 leading-relaxed">
-                Compare these two NDT methods to understand their differences, applications, advantages, and limitations. Determine which method is best suited for your inspection needs.
+                A side-by-side look at {method1.abbreviation} ({method1.applications[0]?.toLowerCase() || 'flaw detection'}) and {method2.abbreviation} ({method2.applications[0]?.toLowerCase() || 'flaw detection'}): operating principles, code coverage ({method1.standards.slice(0, 2).join(', ')} vs {method2.standards.slice(0, 2).join(', ')}), cost, speed, and the situations where pairing both methods makes more sense than picking one.
               </p>
               <div className="flex gap-4">
                 <Link
@@ -539,11 +543,11 @@ export default async function ComparisonPage({ params }: PageProps) {
           </div>
         </section>
 
-        {/* Combined Use */}
+        {/* Combined Use — derived per pair from each method's first principle/application/limitation */}
         <section className="container bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-8">
-          <h2 className="text-3xl font-bold mb-4">Using Both Methods Together</h2>
+          <h2 className="text-3xl font-bold mb-4">Pairing {method1.abbreviation} with {method2.abbreviation} on the Same Job</h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
-            In many industrial inspection programs, {method1.name} and {method2.name} are used complementarily to leverage the unique advantages of each method. This combined approach provides more comprehensive inspection coverage and higher confidence in results.
+            On scopes where {method1.name} ({method1.abbreviation.toLowerCase()}) is required for {method1.applications[0].toLowerCase()} but the procedure also calls for {method2.applications[0].toLowerCase()}, inspection contractors mobilise both methods together — {method1.abbreviation} compensates for {method2.limitations[0]?.toLowerCase() || `the limits of ${method2.abbreviation}`}, while {method2.abbreviation} addresses {method1.limitations[0]?.toLowerCase() || `the gap left by ${method1.abbreviation}`}.
           </p>
           <div className="grid md:grid-cols-2 gap-6">
             <div>
@@ -551,19 +555,19 @@ export default async function ComparisonPage({ params }: PageProps) {
               <ol className="space-y-2 text-sm">
                 <li className="flex items-start">
                   <span className="font-bold text-purple-600 mr-3">1.</span>
-                  <span>Start with {method1.abbreviation} to {method1.applications[0]}</span>
+                  <span>Run {method1.abbreviation} first to {method1.applications[0].toLowerCase()} — its strength is {method1.advantages[0]?.toLowerCase()}.</span>
                 </li>
                 <li className="flex items-start">
                   <span className="font-bold text-purple-600 mr-3">2.</span>
-                  <span>Follow with {method2.abbreviation} to verify and characterize findings</span>
+                  <span>Follow with {method2.abbreviation} to {method2.applications[0].toLowerCase()} where {method1.abbreviation} alone would be limited by {method1.limitations[0]?.toLowerCase() || 'its physical principle'}.</span>
                 </li>
                 <li className="flex items-start">
                   <span className="font-bold text-purple-600 mr-3">3.</span>
-                  <span>Combine results for comprehensive assessment</span>
+                  <span>Cross-check the {method1.abbreviation} findings against {method2.abbreviation} signals — disagreements are the indicator that one method has hit a known limitation.</span>
                 </li>
                 <li className="flex items-start">
                   <span className="font-bold text-purple-600 mr-3">4.</span>
-                  <span>Generate detailed inspection report with recommendations</span>
+                  <span>Document both data sets against the controlling code (typically {method1.standards[0] || 'ASME Section V'} for {method1.abbreviation}, {method2.standards[0] || 'the parent code'} for {method2.abbreviation}).</span>
                 </li>
               </ol>
             </div>
@@ -605,26 +609,26 @@ export default async function ComparisonPage({ params }: PageProps) {
             </div>
             <div className="border rounded-lg p-6">
               <h3 className="font-semibold text-lg mb-2">
-                Which method is more cost-effective?
+                Is {method1.abbreviation} or {method2.abbreviation} more cost-effective for {method1.industries[0]?.toLowerCase() || 'industrial'} inspection?
               </h3>
               <p className="text-muted-foreground leading-relaxed">
-                Cost-effectiveness depends on your specific application. {method1.name} typically has {method1.abbreviation === 'VT' ? 'minimal equipment and training costs' : 'higher equipment costs but may offer faster inspection speeds'}, while {method2.name} offers {method2.abbreviation === 'VT' ? 'minimal equipment and training costs' : 'different cost trade-offs'}.
+                {method1.name} brings {method1.advantages[0]?.toLowerCase()} but is held back by {method1.limitations[0]?.toLowerCase() || 'specific limitations'}; {method2.name} offers {method2.advantages[0]?.toLowerCase()} at the cost of {method2.limitations[0]?.toLowerCase() || 'its own constraints'}. The total cost on a real job depends on access, throughput, and which controlling code ({method1.standards[0] || 'ASME Section V'} vs {method2.standards[0] || 'the parent standard'}) the contract names.
               </p>
             </div>
             <div className="border rounded-lg p-6">
               <h3 className="font-semibold text-lg mb-2">
-                Can I use {method1.abbreviation} instead of {method2.abbreviation}?
+                Can {method1.abbreviation} replace {method2.abbreviation} on a given inspection?
               </h3>
               <p className="text-muted-foreground leading-relaxed">
-                Not always. While both are NDT methods, they have different capabilities. {method1.abbreviation} is ideal for {method1.applications[0]}, while {method2.abbreviation} excels at {method2.applications[0]}. Your code or standard requirements may specify which method to use.
+                Substitution is only allowed where the controlling code permits it. {method1.abbreviation} is the natural choice when the priority is to {method1.applications[0].toLowerCase()}; {method2.abbreviation} is preferred when the scope demands {method2.applications[0].toLowerCase()}. The procedure (and any qualified-procedure substitution clause in {method1.standards[0] || 'the parent code'}) decides whether one can stand in for the other.
               </p>
             </div>
             <div className="border rounded-lg p-6">
               <h3 className="font-semibold text-lg mb-2">
-                Do inspectors need different certifications for each method?
+                Do inspectors qualified in {method1.abbreviation} also cover {method2.abbreviation}?
               </h3>
               <p className="text-muted-foreground leading-relaxed">
-                Yes. NDT inspectors must be certified separately for each method. Certification follows ASNT Level I, II, or III standards and demonstrates proficiency with that specific NDT method.
+                Not automatically. ASNT, ISO 9712, and NAS 410 schemes all certify by method, so a {method1.abbreviation} Level II is not endorsed to sign a {method2.abbreviation} report. Many inspectors hold qualifications in both — typical career paths in {method1.industries[0]?.toLowerCase() || 'this sector'} stack {method1.abbreviation} and {method2.abbreviation} together because the local job mix calls for both.
               </p>
             </div>
             <div className="border rounded-lg p-6">

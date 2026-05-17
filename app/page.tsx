@@ -12,8 +12,11 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'NDT Connect — Hire Certified NDT Inspectors in 180+ Cities',
-  description: 'Post your NDT inspection job, get parallel quotes from certified UT, RT, MT, PT, PAUT, TOFD providers in 180+ cities. Free to post — no signup to browse rates.',
+  // Title rewrite (SEO sprint 2026-05-15): made the value prop explicit
+  // ("Free Quotes in 24h") and surfaced provider count so the homepage
+  // SERP snippet reads as a marketplace promise. Was 1.7% CTR @ pos 17.
+  title: 'NDT Connect — Hire Certified NDT Inspectors | Free Quotes in 24h, 180+ Cities',
+  description: 'Hire certified NDT inspectors in 180+ cities. Free quotes in 24h from UT, RT, MT, PT, PAUT, TOFD providers — no signup to browse rates. Post a job in 2 minutes.',
   keywords: [
     'NDT Connect', 'NDT marketplace', 'NDT services', 'NDT inspectors near me',
     'find NDT provider', 'hire NDT inspector', 'NDT inspection quotes',
@@ -22,16 +25,16 @@ export const metadata: Metadata = {
     'industrial inspection marketplace', 'oil gas NDT services',
   ],
   openGraph: {
-    title: 'NDT Connect — Hire Certified NDT Inspectors in 180+ Cities',
-    description: 'Post a job, receive parallel quotes from certified UT, RT, MT, PT, PAUT providers worldwide. Free to post.',
+    title: 'NDT Connect — Hire Certified NDT Inspectors | Free Quotes in 24h, 180+ Cities',
+    description: 'Hire certified NDT inspectors in 180+ cities. Free quotes in 24h from UT, RT, MT, PT, PAUT, TOFD providers — no signup to browse rates.',
     url: 'https://ndt-connect.com',
     type: 'website',
     siteName: 'NDT Connect',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'NDT Connect — Hire Certified NDT Inspectors in 180+ Cities',
-    description: 'Parallel quotes from certified NDT inspectors. UT, RT, MT, PT, PAUT, TOFD. Free to post.',
+    title: 'NDT Connect — Hire Certified NDT Inspectors | Free Quotes in 24h',
+    description: 'Hire certified NDT inspectors in 180+ cities. Free quotes in 24h from UT, RT, MT, PT, PAUT, TOFD providers.',
   },
   alternates: { canonical: 'https://ndt-connect.com' },
 };

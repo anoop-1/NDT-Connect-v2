@@ -1,13 +1,6 @@
-import { BreadcrumbSchema } from '@/components/seo/SchemaMarkup';
-
+// Per-post BreadcrumbList schema lives on each blog page (Home > Blog > Post Title).
+// The layout-level partial was removed so each post emits the full canonical
+// breadcrumb chain rather than a stub that competes with it in SERPs.
 export default function BlogLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <>
-      <BreadcrumbSchema items={[
-        { name: 'Home', url: 'https://ndt-connect.com' },
-        { name: 'Blog', url: 'https://ndt-connect.com/blog' },
-      ]} />
-      {children}
-    </>
-  );
+  return <>{children}</>;
 }

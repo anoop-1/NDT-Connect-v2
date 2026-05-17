@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const method = getMethodBySlug(params.slug);
   if (!method) return {};
 
-  const title = `${method.name} (${method.abbreviation}) Services | Book ${method.abbreviation} Inspection Online | NDT Connect`;
+  const title = `${method.name} (${method.abbreviation}) Services — Book ${method.abbreviation} Inspection Online`;
   const description = `${method.description} Find certified ${method.abbreviation} inspectors near you. Get instant quotes, real-time tracking, and verified experts on NDT Connect.`;
 
   return {
