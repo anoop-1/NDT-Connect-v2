@@ -42,22 +42,44 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s  %(levelname)-7s %(m
 log = logging.getLogger('indexnow')
 
 
-def fetch_sitemap_urls() -> list[str]:
-    log.info('Fetching sitemap: %s', SITEMAP_URL)
-    req = Request(SITEMAP_URL, headers={'User-Agent': 'NDT-Connect-IndexNow/1.0'})
+def _fetch_loc_tags(sitemap_url: str) -> tuple[str, list[str]]:
+    req = Request(sitemap_url, headers={'User-Agent': 'NDT-Connect-IndexNow/1.0'})
     with urlopen(req, timeout=30) as r:
         body = r.read()
     root = ET.fromstring(body)
     ns = ''
     if root.tag.startswith('{'):
         ns = root.tag.split('}')[0].strip('{')
+    local = root.tag.split('}', 1)[-1]
+    finder = f'.//{{{ns}}}loc' if ns else './/loc'
     locs: list[str] = []
-    tag = f'{{{ns}}}loc' if ns else 'loc'
-    for loc in root.findall(f'.//{tag}'):
+    for loc in root.findall(finder):
         if loc.text:
             locs.append(loc.text.strip())
-    log.info('Sitemap returned %d URLs', len(locs))
-    return locs
+    return local, locs
+
+
+def fetch_sitemap_urls() -> list[str]:
+    """Fetches all page URLs. Auto-detects <sitemapindex> and recurses."""
+    log.info('Fetching sitemap: %s', SITEMAP_URL)
+    kind, locs = _fetch_loc_tags(SITEMAP_URL)
+    if kind == 'urlset':
+        log.info('Sitemap (urlset) returned %d URLs', len(locs))
+        return locs
+    if kind != 'sitemapindex':
+        log.warning('Unknown root <%s>; treating as urlset', kind)
+        return locs
+    log.info('Sitemap index with %d sub-sitemaps; fetching each', len(locs))
+    all_urls: list[str] = []
+    for sub in locs:
+        try:
+            _, sub_locs = _fetch_loc_tags(sub)
+            log.info('  %s -> %d URLs', sub, len(sub_locs))
+            all_urls.extend(sub_locs)
+        except Exception as e:  # noqa: BLE001
+            log.warning('  %s failed: %s', sub, e)
+    log.info('Sitemap index returned %d URLs total', len(all_urls))
+    return all_urls
 
 
 def submit_batch_to(endpoint: str, urls: list[str]) -> tuple[int, str]:
