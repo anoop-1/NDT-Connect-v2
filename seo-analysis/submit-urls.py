@@ -196,7 +196,7 @@ def _fetch_loc_tags(sitemap_url: str) -> tuple[str, list[str]]:
 def fetch_sitemap_urls(property_url: str) -> list[str]:
     """Fetch all page URLs. Auto-detects <sitemapindex> and recurses into each
     sub-sitemap. Handles the Next.js generateSitemaps split layout."""
-    root_url = property_url.rstrip('/') + '/sitemap.xml'
+    root_url = property_url.rstrip('/') + '/sitemap-index.xml'
     log.info('Fetching sitemap: %s', root_url)
     root_kind, root_locs = _fetch_loc_tags(root_url)
 

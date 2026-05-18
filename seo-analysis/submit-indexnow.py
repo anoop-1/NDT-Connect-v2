@@ -25,7 +25,7 @@ import urllib.error
 INDEXNOW_HOST = 'ndt-connect.com'
 INDEXNOW_KEY = '32f800ab00dfbec6d6a6904557be4e81'
 KEY_LOCATION = f'https://{INDEXNOW_HOST}/{INDEXNOW_KEY}.txt'
-SITEMAP_URL = f'https://{INDEXNOW_HOST}/sitemap.xml'
+SITEMAP_URL = f'https://{INDEXNOW_HOST}/sitemap-index.xml'
 BATCH = 10000  # IndexNow per-POST limit
 
 # IndexNow consortium endpoints. The api.indexnow.org generic endpoint

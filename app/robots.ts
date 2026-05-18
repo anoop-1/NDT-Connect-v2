@@ -19,6 +19,6 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: 'https://ndt-connect.com/sitemap.xml',
+    sitemap: 'https://ndt-connect.com/sitemap-index.xml',
   };
 }

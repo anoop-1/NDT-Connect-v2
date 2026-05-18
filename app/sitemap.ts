@@ -1,7 +1,21 @@
 import { MetadataRoute } from 'next';
+import { readdirSync } from 'fs';
+import path from 'path';
 import { FREE_TOOLS } from '@/data/freeTools';
 import { CITIES, PUBLISHABLE_CITIES, REGIONS, COUNTRIES } from '@/data/cities';
 import { procedureExamples } from '@/data/procedure-examples';
+
+// Enumerate authored content slugs at build time.
+function authoredSlugs(bucket: string): string[] {
+  try {
+    const dir = path.join(process.cwd(), 'lib', 'content', 'authored', bucket);
+    return readdirSync(dir)
+      .filter((f) => f.endsWith('.ts') && !f.startsWith('_'))
+      .map((f) => f.replace(/\.ts$/, ''));
+  } catch {
+    return [];
+  }
+}
 
 // ============================================================
 // NDT Connect — split sitemap (sitemap-index pattern).
@@ -276,6 +290,46 @@ const BUCKETS: Record<string, () => MetadataRoute.Sitemap> = {
       ),
     ),
   ],
+
+  // ---- Authored long-form content (hand-built + daily pipeline) ----
+  'authored-methods': () =>
+    authoredSlugs('methods').map((s) => url(`/methods/${s}`, 'weekly', 0.9)),
+
+  'authored-industries': () =>
+    authoredSlugs('industries').map((s) => url(`/industries/${s}`, 'weekly', 0.85)),
+
+  'authored-standards': () =>
+    authoredSlugs('standards').map((s) => url(`/standards/${s}`, 'monthly', 0.8)),
+
+  'authored-states': () =>
+    authoredSlugs('states').map((s) => url(`/states/${s}`, 'weekly', 0.85)),
+
+  'authored-careers': () =>
+    authoredSlugs('careers').map((s) => url(`/careers/roles/${s}`, 'monthly', 0.7)),
+
+  'authored-equipment': () =>
+    authoredSlugs('equipment').map((s) => url(`/equipment/${s}`, 'monthly', 0.75)),
+
+  'authored-case-studies': () =>
+    authoredSlugs('case-studies').map((s) => url(`/case-studies/${s}`, 'monthly', 0.75)),
+
+  'authored-comparisons': () =>
+    authoredSlugs('comparisons').map((s) => url(`/compare/${s}`, 'monthly', 0.7)),
+
+  'authored-learn': () =>
+    authoredSlugs('learn').map((s) => url(`/learn/${s}`, 'monthly', 0.7)),
+
+  'authored-glossary': () =>
+    authoredSlugs('glossary').map((s) => url(`/glossary/${s}`, 'monthly', 0.65)),
+
+  'authored-pillars': () =>
+    authoredSlugs('pillars').map((s) => url(`/pillars/${s}`, 'weekly', 0.9)),
+
+  'authored-tools': () =>
+    authoredSlugs('tools').map((s) => url(`/tools/${s}`, 'weekly', 0.85)),
+
+  'authored-topics': () =>
+    authoredSlugs('topics').map((s) => url(`/topics/${s}`, 'weekly', 0.7)),
 };
 
 // ---------- Next.js sitemap-index entrypoints --------------------------------
