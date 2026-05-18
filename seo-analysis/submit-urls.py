@@ -64,10 +64,26 @@ CRED_DIR = Path(__file__).parent / 'credentials'
 STATE_FILE = Path(__file__).parent / 'output' / 'submitted-urls.json'
 DEFAULT_PROPERTY = 'https://ndt-connect.com'
 PER_ACCOUNT_DAILY_QUOTA = 200
-RECRAWL_GUARD_DAYS = 7  # don't re-submit the same URL more than once a week
+
+# Per-priority recrawl guard tiers (days). Higher-value pages get shorter
+# guard so the daily cron re-signals them more frequently to Google.
+RECRAWL_GUARD_TIERS: list[tuple[int, int]] = [
+    (90, 3),   # city hubs, city×method, city×industry → every 3 days
+    (50, 5),   # cost guides, free-tool×city, procedure gen → every 5 days
+    (0,  7),   # everything else → 7 days
+]
+
+
+def recrawl_guard_days(priority: int) -> int:
+    for min_pri, days in RECRAWL_GUARD_TIERS:
+        if priority >= min_pri:
+            return days
+    return 7
+
 
 # Submission priority — higher number = submit first.
 PRIORITY_PATTERNS: list[tuple[re.Pattern[str], int]] = [
+    (re.compile(r'/ndt-services/[^/]+/industries/[^/]+$'), 102),  # city × industry
     (re.compile(r'/ndt-services/[^/]+/[^/]+$'), 100),       # city × method
     (re.compile(r'/cost-guide/[^/]+/[^/]+$'), 95),
     (re.compile(r'/ndt-services/[^/]+$'), 90),               # city root
@@ -232,7 +248,6 @@ def url_priority(url: str) -> int:
 
 def filter_eligible(urls: Iterable[str], state: dict, force: bool) -> list[str]:
     now = utc_now()
-    cutoff = now - timedelta(days=RECRAWL_GUARD_DAYS)
     seen: set[str] = set()
     out: list[str] = []
     for u in urls:
@@ -241,8 +256,10 @@ def filter_eligible(urls: Iterable[str], state: dict, force: bool) -> list[str]:
         seen.add(u)
         rec = state['urls'].get(u)
         if rec and not force:
+            pri = url_priority(u)
+            guard = recrawl_guard_days(pri)
             last = parse_iso(rec['lastSubmitted'])
-            if last > cutoff:
+            if last > now - timedelta(days=guard):
                 continue
         out.append(u)
     out.sort(key=lambda u: (-url_priority(u), u))
@@ -328,7 +345,7 @@ def main() -> int:
 
     # 3. Filter eligible.
     eligible = filter_eligible(urls, state, force=args.force)
-    log.info('URLs eligible after dedup + 7d guard: %d', len(eligible))
+    log.info('URLs eligible after dedup + tiered guard: %d', len(eligible))
     if not eligible:
         log.info('Nothing to submit. Exit clean.')
         return 0

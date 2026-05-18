@@ -19,9 +19,9 @@ $Log = Join-Path $LogDir "$Stamp.log"
 Set-Location $ProjectDir
 "=== $(Get-Date -Format o) — daily SEO push ===" | Tee-Object -FilePath $Log -Append
 
-# 1. Google Indexing API — 1000/day across 5 service accounts (200 each).
+# 1. Google Indexing API — 2000/day across 10 service accounts (200 each).
 "--- Google Indexing API submit ---" | Tee-Object -FilePath $Log -Append
-python seo-analysis/submit-urls.py --limit 1000 2>&1 | Tee-Object -FilePath $Log -Append
+python seo-analysis/submit-urls.py --limit 2000 2>&1 | Tee-Object -FilePath $Log -Append
 
 # 2. IndexNow — no quota, full sitemap each run.
 "--- IndexNow submit ---" | Tee-Object -FilePath $Log -Append
