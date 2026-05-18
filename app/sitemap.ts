@@ -3,6 +3,7 @@ import { readdirSync } from 'fs';
 import path from 'path';
 import { FREE_TOOLS } from '@/data/freeTools';
 import { CITIES, PUBLISHABLE_CITIES, REGIONS, COUNTRIES } from '@/data/cities';
+import { allCityIndustryCombos } from '@/lib/content/city-industry-content';
 import { procedureExamples } from '@/data/procedure-examples';
 
 // Enumerate authored content slugs at build time.
@@ -276,6 +277,12 @@ const BUCKETS: Record<string, () => MetadataRoute.Sitemap> = {
           0.6,
         ),
       ),
+    ),
+
+  // ---- city × industry (386 high-quality industry-specific pages) ----
+  'city-industries': () =>
+    allCityIndustryCombos().map(({ city: c, industry: i }) =>
+      url(`/ndt-services/${c}/industries/${i}`, 'weekly', 0.75),
     ),
 
   // ---- AI procedure generator ----

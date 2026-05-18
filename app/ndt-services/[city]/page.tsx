@@ -7,6 +7,8 @@ import {
   type City,
 } from '@/data/cities';
 import { nearestCities, buildCityAlternates } from '@/lib/seo-helpers';
+import { findRichCity } from '@/lib/seo/cities-rich';
+import { cityIndustrySlugs, INDUSTRY_PAGE_DATA } from '@/lib/seo/industry-page-data';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -222,6 +224,8 @@ export default async function CityPage({ params }: Props) {
   const industryBlocks = buildIndustryContextBlocks(city);
   const faqs = buildFaqs(city);
   const nearby = nearestCities(city.slug, 5);
+  const richCity = findRichCity(city.slug);
+  const industryPageSlugs = cityIndustrySlugs(richCity?.industries ?? [], 0.15);
 
   const serviceSchema = {
     '@context': 'https://schema.org',
@@ -538,6 +542,45 @@ export default async function CityPage({ params }: Props) {
             </Button>
           </div>
         </section>
+
+        {industryPageSlugs.length > 0 && (
+          <>
+            <div className="section-divider my-10"></div>
+            <section className="mb-16 px-4 md:px-0">
+              <h2 className="text-3xl font-bold text-primary mb-4">
+                Industry-specific NDT in {city.name}
+              </h2>
+              <p className="text-slate-600 mb-6">
+                Each industry sector in {city.name} has its own inspection codes, asset types, and
+                certification requirements. These deep-dive pages cover methods, codes, and day rates
+                specific to each sector.
+              </p>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {industryPageSlugs.map((indSlug) => {
+                  const def = INDUSTRY_PAGE_DATA[indSlug];
+                  if (!def) return null;
+                  return (
+                    <Link
+                      key={indSlug}
+                      href={`/ndt-services/${city.slug}/industries/${indSlug}`}
+                      className="bg-white rounded-xl border border-slate-200 shadow-sm p-5 hover:shadow-md hover:border-primary/30 transition-all group block"
+                    >
+                      <span className="text-xs font-bold uppercase tracking-wide text-primary mb-2 block">
+                        {def.label}
+                      </span>
+                      <span className="font-semibold text-slate-900 group-hover:text-primary transition-colors block mb-1">
+                        {def.subtitle} NDT
+                      </span>
+                      <span className="text-xs text-slate-500">
+                        {def.methods.slice(0, 3).map((m) => m.code).join(' · ')} · industry codes &amp; rates
+                      </span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </section>
+          </>
+        )}
 
         <div className="section-divider my-10"></div>
 
