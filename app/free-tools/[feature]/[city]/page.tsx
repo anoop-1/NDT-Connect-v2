@@ -15,6 +15,9 @@ interface Params { params: Promise<{ feature: string; city: string }>; }
 // Static-generated over PUBLISHABLE_CITIES (cities that clear the quality
 // gate in data/cities.ts). Pruned cities don't get a free-tool page either —
 // thin pages here would carry the same SEO penalty as on /ndt-services.
+// Free-tier: fully static — no on-demand ISR (params below are exhaustive).
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const out: { feature: string; city: string }[] = [];
   for (const t of FREE_TOOLS) {

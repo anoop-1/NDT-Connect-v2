@@ -7,6 +7,9 @@ import { listSlugs, loadTool } from '@/lib/content/authored';
 
 interface Props { params: { slug: string } }
 
+// Free-tier: fully static — no on-demand ISR (params below are exhaustive).
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return listSlugs('tools').map((slug) => ({ slug }));
 }

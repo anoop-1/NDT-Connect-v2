@@ -84,6 +84,9 @@ const METHODS_FOR_CITY_GRID: { slug: string; abbr: string; name: string; blurb: 
   },
 ];
 
+// Free-tier: fully static — no on-demand ISR (params below are exhaustive).
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return PUBLISHABLE_CITIES.map((c) => ({ city: c.slug }));
 }

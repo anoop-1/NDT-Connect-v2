@@ -32,6 +32,9 @@ function primaryAuthorityFor(code: string): string {
   }
 }
 
+// Free-tier: fully static — no on-demand ISR (params below are exhaustive).
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const out: { feature: string; code: string }[] = [];
   for (const t of FREE_TOOLS) {

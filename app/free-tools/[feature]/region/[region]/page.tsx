@@ -12,6 +12,9 @@ const SITE = "https://ndt-connect.com";
 
 interface Params { params: Promise<{ feature: string; region: string }>; }
 
+// Free-tier: fully static — no on-demand ISR (params below are exhaustive).
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const out: { feature: string; region: string }[] = [];
   for (const t of FREE_TOOLS) {

@@ -226,6 +226,9 @@ function findMethod(slug: string): MethodSpec | undefined {
   return METHODS.find((m) => m.slug === slug);
 }
 
+// Free-tier: fully static — no on-demand ISR (params below are exhaustive).
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const params: Array<{ city: string; slug: string }> = [];
   for (const city of PUBLISHABLE_CITIES) {

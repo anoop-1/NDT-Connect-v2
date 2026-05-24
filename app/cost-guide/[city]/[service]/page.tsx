@@ -184,6 +184,9 @@ function findMethodCost(slug: string): MethodCost | undefined {
   return METHOD_COSTS.find((m) => m.slug === slug);
 }
 
+// Free-tier: fully static — no on-demand ISR (params below are exhaustive).
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   const params: Array<{ city: string; service: string }> = [];
   for (const city of PUBLISHABLE_CITIES) {

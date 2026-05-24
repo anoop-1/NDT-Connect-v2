@@ -40,6 +40,9 @@ interface PageProps {
   params: Promise<{ city: string; industry: string }>;
 }
 
+// Free-tier: fully static — no on-demand ISR (params below are exhaustive).
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   // Returns { city, industry } — Next.js maps these to [city] and [industry]
   return allCityIndustryCombos();

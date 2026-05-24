@@ -21,6 +21,9 @@ interface Props {
   };
 }
 
+// Free-tier: fully static — no on-demand ISR (params below are exhaustive).
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return getAllGlossarySlugs().map((slug) => ({
     term: slug,
