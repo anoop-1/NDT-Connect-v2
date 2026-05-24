@@ -165,6 +165,10 @@ export default function HomePage() {
       <div style={{ marginTop: '48px', padding: '24px', background: '#f8fafc', borderRadius: '8px' }}>
         <h2 style={{ marginTop: 0 }}>NDT Connect Resources</h2>
         <p>Explore more NDT resources on NDT Connect:</p>
+        <ul data-section='cornerstone-links'>
+          <li><a href='https://ndt-connect.com/methods/eddy-current-testing' target='_blank' rel='noopener'>Eddy Current Testing Guide</a></li>
+          <li><a href='https://ndt-connect.com/methods/ultrasonic-testing' target='_blank' rel='noopener'>Ultrasonic Testing Guide</a></li>
+        </ul>
         <ul>
           <li><a href='https://ndt-connect.com/services/radiographic-testing' target='_blank' rel='noopener'>Radiographic Testing Services</a></li>
           <li><a href='https://ndt-connect.com/tools/inspection-cost-estimator' target='_blank' rel='noopener'>NDT Cost Estimator</a></li>

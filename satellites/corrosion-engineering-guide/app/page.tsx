@@ -165,6 +165,10 @@ export default function HomePage() {
       <div style={{ marginTop: '48px', padding: '24px', background: '#f8fafc', borderRadius: '8px' }}>
         <h2 style={{ marginTop: 0 }}>NDT Connect Resources</h2>
         <p>Explore more NDT resources on NDT Connect:</p>
+        <ul data-section='cornerstone-links'>
+          <li><a href='https://ndt-connect.com/pillars/corrosion-monitoring-pillar' target='_blank' rel='noopener'>Corrosion Monitoring Hub</a></li>
+          <li><a href='https://ndt-connect.com/certifications/api-510' target='_blank' rel='noopener'>API 510 Pressure Vessel Inspection</a></li>
+        </ul>
         <ul>
           <li><a href='https://ndt-connect.com/blog/ndt-certifications-explained' target='_blank' rel='noopener'>NDT Certifications Explained</a></li>
           <li><a href='https://ndt-connect.com/services/magnetic-flux-leakage' target='_blank' rel='noopener'>Magnetic Flux Leakage Testing</a></li>

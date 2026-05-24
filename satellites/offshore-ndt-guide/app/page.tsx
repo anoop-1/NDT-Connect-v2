@@ -165,6 +165,10 @@ export default function HomePage() {
       <div style={{ marginTop: '48px', padding: '24px', background: '#f8fafc', borderRadius: '8px' }}>
         <h2 style={{ marginTop: 0 }}>NDT Connect Resources</h2>
         <p>Explore more NDT resources on NDT Connect:</p>
+        <ul data-section='cornerstone-links'>
+          <li><a href='https://ndt-connect.com/pillars/tank-inspection-pillar' target='_blank' rel='noopener'>Storage Tank Inspection (API 653)</a></li>
+          <li><a href='https://ndt-connect.com/certifications/api-510' target='_blank' rel='noopener'>API 510 Certification</a></li>
+        </ul>
         <ul>
           <li><a href='https://ndt-connect.com/certifications/iso-9712' target='_blank' rel='noopener'>ISO 9712 Certification</a></li>
           <li><a href='https://ndt-connect.com/industries/marine-and-offshore' target='_blank' rel='noopener'>Marine & Offshore NDT</a></li>

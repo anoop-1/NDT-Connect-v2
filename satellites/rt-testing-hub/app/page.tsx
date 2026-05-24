@@ -165,6 +165,10 @@ export default function HomePage() {
       <div style={{ marginTop: '48px', padding: '24px', background: '#f8fafc', borderRadius: '8px' }}>
         <h2 style={{ marginTop: 0 }}>NDT Connect Resources</h2>
         <p>Explore more NDT resources on NDT Connect:</p>
+        <ul data-section='cornerstone-links'>
+          <li><a href='https://ndt-connect.com/methods/radiographic-testing' target='_blank' rel='noopener'>Radiographic Testing Guide</a></li>
+          <li><a href='https://ndt-connect.com/certifications/asnt-certification' target='_blank' rel='noopener'>ASNT Certification Guide</a></li>
+        </ul>
         <ul>
           <li><a href='https://ndt-connect.com/industries/oil-and-gas' target='_blank' rel='noopener'>Oil & Gas NDT</a></li>
           <li><a href='https://ndt-connect.com/services/magnetic-particle-testing' target='_blank' rel='noopener'>Magnetic Particle Testing</a></li>

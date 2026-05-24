@@ -165,6 +165,10 @@ export default function HomePage() {
       <div style={{ marginTop: '48px', padding: '24px', background: '#f8fafc', borderRadius: '8px' }}>
         <h2 style={{ marginTop: 0 }}>NDT Connect Resources</h2>
         <p>Explore more NDT resources on NDT Connect:</p>
+        <ul data-section='cornerstone-links'>
+          <li><a href='https://ndt-connect.com/certifications/cwi-certification' target='_blank' rel='noopener'>AWS CWI Certification Guide</a></li>
+          <li><a href='https://ndt-connect.com/methods/ultrasonic-testing' target='_blank' rel='noopener'>Ultrasonic Weld Inspection</a></li>
+        </ul>
         <ul>
           <li><a href='https://ndt-connect.com/industries/construction' target='_blank' rel='noopener'>Construction NDT</a></li>
           <li><a href='https://ndt-connect.com/blog/ultimate-guide-ultrasonic-testing' target='_blank' rel='noopener'>Ultrasonic Testing Guide</a></li>

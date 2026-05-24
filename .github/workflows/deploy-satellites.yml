@@ -1,0 +1,50 @@
+name: Deploy satellites
+
+# Auto-deploys every satellite backlink site to its Vercel project whenever
+# anything under satellites/ changes on main. Also runnable manually.
+# Requires a repo secret VERCEL_TOKEN (Settings -> Secrets and variables ->
+# Actions). Each satellite's .vercel/project.json provides its project linkage.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'satellites/**'
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-satellites
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        site:
+          - tank-inspection-guide
+          - weld-inspection-pro
+          - ndt-standards-reference
+          - pressure-vessel-inspection
+          - pipeline-integrity-hub
+          - aerospace-ndt-center
+          - corrosion-engineering-guide
+          - offshore-ndt-guide
+          - ut-testing-academy
+          - rt-testing-hub
+          - ndt-career-portal
+          - industrial-coating-inspection
+          - ndt-equipment-reviews
+          - ndt-safety-compliance
+          - ndt-digital-technology
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+      - name: Deploy ${{ matrix.site }}
+        working-directory: satellites/${{ matrix.site }}
+        run: vercel deploy --prod --token="${{ secrets.VERCEL_TOKEN }}" --yes

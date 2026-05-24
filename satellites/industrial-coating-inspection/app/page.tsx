@@ -165,6 +165,10 @@ export default function HomePage() {
       <div style={{ marginTop: '48px', padding: '24px', background: '#f8fafc', borderRadius: '8px' }}>
         <h2 style={{ marginTop: 0 }}>NDT Connect Resources</h2>
         <p>Explore more NDT resources on NDT Connect:</p>
+        <ul data-section='cornerstone-links'>
+          <li><a href='https://ndt-connect.com/pillars/corrosion-monitoring-pillar' target='_blank' rel='noopener'>Corrosion Monitoring Hub</a></li>
+          <li><a href='https://ndt-connect.com/pillars/tank-inspection-pillar' target='_blank' rel='noopener'>Storage Tank Inspection</a></li>
+        </ul>
         <ul>
           <li><a href='https://ndt-connect.com/certifications/iso-9712' target='_blank' rel='noopener'>ISO 9712 Certification</a></li>
           <li><a href='https://ndt-connect.com/blog/corrosion-under-insulation-guide' target='_blank' rel='noopener'>CUI Guide</a></li>
