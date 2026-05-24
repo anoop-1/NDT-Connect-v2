@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { readdirSync } from 'fs';
 import path from 'path';
 import { FREE_TOOLS } from '@/data/freeTools';
-import { CITIES, PUBLISHABLE_CITIES, REGIONS, COUNTRIES } from '@/data/cities';
+import { CITIES, PUBLISHABLE_CITIES } from '@/data/cities';
 import { allCityIndustryCombos } from '@/lib/content/city-industry-content';
 import { procedureExamples } from '@/data/procedure-examples';
 
@@ -254,30 +254,16 @@ const BUCKETS: Record<string, () => MetadataRoute.Sitemap> = {
     url('/free-tools/ai-procedure-generator', 'weekly', 0.9),
   ],
 
-  'free-tools-cities': () =>
-    FREE_TOOLS.flatMap((t) =>
-      PUBLISHABLE_CITIES.map((c) =>
-        url(`/free-tools/${t.slug}/${c.slug}`, 'monthly', 0.7),
-      ),
-    ),
+  // free-tool x {city,region,country} matrices are noindex as of 2026-05-24
+  // (near-zero search demand: ~40 impr across 600 URLs, 0 clicks in GSC). They
+  // stay live for direct/in-app use but are removed from the sitemap so crawl
+  // budget concentrates on the indexable tool hub + feature pages. Re-enable by
+  // restoring the generators below once domain authority supports the long tail.
+  'free-tools-cities': () => [],
 
-  'free-tools-regions': () =>
-    FREE_TOOLS.flatMap((t) =>
-      REGIONS.map((r) =>
-        url(`/free-tools/${t.slug}/region/${r.slug}`, 'monthly', 0.65),
-      ),
-    ),
+  'free-tools-regions': () => [],
 
-  'free-tools-countries': () =>
-    FREE_TOOLS.flatMap((t) =>
-      COUNTRIES.map((c) =>
-        url(
-          `/free-tools/${t.slug}/country/${c.code.toLowerCase()}`,
-          'monthly',
-          0.6,
-        ),
-      ),
-    ),
+  'free-tools-countries': () => [],
 
   // ---- city × industry (386 high-quality industry-specific pages) ----
   'city-industries': () =>
@@ -356,3 +342,4 @@ export default function sitemap({
   }
   return build();
 }
+                                                                                                  

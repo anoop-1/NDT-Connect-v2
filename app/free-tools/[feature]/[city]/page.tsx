@@ -39,6 +39,10 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title,
     description,
+    // noindex (follow): GSC 2026-05-24 shows near-zero search demand across the
+    // free-tool x city matrix (~40 impr / 600 URLs, 0 clicks). De-indexing the
+    // explosion concentrates crawl budget on the indexable tool hub pages.
+    robots: { index: false, follow: true },
     alternates: { canonical: url },
     openGraph: {
       title,
@@ -53,9 +57,4 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
 export default async function CityPage({ params }: Params) {
   const { feature, city: citySlug } = await params;
-  const tool = findFreeTool(feature);
-  const city = findPublishableCity(citySlug);
-  if (!tool || !city) return notFound();
-  const alternateFeatures = FREE_TOOLS.filter(f => f.slug !== tool.slug);
-  return <FreeToolCityPage tool={tool} city={city} alternateFeatures={alternateFeatures} />;
-}
+  const tool 

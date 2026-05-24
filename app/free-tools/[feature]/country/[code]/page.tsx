@@ -57,6 +57,9 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title,
     description,
+    // noindex (follow): near-zero search demand on free-tool x country matrix
+    // (GSC 2026-05-24). Concentrates crawl budget on indexable tool hub pages.
+    robots: { index: false, follow: true },
     alternates: { canonical: url },
     openGraph: {
       title,
@@ -75,13 +78,4 @@ export default async function CountryPage({ params }: Params) {
   const country = COUNTRIES.find(c => c.code.toLowerCase() === codeParam.toLowerCase());
   if (!tool || !country) return notFound();
   const citiesInCountry = citiesByCountry(country.code);
-  if (citiesInCountry.length === 0) return notFound();
-  return (
-    <FreeToolCountryPage
-      tool={tool}
-      countryCode={country.code}
-      countryName={country.name}
-      citiesInCountry={citiesInCountry}
-    />
-  );
-}
+  if (citiesInCountry.leng
