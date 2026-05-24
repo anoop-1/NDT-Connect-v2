@@ -19,6 +19,7 @@ const STATIC_BUCKETS = [
   'city-hubs',
   'city-methods',
   'cost-guides',
+  'city-industries',
   'careers-cities',
   'careers-roles',
   'training',
