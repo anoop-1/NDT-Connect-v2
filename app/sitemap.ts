@@ -69,7 +69,7 @@ const industries = [
 ];
 
 const certifications = [
-  'asnt-certification', 'iso-9712', 'api-510', 'api-570', 'api-653', 'pcn-certification',
+  'asnt-certification', 'iso-9712', 'api-510', 'api-570', 'api-653', 'pcn-certification', 'cwi-certification',
 ];
 
 const blogPosts = [

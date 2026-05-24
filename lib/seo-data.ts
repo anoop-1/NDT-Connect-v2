@@ -578,6 +578,19 @@ export const certifications: CertificationData[] = [
     issuingBody: 'British Institute of Non-Destructive Testing (BINDT)',
     relevantMethods: ['UT', 'RT', 'MT', 'PT', 'ET', 'VT', 'TOFD', 'PAUT'],
   },
+  {
+    slug: 'cwi-certification',
+    name: 'AWS CWI Certification',
+    abbreviation: 'CWI',
+    description: 'Certified Welding Inspector certification from the American Welding Society — the benchmark weld-inspection credential in North America.',
+    longDescription: 'The AWS Certified Welding Inspector (CWI) is the most widely recognized weld-inspection credential in North America, administered by the American Welding Society under the AWS QC1 standard. A CWI is qualified to perform visual inspection of welds and to interpret and apply welding codes — most commonly AWS D1.1 Structural Welding Code (Steel), and also D1.5 (bridges), ASME Section IX, and API 1104 (pipelines). The examination is demanding and is split into three parts taken in one sitting: Part A (Fundamentals) is a 150-question closed-book exam covering welding processes, metallurgy, symbols, NDT, destructive testing, safety, and inspection math; Part B (Practical) is a hands-on exam using AWS-supplied weld replicas, gauges, and a purpose-written Book of Specifications, plus about 46 questions; and Part C (Code Application) is an open-book exam applying a chosen code book (typically AWS D1.1) to realistic inspection scenarios. Candidates must pass all three parts, and the first-attempt pass rate sits around 25-30% — among the lowest of any inspection credential, which is why the CWI commands a wage premium. Eligibility is an education-and-experience matrix administered by AWS, and near-vision and color-perception acuity must be verified. Certification runs on a 9-year cycle: a CWI maintains it through periodic renewal and recertifies at year nine either by re-examination or by documenting 80 Professional Development Hours.',
+    levels: ['CAWI - Certified Associate Welding Inspector (entry tier; works under the direction of a CWI)', 'CWI - Certified Welding Inspector (full credential for independent visual inspection and code interpretation)', 'SCWI - Senior Certified Welding Inspector (advanced tier requiring additional experience and examination)'],
+    requirements: ['Education-and-experience matrix administered by AWS (more experience required for less formal welding education)', 'Pass all three parts in one sitting: Part A Fundamentals (150 Q, closed book), Part B Practical (hands-on + ~46 Q), Part C Code Application (open book)', 'Near-vision (Jaeger J-2) and color-perception acuity verification', 'Adherence to AWS QC1 and the AWS code of ethics', 'Maintain on a 9-year cycle; recertify by examination or 80 Professional Development Hours (PDH)'],
+    examTopics: ['Welding processes (SMAW, GMAW, FCAW, GTAW, SAW) and fundamentals', 'Welding metallurgy and heat-affected-zone behavior', 'Welding symbols and blueprint reading (AWS A2.4)', 'WPS / PQR / WPQ qualification under AWS D1.1 and ASME Section IX', 'Visual inspection acceptance criteria and weld discontinuities', 'NDT and destructive testing fundamentals', 'Code application — AWS D1.1 Structural Welding Code (Steel)', 'Inspection mathematics, safety, and documentation'],
+    validityPeriod: '9-year cycle (periodic renewal; recert by exam or 80 PDH)',
+    issuingBody: 'American Welding Society (AWS)',
+    relevantMethods: ['VT', 'PT', 'MT', 'RT', 'UT'],
+  },
 ];
 
 export function getCertificationBySlug(slug: string): CertificationData | undefined {
