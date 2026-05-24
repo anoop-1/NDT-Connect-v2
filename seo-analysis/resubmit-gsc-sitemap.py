@@ -20,8 +20,8 @@ log = logging.getLogger('gsc-sitemap')
 CRED_DIR = Path(__file__).parent / 'credentials'
 SCOPES = ['https://www.googleapis.com/auth/webmasters']
 SITES = [
-    ('https://ndt-connect.com/', 'https://ndt-connect.com/sitemap.xml'),
-    ('sc-domain:ndt-connect.com', 'https://ndt-connect.com/sitemap.xml'),
+    ('https://ndt-connect.com/', 'https://ndt-connect.com/sitemap-index.xml'),
+    ('sc-domain:ndt-connect.com', 'https://ndt-connect.com/sitemap-index.xml'),
 ]
 
 
