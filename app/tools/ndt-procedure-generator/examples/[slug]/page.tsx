@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const ex = getExampleBySlug(params.slug);
   if (!ex) return { title: 'Procedure not found — NDT Connect' };
 
-  const url = `https://ndtconnect.com/tools/ndt-procedure-generator/examples/${ex.slug}`;
+  const url = `https://ndt-connect.com/tools/ndt-procedure-generator/examples/${ex.slug}`;
   return {
     title: `${ex.title} — NDT Connect`,
     description: ex.summary,
@@ -78,10 +78,10 @@ export default function ExampleDetailPage({ params }: PageProps) {
     <div className="mx-auto max-w-4xl px-4 py-10 sm:py-14">
       <BreadcrumbSchema
         items={[
-          { name: 'Home', url: 'https://ndtconnect.com/' },
-          { name: 'AI Procedure Generator', url: 'https://ndtconnect.com/tools/ndt-procedure-generator' },
-          { name: 'Examples', url: 'https://ndtconnect.com/tools/ndt-procedure-generator/examples' },
-          { name: ex.title, url: `https://ndtconnect.com/tools/ndt-procedure-generator/examples/${ex.slug}` },
+          { name: 'Home', url: 'https://ndt-connect.com/' },
+          { name: 'AI Procedure Generator', url: 'https://ndt-connect.com/tools/ndt-procedure-generator' },
+          { name: 'Examples', url: 'https://ndt-connect.com/tools/ndt-procedure-generator/examples' },
+          { name: ex.title, url: `https://ndt-connect.com/tools/ndt-procedure-generator/examples/${ex.slug}` },
         ]}
       />
 

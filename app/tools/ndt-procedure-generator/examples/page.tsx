@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   title: 'NDT Procedure Examples — ASME, API, AWS, ASTM, ISO',
   description:
     'Browse example NDT written procedures: UT, RT, MT, PT, PAUT, TOFD, and VT across pressure vessels, pipelines, storage tanks, structural steel, aerospace, and castings.',
-  alternates: { canonical: 'https://ndtconnect.com/tools/ndt-procedure-generator/examples' },
+  alternates: { canonical: 'https://ndt-connect.com/tools/ndt-procedure-generator/examples' },
   openGraph: {
     title: 'NDT Procedure Examples — ASME, API, AWS, ASTM, ISO',
     description:
       'Reference NDT procedures covering UT, RT, MT, PT, PAUT, TOFD, and VT methods.',
-    url: 'https://ndtconnect.com/tools/ndt-procedure-generator/examples',
+    url: 'https://ndt-connect.com/tools/ndt-procedure-generator/examples',
     type: 'website',
   },
   robots: { index: true, follow: true },
@@ -23,9 +23,9 @@ export default function ExamplesIndexPage() {
     <div className="mx-auto max-w-5xl px-4 py-10 sm:py-14">
       <BreadcrumbSchema
         items={[
-          { name: 'Home', url: 'https://ndtconnect.com/' },
-          { name: 'AI Procedure Generator', url: 'https://ndtconnect.com/tools/ndt-procedure-generator' },
-          { name: 'Examples', url: 'https://ndtconnect.com/tools/ndt-procedure-generator/examples' },
+          { name: 'Home', url: 'https://ndt-connect.com/' },
+          { name: 'AI Procedure Generator', url: 'https://ndt-connect.com/tools/ndt-procedure-generator' },
+          { name: 'Examples', url: 'https://ndt-connect.com/tools/ndt-procedure-generator/examples' },
         ]}
       />
 

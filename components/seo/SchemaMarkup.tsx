@@ -200,8 +200,8 @@ export function NDTConnectOrganizationSchema() {
     return (
         <OrganizationSchema
             name="NDT Connect"
-            url="https://ndtconnect.com"
-            logo="https://ndtconnect.com/logo.png"
+            url="https://ndt-connect.com"
+            logo="https://ndt-connect.com/logo.png"
             description="NDT Connect is the leading marketplace connecting industrial asset owners with certified NDT service providers and freelance inspectors for real-time inspection services."
             sameAs={[
                 'https://www.linkedin.com/company/ndtconnect',

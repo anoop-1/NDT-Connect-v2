@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: 'Free AI NDT Procedure Generator — ASME / ASNT / AWS Compliant',
   description:
     'Generate ultrasonic, radiographic, magnetic-particle and other NDT procedures in 60 seconds. Trusted by ASNT Level III inspectors. Free signup unlocks unlimited downloads.',
-  alternates: { canonical: 'https://ndtconnect.com/tools/ndt-procedure-generator' },
+  alternates: { canonical: 'https://ndt-connect.com/tools/ndt-procedure-generator' },
   openGraph: {
     title: 'Free AI NDT Procedure Generator — ASME / ASNT / AWS Compliant',
     description:
       'Generate ultrasonic, radiographic, magnetic-particle and other NDT procedures in 60 seconds.',
-    url: 'https://ndtconnect.com/tools/ndt-procedure-generator',
+    url: 'https://ndt-connect.com/tools/ndt-procedure-generator',
     type: 'website',
   },
   robots: { index: true, follow: true },
@@ -24,11 +24,11 @@ export default function ProcedureGeneratorPage() {
     <div className="mx-auto max-w-5xl px-4 py-10 sm:py-14">
       <BreadcrumbSchema
         items={[
-          { name: 'Home', url: 'https://ndtconnect.com/' },
-          { name: 'Tools', url: 'https://ndtconnect.com/tools' },
+          { name: 'Home', url: 'https://ndt-connect.com/' },
+          { name: 'Tools', url: 'https://ndt-connect.com/tools' },
           {
             name: 'AI Procedure Generator',
-            url: 'https://ndtconnect.com/tools/ndt-procedure-generator',
+            url: 'https://ndt-connect.com/tools/ndt-procedure-generator',
           },
         ]}
       />
