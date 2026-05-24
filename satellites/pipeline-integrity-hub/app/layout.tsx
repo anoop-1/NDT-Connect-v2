@@ -21,20 +21,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <a href='/' style={{ fontWeight: 'bold', fontSize: '1.2rem', color: '#059669', textDecoration: 'none' }}>Pipeline Integrity Hub</a>
           <nav style={{ display: 'flex', gap: '16px', fontSize: '0.9rem' }}>
             <a href='/' style={{ color: '#555', textDecoration: 'none' }}>Home</a>
-            <a href='https://ndtconnect.com' target='_blank' rel='noopener' style={{ color: '#059669', textDecoration: 'none', fontWeight: 600 }}>NDT Connect</a>
+            <a href='https://ndt-connect.com' target='_blank' rel='noopener' style={{ color: '#059669', textDecoration: 'none', fontWeight: 600 }}>NDT Connect</a>
           </nav>
         </header>
         <main style={{ maxWidth: '900px', margin: '0 auto', padding: '32px 24px' }}>
           {children}
         </main>
         <footer style={{ borderTop: '1px solid #e5e7eb', padding: '32px 24px', marginTop: '48px', textAlign: 'center', color: '#888', fontSize: '0.85rem' }}>
-          <p>&copy; 2026 Pipeline Integrity Hub. An educational resource by <a href='https://ndtconnect.com' target='_blank' rel='noopener' style={{ color: '#059669' }}>NDT Connect</a>.</p>
+          <p>&copy; 2026 Pipeline Integrity Hub. An educational resource by <a href='https://ndt-connect.com' target='_blank' rel='noopener' style={{ color: '#059669' }}>NDT Connect</a>.</p>
           <div style={{ marginTop: '12px', display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href='https://ndtconnect.com/services' target='_blank' rel='noopener' style={{ color: '#666', fontSize: '0.8rem' }}>NDT Services</a>
-            <a href='https://ndtconnect.com/industries' target='_blank' rel='noopener' style={{ color: '#666', fontSize: '0.8rem' }}>Industries</a>
-            <a href='https://ndtconnect.com/certifications' target='_blank' rel='noopener' style={{ color: '#666', fontSize: '0.8rem' }}>Certifications</a>
-            <a href='https://ndtconnect.com/blog' target='_blank' rel='noopener' style={{ color: '#666', fontSize: '0.8rem' }}>NDT Blog</a>
-            <a href='https://ndtconnect.com/find-providers' target='_blank' rel='noopener' style={{ color: '#666', fontSize: '0.8rem' }}>Find Providers</a>
+            <a href='https://ndt-connect.com/services' target='_blank' rel='noopener' style={{ color: '#666', fontSize: '0.8rem' }}>NDT Services</a>
+            <a href='https://ndt-connect.com/industries' target='_blank' rel='noopener' style={{ color: '#666', fontSize: '0.8rem' }}>Industries</a>
+            <a href='https://ndt-connect.com/certifications' target='_blank' rel='noopener' style={{ color: '#666', fontSize: '0.8rem' }}>Certifications</a>
+            <a href='https://ndt-connect.com/blog' target='_blank' rel='noopener' style={{ color: '#666', fontSize: '0.8rem' }}>NDT Blog</a>
+            <a href='https://ndt-connect.com/find-providers' target='_blank' rel='noopener' style={{ color: '#666', fontSize: '0.8rem' }}>Find Providers</a>
           </div>
         </footer>
       </body>

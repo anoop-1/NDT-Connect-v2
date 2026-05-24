@@ -11,11 +11,11 @@ export default function HomePage() {
     <div>
       <h1>Your Guide to NDT Codes and Standards</h1>
       <p style={{ fontSize: '1.1rem' }}>
-        Comprehensive reference for NDT codes, standards, and specifications from ASME, ASTM, AWS, ISO, EN, and API. Brought to you by <a href='https://ndtconnect.com' target='_blank' rel='noopener'>NDT Connect</a>, the leading marketplace for non-destructive testing services.
+        Comprehensive reference for NDT codes, standards, and specifications from ASME, ASTM, AWS, ISO, EN, and API. Brought to you by <a href='https://ndt-connect.com' target='_blank' rel='noopener'>NDT Connect</a>, the leading marketplace for non-destructive testing services.
       </p>
 
       <div style={{ background: '#0f766e10', padding: '20px', borderRadius: '8px', margin: '24px 0', borderLeft: '4px solid #0f766e' }}>
-        <p style={{ margin: 0, fontWeight: 600 }}>Looking for NDT inspection services? <a href='https://ndtconnect.com/find-providers' target='_blank' rel='noopener'>Find certified NDT providers on NDT Connect</a></p>
+        <p style={{ margin: 0, fontWeight: 600 }}>Looking for NDT inspection services? <a href='https://ndt-connect.com/find-providers' target='_blank' rel='noopener'>Find certified NDT providers on NDT Connect</a></p>
       </div>
 
       <h2>Topics</h2>
@@ -166,16 +166,16 @@ export default function HomePage() {
         <h2 style={{ marginTop: 0 }}>NDT Connect Resources</h2>
         <p>Explore more NDT resources on NDT Connect:</p>
         <ul>
-          <li><a href='https://ndtconnect.com/services' target='_blank' rel='noopener'>NDT Services</a></li>
-          <li><a href='https://ndtconnect.com' target='_blank' rel='noopener'>NDT Connect</a></li>
-          <li><a href='https://ndtconnect.com/blog/weld-inspection-complete-guide' target='_blank' rel='noopener'>Weld Inspection Guide</a></li>
-          <li><a href='https://ndtconnect.com/blog/pipeline-inspection-techniques' target='_blank' rel='noopener'>Pipeline Inspection</a></li>
-          <li><a href='https://ndtconnect.com/ndt-services/sydney' target='_blank' rel='noopener'>NDT Services in Sydney</a></li>
-          <li><a href='https://ndtconnect.com/ndt-services/mumbai' target='_blank' rel='noopener'>NDT Services in Mumbai</a></li>
-          <li><a href='https://ndtconnect.com/ndt-services/denver' target='_blank' rel='noopener'>NDT Services in Denver</a></li>
-          <li><a href='https://ndtconnect.com/ndt-services/singapore' target='_blank' rel='noopener'>NDT Services in Singapore</a></li>
+          <li><a href='https://ndt-connect.com/services' target='_blank' rel='noopener'>NDT Services</a></li>
+          <li><a href='https://ndt-connect.com' target='_blank' rel='noopener'>NDT Connect</a></li>
+          <li><a href='https://ndt-connect.com/blog/weld-inspection-complete-guide' target='_blank' rel='noopener'>Weld Inspection Guide</a></li>
+          <li><a href='https://ndt-connect.com/blog/pipeline-inspection-techniques' target='_blank' rel='noopener'>Pipeline Inspection</a></li>
+          <li><a href='https://ndt-connect.com/ndt-services/sydney' target='_blank' rel='noopener'>NDT Services in Sydney</a></li>
+          <li><a href='https://ndt-connect.com/ndt-services/mumbai' target='_blank' rel='noopener'>NDT Services in Mumbai</a></li>
+          <li><a href='https://ndt-connect.com/ndt-services/denver' target='_blank' rel='noopener'>NDT Services in Denver</a></li>
+          <li><a href='https://ndt-connect.com/ndt-services/singapore' target='_blank' rel='noopener'>NDT Services in Singapore</a></li>
         </ul>
-        <a href='https://ndtconnect.com/register' target='_blank' rel='noopener' style={{ display: 'inline-block', background: '#0f766e', color: 'white', padding: '12px 24px', borderRadius: '6px', textDecoration: 'none', fontWeight: 600 }}>Join NDT Connect Free</a>
+        <a href='https://ndt-connect.com/register' target='_blank' rel='noopener' style={{ display: 'inline-block', background: '#0f766e', color: 'white', padding: '12px 24px', borderRadius: '6px', textDecoration: 'none', fontWeight: 600 }}>Join NDT Connect Free</a>
       </div>
     </div>
   );

@@ -11,11 +11,11 @@ export default function HomePage() {
     <div>
       <h1>Independent NDT Equipment and Technology Reviews</h1>
       <p style={{ fontSize: '1.1rem' }}>
-        Independent reviews and comparisons of NDT equipment, software, and technology from leading manufacturers. Brought to you by <a href='https://ndtconnect.com' target='_blank' rel='noopener'>NDT Connect</a>, the leading marketplace for non-destructive testing services.
+        Independent reviews and comparisons of NDT equipment, software, and technology from leading manufacturers. Brought to you by <a href='https://ndt-connect.com' target='_blank' rel='noopener'>NDT Connect</a>, the leading marketplace for non-destructive testing services.
       </p>
 
       <div style={{ background: '#6366f110', padding: '20px', borderRadius: '8px', margin: '24px 0', borderLeft: '4px solid #6366f1' }}>
-        <p style={{ margin: 0, fontWeight: 600 }}>Looking for NDT inspection services? <a href='https://ndtconnect.com/find-providers' target='_blank' rel='noopener'>Find certified NDT providers on NDT Connect</a></p>
+        <p style={{ margin: 0, fontWeight: 600 }}>Looking for NDT inspection services? <a href='https://ndt-connect.com/find-providers' target='_blank' rel='noopener'>Find certified NDT providers on NDT Connect</a></p>
       </div>
 
       <h2>Topics</h2>
@@ -166,16 +166,16 @@ export default function HomePage() {
         <h2 style={{ marginTop: 0 }}>NDT Connect Resources</h2>
         <p>Explore more NDT resources on NDT Connect:</p>
         <ul>
-          <li><a href='https://ndtconnect.com/services/radiographic-testing' target='_blank' rel='noopener'>Radiographic Testing Services</a></li>
-          <li><a href='https://ndtconnect.com/tools/inspection-cost-estimator' target='_blank' rel='noopener'>NDT Cost Estimator</a></li>
-          <li><a href='https://ndtconnect.com/blog/ndt-digital-twins-guide' target='_blank' rel='noopener'>NDT Digital Twins</a></li>
-          <li><a href='https://ndtconnect.com/tools/ndt-method-selector' target='_blank' rel='noopener'>NDT Method Selector Tool</a></li>
-          <li><a href='https://ndtconnect.com/ndt-services/germany' target='_blank' rel='noopener'>NDT Services in Germany</a></li>
-          <li><a href='https://ndtconnect.com/ndt-services/sydney' target='_blank' rel='noopener'>NDT Services in Sydney</a></li>
-          <li><a href='https://ndtconnect.com/ndt-services/chicago' target='_blank' rel='noopener'>NDT Services in Chicago</a></li>
-          <li><a href='https://ndtconnect.com/blog/corrosion-under-insulation-guide' target='_blank' rel='noopener'>CUI Guide</a></li>
+          <li><a href='https://ndt-connect.com/services/radiographic-testing' target='_blank' rel='noopener'>Radiographic Testing Services</a></li>
+          <li><a href='https://ndt-connect.com/tools/inspection-cost-estimator' target='_blank' rel='noopener'>NDT Cost Estimator</a></li>
+          <li><a href='https://ndt-connect.com/blog/ndt-digital-twins-guide' target='_blank' rel='noopener'>NDT Digital Twins</a></li>
+          <li><a href='https://ndt-connect.com/tools/ndt-method-selector' target='_blank' rel='noopener'>NDT Method Selector Tool</a></li>
+          <li><a href='https://ndt-connect.com/ndt-services/germany' target='_blank' rel='noopener'>NDT Services in Germany</a></li>
+          <li><a href='https://ndt-connect.com/ndt-services/sydney' target='_blank' rel='noopener'>NDT Services in Sydney</a></li>
+          <li><a href='https://ndt-connect.com/ndt-services/chicago' target='_blank' rel='noopener'>NDT Services in Chicago</a></li>
+          <li><a href='https://ndt-connect.com/blog/corrosion-under-insulation-guide' target='_blank' rel='noopener'>CUI Guide</a></li>
         </ul>
-        <a href='https://ndtconnect.com/register' target='_blank' rel='noopener' style={{ display: 'inline-block', background: '#6366f1', color: 'white', padding: '12px 24px', borderRadius: '6px', textDecoration: 'none', fontWeight: 600 }}>Join NDT Connect Free</a>
+        <a href='https://ndt-connect.com/register' target='_blank' rel='noopener' style={{ display: 'inline-block', background: '#6366f1', color: 'white', padding: '12px 24px', borderRadius: '6px', textDecoration: 'none', fontWeight: 600 }}>Join NDT Connect Free</a>
       </div>
     </div>
   );

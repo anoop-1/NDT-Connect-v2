@@ -11,11 +11,11 @@ export default function HomePage() {
     <div>
       <h1>Complete Guide to Pressure Equipment Inspection</h1>
       <p style={{ fontSize: '1.1rem' }}>
-        Expert resource for pressure vessel inspection covering ASME, API, and PED requirements, damage mechanisms, and fitness-for-service. Brought to you by <a href='https://ndtconnect.com' target='_blank' rel='noopener'>NDT Connect</a>, the leading marketplace for non-destructive testing services.
+        Expert resource for pressure vessel inspection covering ASME, API, and PED requirements, damage mechanisms, and fitness-for-service. Brought to you by <a href='https://ndt-connect.com' target='_blank' rel='noopener'>NDT Connect</a>, the leading marketplace for non-destructive testing services.
       </p>
 
       <div style={{ background: '#b91c1c10', padding: '20px', borderRadius: '8px', margin: '24px 0', borderLeft: '4px solid #b91c1c' }}>
-        <p style={{ margin: 0, fontWeight: 600 }}>Looking for NDT inspection services? <a href='https://ndtconnect.com/find-providers' target='_blank' rel='noopener'>Find certified NDT providers on NDT Connect</a></p>
+        <p style={{ margin: 0, fontWeight: 600 }}>Looking for NDT inspection services? <a href='https://ndt-connect.com/find-providers' target='_blank' rel='noopener'>Find certified NDT providers on NDT Connect</a></p>
       </div>
 
       <h2>Topics</h2>
@@ -166,16 +166,16 @@ export default function HomePage() {
         <h2 style={{ marginTop: 0 }}>NDT Connect Resources</h2>
         <p>Explore more NDT resources on NDT Connect:</p>
         <ul>
-          <li><a href='https://ndtconnect.com/certifications/api-653' target='_blank' rel='noopener'>API 653 Certification</a></li>
-          <li><a href='https://ndtconnect.com/industries/manufacturing' target='_blank' rel='noopener'>Manufacturing NDT</a></li>
-          <li><a href='https://ndtconnect.com/faq' target='_blank' rel='noopener'>NDT FAQ</a></li>
-          <li><a href='https://ndtconnect.com/blog/ut-vs-rt-comparison' target='_blank' rel='noopener'>UT vs RT Comparison</a></li>
-          <li><a href='https://ndtconnect.com/ndt-services/germany' target='_blank' rel='noopener'>NDT Services in Germany</a></li>
-          <li><a href='https://ndtconnect.com/ndt-services/denver' target='_blank' rel='noopener'>NDT Services in Denver</a></li>
-          <li><a href='https://ndtconnect.com/ndt-services/aberdeen' target='_blank' rel='noopener'>NDT Services in Aberdeen</a></li>
-          <li><a href='https://ndtconnect.com/certifications' target='_blank' rel='noopener'>NDT Certifications</a></li>
+          <li><a href='https://ndt-connect.com/certifications/api-653' target='_blank' rel='noopener'>API 653 Certification</a></li>
+          <li><a href='https://ndt-connect.com/industries/manufacturing' target='_blank' rel='noopener'>Manufacturing NDT</a></li>
+          <li><a href='https://ndt-connect.com/faq' target='_blank' rel='noopener'>NDT FAQ</a></li>
+          <li><a href='https://ndt-connect.com/blog/ut-vs-rt-comparison' target='_blank' rel='noopener'>UT vs RT Comparison</a></li>
+          <li><a href='https://ndt-connect.com/ndt-services/germany' target='_blank' rel='noopener'>NDT Services in Germany</a></li>
+          <li><a href='https://ndt-connect.com/ndt-services/denver' target='_blank' rel='noopener'>NDT Services in Denver</a></li>
+          <li><a href='https://ndt-connect.com/ndt-services/aberdeen' target='_blank' rel='noopener'>NDT Services in Aberdeen</a></li>
+          <li><a href='https://ndt-connect.com/certifications' target='_blank' rel='noopener'>NDT Certifications</a></li>
         </ul>
-        <a href='https://ndtconnect.com/register' target='_blank' rel='noopener' style={{ display: 'inline-block', background: '#b91c1c', color: 'white', padding: '12px 24px', borderRadius: '6px', textDecoration: 'none', fontWeight: 600 }}>Join NDT Connect Free</a>
+        <a href='https://ndt-connect.com/register' target='_blank' rel='noopener' style={{ display: 'inline-block', background: '#b91c1c', color: 'white', padding: '12px 24px', borderRadius: '6px', textDecoration: 'none', fontWeight: 600 }}>Join NDT Connect Free</a>
       </div>
     </div>
   );

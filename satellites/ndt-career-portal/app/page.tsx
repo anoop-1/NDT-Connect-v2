@@ -11,11 +11,11 @@ export default function HomePage() {
     <div>
       <h1>Build Your NDT Career</h1>
       <p style={{ fontSize: '1.1rem' }}>
-        Career guidance resource for NDT professionals covering certifications, training programs, salary information, and career advancement. Brought to you by <a href='https://ndtconnect.com' target='_blank' rel='noopener'>NDT Connect</a>, the leading marketplace for non-destructive testing services.
+        Career guidance resource for NDT professionals covering certifications, training programs, salary information, and career advancement. Brought to you by <a href='https://ndt-connect.com' target='_blank' rel='noopener'>NDT Connect</a>, the leading marketplace for non-destructive testing services.
       </p>
 
       <div style={{ background: '#ca8a0410', padding: '20px', borderRadius: '8px', margin: '24px 0', borderLeft: '4px solid #ca8a04' }}>
-        <p style={{ margin: 0, fontWeight: 600 }}>Looking for NDT inspection services? <a href='https://ndtconnect.com/find-providers' target='_blank' rel='noopener'>Find certified NDT providers on NDT Connect</a></p>
+        <p style={{ margin: 0, fontWeight: 600 }}>Looking for NDT inspection services? <a href='https://ndt-connect.com/find-providers' target='_blank' rel='noopener'>Find certified NDT providers on NDT Connect</a></p>
       </div>
 
       <h2>Topics</h2>
@@ -166,16 +166,16 @@ export default function HomePage() {
         <h2 style={{ marginTop: 0 }}>NDT Connect Resources</h2>
         <p>Explore more NDT resources on NDT Connect:</p>
         <ul>
-          <li><a href='https://ndtconnect.com/industries/construction' target='_blank' rel='noopener'>Construction NDT</a></li>
-          <li><a href='https://ndtconnect.com/services/eddy-current-testing' target='_blank' rel='noopener'>Eddy Current Testing</a></li>
-          <li><a href='https://ndtconnect.com/blog/rbi-corrosion-management' target='_blank' rel='noopener'>RBI Corrosion Management</a></li>
-          <li><a href='https://ndtconnect.com/blog/ndt-industry-statistics' target='_blank' rel='noopener'>NDT Industry Statistics</a></li>
-          <li><a href='https://ndtconnect.com/ndt-services/dubai' target='_blank' rel='noopener'>NDT Services in Dubai</a></li>
-          <li><a href='https://ndtconnect.com/ndt-services/mumbai' target='_blank' rel='noopener'>NDT Services in Mumbai</a></li>
-          <li><a href='https://ndtconnect.com/ndt-services/sydney' target='_blank' rel='noopener'>NDT Services in Sydney</a></li>
-          <li><a href='https://ndtconnect.com/blog/choosing-ndt-service-provider' target='_blank' rel='noopener'>Choosing NDT Provider</a></li>
+          <li><a href='https://ndt-connect.com/industries/construction' target='_blank' rel='noopener'>Construction NDT</a></li>
+          <li><a href='https://ndt-connect.com/services/eddy-current-testing' target='_blank' rel='noopener'>Eddy Current Testing</a></li>
+          <li><a href='https://ndt-connect.com/blog/rbi-corrosion-management' target='_blank' rel='noopener'>RBI Corrosion Management</a></li>
+          <li><a href='https://ndt-connect.com/blog/ndt-industry-statistics' target='_blank' rel='noopener'>NDT Industry Statistics</a></li>
+          <li><a href='https://ndt-connect.com/ndt-services/dubai' target='_blank' rel='noopener'>NDT Services in Dubai</a></li>
+          <li><a href='https://ndt-connect.com/ndt-services/mumbai' target='_blank' rel='noopener'>NDT Services in Mumbai</a></li>
+          <li><a href='https://ndt-connect.com/ndt-services/sydney' target='_blank' rel='noopener'>NDT Services in Sydney</a></li>
+          <li><a href='https://ndt-connect.com/blog/choosing-ndt-service-provider' target='_blank' rel='noopener'>Choosing NDT Provider</a></li>
         </ul>
-        <a href='https://ndtconnect.com/register' target='_blank' rel='noopener' style={{ display: 'inline-block', background: '#ca8a04', color: 'white', padding: '12px 24px', borderRadius: '6px', textDecoration: 'none', fontWeight: 600 }}>Join NDT Connect Free</a>
+        <a href='https://ndt-connect.com/register' target='_blank' rel='noopener' style={{ display: 'inline-block', background: '#ca8a04', color: 'white', padding: '12px 24px', borderRadius: '6px', textDecoration: 'none', fontWeight: 600 }}>Join NDT Connect Free</a>
       </div>
     </div>
   );

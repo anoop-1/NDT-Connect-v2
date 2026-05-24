@@ -11,11 +11,11 @@ export default function HomePage() {
     <div>
       <h1>NDT for Offshore and Marine Structures</h1>
       <p style={{ fontSize: '1.1rem' }}>
-        Specialized resource for non-destructive testing of offshore platforms, subsea equipment, marine vessels, and floating structures. Brought to you by <a href='https://ndtconnect.com' target='_blank' rel='noopener'>NDT Connect</a>, the leading marketplace for non-destructive testing services.
+        Specialized resource for non-destructive testing of offshore platforms, subsea equipment, marine vessels, and floating structures. Brought to you by <a href='https://ndt-connect.com' target='_blank' rel='noopener'>NDT Connect</a>, the leading marketplace for non-destructive testing services.
       </p>
 
       <div style={{ background: '#0284c710', padding: '20px', borderRadius: '8px', margin: '24px 0', borderLeft: '4px solid #0284c7' }}>
-        <p style={{ margin: 0, fontWeight: 600 }}>Looking for NDT inspection services? <a href='https://ndtconnect.com/find-providers' target='_blank' rel='noopener'>Find certified NDT providers on NDT Connect</a></p>
+        <p style={{ margin: 0, fontWeight: 600 }}>Looking for NDT inspection services? <a href='https://ndt-connect.com/find-providers' target='_blank' rel='noopener'>Find certified NDT providers on NDT Connect</a></p>
       </div>
 
       <h2>Topics</h2>
@@ -166,16 +166,16 @@ export default function HomePage() {
         <h2 style={{ marginTop: 0 }}>NDT Connect Resources</h2>
         <p>Explore more NDT resources on NDT Connect:</p>
         <ul>
-          <li><a href='https://ndtconnect.com/certifications/iso-9712' target='_blank' rel='noopener'>ISO 9712 Certification</a></li>
-          <li><a href='https://ndtconnect.com/industries/marine-and-offshore' target='_blank' rel='noopener'>Marine & Offshore NDT</a></li>
-          <li><a href='https://ndtconnect.com/certifications/api-570' target='_blank' rel='noopener'>API 570 Certification</a></li>
-          <li><a href='https://ndtconnect.com/faq' target='_blank' rel='noopener'>NDT FAQ</a></li>
-          <li><a href='https://ndtconnect.com/ndt-services/bahrain' target='_blank' rel='noopener'>NDT Services in Bahrain</a></li>
-          <li><a href='https://ndtconnect.com/ndt-services/trinidad' target='_blank' rel='noopener'>NDT Services in Trinidad</a></li>
-          <li><a href='https://ndtconnect.com/ndt-services/denver' target='_blank' rel='noopener'>NDT Services in Denver</a></li>
-          <li><a href='https://ndtconnect.com/ndt-services/aberdeen' target='_blank' rel='noopener'>NDT Services in Aberdeen</a></li>
+          <li><a href='https://ndt-connect.com/certifications/iso-9712' target='_blank' rel='noopener'>ISO 9712 Certification</a></li>
+          <li><a href='https://ndt-connect.com/industries/marine-and-offshore' target='_blank' rel='noopener'>Marine & Offshore NDT</a></li>
+          <li><a href='https://ndt-connect.com/certifications/api-570' target='_blank' rel='noopener'>API 570 Certification</a></li>
+          <li><a href='https://ndt-connect.com/faq' target='_blank' rel='noopener'>NDT FAQ</a></li>
+          <li><a href='https://ndt-connect.com/ndt-services/bahrain' target='_blank' rel='noopener'>NDT Services in Bahrain</a></li>
+          <li><a href='https://ndt-connect.com/ndt-services/trinidad' target='_blank' rel='noopener'>NDT Services in Trinidad</a></li>
+          <li><a href='https://ndt-connect.com/ndt-services/denver' target='_blank' rel='noopener'>NDT Services in Denver</a></li>
+          <li><a href='https://ndt-connect.com/ndt-services/aberdeen' target='_blank' rel='noopener'>NDT Services in Aberdeen</a></li>
         </ul>
-        <a href='https://ndtconnect.com/register' target='_blank' rel='noopener' style={{ display: 'inline-block', background: '#0284c7', color: 'white', padding: '12px 24px', borderRadius: '6px', textDecoration: 'none', fontWeight: 600 }}>Join NDT Connect Free</a>
+        <a href='https://ndt-connect.com/register' target='_blank' rel='noopener' style={{ display: 'inline-block', background: '#0284c7', color: 'white', padding: '12px 24px', borderRadius: '6px', textDecoration: 'none', fontWeight: 600 }}>Join NDT Connect Free</a>
       </div>
     </div>
   );

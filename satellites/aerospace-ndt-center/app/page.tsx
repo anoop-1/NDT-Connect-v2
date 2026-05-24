@@ -11,11 +11,11 @@ export default function HomePage() {
     <div>
       <h1>NDT Excellence for Aerospace and Aviation</h1>
       <p style={{ fontSize: '1.1rem' }}>
-        Specialized aerospace NDT resource covering aircraft inspection methods, composite testing, engine component examination, and aviation regulations. Brought to you by <a href='https://ndtconnect.com' target='_blank' rel='noopener'>NDT Connect</a>, the leading marketplace for non-destructive testing services.
+        Specialized aerospace NDT resource covering aircraft inspection methods, composite testing, engine component examination, and aviation regulations. Brought to you by <a href='https://ndt-connect.com' target='_blank' rel='noopener'>NDT Connect</a>, the leading marketplace for non-destructive testing services.
       </p>
 
       <div style={{ background: '#4f46e510', padding: '20px', borderRadius: '8px', margin: '24px 0', borderLeft: '4px solid #4f46e5' }}>
-        <p style={{ margin: 0, fontWeight: 600 }}>Looking for NDT inspection services? <a href='https://ndtconnect.com/find-providers' target='_blank' rel='noopener'>Find certified NDT providers on NDT Connect</a></p>
+        <p style={{ margin: 0, fontWeight: 600 }}>Looking for NDT inspection services? <a href='https://ndt-connect.com/find-providers' target='_blank' rel='noopener'>Find certified NDT providers on NDT Connect</a></p>
       </div>
 
       <h2>Topics</h2>
@@ -166,16 +166,16 @@ export default function HomePage() {
         <h2 style={{ marginTop: 0 }}>NDT Connect Resources</h2>
         <p>Explore more NDT resources on NDT Connect:</p>
         <ul>
-          <li><a href='https://ndtconnect.com/blog/ultimate-guide-ultrasonic-testing' target='_blank' rel='noopener'>Ultrasonic Testing Guide</a></li>
-          <li><a href='https://ndtconnect.com/services/phased-array-ut' target='_blank' rel='noopener'>Phased Array UT Services</a></li>
-          <li><a href='https://ndtconnect.com/services/ultrasonic-testing' target='_blank' rel='noopener'>Ultrasonic Testing Services</a></li>
-          <li><a href='https://ndtconnect.com/blog/ndt-digital-twins-guide' target='_blank' rel='noopener'>NDT Digital Twins</a></li>
-          <li><a href='https://ndtconnect.com/ndt-services/trinidad' target='_blank' rel='noopener'>NDT Services in Trinidad</a></li>
-          <li><a href='https://ndtconnect.com/ndt-services/sydney' target='_blank' rel='noopener'>NDT Services in Sydney</a></li>
-          <li><a href='https://ndtconnect.com/ndt-services/denver' target='_blank' rel='noopener'>NDT Services in Denver</a></li>
-          <li><a href='https://ndtconnect.com/services/penetrant-testing' target='_blank' rel='noopener'>Penetrant Testing Services</a></li>
+          <li><a href='https://ndt-connect.com/blog/ultimate-guide-ultrasonic-testing' target='_blank' rel='noopener'>Ultrasonic Testing Guide</a></li>
+          <li><a href='https://ndt-connect.com/services/phased-array-ut' target='_blank' rel='noopener'>Phased Array UT Services</a></li>
+          <li><a href='https://ndt-connect.com/services/ultrasonic-testing' target='_blank' rel='noopener'>Ultrasonic Testing Services</a></li>
+          <li><a href='https://ndt-connect.com/blog/ndt-digital-twins-guide' target='_blank' rel='noopener'>NDT Digital Twins</a></li>
+          <li><a href='https://ndt-connect.com/ndt-services/trinidad' target='_blank' rel='noopener'>NDT Services in Trinidad</a></li>
+          <li><a href='https://ndt-connect.com/ndt-services/sydney' target='_blank' rel='noopener'>NDT Services in Sydney</a></li>
+          <li><a href='https://ndt-connect.com/ndt-services/denver' target='_blank' rel='noopener'>NDT Services in Denver</a></li>
+          <li><a href='https://ndt-connect.com/services/penetrant-testing' target='_blank' rel='noopener'>Penetrant Testing Services</a></li>
         </ul>
-        <a href='https://ndtconnect.com/register' target='_blank' rel='noopener' style={{ display: 'inline-block', background: '#4f46e5', color: 'white', padding: '12px 24px', borderRadius: '6px', textDecoration: 'none', fontWeight: 600 }}>Join NDT Connect Free</a>
+        <a href='https://ndt-connect.com/register' target='_blank' rel='noopener' style={{ display: 'inline-block', background: '#4f46e5', color: 'white', padding: '12px 24px', borderRadius: '6px', textDecoration: 'none', fontWeight: 600 }}>Join NDT Connect Free</a>
       </div>
     </div>
   );

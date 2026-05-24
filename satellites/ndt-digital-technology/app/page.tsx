@@ -11,11 +11,11 @@ export default function HomePage() {
     <div>
       <h1>Digital Transformation in Non-Destructive Testing</h1>
       <p style={{ fontSize: '1.1rem' }}>
-        Exploring AI, machine learning, robotics, digital twins, and IoT applications transforming the NDT industry. Brought to you by <a href='https://ndtconnect.com' target='_blank' rel='noopener'>NDT Connect</a>, the leading marketplace for non-destructive testing services.
+        Exploring AI, machine learning, robotics, digital twins, and IoT applications transforming the NDT industry. Brought to you by <a href='https://ndt-connect.com' target='_blank' rel='noopener'>NDT Connect</a>, the leading marketplace for non-destructive testing services.
       </p>
 
       <div style={{ background: '#9333ea10', padding: '20px', borderRadius: '8px', margin: '24px 0', borderLeft: '4px solid #9333ea' }}>
-        <p style={{ margin: 0, fontWeight: 600 }}>Looking for NDT inspection services? <a href='https://ndtconnect.com/find-providers' target='_blank' rel='noopener'>Find certified NDT providers on NDT Connect</a></p>
+        <p style={{ margin: 0, fontWeight: 600 }}>Looking for NDT inspection services? <a href='https://ndt-connect.com/find-providers' target='_blank' rel='noopener'>Find certified NDT providers on NDT Connect</a></p>
       </div>
 
       <h2>Topics</h2>
@@ -166,16 +166,16 @@ export default function HomePage() {
         <h2 style={{ marginTop: 0 }}>NDT Connect Resources</h2>
         <p>Explore more NDT resources on NDT Connect:</p>
         <ul>
-          <li><a href='https://ndtconnect.com/services/magnetic-flux-leakage' target='_blank' rel='noopener'>Magnetic Flux Leakage Testing</a></li>
-          <li><a href='https://ndtconnect.com/industries/aerospace' target='_blank' rel='noopener'>Aerospace NDT</a></li>
-          <li><a href='https://ndtconnect.com/services/acoustic-emission-testing' target='_blank' rel='noopener'>Acoustic Emission Testing</a></li>
-          <li><a href='https://ndtconnect.com/blog/ndt-career-guide-2026' target='_blank' rel='noopener'>NDT Career Guide</a></li>
-          <li><a href='https://ndtconnect.com/ndt-services/dallas' target='_blank' rel='noopener'>NDT Services in Dallas</a></li>
-          <li><a href='https://ndtconnect.com/ndt-services/calgary' target='_blank' rel='noopener'>NDT Services in Calgary</a></li>
-          <li><a href='https://ndtconnect.com/ndt-services/houston' target='_blank' rel='noopener'>NDT Services in Houston</a></li>
-          <li><a href='https://ndtconnect.com/blog' target='_blank' rel='noopener'>NDT Blog</a></li>
+          <li><a href='https://ndt-connect.com/services/magnetic-flux-leakage' target='_blank' rel='noopener'>Magnetic Flux Leakage Testing</a></li>
+          <li><a href='https://ndt-connect.com/industries/aerospace' target='_blank' rel='noopener'>Aerospace NDT</a></li>
+          <li><a href='https://ndt-connect.com/services/acoustic-emission-testing' target='_blank' rel='noopener'>Acoustic Emission Testing</a></li>
+          <li><a href='https://ndt-connect.com/blog/ndt-career-guide-2026' target='_blank' rel='noopener'>NDT Career Guide</a></li>
+          <li><a href='https://ndt-connect.com/ndt-services/dallas' target='_blank' rel='noopener'>NDT Services in Dallas</a></li>
+          <li><a href='https://ndt-connect.com/ndt-services/calgary' target='_blank' rel='noopener'>NDT Services in Calgary</a></li>
+          <li><a href='https://ndt-connect.com/ndt-services/houston' target='_blank' rel='noopener'>NDT Services in Houston</a></li>
+          <li><a href='https://ndt-connect.com/blog' target='_blank' rel='noopener'>NDT Blog</a></li>
         </ul>
-        <a href='https://ndtconnect.com/register' target='_blank' rel='noopener' style={{ display: 'inline-block', background: '#9333ea', color: 'white', padding: '12px 24px', borderRadius: '6px', textDecoration: 'none', fontWeight: 600 }}>Join NDT Connect Free</a>
+        <a href='https://ndt-connect.com/register' target='_blank' rel='noopener' style={{ display: 'inline-block', background: '#9333ea', color: 'white', padding: '12px 24px', borderRadius: '6px', textDecoration: 'none', fontWeight: 600 }}>Join NDT Connect Free</a>
       </div>
     </div>
   );
