@@ -38,9 +38,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title,
     description,
-    // noindex (follow): near-zero search demand on free-tool x region matrix
-    // (GSC 2026-05-24). Concentrates crawl budget on indexable tool hub pages.
-    robots: { index: false, follow: true },
+    robots: { index: false, follow: true }, // noindex: near-zero search demand on tool x geo matrix (GSC 2026-05-24); keeps crawl budget for tool hubs
     alternates: { canonical: url },
     openGraph: {
       title,
@@ -59,4 +57,13 @@ export default async function RegionPage({ params }: Params) {
   const region = REGIONS.find(r => r.slug === regionSlug);
   if (!tool || !region) return notFound();
   const citiesInRegion = citiesByRegion(regionSlug);
-  if (citiesInRegio
+  if (citiesInRegion.length === 0) return notFound();
+  return (
+    <FreeToolRegionPage
+      tool={tool}
+      regionSlug={region.slug}
+      regionName={region.name}
+      citiesInRegion={citiesInRegion}
+    />
+  );
+}
