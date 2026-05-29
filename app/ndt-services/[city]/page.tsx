@@ -25,6 +25,7 @@ import {
   TrendingUp,
 } from 'lucide-react';
 import { ServiceSchema, BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
+import { CornerstoneLinks } from '@/components/seo/CornerstoneLinks';
 import AuthorByline from '@/components/AuthorByline';
 
 // ============================================================================
@@ -679,6 +680,8 @@ export default async function CityPage({ params }: Props) {
           </section>
         )}
 
+        <CornerstoneLinks topicHints={[city.industries[0]?.toLowerCase() || '']} />
+
         {/* Author byline — E-E-A-T signal (Person schema embedded) */}
         <section className="mt-12 mb-8 px-4 md:px-0">
           <AuthorByline />
@@ -687,3 +690,5 @@ export default async function CityPage({ params }: Props) {
     </>
   );
 }
+
+

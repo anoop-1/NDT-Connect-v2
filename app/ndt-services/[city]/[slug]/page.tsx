@@ -9,6 +9,7 @@ import {
 import { nearestCities } from '@/lib/seo-helpers';
 import { Badge } from '@/components/ui/badge';
 import { BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
+import { CornerstoneLinks } from '@/components/seo/CornerstoneLinks';
 import {
   ChevronRight,
   CheckCircle,
@@ -822,7 +823,11 @@ export default async function CitySlugPage({ params }: PageProps) {
             </div>
           </section>
         )}
+
+        <CornerstoneLinks methodAbbr={method.abbreviation} />
       </div>
     </>
   );
 }
+
+

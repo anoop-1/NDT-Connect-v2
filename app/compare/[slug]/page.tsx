@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { methods, getMethodBySlug } from '@/lib/seo-data';
+import { CornerstoneLinks } from '@/components/seo/CornerstoneLinks';
 import { ChevronRight, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 
 interface PageProps {
@@ -688,7 +689,11 @@ export default async function ComparisonPage({ params }: PageProps) {
               ))}
           </div>
         </section>
+
+        <CornerstoneLinks methodAbbr={method1.abbreviation} topicHints={[method2.abbreviation.toLowerCase()]} />
       </div>
     </>
   );
 }
+
+
