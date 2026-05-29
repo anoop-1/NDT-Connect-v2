@@ -602,19 +602,54 @@ export default function CostGuidePage({ params }: Props) {
           </div>
         )}
 
-        {/* Schema markup */}
+        {/* Schema markup — upgraded 2026-05-29 to nest price inside Service+AggregateOffer
+            so Google can surface $-amount rich snippet in SERP. Standalone PriceSpecification
+            does not trigger price rich-result on its own. */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
-              '@type': 'PriceSpecification',
-              priceCurrency: 'USD',
-              minPrice: cost.low.toString(),
-              maxPrice: cost.high.toString(),
-              price: cost.mid.toString(),
-              description: `${method.name} (${method.abbreviation}) cost band in ${city.name}, ${stateLabel}`,
+              '@type': 'Service',
+              name: `${method.name} (${method.abbreviation}) Inspection in ${city.name}, ${stateLabel}`,
+              serviceType: `${method.name} (${method.abbreviation}) Inspection`,
+              description: `${method.name} inspection services in ${city.name}, ${stateLabel}. Hourly rate range $${cost.low}–$${cost.high}, typical $${cost.mid}/hr from certified providers.`,
               url: `https://ndt-connect.com/cost-guide/${params.city}/${params.service}`,
+              provider: {
+                '@type': 'Organization',
+                name: 'NDT Connect Provider Network',
+                url: 'https://ndt-connect.com',
+              },
+              areaServed: {
+                '@type': city.country === 'US' || city.country === 'CA' ? 'City' : 'Place',
+                name: city.name,
+                ...(city.country === 'US' || city.country === 'CA'
+                  ? {
+                      containedInPlace: {
+                        '@type': 'AdministrativeArea',
+                        name: stateLabel,
+                      },
+                    }
+                  : {}),
+              },
+              offers: {
+                '@type': 'AggregateOffer',
+                priceCurrency: 'USD',
+                lowPrice: cost.low.toString(),
+                highPrice: cost.high.toString(),
+                offerCount: '5',
+                priceSpecification: {
+                  '@type': 'UnitPriceSpecification',
+                  price: cost.mid.toString(),
+                  priceCurrency: 'USD',
+                  unitText: method.unit.replace('per ', ''),
+                  referenceQuantity: {
+                    '@type': 'QuantitativeValue',
+                    value: 1,
+                    unitText: method.unit.replace('per ', ''),
+                  },
+                },
+              },
             }),
           }}
         />
