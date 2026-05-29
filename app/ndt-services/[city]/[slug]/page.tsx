@@ -10,6 +10,7 @@ import { nearestCities } from '@/lib/seo-helpers';
 import { Badge } from '@/components/ui/badge';
 import { BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 import { CornerstoneLinks } from '@/components/seo/CornerstoneLinks';
+import { CityDataAnchors } from '@/components/seo/CityDataAnchors';
 import {
   ChevronRight,
   CheckCircle,
@@ -824,10 +825,12 @@ export default async function CitySlugPage({ params }: PageProps) {
           </section>
         )}
 
+        <CityDataAnchors citySlug={citySlug} methodAbbr={method.abbreviation} />
         <CornerstoneLinks methodAbbr={method.abbreviation} />
       </div>
     </>
   );
 }
+
 
 

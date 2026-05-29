@@ -11,6 +11,7 @@ import { nearestCities } from '@/lib/seo-helpers';
 import { DollarSign, AlertCircle, ArrowRight } from 'lucide-react';
 import { BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 import { CornerstoneLinks } from '@/components/seo/CornerstoneLinks';
+import { CityDataAnchors } from '@/components/seo/CityDataAnchors';
 import { CityMethodContentBlocks } from '@/components/seo/CityMethodContent';
 import {
   composeCityMethodContent,
@@ -603,6 +604,7 @@ export default function CostGuidePage({ params }: Props) {
           </div>
         )}
 
+        <CityDataAnchors citySlug={params.city} methodAbbr={method.abbreviation} />
         <CornerstoneLinks methodAbbr={method.abbreviation} />
 
         {/* Schema markup — upgraded 2026-05-29 to nest price inside Service+AggregateOffer
@@ -664,5 +666,6 @@ export default function CostGuidePage({ params }: Props) {
     </div>
   );
 }
+
 
 

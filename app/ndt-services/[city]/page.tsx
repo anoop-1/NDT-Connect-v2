@@ -26,6 +26,7 @@ import {
 } from 'lucide-react';
 import { ServiceSchema, BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 import { CornerstoneLinks } from '@/components/seo/CornerstoneLinks';
+import { CityDataAnchors } from '@/components/seo/CityDataAnchors';
 import AuthorByline from '@/components/AuthorByline';
 
 // ============================================================================
@@ -680,6 +681,7 @@ export default async function CityPage({ params }: Props) {
           </section>
         )}
 
+        <CityDataAnchors citySlug={citySlug} />
         <CornerstoneLinks topicHints={[city.industries[0]?.toLowerCase() || '']} />
 
         {/* Author byline — E-E-A-T signal (Person schema embedded) */}
@@ -690,5 +692,6 @@ export default async function CityPage({ params }: Props) {
     </>
   );
 }
+
 
 
