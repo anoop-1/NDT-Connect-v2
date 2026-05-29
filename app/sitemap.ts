@@ -5,6 +5,12 @@ import { FREE_TOOLS } from '@/data/freeTools';
 import { CITIES, PUBLISHABLE_CITIES } from '@/data/cities';
 import { allCityIndustryCombos } from '@/lib/content/city-industry-content';
 import { procedureExamples } from '@/data/procedure-examples';
+// Canonical slug sources — single source of truth shared with the route
+// handlers (which use dynamicParams=false). Previously the sitemap had
+// hardcoded glossary/standards arrays that drifted from the actual
+// /lib data, emitting ~109 URLs that resolved to 404. Fixed 2026-05-29.
+import { getAllGlossarySlugs } from '@/lib/glossary-data';
+import { getAllStandardSlugs } from '@/lib/standards-data';
 
 // Enumerate authored content slugs at build time.
 function authoredSlugs(bucket: string): string[] {
@@ -96,54 +102,9 @@ const careerSlugs = [
   'aerospace-ndt-specialist', 'ndt-trainer',
 ];
 
-const glossaryTerms = [
-  'acoustic-impedance', 'a-scan', 'b-scan', 'c-scan', 'amplitude', 'attenuation',
-  'back-wall-echo', 'beam-spread', 'calibration-block', 'couplant', 'crack', 'creep',
-  'dead-zone', 'decibel', 'delamination', 'discontinuity', 'dye-penetrant', 'echo',
-  'eddy-current', 'flaw', 'frequency', 'gain', 'half-value-layer', 'heat-affected-zone',
-  'inclusion', 'indication', 'interpretation', 'iridium-192', 'isotropic', 'lamination',
-  'linear-indication', 'luminance', 'magnetic-domain', 'near-field', 'node',
-  'nominal-thickness', 'parallel-scan', 'penetrameter', 'porosity', 'probe',
-  'radiograph', 'reference-standard', 'rejectable-indication', 'relevant-indication',
-  'scanning-sensitivity', 'sensitivity', 'slag-inclusion', 'snells-law', 'sound-velocity',
-  'transducer', 'undercut', 'weld-profile', 'x-ray-tube', 'yoke',
-  'absorption', 'acceptance-criteria', 'angle-beam', 'artifact', 'austenitic',
-  'backscatter', 'baseline', 'beam-angle', 'boundary', 'brinell-hardness',
-  'capillary-action', 'cathode-ray-tube', 'certification', 'cobalt-60', 'collimator',
-  'contact-testing', 'contrast', 'corrosion', 'coupling-medium', 'crystal',
-  'curie', 'current-flow', 'dag', 'damping', 'defect',
-  'density', 'depth-of-penetration', 'developer', 'diffraction', 'digital-radiography',
-  'direct-current', 'distance-amplitude-correction', 'dual-element-probe', 'duplex',
-  'electromagnetic-testing', 'endoscope', 'erosion', 'evaluation', 'examination',
-  'exposure', 'ferrite', 'ferromagnetic', 'film-density', 'fitness-for-service',
-  'fluorescent', 'focal-length', 'forging-defect', 'gamma-ray', 'geometric-unsharpness',
-  'grading', 'hall-effect', 'hardness-testing', 'hydrogen-embrittlement',
-  'image-quality-indicator', 'immersion-testing', 'impedance-plane', 'in-service-inspection',
-  'infrared-thermography', 'inspection-interval', 'inverse-square-law',
-  'leak-testing', 'level-i-technician', 'level-ii-technician', 'level-iii-technician',
-  'lift-off', 'liquid-penetrant', 'longitudinal-wave', 'magnetic-field',
-  'magnetization', 'material-characterization', 'mode-conversion', 'ndt-certification',
-];
+// glossaryTerms removed 2026-05-29 — now sourced from lib/glossary-data.ts (the route's source of truth)
 
-const standardSlugs = [
-  'asme-section-v', 'asme-bpvc', 'asme-b31-3', 'asme-b31-4', 'asme-b31-8',
-  'api-510', 'api-570', 'api-653', 'api-1104', 'api-579', 'api-580', 'api-581',
-  'api-571', 'api-574', 'api-576', 'api-598', 'api-620', 'api-650', 'api-1163',
-  'aws-d1-1', 'aws-d1-2', 'aws-d1-5', 'aws-d1-6', 'aws-d17-1', 'aws-b1-10',
-  'astm-e164', 'astm-e165', 'astm-e709', 'astm-e1444', 'astm-e94', 'astm-e1032',
-  'astm-e2375', 'astm-e2491', 'astm-e2775', 'astm-e376', 'astm-e243', 'astm-e569',
-  'astm-e1067', 'astm-e2096', 'astm-e2373', 'astm-e1417', 'astm-e2905',
-  'iso-9712', 'iso-3452', 'iso-16810', 'iso-17636', 'iso-17637', 'iso-17638',
-  'iso-13588', 'iso-19285', 'iso-10863', 'iso-15548', 'iso-9934', 'iso-18211',
-  'iso-22096', 'iso-11666', 'iso-12718', 'iso-15653',
-  'en-12668', 'en-13018', 'en-13554', 'en-1711', 'en-iso-17636', 'en-iso-17638',
-  'en-iso-3452', 'en-13068',
-  'dnvgl-st-f101', 'dnvgl-rp-g103', 'dnvgl-os-c401', 'dnvgl-rp-f118',
-  'nace-sp0102', 'nace-sp0169', 'nace-sp0188', 'nace-sp0502',
-  'pcn-certification', 'asnt-snt-tc-1a', 'asnt-cp-189', 'asnt-cp-105',
-  'sae-ams-2644', 'sae-ams-2630', 'sae-arp-1962',
-  'nas-410', 'abs-rules', 'rina-rules',
-];
+// standardSlugs removed 2026-05-29 — now sourced from lib/standards-data.ts (the route's source of truth)
 
 function generateComparisonSlugs(): string[] {
   const slugs: string[] = [];
@@ -232,8 +193,8 @@ const BUCKETS: Record<string, () => MetadataRoute.Sitemap> = {
     generateComparisonSlugs().map((s) => url(`/compare/${s}`, 'monthly', 0.6)),
 
   // ---- glossary + standards ----
-  glossary: () => glossaryTerms.map((t) => url(`/glossary/${t}`, 'monthly', 0.5)),
-  standards: () => standardSlugs.map((s) => url(`/standards/${s}`, 'monthly', 0.5)),
+  glossary: () => getAllGlossarySlugs().map((t) => url(`/glossary/${t}`, 'monthly', 0.5)),
+  standards: () => getAllStandardSlugs().map((s) => url(`/standards/${s}`, 'monthly', 0.5)),
 
   // ---- tools ----
   tools: () => tools.map((t) => url(`/tools/${t}`, 'monthly', 0.7)),
@@ -342,4 +303,3 @@ export default function sitemap({
   }
   return build();
 }
-                                                                                                  
