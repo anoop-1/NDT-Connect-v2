@@ -243,12 +243,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // pulled CTR to 0.34% on Houston UT (877 impr / 90d). New variant tested
   // against atlantis "free quote" pattern that GSC shows converts at 2-4%.
   // Kept ≤65 chars to avoid SERP truncation.
+  // Title rewrite (2026-05-29 SEO sprint): lead with price RANGE in brackets
+  // — the May-15 'Free Quotes in 24h' phrasing dropped CTR to 0.36% on Houston UT;
+  // numbers in title (with year as bracket tag Google highlights) signal real data.
   const title =
-    `${city.name} ${method.abbreviation} Inspection Cost ${new Date().getFullYear()} — Free Quotes in 24h`;
+    `${method.abbreviation} Inspection Cost ${city.name} [${new Date().getFullYear()}]: $${cost.low}–$${cost.high}/hr`;
   const description =
-    `Get free ${method.abbreviation} (${method.name}) inspection quotes in ${city.name}, ${stateLabel} from certified providers. ` +
-    `Typical rate $${cost.mid}/${method.unit.replace('per ', '')} (range $${cost.low}–$${cost.high}). ` +
-    `Compare quotes in 24h — no signup required.`;
+    `${city.name}, ${stateLabel} ${method.name} (${method.abbreviation}) inspection: $${cost.low}–$${cost.high}/${method.unit.replace('per ', '')} typical (median $${cost.mid}). ` +
+    `Updated ${new Date().getFullYear()} from public contractor rate cards. Free quotes from certified providers, no signup.`;
 
   return {
     title,

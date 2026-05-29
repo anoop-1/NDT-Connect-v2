@@ -101,11 +101,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // Old title was descriptive only — pages like /ndt-services/atlanta and
   // /ndt-services/dallas show 0% CTR despite ranking. Adds the free-quote
   // hook + 24h response window that converts at higher CTRs in our 90d GSC.
-  const title = `NDT Inspection Services in ${city.name}, ${stateLabel} — Free Quotes in 24h`;
+  // Title rewrite (2026-05-29): year bracket; method list signals breadth
+  // instead of generic 'Free Quotes in 24h' (CTR dropped after May-15 rewrite).
+  const title = `NDT Inspection ${city.name}, ${stateLabel} [${new Date().getFullYear()}] — UT, RT, MT Providers`;
   const description =
-    `Hire certified NDT inspectors in ${city.name}, ${stateLabel} — UT, RT, MT, PT, VT, PAUT. ` +
-    `Free quotes in 24h from local providers serving ${city.industries.slice(0, 2).join(' and ').toLowerCase()} operators. ` +
-    `${city.codeAuthorities.slice(0, 2).join(' / ')} compliant.`;
+    `${city.name}, ${stateLabel} NDT inspection — UT, RT, MT, PT, VT, PAUT certified providers. ` +
+    `${city.codeAuthorities.slice(0, 2).join(' / ')} compliant, serving ${city.industries.slice(0, 2).join(' & ').toLowerCase()} operators. Free quotes, no signup.`;
 
   return {
     title,

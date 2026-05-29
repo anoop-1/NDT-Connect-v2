@@ -66,8 +66,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   // ("X vs Y - NDT Method Comparison") to a click-worthy question that names
   // decision criteria (cost, speed, detection). Compare pages have ~300 impr
   // at 0% CTR despite pos 10 — title gave readers no reason to click.
-  const title = `${method1.abbreviation} vs ${method2.abbreviation} — Which NDT Method to Choose? Cost, Speed & Detection Compared`;
-  const description = `${method1.name} (${method1.abbreviation}) vs ${method2.name} (${method2.abbreviation}): side-by-side comparison of cost, inspection speed, defect detection, code coverage, and which method fits your scope. 2026 buyer's guide.`;
+  // Title rewrite (2026-05-29): drop 'Which to choose?' filler that was being
+  // truncated by Google; year bracket + 'Decision Matrix' promise a tangible artifact.
+  const title = `${method1.abbreviation} vs ${method2.abbreviation} [${new Date().getFullYear()}]: Cost, Speed, Detection — Decision Matrix`;
+  const description = `${method1.name} (${method1.abbreviation}) vs ${method2.name} (${method2.abbreviation}) side-by-side: cost $/hour, scan speed, defect classes detected, ASME/API code coverage. Decision matrix tells you which fits your scope. Updated ${new Date().getFullYear()}.`;
 
   return {
     title,

@@ -7,11 +7,11 @@ import { NDTConnectOrganizationSchema, FAQSchema, ArticleSchema, BreadcrumbListS
 // at pos 50 — generic "Complete Technical Guide" gave readers no reason
 // to choose this over a dozen identical SERP results.
 export const metadata: Metadata = {
-  title: 'Phased Array Ultrasonic Testing (PAUT) — Complete Guide: How It Works, Cost, vs Conventional UT (2026)',
+  title: 'PAUT (Phased Array UT) Guide [2026]: How It Works, Cost vs Conventional UT',
   description: 'PAUT explained: principles, equipment cost, advantages over conventional UT, code coverage (ASME V, ISO 13588), and how to hire certified PAUT inspectors. 2026 buyer & technician guide.',
   keywords: ['phased array ultrasonic testing', 'PAUT', 'phased array UT', 'PAUT inspection', 'advanced UT techniques', 'PAUT vs UT', 'PAUT cost'],
   openGraph: {
-    title: 'Phased Array Ultrasonic Testing (PAUT) — Complete Guide: How It Works, Cost, vs Conventional UT (2026)',
+    title: 'PAUT (Phased Array UT) Guide [2026]: How It Works, Cost vs Conventional UT',
     description: 'PAUT explained: principles, equipment cost, advantages over conventional UT, code coverage, and how to hire certified PAUT inspectors. 2026 guide.',
     url: 'https://ndt-connect.com/blog/phased-array-ultrasonic-testing-guide',
     type: 'article',

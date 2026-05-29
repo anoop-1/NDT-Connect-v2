@@ -251,11 +251,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   // service offering rather than a generic method label. 90d GSC: pages like
   // /ndt-services/houston/radiographic-testing rank pos 13 with 96 impr at
   // 0% CTR — title was descriptive but had no action verb to click on.
-  const title = `${city.name} ${method.abbreviation} Inspection — Certified Providers, Free Quotes in 24h`;
+  // Title rewrite (2026-05-29): drop 'Free Quotes in 24h' (May-15 added it,
+  // CTR fell); year bracket + 'Local' to match geo-intent queries.
+  const title = `${method.abbreviation} Inspection ${city.name} [${new Date().getFullYear()}] — Local Certified Providers`;
   const description =
-    `Hire certified ${method.name} (${method.abbreviation}) inspectors in ${city.name}, ${stateLabel}. ` +
-    `Free quotes in 24h, mobilisation within 24–72 hours, ${method.standards.slice(0, 2).join(' / ')} compliant. ` +
-    `${city.industries[0]} & ${city.industries[1] ?? 'industrial'} sites covered.`;
+    `${city.name}, ${stateLabel} certified ${method.name} (${method.abbreviation}) inspectors: ${method.standards.slice(0, 2).join(' / ')} compliant, ` +
+    `mobilisation 24–72 h, ${city.industries.slice(0, 2).join(' & ')} sites covered. Get quotes from local providers.`;
 
   return {
     title,
