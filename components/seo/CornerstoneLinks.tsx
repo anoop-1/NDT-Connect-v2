@@ -40,6 +40,8 @@ const CORNERSTONES: Cornerstone[] = [
     blurb: 'Floor scanning, shell UT, settlement surveys.', tags: ['tank','api-653','storage','floor'] },
   { url: '/pillars/pipeline-inspection-pillar', title: 'Pipeline Integrity Inspection',
     blurb: 'MFL, ILI, API 1163, corrosion monitoring.', tags: ['pipeline','mfl','api-1163','ili'] },
+  { url: '/pillars/mfl-pipeline-inspection-pillar', title: 'MFL Pipeline Inspection — Complete Guide',
+    blurb: 'ILI tool physics, triaxial vs single-axis, API 1163 validation, per-mile cost.', tags: ['mfl','pipeline','ili','api-1163','triaxial','tfi','metal-loss'] },
   { url: '/pillars/weld-inspection-pillar', title: 'Weld Inspection — Complete Guide',
     blurb: 'UT/RT/MT/PT on welds, AWS D1.1, ASME IX.', tags: ['weld','wps','aws','aws-d1-1','welder'] },
   { url: '/pillars/cwi-certification-pillar', title: 'AWS CWI Certification — Full Guide',
@@ -137,4 +139,16 @@ export function CornerstoneLinks({ methodAbbr, topicHints = [], count = 5 }: Cor
                 <span className="block text-sm font-semibold text-slate-900 group-hover:text-primary">
                   {p.title}
                 </span>
-                <span
+                <span className="block text-xs text-slate-600 mt-0.5 leading-snug">
+                  {p.blurb}
+                </span>
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+export default CornerstoneLinks;
