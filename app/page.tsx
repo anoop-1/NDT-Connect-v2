@@ -12,11 +12,12 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  // Title rewrite (SEO sprint 2026-05-15): made the value prop explicit
-  // ("Free Quotes in 24h") and surfaced provider count so the homepage
-  // SERP snippet reads as a marketplace promise. Was 1.7% CTR @ pos 17.
-  title: 'NDT Connect — Hire Certified NDT Inspectors | Free Quotes in 24h, 180+ Cities',
-  description: 'Hire certified NDT inspectors in 180+ cities. Free quotes in 24h from UT, RT, MT, PT, PAUT, TOFD providers — no signup to browse rates. Post a job in 2 minutes.',
+  // Title rewrite (SEO sprint 2026-05-29): reverses 2026-05-15 'Free Quotes in 24h'
+  // phrasing — data showed that phrasing hurt CTR across programmatic pages, same
+  // pattern applies to homepage. Leads with year bracket + method anchors (UT/RT/PAUT)
+  // that match top branded + transactional queries. Homepage at pos 14.7 @ 1.82% CTR.
+  title: 'NDT Connect [2026] — Certified UT, RT, PAUT Inspectors in 180+ US Cities',
+  description: 'Hire ASNT- and API-certified NDT inspectors in 180+ US cities. Per-city rate ranges $266-$826/hr, refinery + pipeline + aerospace coverage. Browse rates and request quotes without signup.',
   keywords: [
     'NDT Connect', 'NDT marketplace', 'NDT services', 'NDT inspectors near me',
     'find NDT provider', 'hire NDT inspector', 'NDT inspection quotes',
@@ -25,16 +26,16 @@ export const metadata: Metadata = {
     'industrial inspection marketplace', 'oil gas NDT services',
   ],
   openGraph: {
-    title: 'NDT Connect — Hire Certified NDT Inspectors | Free Quotes in 24h, 180+ Cities',
-    description: 'Hire certified NDT inspectors in 180+ cities. Free quotes in 24h from UT, RT, MT, PT, PAUT, TOFD providers — no signup to browse rates.',
+    title: 'NDT Connect [2026] — Certified UT, RT, PAUT Inspectors in 180+ US Cities',
+    description: 'Hire ASNT- and API-certified NDT inspectors in 180+ US cities. Per-city rate ranges $266-$826/hr, refinery + pipeline + aerospace coverage. Browse rates and request quotes without signup.',
     url: 'https://ndt-connect.com',
     type: 'website',
     siteName: 'NDT Connect',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'NDT Connect — Hire Certified NDT Inspectors | Free Quotes in 24h',
-    description: 'Hire certified NDT inspectors in 180+ cities. Free quotes in 24h from UT, RT, MT, PT, PAUT, TOFD providers.',
+    title: 'NDT Connect [2026] — Certified NDT Inspectors in 180+ US Cities',
+    description: 'Hire certified NDT inspectors in 180+ US cities. UT, RT, MT, PT, PAUT, TOFD providers. Per-city rate ranges + free quote requests.',
   },
   alternates: { canonical: 'https://ndt-connect.com' },
 };
