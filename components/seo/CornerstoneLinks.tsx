@@ -42,6 +42,8 @@ const CORNERSTONES: Cornerstone[] = [
     blurb: 'MFL, ILI, API 1163, corrosion monitoring.', tags: ['pipeline','mfl','api-1163','ili'] },
   { url: '/pillars/weld-inspection-pillar', title: 'Weld Inspection — Complete Guide',
     blurb: 'UT/RT/MT/PT on welds, AWS D1.1, ASME IX.', tags: ['weld','wps','aws','aws-d1-1','welder'] },
+  { url: '/pillars/cwi-certification-pillar', title: 'AWS CWI Certification — Full Guide',
+    blurb: 'QC1, 3-part exam, 25% pass rate, prep paths, $1,065 fee, 9-yr recert.', tags: ['cwi','aws-cwi','aws-d1-1','weld','welder','aws','certification'] },
   { url: '/pillars/heat-exchanger-tube-inspection-pillar', title: 'Heat Exchanger Tube Inspection',
     blurb: 'Eddy current, IRIS, RFT/NFT, tube grading.', tags: ['eddy-current','ec','tube','heat-exchanger','iris'] },
   { url: '/pillars/refinery-inspection-pillar', title: 'Refinery Inspection — RBI / FFS',
@@ -135,16 +137,4 @@ export function CornerstoneLinks({ methodAbbr, topicHints = [], count = 5 }: Cor
                 <span className="block text-sm font-semibold text-slate-900 group-hover:text-primary">
                   {p.title}
                 </span>
-                <span className="block text-xs text-slate-600 mt-0.5 leading-snug">
-                  {p.blurb}
-                </span>
-              </span>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}
-
-export default CornerstoneLinks;
+                <span

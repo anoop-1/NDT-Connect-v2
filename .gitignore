@@ -31,6 +31,8 @@ dist/
 .env
 .env.local
 .env.*.local
+workspace/.env
+workspace/.env.*
 
 # Debug logs
 npm-debug.log*
@@ -82,7 +84,4 @@ mobile/ios/Runner.xcodeproj/project.xcworkspace/xcuserdata/
 **/*.keystore
 
 # Mobile build artifacts
-*.aab
-*.apk
-*.ipa
-flutter-init.log
+*.a
