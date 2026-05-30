@@ -157,13 +157,13 @@ const BUCKETS: Record<string, () => MetadataRoute.Sitemap> = {
   // ---- city × method (highest-intent geo pages) ----
   'city-methods': () =>
     cities.flatMap((c) =>
-      cityMethods.map((m) => url(`/ndt-services/${c}/${m}`, 'weekly', 0.7)),
+      cityMethods.map((m) => url(`/ndt-services/${c}/${m}`, 'weekly', 0.8)),
     ),
 
   // ---- cost-guide ----
   'cost-guides': () =>
     cities.flatMap((c) =>
-      cityMethods.map((m) => url(`/cost-guide/${c}/${m}`, 'monthly', 0.7)),
+      cityMethods.map((m) => url(`/cost-guide/${c}/${m}`, 'weekly', 0.8)),
     ),
 
   // ---- careers city + role ----
@@ -171,7 +171,7 @@ const BUCKETS: Record<string, () => MetadataRoute.Sitemap> = {
     cities.map((c) => url(`/careers/${c}`, 'weekly', 0.7)),
 
   'careers-roles': () =>
-    careerSlugs.map((s) => url(`/careers/roles/${s}`, 'monthly', 0.7)),
+    careerSlugs.map((s) => url(`/careers/roles/${s}`, 'monthly', 0.5)),
 
   // ---- training ----
   training: () =>
@@ -190,11 +190,11 @@ const BUCKETS: Record<string, () => MetadataRoute.Sitemap> = {
   blog: () => blogPosts.map((p) => url(`/blog/${p}`, 'monthly', 0.7)),
 
   comparisons: () =>
-    generateComparisonSlugs().map((s) => url(`/compare/${s}`, 'monthly', 0.6)),
+    generateComparisonSlugs().map((s) => url(`/compare/${s}`, 'monthly', 0.75)),
 
   // ---- glossary + standards ----
-  glossary: () => getAllGlossarySlugs().map((t) => url(`/glossary/${t}`, 'monthly', 0.5)),
-  standards: () => getAllStandardSlugs().map((s) => url(`/standards/${s}`, 'monthly', 0.5)),
+  glossary: () => getAllGlossarySlugs().map((t) => url(`/glossary/${t}`, 'monthly', 0.4)),
+  standards: () => getAllStandardSlugs().map((s) => url(`/standards/${s}`, 'monthly', 0.4)),
 
   // ---- tools ----
   tools: () => tools.map((t) => url(`/tools/${t}`, 'monthly', 0.7)),
@@ -277,10 +277,10 @@ const BUCKETS: Record<string, () => MetadataRoute.Sitemap> = {
     authoredSlugs('glossary').map((s) => url(`/glossary/${s}`, 'monthly', 0.65)),
 
   'authored-pillars': () =>
-    authoredSlugs('pillars').map((s) => url(`/pillars/${s}`, 'weekly', 0.9)),
+    authoredSlugs('pillars').map((s) => url(`/pillars/${s}`, 'weekly', 0.95)),
 
   'authored-tools': () =>
-    authoredSlugs('tools').map((s) => url(`/tools/${s}`, 'weekly', 0.85)),
+    authoredSlugs('tools').map((s) => url(`/tools/${s}`, 'weekly', 0.95)),
 
   'authored-topics': () =>
     authoredSlugs('topics').map((s) => url(`/topics/${s}`, 'weekly', 0.7)),
@@ -303,3 +303,4 @@ export default function sitemap({
   }
   return build();
 }
+

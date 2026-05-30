@@ -26,7 +26,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: t.metaDescription,
       url: `https://ndt-connect.com/tools/${params.slug}`,
       type: 'website',
+      siteName: 'NDT Connect',
+      images: ['https://ndt-connect.com/opengraph-image'],
     },
+    twitter: { card: 'summary_large_image', title: t.metaTitle, description: t.metaDescription, images: ['https://ndt-connect.com/opengraph-image'] },
   };
 }
 
@@ -90,3 +93,4 @@ export default async function ToolAuthoredPage({ params }: Props) {
     />
   );
 }
+

@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { methods, getMethodBySlug } from '@/lib/seo-data';
 import { CornerstoneLinks } from '@/components/seo/CornerstoneLinks';
+import { CompareCTA } from '@/components/seo/CompareCTA';
 import { ChevronRight, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 
 interface PageProps {
@@ -87,7 +88,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description,
       url: `https://ndt-connect.com/compare/${slug}`,
       type: 'website',
+      siteName: 'NDT Connect',
+      images: ['https://ndt-connect.com/opengraph-image'],
     },
+    twitter: { card: 'summary_large_image', title, description, images: ['https://ndt-connect.com/opengraph-image'] },
     alternates: {
       canonical: `https://ndt-connect.com/compare/${slug}`,
     },
@@ -690,10 +694,15 @@ export default async function ComparisonPage({ params }: PageProps) {
           </div>
         </section>
 
+        <CompareCTA
+          method1Name={method1.name} method1Abbr={method1.abbreviation} method1Slug={comparison.method1Slug}
+          method2Name={method2.name} method2Abbr={method2.abbreviation} method2Slug={comparison.method2Slug}
+        />
         <CornerstoneLinks methodAbbr={method1.abbreviation} topicHints={[method2.abbreviation.toLowerCase()]} />
       </div>
     </>
   );
 }
+
 
 

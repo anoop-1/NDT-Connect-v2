@@ -277,8 +277,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       url: `https://ndt-connect.com/ndt-services/${citySlug}/${slug}`,
       type: 'website',
       siteName: 'NDT Connect',
+      images: ['https://ndt-connect.com/opengraph-image'],
     },
-    twitter: { card: 'summary_large_image', title, description },
+    twitter: { card: 'summary_large_image', title, description, images: ['https://ndt-connect.com/opengraph-image'] },
     alternates: {
       canonical: `https://ndt-connect.com/ndt-services/${citySlug}/${slug}`,
     },
@@ -831,6 +832,7 @@ export default async function CitySlugPage({ params }: PageProps) {
     </>
   );
 }
+
 
 
 

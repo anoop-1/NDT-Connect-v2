@@ -26,7 +26,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: p.metaDescription,
       url: `https://ndt-connect.com/pillars/${params.slug}`,
       type: 'article',
+      siteName: 'NDT Connect',
+      images: ['https://ndt-connect.com/opengraph-image'],
     },
+    twitter: { card: 'summary_large_image', title: p.metaTitle, description: p.metaDescription, images: ['https://ndt-connect.com/opengraph-image'] },
   };
 }
 
@@ -95,3 +98,4 @@ export default async function PillarAuthoredPage({ params }: Props) {
     />
   );
 }
+

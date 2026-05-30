@@ -271,7 +271,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       url: `https://ndt-connect.com/cost-guide/${params.city}/${params.service}`,
       type: 'article',
+      siteName: 'NDT Connect',
+      images: ['https://ndt-connect.com/opengraph-image'],
     },
+    twitter: { card: 'summary_large_image', title, description, images: ['https://ndt-connect.com/opengraph-image'] },
     alternates: {
       canonical: `https://ndt-connect.com/cost-guide/${params.city}/${params.service}`,
     },
@@ -666,6 +669,7 @@ export default function CostGuidePage({ params }: Props) {
     </div>
   );
 }
+
 
 
 
