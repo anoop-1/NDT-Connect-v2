@@ -13,9 +13,7 @@ import {
 export const dynamic = 'force-dynamic';
 export const maxDuration = 60;
 
-const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || 'fallback-secret-change-me'
-);
+import { JWT_SECRET } from '@/lib/jwt';
 
 const SYSTEM_PROMPT = `You are a senior NDT (Non-Destructive Testing) procedure writer with 25+ years of industry experience. You write comprehensive, technically accurate NDT written procedures that comply with industry codes and standards (ASME Section V, API 1104, AWS D1.1, ASTM, ISO 9712, ASNT SNT-TC-1A, EN 4179, and others as applicable).
 

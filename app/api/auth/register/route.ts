@@ -4,7 +4,7 @@ import { SignJWT } from 'jose';
 import dbConnect from '@/lib/mongodb';
 import { ProcedureDraft } from '@/lib/models/ProcedureDraft';
 
-const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || 'fallback-secret-change-me');
+import { JWT_SECRET } from '@/lib/jwt';
 
 /**
  * Try to "claim" an anonymous ProcedureDraft for a freshly registered user.

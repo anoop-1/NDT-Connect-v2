@@ -3,9 +3,28 @@ import { getUserByEmail, generatePasswordResetToken } from '@/lib/auth-service';
 import bcrypt from 'bcryptjs';
 import { SignJWT } from 'jose';
 
-const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || 'fallback-secret-change-me');
+import { JWT_SECRET } from '@/lib/jwt';
+import { checkLoginRate, recordFailedLogin, clearLoginRate, hashIp } from '@/lib/rate-limit';
 
 export async function POST(request: NextRequest) {
+    // Per-IP brute-force throttle. Fails OPEN: a limiter error must never block login.
+    const ip =
+        request.headers.get('x-forwarded-for')?.split(',')[0].trim() ||
+        request.headers.get('x-real-ip') ||
+        'unknown';
+    const ipHash = hashIp(ip, request.headers.get('user-agent'));
+    try {
+        const rate = await checkLoginRate(ipHash);
+        if (!rate.allowed) {
+            return NextResponse.json(
+                { message: 'Too many login attempts. Try again in a few minutes.' },
+                { status: 429, headers: { 'Retry-After': '900' } }
+            );
+        }
+    } catch (e) {
+        console.error('Login rate-limit check failed (allowing):', e);
+    }
+
     try {
         const body = await request.json();
         const { email, password } = body;
@@ -20,6 +39,7 @@ export async function POST(request: NextRequest) {
         const user = await getUserByEmail(email);
 
         if (!user) {
+            await recordFailedLogin(ipHash).catch(() => {});
             return NextResponse.json(
                 { message: 'Invalid email or password.' },
                 { status: 401 }
@@ -53,11 +73,15 @@ export async function POST(request: NextRequest) {
 
         const isValid = await bcrypt.compare(password, user.password);
         if (!isValid) {
+            await recordFailedLogin(ipHash).catch(() => {});
             return NextResponse.json(
                 { message: 'Invalid email or password.' },
                 { status: 401 }
             );
         }
+
+        // Successful auth — reset the IP's failed-attempt counter.
+        await clearLoginRate(ipHash).catch(() => {});
 
         // Remove sensitive fields from response
         const { password: _, verificationToken: __, ...safeUser } = user as any;

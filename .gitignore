@@ -1,10 +1,16 @@
 # Secrets / credential files — NEVER commit
 Tokens.docx
 Tokens.*
+**/Tokens.docx
 *.token
 *.token.*
+.env
 .env.local
 .env.*.local
+*.pem
+*.key
+id_rsa
+atlantis_vps
 
 # Dependencies
 node_modules/
@@ -84,4 +90,7 @@ mobile/ios/Runner.xcodeproj/project.xcworkspace/xcuserdata/
 **/*.keystore
 
 # Mobile build artifacts
-*.a
+*.aab
+*.apk
+*.ipa
+flutter-init.log

@@ -43,7 +43,55 @@ function trimOlderThan(requests: Date[], cutoff: Date): Date[] {
   return requests.filter((d) => new Date(d).getTime() >= cutoffMs);
 }
 
-async function loadOrCreate(scope: 'anon' | 'user' | 'global', key: string) {
+// --- Login brute-force throttle ---------------------------------------------
+// Per-IP: 10 failed attempts / 15 min. Fails OPEN: any limiter error must never
+// block a legitimate login, so callers wrap these in try/catch and allow on throw.
+const LOGIN_WINDOW_MS = 15 * 60 * 1000;
+const LOGIN_LIMIT = 10;
+
+export interface LoginRateResult {
+  allowed: boolean;
+  remaining: number;
+  resetAt: Date;
+}
+
+/** Check (and trim) the per-IP login attempt window. Does NOT record. */
+export async function checkLoginRate(ipHash: string): Promise<LoginRateResult> {
+  const doc = await loadOrCreate('login', ipHash);
+  const now = new Date();
+  const windowStart = new Date(now.getTime() - LOGIN_WINDOW_MS);
+  const recent = trimOlderThan(doc.requests as Date[], windowStart);
+
+  if (recent.length !== doc.requests.length) {
+    doc.requests = recent;
+    doc.updatedAt = now;
+    await doc.save();
+  }
+
+  const remaining = Math.max(0, LOGIN_LIMIT - recent.length);
+  const oldest = recent[0] ? new Date(recent[0]) : now;
+  return {
+    allowed: recent.length < LOGIN_LIMIT,
+    remaining,
+    resetAt: new Date(oldest.getTime() + LOGIN_WINDOW_MS),
+  };
+}
+
+/** Record one failed login attempt against the IP. Call only on auth failure. */
+export async function recordFailedLogin(ipHash: string): Promise<void> {
+  await recordUsage('login', ipHash);
+}
+
+/** Clear the IP's failed-attempt counter after a successful login. */
+export async function clearLoginRate(ipHash: string): Promise<void> {
+  await dbConnect();
+  await RateLimit.updateOne(
+    { scope: 'login', key: ipHash },
+    { $set: { requests: [], updatedAt: new Date() } }
+  );
+}
+
+async function loadOrCreate(scope: 'anon' | 'user' | 'global' | 'login', key: string) {
   await dbConnect();
   let doc = await RateLimit.findOne({ scope, key });
   if (!doc) {
@@ -153,7 +201,7 @@ export async function checkGlobalRate(): Promise<GlobalRateResult> {
  * generation so a failure doesn't burn the user's quota.
  */
 export async function recordUsage(
-  scope: 'anon' | 'user' | 'global',
+  scope: 'anon' | 'user' | 'global' | 'login',
   key: string
 ): Promise<void> {
   await dbConnect();

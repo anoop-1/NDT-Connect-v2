@@ -10,7 +10,7 @@ import mongoose, { Schema, model, models } from 'mongoose';
 const rateLimitSchema = new Schema({
   scope: {
     type: String,
-    enum: ['anon', 'user', 'global'],
+    enum: ['anon', 'user', 'global', 'login'],
     required: true,
   },
   key: {

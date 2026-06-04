@@ -5,9 +5,7 @@ import { ProcedureDraft } from '@/lib/models/ProcedureDraft';
 
 export const dynamic = 'force-dynamic';
 
-const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || 'fallback-secret-change-me'
-);
+import { JWT_SECRET } from '@/lib/jwt';
 
 interface RouteContext {
   params: { draftId: string };

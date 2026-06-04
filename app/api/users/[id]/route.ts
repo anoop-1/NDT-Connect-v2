@@ -3,7 +3,7 @@ import dbConnect from "@/lib/mongodb";
 import { User } from "@/lib/models/User";
 import { jwtVerify } from "jose";
 
-const JWT_SECRET = new TextEncoder().encode(process.env.JWT_SECRET || 'fallback-secret-change-me');
+import { JWT_SECRET } from '@/lib/jwt';
 
 async function authedUserId(req: NextRequest): Promise<string | null> {
   const authHeader = req.headers.get('authorization');
