@@ -1,4 +1,7 @@
 import mongoose from 'mongoose';
+import fs from 'fs';
+import os from 'os';
+import path from 'path';
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -11,6 +14,23 @@ if (!MONGODB_URI) {
 //   "Mongoose is connecting with SSL enabled, but the server is not accepting
 //    SSL connections." -> that is an ENV/Atlas problem, not a code problem.
 const isSrv = MONGODB_URI.startsWith('mongodb+srv://');
+
+// Self-hosted Mongo (VPS) uses a private CA. We pin it via the MONGO_CA_PEM env
+// var so TLS is fully VERIFIED (no tlsAllowInvalidCertificates). The driver wants
+// a file path, so materialise the PEM to a temp file once. Returns undefined when
+// not set (e.g. Atlas srv, which uses public CAs already trusted by Node).
+function resolveCaFile(): string | undefined {
+  const pem = process.env.MONGO_CA_PEM;
+  if (!pem) return undefined;
+  const p = path.join(os.tmpdir(), 'ndt-mongo-ca.pem');
+  try {
+    if (!fs.existsSync(p)) fs.writeFileSync(p, pem, { mode: 0o600 });
+    return p;
+  } catch {
+    return undefined;
+  }
+}
+const caFile = resolveCaFile();
 
 let cached = (global as any).mongoose;
 if (!cached) {
@@ -50,6 +70,8 @@ async function dbConnect(): Promise<typeof mongoose> {
       // srv URIs imply tls; only set tls=true explicitly for srv to avoid
       // accidentally forcing TLS on a plain mongodb:// host.
       ...(isSrv ? { tls: true } : {}),
+      // Pin the self-hosted CA when provided → verified TLS to the VPS Mongo.
+      ...(caFile ? { tls: true, tlsCAFile: caFile } : {}),
     };
     cached.promise = mongoose.connect(MONGODB_URI as string, opts);
   }
