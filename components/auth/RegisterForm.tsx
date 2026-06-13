@@ -325,7 +325,7 @@ const InspectorFields = ({ form }: { form: UseFormReturn<any> }) => {
 };
 
 // --- MAIN FORM COMPONENT ---
-export function RegisterForm() {
+export function RegisterForm({ initialRole = 'client' }: { initialRole?: 'client' | 'provider' | 'inspector' }) {
   const { register } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
@@ -337,7 +337,7 @@ export function RegisterForm() {
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      role: "client",
+      role: initialRole,
       name: "",
       email: "",
       password: "",
