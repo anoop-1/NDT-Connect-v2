@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import ContentPage from '@/components/content/ContentPage';
 import { toolSections } from '@/components/content/sections-from-arbitrary';
 import { listSlugs, loadTool } from '@/lib/content/authored';
+import JoinCTA from '@/components/seo/JoinCTA';
 
 interface Props { params: { slug: string } }
 
@@ -71,9 +72,12 @@ export default async function ToolAuthoredPage({ params }: Props) {
   ];
 
   const calculatorPanel = (
-    <div className="my-8 p-6 bg-card rounded-xl border border-border shadow-sm">
-      <Calculator />
-    </div>
+    <>
+      <div className="my-8 p-6 bg-card rounded-xl border border-border shadow-sm">
+        <Calculator />
+      </div>
+      <JoinCTA context="Free NDT calculators are just the start — create a free account to generate inspection procedures, track certifications, and connect with the NDT industry." />
+    </>
   );
 
   return (

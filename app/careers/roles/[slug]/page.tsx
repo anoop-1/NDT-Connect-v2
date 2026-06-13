@@ -359,16 +359,16 @@ export default function CareerRolePage({ params }: Props) {
 
         {/* CTA Section */}
         <section className="bg-primary rounded-2xl p-10 text-primary-foreground text-center">
-          <h2 className="text-2xl font-bold mb-4">Ready to Pursue This Career Path?</h2>
+          <h2 className="text-2xl font-bold mb-4">Get found by companies hiring NDT inspectors</h2>
           <p className="mb-8 opacity-90 max-w-lg mx-auto">
-            Start your journey with NDT certification. Connect with training providers and employers on NDT Connect.
+            Create a free NDT Connect profile, showcase your certifications, and let employers and clients reach you directly.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button size="lg" variant="secondary" asChild>
-              <Link href="/certifications">View Certifications</Link>
+              <Link href="/register?role=provider">Create your free profile</Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
-              <Link href="/find-providers">Find Training Providers</Link>
+              <Link href="/certifications">View Certifications</Link>
             </Button>
           </div>
         </section>
