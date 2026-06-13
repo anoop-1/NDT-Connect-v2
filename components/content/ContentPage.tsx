@@ -7,6 +7,7 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { PRIMARY_AUTHOR, type Author, type Section, type Faq, type Citation, type InternalLink } from '@/lib/content/authored/types';
+import JoinCTA from '@/components/seo/JoinCTA';
 
 export interface ContentPageProps {
   title: string;
@@ -264,6 +265,7 @@ export default function ContentPage(props: ContentPageProps) {
       {props.citations && <CitationsList citations={props.citations} />}
       {props.internalLinks && <InternalLinkList links={props.internalLinks} />}
 
+      <JoinCTA />
       <AuthorByline author={author} lastReviewed={lastReviewed} />
     </article>
   );

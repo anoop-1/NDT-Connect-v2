@@ -10,6 +10,7 @@ import { nearestCities, buildCityAlternates } from '@/lib/seo-helpers';
 import { findRichCity } from '@/lib/seo/cities-rich';
 import { cityIndustrySlugs, INDUSTRY_PAGE_DATA } from '@/lib/seo/industry-page-data';
 import { Button } from '@/components/ui/button';
+import JoinCTA from '@/components/seo/JoinCTA';
 import { Badge } from '@/components/ui/badge';
 import {
   MapPin,
@@ -683,6 +684,8 @@ export default async function CityPage({ params }: Props) {
 
         <CityDataAnchors citySlug={citySlug} />
         <CornerstoneLinks topicHints={[city.industries[0]?.toLowerCase() || '']} />
+
+        <JoinCTA context="Hiring NDT inspection in this area, or an inspector looking for work? Join free." />
 
         {/* Author byline — E-E-A-T signal (Person schema embedded) */}
         <section className="mt-12 mb-8 px-4 md:px-0">
