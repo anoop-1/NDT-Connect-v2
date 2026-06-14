@@ -60,6 +60,20 @@ const baseUserSchema = new Schema({
     type: Date,
     default: null,
   },
+  // Pre-seeded "claim your free listing" provider stubs (marketplace seeding).
+  claimToken: {
+    type: String,
+    default: null,
+    index: true,
+  },
+  claimed: {
+    type: Boolean,
+    default: false,
+  },
+  source: {
+    type: String,
+    default: null,
+  },
 });
 
 export const User = models?.User || model('User', baseUserSchema);
