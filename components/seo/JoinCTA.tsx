@@ -9,7 +9,7 @@
  * cost researchers (→ become Clients). This block gives both a clear next step.
  */
 import Link from 'next/link';
-import { ArrowRight, UserPlus, ClipboardList } from 'lucide-react';
+import { ArrowRight, Building2, HardHat, ClipboardList } from 'lucide-react';
 
 interface JoinCTAProps {
   /** Optional context line tailored to the host page. */
@@ -32,17 +32,31 @@ export function JoinCTA({ context }: JoinCTAProps) {
         </p>
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-3">
+      <div className="grid sm:grid-cols-3 gap-3">
         <Link
           href="/register?role=provider"
           className="group flex flex-col items-center text-center gap-2 rounded-lg border-2 border-primary bg-primary/5 p-5 hover:bg-primary/10 hover:shadow-md transition"
         >
-          <UserPlus className="h-6 w-6 text-primary" aria-hidden="true" />
+          <Building2 className="h-6 w-6 text-primary" aria-hidden="true" />
           <span className="text-sm font-semibold text-primary">
-            I&apos;m an NDT professional
+            NDT service provider
           </span>
           <span className="text-xs text-slate-700 leading-snug">
-            Create a free profile, showcase your certifications, and get found by companies hiring inspectors.
+            List your company free, showcase certifications, and win inspection jobs from clients in your area.
+          </span>
+          <ArrowRight className="h-4 w-4 text-primary group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
+        </Link>
+
+        <Link
+          href="/register?role=inspector"
+          className="group flex flex-col items-center text-center gap-2 rounded-lg border-2 border-primary bg-primary/5 p-5 hover:bg-primary/10 hover:shadow-md transition"
+        >
+          <HardHat className="h-6 w-6 text-primary" aria-hidden="true" />
+          <span className="text-sm font-semibold text-primary">
+            Freelance inspector
+          </span>
+          <span className="text-xs text-slate-700 leading-snug">
+            Any level (I, II, III). Build a free profile and get hired directly by companies and clients.
           </span>
           <ArrowRight className="h-4 w-4 text-primary group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
         </Link>
@@ -56,7 +70,7 @@ export function JoinCTA({ context }: JoinCTAProps) {
             I need an inspection
           </span>
           <span className="text-xs text-slate-600 leading-snug">
-            Post your job free and receive quotes from vetted NDT providers — most respond within 24 hours.
+            Post your job free and get quotes from vetted NDT providers — most respond within 24 hours.
           </span>
           <ArrowRight className="h-4 w-4 text-primary group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
         </Link>

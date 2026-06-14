@@ -23,8 +23,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const role = getCareerBySlug(params.slug);
   if (!role) return {};
 
-  const title = `${role.title} - Salary, Skills & Career Path`;
-  const description = `${role.description} Salary: $${(role.salaryRange.min / 1000).toFixed(0)}K-$${(role.salaryRange.max / 1000).toFixed(0)}K. Learn about requirements, skills, and career growth.`;
+  const sMin = (role.salaryRange.min / 1000).toFixed(0);
+  const sMax = (role.salaryRange.max / 1000).toFixed(0);
+  const title = `${role.title} Salary & Jobs [2026]: $${sMin}K–$${sMax}K`;
+  const description = `${role.title} salary in 2026: $${sMin}K–$${sMax}K. See required certifications, how to get hired, and create a free NDT Connect profile so employers and clients find you directly. ${role.description}`;
 
   return {
     title,
