@@ -402,6 +402,9 @@ export function RegisterForm({ initialRole = 'client' }: { initialRole?: 'client
     try {
       const registeredUser = await register({ email: values.email, role: values.role, name: values.name });
       if (registeredUser) {
+          if (typeof window !== 'undefined' && (window as any).gtag) {
+            (window as any).gtag('event', 'sign_up', { method: values.role });
+          }
           toast({ title: "Registration Successful!", description: `Please 'verify' your email on the login page for ${values.email}.`, duration: 7000 });
           router.push(`/login?status=verification_pending&email=${encodeURIComponent(values.email)}`);
       } else {
