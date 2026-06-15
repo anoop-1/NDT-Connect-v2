@@ -6,6 +6,7 @@ import {
   generateCityIndustryContent,
 } from '@/lib/content/city-industry-content';
 import { INDUSTRY_PAGE_DATA } from '@/lib/seo/industry-page-data';
+import { shouldIndexCityIndustry, robotsFor } from '@/lib/seo/indexability';
 import { BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 import {
   CheckCircle,
@@ -56,6 +57,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: content.metaTitle,
     description: content.metaDescription,
     alternates: { canonical: content.canonicalUrl },
+    robots: robotsFor(shouldIndexCityIndustry(citySlug, industrySlug)),
     openGraph: {
       title: content.metaTitle,
       description: content.metaDescription,

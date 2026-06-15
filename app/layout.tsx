@@ -15,11 +15,13 @@ import { Analytics } from '@vercel/analytics/react';
 const fontSans = Inter({
   variable: '--font-sans',
   subsets: ['latin'],
+  display: 'swap',
 });
 
 const fontMono = Roboto_Mono({
   variable: '--font-mono',
   subsets: ['latin'],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {

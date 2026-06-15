@@ -12,6 +12,7 @@ import { DollarSign, AlertCircle, ArrowRight } from 'lucide-react';
 import { BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 import { CornerstoneLinks } from '@/components/seo/CornerstoneLinks';
 import { CityDataAnchors } from '@/components/seo/CityDataAnchors';
+import { shouldIndexCity, robotsFor } from '@/lib/seo/indexability';
 import { CityMethodContentBlocks } from '@/components/seo/CityMethodContent';
 import {
   composeCityMethodContent,
@@ -278,6 +279,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: `https://ndt-connect.com/cost-guide/${params.city}/${params.service}`,
     },
+    robots: robotsFor(shouldIndexCity(params.city, 'cost')),
   };
 }
 

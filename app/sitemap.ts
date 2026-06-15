@@ -4,6 +4,7 @@ import path from 'path';
 import { FREE_TOOLS } from '@/data/freeTools';
 import { CITIES, PUBLISHABLE_CITIES } from '@/data/cities';
 import { allCityIndustryCombos } from '@/lib/content/city-industry-content';
+import { shouldIndexCity, shouldIndexCityIndustry } from '@/lib/seo/indexability';
 import { procedureExamples } from '@/data/procedure-examples';
 // Canonical slug sources — single source of truth shared with the route
 // handlers (which use dynamicParams=false). Previously the sitemap had
@@ -155,14 +156,15 @@ const BUCKETS: Record<string, () => MetadataRoute.Sitemap> = {
     cities.map((c) => url(`/ndt-services/${c}`, 'weekly', 0.8)),
 
   // ---- city × method (highest-intent geo pages) ----
+  // Indexable set only (tier-1/2 cities); tier-3/4 are noindex,follow → omit.
   'city-methods': () =>
-    cities.flatMap((c) =>
+    cities.filter((c) => shouldIndexCity(c, 'method')).flatMap((c) =>
       cityMethods.map((m) => url(`/ndt-services/${c}/${m}`, 'weekly', 0.8)),
     ),
 
   // ---- cost-guide ----
   'cost-guides': () =>
-    cities.flatMap((c) =>
+    cities.filter((c) => shouldIndexCity(c, 'cost')).flatMap((c) =>
       cityMethods.map((m) => url(`/cost-guide/${c}/${m}`, 'weekly', 0.8)),
     ),
 
@@ -173,9 +175,9 @@ const BUCKETS: Record<string, () => MetadataRoute.Sitemap> = {
   'careers-roles': () =>
     careerSlugs.map((s) => url(`/careers/roles/${s}`, 'monthly', 0.5)),
 
-  // ---- training ----
+  // ---- training ---- (tier-1 metros only; rest noindex,follow)
   training: () =>
-    cities.map((c) => url(`/training/${c}`, 'monthly', 0.6)),
+    cities.filter((c) => shouldIndexCity(c, 'training')).map((c) => url(`/training/${c}`, 'monthly', 0.6)),
 
   // ---- method/industry/certification/blog/comparison ----
   methods: () =>
@@ -226,11 +228,13 @@ const BUCKETS: Record<string, () => MetadataRoute.Sitemap> = {
 
   'free-tools-countries': () => [],
 
-  // ---- city × industry (386 high-quality industry-specific pages) ----
+  // ---- city × industry ---- (only indexable: tier-1/2 city + industry weight >= 0.4)
   'city-industries': () =>
-    allCityIndustryCombos().map(({ city: c, industry: i }) =>
-      url(`/ndt-services/${c}/industries/${i}`, 'weekly', 0.75),
-    ),
+    allCityIndustryCombos()
+      .filter(({ city: c, industry: i }) => shouldIndexCityIndustry(c, i))
+      .map(({ city: c, industry: i }) =>
+        url(`/ndt-services/${c}/industries/${i}`, 'weekly', 0.75),
+      ),
 
   // ---- AI procedure generator ----
   'procedure-generator': () => [

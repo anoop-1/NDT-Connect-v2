@@ -30,6 +30,7 @@ import {
 // data/methods.json; the v1 composer above carries the page in that case.
 import { generateCityMethodContent } from '@/lib/seo/generate-page-content';
 import { CityMethodContentBlocksV2 } from '@/components/seo/content-blocks';
+import { shouldIndexCity, robotsFor } from '@/lib/seo/indexability';
 
 // ============================================================================
 // /ndt-services/[city]/[slug]
@@ -283,6 +284,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     alternates: {
       canonical: `https://ndt-connect.com/ndt-services/${citySlug}/${slug}`,
     },
+    robots: robotsFor(shouldIndexCity(citySlug, 'method')),
   };
 }
 

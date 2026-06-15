@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { getCityBySlug } from '@/lib/seo-data';
 import { PUBLISHABLE_CITIES, findPublishableCity } from '@/data/cities';
+import { shouldIndexCity, robotsFor } from '@/lib/seo/indexability';
 import {
   toCityView,
   trainingProviderProse,
@@ -59,6 +60,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     alternates: {
       canonical: `https://ndt-connect.com/training/${citySlug}`,
     },
+    robots: robotsFor(shouldIndexCity(citySlug, 'training')),
   };
 }
 
