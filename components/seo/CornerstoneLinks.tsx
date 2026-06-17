@@ -72,6 +72,10 @@ const CORNERSTONES: Cornerstone[] = [
     blurb: 'Identify slag, porosity, LOF on RT film.', tags: ['rt','radiographic','weld'] },
   { url: '/learn/how-to-perform-thickness-survey-piping', title: 'How to Perform Thickness Survey on Piping',
     blurb: 'UT scan plan, CMLs, API 570 grid.', tags: ['ut','ultrasonic','thickness','piping','api-570'] },
+  // Salary/career cornerstone (link-worthy data asset)
+  { url: '/learn/ndt-inspector-salary-guide', title: 'NDT Inspector Salary Guide [2026]',
+    blurb: 'US pay by certification level, method & industry — and how to earn more.',
+    tags: ['salary','career','cwi','certification','aws-cwi','weld','ut','rt'] },
 ];
 
 function pickCornerstones(tags: string[], count = 5): Cornerstone[] {

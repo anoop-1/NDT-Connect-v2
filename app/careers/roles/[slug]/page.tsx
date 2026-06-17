@@ -287,6 +287,9 @@ export default function CareerRolePage({ params }: Props) {
                   <div className="text-xs text-muted-foreground mt-1">
                     Avg: ${(((role.salaryRange.min + role.salaryRange.max) / 2) / 1000).toFixed(0)}K/year
                   </div>
+                  <Link href="/learn/ndt-inspector-salary-guide" className="text-xs text-primary hover:underline inline-flex items-center gap-1 mt-2">
+                    Full NDT salary guide <ArrowRight className="h-3 w-3" />
+                  </Link>
                 </div>
 
                 <div className="border-t pt-4">
