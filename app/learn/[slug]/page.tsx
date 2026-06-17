@@ -33,15 +33,37 @@ export default async function LearnAuthoredPage({ params }: Props) {
   const l = await loadLearn(params.slug);
   if (!l) notFound();
 
-  const schema = [
-    {
-      '@context': 'https://schema.org',
-      '@type': l.category === 'how-to' ? 'HowTo' : 'Article',
-      name: l.metaTitle,
-      description: l.metaDescription,
-      mainEntityOfPage: `https://ndt-connect.com/learn/${params.slug}`,
-      author: { '@type': 'Person', name: 'Anoop Rayavarapu' },
-    },
+  const pageUrl = `https://ndt-connect.com/learn/${params.slug}`;
+  const isHowTo = l.category === 'how-to';
+
+  // HowTo: map H2 sections to steps so AI/Google can extract the procedure.
+  const primary = isHowTo
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'HowTo',
+        name: l.metaTitle,
+        description: l.metaDescription,
+        mainEntityOfPage: pageUrl,
+        author: { '@type': 'Person', name: 'Anoop Rayavarapu' },
+        step: (l.sections || [])
+          .filter((s: { level: number }) => s.level === 2)
+          .map((s: { heading: string; paragraphs: string[] }) => ({
+            '@type': 'HowToStep',
+            name: s.heading,
+            text: (s.paragraphs || []).join(' ').slice(0, 500),
+          })),
+      }
+    : {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        name: l.metaTitle,
+        description: l.metaDescription,
+        mainEntityOfPage: pageUrl,
+        author: { '@type': 'Person', name: 'Anoop Rayavarapu' },
+      };
+
+  const schema: object[] = [
+    primary,
     {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
@@ -52,6 +74,23 @@ export default async function LearnAuthoredPage({ params }: Props) {
       })),
     },
   ];
+
+  // Dataset markup for the salary report — eligible for dataset rich results
+  // and a strong AI-citation signal for "NDT salary" queries.
+  if (params.slug === 'ndt-inspector-salary-guide') {
+    schema.push({
+      '@context': 'https://schema.org',
+      '@type': 'Dataset',
+      name: 'US NDT Inspector Salary Ranges (2026)',
+      description:
+        'Non-destructive testing pay in the US for 2026 by certification level (I/II/III), method (UT, PAUT, RT, CWI), role, and industry.',
+      url: pageUrl,
+      creator: { '@type': 'Organization', name: 'NDT Connect', url: 'https://ndt-connect.com' },
+      spatialCoverage: 'United States',
+      temporalCoverage: '2026',
+      keywords: ['NDT salary', 'NDT inspector pay', 'ASNT Level III salary', 'CWI salary', 'radiographer pay'],
+    });
+  }
 
   return (
     <ContentPage
