@@ -7,6 +7,9 @@ import {
 } from '@/lib/content/city-industry-content';
 import { INDUSTRY_PAGE_DATA } from '@/lib/seo/industry-page-data';
 import { shouldIndexCityIndustry, robotsFor } from '@/lib/seo/indexability';
+import { CityDataAnchors } from '@/components/seo/CityDataAnchors';
+import { CornerstoneLinks } from '@/components/seo/CornerstoneLinks';
+import JoinCTA from '@/components/seo/JoinCTA';
 import { BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 import {
   CheckCircle,
@@ -335,6 +338,10 @@ export default async function CityIndustryPage({ params }: PageProps) {
             ))}
           </div>
         </section>
+
+        <CityDataAnchors citySlug={citySlug} />
+        <CornerstoneLinks topicHints={[industryLabel.toLowerCase()]} />
+        <JoinCTA context={`${industryLabel} NDT inspection in ${cityName} — hire vetted providers, or list your services free.`} />
 
       </div>
     </>

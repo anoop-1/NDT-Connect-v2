@@ -13,6 +13,7 @@ import { BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 import { CornerstoneLinks } from '@/components/seo/CornerstoneLinks';
 import { CityDataAnchors } from '@/components/seo/CityDataAnchors';
 import { shouldIndexCity, robotsFor } from '@/lib/seo/indexability';
+import JoinCTA from '@/components/seo/JoinCTA';
 import { CityMethodContentBlocks } from '@/components/seo/CityMethodContent';
 import {
   composeCityMethodContent,
@@ -611,6 +612,7 @@ export default function CostGuidePage({ params }: Props) {
 
         <CityDataAnchors citySlug={params.city} methodAbbr={method.abbreviation} />
         <CornerstoneLinks methodAbbr={method.abbreviation} />
+        <JoinCTA context={`Get ${method.abbreviation} inspection quotes in ${city.name}, or list your services — free on NDT Connect.`} />
 
         {/* Schema markup — upgraded 2026-05-29 to nest price inside Service+AggregateOffer
             so Google can surface $-amount rich snippet in SERP. Standalone PriceSpecification

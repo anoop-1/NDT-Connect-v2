@@ -31,6 +31,7 @@ import {
 import { generateCityMethodContent } from '@/lib/seo/generate-page-content';
 import { CityMethodContentBlocksV2 } from '@/components/seo/content-blocks';
 import { shouldIndexCity, robotsFor } from '@/lib/seo/indexability';
+import JoinCTA from '@/components/seo/JoinCTA';
 
 // ============================================================================
 // /ndt-services/[city]/[slug]
@@ -830,6 +831,7 @@ export default async function CitySlugPage({ params }: PageProps) {
 
         <CityDataAnchors citySlug={citySlug} methodAbbr={method.abbreviation} />
         <CornerstoneLinks methodAbbr={method.abbreviation} />
+        <JoinCTA context={`Need ${method.name} in ${city.name}, or an inspector who offers it? Join NDT Connect free.`} />
       </div>
     </>
   );

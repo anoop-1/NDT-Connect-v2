@@ -143,7 +143,10 @@ function RequestServiceFormContent() {
         const result = await res.json();
         if (!result.success) throw new Error(result.error || "Failed to create request");
         const docRef = { id: result.data.id };
-        
+        if (typeof window !== 'undefined' && (window as any).gtag) {
+          (window as any).gtag('event', 'generate_lead', { service_type: serviceType, location });
+        }
+
         // Send email notification to provider
         if (providerId && providerName) {
           try {
