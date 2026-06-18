@@ -76,6 +76,9 @@ const CORNERSTONES: Cornerstone[] = [
   { url: '/learn/ndt-inspector-salary-guide', title: 'NDT Inspector Salary Guide [2026]',
     blurb: 'US pay by certification level, method & industry — and how to earn more.',
     tags: ['salary','career','cwi','certification','aws-cwi','weld','ut','rt'] },
+  { url: '/learn/ndt-inspection-cost-index', title: 'NDT Inspection Cost Index [2026]',
+    blurb: 'US inspection rates by method & region, and what moves the price.',
+    tags: ['cost','price','rate','ut','rt','paut','mt','pt','budget'] },
 ];
 
 function pickCornerstones(tags: string[], count = 5): Cornerstone[] {

@@ -91,6 +91,20 @@ export default async function LearnAuthoredPage({ params }: Props) {
       keywords: ['NDT salary', 'NDT inspector pay', 'ASNT Level III salary', 'CWI salary', 'radiographer pay'],
     });
   }
+  if (params.slug === 'ndt-inspection-cost-index') {
+    schema.push({
+      '@context': 'https://schema.org',
+      '@type': 'Dataset',
+      name: 'US NDT Inspection Cost Index (2026)',
+      description:
+        'Typical US NDT inspection rates for 2026 by method (UT, PAUT, RT, MT, PT, ET, VT) with regional tier multipliers and cost drivers.',
+      url: pageUrl,
+      creator: { '@type': 'Organization', name: 'NDT Connect', url: 'https://ndt-connect.com' },
+      spatialCoverage: 'United States',
+      temporalCoverage: '2026',
+      keywords: ['NDT inspection cost', 'NDT rates', 'UT cost', 'PAUT cost', 'radiography price', 'NDT price list'],
+    });
+  }
 
   return (
     <ContentPage
