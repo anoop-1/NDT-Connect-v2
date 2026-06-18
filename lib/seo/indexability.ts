@@ -15,11 +15,12 @@ export function cityTier(slug: string): number | undefined {
   return findCity(slug)?.tier;
 }
 
-/** City-level programmatic pages. method/cost → tier 1-2; training → tier 1 only. */
+/** City-level programmatic pages. All index for tier 1-2 cities.
+ * (training was tier-1-only, but GSC shows it's the top-CTR family ~5.9% — keep it.) */
 export function shouldIndexCity(slug: string, kind: 'method' | 'cost' | 'training' = 'method'): boolean {
   const t = cityTier(slug);
   if (!t) return false;
-  return kind === 'training' ? t === 1 : t <= 2;
+  return t <= 2;
 }
 
 /** City×industry pages: tier 1-2 city AND the industry is weighted >= 0.4 there. */
