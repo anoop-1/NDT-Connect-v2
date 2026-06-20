@@ -15,9 +15,34 @@ export function cityTier(slug: string): number | undefined {
   return findCity(slug)?.tier;
 }
 
-/** City-level programmatic pages. All index for tier 1-2 cities.
- * (training was tier-1-only, but GSC shows it's the top-CTR family ~5.9% — keep it.) */
+// Cities/locations that ACTUALLY earn GSC impressions (>=10, 90d, pulled 2026-06-15)
+// — never noindex these regardless of tier. Prevents the crawl-budget prune from
+// shedding live demand (tier-3/4 oil towns + international cities that already rank).
+// Refresh periodically from seo-analysis/output (extract city slugs from pages.csv).
+const DEMAND_CITIES = new Set<string>([
+  'houston-tx','london-uk','tulsa-ok','perth-au','singapore-sg','los-angeles-ca','dubai-ae',
+  'kuwait-city-kw','abu-dhabi-ae','denver-co','aberdeen-uk','brisbane-au','corpus-christi-tx',
+  'beaumont-tx','pittsburgh-pa','muscat-om','bangalore-in','new-york-ny','calgary-ab','midland-tx',
+  'chicago-il','jubail-sa','yanbu-sa','cape-town-za','manama-bh','ahmedabad-in','sydney-au','doha-qa',
+  'mumbai-in','new-orleans-la','visakhapatnam-in','edmonton-ab','riyadh-sa','montreal-qc','carlsbad-nm',
+  'boston-ma','dammam-sa','toronto-on','johannesburg-za','baton-rouge-la','mobile-al','sacramento-ca',
+  'dallas-tx','rotterdam-nl','phoenix-az','melbourne-au','stavanger-no','charleston-sc','san-antonio-tx',
+  'billings-mt','lake-charles-la','st-louis-mo','vancouver-bc','newark-nj','oklahoma-city-ok','tampa-fl',
+  'pasadena-tx','detroit-mi','chattanooga-tn','atlanta-ga','seattle-wa','pune-in','charlotte-nc',
+  'minneapolis-mn','miami-fl','kuala-lumpur-my','portland-or','bakersfield-ca','philadelphia-pa',
+  'chennai-in','albuquerque-nm','munich-de','delhi-in','memphis-tn','quad-cities-ia','cape-canaveral-fl',
+  'anchorage-ak','rockford-il','casper-wy','honolulu-hi','odessa-tx','columbus-oh','boise-id',
+  'birmingham-al','hamburg-de','kolkata-in','kansas-city-mo','indianapolis-in','macae-br','san-diego-ca',
+  'buffalo-ny','long-beach-ca','richland-wa','williston-nd','hartford-ct','jamnagar-in','texas-city-tx',
+  'cleveland-oh','rock-springs-wy','knoxville-tn','huntsville-al','lafayette-la','farmington-nm',
+  'idaho-falls-id','ulsan-kr','tyler-tx','wichita-ks','kochi-in','rio-de-janeiro-br','frankfurt-de',
+  'san-francisco-ca','provo-ut','el-dorado-ar','gillette-wy','port-arthur-tx','aiken-sc',
+]);
+
+/** City-level programmatic pages. Index tier 1-2 cities, PLUS any city already
+ * earning GSC impressions (demand override — don't prune live traffic). */
 export function shouldIndexCity(slug: string, kind: 'method' | 'cost' | 'training' = 'method'): boolean {
+  if (DEMAND_CITIES.has(slug)) return true;
   const t = cityTier(slug);
   if (!t) return false;
   return t <= 2;
