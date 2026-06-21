@@ -7,7 +7,7 @@ import {
   findPublishableCity,
   type City,
 } from '@/data/cities';
-import { nearestCities } from '@/lib/seo-helpers';
+import { nearestCities, buildAlternates } from '@/lib/seo-helpers';
 import { DollarSign, AlertCircle, ArrowRight } from 'lucide-react';
 import { BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
 import { CornerstoneLinks } from '@/components/seo/CornerstoneLinks';
@@ -279,6 +279,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     twitter: { card: 'summary_large_image', title, description, images: ['https://ndt-connect.com/opengraph-image'] },
     alternates: {
       canonical: `https://ndt-connect.com/cost-guide/${params.city}/${params.service}`,
+      languages: buildAlternates(params.city, `https://ndt-connect.com/cost-guide/${params.city}/${params.service}`),
     },
     robots: robotsFor(shouldIndexCity(params.city, 'cost')),
   };

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { cities, getCityBySlug } from '@/lib/seo-data';
 import { PUBLISHABLE_CITIES, findPublishableCity } from '@/data/cities';
+import { buildAlternates } from '@/lib/seo-helpers';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -58,7 +59,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       url: `https://ndt-connect.com/careers/${params.city}`,
     },
-    alternates: { canonical: `https://ndt-connect.com/careers/${params.city}` },
+    alternates: {
+      canonical: `https://ndt-connect.com/careers/${params.city}`,
+      languages: buildAlternates(params.city, `https://ndt-connect.com/careers/${params.city}`),
+    },
   };
 }
 
