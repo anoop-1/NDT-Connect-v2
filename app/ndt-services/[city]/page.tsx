@@ -239,6 +239,7 @@ export default async function CityPage({ params }: Props) {
     '@type': 'Service',
     name: `NDT Services in ${city.name}`,
     description: `Non-destructive testing and inspection services in ${city.name}, ${stateLabel}`,
+    dateModified: new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), 1)).toISOString().slice(0, 10),
     provider: {
       '@type': 'Organization',
       name: 'NDT Connect',

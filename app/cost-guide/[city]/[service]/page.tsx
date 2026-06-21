@@ -628,6 +628,7 @@ export default function CostGuidePage({ params }: Props) {
               serviceType: `${method.name} (${method.abbreviation}) Inspection`,
               description: `${method.name} inspection services in ${city.name}, ${stateLabel}. Hourly rate range $${cost.low}–$${cost.high}, typical $${cost.mid}/hr from certified providers.`,
               url: `https://ndt-connect.com/cost-guide/${params.city}/${params.service}`,
+              dateModified: new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), 1)).toISOString().slice(0, 10),
               provider: {
                 '@type': 'Organization',
                 name: 'NDT Connect Provider Network',
