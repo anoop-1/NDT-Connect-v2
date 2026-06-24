@@ -2,7 +2,7 @@
   "_meta": {
     "version": "1.0.0",
     "lastUpdated": "2026-05-16",
-    "totalCities": 200,
+    "totalCities": 221,
     "schemaFields": 30,
     "sources": {
       "wages": "BLS OES May 2024 metro tables (occupations 17-3024 Industrial Engineering Technologists, 19-4099 Life/Physical/Social Science Techs, 51-8021 Stationary Engineers as proxies for NDT inspectors)",
@@ -19246,5 +19246,1581 @@
       "Katherine (320km)",
       "Perth (2650km by air)"
     ]
+  },
+  "beckley-wv": {
+    "displayName": "Beckley, WV",
+    "country": "US",
+    "state": "WV",
+    "stateCode": "WV",
+    "tier": 3,
+    "region": "great-lakes",
+    "metroPopulation": 115000,
+    "lat": 37.7782,
+    "lng": -81.1882,
+    "industries": [
+      {
+        "name": "Coal mining",
+        "weight": 0.45,
+        "context": "Coal mining is a core industrial driver of NDT demand in Beckley."
+      },
+      {
+        "name": "Mining services",
+        "weight": 0.32,
+        "context": "Mining services is a core industrial driver of NDT demand in Beckley."
+      },
+      {
+        "name": "Rail",
+        "weight": 0.23,
+        "context": "Rail is a core industrial driver of NDT demand in Beckley."
+      }
+    ],
+    "majorEmployers": [
+      "Alpha Metallurgical Resources",
+      "Coronado Global Resources",
+      "CSX Transportation",
+      "Norfolk Southern",
+      "Appalachian Power"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 40000,
+      "level2": 58000,
+      "level3": 90000
+    },
+    "wageBandSource": "BLS OES May 2024 metro tables (NDT inspector proxy occupations)",
+    "regionalCodes": [
+      "MSHA",
+      "AAR M-1003"
+    ],
+    "asntChapter": "ASNT Great Lakes Section",
+    "awsSection": "AWS Great Lakes Section",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "high",
+    "costOfLivingIndex": 88,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Central Appalachian metallurgical coal operations (regional)",
+        "type": "Coal mining",
+        "scale": "regional"
+      },
+      {
+        "name": "Raleigh County coal preparation plants (regional)",
+        "type": "Coal prep plant",
+        "scale": "regional"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.9,
+      "rationale": "Tier-3 WV labour band; competitive rates near regional median."
+    },
+    "uniqueAngles": [
+      "Met-coal rope-access UT crews work weekly MSHA cycles; a lapsed cal idles a section",
+      "Rail and mining inspection share crews but run different cert regimes (MSHA vs AAR)"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": []
+  },
+  "bloomington-il": {
+    "displayName": "Bloomington, IL",
+    "country": "US",
+    "state": "IL",
+    "stateCode": "IL",
+    "tier": 3,
+    "region": "midwest",
+    "metroPopulation": 190000,
+    "lat": 40.4842,
+    "lng": -88.9937,
+    "industries": [
+      {
+        "name": "Manufacturing",
+        "weight": 0.45,
+        "context": "Manufacturing is a core industrial driver of NDT demand in Bloomington."
+      },
+      {
+        "name": "Pipelines",
+        "weight": 0.32,
+        "context": "Pipelines is a core industrial driver of NDT demand in Bloomington."
+      },
+      {
+        "name": "Insurance HQs",
+        "weight": 0.23,
+        "context": "Insurance HQs is a core industrial driver of NDT demand in Bloomington."
+      }
+    ],
+    "majorEmployers": [
+      "State Farm",
+      "Rivian Automotive",
+      "Country Financial",
+      "Ferrero",
+      "Bridgestone (regional)"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 44000,
+      "level2": 62000,
+      "level3": 95000
+    },
+    "wageBandSource": "BLS OES May 2024 metro tables (NDT inspector proxy occupations)",
+    "regionalCodes": [
+      "API 570",
+      "PHMSA",
+      "ASME"
+    ],
+    "asntChapter": "ASNT Midwest Section",
+    "awsSection": "AWS Midwest Section",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 92,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Rivian Normal Plant (regional)",
+        "type": "EV manufacturing",
+        "scale": "regional"
+      },
+      {
+        "name": "State Farm Corporate Headquarters",
+        "type": "Insurance HQ",
+        "scale": "regional"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.9,
+      "rationale": "Tier-3 IL labour band; competitive rates near regional median."
+    },
+    "uniqueAngles": [
+      "EV ramp at Rivian Normal drives structural and battery-enclosure weld inspection",
+      "Central-Illinois pipeline ROW runs to PHMSA's tightest traceability framework"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": []
+  },
+  "clay-center-ks": {
+    "displayName": "Clay Center, KS",
+    "country": "US",
+    "state": "KS",
+    "stateCode": "KS",
+    "tier": 3,
+    "region": "mid-continent",
+    "metroPopulation": 8000,
+    "lat": 39.3736,
+    "lng": -97.1242,
+    "industries": [
+      {
+        "name": "Pipeline ROW",
+        "weight": 0.45,
+        "context": "Pipeline ROW is a core industrial driver of NDT demand in Clay Center."
+      },
+      {
+        "name": "Agriculture-adjacent industrial",
+        "weight": 0.32,
+        "context": "Agriculture-adjacent industrial is a core industrial driver of NDT demand in Clay Center."
+      },
+      {
+        "name": "Wind energy O&M",
+        "weight": 0.23,
+        "context": "Wind energy O&M is a core industrial driver of NDT demand in Clay Center."
+      }
+    ],
+    "majorEmployers": [
+      "Mid-continent pipeline operators",
+      "Meridian Way Wind Farm O&M",
+      "Dispatch Energy",
+      "regional grain-handling industrials"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 42000,
+      "level2": 60000,
+      "level3": 92000
+    },
+    "wageBandSource": "BLS OES May 2024 metro tables (NDT inspector proxy occupations)",
+    "regionalCodes": [
+      "API 570",
+      "PHMSA"
+    ],
+    "asntChapter": "ASNT Mid-Continent Section",
+    "awsSection": "AWS Mid-Continent Section",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "high",
+    "costOfLivingIndex": 84,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Mid-Continent crude and NGL pipeline ROW (regional)",
+        "type": "Pipeline corridor",
+        "scale": "regional"
+      },
+      {
+        "name": "Meridian Way Wind Farm (regional)",
+        "type": "Wind farm",
+        "scale": "regional"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.9,
+      "rationale": "Tier-3 KS labour band; competitive rates near regional median."
+    },
+    "uniqueAngles": [
+      "Pipeline-ROW crews staging from central Kansas mobilise across four states",
+      "Wind-farm tower and weld inspection adds a non-oil scope to the rural mix"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": []
+  },
+  "davenport-ia": {
+    "displayName": "Davenport, IA",
+    "country": "US",
+    "state": "IA",
+    "stateCode": "IA",
+    "tier": 3,
+    "region": "midwest",
+    "metroPopulation": 385000,
+    "lat": 41.5236,
+    "lng": -90.5776,
+    "industries": [
+      {
+        "name": "Aluminum",
+        "weight": 0.45,
+        "context": "Aluminum is a core industrial driver of NDT demand in Davenport."
+      },
+      {
+        "name": "Heavy manufacturing",
+        "weight": 0.32,
+        "context": "Heavy manufacturing is a core industrial driver of NDT demand in Davenport."
+      },
+      {
+        "name": "Agricultural equipment",
+        "weight": 0.23,
+        "context": "Agricultural equipment is a core industrial driver of NDT demand in Davenport."
+      }
+    ],
+    "majorEmployers": [
+      "Arconic Davenport Works",
+      "John Deere Davenport Works",
+      "Sears Manufacturing",
+      "Kraft Heinz",
+      "Nestle Purina"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 45000,
+      "level2": 64000,
+      "level3": 98000
+    },
+    "wageBandSource": "BLS OES May 2024 metro tables (NDT inspector proxy occupations)",
+    "regionalCodes": [
+      "AWS D1.1",
+      "ASME",
+      "AS9100"
+    ],
+    "asntChapter": "ASNT Midwest Section",
+    "awsSection": "AWS Midwest Section",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 90,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Arconic Davenport Works",
+        "type": "Aluminum rolling mill",
+        "scale": "regional"
+      },
+      {
+        "name": "John Deere Davenport Works",
+        "type": "Construction equipment",
+        "scale": "regional"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.9,
+      "rationale": "Tier-3 IA labour band; competitive rates near regional median."
+    },
+    "uniqueAngles": [
+      "Aerospace aluminium plate is qualified plate-by-plate; one immersion-UT cal slip quarantines a heat-treat lot",
+      "Construction-equipment fabrication adds heavy weld inspection volume"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": []
+  },
+  "el-dorado-ks": {
+    "displayName": "El Dorado, KS",
+    "country": "US",
+    "state": "KS",
+    "stateCode": "KS",
+    "tier": 3,
+    "region": "mid-continent",
+    "metroPopulation": 13000,
+    "lat": 37.817,
+    "lng": -96.8625,
+    "industries": [
+      {
+        "name": "Refining",
+        "weight": 0.45,
+        "context": "Refining is a core industrial driver of NDT demand in El Dorado."
+      },
+      {
+        "name": "Pipelines",
+        "weight": 0.32,
+        "context": "Pipelines is a core industrial driver of NDT demand in El Dorado."
+      },
+      {
+        "name": "Midstream / NGL",
+        "weight": 0.23,
+        "context": "Midstream / NGL is a core industrial driver of NDT demand in El Dorado."
+      }
+    ],
+    "majorEmployers": [
+      "HF Sinclair El Dorado Refinery",
+      "Magellan Midstream",
+      "ONEOK",
+      "NCRA"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 44000,
+      "level2": 63000,
+      "level3": 96000
+    },
+    "wageBandSource": "BLS OES May 2024 metro tables (NDT inspector proxy occupations)",
+    "regionalCodes": [
+      "API 510 / 570 / 653",
+      "PHMSA"
+    ],
+    "asntChapter": "ASNT Mid-Continent Section",
+    "awsSection": "AWS Mid-Continent Section",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 86,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "HF Sinclair El Dorado Refinery",
+        "type": "Refinery",
+        "scale": "regional"
+      },
+      {
+        "name": "Magellan Midstream El Dorado terminal (regional)",
+        "type": "Pipeline terminal",
+        "scale": "regional"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.9,
+      "rationale": "Tier-3 KS labour band; competitive rates near regional median."
+    },
+    "uniqueAngles": [
+      "A single-refinery town means one turnaround controls the local inspection backlog",
+      "Mid-continent NGL pipelines add product-line integrity scope"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": []
+  },
+  "findlay-oh": {
+    "displayName": "Findlay, OH",
+    "country": "US",
+    "state": "OH",
+    "stateCode": "OH",
+    "tier": 3,
+    "region": "great-lakes",
+    "metroPopulation": 76000,
+    "lat": 41.0442,
+    "lng": -83.6499,
+    "industries": [
+      {
+        "name": "Refining HQ (Marathon Petroleum)",
+        "weight": 0.45,
+        "context": "Refining HQ (Marathon Petroleum) is a core industrial driver of NDT demand in Findlay."
+      },
+      {
+        "name": "Pipelines",
+        "weight": 0.32,
+        "context": "Pipelines is a core industrial driver of NDT demand in Findlay."
+      },
+      {
+        "name": "Distribution",
+        "weight": 0.23,
+        "context": "Distribution is a core industrial driver of NDT demand in Findlay."
+      }
+    ],
+    "majorEmployers": [
+      "Marathon Petroleum (HQ)",
+      "Marathon Pipe Line",
+      "Cooper Tire & Rubber (HQ)",
+      "Whirlpool (regional)",
+      "Ball Corporation"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 45000,
+      "level2": 64000,
+      "level3": 98000
+    },
+    "wageBandSource": "BLS OES May 2024 metro tables (NDT inspector proxy occupations)",
+    "regionalCodes": [
+      "API 510 / 570 / 653",
+      "PHMSA"
+    ],
+    "asntChapter": "ASNT Great Lakes Section",
+    "awsSection": "AWS Great Lakes Section",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "low",
+    "costOfLivingIndex": 88,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Marathon Petroleum Corporation HQ",
+        "type": "Refining HQ",
+        "scale": "regional"
+      },
+      {
+        "name": "Marathon Pipe Line LLC (Findlay)",
+        "type": "Pipeline operator",
+        "scale": "regional"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.9,
+      "rationale": "Tier-3 OH labour band; competitive rates near regional median."
+    },
+    "uniqueAngles": [
+      "Marathon's fleet-audit demands push corporate-grade documentation onto local NDT shops",
+      "Pipeline-operator HQ presence concentrates integrity engineering here"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": []
+  },
+  "greenville-tx": {
+    "displayName": "Greenville, TX",
+    "country": "US",
+    "state": "TX",
+    "stateCode": "TX",
+    "tier": 3,
+    "region": "texas-triangle",
+    "metroPopulation": 90000,
+    "lat": 33.1384,
+    "lng": -96.1108,
+    "industries": [
+      {
+        "name": "Defense aerospace MRO",
+        "weight": 0.45,
+        "context": "Defense aerospace MRO is a core industrial driver of NDT demand in Greenville."
+      },
+      {
+        "name": "ISR aircraft modifications",
+        "weight": 0.32,
+        "context": "ISR aircraft modifications is a core industrial driver of NDT demand in Greenville."
+      },
+      {
+        "name": "Avionics / electronics manufacturing",
+        "weight": 0.23,
+        "context": "Avionics / electronics manufacturing is a core industrial driver of NDT demand in Greenville."
+      }
+    ],
+    "majorEmployers": [
+      "L3Harris (Mission Systems)",
+      "Texas Instruments (regional)",
+      "regional defense electronics suppliers"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 46000,
+      "level2": 66000,
+      "level3": 100000
+    },
+    "wageBandSource": "BLS OES May 2024 metro tables (NDT inspector proxy occupations)",
+    "regionalCodes": [
+      "FAA Part 145",
+      "NAS 410",
+      "MIL-STD-2154"
+    ],
+    "asntChapter": "ASNT Texas Section",
+    "awsSection": "AWS Texas Section",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 90,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "L3Harris Greenville (Mission Systems)",
+        "type": "Defense aerospace mods / ISR",
+        "scale": "regional"
+      },
+      {
+        "name": "Majors Field (Greenville)",
+        "type": "Flight test airfield",
+        "scale": "regional"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.9,
+      "rationale": "Tier-3 TX labour band; competitive rates near regional median."
+    },
+    "uniqueAngles": [
+      "L3Harris ISR work runs classified scopes; cert and cal records must be audit-defensible without leaking program data",
+      "Avionics manufacturing adds precision NDT to the defense-MRO mix"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": []
+  },
+  "hobbs-nm": {
+    "displayName": "Hobbs, NM",
+    "country": "US",
+    "state": "NM",
+    "stateCode": "NM",
+    "tier": 3,
+    "region": "permian-basin",
+    "metroPopulation": 75000,
+    "lat": 32.7026,
+    "lng": -103.136,
+    "industries": [
+      {
+        "name": "Permian shale upstream",
+        "weight": 0.45,
+        "context": "Permian shale upstream is a core industrial driver of NDT demand in Hobbs."
+      },
+      {
+        "name": "Midstream gas processing",
+        "weight": 0.32,
+        "context": "Midstream gas processing is a core industrial driver of NDT demand in Hobbs."
+      },
+      {
+        "name": "Nuclear fuel enrichment",
+        "weight": 0.23,
+        "context": "Nuclear fuel enrichment is a core industrial driver of NDT demand in Hobbs."
+      }
+    ],
+    "majorEmployers": [
+      "Targa Resources",
+      "URENCO USA",
+      "XTO Energy",
+      "Chevron Permian",
+      "Occidental"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 48000,
+      "level2": 68000,
+      "level3": 104000
+    },
+    "wageBandSource": "BLS OES May 2024 metro tables (NDT inspector proxy occupations)",
+    "regionalCodes": [
+      "API 570",
+      "PHMSA",
+      "NMOCD"
+    ],
+    "asntChapter": "ASNT Southwest Section",
+    "awsSection": "AWS Southwest Section",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 92,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Targa Resources Eunice gas plant (regional)",
+        "type": "Gas processing",
+        "scale": "regional"
+      },
+      {
+        "name": "URENCO USA enrichment facility",
+        "type": "Nuclear fuel",
+        "scale": "regional"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.9,
+      "rationale": "Tier-3 NM labour band; competitive rates near regional median."
+    },
+    "uniqueAngles": [
+      "NM-side Permian operators audit OCD piping records on a different cadence than Texas RRC",
+      "URENCO enrichment adds nuclear-grade NDT alongside oilfield scope"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": []
+  },
+  "iowa-city-ia": {
+    "displayName": "Iowa City, IA",
+    "country": "US",
+    "state": "IA",
+    "stateCode": "IA",
+    "tier": 3,
+    "region": "midwest",
+    "metroPopulation": 175000,
+    "lat": 41.6611,
+    "lng": -91.5302,
+    "industries": [
+      {
+        "name": "Manufacturing",
+        "weight": 0.45,
+        "context": "Manufacturing is a core industrial driver of NDT demand in Iowa City."
+      },
+      {
+        "name": "Pharmaceuticals",
+        "weight": 0.32,
+        "context": "Pharmaceuticals is a core industrial driver of NDT demand in Iowa City."
+      },
+      {
+        "name": "Higher-ed research",
+        "weight": 0.23,
+        "context": "Higher-ed research is a core industrial driver of NDT demand in Iowa City."
+      }
+    ],
+    "majorEmployers": [
+      "Procter & Gamble",
+      "Integrated DNA Technologies",
+      "University of Iowa Hospitals",
+      "ACT Inc",
+      "Pearson"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 45000,
+      "level2": 63000,
+      "level3": 96000
+    },
+    "wageBandSource": "BLS OES May 2024 metro tables (NDT inspector proxy occupations)",
+    "regionalCodes": [
+      "ASME",
+      "FDA",
+      "AWS D1.1"
+    ],
+    "asntChapter": "ASNT Midwest Section",
+    "awsSection": "AWS Midwest Section",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 92,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Procter & Gamble Iowa City",
+        "type": "Consumer manufacturing",
+        "scale": "regional"
+      },
+      {
+        "name": "Integrated DNA Technologies (Coralville, regional)",
+        "type": "Biotech manufacturing",
+        "scale": "regional"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.9,
+      "rationale": "Tier-3 IA labour band; competitive rates near regional median."
+    },
+    "uniqueAngles": [
+      "Pharma-grade and consumer-process piping runs to validation specs; a UT cal slip can void a piping qualification",
+      "Biotech fabrication adds hygienic-weld (orbital GTAW) inspection"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": []
+  },
+  "jackson-ms": {
+    "displayName": "Jackson, MS",
+    "country": "US",
+    "state": "MS",
+    "stateCode": "MS",
+    "tier": 3,
+    "region": "southeast",
+    "metroPopulation": 590000,
+    "lat": 32.2988,
+    "lng": -90.1848,
+    "industries": [
+      {
+        "name": "Power generation",
+        "weight": 0.45,
+        "context": "Power generation is a core industrial driver of NDT demand in Jackson."
+      },
+      {
+        "name": "Manufacturing",
+        "weight": 0.32,
+        "context": "Manufacturing is a core industrial driver of NDT demand in Jackson."
+      },
+      {
+        "name": "Pipelines",
+        "weight": 0.23,
+        "context": "Pipelines is a core industrial driver of NDT demand in Jackson."
+      }
+    ],
+    "majorEmployers": [
+      "Entergy Mississippi",
+      "Nissan Canton",
+      "Continental Tire",
+      "Ergon Refining (regional)",
+      "Siemens"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 43000,
+      "level2": 61000,
+      "level3": 93000
+    },
+    "wageBandSource": "BLS OES May 2024 metro tables (NDT inspector proxy occupations)",
+    "regionalCodes": [
+      "ASME",
+      "NERC",
+      "PHMSA"
+    ],
+    "asntChapter": "ASNT Southeast Section",
+    "awsSection": "AWS Southeast Section",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 84,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Entergy Mississippi operations HQ",
+        "type": "Power utility",
+        "scale": "regional"
+      },
+      {
+        "name": "Nissan Canton Assembly Plant (regional)",
+        "type": "Automotive manufacturing",
+        "scale": "regional"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.9,
+      "rationale": "Tier-3 MS labour band; competitive rates near regional median."
+    },
+    "uniqueAngles": [
+      "Power-gen UT/PT on boiler and HRSG components runs on NERC outage clocks",
+      "Automotive plant adds robotic-weld inspection volume"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": []
+  },
+  "liberal-ks": {
+    "displayName": "Liberal, KS",
+    "country": "US",
+    "state": "KS",
+    "stateCode": "KS",
+    "tier": 3,
+    "region": "mid-continent",
+    "metroPopulation": 20000,
+    "lat": 37.0431,
+    "lng": -100.921,
+    "industries": [
+      {
+        "name": "Hugoton Basin gas",
+        "weight": 0.45,
+        "context": "Hugoton Basin gas is a core industrial driver of NDT demand in Liberal."
+      },
+      {
+        "name": "Midstream",
+        "weight": 0.32,
+        "context": "Midstream is a core industrial driver of NDT demand in Liberal."
+      },
+      {
+        "name": "Pipelines",
+        "weight": 0.23,
+        "context": "Pipelines is a core industrial driver of NDT demand in Liberal."
+      }
+    ],
+    "majorEmployers": [
+      "ONEOK",
+      "Northern Natural Gas",
+      "National Beef Packing",
+      "Seaboard Foods"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 43000,
+      "level2": 61000,
+      "level3": 93000
+    },
+    "wageBandSource": "BLS OES May 2024 metro tables (NDT inspector proxy occupations)",
+    "regionalCodes": [
+      "API 570",
+      "PHMSA"
+    ],
+    "asntChapter": "ASNT Mid-Continent Section",
+    "awsSection": "AWS Mid-Continent Section",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "high",
+    "costOfLivingIndex": 84,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "ONEOK Hugoton infrastructure",
+        "type": "Gas processing / midstream",
+        "scale": "regional"
+      },
+      {
+        "name": "Northern Natural Gas Hugoton compressor stations (regional)",
+        "type": "Gas compression",
+        "scale": "regional"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.9,
+      "rationale": "Tier-3 KS labour band; competitive rates near regional median."
+    },
+    "uniqueAngles": [
+      "Hugoton-Basin gathering pipelines criss-cross three states; single-instrument cal must map to specific welds across the ROW",
+      "Gas-compression stations drive rotating-equipment and pressure-vessel inspection"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": []
+  },
+  "lorain-oh": {
+    "displayName": "Lorain, OH",
+    "country": "US",
+    "state": "OH",
+    "stateCode": "OH",
+    "tier": 3,
+    "region": "great-lakes",
+    "metroPopulation": 310000,
+    "lat": 41.4528,
+    "lng": -82.1824,
+    "industries": [
+      {
+        "name": "Steel tubular",
+        "weight": 0.45,
+        "context": "Steel tubular is a core industrial driver of NDT demand in Lorain."
+      },
+      {
+        "name": "OCTG",
+        "weight": 0.32,
+        "context": "OCTG is a core industrial driver of NDT demand in Lorain."
+      },
+      {
+        "name": "Pipe mill",
+        "weight": 0.23,
+        "context": "Pipe mill is a core industrial driver of NDT demand in Lorain."
+      }
+    ],
+    "majorEmployers": [
+      "U.S. Steel Tubular Operations",
+      "Republic Steel (regional)",
+      "Riverside Aluminum",
+      "Port of Lorain"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 45000,
+      "level2": 64000,
+      "level3": 98000
+    },
+    "wageBandSource": "BLS OES May 2024 metro tables (NDT inspector proxy occupations)",
+    "regionalCodes": [
+      "API 5CT / 5L",
+      "ASME",
+      "AWS D1.1"
+    ],
+    "asntChapter": "ASNT Great Lakes Section",
+    "awsSection": "AWS Great Lakes Section",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "low",
+    "costOfLivingIndex": 86,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "U.S. Steel Lorain Tubular Operations",
+        "type": "Tubular / OCTG mill",
+        "scale": "regional"
+      },
+      {
+        "name": "Port of Lorain (Black River)",
+        "type": "Great Lakes port",
+        "scale": "regional"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.9,
+      "rationale": "Tier-3 OH labour band; competitive rates near regional median."
+    },
+    "uniqueAngles": [
+      "OCTG pipe-mill UT/EMI runs on every joint; one rotary-UT cal drift reads as a thousand suspect joints",
+      "Great Lakes port adds marine and bulk-handling structural inspection"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": []
+  },
+  "macon-ga": {
+    "displayName": "Macon, GA",
+    "country": "US",
+    "state": "GA",
+    "stateCode": "GA",
+    "tier": 3,
+    "region": "southeast",
+    "metroPopulation": 235000,
+    "lat": 32.8407,
+    "lng": -83.6324,
+    "industries": [
+      {
+        "name": "Aerospace MRO (Robins AFB)",
+        "weight": 0.45,
+        "context": "Aerospace MRO (Robins AFB) is a core industrial driver of NDT demand in Macon."
+      },
+      {
+        "name": "Manufacturing",
+        "weight": 0.32,
+        "context": "Manufacturing is a core industrial driver of NDT demand in Macon."
+      },
+      {
+        "name": "Power generation",
+        "weight": 0.23,
+        "context": "Power generation is a core industrial driver of NDT demand in Macon."
+      }
+    ],
+    "majorEmployers": [
+      "Robins Air Force Base / WR-ALC",
+      "Georgia Power (Plant Scherer)",
+      "Tyson Foods",
+      "YKK",
+      "Kumho Tire"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 44000,
+      "level2": 62000,
+      "level3": 95000
+    },
+    "wageBandSource": "BLS OES May 2024 metro tables (NDT inspector proxy occupations)",
+    "regionalCodes": [
+      "FAA Part 145",
+      "NAS 410",
+      "MIL-STD"
+    ],
+    "asntChapter": "ASNT Southeast Section",
+    "awsSection": "AWS Southeast Section",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 84,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Robins Air Force Base / WR-ALC",
+        "type": "USAF depot MRO",
+        "scale": "regional"
+      },
+      {
+        "name": "Georgia Power Plant Scherer (regional)",
+        "type": "Coal power plant",
+        "scale": "regional"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.9,
+      "rationale": "Tier-3 GA labour band; competitive rates near regional median."
+    },
+    "uniqueAngles": [
+      "WR-ALC depot MRO runs to MIL-STD-2219 weld specs and NAS 410 cert paths",
+      "Plant Scherer, the largest US coal plant, adds high-temperature power-gen scope"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": []
+  },
+  "mandan-nd": {
+    "displayName": "Mandan, ND",
+    "country": "US",
+    "state": "ND",
+    "stateCode": "ND",
+    "tier": 3,
+    "region": "frontier-us",
+    "metroPopulation": 130000,
+    "lat": 46.8267,
+    "lng": -100.8896,
+    "industries": [
+      {
+        "name": "Refining",
+        "weight": 0.45,
+        "context": "Refining is a core industrial driver of NDT demand in Mandan."
+      },
+      {
+        "name": "Pipelines",
+        "weight": 0.32,
+        "context": "Pipelines is a core industrial driver of NDT demand in Mandan."
+      },
+      {
+        "name": "Crude gathering (Bakken)",
+        "weight": 0.23,
+        "context": "Crude gathering (Bakken) is a core industrial driver of NDT demand in Mandan."
+      }
+    ],
+    "majorEmployers": [
+      "Marathon Mandan Refinery",
+      "Bakken crude gathering operators",
+      "Dakota Gasification (regional)",
+      "MDU Resources"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 48000,
+      "level2": 68000,
+      "level3": 104000
+    },
+    "wageBandSource": "BLS OES May 2024 metro tables (NDT inspector proxy occupations)",
+    "regionalCodes": [
+      "API 510 / 570 / 653",
+      "PHMSA"
+    ],
+    "asntChapter": "ASNT Northern Plains Section",
+    "awsSection": "AWS Northern Plains Section",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "high",
+    "costOfLivingIndex": 92,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Marathon Mandan Refinery",
+        "type": "Refinery",
+        "scale": "regional"
+      },
+      {
+        "name": "Bakken crude pipeline gathering systems (regional)",
+        "type": "Pipeline corridor",
+        "scale": "regional"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.9,
+      "rationale": "Tier-3 ND labour band; competitive rates near regional median."
+    },
+    "uniqueAngles": [
+      "A single-refinery town; one outage controls the whole inspection backlog",
+      "Bakken crude gathering adds cold-weather pipeline integrity scope"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": []
+  },
+  "mansfield-oh": {
+    "displayName": "Mansfield, OH",
+    "country": "US",
+    "state": "OH",
+    "stateCode": "OH",
+    "tier": 3,
+    "region": "great-lakes",
+    "metroPopulation": 120000,
+    "lat": 40.7584,
+    "lng": -82.5154,
+    "industries": [
+      {
+        "name": "Steel processing",
+        "weight": 0.45,
+        "context": "Steel processing is a core industrial driver of NDT demand in Mansfield."
+      },
+      {
+        "name": "Manufacturing",
+        "weight": 0.32,
+        "context": "Manufacturing is a core industrial driver of NDT demand in Mansfield."
+      },
+      {
+        "name": "Defense",
+        "weight": 0.23,
+        "context": "Defense is a core industrial driver of NDT demand in Mansfield."
+      }
+    ],
+    "majorEmployers": [
+      "Cleveland-Cliffs Mansfield Works",
+      "AK Tube",
+      "Mansfield Lahm ANGB (179th AW)",
+      "Charles River Laboratories",
+      "Gorman-Rupp"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 45000,
+      "level2": 63000,
+      "level3": 96000
+    },
+    "wageBandSource": "BLS OES May 2024 metro tables (NDT inspector proxy occupations)",
+    "regionalCodes": [
+      "AWS D1.1",
+      "ASME",
+      "MIL-STD"
+    ],
+    "asntChapter": "ASNT Great Lakes Section",
+    "awsSection": "AWS Great Lakes Section",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "low",
+    "costOfLivingIndex": 84,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Cleveland-Cliffs Mansfield Works",
+        "type": "Stainless / electrical steel",
+        "scale": "regional"
+      },
+      {
+        "name": "Mansfield Lahm Air National Guard Base (179th Airlift Wing)",
+        "type": "ANG base / MRO",
+        "scale": "regional"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.9,
+      "rationale": "Tier-3 OH labour band; competitive rates near regional median."
+    },
+    "uniqueAngles": [
+      "Stainless/electrical-steel inspection runs tighter surface-condition specs than carbon mills",
+      "ANG base C-130 MRO adds aerospace NDT (NAS 410) to the steel-town mix"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": []
+  },
+  "mayport-fl": {
+    "displayName": "Mayport, FL",
+    "country": "US",
+    "state": "FL",
+    "stateCode": "FL",
+    "tier": 3,
+    "region": "southeast",
+    "metroPopulation": 950000,
+    "lat": 30.3936,
+    "lng": -81.4112,
+    "industries": [
+      {
+        "name": "US Navy",
+        "weight": 0.45,
+        "context": "US Navy is a core industrial driver of NDT demand in Mayport."
+      },
+      {
+        "name": "Shipyard repair",
+        "weight": 0.32,
+        "context": "Shipyard repair is a core industrial driver of NDT demand in Mayport."
+      },
+      {
+        "name": "Marine / port logistics",
+        "weight": 0.23,
+        "context": "Marine / port logistics is a core industrial driver of NDT demand in Mayport."
+      }
+    ],
+    "majorEmployers": [
+      "Naval Station Mayport",
+      "BAE Systems Jacksonville Ship Repair",
+      "Crowley Maritime",
+      "JAXPORT",
+      "Gulfstream (regional)"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 45000,
+      "level2": 64000,
+      "level3": 98000
+    },
+    "wageBandSource": "BLS OES May 2024 metro tables (NDT inspector proxy occupations)",
+    "regionalCodes": [
+      "NAVSEA T9074",
+      "ABS",
+      "ASME"
+    ],
+    "asntChapter": "ASNT Southeast Section",
+    "awsSection": "AWS Southeast Section",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 90,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Naval Station Mayport",
+        "type": "USN surface fleet base",
+        "scale": "regional"
+      },
+      {
+        "name": "BAE Systems Jacksonville Ship Repair (regional)",
+        "type": "Ship repair yard",
+        "scale": "regional"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.9,
+      "rationale": "Tier-3 FL labour band; competitive rates near regional median."
+    },
+    "uniqueAngles": [
+      "Surface-ship availabilities run on tight NAVSEA windows with SUBSAFE-style traceability",
+      "Commercial ship repair adds drydock UT thickness and weld inspection"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": []
+  },
+  "mcpherson-ks": {
+    "displayName": "McPherson, KS",
+    "country": "US",
+    "state": "KS",
+    "stateCode": "KS",
+    "tier": 3,
+    "region": "mid-continent",
+    "metroPopulation": 29000,
+    "lat": 38.3706,
+    "lng": -97.6642,
+    "industries": [
+      {
+        "name": "Refining",
+        "weight": 0.45,
+        "context": "Refining is a core industrial driver of NDT demand in McPherson."
+      },
+      {
+        "name": "Specialty chemicals",
+        "weight": 0.32,
+        "context": "Specialty chemicals is a core industrial driver of NDT demand in McPherson."
+      },
+      {
+        "name": "Pipelines",
+        "weight": 0.23,
+        "context": "Pipelines is a core industrial driver of NDT demand in McPherson."
+      }
+    ],
+    "majorEmployers": [
+      "CHS McPherson Refinery",
+      "CVR Energy (regional)",
+      "NCRA pipeline",
+      "Johns Manville"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 44000,
+      "level2": 63000,
+      "level3": 96000
+    },
+    "wageBandSource": "BLS OES May 2024 metro tables (NDT inspector proxy occupations)",
+    "regionalCodes": [
+      "API 510 / 570 / 653",
+      "PHMSA"
+    ],
+    "asntChapter": "ASNT Mid-Continent Section",
+    "awsSection": "AWS Mid-Continent Section",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 84,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "CHS McPherson Refinery",
+        "type": "Refinery",
+        "scale": "regional"
+      },
+      {
+        "name": "CVR Energy Coffeyville (regional)",
+        "type": "Refinery",
+        "scale": "regional"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.9,
+      "rationale": "Tier-3 KS labour band; competitive rates near regional median."
+    },
+    "uniqueAngles": [
+      "Co-op-owned refineries audit NDT files on tighter member-equity cycles than the IOCs",
+      "Specialty-chemical units add corrosion-monitoring scope"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": []
+  },
+  "parkersburg-wv": {
+    "displayName": "Parkersburg, WV",
+    "country": "US",
+    "state": "WV",
+    "stateCode": "WV",
+    "tier": 3,
+    "region": "great-lakes",
+    "metroPopulation": 90000,
+    "lat": 39.2667,
+    "lng": -81.5615,
+    "industries": [
+      {
+        "name": "Specialty chemicals",
+        "weight": 0.45,
+        "context": "Specialty chemicals is a core industrial driver of NDT demand in Parkersburg."
+      },
+      {
+        "name": "Polymers",
+        "weight": 0.32,
+        "context": "Polymers is a core industrial driver of NDT demand in Parkersburg."
+      },
+      {
+        "name": "Manufacturing",
+        "weight": 0.23,
+        "context": "Manufacturing is a core industrial driver of NDT demand in Parkersburg."
+      }
+    ],
+    "majorEmployers": [
+      "Chemours Washington Works",
+      "Constellium Ravenswood",
+      "Kraton",
+      "Williams (gas)"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 44000,
+      "level2": 62000,
+      "level3": 95000
+    },
+    "wageBandSource": "BLS OES May 2024 metro tables (NDT inspector proxy occupations)",
+    "regionalCodes": [
+      "API 570",
+      "ASME Section VIII",
+      "WVDEP"
+    ],
+    "asntChapter": "ASNT Great Lakes Section",
+    "awsSection": "AWS Great Lakes Section",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 86,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Chemours Washington Works",
+        "type": "Fluoropolymers",
+        "scale": "regional"
+      },
+      {
+        "name": "Constellium Ravenswood (regional)",
+        "type": "Aluminum rolling",
+        "scale": "regional"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.9,
+      "rationale": "Tier-3 WV labour band; competitive rates near regional median."
+    },
+    "uniqueAngles": [
+      "Fluoropolymer process-piping NDT must defend against decades-long PFAS litigation discovery",
+      "Aluminium rolling at Ravenswood adds plate UT scope"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": []
+  },
+  "roswell-nm": {
+    "displayName": "Roswell, NM",
+    "country": "US",
+    "state": "NM",
+    "stateCode": "NM",
+    "tier": 3,
+    "region": "permian-basin",
+    "metroPopulation": 65000,
+    "lat": 33.3943,
+    "lng": -104.523,
+    "industries": [
+      {
+        "name": "Upstream services",
+        "weight": 0.45,
+        "context": "Upstream services is a core industrial driver of NDT demand in Roswell."
+      },
+      {
+        "name": "Aerospace flight test",
+        "weight": 0.32,
+        "context": "Aerospace flight test is a core industrial driver of NDT demand in Roswell."
+      },
+      {
+        "name": "Aircraft storage / MRO",
+        "weight": 0.23,
+        "context": "Aircraft storage / MRO is a core industrial driver of NDT demand in Roswell."
+      }
+    ],
+    "majorEmployers": [
+      "Roswell Air Center MRO",
+      "Permian/NW-Shelf oilfield service yards",
+      "Leprino Foods",
+      "regional agribusiness industrials"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 46000,
+      "level2": 65000,
+      "level3": 100000
+    },
+    "wageBandSource": "BLS OES May 2024 metro tables (NDT inspector proxy occupations)",
+    "regionalCodes": [
+      "API 570",
+      "FAA Part 145"
+    ],
+    "asntChapter": "ASNT Southwest Section",
+    "awsSection": "AWS Southwest Section",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "high",
+    "costOfLivingIndex": 88,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Roswell Air Center",
+        "type": "Aerospace MRO / aircraft storage",
+        "scale": "regional"
+      },
+      {
+        "name": "Northwest Shelf oilfield service yards (regional)",
+        "type": "Oilfield services",
+        "scale": "regional"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.9,
+      "rationale": "Tier-3 NM labour band; competitive rates near regional median."
+    },
+    "uniqueAngles": [
+      "Mixed oilfield and aircraft-storage MRO forces parallel ASNT and NAS 410 cert paths",
+      "Desert aircraft-storage adds airframe and corrosion inspection demand"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": []
+  },
+  "tallahassee-fl": {
+    "displayName": "Tallahassee, FL",
+    "country": "US",
+    "state": "FL",
+    "stateCode": "FL",
+    "tier": 3,
+    "region": "southeast",
+    "metroPopulation": 390000,
+    "lat": 30.4383,
+    "lng": -84.2807,
+    "industries": [
+      {
+        "name": "Power generation",
+        "weight": 0.45,
+        "context": "Power generation is a core industrial driver of NDT demand in Tallahassee."
+      },
+      {
+        "name": "Pipelines",
+        "weight": 0.32,
+        "context": "Pipelines is a core industrial driver of NDT demand in Tallahassee."
+      },
+      {
+        "name": "Manufacturing",
+        "weight": 0.23,
+        "context": "Manufacturing is a core industrial driver of NDT demand in Tallahassee."
+      }
+    ],
+    "majorEmployers": [
+      "City of Tallahassee Utilities (Hopkins Station)",
+      "Florida Gas Transmission",
+      "Danfoss Turbocor",
+      "National High Magnetic Field Laboratory",
+      "Florida State University"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 44000,
+      "level2": 62000,
+      "level3": 95000
+    },
+    "wageBandSource": "BLS OES May 2024 metro tables (NDT inspector proxy occupations)",
+    "regionalCodes": [
+      "ASME",
+      "PHMSA",
+      "NERC"
+    ],
+    "asntChapter": "ASNT Southeast Section",
+    "awsSection": "AWS Southeast Section",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 88,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Tallahassee Hopkins Generating Station",
+        "type": "Gas-fired power",
+        "scale": "regional"
+      },
+      {
+        "name": "Florida Gas Transmission pipeline (regional)",
+        "type": "Gas pipeline",
+        "scale": "regional"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.9,
+      "rationale": "Tier-3 FL labour band; competitive rates near regional median."
+    },
+    "uniqueAngles": [
+      "North-Florida gas-fired plants run tight summer-peak outage schedules",
+      "Gas-transmission pipeline adds regional integrity scope"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": []
+  },
+  "weirton-wv": {
+    "displayName": "Weirton, WV",
+    "country": "US",
+    "state": "WV",
+    "stateCode": "WV",
+    "tier": 3,
+    "region": "great-lakes",
+    "metroPopulation": 120000,
+    "lat": 40.4187,
+    "lng": -80.5895,
+    "industries": [
+      {
+        "name": "Steel (tinplate)",
+        "weight": 0.45,
+        "context": "Steel (tinplate) is a core industrial driver of NDT demand in Weirton."
+      },
+      {
+        "name": "Manufacturing",
+        "weight": 0.32,
+        "context": "Manufacturing is a core industrial driver of NDT demand in Weirton."
+      },
+      {
+        "name": "Energy / battery",
+        "weight": 0.23,
+        "context": "Energy / battery is a core industrial driver of NDT demand in Weirton."
+      }
+    ],
+    "majorEmployers": [
+      "Cleveland-Cliffs Weirton",
+      "Form Energy",
+      "Mountain State Carbon (regional)",
+      "Williams (gas)"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 45000,
+      "level2": 63000,
+      "level3": 96000
+    },
+    "wageBandSource": "BLS OES May 2024 metro tables (NDT inspector proxy occupations)",
+    "regionalCodes": [
+      "AWS D1.1",
+      "ASME"
+    ],
+    "asntChapter": "ASNT Great Lakes Section",
+    "awsSection": "AWS Great Lakes Section",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 84,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Cleveland-Cliffs Weirton (transitioning to electrical steel)",
+        "type": "Steel mill",
+        "scale": "regional"
+      },
+      {
+        "name": "Form Energy Weirton plant",
+        "type": "Iron-air battery manufacturing",
+        "scale": "regional"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.9,
+      "rationale": "Tier-3 WV labour band; competitive rates near regional median."
+    },
+    "uniqueAngles": [
+      "A steel town in transition; legacy tinplate work runs alongside new electrical-steel scopes",
+      "Form Energy's iron-air battery plant adds new-build structural and process inspection"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": []
   }
 }
