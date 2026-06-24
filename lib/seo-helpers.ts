@@ -112,6 +112,10 @@ function hreflangForCountry(country: string | undefined | null): string {
   const c = (country || '').toUpperCase();
   if (['AE', 'SA', 'QA', 'KW', 'OM', 'BH'].includes(c)) return 'en-AE';
   if (['IN'].includes(c)) return 'en-IN';
+  if (c === 'AU') return 'en-AU';
+  if (c === 'CA') return 'en-CA';
+  if (c === 'SG') return 'en-SG';
+  if (c === 'ZA') return 'en-ZA';
   if (['GB', 'IE', 'NO', 'NL', 'DE', 'FR', 'ES', 'IT', 'DK', 'SE', 'FI', 'PL', 'BE', 'AT', 'CH'].includes(c)) {
     return 'en-GB';
   }

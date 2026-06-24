@@ -2,7 +2,7 @@
   "_meta": {
     "version": "1.0.0",
     "lastUpdated": "2026-05-16",
-    "totalCities": 189,
+    "totalCities": 200,
     "schemaFields": 30,
     "sources": {
       "wages": "BLS OES May 2024 metro tables (occupations 17-3024 Industrial Engineering Technologists, 19-4099 Life/Physical/Social Science Techs, 51-8021 Stationary Engineers as proxies for NDT inspectors)",
@@ -18258,6 +18258,993 @@
       "Ludhiana (140km)",
       "Chandigarh (200km)",
       "Delhi (300km)"
+    ]
+  },
+  "teesside-uk": {
+    "displayName": "Teesside, UK",
+    "country": "GB",
+    "state": "United Kingdom",
+    "tier": 2,
+    "region": "europe-west",
+    "metroPopulation": 380000,
+    "lat": 54.576,
+    "lng": -1.235,
+    "industries": [
+      {
+        "name": "Petrochemicals",
+        "weight": 0.35,
+        "context": "Wilton International — SABIC olefins cracker, Mitsubishi, Lotte Chemical"
+      },
+      {
+        "name": "Fertilizers & Chemicals",
+        "weight": 0.2,
+        "context": "CF Fertilisers Billingham ammonia complex"
+      },
+      {
+        "name": "Hydrogen & CCS",
+        "weight": 0.18,
+        "context": "Net Zero Teesside, bp H2Teesside — UK's flagship industrial decarbonization cluster"
+      },
+      {
+        "name": "Port & Logistics",
+        "weight": 0.15,
+        "context": "Teesport (PD Ports) and Teesworks regeneration"
+      }
+    ],
+    "majorEmployers": [
+      "SABIC UK",
+      "CF Fertilisers",
+      "Lotte Chemical UK",
+      "bp",
+      "PD Ports",
+      "Bilfinger UK",
+      "Wood plc"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 45000,
+      "level2": 63000,
+      "level3": 98000
+    },
+    "wageBandSource": "UK ONS ASHE 2024",
+    "regionalCodes": [
+      "BS EN ISO 9712",
+      "PD 5500",
+      "PSSR 2000",
+      "PED 2014/68/EU",
+      "API 510 / 570 / 653"
+    ],
+    "asntChapter": "BINDT — Teesside/North East Branch",
+    "awsSection": "TWI North East",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 74,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Wilton International petrochemical complex",
+        "type": "Petrochemical",
+        "scale": "SABIC olefins cracker + multi-occupant site"
+      },
+      {
+        "name": "CF Fertilisers Billingham",
+        "type": "Fertilizer / ammonia",
+        "scale": "Major UK ammonia complex"
+      },
+      {
+        "name": "Teesport (PD Ports)",
+        "type": "Port",
+        "scale": "Major UK east-coast terminal"
+      },
+      {
+        "name": "Net Zero Teesside / bp H2Teesside",
+        "type": "Hydrogen / CCS",
+        "scale": "UK flagship industrial decarbonization"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.95,
+      "rationale": "UK north-east band; mature contractor market"
+    },
+    "uniqueAngles": [
+      "UK's flagship hydrogen and carbon-capture cluster — new-build inspection demand surging",
+      "Multi-occupant Wilton site means shared NDT cells across operators",
+      "Ammonia and olefins service drive hydrogen-attack and high-temperature scope"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": [
+      "Newcastle (60km)",
+      "Hull (140km)",
+      "Leeds (110km)"
+    ]
+  },
+  "grangemouth-uk": {
+    "displayName": "Grangemouth, UK",
+    "country": "GB",
+    "state": "United Kingdom",
+    "tier": 2,
+    "region": "europe-west",
+    "metroPopulation": 90000,
+    "lat": 56.011,
+    "lng": -3.721,
+    "industries": [
+      {
+        "name": "Refining",
+        "weight": 0.4,
+        "context": "Petroineos Grangemouth Refinery — Scotland's only refinery, ~150,000 bpd"
+      },
+      {
+        "name": "Petrochemicals",
+        "weight": 0.35,
+        "context": "INEOS Grangemouth — KG ethylene cracker and polymers"
+      },
+      {
+        "name": "Pipelines & Terminals",
+        "weight": 0.15,
+        "context": "Forties Pipeline System terminus — handles a third of UK North Sea crude"
+      }
+    ],
+    "majorEmployers": [
+      "INEOS",
+      "Petroineos",
+      "Forties Pipeline System (INEOS FPS)",
+      "Bilfinger UK",
+      "Wood plc",
+      "Altrad"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 46000,
+      "level2": 64000,
+      "level3": 100000
+    },
+    "wageBandSource": "UK ONS ASHE 2024 (Scotland)",
+    "regionalCodes": [
+      "BS EN ISO 9712",
+      "PD 5500",
+      "PSSR 2000",
+      "PED 2014/68/EU",
+      "DSEAR 2002"
+    ],
+    "asntChapter": "BINDT — Scottish Branch",
+    "awsSection": "TWI Scotland",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 76,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Petroineos Grangemouth Refinery",
+        "type": "Refinery",
+        "scale": "~150,000 bpd — Scotland's only refinery"
+      },
+      {
+        "name": "INEOS Grangemouth petrochemicals",
+        "type": "Petrochemical",
+        "scale": "KG ethylene cracker + polyolefins"
+      },
+      {
+        "name": "Forties Pipeline System terminal",
+        "type": "Crude terminal",
+        "scale": "Reception for ~1/3 of UK North Sea crude"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.95,
+      "rationale": "UK Scotland band; North Sea crew overlap"
+    },
+    "uniqueAngles": [
+      "Scotland's only refinery — a single site whose turnaround controls regional inspection demand",
+      "Forties Pipeline terminus adds crude-handling and tankage inspection",
+      "INEOS KG cracker drives high-temperature furnace and transfer-line scope"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": [
+      "Edinburgh (40km)",
+      "Glasgow (45km)",
+      "Aberdeen (180km)"
+    ]
+  },
+  "southampton-uk": {
+    "displayName": "Southampton, UK",
+    "country": "GB",
+    "state": "United Kingdom",
+    "tier": 2,
+    "region": "europe-west",
+    "metroPopulation": 950000,
+    "lat": 50.9097,
+    "lng": -1.4044,
+    "industries": [
+      {
+        "name": "Refining",
+        "weight": 0.4,
+        "context": "Esso Fawley Refinery — the UK's largest, ~270,000 bpd"
+      },
+      {
+        "name": "Petrochemicals",
+        "weight": 0.25,
+        "context": "ExxonMobil Fawley petrochemical plant"
+      },
+      {
+        "name": "Port & Marine",
+        "weight": 0.2,
+        "context": "Port of Southampton — major UK cruise and container terminal"
+      }
+    ],
+    "majorEmployers": [
+      "ExxonMobil (Esso Fawley)",
+      "Bilfinger UK",
+      "Wood plc",
+      "Altrad",
+      "ABP Southampton"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 47000,
+      "level2": 65000,
+      "level3": 102000
+    },
+    "wageBandSource": "UK ONS ASHE 2024 (South East)",
+    "regionalCodes": [
+      "BS EN ISO 9712",
+      "PD 5500",
+      "PSSR 2000",
+      "PED 2014/68/EU",
+      "API 510 / 570 / 653"
+    ],
+    "asntChapter": "BINDT — Southern Branch",
+    "awsSection": "TWI Cambridge (regional)",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 88,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Esso Fawley Refinery",
+        "type": "Refinery",
+        "scale": "~270,000 bpd — UK's largest"
+      },
+      {
+        "name": "ExxonMobil Fawley petrochemical plant",
+        "type": "Petrochemical",
+        "scale": "Integrated with the refinery"
+      },
+      {
+        "name": "Port of Southampton",
+        "type": "Port",
+        "scale": "Major UK container and cruise terminal"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 1.0,
+      "rationale": "UK south-east band; higher cost-of-living weighting"
+    },
+    "uniqueAngles": [
+      "Fawley is the UK's largest refinery — single-site scale concentrates fixed-equipment scope",
+      "Marine terminal and jetty piping drive splash-zone and tankage inspection",
+      "South-coast cost-of-living lifts inspector day rates above UK average"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": [
+      "Portsmouth (30km)",
+      "London (130km)",
+      "Bristol (120km)"
+    ]
+  },
+  "ellesmere-port-uk": {
+    "displayName": "Ellesmere Port, UK",
+    "country": "GB",
+    "state": "United Kingdom",
+    "tier": 2,
+    "region": "europe-west",
+    "metroPopulation": 240000,
+    "lat": 53.279,
+    "lng": -2.897,
+    "industries": [
+      {
+        "name": "Refining",
+        "weight": 0.4,
+        "context": "Essar Stanlow Refinery — ~200,000 bpd, second-largest in the UK"
+      },
+      {
+        "name": "Hydrogen & CCS",
+        "weight": 0.25,
+        "context": "EET Hydrogen / HyNet North West — major industrial decarbonization cluster"
+      },
+      {
+        "name": "Tank Storage & Chemicals",
+        "weight": 0.18,
+        "context": "Stanlow Terminals and Manufacturing chemical industries"
+      }
+    ],
+    "majorEmployers": [
+      "Essar Oil UK",
+      "EET (Essar Energy Transition)",
+      "Stanlow Terminals",
+      "Bilfinger UK",
+      "Wood plc"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 45000,
+      "level2": 62000,
+      "level3": 97000
+    },
+    "wageBandSource": "UK ONS ASHE 2024 (North West)",
+    "regionalCodes": [
+      "BS EN ISO 9712",
+      "PD 5500",
+      "PSSR 2000",
+      "PED 2014/68/EU",
+      "API 510 / 570 / 653"
+    ],
+    "asntChapter": "BINDT — North West Branch",
+    "awsSection": "TWI North West",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 72,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Essar Stanlow Refinery",
+        "type": "Refinery",
+        "scale": "~200,000 bpd"
+      },
+      {
+        "name": "EET Hydrogen (HyNet North West)",
+        "type": "Hydrogen / CCS",
+        "scale": "Major UK industrial decarbonization project"
+      },
+      {
+        "name": "Stanlow Terminals",
+        "type": "Tank storage",
+        "scale": "Large fuel and chemical storage"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.95,
+      "rationale": "UK north-west band"
+    },
+    "uniqueAngles": [
+      "Stanlow anchors the HyNet hydrogen and CCS cluster — surging new-build inspection scope",
+      "Refinery plus tank-storage estate drives API 653 and fixed-equipment work",
+      "Manchester Ship Canal jetty piping adds marine inspection"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": [
+      "Liverpool (25km)",
+      "Manchester (55km)",
+      "Chester (15km)"
+    ]
+  },
+  "immingham-uk": {
+    "displayName": "Immingham, UK",
+    "country": "GB",
+    "state": "United Kingdom",
+    "tier": 2,
+    "region": "europe-west",
+    "metroPopulation": 120000,
+    "lat": 53.613,
+    "lng": -0.216,
+    "industries": [
+      {
+        "name": "Refining",
+        "weight": 0.45,
+        "context": "Phillips 66 Humber Refinery (~221,000 bpd) and Prax Lindsey Oil Refinery"
+      },
+      {
+        "name": "Port & Logistics",
+        "weight": 0.3,
+        "context": "Port of Immingham (ABP) — the UK's largest port by tonnage"
+      },
+      {
+        "name": "Power",
+        "weight": 0.15,
+        "context": "VPI Immingham CHP — one of Europe's largest combined-heat-and-power plants"
+      }
+    ],
+    "majorEmployers": [
+      "Phillips 66",
+      "Prax Group (Lindsey)",
+      "Associated British Ports",
+      "VPI",
+      "Bilfinger UK",
+      "Wood plc"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 45000,
+      "level2": 62000,
+      "level3": 97000
+    },
+    "wageBandSource": "UK ONS ASHE 2024 (Yorkshire & Humber)",
+    "regionalCodes": [
+      "BS EN ISO 9712",
+      "PD 5500",
+      "PSSR 2000",
+      "PED 2014/68/EU",
+      "API 510 / 570 / 653"
+    ],
+    "asntChapter": "BINDT — Humberside Branch",
+    "awsSection": "TWI Yorkshire",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 70,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Phillips 66 Humber Refinery",
+        "type": "Refinery",
+        "scale": "~221,000 bpd; major petroleum-coke / graphite producer"
+      },
+      {
+        "name": "Prax Lindsey Oil Refinery",
+        "type": "Refinery",
+        "scale": "Humber estuary refining"
+      },
+      {
+        "name": "Port of Immingham (ABP)",
+        "type": "Port",
+        "scale": "UK's largest port by tonnage"
+      },
+      {
+        "name": "VPI Immingham CHP",
+        "type": "Power plant",
+        "scale": "One of Europe's largest CHP plants"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 0.95,
+      "rationale": "UK Humber band; refinery-dense cluster"
+    },
+    "uniqueAngles": [
+      "Two Humber refineries plus the UK's largest port concentrate inspection demand",
+      "Phillips 66 petroleum-coke / graphite units add specialised high-temperature scope",
+      "Estuary tankage and jetty piping drive API 653 and splash-zone UT"
+    ],
+    "turnaroundSeasons": [
+      "Spring TARs (Apr-May)",
+      "Autumn TARs (Sep-Oct)"
+    ],
+    "nearbyMajorCities": [
+      "Hull (30km)",
+      "Grimsby (10km)",
+      "Leeds (110km)"
+    ]
+  },
+  "gladstone-au": {
+    "displayName": "Gladstone, AU",
+    "country": "AU",
+    "state": "Australia",
+    "tier": 2,
+    "region": "oceania",
+    "metroPopulation": 65000,
+    "lat": -23.842,
+    "lng": 151.255,
+    "industries": [
+      {
+        "name": "LNG Export",
+        "weight": 0.35,
+        "context": "Curtis Island LNG — QCLNG, GLNG and APLNG export trains"
+      },
+      {
+        "name": "Alumina & Aluminium",
+        "weight": 0.3,
+        "context": "Queensland Alumina (QAL), Rio Tinto Yarwun refinery and Boyne Smelters"
+      },
+      {
+        "name": "Power & Chemicals",
+        "weight": 0.18,
+        "context": "NRG Gladstone Power Station and Orica chemicals"
+      }
+    ],
+    "majorEmployers": [
+      "Shell QGC",
+      "Santos GLNG",
+      "ConocoPhillips/Origin APLNG",
+      "Rio Tinto",
+      "Boyne Smelters",
+      "Orica",
+      "NRG"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 62000,
+      "level2": 86000,
+      "level3": 135000
+    },
+    "wageBandSource": "Australian Bureau of Statistics 2024 (resources premium)",
+    "regionalCodes": [
+      "AS/NZS 3788 (pressure equipment)",
+      "AS 1210 / AS 4458",
+      "API 510 / 570 / 653",
+      "ASME Section V / VIII",
+      "WHS (Queensland)"
+    ],
+    "asntChapter": "AINDT — Queensland Branch",
+    "awsSection": "Weld Australia (Queensland)",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "high",
+    "costOfLivingIndex": 98,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Curtis Island LNG (QCLNG / GLNG / APLNG)",
+        "type": "LNG export",
+        "scale": "Three coal-seam-gas LNG trains"
+      },
+      {
+        "name": "Queensland Alumina (QAL) & Rio Tinto Yarwun",
+        "type": "Alumina refinery",
+        "scale": "Two major alumina refineries"
+      },
+      {
+        "name": "Boyne Smelters",
+        "type": "Aluminium smelter",
+        "scale": "Large Queensland smelter"
+      },
+      {
+        "name": "Port of Gladstone",
+        "type": "Port",
+        "scale": "Major coal, LNG and alumina terminal"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 1.2,
+      "rationale": "Australian resources band; remote-region day rates with LAFHA"
+    },
+    "uniqueAngles": [
+      "Three CSG-LNG trains on Curtis Island drive cryogenic exchanger and tankage inspection",
+      "Alumina refineries add caustic-service and high-temperature digester scope",
+      "Remote regional rates with living-away allowances lift day rates well above metro"
+    ],
+    "turnaroundSeasons": [
+      "Autumn/winter TARs (Apr-Sep)"
+    ],
+    "nearbyMajorCities": [
+      "Rockhampton (110km)",
+      "Brisbane (520km)"
+    ]
+  },
+  "karratha-au": {
+    "displayName": "Karratha, AU",
+    "country": "AU",
+    "state": "Australia",
+    "tier": 2,
+    "region": "oceania",
+    "metroPopulation": 25000,
+    "lat": -20.736,
+    "lng": 116.846,
+    "industries": [
+      {
+        "name": "LNG & Gas",
+        "weight": 0.5,
+        "context": "Woodside Karratha Gas Plant (North West Shelf) and Pluto LNG"
+      },
+      {
+        "name": "Ammonia & Fertilizers",
+        "weight": 0.2,
+        "context": "Yara Pilbara ammonia plant on the Burrup Peninsula"
+      },
+      {
+        "name": "Port & Resources",
+        "weight": 0.15,
+        "context": "Dampier Port and Pilbara resource logistics"
+      }
+    ],
+    "majorEmployers": [
+      "Woodside Energy",
+      "Yara Pilbara",
+      "Rio Tinto (Dampier)",
+      "Monadelphous",
+      "UGL",
+      "Bilfinger Australia"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 66000,
+      "level2": 92000,
+      "level3": 145000
+    },
+    "wageBandSource": "ABS 2024 (Pilbara remote premium)",
+    "regionalCodes": [
+      "AS/NZS 3788",
+      "AS 1210 / AS 4458",
+      "API 510 / 570 / 653",
+      "ASME Section V / VIII",
+      "WHS (Western Australia)"
+    ],
+    "asntChapter": "AINDT — Western Australia Branch",
+    "awsSection": "Weld Australia (WA)",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "high",
+    "costOfLivingIndex": 110,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Woodside Karratha Gas Plant (North West Shelf)",
+        "type": "LNG / gas plant",
+        "scale": "Australia's largest gas-processing hub"
+      },
+      {
+        "name": "Pluto LNG (Woodside)",
+        "type": "LNG export",
+        "scale": "Major WA LNG train"
+      },
+      {
+        "name": "Yara Pilbara Ammonia (Burrup)",
+        "type": "Ammonia / fertilizer",
+        "scale": "World-scale ammonia plant"
+      },
+      {
+        "name": "Dampier Port",
+        "type": "Port",
+        "scale": "Pilbara energy and bulk terminal"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 1.25,
+      "rationale": "Pilbara remote band; among the highest NDT day rates globally"
+    },
+    "uniqueAngles": [
+      "North West Shelf is Australia's largest gas-processing hub — cryogenic and high-pressure scope",
+      "Burrup ammonia plant adds hydrogen-service and high-temperature inspection",
+      "FIFO rotations and Pilbara remoteness drive the highest day rates and self-contained cal labs"
+    ],
+    "turnaroundSeasons": [
+      "Dry-season TARs (Apr-Oct)",
+      "Avoid cyclone season"
+    ],
+    "nearbyMajorCities": [
+      "Port Hedland (240km)",
+      "Perth (1530km)"
+    ]
+  },
+  "kwinana-au": {
+    "displayName": "Kwinana, AU",
+    "country": "AU",
+    "state": "Australia",
+    "tier": 2,
+    "region": "oceania",
+    "metroPopulation": 120000,
+    "lat": -32.239,
+    "lng": 115.772,
+    "industries": [
+      {
+        "name": "Energy & Renewable Fuels",
+        "weight": 0.35,
+        "context": "BP Kwinana Energy Hub — import terminal, renewable diesel and hydrogen"
+      },
+      {
+        "name": "Lithium & Chemicals",
+        "weight": 0.3,
+        "context": "Tianqi Lithium Kwinana hydroxide plant and CSBP chemicals"
+      },
+      {
+        "name": "Alumina & Port",
+        "weight": 0.18,
+        "context": "Alcoa Kwinana alumina and the Kwinana Bulk Terminal"
+      }
+    ],
+    "majorEmployers": [
+      "BP Australia",
+      "Tianqi Lithium (IGO JV)",
+      "CSBP (Wesfarmers)",
+      "Alcoa",
+      "Monadelphous",
+      "UGL"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 60000,
+      "level2": 84000,
+      "level3": 132000
+    },
+    "wageBandSource": "ABS 2024 (WA industrial band)",
+    "regionalCodes": [
+      "AS/NZS 3788",
+      "AS 1210 / AS 4458",
+      "API 510 / 570 / 653",
+      "ASME Section V / VIII",
+      "WHS (Western Australia)"
+    ],
+    "asntChapter": "AINDT — Western Australia Branch",
+    "awsSection": "Weld Australia (WA)",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 96,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "BP Kwinana Energy Hub",
+        "type": "Renewable fuels / terminal",
+        "scale": "Ex-refinery now import terminal + renewable diesel + H2"
+      },
+      {
+        "name": "Tianqi Lithium Kwinana",
+        "type": "Lithium hydroxide plant",
+        "scale": "Battery-grade lithium processing"
+      },
+      {
+        "name": "CSBP Kwinana",
+        "type": "Chemicals / fertilizer",
+        "scale": "Wesfarmers ammonia and chemicals"
+      },
+      {
+        "name": "Kwinana Bulk Terminal",
+        "type": "Port",
+        "scale": "WA industrial bulk terminal"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 1.15,
+      "rationale": "WA metro-industrial band"
+    },
+    "uniqueAngles": [
+      "BP Kwinana's transition to renewable diesel and hydrogen drives new-build inspection scope",
+      "Lithium hydroxide processing adds corrosive-service and exotic-alloy inspection",
+      "Ammonia and chemical plants drive hydrogen-service and high-pressure scope"
+    ],
+    "turnaroundSeasons": [
+      "Autumn/spring TARs"
+    ],
+    "nearbyMajorCities": [
+      "Perth (40km)",
+      "Fremantle (20km)",
+      "Bunbury (130km)"
+    ]
+  },
+  "geelong-au": {
+    "displayName": "Geelong, AU",
+    "country": "AU",
+    "state": "Australia",
+    "tier": 3,
+    "region": "oceania",
+    "metroPopulation": 290000,
+    "lat": -38.1499,
+    "lng": 144.3617,
+    "industries": [
+      {
+        "name": "Refining",
+        "weight": 0.45,
+        "context": "Viva Energy Geelong Refinery — ~120,000 bpd, one of two refineries left in Australia"
+      },
+      {
+        "name": "Energy Transition",
+        "weight": 0.2,
+        "context": "Viva Energy New Energies Hub — LNG terminal and hydrogen"
+      },
+      {
+        "name": "Port & Manufacturing",
+        "weight": 0.18,
+        "context": "Port of Geelong and regional manufacturing"
+      }
+    ],
+    "majorEmployers": [
+      "Viva Energy",
+      "Bilfinger Australia",
+      "Monadelphous",
+      "UGL",
+      "GeelongPort"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 58000,
+      "level2": 82000,
+      "level3": 128000
+    },
+    "wageBandSource": "ABS 2024 (Victoria industrial band)",
+    "regionalCodes": [
+      "AS/NZS 3788",
+      "AS 1210 / AS 4458",
+      "API 510 / 570 / 653",
+      "ASME Section V / VIII",
+      "WHS (Victoria)"
+    ],
+    "asntChapter": "AINDT — Victoria Branch",
+    "awsSection": "Weld Australia (Victoria)",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 92,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Viva Energy Geelong Refinery",
+        "type": "Refinery",
+        "scale": "~120,000 bpd"
+      },
+      {
+        "name": "Viva Energy New Energies Hub",
+        "type": "LNG / hydrogen",
+        "scale": "Energy-transition terminal at Geelong"
+      },
+      {
+        "name": "Port of Geelong",
+        "type": "Port",
+        "scale": "Victorian bulk-liquids terminal"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 1.1,
+      "rationale": "Victoria industrial band"
+    },
+    "uniqueAngles": [
+      "One of only two refineries left in Australia — strategic fixed-equipment inspection demand",
+      "New Energies Hub LNG import adds cryogenic and tankage scope",
+      "Refinery turnarounds concentrate regional NDT capacity"
+    ],
+    "turnaroundSeasons": [
+      "Autumn/spring TARs"
+    ],
+    "nearbyMajorCities": [
+      "Melbourne (75km)",
+      "Ballarat (90km)"
+    ]
+  },
+  "newcastle-au": {
+    "displayName": "Newcastle, AU",
+    "country": "AU",
+    "state": "Australia",
+    "tier": 2,
+    "region": "oceania",
+    "metroPopulation": 500000,
+    "lat": -32.9283,
+    "lng": 151.7817,
+    "industries": [
+      {
+        "name": "Port & Bulk",
+        "weight": 0.35,
+        "context": "Port of Newcastle — the world's largest coal-export port"
+      },
+      {
+        "name": "Aluminium",
+        "weight": 0.25,
+        "context": "Tomago Aluminium — the largest aluminium smelter in Australia"
+      },
+      {
+        "name": "Chemicals & Power",
+        "weight": 0.2,
+        "context": "Orica Kooragang ammonia/explosives and Hunter Valley power stations"
+      }
+    ],
+    "majorEmployers": [
+      "Port of Newcastle",
+      "Tomago Aluminium",
+      "Orica",
+      "AGL (Hunter power)",
+      "Monadelphous",
+      "UGL"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 60000,
+      "level2": 84000,
+      "level3": 132000
+    },
+    "wageBandSource": "ABS 2024 (NSW industrial band)",
+    "regionalCodes": [
+      "AS/NZS 3788",
+      "AS 1210 / AS 4458",
+      "API 510 / 570 / 653",
+      "ASME Section V / VIII",
+      "WHS (New South Wales)"
+    ],
+    "asntChapter": "AINDT — New South Wales Branch",
+    "awsSection": "Weld Australia (NSW)",
+    "apiExamCenter": true,
+    "transportSurchargeBand": "medium",
+    "costOfLivingIndex": 94,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "Port of Newcastle",
+        "type": "Port",
+        "scale": "World's largest coal-export port"
+      },
+      {
+        "name": "Tomago Aluminium",
+        "type": "Aluminium smelter",
+        "scale": "Largest smelter in Australia"
+      },
+      {
+        "name": "Orica Kooragang Island",
+        "type": "Ammonia / chemicals",
+        "scale": "Major ammonia and explosives complex"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 1.1,
+      "rationale": "NSW industrial band"
+    },
+    "uniqueAngles": [
+      "World's largest coal-export port drives materials-handling structural inspection",
+      "Tomago pot-line and casthouse add aluminium-specific scope",
+      "Orica ammonia complex drives hydrogen-service and high-pressure inspection"
+    ],
+    "turnaroundSeasons": [
+      "Autumn/spring TARs"
+    ],
+    "nearbyMajorCities": [
+      "Sydney (160km)",
+      "Maitland (35km)"
+    ]
+  },
+  "darwin-au": {
+    "displayName": "Darwin, AU",
+    "country": "AU",
+    "state": "Australia",
+    "tier": 3,
+    "region": "oceania",
+    "metroPopulation": 140000,
+    "lat": -12.4634,
+    "lng": 130.8456,
+    "industries": [
+      {
+        "name": "LNG",
+        "weight": 0.5,
+        "context": "INPEX Ichthys LNG (Bladin Point) and ConocoPhillips Darwin LNG (Wickham Point)"
+      },
+      {
+        "name": "Port & Energy",
+        "weight": 0.22,
+        "context": "Port of Darwin and the Middle Arm sustainable-development precinct"
+      },
+      {
+        "name": "Defence & Marine",
+        "weight": 0.15,
+        "context": "Darwin naval and marine support facilities"
+      }
+    ],
+    "majorEmployers": [
+      "INPEX",
+      "Santos",
+      "ConocoPhillips",
+      "Monadelphous",
+      "UGL",
+      "Bilfinger Australia"
+    ],
+    "avgInspectorWageUSD": {
+      "level1": 64000,
+      "level2": 88000,
+      "level3": 138000
+    },
+    "wageBandSource": "ABS 2024 (NT remote premium)",
+    "regionalCodes": [
+      "AS/NZS 3788",
+      "AS 1210 / AS 4458",
+      "API 510 / 570 / 653",
+      "ASME Section V / VIII",
+      "WHS (Northern Territory)"
+    ],
+    "asntChapter": "AINDT — served from Queensland/WA",
+    "awsSection": "Weld Australia (NT)",
+    "apiExamCenter": false,
+    "transportSurchargeBand": "high",
+    "costOfLivingIndex": 104,
+    "majorPortsRefineriesPlants": [
+      {
+        "name": "INPEX Ichthys LNG (Bladin Point)",
+        "type": "LNG export",
+        "scale": "~8.9 MTPA"
+      },
+      {
+        "name": "Santos/ConocoPhillips Darwin LNG (Wickham Point)",
+        "type": "LNG export",
+        "scale": "Long-running NT LNG train"
+      },
+      {
+        "name": "Port of Darwin",
+        "type": "Port",
+        "scale": "Northern gateway energy and bulk terminal"
+      }
+    ],
+    "pricingFactor": {
+      "baseMultiplier": 1.2,
+      "rationale": "NT remote band; tropical FIFO premium"
+    },
+    "uniqueAngles": [
+      "Two LNG trains anchor the Top End — cryogenic exchanger and tankage scope",
+      "Tropical climate and wet-season scheduling compress inspection windows",
+      "Middle Arm precinct adds future hydrogen and petrochemical scope"
+    ],
+    "turnaroundSeasons": [
+      "Dry-season TARs (May-Oct)"
+    ],
+    "nearbyMajorCities": [
+      "Katherine (320km)",
+      "Perth (2650km by air)"
     ]
   }
 }
