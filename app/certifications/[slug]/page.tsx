@@ -43,15 +43,42 @@ export default function CertificationPage({ params }: Props) {
 
   const otherCerts = certifications.filter(c => c.slug !== cert.slug);
 
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'EducationalOccupationalCredential',
-    name: cert.name,
-    description: cert.longDescription,
-    credentialCategory: 'Professional Certification',
-    recognizedBy: { '@type': 'Organization', name: cert.issuingBody },
-    validFor: cert.validityPeriod,
-  };
+  // FAQs derived deterministically from the certification's own data fields —
+  // no fabricated facts. Powers both the visible block and FAQPage rich result.
+  const faqs = [
+    { q: `What is ${cert.name} (${cert.abbreviation})?`, a: cert.longDescription },
+    { q: `Who issues the ${cert.abbreviation} certification?`, a: `${cert.abbreviation} is issued and recognised by ${cert.issuingBody}.` },
+    { q: `What are the requirements for ${cert.abbreviation}?`, a: `Key requirements include: ${cert.requirements.join('; ')}.` },
+    { q: `What does the ${cert.abbreviation} exam cover?`, a: `Exam topics include: ${cert.examTopics.join('; ')}.` },
+    { q: `How long is ${cert.abbreviation} valid?`, a: `${cert.abbreviation} certification is valid for ${cert.validityPeriod}, after which renewal or recertification is required.` },
+    { q: `Which NDT methods does ${cert.abbreviation} apply to?`, a: `${cert.abbreviation} applies to: ${cert.relevantMethods.join(', ')}.` },
+  ];
+
+  const schema = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'EducationalOccupationalCredential',
+      name: cert.name,
+      description: cert.longDescription,
+      credentialCategory: 'Professional Certification',
+      recognizedBy: { '@type': 'Organization', name: cert.issuingBody },
+      validFor: cert.validityPeriod,
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://ndt-connect.com' },
+        { '@type': 'ListItem', position: 2, name: 'Certifications', item: 'https://ndt-connect.com/certifications' },
+        { '@type': 'ListItem', position: 3, name: cert.abbreviation, item: `https://ndt-connect.com/certifications/${cert.slug}` },
+      ],
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    },
+  ];
 
   return (
     <>
@@ -134,6 +161,18 @@ export default function CertificationPage({ params }: Props) {
           <Button size="lg" variant="secondary" asChild>
             <Link href="/register">Register as Provider</Link>
           </Button>
+        </section>
+
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-primary mb-6">{cert.abbreviation} Certification FAQ</h2>
+          <div className="space-y-4">
+            {faqs.map((f, i) => (
+              <div key={i} className="border-l-4 border-primary/30 pl-4">
+                <h3 className="font-semibold text-foreground mb-1">{f.q}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{f.a}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
         <section className="mb-12">

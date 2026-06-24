@@ -64,6 +64,20 @@ export default function IndustryPage({ params }: Props) {
 
   const otherIndustries = industries.filter(i => i.slug !== industry.slug);
 
+  // FAQs derived from the industry's own data — no fabricated facts.
+  const faqs = [
+    { q: `Why is NDT important in the ${industry.name} industry?`, a: industry.whyNDT },
+    { q: `Which NDT methods are used in ${industry.name}?`, a: `Common methods include: ${industry.commonMethods.join(', ')}.` },
+    { q: `What are common NDT applications in ${industry.name}?`, a: `Key applications include: ${industry.keyApplications.join('; ')}.` },
+    { q: `What are the main NDT challenges in ${industry.name}?`, a: `${industry.challenges.join('; ')}.` },
+    { q: `Which standards and codes apply to NDT in ${industry.name}?`, a: `Relevant standards include: ${industry.standards.join(', ')}.` },
+  ];
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  };
+
   const schema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -87,6 +101,7 @@ export default function IndustryPage({ params }: Props) {
         { name: 'Industries', url: 'https://ndt-connect.com/industries' },
         { name: industry.name, url: `https://ndt-connect.com/industries/${industry.slug}` },
       ]} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <div className="max-w-5xl mx-auto">
         <nav className="flex items-center gap-2 text-sm text-slate-600 mb-6">
@@ -183,6 +198,19 @@ export default function IndustryPage({ params }: Props) {
             <Button size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10" asChild>
               <Link href="/register">Register as Provider</Link>
             </Button>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold text-primary mb-6">NDT in {industry.name} — FAQ</h2>
+          <div className="space-y-4">
+            {faqs.map((f, i) => (
+              <div key={i} className="border-l-4 border-primary/30 pl-4">
+                <h3 className="font-semibold text-foreground mb-1">{f.q}</h3>
+                <p className="text-sm text-slate-600 leading-relaxed">{f.a}</p>
+              </div>
+            ))}
           </div>
         </section>
 
