@@ -3,110 +3,105 @@ import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { CheckCircle, Clock, MapPin, ArrowRight } from 'lucide-react';
+import { ArrowRight, FileText } from 'lucide-react';
+import { listSlugs, loadCaseStudy } from '@/lib/content/authored';
 
 export const metadata: Metadata = {
-  title: 'NDT Case Studies | Real Inspection Success Stories',
-  description: 'See how NDT Connect helps asset owners find certified inspectors and complete NDT inspections efficiently. Real-world case studies from oil & gas, aerospace, and more.',
-  keywords: ['NDT case studies', 'NDT success stories', 'inspection case study', 'NDT Connect examples'],
-  openGraph: { title: 'NDT Case Studies', description: 'Real-world NDT inspection success stories.', url: 'https://ndt-connect.com/case-studies' },
+  title: 'NDT Case Studies | Real Inspection Findings & Methods (2026)',
+  description:
+    'In-depth NDT inspection case studies — PAUT, TOFD, MFL and corrosion-mapping findings on refineries, pipelines, LNG tanks, offshore platforms and nuclear plants. Real assets, real defects, real method selection.',
+  keywords: ['NDT case studies', 'inspection case study', 'PAUT case study', 'MFL tank floor', 'TOFD weld inspection', 'CUI discovery', 'pipeline integrity case study'],
+  openGraph: { title: 'NDT Case Studies — Real Inspection Findings', description: 'In-depth NDT inspection case studies across refining, pipelines, LNG, offshore and nuclear.', url: 'https://ndt-connect.com/case-studies', type: 'website' },
   alternates: { canonical: 'https://ndt-connect.com/case-studies' },
 };
 
-const caseStudies = [
-  {
-    title: 'Refinery Turnaround Inspection - 200+ Weld Joints in 5 Days',
-    industry: 'Oil & Gas',
-    location: 'Houston, TX',
-    methods: ['PAUT', 'TOFD', 'MT'],
-    challenge: 'A major Gulf Coast refinery needed 200+ weld joints inspected during a 5-day turnaround window. Traditional sourcing would take weeks to arrange qualified inspectors.',
-    solution: 'Using NDT Connect, the refinery posted a service request and received responses from 8 qualified PAUT/TOFD teams within 24 hours. They selected 3 teams based on certifications, pricing, and availability.',
-    results: ['All 200+ joints inspected within the 5-day window', '35% cost savings vs. traditional contractor sourcing', 'Real-time tracking enabled project managers to monitor progress', 'Digital reports delivered same-day'],
-    timeToBook: '24 hours',
-  },
-  {
-    title: 'Offshore Platform Structural Assessment',
-    industry: 'Marine & Offshore',
-    location: 'North Sea, Aberdeen',
-    methods: ['UT', 'MT', 'VT', 'Corrosion Mapping'],
-    challenge: 'An aging North Sea platform required comprehensive structural integrity assessment including underwater inspections. Finding multiple specialized teams in Aberdeen for a tight weather window was critical.',
-    solution: 'NDT Connect matched the operator with 5 local Aberdeen-based providers experienced in offshore work. The platform could compare qualifications, insurance, and offshore certifications side-by-side.',
-    results: ['Full structural assessment completed in one weather window', 'Multi-disciplinary team coordinated through single platform', 'Comprehensive corrosion mapping delivered digitally', 'Reduced mobilization costs with local providers'],
-    timeToBook: '48 hours',
-  },
-  {
-    title: 'Pipeline Integrity Program - 500km Cross-Country',
-    industry: 'Pipeline',
-    location: 'Calgary, Alberta',
-    methods: ['GWT', 'UT', 'PAUT'],
-    challenge: 'A pipeline operator needed guided wave screening across 500km of cross-country pipeline including road crossings and river crossings, followed by detailed UT on flagged areas.',
-    solution: 'Through NDT Connect, the operator sourced a specialized GWT team for the initial screening and separate PAUT teams for follow-up detailed inspection, all coordinated through the platform.',
-    results: ['500km pipeline screened in 6 weeks', '45 areas flagged for detailed follow-up', 'Seamless handoff between screening and detailed inspection teams', 'Complete digital audit trail for regulatory compliance'],
-    timeToBook: '3 days',
-  },
-  {
-    title: 'Aerospace Component Manufacturing QA',
-    industry: 'Aerospace',
-    location: 'Seattle, WA',
-    methods: ['UT', 'ET', 'PT'],
-    challenge: 'An aerospace manufacturer needed additional certified NDT personnel to handle a surge in production without the lengthy process of hiring and certifying in-house staff.',
-    solution: 'NDT Connect provided access to pre-certified Level II inspectors with NAS 410 qualifications who could be mobilized within days rather than the months required for in-house certification.',
-    results: ['Production bottleneck eliminated within one week', 'All inspectors pre-verified with NAS 410 certifications', 'Flexible staffing scaled up and down with demand', 'Zero quality escapes maintained throughout surge'],
-    timeToBook: '48 hours',
-  },
+// Marketplace outcome highlights (platform success stories — kept above the
+// authored technical library).
+const outcomes = [
+  { title: 'Refinery turnaround: 200+ weld joints in 5 days', industry: 'Oil & Gas', methods: ['PAUT', 'TOFD', 'MT'], blurb: '8 qualified PAUT/TOFD teams quoted within 24 hours; all joints inspected in the turnaround window at ~35% cost saving.' },
+  { title: 'Offshore platform structural assessment', industry: 'Marine & Offshore', methods: ['UT', 'MT', 'Corrosion Mapping'], blurb: '5 local Aberdeen providers compared on offshore certs and insurance; full assessment in one weather window.' },
+  { title: 'Pipeline integrity — 500km cross-country', industry: 'Pipeline', methods: ['GWT', 'UT', 'PAUT'], blurb: 'GWT screening plus follow-up PAUT coordinated through one platform; complete digital audit trail.' },
 ];
 
-export default function CaseStudiesPage() {
+export default async function CaseStudiesPage() {
+  const slugs = listSlugs('case-studies');
+  const studies = (await Promise.all(slugs.map(async (slug) => {
+    const c = await loadCaseStudy(slug);
+    return c ? { slug, metaTitle: c.metaTitle as string, metaDescription: c.metaDescription as string, industry: c.industry as string, assetType: c.assetType as string } : null;
+  }))).filter(Boolean) as { slug: string; metaTitle: string; metaDescription: string; industry: string; assetType: string }[];
+
+  const itemListSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'NDT Inspection Case Studies',
+    itemListElement: studies.map((s, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: `https://ndt-connect.com/case-studies/${s.slug}`,
+      name: s.metaTitle,
+    })),
+  };
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://ndt-connect.com' },
+      { '@type': 'ListItem', position: 2, name: 'Case Studies', item: 'https://ndt-connect.com/case-studies' },
+    ],
+  };
+
   return (
     <div className="max-w-5xl mx-auto">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+
       <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
         <Link href="/" className="hover:text-primary">Home</Link>
         <span>/</span>
         <span className="text-foreground">Case Studies</span>
       </nav>
 
-      <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">NDT Connect Case Studies</h1>
+      <h1 className="text-3xl md:text-4xl font-bold text-primary mb-4">NDT Inspection Case Studies</h1>
       <p className="text-muted-foreground mb-10 max-w-2xl">
-        See how asset owners and industrial operators use NDT Connect to find certified inspectors, reduce costs, and complete inspections faster.
+        Detailed, method-level case studies — the asset, the degradation mechanism, the technique chosen, and the findings.
+        Plus marketplace outcomes from operators who sourced certified inspectors through NDT Connect.
       </p>
 
-      <div className="space-y-8 mb-12">
-        {caseStudies.map((cs, i) => (
-          <Card key={i} className="overflow-hidden">
-            <CardHeader className="bg-muted/30">
-              <div className="flex flex-wrap items-center gap-3 mb-2">
-                <Badge>{cs.industry}</Badge>
-                <span className="flex items-center gap-1 text-sm text-muted-foreground"><MapPin className="h-3 w-3" /> {cs.location}</span>
-                <span className="flex items-center gap-1 text-sm text-muted-foreground"><Clock className="h-3 w-3" /> Booked in {cs.timeToBook}</span>
-              </div>
-              <CardTitle className="text-xl">{cs.title}</CardTitle>
+      {/* Authored technical case-study library (the indexable depth) */}
+      <h2 className="text-2xl font-bold text-foreground mb-1">Technical case studies</h2>
+      <p className="text-sm text-muted-foreground mb-6">Real assets, real defects, real method selection — written to method and code depth.</p>
+      <div className="grid md:grid-cols-2 gap-5 mb-14">
+        {studies.map((s) => (
+          <Link key={s.slug} href={`/case-studies/${s.slug}`} className="group">
+            <Card className="h-full transition-colors hover:border-primary">
+              <CardHeader>
+                <div className="flex items-center gap-2 mb-2">
+                  <Badge variant="outline" className="text-xs"><FileText className="h-3 w-3 mr-1" />{s.industry}</Badge>
+                </div>
+                <CardTitle className="text-lg leading-snug group-hover:text-primary">{s.metaTitle}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-muted-foreground line-clamp-3">{s.metaDescription}</p>
+                <span className="mt-3 inline-flex items-center gap-1 text-sm text-primary font-medium">Read case study <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" /></span>
+              </CardContent>
+            </Card>
+          </Link>
+        ))}
+      </div>
+
+      {/* Marketplace outcomes */}
+      <h2 className="text-2xl font-bold text-foreground mb-6">Marketplace outcomes</h2>
+      <div className="grid md:grid-cols-3 gap-5 mb-12">
+        {outcomes.map((o, i) => (
+          <Card key={i} className="h-full">
+            <CardHeader>
+              <Badge className="w-fit mb-2">{o.industry}</Badge>
+              <CardTitle className="text-base leading-snug">{o.title}</CardTitle>
               <div className="flex flex-wrap gap-1.5 mt-2">
-                {cs.methods.map((m, j) => <Badge key={j} variant="outline" className="text-xs">{m}</Badge>)}
+                {o.methods.map((m, j) => <Badge key={j} variant="outline" className="text-xs">{m}</Badge>)}
               </div>
             </CardHeader>
-            <CardContent className="pt-6">
-              <div className="grid md:grid-cols-3 gap-6">
-                <div>
-                  <h3 className="font-semibold text-sm mb-2 text-amber-600">Challenge</h3>
-                  <p className="text-sm text-muted-foreground">{cs.challenge}</p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-sm mb-2 text-blue-600">Solution</h3>
-                  <p className="text-sm text-muted-foreground">{cs.solution}</p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-sm mb-2 text-green-600">Results</h3>
-                  <ul className="space-y-2">
-                    {cs.results.map((r, j) => (
-                      <li key={j} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <CheckCircle className="h-4 w-4 text-green-500 shrink-0 mt-0.5" />
-                        <span>{r}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </CardContent>
+            <CardContent><p className="text-sm text-muted-foreground">{o.blurb}</p></CardContent>
           </Card>
         ))}
       </div>
