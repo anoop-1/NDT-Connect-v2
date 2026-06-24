@@ -44,6 +44,7 @@ export default async function LearnAuthoredPage({ params }: Props) {
         name: l.metaTitle,
         description: l.metaDescription,
         mainEntityOfPage: pageUrl,
+        dateModified: new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), 1)).toISOString().slice(0, 10),
         author: { '@type': 'Person', name: 'Anoop Rayavarapu' },
         step: (l.sections || [])
           .filter((s: { level: number }) => s.level === 2)
@@ -59,6 +60,7 @@ export default async function LearnAuthoredPage({ params }: Props) {
         name: l.metaTitle,
         description: l.metaDescription,
         mainEntityOfPage: pageUrl,
+        dateModified: new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), 1)).toISOString().slice(0, 10),
         author: { '@type': 'Person', name: 'Anoop Rayavarapu' },
       };
 

@@ -39,6 +39,7 @@ export default async function TopicAuthoredPage({ params }: Props) {
       headline: t.metaTitle,
       description: t.metaDescription,
       mainEntityOfPage: `https://ndt-connect.com/topics/${params.slug}`,
+      dateModified: new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), 1)).toISOString().slice(0, 10),
       author: { '@type': 'Person', name: 'Anoop Rayavarapu' },
       publisher: {
         '@type': 'Organization',

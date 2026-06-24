@@ -399,6 +399,7 @@ export default function StandardPage({ params }: Props) {
               '@context': 'https://schema.org',
               '@type': 'TechArticle',
               headline: `${standard.code}: ${standard.title}`,
+              dateModified: new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), 1)).toISOString().slice(0, 10),
               description: standard.description,
               publisher: {
                 '@type': 'Organization',

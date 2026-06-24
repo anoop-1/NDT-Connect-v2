@@ -44,6 +44,7 @@ export default async function PillarAuthoredPage({ params }: Props) {
       headline: p.metaTitle,
       description: p.metaDescription,
       mainEntityOfPage: `https://ndt-connect.com/pillars/${params.slug}`,
+      dateModified: new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), 1)).toISOString().slice(0, 10),
       author: { '@type': 'Person', name: 'Anoop Rayavarapu' },
       publisher: {
         '@type': 'Organization',

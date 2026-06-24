@@ -40,6 +40,7 @@ export default async function CaseStudyAuthoredPage({ params }: Props) {
       headline: c.metaTitle,
       description: c.metaDescription,
       mainEntityOfPage: `https://ndt-connect.com/case-studies/${params.slug}`,
+      dateModified: new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), 1)).toISOString().slice(0, 10),
       author: { '@type': 'Person', name: 'Anoop Rayavarapu' },
       publisher: {
         '@type': 'Organization',

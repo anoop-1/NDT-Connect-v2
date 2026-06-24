@@ -40,6 +40,7 @@ export default async function StateAuthoredPage({ params }: Props) {
       headline: s.metaTitle,
       description: s.metaDescription,
       mainEntityOfPage: `https://ndt-connect.com/states/${params.slug}`,
+      dateModified: new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), 1)).toISOString().slice(0, 10),
       author: { '@type': 'Person', name: 'Anoop Rayavarapu' },
       publisher: {
         '@type': 'Organization',
