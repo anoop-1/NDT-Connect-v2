@@ -39,10 +39,32 @@ const DEMAND_CITIES = new Set<string>([
   'san-francisco-ca','provo-ut','el-dorado-ar','gillette-wy','port-arthur-tx','aiken-sc',
 ]);
 
+// Strategically-published expansion cities (2026-06-21). New, quality-gated
+// hubs (>=3 industries, >=2 named facilities, unique pain quote + rich entry)
+// that we intentionally want indexed to capture demand — even where they are
+// tier-3 by market size. Distinct from DEMAND_CITIES (which is GSC-measured)
+// because these are forward bets in regions where the site already ranks well
+// (Gulf/India pos 9-12) or has real impressions at poor positions (UK/AU).
+const EXPANSION_CITIES = new Set<string>([
+  // Gulf
+  'ras-tanura-sa','rabigh-sa','jazan-sa','ruwais-ae','fujairah-ae','sohar-om','duqm-om','ras-laffan-qa',
+  // India
+  'hazira-in','vadodara-in','mangalore-in','paradip-in','haldia-in','kakinada-in','panipat-in','bathinda-in',
+  // UK
+  'teesside-uk','grangemouth-uk','southampton-uk','ellesmere-port-uk','immingham-uk',
+  // Australia
+  'gladstone-au','karratha-au','kwinana-au','geelong-au','newcastle-au','darwin-au',
+  // US tier-3 hubs remediated from the prune (now quality-gated; US is the primary market)
+  'beckley-wv','bloomington-il','clay-center-ks','davenport-ia','el-dorado-ks','findlay-oh','greenville-tx',
+  'hobbs-nm','iowa-city-ia','jackson-ms','liberal-ks','lorain-oh','macon-ga','mandan-nd','mansfield-oh',
+  'mayport-fl','mcpherson-ks','parkersburg-wv','roswell-nm','tallahassee-fl','weirton-wv',
+]);
+
 /** City-level programmatic pages. Index tier 1-2 cities, PLUS any city already
- * earning GSC impressions (demand override — don't prune live traffic). */
+ * earning GSC impressions (demand override — don't prune live traffic), PLUS
+ * intentional quality-gated expansion cities. */
 export function shouldIndexCity(slug: string, kind: 'method' | 'cost' | 'training' = 'method'): boolean {
-  if (DEMAND_CITIES.has(slug)) return true;
+  if (DEMAND_CITIES.has(slug) || EXPANSION_CITIES.has(slug)) return true;
   const t = cityTier(slug);
   if (!t) return false;
   return t <= 2;
