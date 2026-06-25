@@ -22,9 +22,10 @@ import { NotificationBell } from '@/components/shared/NotificationBell';
 import { DefaultAvatar } from '@/components/shared/DefaultAvatar';
 
 const navLinks = [
-  { label: 'Free Tools', href: '/free-tools', badge: 'FREE' as const },
+  { label: 'Calculators', href: '/tools', badge: 'FREE' as const },
   { label: 'Find Providers', href: '/find-providers' },
   { label: 'Services', href: '/services' },
+  { label: 'Methods', href: '/methods' },
   { label: 'Industries', href: '/industries' },
   { label: 'About', href: '/about' },
   { label: 'Blog', href: '/blog' },

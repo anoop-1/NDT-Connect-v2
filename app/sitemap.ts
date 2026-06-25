@@ -150,6 +150,11 @@ const BUCKETS: Record<string, () => MetadataRoute.Sitemap> = {
     url('/glossary', 'weekly', 0.7),
     url('/standards', 'monthly', 0.7),
     url('/topics', 'weekly', 0.7),
+    url('/tools', 'weekly', 0.9),
+    url('/methods', 'monthly', 0.9),
+    url('/pillars', 'weekly', 0.8),
+    url('/learn', 'weekly', 0.8),
+    url('/compare', 'monthly', 0.8),
     url('/careers', 'weekly', 0.7),
   ],
 

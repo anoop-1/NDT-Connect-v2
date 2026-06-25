@@ -132,15 +132,17 @@ export function Footer() {
               <div className="h-0.5 w-8 bg-gradient-to-r from-blue-500/60 to-transparent rounded-full"></div>
             </div>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/blog" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Blog</Link></li>
-              <li><Link href="/glossary" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">NDT Glossary</Link></li>
+              <li><Link href="/tools" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Free Calculators</Link></li>
+              <li><Link href="/methods" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">NDT Methods</Link></li>
+              <li><Link href="/pillars" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">In-Depth Guides</Link></li>
+              <li><Link href="/learn" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Learn / How-To</Link></li>
+              <li><Link href="/compare" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Compare Methods</Link></li>
+              <li><Link href="/equipment" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Equipment Reviews</Link></li>
               <li><Link href="/standards" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Standards Reference</Link></li>
+              <li><Link href="/glossary" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">NDT Glossary</Link></li>
               <li><Link href="/certifications" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Certifications</Link></li>
               <li><Link href="/careers" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">NDT Careers</Link></li>
-              <li><Link href="/tools/ndt-method-selector" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Method Selector</Link></li>
-              <li><Link href="/tools/inspection-cost-estimator" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Cost Estimator</Link></li>
-              <li><Link href="/case-studies" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Case Studies</Link></li>
-              <li><Link href="/faq" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">FAQ</Link></li>
+              <li><Link href="/blog" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Blog</Link></li>
               <li><Link href="https://dt.atlantisndt.com" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Reporting</Link></li>
             </ul>
           </div>
