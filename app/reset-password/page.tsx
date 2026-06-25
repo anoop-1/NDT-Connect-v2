@@ -1,6 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
+import Image from "next/image";
 import { ResetPasswordForm } from "@/components/auth/ResetPasswordForm";
 
 export default function ResetPasswordPage() {
@@ -11,8 +12,7 @@ export default function ResetPasswordPage() {
         style={{ background: "linear-gradient(160deg, #0B1E33 0%, #003680 60%, #004AAD 100%)" }}
       >
         <div className="flex items-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo-globe-animated.svg" alt="NDT Connect" width={320} height={100} style={{ width: 320, height: 100, display: "block" }} />
+          <Image src="/logo-globe-animated.svg" alt="NDT Connect" width={320} height={100} priority className="block" />
         </div>
         <div className="space-y-4">
           <h1 className="text-3xl font-extrabold tracking-tight">Set Your Password</h1>

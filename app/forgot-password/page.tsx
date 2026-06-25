@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -31,8 +32,7 @@ export default function ForgotPasswordPage() {
         style={{ background: "linear-gradient(160deg, #0B1E33 0%, #003680 60%, #004AAD 100%)" }}
       >
         <div className="flex items-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo-globe-animated.svg" alt="NDT Connect" width={320} height={100} style={{ width: 320, height: 100, display: "block" }} />
+          <Image src="/logo-globe-animated.svg" alt="NDT Connect" width={320} height={100} priority className="block" />
         </div>
         <div className="space-y-4">
           <h1 className="text-3xl font-extrabold tracking-tight">Forgot your password?</h1>
