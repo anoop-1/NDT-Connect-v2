@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, FeatureGrid, FeatureCard, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema , ArticleSchema, BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema , ArticleSchema, BreadcrumbListSchema, DatasetSchema } from '@/components/seo/SchemaMarkup';
 
 export const metadata: Metadata = {
     title: 'NDT Industry Statistics & Market Size 2026: Complete Analysis',
@@ -31,6 +31,14 @@ export default function NDTIndustryStatistics() {
                 { name: 'NDT Industry Statistics & Market Size 2026: Complete Analysis', url: 'https://ndt-connect.com/blog/ndt-industry-statistics' },
             ]} />
             <NDTConnectOrganizationSchema />
+            <DatasetSchema
+                name="NDT Industry Statistics & Market Size (2026)"
+                description="Global non-destructive testing market size, growth rates, regional breakdown, employment figures and method/industry segmentation for 2026, compiled by NDT Connect from public market-research and labour sources."
+                url="https://ndt-connect.com/blog/ndt-industry-statistics"
+                keywords={['NDT market size', 'NDT industry statistics', 'non-destructive testing market', 'NDT employment', 'NDT growth rate']}
+                spatialCoverage="Worldwide"
+                temporalCoverage="2020/2030"
+            />
             <BlogLayout
                 title="NDT Industry Statistics & Market Size 2026: Complete Analysis"
                 category="Industry"
@@ -479,6 +487,24 @@ export default function NDTIndustryStatistics() {
                     <p>
                         Organizations investing in technology, automation, and talent development will be well-positioned to capture growing market opportunities. For individuals considering NDT careers, the demographic shift and skill shortages create unprecedented opportunity for employment, advancement, and competitive compensation.
                     </p>
+                </section>
+
+                <section id="sources">
+                    <h2>Sources &amp; Methodology</h2>
+                    <p>
+                        Market-size and growth figures on this page are compiled from published non-destructive testing
+                        market research and cross-checked against public labour and energy data. Employment and pay
+                        figures draw on NDT Connect&apos;s own careers and marketplace datasets benchmarked to US BLS
+                        occupational data. Figures are estimates; cite as &quot;NDT Connect, compiled from the sources below.&quot;
+                    </p>
+                    <ul>
+                        <li><a href="https://www.marketsandmarkets.com/Market-Reports/non-destructive-testing-ndt-market-882.html" target="_blank" rel="noopener noreferrer">MarketsandMarkets — Non-Destructive Testing (NDT) Market</a></li>
+                        <li><a href="https://www.grandviewresearch.com/industry-analysis/non-destructive-testing-ndt-market" target="_blank" rel="noopener noreferrer">Grand View Research — NDT Market Size &amp; Trends</a></li>
+                        <li><a href="https://www.bls.gov/oes/" target="_blank" rel="noopener noreferrer">US Bureau of Labor Statistics — Occupational Employment and Wage Statistics (OES)</a></li>
+                        <li><a href="https://www.asnt.org/" target="_blank" rel="noopener noreferrer">ASNT — The American Society for Nondestructive Testing</a></li>
+                        <li><a href="https://www.eia.gov/" target="_blank" rel="noopener noreferrer">US Energy Information Administration — refining &amp; pipeline infrastructure (demand drivers)</a></li>
+                    </ul>
+                    <p className="text-sm text-muted-foreground">Last reviewed: {new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), 1)).toLocaleString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' })}.</p>
                 </section>
 
                 <CTASection

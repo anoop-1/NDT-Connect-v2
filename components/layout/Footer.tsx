@@ -133,6 +133,7 @@ export function Footer() {
             </div>
             <ul className="space-y-2 text-sm">
               <li><Link href="/tools" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Free Calculators</Link></li>
+              <li><Link href="/reports" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Data Reports</Link></li>
               <li><Link href="/methods" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">NDT Methods</Link></li>
               <li><Link href="/pillars" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">In-Depth Guides</Link></li>
               <li><Link href="/learn" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Learn / How-To</Link></li>

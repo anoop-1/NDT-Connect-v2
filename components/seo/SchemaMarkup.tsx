@@ -444,3 +444,50 @@ export function HowToSchema({
         />
     );
 }
+
+// Dataset rich result + AI-citation signal for data studies (salary, cost
+// index, industry statistics). Reusable so each study doesn't inline boilerplate.
+export function DatasetSchema({
+    name,
+    description,
+    url,
+    keywords = [],
+    spatialCoverage = 'Worldwide',
+    temporalCoverage = String(new Date().getUTCFullYear()),
+    distributionUrl,
+    distributionFormat = 'text/csv',
+}: {
+    name: string;
+    description: string;
+    url: string;
+    keywords?: string[];
+    spatialCoverage?: string;
+    temporalCoverage?: string;
+    distributionUrl?: string;
+    distributionFormat?: string;
+}) {
+    const schema: Record<string, unknown> = {
+        '@context': 'https://schema.org',
+        '@type': 'Dataset',
+        name,
+        description,
+        url,
+        creator: { '@type': 'Organization', name: 'NDT Connect', url: 'https://ndt-connect.com' },
+        publisher: { '@type': 'Organization', name: 'NDT Connect', url: 'https://ndt-connect.com' },
+        license: 'https://creativecommons.org/licenses/by/4.0/',
+        spatialCoverage,
+        temporalCoverage,
+        keywords,
+        dateModified: new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), 1)).toISOString().slice(0, 10),
+    };
+    if (distributionUrl) {
+        schema.distribution = [{
+            '@type': 'DataDownload',
+            encodingFormat: distributionFormat,
+            contentUrl: distributionUrl,
+        }];
+    }
+    return (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+    );
+}

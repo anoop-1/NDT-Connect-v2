@@ -91,6 +91,8 @@ export default async function LearnAuthoredPage({ params }: Props) {
       spatialCoverage: 'United States',
       temporalCoverage: '2026',
       keywords: ['NDT salary', 'NDT inspector pay', 'ASNT Level III salary', 'CWI salary', 'radiographer pay'],
+      license: 'https://creativecommons.org/licenses/by/4.0/',
+      distribution: [{ '@type': 'DataDownload', encodingFormat: 'text/csv', contentUrl: 'https://ndt-connect.com/api/datasets/city-wages' }],
     });
   }
   if (params.slug === 'ndt-inspection-cost-index') {
@@ -105,6 +107,8 @@ export default async function LearnAuthoredPage({ params }: Props) {
       spatialCoverage: 'United States',
       temporalCoverage: '2026',
       keywords: ['NDT inspection cost', 'NDT rates', 'UT cost', 'PAUT cost', 'radiography price', 'NDT price list'],
+      license: 'https://creativecommons.org/licenses/by/4.0/',
+      distribution: [{ '@type': 'DataDownload', encodingFormat: 'text/csv', contentUrl: 'https://ndt-connect.com/api/datasets/cost-index' }],
     });
   }
 
