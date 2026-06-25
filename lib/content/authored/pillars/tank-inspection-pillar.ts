@@ -71,6 +71,14 @@ const pillar: PillarHubContent = {
       q: 'What certification is required to inspect an aboveground storage tank?',
       a: 'An API 653 Authorized Aboveground Storage Tank Inspector certification, issued under API’s Individual Certification Program (ICP). It requires a qualifying education-and-experience combination, a passing score on the closed-book + open-book examination, and recertification every three years.',
     },
+    {
+      q: 'What is the difference between API 650 and API 653?',
+      a: 'API 650 is the construction standard for new welded aboveground storage tanks; API 653 governs the in-service inspection, repair, alteration and reconstruction of those tanks once they are operating. New tanks are built to API 650, then maintained and re-certified under API 653 — and API 653 reaches back to API 650 acceptance criteria when evaluating repairs and reconstruction.',
+    },
+    {
+      q: 'How is tank-floor corrosion rate and remaining life calculated?',
+      a: 'From MFL floor-scan and follow-up UT data, the corrosion rate is the metal lost divided by the time in service, evaluated for both the topside (product-side) and underside (soil-side) of the floor plates. Remaining life is the metal above the API 653 minimum (or the alternative settlement/pitting criteria) divided by the governing rate. That number sets the next internal inspection interval, capped at 20 years or per a risk-based assessment.',
+    },
   ],
   internalLinks: [
     { href: '/certifications/api-653', label: 'API 653 certification requirements', context: 'cert' },

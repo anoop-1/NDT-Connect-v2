@@ -71,6 +71,14 @@ const pillar: PillarHubContent = {
       q: 'What defects does tube inspection find?',
       a: 'Pitting (general and isolated), uniform and localised wall loss, baffle/support-plate fretting wear, inlet-end erosion, under-deposit and ID corrosion, and — with array ECT — axially-oriented cracking such as inter-granular attack and stress-corrosion cracking that bobbin coils can miss.',
     },
+    {
+      q: 'How is heat-exchanger tube wall loss sized and reported?',
+      a: 'Electromagnetic methods size defects on a percent-through-wall basis against the machined references in a calibration tube (through-wall holes, flat-bottom holes, and circumferential grooves of the same material, OD and wall as the bundle). Results are reported as a tube map keyed to the tubesheet layout, flagging tubes by severity bands (e.g. <20%, 20-40%, 40-60%, >60% wall loss) so the owner can plug, sleeve or schedule re-tubing. IRIS adds an absolute wall-thickness number to confirm the electromagnetic percentages.',
+    },
+    {
+      q: 'Does a heat exchanger need API 510 inspection as well as tube testing?',
+      a: 'Yes. A shell-and-tube exchanger is a pressure vessel, so the shell, channel, tubesheet and nozzles fall under the API 510 inspection program (thickness, internal/external visual, remaining-life), while the tube bundle gets the electromagnetic/IRIS survey. The two feed one fitness-for-service decision — the tube map and the vessel data together set the repair, re-rate or re-tube outcome and the next inspection interval.',
+    },
   ],
   internalLinks: [
     { href: '/methods/eddy-current-testing', label: 'Eddy current testing method', context: 'method' },
