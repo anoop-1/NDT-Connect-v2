@@ -5,7 +5,7 @@ const equipment: EquipmentContent = {
   make: 'Baker Hughes / Waygate Technologies (formerly GE / Krautkramer)',
   model: 'USM 100',
   category: 'flaw-detector',
-  metaTitle: 'Krautkramer USM 100 Review: Touchscreen Conventional UT',
+  metaTitle: 'Krautkramer USM 100 Review, Specs & Price (UT Flaw Detector)',
   metaDescription:
     'USM 100 review: 7 in touchscreen UT flaw detector, 0.2-26 MHz, IP67, ASME V / AWS D1.1, ~$12k MSRP. Modern UI alternative to EPOCH 650.',
   heroLede:

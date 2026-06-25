@@ -17,7 +17,9 @@ export const metadata: Metadata = {
       title: 'The Ultimate Guide to Ultrasonic Testing (UT) in 2024',
       description: 'Learn everything about ultrasonic testing - from basic principles to advanced techniques like PAUT and TOFD. Complete guide for asset owners and inspectors.',
     },
-    alternates: { canonical: 'https://ndt-connect.com/blog/ultimate-guide-ultrasonic-testing' },
+    // Cannibalization fix: stale (2024) duplicate of the current
+    // /pillars/ultrasonic-testing-complete-guide. Canonicalize to the cornerstone.
+    alternates: { canonical: 'https://ndt-connect.com/pillars/ultrasonic-testing-complete-guide' },
     keywords: ['ultrasonic testing', 'UT inspection', 'PAUT', 'TOFD', 'NDT'],
 };
 

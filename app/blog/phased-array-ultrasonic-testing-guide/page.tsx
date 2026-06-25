@@ -22,7 +22,10 @@ export const metadata: Metadata = {
     title: 'PAUT Complete Guide — How It Works, Cost, vs Conventional UT (2026)',
     description: 'PAUT explained: principles, cost, advantages over conventional UT, code coverage, and how to hire certified inspectors.',
   },
-  alternates: { canonical: 'https://ndt-connect.com/blog/phased-array-ultrasonic-testing-guide' },
+  // Cannibalization fix: this older blog (GSC pos ~45) competes with the deeper
+  // /pillars/phased-array-complete-guide + /methods/phased-array-ut. Canonicalize
+  // to the cornerstone so ranking signal consolidates there.
+  alternates: { canonical: 'https://ndt-connect.com/pillars/phased-array-complete-guide' },
 };
 
 export default function Page() {

@@ -39,8 +39,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const name = canonical?.name ?? legacy!.name;
   const region = canonical?.state ?? legacy!.region;
 
-  const title = `NDT Jobs & Salaries in ${name} (2026) — Level I-III Pay, Open Roles, Local Demand`;
-  const description = `Find NDT jobs in ${name}, ${region}. Level I-III salary ranges, current openings, top employers, and local industry demand. Updated 2026 — apply free.`;
+  const title = `NDT Jobs in ${name}: Salaries & Open Roles (2026)`;
+  const description = `NDT inspector jobs and salaries in ${name}, ${region} — Level I/II/III pay bands, who's hiring, and how to apply free. Updated 2026.`;
 
   return {
     title,
