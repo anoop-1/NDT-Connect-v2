@@ -83,6 +83,16 @@ export default function Page() {
           <p className="mt-3 text-muted-foreground text-sm">MT can only be used on ferromagnetic materials — primarily carbon steel, low alloy steel, and some grades of stainless steel (martensitic and some duplex grades). It cannot be used on austenitic stainless steel, aluminum, copper, titanium, or other non-ferromagnetic materials.</p>
         </details>
 
+      <section>
+          <h2>Sources</h2>
+          <ul>
+              <li><a href="https://www.astm.org/e1444_e1444m-22.html" target="_blank" rel="noopener noreferrer">ASTM E1444 — Standard Practice for Magnetic Particle Testing</a></li>
+              <li><a href="https://www.asme.org/codes-standards/find-codes-standards/bpvc-v-bpvc-section-v-nondestructive-examination" target="_blank" rel="noopener noreferrer">ASME BPVC Section V, Article 7 — Magnetic Particle Examination</a></li>
+              <li><a href="https://www.asnt.org/" target="_blank" rel="noopener noreferrer">ASNT — magnetic particle method resources</a></li>
+          </ul>
+          <p className="text-sm text-muted-foreground">Last reviewed: June 2026.</p>
+      </section>
+
       <CTASection
         title="Need NDT Inspection Services?"
         description="Connect with certified NDT providers worldwide on NDT Connect — the #1 marketplace for non-destructive testing."

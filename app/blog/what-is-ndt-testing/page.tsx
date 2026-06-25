@@ -83,6 +83,16 @@ export default function Page() {
           <p className="mt-3 text-muted-foreground text-sm">NDT inspections are performed by certified technicians who hold qualifications like ASNT Level I/II/III, ISO 9712, PCN, or method-specific certifications. You can find certified NDT inspectors on platforms like NDT Connect.</p>
         </details>
 
+      <section>
+          <h2>Sources</h2>
+          <ul>
+              <li><a href="https://www.asnt.org/what-is-nondestructive-testing" target="_blank" rel="noopener noreferrer">ASNT — What is Nondestructive Testing</a></li>
+              <li><a href="https://www.asme.org/codes-standards/find-codes-standards/bpvc-v-bpvc-section-v-nondestructive-examination" target="_blank" rel="noopener noreferrer">ASME BPVC Section V — Nondestructive Examination</a></li>
+              <li><a href="https://www.iso.org/standard/57037.html" target="_blank" rel="noopener noreferrer">ISO 9712 — NDT personnel qualification</a></li>
+          </ul>
+          <p className="text-sm text-muted-foreground">Last reviewed: June 2026.</p>
+      </section>
+
       <CTASection
         title="Need NDT Inspection Services?"
         description="Connect with certified NDT providers worldwide on NDT Connect — the #1 marketplace for non-destructive testing."

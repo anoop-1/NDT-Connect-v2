@@ -77,6 +77,16 @@ export default function Page() {
           <p className="mt-3 text-muted-foreground text-sm">Most successful candidates study for 3-6 months, dedicating 10-20 hours per week. Taking an API 510 preparatory course (typically 5 days) is highly recommended to supplement self-study.</p>
         </details>
 
+      <section>
+          <h2>Sources</h2>
+          <ul>
+              <li><a href="https://www.api.org/products-and-services/individual-certification-programs/certifications/api510" target="_blank" rel="noopener noreferrer">API 510 — Pressure Vessel Inspector Certification (API ICP)</a></li>
+              <li><a href="https://www.asme.org/codes-standards/find-codes-standards/bpvc-viii-1-bpvc-section-viii-rules-construction-pressure-vessels-division-1" target="_blank" rel="noopener noreferrer">ASME BPVC Section VIII Div. 1</a></li>
+              <li><a href="https://www.api.org/" target="_blank" rel="noopener noreferrer">American Petroleum Institute (API)</a></li>
+          </ul>
+          <p className="text-sm text-muted-foreground">Last reviewed: June 2026.</p>
+      </section>
+
       <CTASection
         title="Need NDT Inspection Services?"
         description="Connect with certified NDT providers worldwide on NDT Connect — the #1 marketplace for non-destructive testing."

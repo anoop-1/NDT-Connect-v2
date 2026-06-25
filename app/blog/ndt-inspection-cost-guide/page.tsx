@@ -78,6 +78,16 @@ export default function Page() {
           <p className="mt-3 text-muted-foreground text-sm">Freelance inspectors may offer lower day rates ($400-$1,200/day) compared to established companies ($800-$3,000/day), but companies often include equipment, insurance, and quality assurance in their pricing. Use NDT Connect to compare quotes from both.</p>
         </details>
 
+      <section>
+          <h2>Sources</h2>
+          <ul>
+              <li><a href="https://ndt-connect.com/learn/ndt-inspection-cost-index" target="_blank" rel="noopener noreferrer">NDT Connect — NDT Inspection Cost Index (methodology + rates)</a></li>
+              <li><a href="https://www.bls.gov/oes/" target="_blank" rel="noopener noreferrer">US BLS — Occupational Employment & Wage Statistics</a></li>
+              <li><a href="https://ndt-connect.com/tools/inspection-cost-estimator" target="_blank" rel="noopener noreferrer">NDT Connect — Inspection Cost Estimator tool</a></li>
+          </ul>
+          <p className="text-sm text-muted-foreground">Last reviewed: June 2026.</p>
+      </section>
+
       <CTASection
         title="Need NDT Inspection Services?"
         description="Connect with certified NDT providers worldwide on NDT Connect — the #1 marketplace for non-destructive testing."

@@ -78,6 +78,16 @@ export default function Page() {
           <p className="mt-3 text-muted-foreground text-sm">No, NDT and destructive testing serve complementary purposes. NDT excels at in-service inspection and defect detection without damage, while destructive testing provides definitive mechanical property data needed for design, qualification, and certification purposes.</p>
         </details>
 
+      <section>
+          <h2>Sources</h2>
+          <ul>
+              <li><a href="https://www.asnt.org/what-is-nondestructive-testing" target="_blank" rel="noopener noreferrer">ASNT — What is Nondestructive Testing</a></li>
+              <li><a href="https://www.astm.org/" target="_blank" rel="noopener noreferrer">ASTM International — testing standards</a></li>
+              <li><a href="https://www.iso.org/standard/57037.html" target="_blank" rel="noopener noreferrer">ISO 9712 — NDT personnel qualification</a></li>
+          </ul>
+          <p className="text-sm text-muted-foreground">Last reviewed: June 2026.</p>
+      </section>
+
       <CTASection
         title="Need NDT Inspection Services?"
         description="Connect with certified NDT providers worldwide on NDT Connect — the #1 marketplace for non-destructive testing."

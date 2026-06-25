@@ -1,6 +1,14 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema , ArticleSchema, BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema , ArticleSchema, BreadcrumbListSchema, FAQSchema } from '@/components/seo/SchemaMarkup';
+
+const FAQS = [
+  { question: 'What is ASNT certification?', answer: 'ASNT (American Society for Nondestructive Testing) publishes SNT-TC-1A, the recommended practice under which most US employers certify NDT personnel as Level I, II or III in each method. ASNT also runs the central ACCP and the ASNT NDT Level III certification examinations.' },
+  { question: 'What is the difference between SNT-TC-1A and ISO 9712?', answer: 'SNT-TC-1A is an employer-based recommended practice: the employer certifies personnel against a written practice. ISO 9712 is a third-party (central) certification scheme where an accredited body certifies the individual, so the certification is portable between employers. PCN (UK) and many European schemes follow the ISO 9712 model.' },
+  { question: 'What is PCN certification?', answer: 'PCN (Personnel Certification in Non-Destructive Testing), administered by BINDT in the UK, is a third-party certification scheme compliant with ISO 9712. It is widely recognised internationally, especially in oil and gas.' },
+  { question: 'How long does it take to become a Level II inspector?', answer: 'It depends on method and prior education, but SNT-TC-1A and ISO 9712 set minimum classroom training hours plus documented on-the-job experience for each method (for example, Level II UT commonly requires substantial training hours plus several months of experience). The employer or certification body verifies the hours and a passing exam.' },
+  { question: 'Which NDT certification is best?', answer: 'There is no single best — it depends on where and for whom you work. ASNT SNT-TC-1A dominates the US; ISO 9712 / PCN are preferred internationally and for portability; NAS 410 governs aerospace. Many inspectors hold more than one to maximise marketability.' },
+];
 
 export const metadata: Metadata = {
     title: 'NDT Certifications Explained: ASNT, ISO 9712, and More',
@@ -31,6 +39,7 @@ export default function NDTCertificationsArticle() {
                 { name: 'NDT Certifications Explained: ASNT, ISO 9712, and More', url: 'https://ndt-connect.com/blog/ndt-certifications-explained' },
             ]} />
             <NDTConnectOrganizationSchema />
+            <FAQSchema questions={FAQS} />
             <BlogLayout
                 title="NDT Certifications Explained: ASNT, ISO 9712, and More"
                 category="Careers"
@@ -116,6 +125,27 @@ export default function NDTCertificationsArticle() {
                         <li><strong>Pass examinations:</strong> General, specific, and practical exams</li>
                         <li><strong>Maintain certification:</strong> Continue working, recertify on schedule</li>
                     </ol>
+                </section>
+
+                <section>
+                    <h2>Frequently Asked Questions</h2>
+                    {FAQS.map((f) => (
+                        <div key={f.question} className="mb-4">
+                            <h3 className="font-semibold text-foreground">{f.question}</h3>
+                            <p className="text-muted-foreground">{f.answer}</p>
+                        </div>
+                    ))}
+                </section>
+
+                <section>
+                    <h2>Sources</h2>
+                    <ul>
+                        <li><a href="https://www.asnt.org/certification" target="_blank" rel="noopener noreferrer">ASNT — Certification (SNT-TC-1A, ACCP, NDT Level III)</a></li>
+                        <li><a href="https://www.iso.org/standard/57037.html" target="_blank" rel="noopener noreferrer">ISO 9712 — Qualification and certification of NDT personnel</a></li>
+                        <li><a href="https://www.bindt.org/Certification/pcn-certification/" target="_blank" rel="noopener noreferrer">BINDT — PCN certification</a></li>
+                        <li><a href="https://www.nadcap.eu/" target="_blank" rel="noopener noreferrer">NAS 410 / Nadcap — aerospace NDT qualification</a></li>
+                    </ul>
+                    <p className="text-sm text-muted-foreground">Last reviewed: June 2026.</p>
                 </section>
 
                 <CTASection

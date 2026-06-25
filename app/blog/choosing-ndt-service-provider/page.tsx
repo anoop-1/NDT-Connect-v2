@@ -1,6 +1,14 @@
 import { Metadata } from 'next';
 import { BlogLayout, InfoBox, CTASection } from '@/components/blog';
-import { NDTConnectOrganizationSchema , ArticleSchema, BreadcrumbListSchema } from '@/components/seo/SchemaMarkup';
+import { NDTConnectOrganizationSchema , ArticleSchema, BreadcrumbListSchema, FAQSchema } from '@/components/seo/SchemaMarkup';
+
+const FAQS = [
+  { question: 'How do I choose the right NDT service provider?', answer: 'Verify the company holds the relevant accreditations (ISO/IEC 17020 inspection-body, API Q1 where applicable), that personnel are certified to ASNT SNT-TC-1A or ISO 9712 in the methods you need, that equipment is calibrated with traceable records, and that they carry adequate insurance. Compare quotes on the same defined scope and ask for references in your industry.' },
+  { question: 'What certifications should an NDT company have?', answer: 'At the company level, ISO/IEC 17020 (inspection bodies) and ISO 9001 are common; API Q1 for oil-and-gas work; ISO/IEC 17025 if they run a calibration/testing lab. At the personnel level, inspectors should hold ASNT Level II/III (SNT-TC-1A) or ISO 9712 / PCN certification in each method.' },
+  { question: 'What insurance should an NDT provider carry?', answer: 'Expect general liability (commonly USD 1–2M), professional indemnity/errors-and-omissions, and workers compensation. For radiography, confirm a radioactive-materials licence and radiation-liability coverage. Always request current certificates of insurance before mobilisation.' },
+  { question: 'How quickly should an NDT provider quote a job?', answer: 'For a clearly defined scope, a competent provider typically returns a quote within 24–48 hours. Quote the same scope to two or three vetted providers so you can compare on price basis (hourly vs day vs per-weld), certification level and availability.' },
+  { question: 'What are red flags when hiring an NDT company?', answer: 'Inability to produce certification or calibration documentation, pricing far below all competitors, no written procedures or quality system, reluctance to provide references, and uncalibrated or undocumented equipment are all warning signs.' },
+];
 
 export const metadata: Metadata = {
     title: 'How to Choose the Right NDT Service Provider',
@@ -31,6 +39,7 @@ export default function ChoosingNDTProviderArticle() {
                 { name: 'How to Choose the Right NDT Service Provider', url: 'https://ndt-connect.com/blog/choosing-ndt-service-provider' },
             ]} />
             <NDTConnectOrganizationSchema />
+            <FAQSchema questions={FAQS} />
             <BlogLayout
                 title="How to Choose the Right NDT Service Provider"
                 category="Guides"
@@ -97,6 +106,27 @@ export default function ChoosingNDTProviderArticle() {
                             <li>⚠️ Cannot demonstrate calibrated equipment</li>
                         </ul>
                     </InfoBox>
+                </section>
+
+                <section>
+                    <h2>Frequently Asked Questions</h2>
+                    {FAQS.map((f) => (
+                        <div key={f.question} className="mb-4">
+                            <h3 className="font-semibold text-foreground">{f.question}</h3>
+                            <p className="text-muted-foreground">{f.answer}</p>
+                        </div>
+                    ))}
+                </section>
+
+                <section>
+                    <h2>Sources</h2>
+                    <ul>
+                        <li><a href="https://www.asnt.org/certification/SNT-TC-1A-Certification" target="_blank" rel="noopener noreferrer">ASNT — SNT-TC-1A personnel certification</a></li>
+                        <li><a href="https://www.iso.org/standard/52994.html" target="_blank" rel="noopener noreferrer">ISO/IEC 17020 — Requirements for inspection bodies</a></li>
+                        <li><a href="https://www.api.org/products-and-services/api-q1" target="_blank" rel="noopener noreferrer">API Q1 — Quality management for the petroleum industry</a></li>
+                        <li><a href="https://www.osha.gov/" target="_blank" rel="noopener noreferrer">OSHA — workplace safety requirements</a></li>
+                    </ul>
+                    <p className="text-sm text-muted-foreground">Last reviewed: June 2026.</p>
                 </section>
 
                 <CTASection
