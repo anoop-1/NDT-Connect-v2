@@ -139,6 +139,10 @@ export function Footer() {
               <li><Link href="/learn" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Learn / How-To</Link></li>
               <li><Link href="/compare" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Compare Methods</Link></li>
               <li><Link href="/equipment" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Equipment Reviews</Link></li>
+              <li><Link href="/topics" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">NDT Topics</Link></li>
+              <li><Link href="/cost-guide" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Cost Guide</Link></li>
+              <li><Link href="/training" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Training Courses</Link></li>
+              <li><Link href="/pricing" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Pricing</Link></li>
               <li><Link href="/standards" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Standards Reference</Link></li>
               <li><Link href="/glossary" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">NDT Glossary</Link></li>
               <li><Link href="/certifications" className="text-slate-300 hover:text-blue-300 transition-all duration-200 hover:translate-x-1 inline-block">Certifications</Link></li>

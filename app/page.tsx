@@ -770,6 +770,39 @@ export default function HomePage() {
         </section>
 
         {/* ============================================
+            EXPLORE — internal-link hub row (passes homepage authority to hubs)
+            ============================================ */}
+        <section className="py-16 bg-slate-50/80 border-t border-slate-100">
+          <div className="layout-wrapper">
+            <div className="text-center mb-10">
+              <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-2">Explore</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">Everything NDT, in one place</h2>
+              <p className="text-slate-600 max-w-2xl mx-auto">Free calculators, method guides, comparisons, equipment reviews, cost and salary data, and certification resources.</p>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 text-sm">
+              {[
+                ['/tools', 'Free NDT calculators'],
+                ['/methods', 'NDT methods explained'],
+                ['/compare', 'Compare methods (UT vs RT…)'],
+                ['/pillars', 'In-depth guides'],
+                ['/learn', 'How-to procedures'],
+                ['/topics', 'Decision guides'],
+                ['/equipment', 'Equipment reviews'],
+                ['/cost-guide', 'Inspection cost guide'],
+                ['/reports', 'NDT data reports'],
+                ['/certifications', 'Certifications'],
+                ['/training', 'Training & courses'],
+                ['/find-providers', 'Find providers'],
+              ].map(([href, label]) => (
+                <Link key={href} href={href} className="flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-3 text-slate-700 hover:border-primary hover:text-primary transition-colors">
+                  <span className="font-medium">{label}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================
             FINAL CTA - Full-width gradient with glow
             ============================================ */}
         <section className="relative overflow-hidden py-16">

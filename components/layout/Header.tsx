@@ -26,6 +26,7 @@ const navLinks = [
   { label: 'Find Providers', href: '/find-providers' },
   { label: 'Services', href: '/services' },
   { label: 'Methods', href: '/methods' },
+  { label: 'Guides', href: '/pillars' },
   { label: 'Industries', href: '/industries' },
   { label: 'About', href: '/about' },
   { label: 'Blog', href: '/blog' },

@@ -68,20 +68,14 @@ export const metadata: Metadata = {
     siteName: 'NDT Connect',
     title: 'NDT Connect - Real-Time NDT Inspection Services Platform',
     description: 'Book NDT inspection online. Connect with certified NDT service providers and freelance inspectors. Real-time tracking and instant quotes.',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'NDT Connect - Industrial Inspection Platform',
-      },
-    ],
+    // og:image is supplied site-wide by the dynamic generator app/opengraph-image.tsx
+    // (inherited by all routes). Do NOT reference a static /og-image.jpg — it does not exist.
   },
   twitter: {
     card: 'summary_large_image',
     title: 'NDT Connect - Real-Time NDT Inspection Services',
     description: 'Book NDT inspection online. Connect with certified inspectors for UT, RT, PT, MT testing.',
-    images: ['/twitter-image.jpg'],
+    // twitter:image also falls back to app/opengraph-image.tsx (no static file).
   },
   icons: {
     icon: '/favicon.png',
