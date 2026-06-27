@@ -36,8 +36,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const name = canonical?.name ?? legacy!.name;
   const region = canonical?.state ?? legacy!.region;
 
-  const title = `NDT Training & Certification Courses in ${name} — ASNT Level I, II, III (2026 Schedule)`;
-  const description = `Enroll in NDT certification courses in ${name}, ${region}: UT, RT, MT, PT, PAUT — ASNT Level I, II & III. Schedules, fees, and certified instructors. Free training cost guide.`;
+  const title = `NDT Training Courses in ${name}: ASNT Level I–III, $900–$5,500 [2026]`;
+  const description = `NDT certification courses in ${name}, ${region} — UT, RT, MT, PT, PAUT, ASNT Level I/II/III. Fees ~$900–$5,500, schedules and certified instructors. Free cost guide.`;
 
   return {
     title,
@@ -109,9 +109,33 @@ export default async function TrainingPage({ params }: PageProps) {
     provider: { '@type': 'Organization', name: 'NDT Connect', url: 'https://ndt-connect.com' },
   };
 
+  // Course schema with a real fee band so Google can surface "From $900" — no
+  // fabricated review ratings (those would violate structured-data policy).
+  const courseSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Course',
+    name: `NDT (ASNT Level I–III) Certification Training in ${view.name}`,
+    description: `UT, RT, MT, PT and PAUT training and ASNT Level I/II/III certification preparation in ${view.name}, ${view.state}.`,
+    provider: { '@type': 'Organization', name: 'NDT Connect', url: 'https://ndt-connect.com' },
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'USD',
+      lowPrice: '900',
+      highPrice: '5500',
+      offerCount: '5',
+      category: 'Professional certification training',
+    },
+    hasCourseInstance: {
+      '@type': 'CourseInstance',
+      courseMode: ['onsite', 'blended'],
+      location: { '@type': 'Place', name: view.name, address: { '@type': 'PostalAddress', addressLocality: view.name, addressRegion: view.state, addressCountry: view.country || 'US' } },
+    },
+  };
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(eduSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(courseSchema) }} />
       <FAQSchema questions={faqs.map(f => ({ question: f.q, answer: f.a }))} />
 
       <div className="space-y-12 max-w-6xl mx-auto py-8">

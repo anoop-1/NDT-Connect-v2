@@ -106,7 +106,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // hook + 24h response window that converts at higher CTRs in our 90d GSC.
   // Title rewrite (2026-05-29): year bracket; method list signals breadth
   // instead of generic 'Free Quotes in 24h' (CTR dropped after May-15 rewrite).
-  const title = `NDT Inspection ${city.name}, ${stateLabel} [${new Date().getFullYear()}] — UT, RT, MT Providers`;
+  // Vary the visible method list by the city's dominant industry so the hub +
+  // its method pages don't read as near-duplicate titles (avoids SERP
+  // duplicate-title clustering) and matches the searcher's industry context.
+  const indStr = (city.industries || []).join(' ').toLowerCase();
+  const methodSignal =
+    /aerospace|aviation/.test(indStr) ? 'PAUT, PT, ET' :
+    /nuclear|power/.test(indStr) ? 'UT, ECT, PAUT' :
+    /steel|manufactur|automotive|tubular|octg/.test(indStr) ? 'MT, UT, RT' :
+    /marine|offshore|ship|naval/.test(indStr) ? 'UT, MT, PAUT' :
+    /pipeline|midstream|gathering/.test(indStr) ? 'RT, PAUT, UT' :
+    /construct/.test(indStr) ? 'MT, PT, UT' :
+    /refin|petrochem|oil|gas|lng|chemical/.test(indStr) ? 'UT, PAUT, RT' :
+    'UT, RT, MT';
+  const title = `NDT Inspection ${city.name}, ${stateLabel} [${new Date().getFullYear()}] — ${methodSignal} Providers`;
   const description =
     `${city.name}, ${stateLabel} NDT inspection — UT, RT, MT, PT, VT, PAUT certified providers. ` +
     `${city.codeAuthorities.slice(0, 2).join(' / ')} compliant, serving ${city.industries.slice(0, 2).join(' & ').toLowerCase()} operators. Free quotes, no signup.`;

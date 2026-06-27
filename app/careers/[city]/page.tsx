@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { cities, getCityBySlug } from '@/lib/seo-data';
 import { PUBLISHABLE_CITIES, findPublishableCity } from '@/data/cities';
 import { buildAlternates } from '@/lib/seo-helpers';
+import { findRichCity } from '@/lib/seo/cities-rich';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -39,8 +40,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const name = canonical?.name ?? legacy!.name;
   const region = canonical?.state ?? legacy!.region;
 
-  const title = `NDT Jobs in ${name}: Salaries & Open Roles (2026)`;
-  const description = `NDT inspector jobs and salaries in ${name}, ${region} — Level I/II/III pay bands, who's hiring, and how to apply free. Updated 2026.`;
+  // Salary range in the title is the single biggest careers-CTR lever (GSC: the
+  // careers family ranks pos ~8 but gets ~1% CTR with no $ in the snippet).
+  // Prefer real city wage bands; fall back to a national band when no rich row.
+  const wage = findRichCity(params.city)?.avgInspectorWageUSD;
+  const lowK = Math.round((wage?.level1 ?? 45000) / 1000);
+  const highK = Math.round((wage?.level3 ?? 110000) / 1000);
+  const title = `NDT Inspector Jobs in ${name}: $${lowK}K–$${highK}K Salaries [2026]`;
+  const description = `NDT inspector jobs in ${name}, ${region} — pay $${lowK}K–$${highK}K across Level I/II/III, who's hiring, and how to apply free. Updated 2026.`;
 
   return {
     title,

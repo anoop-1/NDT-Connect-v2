@@ -257,7 +257,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   // 0% CTR — title was descriptive but had no action verb to click on.
   // Title rewrite (2026-05-29): drop 'Free Quotes in 24h' (May-15 added it,
   // CTR fell); year bracket + 'Local' to match geo-intent queries.
-  const title = `${method.abbreviation} Inspection ${city.name} [${new Date().getFullYear()}] — Local Certified Providers`;
+  // Keep the primary keyword "[ABBR] Inspection [city]" but vary the tail by
+  // method so the 6 per-city method titles aren't near-duplicates (de-dup).
+  const methodTail: Record<string, string> = {
+    'UT': 'Wall Thickness & Welds', 'PAUT': 'Encoded Weld Imaging', 'RT': 'Weld Radiography',
+    'MT': 'Surface & Weld Cracks', 'PT': 'Surface Flaw Detection', 'VT': 'Visual & CWI',
+    'TOFD': 'Through-Wall Sizing', 'ET': 'Eddy Current Surface', 'ECT': 'Tube Inspection',
+  };
+  const tail = methodTail[method.abbreviation] || 'Local Certified Providers';
+  const title = `${method.abbreviation} Inspection ${city.name} [${new Date().getFullYear()}] — ${tail}`;
   const description =
     `${city.name}, ${stateLabel} certified ${method.name} (${method.abbreviation}) inspectors: ${method.standards.slice(0, 2).join(' / ')} compliant, ` +
     `mobilisation 24–72 h, ${city.industries.slice(0, 2).join(' & ')} sites covered. Get quotes from local providers.`;
