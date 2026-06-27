@@ -13,6 +13,8 @@ import {
   methodsForIndustries,
 } from '@/lib/content/city-content';
 import { FAQSchema } from '@/components/seo/SchemaMarkup';
+import { CityDataAnchors } from '@/components/seo/CityDataAnchors';
+import { CornerstoneLinks } from '@/components/seo/CornerstoneLinks';
 import { ChevronRight, MapPin, Award, Users, BookOpen, Briefcase, HelpCircle } from 'lucide-react';
 
 interface PageProps {
@@ -254,6 +256,13 @@ export default async function TrainingPage({ params }: PageProps) {
             <p className="text-sm text-muted-foreground">The companies that may sponsor your training and pay your wages.</p>
           </Link>
         </section>
+
+        {/* Local data + cornerstone links (internal-link density — training pages
+            previously had only 2 internal links). */}
+        <div className="px-6 mt-8 space-y-8">
+          <CityDataAnchors citySlug={citySlug} />
+          <CornerstoneLinks topicHints={['training', (view.industries?.[0] || '').toLowerCase()]} />
+        </div>
       </div>
     </>
   );

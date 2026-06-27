@@ -5,6 +5,8 @@ import { cities, getCityBySlug } from '@/lib/seo-data';
 import { PUBLISHABLE_CITIES, findPublishableCity } from '@/data/cities';
 import { buildAlternates } from '@/lib/seo-helpers';
 import { findRichCity } from '@/lib/seo/cities-rich';
+import { CityDataAnchors } from '@/components/seo/CityDataAnchors';
+import { CornerstoneLinks } from '@/components/seo/CornerstoneLinks';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -317,6 +319,12 @@ export default function CityCareerPage({ params }: Props) {
             ))}
           </div>
         </section>
+
+        {/* Local data + cornerstone links (internal-link density on careers) */}
+        <div className="space-y-8 mb-12">
+          <CityDataAnchors citySlug={view.slug} />
+          <CornerstoneLinks topicHints={['careers', (view.industries?.[0] || '').toString().toLowerCase()]} />
+        </div>
 
         {/* CTA */}
         <section className="bg-primary rounded-2xl p-10 text-primary-foreground text-center">
