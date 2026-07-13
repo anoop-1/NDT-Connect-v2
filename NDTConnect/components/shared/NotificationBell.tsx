@@ -43,7 +43,9 @@ export function NotificationBell() {
 
   useEffect(() => {
     fetchNotifications();
-    const interval = setInterval(fetchNotifications, 60000); // Poll every minute
+    // Poll every 5 min as a fallback (Pusher delivers realtime); 60s polling was a
+    // major Vercel Edge-Request + Fluid-CPU driver per open tab (reduced 2026-07-13).
+    const interval = setInterval(fetchNotifications, 300000);
     return () => clearInterval(interval);
   }, [user?.id]);
 
