@@ -21,37 +21,26 @@ node_modules/
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
-
 # Testing
 /coverage
-
 # Next.js
 .next/
 out/
-
 # Build
 build/
 dist/
-
 # Environment
-.env
-.env.local
-.env.*.local
 workspace/.env
 workspace/.env.*
-
 # Debug logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
-
 # OS
 .DS_Store
 Thumbs.db
-
 # Misc
-*.pem
 .vercel
 *.tsbuildinfo
 next-env.d.ts
@@ -59,14 +48,11 @@ next-env.d.ts
 firebase-debug.log
 firestore-debug.log
 package-lock.json
-
 .claude/
-
 # Audit output files (binary docs, not source)
 /NDT-Connect-Audit-Report.docx
 /NDT_Connect_Comprehensive_Audit_Report.docx
 /NDT_Connect_OnPage_SEO_Action_Plan.html
-
 # Flutter build outputs + secrets
 mobile/build/
 mobile/.dart_tool/
@@ -83,14 +69,14 @@ mobile/ios/Flutter/Flutter.framework
 mobile/ios/Flutter/Flutter.podspec
 mobile/ios/Runner.xcworkspace/xcuserdata/
 mobile/ios/Runner.xcodeproj/project.xcworkspace/xcuserdata/
-
 # Keystore + signing secrets (any location)
 **/key.properties
 **/*.jks
 **/*.keystore
-
 # Mobile build artifacts
 *.aab
 *.apk
 *.ipa
 flutter-init.log
+.env.production.local
+.env.production.vps

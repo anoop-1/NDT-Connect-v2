@@ -4,6 +4,8 @@
 
 const nextConfig = {
   /* config options here */
+  // Self-host (VPS): emit a minimal standalone server bundle. Harmless on Vercel.
+  output: 'standalone',
   typescript: {
     // Test files have pre-existing issues; app code is clean
     ignoreBuildErrors: true,
@@ -67,6 +69,12 @@ const nextConfig = {
         pathname: '/**',
       },
     ],
+  },
+  // Realtime path rewrite — previously in vercel.json (self-host ignores that).
+  async rewrites() {
+    return [
+      { source: '/ws/:path*', destination: '/api/realtime/:path*' },
+    ];
   },
   // Externalize server-only packages
   experimental: {
