@@ -325,7 +325,8 @@ const InspectorFields = ({ form }: { form: UseFormReturn<any> }) => {
 };
 
 // --- MAIN FORM COMPONENT ---
-export function RegisterForm({ initialRole = 'client' }: { initialRole?: 'client' | 'provider' | 'inspector' }) {
+export function RegisterForm({ initialRole = 'client', redirect }: { initialRole?: 'client' | 'provider' | 'inspector'; redirect?: string }) {
+  const safeRedirect = redirect && redirect.startsWith('/') && !redirect.startsWith('//') ? redirect : '';
   const { register } = useAuth();
   const router = useRouter();
   const { toast } = useToast();
@@ -406,7 +407,7 @@ export function RegisterForm({ initialRole = 'client' }: { initialRole?: 'client
             (window as any).gtag('event', 'sign_up', { method: values.role });
           }
           toast({ title: "Registration Successful!", description: `Please 'verify' your email on the login page for ${values.email}.`, duration: 7000 });
-          router.push(`/login?status=verification_pending&email=${encodeURIComponent(values.email)}`);
+          router.push(`/login?status=verification_pending&email=${encodeURIComponent(values.email)}${safeRedirect ? `&redirect=${encodeURIComponent(safeRedirect)}` : ''}`);
       } else {
           toast({ title: "Registration Failed", description: "An account with this email may already exist.", variant: "destructive" });
       }

@@ -56,6 +56,7 @@
     "next": "14.2.30",
     "node-fetch": "^2.7.0",
     "nodemailer": "^7.0.3",
+    "pizzip": "^3.3.0",
     "pusher": "^5.2.0",
     "pusher-js": "^8.4.0",
     "react": "18.3.1",
@@ -83,4 +84,4 @@
     "tsx": "^4.21.0",
     "typescript": "5"
   }
-}
+}

@@ -90,6 +90,17 @@ export default function ProviderDashboardPage() {
         </CardContent>
       </Card>
 
+      <Card className="border-primary/40 bg-gradient-to-r from-primary/10 to-transparent">
+        <CardContent className="flex flex-col items-start justify-between gap-4 p-6 md:flex-row md:items-center">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-wider text-primary">New · Free for members</p>
+            <p className="text-xl font-bold">NDT ERP — quotes, jobs, reports & invoices on your own letterhead</p>
+            <p className="text-sm text-muted-foreground">Clients, quotations, jobs, timesheets, inspection reports, invoices, purchase orders, expenses, equipment issuance and maintenance.</p>
+          </div>
+          <Button asChild size="lg"><Link href="/erp">Open NDT ERP</Link></Button>
+        </CardContent>
+      </Card>
+
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         <DashboardActionCard
           title="Service Requests"

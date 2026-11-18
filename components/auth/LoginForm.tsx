@@ -49,7 +49,10 @@ export function LoginForm() {
       const user = await loginWithEmail(values.email, values.password);
       if (user) {
         toast({ title: "Login Successful", description: `Welcome back, ${user.name || user.email}!` });
-        if (user.role === 'admin') {
+        const next = typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('redirect') : null;
+        if (next && next.startsWith('/') && !next.startsWith('//') && !next.startsWith('/login')) {
+          router.push(next);
+        } else if (user.role === 'admin') {
           router.push("/admin/dashboard");
         } else if (user.role === 'provider') {
           router.push("/provider-dashboard");

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { CheckCircle, Globe, ShieldCheck, Zap } from "lucide-react";
 import Image from "next/image";
 
-export default function RegisterPage({ searchParams }: { searchParams: { role?: string } }) {
+export default function RegisterPage({ searchParams }: { searchParams: { role?: string; redirect?: string } }) {
   const r = searchParams?.role;
   const initialRole = r === 'provider' || r === 'inspector' || r === 'client' ? r : 'client';
   return (
@@ -52,7 +52,7 @@ export default function RegisterPage({ searchParams }: { searchParams: { role?: 
               <CardDescription>Join NDT Connect to find or offer NDT services.</CardDescription>
             </CardHeader>
             <CardContent>
-              <RegisterForm initialRole={initialRole} />
+              <RegisterForm initialRole={initialRole} redirect={searchParams?.redirect} />
               <p className="mt-6 text-center text-sm text-muted-foreground">
                 Already have an account?{" "}
                 <Button variant="link" asChild className="p-0">

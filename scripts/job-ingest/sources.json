@@ -1,0 +1,30 @@
+{
+  "_doc": "Per-source crawl config. list_urls = job index pages; link_pattern = regex matching job-detail URLs on those pages; next_pattern = regex for pagination links (optional). selectors are optional CSS overrides; without them the generic extractor (h1/og:title + page text) is used. Run `python3 jobbot.py probe <source>` first and tune link_pattern from the saved fixtures.",
+  "ndt_org": {
+    "enabled": true,
+    "base": "https://www.ndt.org",
+    "list_urls": ["https://www.ndt.org/jobs.asp"],
+    "link_pattern": "(?i)job[^\"']*(id|\\?|/\\d+)",
+    "next_pattern": "(?i)(page=\\d+|next)",
+    "max_pages": 30,
+    "selectors": {"title": "", "company": "", "location": "", "body": ""}
+  },
+  "ndt_net": {
+    "enabled": true,
+    "base": "https://www.ndt.net",
+    "list_urls": ["https://www.ndt.net/jobs/"],
+    "link_pattern": "(?i)/jobs?/[^\"'#?]+",
+    "next_pattern": "(?i)(page=\\d+|next)",
+    "max_pages": 30,
+    "selectors": {"title": "", "company": "", "location": "", "body": ""}
+  },
+  "onestopndt": {
+    "enabled": false,
+    "base": "https://www.onestopndt.com",
+    "list_urls": ["https://www.onestopndt.com/ndt-jobs"],
+    "link_pattern": "(?i)/ndt-jobs/[^\"'#?]+",
+    "next_pattern": "",
+    "max_pages": 30,
+    "selectors": {"title": "", "company": "", "location": "", "body": ""}
+  }
+}
