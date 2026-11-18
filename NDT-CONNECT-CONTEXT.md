@@ -71,6 +71,21 @@ Match the existing authored content: **1,500+ words, real citations [1][2], phys
 
 - [x] **Outreach via Odoo CRM (LIVE 2026-11-18, nothing sending yet)** — VPS Odoo (`odoo18_app`, DB `atlantis`, addons `/opt/odoo18-docker/addons`, repo `anoop-1/odoo18-atlantis`) module `atlantis_ai_marketing` 19.0.1.2.0: cron every 15 min, **max 3/run, 15 s gap, 40/day across ALL sequences** (Hostinger VPS limit = 5 emails/min, shared IP with Atlantis mail) — tune via System Parameters `atlantis_marketing.daily_cap|per_run|gap_seconds`; skips `mail.blacklist`; footer with company postal address + one-click unsubscribe (`https://portal.atlantisndt.com/atlantis/unsubscribe/<id>/<hmac>`, adds to blacklist) + List-Unsubscribe headers. Sequences id 6 (Sellers → /free-erp) and id 7 (Buyers → /request-service), 3 steps each (day 0/4/10 and 0/5/12), From `NDT-Connect <sales@ndt-connect.com>` (only ndt-connect.com SMTP login Odoo has), Reply-To info@ndt-connect.com, UTM-tagged links. **0 enrolled — enrol only after user approves copy + first lead batch.** ndt-connect.com mail auth verified: SPF, DKIM (selector `dkim`), DMARC quarantine, PTR mail.atlantisndt.com. DB backup before change: `/root/backups/atlantis-db-202611180410.dump`.
 
+- [ ] **NDT Buyer's Guide program (LIVE 2026-11-18, side-car route `/buyers-guide`)** — region × industry, buyer-perspective method-selection guides. Content model `lib/content/buyers-guide/types.ts`; register each new file in `lib/content/buyers-guide/index.ts`; pages + `/buyers-guide/sitemap.xml` (submitted to GSC) auto-update. Bar: ≥2,000 rendered article words, every regulatory/technical claim cited [n] to a retrievable source (regulator/standards body preferred), no invented prices/stats, city links only to `/ndt-services/<city>` pages that return 200, check overlap with live sitemap first. Deploy via `scripts/deploy-erp-sidecar.sh` (side-car keeps erp|free-erp|buyers-guide), then Indexing API + IndexNow.
+  - [x] Gulf Coast refineries & petrochemical (Houston, Beaumont, Port Arthur, Corpus Christi, Baton Rouge, Lake Charles) — 2,765 words
+  - [x] Permian Basin & midstream pipelines (Midland, Odessa, OKC, Tulsa) — 2,240 words
+  - [x] Aerospace — Seattle, Everett, Wichita — 2,190 words
+  - [ ] LNG export terminals & cryogenic welds (Sabine Pass / Cameron / Corpus Christi / Freeport)
+  - [ ] California refineries under Cal/OSHA PSM (Los Angeles, Bay Area, Bakersfield)
+  - [ ] Power generation — boilers, HRSGs & flow-accelerated corrosion (Southeast & Midwest utilities)
+  - [ ] Bridges & highway steel — AWS D1.5 / DOT fabrication and in-service (Pennsylvania, New York, Ohio)
+  - [ ] Shipbuilding & naval repair (Hampton Roads/Norfolk, Pascagoula, Gulf Coast yards)
+  - [ ] Structural steel for data centers & commercial construction — AWS D1.1 UT (Dallas, Phoenix, Northern Virginia)
+  - [ ] Great Lakes refining & steel (Chicago/Whiting, Toledo, Detroit)
+  - [ ] Wind energy — towers, flanges and blades (Texas, Iowa, Oklahoma)
+  - [ ] Chemical plants — Gulf Coast & Kanawha/Ohio Valley stress-corrosion & HIC
+  - [ ] Bakken & Rockies midstream (Williston, Denver)
+
 ## 9b. SIX-MONTH ROLLING OPTIMIZATION ROADMAP (set 2026-06-24)
 > Assumption-driven (GSC lags 2-4 wk). Re-baseline monthly with `pull-gsc.py` and re-order. Theme: **finish on-page to the finest, then authority.** On-page is now ~90% done; the position ceiling on head terms is OFF-PAGE.
 - **Month 1 (Jul 2026) — settle + measure the expansion.** Watch indexation of the +48 cities & the new hubs (/equipment, /topics, case-studies). Confirm rich results (FAQ/ItemList) register. Resubmit any "discovered-not-indexed". Refresh `DEMAND_CITIES` from new GSC. KPI: new-city indexed ratio >50%, total clicks ↑.
@@ -137,3 +152,4 @@ The mounted FS corrupts the git index during large multi-file `git add` (bad sig
 - **2026-11-18 (cont.)** — Home tagline applied (`1492351`): H1 'The free operating system for NDT' + 'Test smarter. Hire faster. Run free.', ERP tile/CTA. Pushed branch `feature/free-erp` to GitHub. Deploy HALTED: live release source not in git (see §2 blocker).
 - **2026-11-18 (cont.)** — Odoo outreach made Hostinger-safe + compliant and 2 NDT-Connect sequences created (0 enrolled); pushed odoo18-atlantis `0a65ec1`,`b75aeea` (that push also published 21 older local commits on its main).
 - **2026-11-18 (cont.)** — Deployed ERP side-car live (v1.1) at ndt-connect.com/erp + /free-erp via nginx path routing; main release untouched; added `scripts/deploy-erp-sidecar.sh`. Signed-in smoke test still to be done by user (agent could not create test sessions).
+- **2026-11-18 (cont.)** — Launched NDT Buyer's Guide on ndt-connect.com via side-car (`/buyers-guide` hub + 3 cited 2,000+ word regional guides + sitemap); nginx route added; GSC sitemap submitted; 5 URLs to Indexing API + IndexNow. Topic queue added above.

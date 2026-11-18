@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Build + deploy the NDT ERP side-car to the VPS WITHOUT touching the main ndt-connect release.
 # The side-car is a trimmed Next.js build containing only /erp, /api/erp and /free-erp,
-# served on :3002 (ndt-erp.service). nginx routes ONLY those paths (+ /erp-assets) to it;
+# served on :3002 (ndt-erp.service). nginx routes ONLY those paths (+ /buyers-guide, /erp-assets) to it;
 # every other URL stays on the main app (:3001). Same domain => same login cookie.
 #
 # Usage:  VPS_KEY=~/path/to/key ./scripts/deploy-erp-sidecar.sh          (run from repo root)
@@ -14,7 +14,7 @@ git archive HEAD | tar -x -C "$B"
 cp package-lock.json "$B/" 2>/dev/null || true
 cd "$B"
 rm -rf mobile satellites NDTConnect seo-analysis GROWTH-PLAN-* store-listing __tests__ docs scripts src/app src/pages src/middleware.ts middleware.ts
-( cd app && for x in *; do case "$x" in layout.tsx|globals.css|favicon.ico|not-found.tsx|erp|free-erp|api) ;; *) rm -rf "$x";; esac; done
+( cd app && for x in *; do case "$x" in layout.tsx|globals.css|favicon.ico|not-found.tsx|erp|free-erp|buyers-guide|api) ;; *) rm -rf "$x";; esac; done
   cd api && for x in *; do [ "$x" = erp ] || rm -rf "$x"; done )
 # assets under /erp-assets so they never collide with the main app's /_next
 sed -i.bak "s#  output: 'standalone',#  output: 'standalone',\n  assetPrefix: '/erp-assets',#" next.config.js
