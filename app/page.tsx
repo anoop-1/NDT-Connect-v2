@@ -139,20 +139,24 @@ export default function HomePage() {
               <div className="animate-fade-in-up mb-8">
                 <Badge className="px-5 py-2 text-sm font-medium bg-brand text-white rounded-full border border-brand shadow-lg shadow-brand/20">
                   <Activity className="h-3.5 w-3.5 mr-2 text-white" />
-                  Trusted by professionals in 75+ cities worldwide
+                  Trusted by NDT professionals in 220+ cities worldwide
                 </Badge>
               </div>
 
               {/* Main heading with gradient text */}
               <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 animate-fade-in-up leading-[1.1] text-slate-900" style={{ animationDelay: '0.1s' }}>
-                <span className="gradient-text">Book NDT Inspection</span>{' '}
+                <span className="text-slate-900">The free</span>{' '}
+                <span className="gradient-text">operating system</span>{' '}
                 <br className="hidden sm:block" />
-                <span className="text-slate-900">Services Online</span>
+                <span className="text-slate-900">for NDT</span>
               </h1>
 
               {/* Subtitle */}
+              <p className="text-xl md:text-2xl font-semibold text-brand mb-4 animate-fade-in-up" style={{ animationDelay: '0.15s' }}>
+                Test smarter. Hire faster. Run free.
+              </p>
               <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                The world&apos;s leading marketplace for Non-Destructive Testing. Connect with certified inspectors for UT, RT, MT, PT, PAUT, TOFD &mdash; get instant quotes and real-time tracking.
+                Find certified UT, RT, MT, PT, PAUT &amp; TOFD inspectors in 220+ cities, get expert answers on which method fits your job, and run your inspection business on a free ERP &mdash; quotes, jobs, reports and invoices on your own letterhead.
               </p>
 
               {/* CTA buttons with glow */}
@@ -168,13 +172,13 @@ export default function HomePage() {
               {/* Secondary CTA — Free tools for providers */}
               <div className="mb-10 animate-fade-in-up" style={{ animationDelay: '0.35s' }}>
                 <Link
-                  href="/register"
+                  href="/free-erp"
                   className="inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-brand hover:text-brand-dark underline underline-offset-4 decoration-2 decoration-brand/40 hover:decoration-brand transition-all"
                 >
                   <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700 tracking-wide">
                     FREE
                   </span>
-                  Get free equipment + cert tracking — sign up in 30 seconds
+                  Free NDT ERP — quotes, jobs, reports &amp; invoices on your letterhead
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
@@ -214,7 +218,7 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 {
                   icon: Wrench,
@@ -233,6 +237,12 @@ export default function HomePage() {
                   title: 'AI Procedure Writer',
                   desc: 'ASME/ASNT/AWS-compliant procedures in 60 seconds.',
                   href: '/tools/ndt-procedure-generator',
+                },
+                {
+                  icon: FileText,
+                  title: 'Free NDT ERP',
+                  desc: 'Quotations on your Word letterhead, jobs, timesheets, reports, invoices and POs.',
+                  href: '/free-erp',
                 },
               ].map((tool, idx) => (
                 <Link
