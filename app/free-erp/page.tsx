@@ -6,7 +6,7 @@ import { MODULES, GROUP_ORDER } from '@/lib/erp/modules';
 import { ErpIcon } from '@/components/erp/icons';
 
 export const metadata: Metadata = {
-  title: 'Free NDT ERP Software — Quotes, Jobs, Reports & Invoices | NDT-Connect',
+  title: 'Free NDT ERP Software — Quotes, Jobs, Reports & Invoices',
   description: 'Free ERP built for NDT and inspection companies: quotations on your Word letterhead, jobs, timesheets, UT/RT/MT/PT reports, invoices, POs, equipment, calibration and certificate alerts.',
   alternates: { canonical: 'https://ndt-connect.com/free-erp' },
   openGraph: { title: 'Free NDT ERP for inspection companies', description: 'Run your whole NDT business free — quotes to invoices, on your own letterhead.', url: 'https://ndt-connect.com/free-erp', type: 'website' },
