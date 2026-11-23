@@ -1,0 +1,332 @@
+{
+ "slug": "louisville-ky",
+ "city": "Louisville",
+ "region": "Kentucky",
+ "country": "United States",
+ "countrySlug": "united-states",
+ "wave": 2,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Louisville, KY: Automotive, Chemical, Power and Aviation Inspection",
+ "metaTitle": "NDT Services in Louisville, KY | Manufacturing, Chemical & Power NDT",
+ "description": "NDT in Louisville, Kentucky: inspection for Ford plants, Rubbertown chemical sites, power stations, UPS Worldport and Ohio River bridges. Methods and rules.",
+ "quickAnswer": "Louisville combines heavy manufacturing, chemicals, power generation and aviation. Ford runs two big assembly plants here: the **Kentucky Truck Plant**, on 500 acres with more than 9,000 employees [1], and the **Louisville Assembly Plant** next to the airport [2]. **Rubbertown**, along the Ohio River, hosts 11 large chemical plants [3]. **UPS Worldport** has been described as the world's largest fully automated package-handling facility [4]. NDT demand covers manufacturing QA, chemical plant mechanical integrity, power plant outages, aviation maintenance and bridge and structural work. Industrial radiography is licensed by Kentucky's **Radiation Health Branch** under 902 KAR 100:100 [6][7].",
+ "keyFacts": [
+  {
+   "label": "Automotive",
+   "value": "Ford Kentucky Truck Plant: 500 acres, about 9,200 employees (2024) [1]; Louisville Assembly Plant on 180 acres [2]"
+  },
+  {
+   "label": "Chemicals",
+   "value": "Rubbertown: 11 large chemical plants along the Ohio River [3]"
+  },
+  {
+   "label": "Aviation",
+   "value": "UPS Worldport, described as the world's largest fully automated package-handling facility [4]"
+  },
+  {
+   "label": "Radiography rules",
+   "value": "Kentucky Radiation Health Branch, 902 KAR 100:100 [6][7]"
+  }
+ ],
+ "industries": [
+  "Automotive manufacturing",
+  "Appliances and metal fabrication",
+  "Chemicals and synthetic rubber",
+  "Power generation and utilities",
+  "Aviation and logistics",
+  "Bridges and river infrastructure"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Louisville's diverse NDT market",
+   "paragraphs": [
+    "Louisville's industrial base is broad rather than dominated by one sector. The greater Louisville area is home to about 2,400 manufacturing companies employing more than 82,500 people in automotive, food and beverage, plastics, appliances and electrical components, according to the regional economic development group [5]. Ford's two assembly plants, the GE Appliances (Haier) complex, chemical plants in Rubbertown, utility power stations, the UPS air hub and the Ohio River's bridges and locks all need inspection.",
+    "This diversity is useful for NDT providers: when one sector slows, others keep crews busy. It also means buyers need providers that match their sector, because the methods, codes and certifications required for an automotive supplier differ greatly from those for a chemical plant or an aircraft maintenance base."
+   ]
+  },
+  {
+   "id": "auto",
+   "h2": "Automotive and manufacturing NDT",
+   "paragraphs": [
+    "Ford's Kentucky Truck Plant opened in 1969 on 500 acres and employed about 9,200 people in 2024 [1]. It builds Super Duty trucks, the Ford Expedition and the Lincoln Navigator [8]. The Louisville Assembly Plant, opened in 1955 on 180 acres next to Louisville International Airport, is Ford's second plant in the city [2]. GE Appliances, owned by Haier, is another of the state's largest manufacturing employers, based in Louisville [9].",
+    "Automotive and appliance manufacturing use NDT differently from process plants. The focus is on quality control in production: ultrasonic inspection of spot welds and adhesive bonds, eddy current testing of components and fasteners, leak testing, weld inspection on frames and structures, and inspection of castings and forgings from suppliers. Plant maintenance adds inspection of presses, cranes, compressed air systems and building structures.",
+    "Tier 1 and Tier 2 suppliers around Louisville run their own QA programs, often to IATF 16949 and customer-specific requirements, and outsource specialist NDT such as radiography of castings or ultrasonic inspection of critical welds."
+   ]
+  },
+  {
+   "id": "rubbertown",
+   "h2": "Rubbertown chemical plants",
+   "paragraphs": [
+    "Rubbertown grew up around refineries built from 1918 and a synthetic rubber plant opened during World War II to make styrene-butadiene rubber for tires [10]. Today it hosts 11 large chemical plants [3], making chemicals, synthetic rubber, resins and specialty products.",
+    "Chemical plants in Rubbertown fall under OSHA's Process Safety Management standard where covered chemicals exceed threshold quantities, requiring mechanical integrity programs for pressure vessels, tanks, piping and relief systems [11]. NDT scopes include thickness monitoring, corrosion mapping, CUI screening, crack detection in corrosive service, heat exchanger tube inspection and turnaround inspection.",
+    "Because Rubbertown sits close to residential neighborhoods, release prevention and community relations are high priorities, which reinforces the importance of timely, reliable inspection."
+   ],
+   "table": {
+    "caption": "Louisville assets and typical NDT scopes",
+    "head": [
+     "Asset",
+     "Main concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Automotive body and frame",
+      "Spot weld and adhesive bond quality, frame welds",
+      "UT for spot welds, ECT, visual, leak testing"
+     ],
+     [
+      "Castings and forgings",
+      "Porosity, inclusions, cracks",
+      "RT, CT, UT, MT, PT"
+     ],
+     [
+      "Chemical plant piping and vessels",
+      "Corrosion, CUI, stress corrosion cracking",
+      "UT, corrosion mapping, PAUT, PEC, PT"
+     ],
+     [
+      "Power plant boilers and piping",
+      "Boiler tube wall loss, creep, weld cracking",
+      "UT, EMAT, PAUT, MT, replication"
+     ],
+     [
+      "Aircraft and ground equipment",
+      "Fatigue cracks, corrosion, composite damage",
+      "ECT, UT, PT, MT, bond testing"
+     ],
+     [
+      "Bridges, locks and dams",
+      "Fatigue cracks, corrosion",
+      "UT, MT, PT, visual"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "power",
+   "h2": "Power generation and utilities",
+   "paragraphs": [
+    "Louisville Gas and Electric and Kentucky Utilities, which serve the region, operate coal and natural gas generating stations along the Ohio River and elsewhere in Kentucky, along with transmission and gas distribution networks. Power plant outages are a major source of NDT work: boiler tube thickness surveys, high-energy piping weld inspection, creep assessment, turbine and generator component inspection, and condition assessment of tanks and structures.",
+    "Methods include UT and EMAT thickness mapping of waterwall and superheater tubes, PAUT and TOFD on main steam and hot reheat welds, MT on turbine casings and supports, eddy current on condenser and heat exchanger tubes, and metallurgical replication to assess creep damage. As older coal units retire and gas units are added, providers also see construction NDT on new piping and HRSGs.",
+    "Gas utilities need pipeline weld inspection to API 1104, integrity assessments, and inspection of compressor and regulator stations."
+   ]
+  },
+  {
+   "id": "distilling",
+   "h2": "Distilleries, food and beverage plants",
+   "paragraphs": [
+    "Louisville is the urban center of Kentucky's bourbon industry, and distilleries, breweries and food plants form a quieter but steady NDT market. Distilleries operate copper and stainless steel stills, fermenters, steam boilers, pressure vessels, heat exchangers and long runs of process and steam piping, plus large rickhouses and tank farms. Rubbertown's early history is tied to this industry too: during World War II, grain alcohol from Louisville distilleries was piped to a Union Carbide plant to make butadiene for synthetic rubber [3].",
+    "Typical scopes include ultrasonic thickness surveys of boilers, stills and pressure vessels, inspection of welds on new stainless steel vessels and piping, penetrant testing for cracks in stainless steel and copper, and eddy current inspection of condenser and heat exchanger tubes. Boilers and pressure vessels are also subject to Kentucky's boiler and pressure vessel inspection requirements, so NDT results often support jurisdictional inspections and repairs carried out under National Board rules.",
+    "Food-grade plants add hygiene and contamination control requirements. NDT providers must follow sanitation procedures, avoid leaving residue from couplants or penetrants on product-contact surfaces, and schedule work around production and cleaning cycles."
+   ]
+  },
+  {
+   "id": "aviation",
+   "h2": "Aviation and logistics",
+   "paragraphs": [
+    "UPS Worldport at Louisville Muhammad Ali International Airport has been described as the world's largest fully automated package-handling facility, processing more than 130 jets a day [4]. UPS employs almost 29,000 people in Kentucky across package delivery, aircraft operations and logistics [12].",
+    "Aircraft maintenance generates NDT demand under FAA requirements and aircraft manufacturers' NDT manuals: eddy current for cracks around fasteners and in wheels, ultrasonic inspection of structures and composites, penetrant and magnetic particle inspection of components, and inspection of engines and landing gear. Aviation NDT personnel are typically certified to NAS 410 or the employer's FAA-accepted program.",
+    "Large logistics facilities also need inspection of conveyors, structural steel, cranes and building systems, though this is a smaller share of NDT demand."
+   ]
+  },
+  {
+   "id": "river",
+   "h2": "Bridges and Ohio River infrastructure",
+   "paragraphs": [
+    "Louisville sits on the Ohio River at the Falls of the Ohio, with interstate and rail bridges, locks and dams, floodwalls and river terminals. Steel bridges need fatigue crack inspection at welded details, section loss measurement and verification of repairs under federal bridge inspection standards, with welding to AWS D1.5 for repairs and new work.",
+    "River terminals and barge-loading facilities need inspection of structural steel, mooring hardware, tanks and piping. Lock and dam structures, operated by the US Army Corps of Engineers, need inspection of gates, hinges and machinery.",
+    "Much of this work is done from boats, barges, snooper trucks or rope access, and river levels and seasonal flooding affect access windows. Providers should plan for fall-protection, water-safety and confined-space requirements, and for coordination with navigation traffic and lock operations when inspecting structures over or beside the river."
+   ]
+  },
+  {
+   "id": "radiation",
+   "h2": "Kentucky radiation rules for radiography",
+   "paragraphs": [
+    "Kentucky is an NRC Agreement State, and the Radiation Health Branch within the Cabinet for Health and Family Services, Department for Public Health, regulates radioactive materials [13]. 902 KAR 100:100 sets out licenses for industrial radiography and radiation safety requirements for industrial radiographic operations, including notification requirements to the Radiation Health Branch [6]. The state publishes a regulatory guide to help applicants prepare industrial radiography license applications [7].",
+    "Out-of-state licensees can work in Kentucky under reciprocal recognition, which carries a fee equal to the applicable in-state fee [14]. Buyers should confirm that providers hold a Kentucky license or reciprocity and that radiographers hold valid certifications."
+   ]
+  },
+  {
+   "id": "codes",
+   "h2": "Codes and certifications by sector",
+   "paragraphs": [
+    "Because Louisville's sectors are so different, the governing codes vary widely. Chemical and power plants use ASME Section V, VIII, B31.1 and B31.3, with API 510, 570 and 653 for in-service inspection and ASNT SNT-TC-1A or CP-189 personnel certification. Power plants also follow EPRI guidelines for boiler and piping inspection.",
+    "Automotive suppliers work to customer specifications and quality systems such as IATF 16949, with NDT technicians often certified under SNT-TC-1A. Aviation maintenance follows FAA requirements and manufacturer NDT manuals, with personnel certified to NAS 410 or equivalent. Structural and bridge work uses AWS D1.1 and D1.5."
+   ],
+   "bullets": [
+    "Process and power: ASME codes, API standards, ASNT certification.",
+    "Automotive: customer specifications, IATF 16949 quality systems.",
+    "Aviation: FAA requirements, manufacturer NDT manuals, NAS 410.",
+    "Structures and bridges: AWS D1.1 and D1.5."
+   ]
+  },
+  {
+   "id": "outages",
+   "h2": "Planning outages and shutdowns in the Ohio Valley",
+   "paragraphs": [
+    "Power plant outages and chemical plant turnarounds in the Ohio Valley cluster in spring and fall, when electricity demand is lower and weather is milder. During these windows, demand for boiler tube, piping and vessel inspection rises sharply, and experienced technicians may be booked across Kentucky, Indiana and Ohio at the same time.",
+    "Buyers get better results by sharing worklists, drawings and previous inspection data early, confirming access and scaffolding plans, and agreeing on daily preliminary reporting. For boiler tube surveys, defining grid locations, reporting thresholds and the format of thickness maps before the outage avoids delays when results need quick engineering review. Winter work adds challenges: cold surfaces affect couplant and penetrant performance, so providers need procedures and materials qualified for low temperatures."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Louisville",
+   "paragraphs": [
+    "Pricing depends on the sector. Plant work is usually priced on hourly or day rates per technician by method, with advanced equipment billed separately. Automotive and manufacturing QA may be priced per part or per shift, often under longer-term service agreements. Aviation NDT may be included in maintenance contracts or billed per task.",
+    "Louisville's central location and lower costs than coastal markets help keep rates competitive, but outage seasons and large projects can tighten technician availability. NDT-Connect lets buyers post one scope and compare certified providers serving Louisville, southern Indiana and the wider Ohio Valley."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Louisville",
+   "paragraphs": [
+    "Louisville offers NDT careers across manufacturing, chemicals, power, aviation and infrastructure. Employers hire UT, RT, MT, PT, ET and VT technicians, aviation NDT inspectors, power plant specialists and Level IIIs.",
+    "A typical career path starts with ASNT Level II certification in UT and MT or PT, then builds specialist skills such as PAUT, boiler tube inspection or aviation eddy current. Technicians who can move between sectors have strong job security in a diverse market like Louisville's."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Louisville",
+   "paragraphs": [
+    "Use this checklist to match a provider to your sector and scope."
+   ],
+   "bullets": [
+    "Certifications matched to sector: ASNT, API, NAS 410 or AWS CWI.",
+    "Kentucky radiation license or reciprocity for radiography [6][14].",
+    "Sector experience: automotive QA, chemical plant integrity, power outages or aviation.",
+    "Advanced methods where needed: PAUT, TOFD, EMAT, PEC, IRIS.",
+    "Outage and turnaround capacity with daily reporting.",
+    "Quality documentation suited to your customer or regulator."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "What industries drive NDT demand in Louisville?",
+   "a": "Automotive and appliance manufacturing, Rubbertown chemical plants, power generation, aviation at UPS Worldport, and bridges and river infrastructure."
+  },
+  {
+   "q": "How many chemical plants are in Rubbertown?",
+   "a": "Rubbertown hosts 11 large chemical plants along the Ohio River [3]."
+  },
+  {
+   "q": "Who regulates industrial radiography in Kentucky?",
+   "a": "The Radiation Health Branch of the Cabinet for Health and Family Services, under 902 KAR 100:100 [6][13]."
+  },
+  {
+   "q": "Which NDT methods are used in automotive manufacturing?",
+   "a": "Ultrasonic testing of spot welds and bonds, eddy current, leak testing, radiography of castings and visual weld inspection."
+  },
+  {
+   "q": "What certification is needed for aviation NDT?",
+   "a": "Aviation NDT personnel are typically certified to NAS 410 or an equivalent FAA-accepted program and follow manufacturer NDT manuals."
+  },
+  {
+   "q": "How do I request NDT quotes in Louisville?",
+   "a": "Post the scope on NDT-Connect with the sector, equipment or parts, codes, methods, access, dates and reporting requirements."
+  }
+ ],
+ "references": [
+  {
+   "title": "Wikiwand — Kentucky Truck Assembly (employees, area)",
+   "url": "https://wikiwand.com/en/Kentucky_Truck_Plant"
+  },
+  {
+   "title": "Wikipedia — Louisville Assembly Plant",
+   "url": "https://en.wikipedia.com/wiki/Louisville_Assembly_Plant"
+  },
+  {
+   "title": "Wikipedia — Rubbertown, Louisville",
+   "url": "https://en.wikipedia.org/wiki/Rubbertown,_Louisville"
+  },
+  {
+   "title": "Progressive Railroading — UPS freight at its Louisville air hub",
+   "url": "https://progressiverailroading.com/shippers/article.aspx?id=40371"
+  },
+  {
+   "title": "AOL / Courier Journal — Biggest manufacturing businesses in Kentucky",
+   "url": "https://www.aol.com/10-biggest-manufacturing-businesses-kentucky-222403096.html"
+  },
+  {
+   "title": "Kentucky Legislature — 902 KAR 100:100, industrial radiography",
+   "url": "https://apps.legislature.ky.gov/law/kar/902/100/100.pdf"
+  },
+  {
+   "title": "Kentucky Department for Public Health — Industrial radiography license guide",
+   "url": "https://chfs.ky.gov:443/agencies/dph/dphps/rhb/Documents/KYIndustrialRadiographyLicenseGuide.pdf"
+  },
+  {
+   "title": "Wikipedia — Kentucky Truck Plant (products)",
+   "url": "https://wikipedia.com/wiki/Kentucky_Truck_Plant"
+  },
+  {
+   "title": "IndustrySelect — Top manufacturing companies in Kentucky",
+   "url": "https://industryselect.com/blog/top-10-manufacturing-companies-in-kentucky"
+  },
+  {
+   "title": "Wikipedia — Rubbertown history",
+   "url": "https://Www.Wikipedia.org/wiki/Rubbertown"
+  },
+  {
+   "title": "OSHA — Process Safety Management, 29 CFR 1910.119",
+   "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.119"
+  },
+  {
+   "title": "Kentucky Cabinet for Economic Development — UPS Centennial hub expansion",
+   "url": "https://newkentuckyhome.ky.gov/Newsroom/NewsPage/05152019_UPS"
+  },
+  {
+   "title": "Kentucky Legislature — 902 KAR 100:050 (Radiation Health Branch authority)",
+   "url": "https://apps.legislature.ky.gov/law/kar/titles/902/100/050/"
+  },
+  {
+   "title": "Kentucky Legislature — 902 KAR 100:012, fee schedule (reciprocity)",
+   "url": "https://apps.legislature.ky.gov/law/kar/902/100/012reg.pdf"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Cincinnati",
+   "href": "/ndt-services/cincinnati-oh"
+  },
+  {
+   "name": "Indianapolis",
+   "href": "/ndt-services/indianapolis-in"
+  },
+  {
+   "name": "St. Louis",
+   "href": "/ndt-services/st-louis-mo"
+  },
+  {
+   "name": "Columbus",
+   "href": "/ndt-services/columbus-oh"
+  },
+  {
+   "name": "Dayton",
+   "href": "/ndt-services/dayton-oh"
+  }
+ ],
+ "related": [
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  },
+  {
+   "label": "All NDT locations",
+   "href": "/ndt-locations"
+  }
+ ]
+}

@@ -1,0 +1,315 @@
+{
+ "slug": "deadhorse-ak",
+ "city": "Deadhorse",
+ "region": "Alaska",
+ "country": "United States",
+ "countrySlug": "united-states",
+ "wave": 2,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Deadhorse, AK: Arctic Oilfield and Pipeline Inspection at Prudhoe Bay",
+ "metaTitle": "NDT Services in Deadhorse, AK | Prudhoe Bay & North Slope NDT",
+ "description": "NDT in Deadhorse, Alaska: Arctic inspection for Prudhoe Bay, North Slope fields and TAPS Pump Station 1. Corrosion, pipelines, cold-weather NDT, NRC rules.",
+ "quickAnswer": "Deadhorse is the service hub for **Prudhoe Bay**, the largest oil field in North America and still the biggest contributor to Alaska's oil production [1]. Hilcorp operates Prudhoe Bay [2] and is developing new west-end pads expected to add about 40,000 barrels a day [1][3]. Oil leaves the North Slope through the **Trans Alaska Pipeline System**, starting at Pump Station 1 [3]. NDT here is Arctic oilfield work: corrosion monitoring of flowlines and transit lines, facility piping and vessel inspection, turnarounds at gathering centers, and construction NDT on new pads. The 2006 Prudhoe transit line spill, caused by internal corrosion, still shapes inspection practice [6][7]. Alaska is **not** an Agreement State, so the NRC licenses radiography sources [8].",
+ "keyFacts": [
+  {
+   "label": "Field",
+   "value": "Prudhoe Bay, the largest oil field in North America [1]"
+  },
+  {
+   "label": "Operator",
+   "value": "Hilcorp North Slope, with ConocoPhillips and ExxonMobil as working interest owners [2]"
+  },
+  {
+   "label": "Growth",
+   "value": "West-end pads expected to add about 40,000 bpd; first oil expected 2028–2030 [1][4]"
+  },
+  {
+   "label": "Radiation regulator",
+   "value": "NRC Region IV licenses radioactive materials; Alaska is not an Agreement State [8][9]"
+  }
+ ],
+ "industries": [
+  "Oil and gas production",
+  "Pipelines (TAPS and gathering)",
+  "Gas handling and compression",
+  "Arctic construction",
+  "Oilfield services",
+  "Marine and logistics"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Deadhorse: an Arctic NDT market like no other",
+   "paragraphs": [
+    "Deadhorse sits at the end of the Dalton Highway on Alaska's North Slope, about 400 miles north of Fairbanks, and exists to support the Prudhoe Bay oil field and its neighbors. It has no permanent residential community in the usual sense; workers rotate in on long shifts, live in camps and fly out between hitches. Almost everything, from equipment to food, arrives by road or air.",
+    "Prudhoe Bay remains the largest oil field in North America and the main contributor to Alaska oil production, which was about 465,000 barrels a day on the North Slope in 2024 [1]. ConocoPhillips holds 36.5% of the Prudhoe working interest, ExxonMobil 36.4% and operator Hilcorp North Slope 27.1% [2]. Other nearby fields include Kuparuk, Milne Point, Alpine, Point Thomson, Endicott and Northstar, and new developments such as Pikka and Willow are expanding activity to the west.",
+    "For NDT providers, the North Slope offers well-paid, long-duration work, but with extreme cold, remote logistics, strict safety rules and rotation-based staffing. Experienced Arctic technicians are scarce and in demand."
+   ]
+  },
+  {
+   "id": "assets",
+   "h2": "North Slope assets and inspection scopes",
+   "paragraphs": [
+    "In the field, oil moves through pipelines from about 1,000 wells to a pumping station at the head of the Trans Alaska Pipeline: flow lines carry production to processing centers, and transit lines carry processed oil to the pump station [5]. Gathering centers and flow stations separate oil, gas and water; large gas handling and compression facilities reinject gas; and water handling plants manage produced water and seawater for injection.",
+    "Much of the piping is above ground on vertical support members to protect the permafrost, and most is insulated. That makes corrosion under insulation and internal corrosion the dominant integrity concerns."
+   ],
+   "table": {
+    "caption": "Typical Prudhoe Bay and North Slope NDT scopes",
+    "head": [
+     "Asset",
+     "Main concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Flowlines and transit lines",
+      "Internal corrosion, MIC, erosion, CUI",
+      "UT, corrosion mapping, guided wave, profile RT, ILI verification"
+     ],
+     [
+      "Well pad piping and wellheads",
+      "Erosion, corrosion, weld integrity",
+      "UT, PAUT, RT, MT, PT"
+     ],
+     [
+      "Gathering centers and flow stations",
+      "Vessel and piping corrosion, CO2 corrosion",
+      "UT, corrosion mapping, PAUT, IRIS"
+     ],
+     [
+      "Gas handling and compression",
+      "Fatigue cracking, vibration damage, weld integrity",
+      "PAUT, TOFD, MT, PT"
+     ],
+     [
+      "Water handling and injection",
+      "Oxygen and MIC corrosion",
+      "UT, corrosion mapping, guided wave"
+     ],
+     [
+      "Storage tanks",
+      "Floor and shell corrosion",
+      "MFL, UT, visual"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "2006",
+   "h2": "Lessons from the 2006 Prudhoe Bay transit line spill",
+   "paragraphs": [
+    "On March 2, 2006, a leak was discovered in a BP oil transit line in western Prudhoe Bay [5]. Internal corrosion had made a quarter-inch hole in the bottom of the line, and investigators pointed to sulfate-reducing bacteria inside the pipe [6]. More than 200,000 gallons spilled, the largest in Prudhoe history [7]. In August 2006, corrosion and a small leak found on the eastern side led BP to shut in part of the field and replace its main transit lines [7].",
+    "A congressional hearing heard that smart-pig runs in 1998 had found internal corrosion at the site of the later leak, but the next pig run was not planned until 2006 [10]. Oil transit lines must be regularly cleaned and inspected for corrosion, and operators use ultrasonic testing and corrosion coupons alongside pigging [11].",
+    "For today's NDT programs, the lessons are clear: low-flow lines with sediment accumulation need targeted inspection at the bottom of the pipe; MIC can cause rapid localized pitting that spot thickness readings miss; and in-line inspection, cleaning pigs, corrosion mapping and coupon monitoring should work together. NDT crews play a central role in verifying ILI anomalies and mapping corrosion at high-risk locations."
+   ]
+  },
+  {
+   "id": "methods",
+   "h2": "NDT methods used on the North Slope",
+   "paragraphs": [
+    "**Ultrasonic testing and corrosion mapping** are the backbone of integrity programs, measuring wall loss at condition monitoring locations, bottom-of-line sections and dead legs. Automated scanners give detailed maps of localized pitting. **Profile radiography** through insulation detects corrosion and wall loss without removing insulation, and **digital radiography** shortens exposure times and provides digital records.",
+    "**Guided wave UT** screens long runs of insulated piping, road and caribou crossings, and supports. **Pulsed eddy current** screens for wall loss through insulation. **PAUT and TOFD** inspect welds on new construction and repairs and detect cracking in compressors and piping subject to vibration. **IRIS and eddy current** inspect heat exchangers. **ILI verification digs** (here often excavating insulation rather than soil) use UT, PAUT and laser tools to confirm anomalies reported by smart pigs.",
+    "Because insulation removal and replacement is expensive and opens new CUI risks, owners favor screening methods that work through insulation and target removal where it is needed most."
+   ]
+  },
+  {
+   "id": "cold",
+   "h2": "Cold-weather NDT: working at minus 40",
+   "paragraphs": [
+    "North Slope winters bring temperatures that can fall well below minus 40 degrees, high winds and weeks of darkness. Extreme cold affects every part of NDT. Batteries lose capacity quickly, screens and cables become sluggish or brittle, couplants freeze, and penetrant and magnetic particle materials stop performing outside their rated temperature ranges.",
+    "Providers working here use cold-rated equipment, heated enclosures or habitats around inspection areas, glycol-based or specialized low-temperature couplants, and procedures qualified for the actual temperatures. Ultrasonic velocity changes with temperature, so calibration on blocks at similar temperatures matters for accurate thickness readings. Radiography exposure and processing (or digital detector performance) must also account for cold.",
+    "Personnel safety is critical: cold-weather PPE, warm-up schedules, buddy systems and strict limits on exposure time. In summer, the tundra is soft and wet, mosquitoes are intense, and work on gravel pads continues around the clock in constant daylight."
+   ]
+  },
+  {
+   "id": "growth",
+   "h2": "New developments and construction NDT",
+   "paragraphs": [
+    "Hilcorp is investing to slow Prudhoe Bay's decline. Its Project Taiga will develop new I and O pads on the field's west end at a cost of about $1 billion, adding about 30,000 barrels per day at peak [3]. State officials have described about 40,000 barrels per day from two new west-end pads, with first oil expected at one pad in 2028 and from I-Pad between 2028 and 2030 [4]. Hilcorp completed its largest turnaround at Prudhoe in 2025, with major maintenance at Gathering Centers 1 and 2 [12].",
+    "New pads and facilities bring construction NDT: radiography or automated UT of pipeline and process piping welds, MT and PT on structural and pressure welds, PMI on alloy materials, and baseline thickness surveys. Much fabrication is done in modules at southern yards and shipped north, so NDT happens both at the module yard and in the field after setting and tie-in.",
+    "Turnarounds at gathering centers, flow stations and gas plants add inspection surges during the summer construction season, when logistics are easier."
+   ]
+  },
+  {
+   "id": "radiation",
+   "h2": "Radiation rules: Alaska is a non-Agreement State",
+   "paragraphs": [
+    "Alaska is not an NRC Agreement State. The state has jurisdiction over X-ray equipment, naturally occurring radioactive materials and certain radioactive materials not produced in a reactor [8], while the NRC's Region IV office in Arlington, Texas, carries out the agency's duties in Alaska [9]. Industrial radiography with sealed sources in Alaska therefore requires an NRC license (or NRC authorization for Agreement State licensees working in Alaska), with radiographers meeting NRC certification requirements under 10 CFR Part 34.",
+    "Buyers should confirm the provider's NRC license and authorization to work in Alaska, radiographer certifications, and radiation safety procedures adapted to remote sites and extreme cold, including source transport and storage arrangements at camps."
+   ],
+   "bullets": [
+    "Confirm NRC licensing or reciprocity for work in Alaska [8][9].",
+    "Check radiographer certification to 10 CFR Part 34.",
+    "Review cold-weather radiography procedures and remote-site source security."
+   ]
+  },
+  {
+   "id": "logistics",
+   "h2": "Logistics, camps and rotations",
+   "paragraphs": [
+    "Working on the North Slope means planning around logistics. Crews fly into Deadhorse on charter or scheduled flights, live in operator or contractor camps, and work rotations such as two weeks on and two weeks off, often with 12-hour shifts. Equipment ships up the Dalton Highway or by air, so spare probes, batteries, scanners and consumables must be planned carefully; a missing part can idle a crew for days.",
+    "Operators require North Slope-specific safety training, drug and alcohol testing, site orientation and often Arctic survival training. Wildlife awareness, including bears and caribou, is part of the training. Providers need administrative systems to manage these requirements for every crew member.",
+    "Weather can ground flights for days, so experienced providers build schedule buffers, keep backup technicians qualified for site access, and stage critical spares in Deadhorse rather than relying on next-day shipments."
+   ]
+  },
+  {
+   "id": "data",
+   "h2": "Integrity data and reporting",
+   "paragraphs": [
+    "North Slope integrity programs rely on long-term trending. Thickness readings, corrosion maps, ILI results and coupon data are combined to calculate corrosion rates and plan inspections. NDT deliverables should use consistent location references, include raw and encoded data for advanced methods, and load directly into the operator's integrity management system.",
+    "Accurate data is especially important because insulation removal and access are costly; well-targeted inspections based on good historical data save money and reduce CUI risk from disturbed insulation."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced on the North Slope",
+   "paragraphs": [
+    "North Slope NDT commands premium rates. Day rates per technician are higher than in the lower 48 to reflect remote work, extreme conditions and rotation schedules, and contracts usually cover travel, camp costs and equipment mobilization. Specialist methods such as automated corrosion mapping, guided wave, PEC and profile radiography carry additional equipment charges.",
+    "Long-term service contracts with operators are common, providing steady work for established providers. NDT-Connect lets buyers post one scope and compare certified providers with North Slope experience, as well as Anchorage-based companies that support Arctic operations."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers on the North Slope",
+   "paragraphs": [
+    "The North Slope is one of the highest-paying NDT markets in the United States. Operators and contractors hire UT and corrosion mapping technicians, radiographers, guided wave and PEC specialists, PAUT technicians, API inspectors and Level IIIs. Rotation schedules give long blocks of time off.",
+    "Successful candidates usually have ASNT Level II certifications in UT and RT, experience with corrosion mapping and profile radiography, API 570 or 510 certification for inspector roles, and the ability to pass North Slope safety training. Arctic experience is a strong advantage."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider for Deadhorse",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers for North Slope work."
+   ],
+   "bullets": [
+    "ASNT and API certifications as required by the operator.",
+    "Proven Arctic experience and cold-rated equipment and procedures.",
+    "Corrosion mapping, guided wave, PEC and profile RT capability for insulated piping.",
+    "NRC licensing for radiography in Alaska [8][9].",
+    "Ability to manage rotations, camp logistics and North Slope training.",
+    "Integrity data delivery compatible with the operator's system."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Who operates Prudhoe Bay?",
+   "a": "Hilcorp North Slope is the operator; ConocoPhillips and ExxonMobil are the other working interest owners [2]."
+  },
+  {
+   "q": "What caused the 2006 Prudhoe Bay oil spill?",
+   "a": "Internal corrosion, attributed to sulfate-reducing bacteria, made a quarter-inch hole in the bottom of a transit line [6]; more than 200,000 gallons spilled [7]."
+  },
+  {
+   "q": "Is Alaska an NRC Agreement State?",
+   "a": "No. The NRC, through its Region IV office, licenses radioactive materials in Alaska [8][9]."
+  },
+  {
+   "q": "How does extreme cold affect NDT?",
+   "a": "It drains batteries, freezes couplants, affects penetrant and MT materials and changes ultrasonic velocity, so cold-rated equipment, heated habitats and qualified procedures are needed."
+  },
+  {
+   "q": "Which NDT methods are used for insulated North Slope piping?",
+   "a": "Guided wave UT and pulsed eddy current for screening, profile radiography through insulation, and corrosion mapping at targeted locations."
+  },
+  {
+   "q": "How do I request NDT quotes for Deadhorse?",
+   "a": "Post the scope on NDT-Connect with the facility, piping or equipment, methods, rotation and logistics requirements, dates and reporting needs."
+  }
+ ],
+ "references": [
+  {
+   "title": "Anchorage Daily News — Hilcorp plans 40,000-barrel-per-day development at Prudhoe Bay",
+   "url": "https://www.adn.com/business-economy/energy/2025/09/06/hilcorp-plans-to-squeeze-more-life-out-of-prudhoe-bay-with-40000-barrel-per-day-field/"
+  },
+  {
+   "title": "Petroleum News — North Slope production (Prudhoe ownership)",
+   "url": "https://www.petroleumnews.com/pnads/820643292.shtml"
+  },
+  {
+   "title": "Alaska Resource Review, Spring 2026 — Project Taiga",
+   "url": "https://online.flippingbook.com/view/848448255/10-11/"
+  },
+  {
+   "title": "Alaska Resource Review, Winter 2026 — New Prudhoe pads",
+   "url": "https://online.flippingbook.com/view/816064334/10-11"
+  },
+  {
+   "title": "Wikiwand — Prudhoe Bay oil spill (field layout, monitoring)",
+   "url": "https://wikiwand.com/en/articles/2006_Alaskan_oil_spill"
+  },
+  {
+   "title": "Petroleum News — Cause of Prudhoe transit line leak",
+   "url": "https://www.petroleumnews.com/pnarchpop/573947058.shtml"
+  },
+  {
+   "title": "Petroleum News — BP shuts in part of Prudhoe Bay (2006)",
+   "url": "https://www.petroleumnews.com/pnarchpop/410295656.shtml"
+  },
+  {
+   "title": "NRC — Alaska: non-Agreement State information",
+   "url": "https://www.nrc.gov/agreement-states/alaska"
+  },
+  {
+   "title": "NRC — Alaska (Region IV)",
+   "url": "https://ww2.nrc.gov/agreement-states/alaska"
+  },
+  {
+   "title": "US House hearing (109th Congress) — BP Prudhoe Bay pipeline corrosion",
+   "url": "https://www.govinfo.gov/content/pkg/CHRG-109hhrg31461/html/CHRG-109hhrg31461.htm"
+  },
+  {
+   "title": "Wikipedia — Prudhoe Bay oil spill (transit line inspection)",
+   "url": "https://EN.wikipedia.com/wiki/Prudhoe_Bay_oil_spill"
+  },
+  {
+   "title": "Petroleum News — Hilcorp completes its largest TAR at Prudhoe",
+   "url": "https://www.petroleumnews.com/pnads/62012069.shtml"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Anchorage",
+   "href": "/ndt-services/anchorage-ak"
+  },
+  {
+   "name": "Seattle",
+   "href": "/ndt-services/seattle-wa"
+  },
+  {
+   "name": "Anacortes",
+   "href": "/ndt-services/anacortes-wa"
+  },
+  {
+   "name": "Tacoma",
+   "href": "/ndt-services/tacoma-wa"
+  },
+  {
+   "name": "Portland",
+   "href": "/ndt-services/portland-or"
+  }
+ ],
+ "related": [
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  },
+  {
+   "label": "All NDT locations",
+   "href": "/ndt-locations"
+  }
+ ]
+}

@@ -1,0 +1,319 @@
+{
+ "slug": "cushing-ok",
+ "city": "Cushing",
+ "region": "Oklahoma",
+ "country": "United States",
+ "countrySlug": "united-states",
+ "wave": 2,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Cushing, OK: Tank and Pipeline Inspection at the Pipeline Crossroads of the World",
+ "metaTitle": "NDT Services in Cushing, OK | API 653 Tank & Pipeline Inspection",
+ "description": "NDT in Cushing, Oklahoma: API 653 tank inspection, pipeline integrity and terminal work at the WTI crude hub. PHMSA breakout tank rules, Oklahoma DEQ, hiring.",
+ "quickAnswer": "Cushing, Oklahoma, calls itself the **Pipeline Crossroads of the World**. It is the delivery point for the NYMEX WTI crude futures contract [1], with roughly 400 crude storage tanks [2] and about 94 million barrels of storage capacity linked to 3.8 million barrels a day of inbound and 3.1 million barrels a day of outbound pipeline capacity [3]. NDT in Cushing is mainly **aboveground storage tank and pipeline integrity work**. Breakout tanks must be inspected to **API 653** under PHMSA's 49 CFR 195.432 [4], and PHMSA has proposed updating the edition it references and allowing risk-based intervals [5]. Industrial radiographers are certified by the **Oklahoma Department of Environmental Quality** [7].",
+ "keyFacts": [
+  {
+   "label": "Storage",
+   "value": "About 94 million barrels of storage capacity [3]; EIA working capacity about 78.4 million barrels [2]"
+  },
+  {
+   "label": "Pipelines",
+   "value": "3.8 MMb/d inbound and 3.1 MMb/d outbound pipeline capacity [3]"
+  },
+  {
+   "label": "Tank rule",
+   "value": "49 CFR 195.432: in-service breakout tanks inspected to API Std 653 [4]"
+  },
+  {
+   "label": "Radiography regulator",
+   "value": "Oklahoma DEQ certifies industrial radiographers under OAC 252:410-5 [7][8]"
+  }
+ ],
+ "industries": [
+  "Crude oil storage terminals",
+  "Pipelines",
+  "Tank construction and repair",
+  "Midstream compression and pumping",
+  "Oilfield services",
+  "Refining (regional)"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Why Cushing is a specialist tank and pipeline market",
+   "paragraphs": [
+    "Cushing is a small town with outsized importance to world oil markets. It is the delivery point for the NYMEX West Texas Intermediate futures contract and holds a substantial share of US commercial crude oil working storage [1]. Analysts at RBN describe a hub with 94 million barrels of storage capacity, 3.8 million barrels a day of inbound pipelines and 3.1 million barrels a day of outbound pipes, plus a dense web of connections between tank farms [3]. Reuters has described some 400 oil storage tanks spread across the area, with EIA putting working capacity at about 78.4 million barrels [2].",
+    "The hub receives crude from Western Canada, the Bakken, the Rockies, the SCOOP/STACK plays and the Permian, and about half of its outbound capacity runs to the Gulf Coast [6]. In April 2020, a lack of storage space at Cushing helped push WTI futures prices negative for the first time [9], an event that showed how important tank capacity and availability are.",
+    "For NDT providers, Cushing means a large, concentrated population of aboveground storage tanks, terminal piping, pump stations and pipeline connections, owned by several midstream and refining companies. Work is steady because tanks must be inspected on regular intervals and taken out of service, cleaned, inspected and repaired in rotation."
+   ]
+  },
+  {
+   "id": "api653",
+   "h2": "API 653 tank inspection: the core of Cushing NDT",
+   "paragraphs": [
+    "Most Cushing tanks are breakout tanks under PHMSA rules, used to receive and store hazardous liquid transported by pipeline for reinjection and continued transportation [5]. Under 49 CFR 195.432, operators must inspect the physical integrity of in-service atmospheric and low-pressure steel aboveground breakout tanks according to API Std 653, with restrictions on using the standard's alternative risk-based internal inspection interval [4].",
+    "In June 2026, PHMSA proposed updating its breakout tank rules to incorporate the 5th edition of API Std 653 and to authorize risk-based inspection procedures for setting in-service inspection intervals [5]. If finalized, operators could use RBI to justify intervals, which makes inspection data quality even more important, because intervals will rest on measured corrosion rates and documented condition.",
+    "API 653 inspections combine external inspection, internal inspection when the tank is out of service, and NDT to quantify floor, shell and roof condition. Internal inspections are major events: the tank must be emptied, cleaned, degassed and made safe for entry before NDT crews can work."
+   ],
+   "table": {
+    "caption": "Typical Cushing tank and terminal NDT scopes",
+    "head": [
+     "Component",
+     "Main concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Tank floors",
+      "Soil-side and product-side corrosion, pitting",
+      "MFL floor scanning, UT prove-up, vacuum box testing"
+     ],
+     [
+      "Tank shells",
+      "General and localized corrosion, weld defects",
+      "UT thickness, automated crawler UT, MT, visual"
+     ],
+     [
+      "Floating roofs and seals",
+      "Corrosion, pontoon leaks, deformation",
+      "UT, visual, leak testing"
+     ],
+     [
+      "Annular plates and shell-to-bottom welds",
+      "Corrosion, cracking",
+      "UT, PAUT, MT, PT"
+     ],
+     [
+      "Terminal and manifold piping",
+      "Corrosion, CUI, dead legs",
+      "UT, corrosion mapping, guided wave"
+     ],
+     [
+      "Pipeline connections and pump stations",
+      "Weld integrity, external corrosion",
+      "UT, PAUT, RT, MT"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "methods",
+   "h2": "Tank inspection methods in detail",
+   "paragraphs": [
+    "**Magnetic flux leakage (MFL) floor scanning** is the workhorse of internal tank inspection. Scanners sweep the floor plates to detect pitting and wall loss from both the product side and soil side, and suspect areas are proved up with ultrasonic thickness measurements. Some owners use complementary techniques such as SLOFEC or advanced UT scanning for better sizing on thicker plates.",
+    "**Ultrasonic thickness testing** of shells is done by hand or with magnetic crawlers that can climb shells and record thickness profiles without scaffolding. **Vacuum box testing** checks floor welds and repairs for leaks, and **magnetic particle** or **penetrant** inspection checks welds, especially shell-to-bottom and nozzle welds after repairs.",
+    "**Acoustic emission** can screen in-service tank floors for active corrosion and leaks without taking the tank out of service, helping owners prioritize which tanks to open first. **Settlement surveys** measure tank foundation movement, which can distort shells and stress welds. **Robotic in-service inspection** systems can scan floors while the tank stays in operation, reducing downtime."
+   ]
+  },
+  {
+   "id": "entry",
+   "h2": "Tank cleaning, entry and safety",
+   "paragraphs": [
+    "Internal tank inspections only happen after the tank has been emptied, cleaned and certified safe for entry, and that preparation often takes longer than the inspection itself. Crude tanks accumulate sludge, paraffin and sediment that must be removed, and the atmosphere inside must be tested for oxygen, flammable vapors, hydrogen sulfide and benzene before anyone goes in. Permit-required confined space rules, continuous gas monitoring, ventilation and rescue planning all apply.",
+    "For NDT buyers, coordination is critical. The inspection crew should be ready to mobilize as soon as the tank is released, because every day a large tank is out of service costs storage revenue. Floors need to be cleaned to a standard that allows MFL scanners to work properly; residual sludge or scale reduces sensitivity and can hide pits. Agree on cleanliness criteria, lighting, access and the sequence of floor, shell and roof inspection with the tank cleaning contractor before work starts.",
+    "Crude with hydrogen sulfide or naturally occurring radioactive material (NORM) in sludge adds further precautions, and technicians need appropriate training and PPE."
+   ]
+  },
+  {
+   "id": "construction",
+   "h2": "New tank construction and repairs",
+   "paragraphs": [
+    "Cushing's storage capacity has grown over time, and new tanks are built to API 650. Construction NDT includes radiography or UT of shell butt welds, vacuum box testing of floor welds, MT or PT on nozzle and attachment welds, and hydrostatic testing with settlement monitoring.",
+    "Repairs and alterations to existing tanks, such as floor replacement, shell plate replacement, new nozzles or roof changes, follow API 653 and often require radiography or UT of new welds, plus documentation that satisfies PHMSA requirements for breakout tanks.",
+    "Because tanks are out of service during major repairs, owners push hard for fast, accurate inspection and clear reports so repairs can be scoped and completed quickly."
+   ]
+  },
+  {
+   "id": "pipelines",
+   "h2": "Pipelines and terminal piping",
+   "paragraphs": [
+    "Cushing's tank farms are linked by a complex network of pipelines, manifolds and pump stations. Pipeline NDT includes weld inspection on new construction and tie-ins to API 1104, typically by radiography or automated UT; in-line inspection verification digs where NDT crews confirm and size anomalies reported by smart pigs using UT, PAUT and laser profilometry; and inspection of pump station piping and launcher-receiver facilities.",
+    "Terminal piping often operates at ambient temperature and is exposed to the weather, so external corrosion and corrosion at supports and soil-to-air interfaces are key concerns. Guided wave UT screens long lines and road crossings, and corrosion mapping quantifies localized wall loss."
+   ]
+  },
+  {
+   "id": "radiation",
+   "h2": "Oklahoma radiation rules for radiography",
+   "paragraphs": [
+    "Oklahoma is an NRC Agreement State, and radiation management is administered by the Oklahoma Department of Environmental Quality under OAC 252:410 [10]. DEQ certifies individuals to practice industrial radiography in Oklahoma [7], and OAC 252:410-5 covers certification, examinations, duration and documentation, out-of-state certification and reciprocity, and radiation safety course curricula for radioactive materials and industrial X-ray radiography [8].",
+    "Out-of-state licensees can work in Oklahoma under reciprocity recognition, but must file with DEQ at least three days before starting activities [11]. Buyers should confirm that radiography providers hold an Oklahoma license or have filed reciprocity, and that radiographers hold valid certifications recognized in Oklahoma."
+   ],
+   "bullets": [
+    "Confirm Oklahoma DEQ licensing or reciprocity filing at least three days in advance [11].",
+    "Check radiographer certifications recognized under OAC 252:410-5 [8].",
+    "Plan radiography exclusion zones carefully in busy tank farms and manifold areas."
+   ]
+  },
+  {
+   "id": "weather",
+   "h2": "Oklahoma weather and tank integrity",
+   "paragraphs": [
+    "Central Oklahoma has hot summers, cold winters and frequent severe storms, including tornadoes and hail. Severe weather can damage floating roofs, seals, insulation and structures, and lightning is a known fire risk for tank farms. After major storms, owners commission inspections of roofs, seals, grounding and shells.",
+    "Seasonal temperature swings affect soil conditions under tanks, which can drive settlement and soil-side corrosion. Heavy rain and poor drainage around tanks accelerate floor corrosion, making MFL floor scans and prove-up UT especially important during internal inspections.",
+    "Many operators schedule out-of-service inspections for spring and fall, when temperatures are more manageable for crews working inside tanks."
+   ]
+  },
+  {
+   "id": "rotation",
+   "h2": "Planning tank rotations across a terminal",
+   "paragraphs": [
+    "Large Cushing terminals have dozens of tanks on staggered inspection schedules. Owners plan rotations years ahead, balancing API 653 due dates, commercial storage commitments and market conditions. When the market is in contango and storage is full, taking tanks out of service is expensive; when inventories are low, as they were in mid-2026 [2], it is easier to free tanks for cleaning and inspection.",
+    "NDT providers that can support multi-tank programs, with consistent crews, equipment and reporting across a terminal, help owners keep schedules on track and compare results year to year."
+   ]
+  },
+  {
+   "id": "data",
+   "h2": "Data quality and risk-based intervals",
+   "paragraphs": [
+    "Accurate, well-documented inspection data is essential in Cushing. API 653 inspection intervals depend on corrosion rates and minimum remaining thickness, and PHMSA's proposal to allow RBI for breakout tanks [5] would put even more weight on measured data.",
+    "NDT deliverables should include floor scan maps with prove-up results, shell thickness profiles, settlement survey data, weld inspection records, photographs and clear recommendations. Consistent location references and formats allow corrosion rates to be calculated between inspections and help owners plan tank rotations across their terminals."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How tank and pipeline NDT is priced in Cushing",
+   "paragraphs": [
+    "Tank inspection is often priced per tank, based on diameter, height, floor area and scope, or on day rates for crews and equipment. MFL floor scanning, automated shell crawlers and acoustic emission are usually charged as equipment plus technician time. API 653 authorized inspector services may be priced separately from NDT technicians.",
+    "Pipeline verification digs and construction NDT are typically priced on day rates or per weld. NDT-Connect lets buyers post one scope and compare certified providers serving Cushing, Tulsa, Oklahoma City and the wider Mid-Continent."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Cushing",
+   "paragraphs": [
+    "Cushing offers steady work for tank inspectors, MFL and UT technicians, radiographers and API 653 inspectors. Tulsa and Oklahoma City add pipeline, refining and aerospace opportunities within driving distance.",
+    "A typical path starts with ASNT Level II certification in UT and MT, MFL tank floor scanning experience, and Oklahoma radiographer certification for radiography roles [7], then progresses to API 653 inspector certification and Level III roles."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Cushing",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying tank and pipeline NDT providers."
+   ],
+   "bullets": [
+    "API 653 authorized inspectors and ASNT-certified technicians.",
+    "MFL floor scanning, automated shell UT and acoustic emission capability.",
+    "Understanding of PHMSA breakout tank requirements [4][5].",
+    "Oklahoma DEQ license or reciprocity for radiography [7][11].",
+    "Confined space, gas-free and tank entry safety programs.",
+    "Clear reporting with floor maps, thickness profiles and recommendations."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Why is Cushing called the Pipeline Crossroads of the World?",
+   "a": "It is a major crude storage and pipeline hub, with about 94 million barrels of storage, 3.8 MMb/d of inbound and 3.1 MMb/d of outbound pipeline capacity [3], and is the WTI futures delivery point [1]."
+  },
+  {
+   "q": "What inspection standard applies to breakout tanks?",
+   "a": "49 CFR 195.432 requires inspection of in-service atmospheric and low-pressure steel breakout tanks according to API Std 653 [4]."
+  },
+  {
+   "q": "Is PHMSA changing breakout tank inspection rules?",
+   "a": "In June 2026 PHMSA proposed incorporating the 5th edition of API Std 653 and allowing risk-based inspection procedures to set in-service intervals [5]."
+  },
+  {
+   "q": "Who certifies industrial radiographers in Oklahoma?",
+   "a": "The Oklahoma Department of Environmental Quality, under OAC 252:410-5 [7][8]."
+  },
+  {
+   "q": "What is MFL tank floor scanning?",
+   "a": "Magnetic flux leakage scanning detects corrosion and pitting on tank floors from both sides; suspect areas are then measured with ultrasonic thickness testing."
+  },
+  {
+   "q": "How do I request NDT quotes in Cushing?",
+   "a": "Post the scope on NDT-Connect with tank sizes, inspection type (internal, external or in-service), methods, access, dates and reporting requirements."
+  }
+ ],
+ "references": [
+  {
+   "title": "EIA — Crude oil inventories in Cushing (WTI delivery point, storage share)",
+   "url": "https://www.eia.gov/todayinEnergy/detail.php?id=49636"
+  },
+  {
+   "title": "BNN Bloomberg / Reuters — US oil exports surge, draining domestic crude inventories",
+   "url": "https://www.bnnbloomberg.ca/markets/oil/2026/06/05/us-oil-exports-surge-draining-domestic-crude-inventories-toward-rock-bottom/"
+  },
+  {
+   "title": "RBN Energy — Cushing tankage and pipeline capacity",
+   "url": "https://rbnenergy.com/tags/tankage"
+  },
+  {
+   "title": "GovInfo — 49 CFR 195.432, inspection of in-service breakout tanks",
+   "url": "https://www.govinfo.gov/content/pkg/CFR-2024-title49-vol3/pdf/CFR-2024-title49-vol3-sec195-432.pdf"
+  },
+  {
+   "title": "Federal Register — PHMSA Breakout Tank Inspection Rule (proposed, June 2, 2026)",
+   "url": "https://www.federalregister.gov/documents/2026/06/02/2026-10969/pipeline-safety-breakout-tank-inspection-rule"
+  },
+  {
+   "title": "RBN Energy — Cushing preview (crude sources and outbound pipelines)",
+   "url": "https://rbnenergy.com/sites/default/files/RBN_CushingDD_181219_Preview-v2.pdf"
+  },
+  {
+   "title": "Oklahoma DEQ — Industrial radiographer certification exam",
+   "url": "https://oklahoma.gov/deq/divisions/land-protection/radiation/industrial-radiographer-certification-exam.html"
+  },
+  {
+   "title": "Justia — OAC 252:410 Subchapter 5, certification of industrial radiographers",
+   "url": "https://regulations.justia.com/states/oklahoma/title-252/chapter-410/subchapter-5/"
+  },
+  {
+   "title": "Wikipedia — Oil industry in Cushing, Oklahoma",
+   "url": "https://Www.Wikipedia.org/wiki/Oil_industry_in_Cushing"
+  },
+  {
+   "title": "Oklahoma DEQ — OAC 252:410 Radiation Management rules",
+   "url": "https://deq.ok.gov/asd/rules-and-regulations/attachment/410"
+  },
+  {
+   "title": "Oklahoma DEQ — Radioactive materials reciprocity form (DEQ Form 410-241)",
+   "url": "https://oklahoma.gov/content/dam/ok/en/deq/documents/land-division/DEQ-FORM-410-241-RAM-Reciprocity-1.pdf"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Tulsa",
+   "href": "/ndt-services/tulsa-ok"
+  },
+  {
+   "name": "Oklahoma City",
+   "href": "/ndt-services/oklahoma-city-ok"
+  },
+  {
+   "name": "Bartlesville",
+   "href": "/ndt-services/bartlesville-ok"
+  },
+  {
+   "name": "Wichita",
+   "href": "/ndt-services/wichita-ks"
+  },
+  {
+   "name": "McPherson",
+   "href": "/ndt-services/mcpherson-ks"
+  }
+ ],
+ "related": [
+  {
+   "label": "Permian Basin midstream and pipeline NDT buyer's guide",
+   "href": "/buyers-guide/permian-basin-midstream-pipeline-ndt"
+  },
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  }
+ ]
+}

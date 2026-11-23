@@ -1,0 +1,337 @@
+{
+ "slug": "wilmington-de",
+ "city": "Wilmington",
+ "region": "Delaware",
+ "country": "United States",
+ "countrySlug": "united-states",
+ "wave": 2,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Wilmington, DE: Refinery, Port and Chemical Inspection on the Delaware River",
+ "metaTitle": "NDT Services in Wilmington, DE | Refinery, Port & Chemical NDT",
+ "description": "NDT in Wilmington, Delaware: inspection for the Delaware City refinery, Port of Wilmington, the new container terminal and chemical sites. NRC rules, hiring.",
+ "quickAnswer": "Wilmington's NDT market follows the Delaware River. South of the city, PBF Energy's **Delaware City Refinery** has a throughput capacity of 180,000 barrels per day and a Nelson Complexity Index of 13.6 [1], with a fluid coker and FCC on a site of about 5,000 acres [2][3]. In Wilmington itself, the **Port of Wilmington** handles more than 400 vessels a year [6], and the new **$669 million Delaware Container Terminal** at Edgemoor is under construction, due to open in 2029 [5][7]. Delaware is **not** an NRC Agreement State: the NRC licenses industrial radiography sources there, while the state's Office of Radiation Control registers facilities and X-ray equipment [8][9].",
+ "keyFacts": [
+  {
+   "label": "Refining",
+   "value": "Delaware City Refinery: 180,000 bpd, Nelson Complexity Index 13.6 [1]"
+  },
+  {
+   "label": "Port",
+   "value": "Port of Wilmington: more than 400 vessels and six million tons of cargo a year [6]"
+  },
+  {
+   "label": "New terminal",
+   "value": "Delaware Container Terminal, $669 million, 1.2 million TEU capacity, opening 2029 [5][7]"
+  },
+  {
+   "label": "Radiation regulator",
+   "value": "NRC Region I licenses radioactive materials; Delaware ORC registers facilities [8][9]"
+  }
+ ],
+ "industries": [
+  "Oil refining",
+  "Port and marine terminals",
+  "Chemicals and specialty materials",
+  "Power and utilities",
+  "Pharmaceuticals",
+  "Bridges and infrastructure"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Wilmington's Delaware River NDT market",
+   "paragraphs": [
+    "Wilmington sits on the Delaware River between Philadelphia and the Chesapeake & Delaware Canal, in one of the East Coast's most important industrial corridors. Refining, chemicals, port operations and infrastructure all need inspection, and the region shares labor and contractors with Philadelphia, southern New Jersey and northern Maryland.",
+    "Wilmington's history as the home of DuPont shaped its industrial base, and specialty chemical, materials and pharmaceutical operations remain in the area. Today, the biggest NDT drivers are the Delaware City refinery, the Port of Wilmington and its expansion, chemical plants, power and utilities, and bridges and highways."
+   ]
+  },
+  {
+   "id": "refinery",
+   "h2": "Delaware City Refinery",
+   "paragraphs": [
+    "PBF Energy bought the idle Delaware City refinery from Valero in 2010 and completed its restart in October 2011 [3]. PBF lists it with a throughput capacity of 180,000 barrels per day and a Nelson Complexity Index of 13.6, processing light sweet through heavy sour crudes received by water and rail [1]. The refinery sits on about 5,000 acres with docks on the Delaware River and rail unloading facilities [2].",
+    "The plant's conversion capacity includes an 82,000 barrel-per-day FCC unit, a 47,000 barrel-per-day fluid coking unit and an 18,000 barrel-per-day hydrocracker [2]. PBF has described Delaware City as one of two heavy coking refineries on the East Coast, with coking capacity equal to about a quarter of crude capacity [4]. Since 2020, PBF has operated Delaware City and its Paulsboro refinery across the river as a combined East Coast Refining System [10].",
+    "Heavy-crude refining with fluid coking, catalytic cracking and hydroprocessing generates demanding inspection scopes: erosion and refractory monitoring in the fluid coker and FCC, sulfidation and naphthenic acid corrosion in crude units, HTHA in hydroprocessing, and wet H2S damage in sour water and amine systems."
+   ],
+   "table": {
+    "caption": "Wilmington-area assets and typical NDT scopes",
+    "head": [
+     "Asset",
+     "Main concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Fluid coker and FCC",
+      "Erosion, refractory damage, cracking",
+      "UT, PAUT, thermography, visual"
+     ],
+     [
+      "Crude and vacuum units",
+      "Sulfidation, naphthenic acid, CUI",
+      "UT, corrosion mapping, PEC"
+     ],
+     [
+      "Hydrocracker and hydrotreaters",
+      "HTHA, weld cracking",
+      "Advanced UT for HTHA, PAUT, TOFD"
+     ],
+     [
+      "Tank farms and docks",
+      "Floor and shell corrosion, dock piping",
+      "MFL, UT, guided wave"
+     ],
+     [
+      "Port cranes and structures",
+      "Fatigue cracks, corrosion",
+      "MT, UT, PAUT, visual"
+     ],
+     [
+      "Chemical plant equipment",
+      "Corrosion, SCC, weld integrity",
+      "UT, PAUT, PT, PMI, ECT"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "port",
+   "h2": "Port of Wilmington and the Delaware Container Terminal",
+   "paragraphs": [
+    "The Port of Wilmington is a full-service deepwater port handling more than 400 vessels and six million tons of cargo a year, including containers, perishables, bulk, Ro-Ro and project cargo; Enstructure has operated it since 2023 [6].",
+    "Construction is now under way on the Delaware Container Terminal at Edgemoor, the state's largest-ever maritime infrastructure project. The $669 million first phase sits on 137 acres of former DuPont industrial land [11], with funding of $225 million from Enstructure, $325 million from Delaware and $119 million in federal grants [6]. The terminal is expected to handle 1.2 million TEUs a year when it opens in early 2029 [7].",
+    "Port and terminal construction brings large volumes of structural and marine NDT: weld inspection on wharf steel, crane rails and ship-to-shore cranes, UT thickness surveys of sheet piling and bulkheads, inspection of piles and mooring hardware, and QA on terminal buildings. Existing port facilities need ongoing inspection of aging piers, cranes and cargo-handling equipment.",
+    "Once the terminal opens, cranes, wharf structures and cargo-handling equipment will need routine in-service inspection for fatigue cracking and corrosion, creating long-term NDT demand beyond construction."
+   ]
+  },
+  {
+   "id": "chemicals",
+   "h2": "Chemical, materials and pharmaceutical plants",
+   "paragraphs": [
+    "The Wilmington area and the wider Delaware Valley host chemical, specialty materials and pharmaceutical manufacturers. These plants use pressure vessels, reactors, heat exchangers, tanks and piping in corrosive service, and many fall under OSHA's Process Safety Management standard, which requires mechanical integrity programs with inspection following recognized good engineering practice [12].",
+    "NDT scopes include thickness monitoring, corrosion mapping, crack detection in stainless steel and alloy equipment, PMI to verify materials, heat exchanger tube inspection and turnaround inspection. Pharmaceutical plants add clean-utility piping and stainless steel weld inspection, often with strict documentation and validation requirements.",
+    "Many of these sites are older facilities with decades of modifications, so baseline inspection, materials verification and careful review of historical records are common starting points before risk-based inspection programs can be set up. Providers that understand both legacy equipment and modern advanced UT techniques are well placed to support them."
+   ]
+  },
+  {
+   "id": "radiation",
+   "h2": "Delaware radiation rules: a non-Agreement State",
+   "paragraphs": [
+    "Delaware is one of a handful of states that is not an NRC Agreement State. The state has jurisdiction over X-ray equipment, naturally occurring radioactive materials and certain radioactive materials not produced in a reactor [8], while the NRC licenses, inspects and enforces regulations for the use, storage, transport and accountability of radioactive materials in Delaware [9]. The NRC's Region I office in King of Prussia, Pennsylvania, carries out these duties [13].",
+    "Delaware's Office of Radiation Control registers facilities that possess radioactive materials under Part B of the state regulations [9], and a copy of a valid NRC or Agreement State license must accompany a Delaware radioactive material registration application [14]. X-ray machines are registered with the state.",
+    "For buyers, this means confirming that radiography providers hold an NRC license (or an Agreement State license valid for work in Delaware under NRC rules), have registered with Delaware ORC where required, and that radiographers meet NRC certification requirements under 10 CFR Part 34."
+   ],
+   "bullets": [
+    "Confirm the provider's NRC license or Agreement State license and authority to work in Delaware [9][13].",
+    "Check Delaware ORC registration for radioactive materials and X-ray equipment [14].",
+    "Verify radiographer certification meeting 10 CFR Part 34 requirements."
+   ]
+  },
+  {
+   "id": "infra",
+   "h2": "Bridges, power and utilities",
+   "paragraphs": [
+    "The Wilmington area is crossed by major steel bridges carrying I-95 and I-295 traffic over the Delaware River, the Christina River and the Chesapeake & Delaware Canal. Steel bridges need regular inspection for fatigue cracks at welded and riveted details, section loss from de-icing salts and brackish spray, and bearing and expansion joint condition. NDT supports these programs with MT and UT on suspect details, UT thickness gauging for load rating, and eddy current through coatings where paint removal is undesirable.",
+    "Power plants, substations, water treatment and gas distribution systems in northern Delaware add steady work: boiler and piping inspection during outages, tank inspections, pipeline weld inspection to API 1104, and inspection of penstocks and pump station piping. Utilities increasingly ask for digital records that can be linked to asset management systems."
+   ]
+  },
+  {
+   "id": "methods",
+   "h2": "Methods buyers order in Wilmington",
+   "paragraphs": [
+    "Refinery work centers on **PAUT, TOFD and corrosion mapping**, **HTHA inspection** for hydroprocessing equipment, **digital radiography** for small-bore piping, **eddy current and IRIS** for exchangers, **pulsed eddy current** for CUI and **guided wave** for long pipe runs.",
+    "Port and structural work uses **UT to AWS D1.1 or D1.5**, **MT** for fatigue cracks at welded details, **UT thickness gauging** for sheet piling and structures, and **visual inspection** by certified welding inspectors. Chemical and pharmaceutical plants add **PMI**, **PT** on stainless steel and **borescope** inspection of process piping."
+   ]
+  },
+  {
+   "id": "climate",
+   "h2": "Climate and corrosion on the Delaware River",
+   "paragraphs": [
+    "Wilmington has a humid subtropical to continental climate with hot summers, cold winters and rain year-round. Brackish water in the lower Delaware River, salt air and winter de-icing salts accelerate corrosion of port structures, bridges and outdoor equipment. Corrosion under insulation is a major damage mechanism on refinery and chemical plant piping, especially lines that cycle through the CUI temperature range.",
+    "Coastal storms and nor'easters can damage structures and insulation, and plants commission post-storm inspections before restart. Winter weather affects field NDT: couplants, penetrants and batteries must be suited to low temperatures."
+   ]
+  },
+  {
+   "id": "turnarounds",
+   "h2": "Turnarounds and project work",
+   "paragraphs": [
+    "Delaware City refinery turnarounds bring large inspection worklists, multiple NDT methods and round-the-clock schedules. Because the refinery operates as a system with Paulsboro across the river [10], turnaround planning may span both sites, and Delaware Valley NDT providers often support both.",
+    "The Delaware Container Terminal adds a multi-year construction program, competing for structural inspectors and CWIs with other regional projects. Buyers should book providers early, share scopes and specifications in advance, and agree reporting formats and daily preliminary reporting."
+   ]
+  },
+  {
+   "id": "data",
+   "h2": "Data and documentation expectations",
+   "paragraphs": [
+    "Refinery owners expect inspection results tied to condition monitoring locations, encoded PAUT and TOFD files, coverage maps, calibration records and technician certifications, ready to load into their inspection database. Public port and bridge projects require QA documentation that satisfies owners' and funding agencies' requirements, often with daily reports, nonconformance tracking and final turnover packages. Agreeing on formats and responsibilities before mobilization avoids rework and delays at project closeout."
+   ]
+  },
+  {
+   "id": "codes",
+   "h2": "Codes and certifications",
+   "paragraphs": [
+    "Refinery and chemical plant NDT uses ASME Section V, VIII and B31.3, with API 510, 570 and 653 for in-service inspection and risk-based inspection under API 580/581. Personnel are typically certified under ASNT SNT-TC-1A or CP-189, and owners often require API individual certifications.",
+    "Port and bridge construction follows AWS D1.1 and D1.5, with AWS CWIs widely required. Pharmaceutical plants may require additional documentation for validation and ASME BPE requirements for hygienic piping."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Wilmington",
+   "paragraphs": [
+    "Refinery and chemical NDT is usually priced on hourly or day rates per technician by method and certification level, with advanced equipment billed separately. Turnarounds add premiums for nights, weekends and overtime. Port and construction QA may be priced per shift, per weld or per structure.",
+    "Delaware Valley labor costs are moderate to high, and union agreements apply at some sites. NDT-Connect lets buyers post one scope and compare certified providers serving Wilmington, Delaware City, Philadelphia and the wider Delaware Valley."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Wilmington",
+   "paragraphs": [
+    "Wilmington and the Delaware Valley offer NDT careers in refining, chemicals, pharmaceuticals, port construction and infrastructure. Employers hire UT, RT, MT, PT and VT technicians, PAUT and TOFD specialists, tube inspection technicians, API inspectors, CWIs and Level IIIs.",
+    "A typical path starts with ASNT Level II certification in UT and RT, then builds advanced UT and API certifications. Technicians who can work across refinery, chemical and structural projects in the Delaware Valley have strong opportunities."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Wilmington",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers."
+   ],
+   "bullets": [
+    "ASNT and API certifications as required by the owner; AWS CWIs for structural work.",
+    "NRC license or valid authority for radiography in Delaware, plus ORC registration [9][14].",
+    "Heavy-crude refinery experience: fluid coker, FCC and hydroprocessing scopes.",
+    "Advanced methods: PAUT, TOFD, HTHA techniques, IRIS, PEC.",
+    "Port and marine structure inspection capability.",
+    "Turnaround capacity and daily reporting."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "How big is the Delaware City refinery?",
+   "a": "PBF lists Delaware City with a throughput capacity of 180,000 barrels per day and a Nelson Complexity Index of 13.6 [1], on a site of about 5,000 acres [2]."
+  },
+  {
+   "q": "Is Delaware an NRC Agreement State?",
+   "a": "No. The NRC licenses radioactive materials in Delaware, while the state regulates X-ray equipment and certain other sources and registers radioactive material facilities [8][9]."
+  },
+  {
+   "q": "What is the Delaware Container Terminal?",
+   "a": "A $669 million container terminal under construction at Edgemoor, expected to handle 1.2 million TEUs a year when it opens in 2029 [5][7]."
+  },
+  {
+   "q": "Which NDT methods are used at heavy-crude refineries?",
+   "a": "PAUT, TOFD, corrosion mapping, HTHA techniques, digital radiography, eddy current and IRIS for exchangers, pulsed eddy current for CUI and guided wave for long pipe runs."
+  },
+  {
+   "q": "Which codes apply to port construction NDT?",
+   "a": "Typically AWS D1.1 for structural steel, with owner specifications and CWI oversight; bridges use AWS D1.5."
+  },
+  {
+   "q": "How do I request NDT quotes in Wilmington?",
+   "a": "Post the scope on NDT-Connect with the facility, equipment, codes, methods, access, dates and reporting requirements."
+  }
+ ],
+ "references": [
+  {
+   "title": "PBF Holding — Form 10-K FY2023 (refinery table)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1566011/000156601124000003/pbfh-20231231.htm"
+  },
+  {
+   "title": "PBF Holding — Form 10-K FY2015 (Delaware City overview and units)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001566011/000156601116000017/pbfholding-2015123110k.htm"
+  },
+  {
+   "title": "PBF Holding — Form S-4 (Delaware City restart)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001566011/000119312516769055/d207489ds4.htm"
+  },
+  {
+   "title": "PBF Investments — Form S-4/A (heavy coking refinery, tankage)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0001429496/000119312513051867/d457999ds4a.htm"
+  },
+  {
+   "title": "Progressive Railroading — DE Terminal partners break ground at Port of Wilmington",
+   "url": "https://www.progressiverailroading.com/intermodal/news/DE-Terminal-partners-break-ground-at-Port-of-Wilmington--77751"
+  },
+  {
+   "title": "Maritime Executive — New container terminal for Wilmington moves forward",
+   "url": "https://maritime-executive.com/article/new-container-terminal-for-wilmington-moves-forward-despite-challenges"
+  },
+  {
+   "title": "SupplyChain247 — Construction begins on $669 million Delaware Container Terminal",
+   "url": "https://www.supplychain247.com/article/delaware-container-terminal-wilmington-groundbreaking/38584"
+  },
+  {
+   "title": "NRC — Delaware: non-Agreement State",
+   "url": "https://www.nrc.gov/agreement-states/delaware.html"
+  },
+  {
+   "title": "Delaware DHSS — Office of Radiation Control, radioactive material facilities",
+   "url": "https://dhss.delaware.gov/dph/homepage/about/sections/hsp/licenses-and-permits/radiation-control/radioactive-material-facilities/"
+  },
+  {
+   "title": "PBF Holding — Form 10-K FY2022 (East Coast Refining System)",
+   "url": "https://www.sec.gov/Archives/edgar/data/1566011/000156601123000004/pbfh-20221231.htm"
+  },
+  {
+   "title": "FreightWaves — Groundbreaking for $669M East Coast container terminal",
+   "url": "https://www.freightwaves.com/?p=580534"
+  },
+  {
+   "title": "OSHA — Process Safety Management, 29 CFR 1910.119",
+   "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.119"
+  },
+  {
+   "title": "NRC — Delaware non-Agreement State information (Region I)",
+   "url": "https://www.nrc.gov/agreement-states/delaware"
+  },
+  {
+   "title": "Delaware DHSS — Application for Delaware radioactive material registration",
+   "url": "https://www.dhss.delaware.gov/dph/hsp/files/narmlicapp.pdf"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Philadelphia",
+   "href": "/ndt-services/philadelphia-pa"
+  },
+  {
+   "name": "Baltimore",
+   "href": "/ndt-services/baltimore-md"
+  },
+  {
+   "name": "Newark",
+   "href": "/ndt-services/newark-nj"
+  },
+  {
+   "name": "New York",
+   "href": "/ndt-services/new-york-ny"
+  },
+  {
+   "name": "Pittsburgh",
+   "href": "/ndt-services/pittsburgh-pa"
+  }
+ ],
+ "related": [
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  },
+  {
+   "label": "All NDT locations",
+   "href": "/ndt-locations"
+  }
+ ]
+}

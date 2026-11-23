@@ -1,0 +1,313 @@
+{
+ "slug": "baltimore-md",
+ "city": "Baltimore",
+ "region": "Maryland",
+ "country": "United States",
+ "countrySlug": "united-states",
+ "wave": 2,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Baltimore, MD: Bridge, Port, Structural and Industrial Inspection",
+ "metaTitle": "NDT Services in Baltimore, MD | Bridge, Port & Structural Inspection",
+ "description": "NDT in Baltimore, Maryland: inspection for the Key Bridge rebuild, Port of Baltimore, Sparrows Point and industrial sites. AWS D1.5, MDE rules, hiring.",
+ "quickAnswer": "Baltimore's NDT market is driven by infrastructure. The **Francis Scott Key Bridge** replacement is planned as a cable-stayed bridge with a 1,665-foot main span and 3,365-foot total length [1], now forecast to cost $4.3 billion to $5.2 billion and finish in 2030 [2]. At Sparrows Point, **Tradepoint Atlantic** is redeveloping the 3,300-acre former Bethlehem Steel site [4], including a new container terminal now under construction [6]. Bridge, marine, structural steel and industrial work call for UT, MT, PT and radiography under AWS D1.5, AWS D1.1 and owner specifications. Radioactive materials, including industrial radiography sources, are licensed by the **Maryland Department of the Environment** [8].",
+ "keyFacts": [
+  {
+   "label": "Key Bridge replacement",
+   "value": "Cable-stayed, 1,665-ft main span, 3,365 ft long [1]; forecast $4.3–5.2 billion, completion 2030 [2]"
+  },
+  {
+   "label": "Sparrows Point",
+   "value": "Tradepoint Atlantic: 3,300-acre logistics and maritime site with 50-ft berths [4]"
+  },
+  {
+   "label": "New container terminal",
+   "value": "Sparrows Point Container Terminal under construction, expected 2029 [6]"
+  },
+  {
+   "label": "Radiation regulator",
+   "value": "Maryland Department of the Environment, Radiological Health Program (Agreement State) [8][9]"
+  }
+ ],
+ "industries": [
+  "Bridges and highways",
+  "Port and marine terminals",
+  "Structural steel and construction",
+  "Power and utilities",
+  "Manufacturing",
+  "Defense and aerospace"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Why Baltimore is an infrastructure-led NDT market",
+   "paragraphs": [
+    "Unlike the Gulf Coast refinery towns, Baltimore's NDT demand comes mainly from infrastructure, ports, construction and manufacturing. The March 2024 collapse of the Francis Scott Key Bridge after a ship strike made bridge safety a national issue and set off one of the largest infrastructure projects in the country. At the same time, the redevelopment of Sparrows Point and continued investment in the Port of Baltimore are creating large volumes of new steel, marine and industrial construction.",
+    "For NDT buyers, this means steady demand for structural weld inspection, bridge inspection, fabrication shop QA, marine structure assessment and industrial plant maintenance. For providers, it rewards AWS D1.1 and D1.5 experience, bridge inspection credentials, and the ability to work on large public projects with strict quality and documentation requirements."
+   ]
+  },
+  {
+   "id": "keybridge",
+   "h2": "The Key Bridge rebuild: a decade-defining project",
+   "paragraphs": [
+    "The Maryland Transportation Authority has restructured the rebuild into four separate procurements, announced in May 2026, with construction anticipated to start in summer 2027 [3]. The main-span package covers a 3,365-foot cable-stayed bridge with a 1,665-foot main span and 230-foot minimum clearance over the channel, estimated at $3.5 billion to $4 billion, with the four packages together estimated at about $4 billion to $4.8 billion [1]. MDTA has since forecast the total rebuild at $4.3 billion to $5.2 billion and moved expected completion from fall 2028 to 2030 [2]. The design includes a steel edge girder and floor beam system and vessel collision pier protection [5].",
+    "A cable-stayed steel bridge involves enormous amounts of fabrication and field welding. Steel girders, floor beams, anchorages and pier protection all need inspection, much of it under AWS D1.5, the Bridge Welding Code, which sets requirements for fracture-critical members, UT of groove welds, MT and radiography. Stay cables, anchor assemblies and high-strength bolting add further inspection scopes.",
+    "NDT work will be spread across fabrication shops, which may be far from Baltimore, and field operations on site. Owners and contractors will need inspectors with bridge fabrication experience, AWS Certified Welding Inspectors, and UT technicians qualified to D1.5 requirements."
+   ]
+  },
+  {
+   "id": "port",
+   "h2": "Port of Baltimore and Sparrows Point",
+   "paragraphs": [
+    "Tradepoint Atlantic, which bought the former Bethlehem Steel Sparrows Point plant in 2014, describes the site as a 3,300-acre logistics and maritime development with direct access to the Port of Baltimore, major rail and highways, and 50-foot deep-water berths [4]. The EPA notes the site has also been positioned for the offshore wind supply chain on the Eastern Seaboard [7].",
+    "The Sparrows Point Container Terminal, a joint venture between Tradepoint Atlantic and Terminal Investment Limited, broke ground in 2026 and is expected to be completed in 2029, with two new deep berths [6]. Because the terminal sits southeast of the main port, ships can reach it without passing through the bridge site [6].",
+    "Port and terminal work brings marine NDT scopes: weld inspection on crane rails, ship-to-shore cranes and terminal structures, ultrasonic thickness surveys of steel sheet piling and bulkheads, inspection of mooring hardware, and condition assessment of aging piers and wharves."
+   ],
+   "table": {
+    "caption": "Baltimore-area assets and typical NDT scopes",
+    "head": [
+     "Asset",
+     "Main concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Steel bridges and girders",
+      "Fatigue cracks, weld defects, corrosion, fracture-critical members",
+      "UT to AWS D1.5, MT, PT, PAUT, visual"
+     ],
+     [
+      "Cable-stayed elements and anchorages",
+      "Anchor and socket defects, corrosion",
+      "UT, MT, visual, specialized cable inspection"
+     ],
+     [
+      "Port cranes and terminal structures",
+      "Fatigue cracks in welds, corrosion",
+      "MT, UT, PAUT, visual"
+     ],
+     [
+      "Sheet piling, bulkheads and piers",
+      "Wall loss, splash-zone corrosion",
+      "UT thickness, visual, underwater inspection"
+     ],
+     [
+      "Industrial plants and utilities",
+      "Piping corrosion, weld integrity, boilers",
+      "UT, RT, MT, PT, ECT"
+     ],
+     [
+      "Structural steel buildings",
+      "Weld quality, bolting",
+      "UT to AWS D1.1, MT, visual"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "codes",
+   "h2": "Codes and standards for structural and bridge NDT",
+   "paragraphs": [
+    "Bridge and structural NDT in Baltimore is governed mainly by AWS welding codes and owner specifications. **AWS D1.5** (Bridge Welding Code) applies to highway bridge fabrication and includes specific requirements for fracture-critical members, UT acceptance criteria and NDT extent. **AWS D1.1** (Structural Welding Code — Steel) covers buildings, terminals and general structural work. Maryland's Department of Transportation and MDTA add their own specifications and quality assurance programs.",
+    "Bridge inspection under the federal National Bridge Inspection Standards uses visual inspection as its foundation, with NDT used to evaluate suspected cracks, measure section loss and assess fatigue-prone details. Personnel are typically certified under ASNT SNT-TC-1A or CP-189, and AWS Certified Welding Inspectors are commonly required on construction projects.",
+    "Industrial and plant work uses ASME Section V techniques with ASME Section VIII, B31.1 or B31.3 acceptance, and API 510, 570 and 653 for in-service equipment."
+   ],
+   "bullets": [
+    "Bridge fabrication: AWS D1.5 with owner specifications and QA oversight.",
+    "Buildings and terminals: AWS D1.1.",
+    "Plant piping and vessels: ASME codes and API in-service standards."
+   ]
+  },
+  {
+   "id": "shopqa",
+   "h2": "Fabrication shop QA and source inspection",
+   "paragraphs": [
+    "Much of the NDT on a large steel project happens long before anything reaches Baltimore. Bridge girders, floor beams, crane components and terminal steel are fabricated in shops across the Mid-Atlantic and beyond, and owners usually require both the fabricator's own quality control and independent quality assurance inspection. QC technicians perform the code-required UT, MT and visual inspection, while QA inspectors representing the owner verify procedures, witness testing, review records and perform spot checks.",
+    "For AWS D1.5 bridge work, fabricators typically need AISC certification for bridge fabrication, qualified welding procedures and an approved fracture control plan for fracture-critical members. NDT technicians must work to written procedures, calibrate equipment against code blocks and record every indication. Source inspection agencies that can place experienced UT technicians and CWIs at remote shops for months at a time are in high demand on megaprojects.",
+    "Buyers should clarify early which party performs QC and QA NDT, the percentage of welds to be inspected by each method, how rejected welds are tracked and re-inspected, and how records will be delivered to the owner's document control system."
+   ]
+  },
+  {
+   "id": "methods",
+   "h2": "Methods buyers order in Baltimore",
+   "paragraphs": [
+    "**Ultrasonic testing** is used for groove weld inspection on girders, crane structures and plate, increasingly with phased array for faster coverage and better records. **Magnetic particle** inspection detects surface cracks at fatigue-prone details such as cover plate ends, welded connections and crane girder welds. **Penetrant testing** covers non-magnetic materials and fine surface cracks.",
+    "**Radiography** is used in fabrication shops and on some field welds where code or owner requirements call for it, though UT is often preferred on bridges for safety and productivity. **Ultrasonic thickness gauging** quantifies section loss on corroded steel members, sheet piling and tanks. **Eddy current** can detect cracks through paint on steel structures, avoiding coating removal."
+   ]
+  },
+  {
+   "id": "aging",
+   "h2": "Aging infrastructure and fatigue",
+   "paragraphs": [
+    "Baltimore's highways, tunnels, rail and port infrastructure include many structures built decades ago, when fatigue-sensitive details were more common. Repeated loading from traffic, cranes and machinery can grow cracks at welds and connections over time, and corrosion from de-icing salts and brackish water reduces section.",
+    "NDT supports condition assessment, repair design and life extension. Typical scopes include crack detection and sizing at known fatigue details, measurement of section loss for load rating, verification of repair welds and retrofit bolting, and monitoring of previously found cracks. Accurate data feeds engineering assessments and helps owners prioritize limited budgets."
+   ]
+  },
+  {
+   "id": "radiation",
+   "h2": "Maryland radiation rules for radiography",
+   "paragraphs": [
+    "Maryland is an Agreement State under the Atomic Energy Act, which gives the state full regulatory authority over radioactive materials users, administered by the Maryland Department of the Environment's Radiological Health Program under COMAR 26.12.01.01 [8]. The Maryland regulations include specific sections on industrial radiography, such as conducting industrial radiographic operations and the radiation safety officer for industrial radiography [10].",
+    "Out-of-state licensees must obtain reciprocal recognition before working in Maryland, submitting a copy of their out-of-state license and radiation safety program [9]. X-ray equipment is registered separately. Buyers should confirm that radiography providers hold a Maryland license or reciprocity and that radiographers hold valid certifications."
+   ]
+  },
+  {
+   "id": "industry",
+   "h2": "Industry, power and manufacturing",
+   "paragraphs": [
+    "Beyond bridges and ports, the Baltimore region has power generation, utilities, water and wastewater infrastructure, manufacturing plants and defense and aerospace operations. These sites need routine NDT for boilers, piping, pressure vessels, tanks and rotating equipment, along with QA inspection for manufactured components.",
+    "Utilities and municipal owners commission inspection of water mains, penstocks, tanks and pumping station piping, while manufacturers need weld and casting inspection, often to customer specifications. Defense and aerospace suppliers in Maryland may require NAS 410 certified personnel and Nadcap-accredited processes."
+   ]
+  },
+  {
+   "id": "offshore",
+   "h2": "Offshore wind supply chain opportunities",
+   "paragraphs": [
+    "Sparrows Point has been promoted as a hub in the offshore wind supply chain for the Eastern Seaboard [7]. If projects proceed, fabrication of monopiles, transition pieces, towers and secondary steel generates heavy weld inspection volumes: automated UT and PAUT for thick-plate welds, MT, visual inspection and dimensional checks, typically to offshore standards such as DNV codes with classification or certification oversight.",
+    "Offshore wind market conditions have been volatile, so providers should treat this as a potential growth area rather than a certainty. Those with heavy-fabrication UT and PAUT capability and offshore standards experience are best placed if the work comes."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Baltimore",
+   "paragraphs": [
+    "Structural and bridge NDT is often priced per technician hour or day, with separate rates for UT, MT, PT, RT and CWI services and additional charges for PAUT equipment, rope access, boats or lift equipment. Public projects may use prevailing wage rates and require detailed documentation, which affects cost.",
+    "For fabrication shop QA, pricing may be per weld, per piece or per shift. Buyers can compare quotes more effectively by defining the code, extent of inspection, acceptance criteria, access requirements and reporting format. NDT-Connect lets buyers post one scope and compare certified providers serving Baltimore and the Mid-Atlantic."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Baltimore",
+   "paragraphs": [
+    "The Key Bridge rebuild, port expansion and ongoing infrastructure work make Baltimore a good market for UT, MT and PT technicians, AWS CWIs, bridge inspectors and Level IIIs. Skills in PAUT, AWS D1.5 inspection and rope access are especially valuable on large structures.",
+    "A typical path starts with ASNT Level II certification in UT and MT, adds AWS CWI certification, and then builds experience on bridges, structures and fabrication. Bridge inspection roles may also require FHWA-approved bridge inspection training."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Baltimore",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers for bridge, port or industrial work."
+   ],
+   "bullets": [
+    "ASNT-certified technicians and AWS CWIs where required.",
+    "Experience with AWS D1.5 bridge fabrication or D1.1 structural work.",
+    "PAUT capability and qualified procedures for groove weld inspection.",
+    "Maryland radiation license or reciprocity for radiography [8][9].",
+    "Rope access, marine access or lift equipment capability for field work.",
+    "Documentation suited to public-sector QA and owner specifications."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "When will the new Key Bridge be finished?",
+   "a": "MDTA has forecast completion in 2030, with costs of $4.3 billion to $5.2 billion [2]. The replacement is a cable-stayed bridge with a 1,665-foot main span [1]."
+  },
+  {
+   "q": "What NDT code applies to bridge welding?",
+   "a": "AWS D1.5, the Bridge Welding Code, along with owner specifications from agencies such as MDTA and the Maryland Department of Transportation."
+  },
+  {
+   "q": "Who regulates industrial radiography in Maryland?",
+   "a": "The Maryland Department of the Environment's Radiological Health Program, under COMAR 26.12.01.01 [8]. Out-of-state licensees need reciprocal recognition [9]."
+  },
+  {
+   "q": "What is Tradepoint Atlantic?",
+   "a": "A 3,300-acre logistics and maritime development at the former Bethlehem Steel Sparrows Point site [4], where a new container terminal is under construction [6]."
+  },
+  {
+   "q": "Which NDT methods are used on steel bridges?",
+   "a": "Visual inspection, ultrasonic testing (including PAUT), magnetic particle, penetrant, ultrasonic thickness gauging and eddy current through coatings."
+  },
+  {
+   "q": "How do I request NDT quotes in Baltimore?",
+   "a": "Post the scope on NDT-Connect with the structure or equipment, code, methods, extent, access, dates and reporting requirements."
+  }
+ ],
+ "references": [
+  {
+   "title": "Construction Dive — Maryland Key Bridge contracts (May 2026)",
+   "url": "https://www.constructiondive.com/news/maryland-key-bridge-contracts-may-2026/820788/"
+  },
+  {
+   "title": "WYPR — Maryland takes big step in selecting company for main part of the Key Bridge rebuild",
+   "url": "https://www.wypr.org/wypr-news/2026-07-21/maryland-takes-big-step-in-selecting-company-for-the-main-part-of-the-key-bridge-rebuild"
+  },
+  {
+   "title": "MDTA — Four separate procurements for Key Bridge rebuild construction",
+   "url": "https://mdta.maryland.gov/blog-category/mdta-news-releases/maryland-transportation-authority-announces-four-separate"
+  },
+  {
+   "title": "Tradepoint Atlantic — Development",
+   "url": "https://www.tradepointatlantic.com/development/"
+  },
+  {
+   "title": "Equipment World — Key Bridge rebuild split into four contracts",
+   "url": "https://www.equipmentworld.com/roadbuilding/article/15826310/mdta-to-rebid-key-bridge-rebuild-with-4-contracts"
+  },
+  {
+   "title": "Maryland Matters — Work begins on new shipping terminal at former Bethlehem Steel site",
+   "url": "https://marylandmatters.org/2026/05/01/shipping-terminal-tradepoint-atlantic-sparrows-point/"
+  },
+  {
+   "title": "EPA — Sparrows Point Terminal economic profile",
+   "url": "https://www.epa.gov/system/files/documents/2022-05/Sparrows%20Point%20Terminal%20Econ%20Profile_05202022_508.pdf"
+  },
+  {
+   "title": "Maryland Department of the Environment — Radioactive materials license",
+   "url": "https://mde.State.md.us/programs/air/radiologicalhealth/documents/www.mde.state.md.us/assets/document/air/1.16.pdf"
+  },
+  {
+   "title": "Maryland Department of the Environment — Reciprocal recognition of out-of-state licenses",
+   "url": "https://mde.State.md.us/programs/air/radiologicalhealth/documents/www.mde.state.md.us/assets/document/air/1.18.pdf"
+  },
+  {
+   "title": "Maryland Department of the Environment — Regulations supplement (industrial radiography sections)",
+   "url": "https://mde.maryland.gov/programs/Air/RadiologicalHealth/Documents/SUPP%2030%20clean%20version.pdf"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Wilmington",
+   "href": "/ndt-services/wilmington-de"
+  },
+  {
+   "name": "Philadelphia",
+   "href": "/ndt-services/philadelphia-pa"
+  },
+  {
+   "name": "Newport News",
+   "href": "/ndt-services/newport-news-va"
+  },
+  {
+   "name": "Norfolk",
+   "href": "/ndt-services/norfolk-va"
+  },
+  {
+   "name": "Pittsburgh",
+   "href": "/ndt-services/pittsburgh-pa"
+  }
+ ],
+ "related": [
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  },
+  {
+   "label": "All NDT locations",
+   "href": "/ndt-locations"
+  }
+ ]
+}

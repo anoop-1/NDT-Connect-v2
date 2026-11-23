@@ -1,0 +1,322 @@
+{
+ "slug": "joliet-il",
+ "city": "Joliet",
+ "region": "Illinois",
+ "country": "United States",
+ "countrySlug": "united-states",
+ "wave": 2,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Joliet, IL: Refinery, Power and Industrial Inspection in Will County",
+ "metaTitle": "NDT Services in Joliet, IL | Refinery, Nuclear & Industrial NDT",
+ "description": "NDT in Joliet, Illinois: inspection for ExxonMobil Joliet, Will County power and nuclear plants, pipelines and terminals. IEMA radiographer rules, hiring.",
+ "quickAnswer": "Joliet, about 40 miles southwest of Chicago, is anchored by the **ExxonMobil Joliet Refinery** in Channahon Township: a 275,000 barrel-per-day plant on 1,400 acres, started up in 1972 and designed to process Canadian crude [1][2]. Will and Grundy counties also host nuclear and fossil power stations, pipelines, tank farms and logistics hubs. NDT demand centres on refinery turnarounds and mechanical integrity, power plant outages and pipeline work. Illinois is unusual: every industrial radiographer and trainee must carry a **state certification card issued by the Illinois Emergency Management Agency** [5][6].",
+ "keyFacts": [
+  {
+   "label": "Anchor site",
+   "value": "ExxonMobil Joliet Refinery: 275,000 bpd on 1,400 acres, started 1972 [1]"
+  },
+  {
+   "label": "Design",
+   "value": "Built to process Canadian crude delivered by pipeline [2]"
+  },
+  {
+   "label": "Units",
+   "value": "12 major processing units plus cogeneration, LPG storage and a barge dock [1][3]"
+  },
+  {
+   "label": "Radiography rules",
+   "value": "IEMA certification of every radiographer and trainee under 32 Ill. Adm. Code 405 and Part 350 [5][6]"
+  }
+ ],
+ "industries": [
+  "Oil refining",
+  "Nuclear power",
+  "Fossil power and utilities",
+  "Pipelines and tank farms",
+  "Logistics and rail",
+  "Manufacturing"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Why Joliet matters for NDT",
+   "paragraphs": [
+    "Joliet and the surrounding Will and Grundy county corridor form one of the Midwest's important industrial clusters. The ExxonMobil Joliet Refinery sits on 1,400 acres in unincorporated Channahon Township and makes up about 6% of the Midwest's refinery capacity [1]. Several building-trade unions are employed at the site, including insulators, pipefitters, boilermakers and ironworkers [1], reflecting the scale of maintenance and turnaround work.",
+    "The region also has nuclear and fossil power stations, major pipelines bringing Canadian and domestic crude into the Chicago area, tank farms and terminals, intermodal logistics parks and manufacturing plants. For NDT providers, this creates a mix of refinery turnaround work, nuclear outage inspection, pipeline integrity work and general industrial QA, within easy reach of the Chicago labor market."
+   ]
+  },
+  {
+   "id": "refinery",
+   "h2": "ExxonMobil Joliet: a heavy-crude refinery",
+   "paragraphs": [
+    "Built by Mobil and started up in August 1972, the Joliet refinery has a capacity of 275,000 barrels a day and produces about 11 million gallons of gasoline and diesel daily, along with LPG, asphalt, sulfur and petroleum coke [1]. ExxonMobil says it is one of the newest refineries in the United States and was designed to receive and process Canadian crude by pipeline, which requires specialized equipment and processes [2]. Besides its 12 major processing units, the site has a cogeneration facility, tankage and LPG storage, rail car access and a barge loading dock [3].",
+    "Heavy Canadian crudes bring higher sulfur, higher acid content and more solids than light crudes, which shapes damage mechanisms: sulfidation and naphthenic acid corrosion in crude and vacuum units, erosion and coke drum cracking in delayed cokers, and wet H2S damage and amine corrosion in sour water and gas treating units. Inspection programs focus on these mechanisms with corrosion mapping, PAUT, TOFD and specialized coke drum inspection.",
+    "In July 2024, a tornado that struck close to the plant cut power to the refinery and region, forcing a full shutdown [4]. Events like this lead to extensive post-event inspection before restart: checking equipment stressed by abrupt shutdown, structures and insulation damaged by wind, and electrical systems."
+   ],
+   "table": {
+    "caption": "Joliet refinery units and typical NDT scopes",
+    "head": [
+     "Unit",
+     "Main concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Crude and vacuum units",
+      "Sulfidation, naphthenic acid corrosion, CUI",
+      "UT, corrosion mapping, PAUT, PEC"
+     ],
+     [
+      "Delayed coker",
+      "Coke drum bulging and cracking, erosion",
+      "Laser profiling, PAUT, TOFD, AE"
+     ],
+     [
+      "Hydrotreaters",
+      "HTHA, reactor effluent corrosion, weld cracking",
+      "Advanced UT for HTHA, PAUT, corrosion mapping"
+     ],
+     [
+      "Sulfur and amine units",
+      "Wet H2S damage, amine SCC, corrosion",
+      "PAUT, WFMT, UT, corrosion mapping"
+     ],
+     [
+      "Cogeneration and utilities",
+      "Boiler tubes, steam piping",
+      "UT, EMAT, PAUT, MT"
+     ],
+     [
+      "Tank farms and barge dock",
+      "Floor and shell corrosion, dock piping",
+      "MFL, UT, guided wave"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "coker",
+   "h2": "Coke drum inspection: a heavy-crude specialty",
+   "paragraphs": [
+    "Refineries that process heavy crude rely on delayed cokers, and coke drums are among the most demanding pieces of equipment to inspect. Each drum goes through repeated heating, filling, quenching and cutting cycles, which cause thermal fatigue, bulging and cracking, especially at circumferential welds and the skirt attachment. Over time, distortion concentrates strain and drives cracks through the shell.",
+    "Owners use several complementary techniques. Laser scanning maps the internal profile of the drum to quantify bulging and track how it grows between inspections. PAUT and TOFD size cracks in shell welds and the skirt-to-shell junction. Acoustic emission and strain gauges monitor drums during operation, and external thermography can show hot spots and insulation problems. Results feed fitness-for-service assessments and decisions on repairs, weld overlays or drum replacement.",
+    "Because coker inspection windows are short and the work is specialized, buyers should book experienced crews well before the outage, agree on scanning coverage and reference datums, and make sure data from previous inspections is available for comparison."
+   ]
+  },
+  {
+   "id": "power",
+   "h2": "Nuclear and fossil power in Will and Grundy counties",
+   "paragraphs": [
+    "The Joliet area is close to several of Illinois's nuclear stations, including Dresden near Morris and Braidwood near Braceville, which make northern Illinois one of the densest nuclear regions in the US. Nuclear plants have refueling outages every 18 to 24 months, during which in-service inspection under ASME Section XI covers reactor vessel welds, piping welds, steam generator tubes and component supports.",
+    "Nuclear NDT is a specialized market: personnel must be qualified under performance demonstration programs for UT of piping and vessel welds, eddy current inspection of steam generator tubes follows industry guidelines, and work is done under strict radiation protection and quality assurance programs. Local providers often supply MT, PT, VT and conventional UT technicians to support specialist vendors during outages.",
+    "The region also has gas-fired and former coal-fired generating stations, which need boiler, piping and turbine inspection during outages and as units are converted or retired."
+   ]
+  },
+  {
+   "id": "pipelines",
+   "h2": "Pipelines, terminals and logistics",
+   "paragraphs": [
+    "Joliet sits on a major energy corridor. Crude and product pipelines connect Canadian and US supply to Chicago-area refineries, and tank farms and terminals store and distribute fuels. ExxonMobil also operates terminals and tank farms elsewhere in the Chicago area [3].",
+    "Pipeline work brings weld inspection to API 1104 on construction and repairs, in-line inspection verification digs using UT, PAUT and laser profilometry, and integrity assessments under PHMSA rules. Tank farms need API 653 inspections with MFL floor scanning, shell thickness surveys and settlement surveys.",
+    "Joliet's large intermodal and logistics parks add structural steel, crane and rail infrastructure inspection.",
+    "River terminals on the Des Plaines River and Illinois Waterway add barge dock piping, loading arms and mooring structures to the inspection mix. ExxonMobil's own barge loading dock at Joliet [3] is one example; dock piping and structures face atmospheric corrosion and impact damage and are typically inspected with UT thickness surveys, guided wave and visual inspection."
+   ]
+  },
+  {
+   "id": "psm",
+   "h2": "Mechanical integrity and inspection programs",
+   "paragraphs": [
+    "Refinery and chemical processes in Illinois fall under federal OSHA's Process Safety Management standard, which requires mechanical integrity programs for pressure vessels, tanks, piping and relief systems, with inspection and testing following recognized good engineering practice [7]. In practice, the refinery applies API 510, 570 and 653, risk-based inspection, and corporate standards.",
+    "NDT providers support on-stream inspection between turnarounds and heavy inspection loads during turnarounds. Data must be traceable, consistent with condition monitoring locations and suitable for remaining-life calculations and fitness-for-service assessments."
+   ]
+  },
+  {
+   "id": "radiation",
+   "h2": "Illinois radiographer certification: a key difference",
+   "paragraphs": [
+    "Illinois is an Agreement State, and its industrial radiography rules are administered by the Illinois Emergency Management Agency. 32 Ill. Adm. Code Part 350 sets radiation safety requirements for industrial radiography, in addition to other state radiation rules [8]. Unlike many states that accept national certifications, Illinois requires that radiographers and radiographer trainees hold certification issued by the Agency under 32 Ill. Adm. Code 405 before working [5].",
+    "To be certified as an industrial radiographer, an individual must apply, pay the fee, pass an examination or qualify by reciprocity, and complete the required hours of experience [9]. Each radiographer or trainee at a job site must have a valid IEMA-issued certification card on their person [6]. Radiation safety officers for licensees must also hold industrial radiographer certification [10].",
+    "For out-of-state crews, this means planning ahead: confirm that every radiographer and trainee has Illinois certification or reciprocity before mobilizing, or radiography will be delayed."
+   ],
+   "bullets": [
+    "Check IEMA radiographer and trainee certification cards for every crew member [5][6].",
+    "Confirm the provider's Illinois license or reciprocity.",
+    "Allow time for out-of-state technicians to obtain Illinois certification [9]."
+   ]
+  },
+  {
+   "id": "methods",
+   "h2": "Methods buyers order in the Joliet area",
+   "paragraphs": [
+    "**Advanced ultrasonics** dominate refinery work: PAUT and TOFD on welds, corrosion mapping on piping and vessels, and HTHA techniques for hydroprocessing equipment. **Radiography**, increasingly digital, covers small-bore piping and insulated line profiles. **Electromagnetic methods** cover heat exchangers and CUI screening. **Guided wave** screens long pipe runs and crossings, and **acoustic emission** screens tanks and coke drums.",
+    "Power plants add EMAT and UT boiler tube surveys, PAUT on high-energy piping, eddy current on condenser tubes, and replication for creep assessment. Pipelines use UT, PAUT and laser tools in verification digs."
+   ]
+  },
+  {
+   "id": "climate",
+   "h2": "Midwest weather and inspection",
+   "paragraphs": [
+    "Northern Illinois has cold winters and hot, humid summers. Freeze-thaw cycles and moisture drive corrosion under insulation, especially on piping that cycles through the CUI temperature range or has damaged jacketing. Severe storms and tornadoes, like the July 2024 event that shut down the refinery [4], can damage structures and insulation and cause abrupt shutdowns.",
+    "Winter conditions affect field NDT: couplants and penetrants need to work at low temperatures, batteries drain faster, and technicians need cold-weather PPE. Many owners schedule turnarounds in spring and fall to avoid the worst weather."
+   ]
+  },
+  {
+   "id": "data",
+   "h2": "Data and reporting expectations",
+   "paragraphs": [
+    "Refinery owners want NDT data that drops straight into their inspection database. Deliverables should include thickness readings tied to condition monitoring locations, encoded PAUT and TOFD files, coverage maps, calibration records and technician certifications. For nuclear work, documentation must also satisfy the plant's quality assurance program and ASME Section XI requirements. Agreeing file formats and naming conventions before mobilization prevents delays in engineering review during turnarounds and outages."
+   ]
+  },
+  {
+   "id": "turnarounds",
+   "h2": "Turnarounds and outage planning",
+   "paragraphs": [
+    "Major refinery turnarounds bring large inspection worklists, multiple NDT methods running around the clock and tight coordination with repair crews. Nuclear outages and power plant outages in the region may overlap, competing for technicians.",
+    "Buyers should finalize worklists early, confirm technician certifications (including Illinois radiographer cards), arrange site training and badging, and agree reporting formats and daily preliminary reporting. Chicago's large labor market helps, but specialist technicians in PAUT, TOFD, HTHA and tube inspection still need to be booked early."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Joliet",
+   "paragraphs": [
+    "Refinery and power NDT is usually priced on hourly or day rates per technician by method and certification level, with advanced equipment billed separately. Union labor agreements at some sites affect staffing and rates. Turnarounds and outages add premiums for nights, weekends and overtime.",
+    "NDT-Connect lets buyers post one scope and compare certified providers serving Joliet, Channahon, Lemont, Will County and the Chicago area."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Joliet",
+   "paragraphs": [
+    "The Joliet area offers NDT careers in refining, power and nuclear, pipelines and manufacturing. Employers hire UT, RT, MT, PT and VT technicians, PAUT and TOFD specialists, tube inspection technicians, API inspectors and Level IIIs.",
+    "Illinois radiographers need IEMA certification [5], which can be a career advantage for local technicians. Building PAUT, TOFD and API certifications, plus nuclear outage experience, opens higher-paying roles."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Joliet",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers."
+   ],
+   "bullets": [
+    "ASNT and API certifications required by the owner.",
+    "IEMA radiographer and trainee certifications for every radiography crew member [5][6].",
+    "Heavy-crude refinery experience: coker, sulfidation and naphthenic acid scopes.",
+    "Advanced methods: PAUT, TOFD, HTHA techniques, IRIS, PEC.",
+    "Nuclear or power outage experience where relevant.",
+    "Turnaround capacity and daily reporting."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "How big is the ExxonMobil Joliet refinery?",
+   "a": "275,000 barrels per day on 1,400 acres in Channahon Township, started up in 1972 [1]."
+  },
+  {
+   "q": "Why does Joliet process Canadian crude?",
+   "a": "ExxonMobil says the refinery was designed to receive and process Canadian crude by pipeline, which requires specialized equipment and processes [2]."
+  },
+  {
+   "q": "Do radiographers need Illinois certification?",
+   "a": "Yes. Radiographers and trainees must hold IEMA certification under 32 Ill. Adm. Code 405 and carry a valid card at the job site [5][6]."
+  },
+  {
+   "q": "How do I get Illinois industrial radiographer certification?",
+   "a": "Apply to IEMA, pay the fee, pass an examination or qualify through reciprocity, and complete required experience hours [9]."
+  },
+  {
+   "q": "Which NDT methods are used in heavy-crude refineries?",
+   "a": "Corrosion mapping, PAUT, TOFD, HTHA techniques, coke drum laser profiling and AE, digital radiography, eddy current and IRIS for exchangers, and PEC for CUI."
+  },
+  {
+   "q": "How do I request NDT quotes in Joliet?",
+   "a": "Post the scope on NDT-Connect with the unit, equipment, damage mechanisms, methods, access, dates and reporting requirements."
+  }
+ ],
+ "references": [
+  {
+   "title": "ExxonMobil — Joliet facility profile 2026",
+   "url": "https://corporate.exxonmobil.com/-/media/global/files/locations/united-states-operations/exxonmobil-joliet-2026-fact-sheet.pdf"
+  },
+  {
+   "title": "ExxonMobil — Joliet operations overview",
+   "url": "https://corporate.exxonmobil.com/locations/united-states/joliet-operations-overview"
+  },
+  {
+   "title": "ExxonMobil — Joliet refinery fact sheet (2024)",
+   "url": "https://origin-corporate.exxonmobil.com/-/media/global/files/locations/united-states-operations/joliet-refinery-fact-sheet_082024.pdf"
+  },
+  {
+   "title": "S&P Global — ExxonMobil still without power at Joliet refinery after tornado",
+   "url": "https://www.spglobal.com/energy/en/news-research/latest-news/crude-oil/071824-refinery-news-exxonmobil-says-still-without-power-at-joliet-refinery-after-tornado-hits-region"
+  },
+  {
+   "title": "Illinois Administrative Code — 32 Ill. Adm. Code 350.2010, training and testing",
+   "url": "https://my.ilga.gov/ftp/JCAR/AdminCode/032/032003500C20100R.html"
+  },
+  {
+   "title": "Illinois Administrative Code — 32 Ill. Adm. Code 350, Subpart D (job site certification cards)",
+   "url": "https://ilga.gov/ftp/JCAR/AdminCode/032/032003500D30450R.html"
+  },
+  {
+   "title": "OSHA — Process Safety Management, 29 CFR 1910.119",
+   "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.119"
+  },
+  {
+   "title": "Illinois Administrative Code — 32 Ill. Adm. Code 350.10, purpose and scope",
+   "url": "https://www.ilga.gov/ftp/JCAR/AdminCode/032/032003500A00100R.html"
+  },
+  {
+   "title": "Illinois Administrative Code — 32 Ill. Adm. Code 405.90, requirements for certification",
+   "url": "https://www.ilga.gov/ftp/JCAR/AdminCode/032/032004050000900R.html"
+  },
+  {
+   "title": "Illinois Administrative Code — 32 Ill. Adm. Code 350 (radiation safety officer)",
+   "url": "https://my.ilga.gov/ftp/JCAR/AdminCode/032/032003500D40200R.html"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Chicago",
+   "href": "/ndt-services/chicago-il"
+  },
+  {
+   "name": "Gary",
+   "href": "/ndt-services/gary-in"
+  },
+  {
+   "name": "Peoria",
+   "href": "/ndt-services/peoria-il"
+  },
+  {
+   "name": "Rockford",
+   "href": "/ndt-services/rockford-il"
+  },
+  {
+   "name": "Bloomington",
+   "href": "/ndt-services/bloomington-il"
+  }
+ ],
+ "related": [
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  },
+  {
+   "label": "All NDT locations",
+   "href": "/ndt-locations"
+  }
+ ]
+}
