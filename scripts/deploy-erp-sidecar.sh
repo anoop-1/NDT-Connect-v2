@@ -14,8 +14,10 @@ git archive HEAD | tar -x -C "$B"
 cp package-lock.json "$B/" 2>/dev/null || true
 cd "$B"
 rm -rf mobile satellites NDTConnect seo-analysis GROWTH-PLAN-* store-listing __tests__ docs scripts src/app src/pages src/middleware.ts middleware.ts
-( cd app && for x in *; do case "$x" in layout.tsx|globals.css|favicon.ico|not-found.tsx|erp|free-erp|buyers-guide|ndt-leaders|api) ;; *) rm -rf "$x";; esac; done
+( cd app && for x in *; do case "$x" in layout.tsx|globals.css|favicon.ico|not-found.tsx|erp|free-erp|buyers-guide|ndt-leaders|ndt-locations|api) ;; *) rm -rf "$x";; esac; done
   cd api && for x in *; do [ "$x" = erp ] || rm -rf "$x"; done )
+# city hubs: /ndt-services/<new-slug> only (the main app owns every other /ndt-services URL)
+cp -r sidecar-routes/ndt-services app/ndt-services
 # assets under /erp-assets so they never collide with the main app's /_next
 sed -i.bak "s#  output: 'standalone',#  output: 'standalone',\n  assetPrefix: '/erp-assets',#" next.config.js
 scp -i "$KEY" -q "$VPS:/var/www/ndt-connect/.env.production.local" .env.production.local   # build-time env (JWT_SECRET etc.)

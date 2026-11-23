@@ -1,0 +1,2 @@
+import type { CityHub } from './types';
+export const WAVE1: CityHub[] = [];

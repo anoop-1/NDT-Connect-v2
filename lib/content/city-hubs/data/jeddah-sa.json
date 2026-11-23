@@ -1,0 +1,266 @@
+{
+ "slug": "jeddah-sa",
+ "city": "Jeddah",
+ "region": "Makkah Province",
+ "country": "Saudi Arabia",
+ "countrySlug": "saudi-arabia",
+ "wave": 1,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Jeddah: Inspection for Power, Desalination, Ports and Industry",
+ "metaTitle": "NDT Services in Jeddah, Saudi Arabia | Inspection Companies Guide",
+ "description": "NDT in Jeddah: inspection for Shuaibah power and desalination, Jeddah Islamic Port, MODON industrial cities and Aramco terminals. Methods, codes, hiring.",
+ "quickAnswer": "Jeddah is Saudi Arabia's second-largest city and home to its largest port, Jeddah Islamic Port [1]. Unlike the Eastern Province, its NDT demand is driven less by oil production and more by **power and desalination**, **port and marine assets**, **fuel storage and distribution**, and **manufacturing** in three MODON industrial cities that together house well over a thousand factories [2]. The Shuaibah complex about 120 km south of Jeddah is one of the largest power and desalination sites in the region [7][9], and Aramco still runs fuel storage and distribution from its former south Jeddah refinery site [4][5].",
+ "keyFacts": [
+  {
+   "label": "Port",
+   "value": "Jeddah Islamic Port, the largest port in Saudi Arabia and on the Red Sea, grew from 10 berths in 1976 to 58 [1]"
+  },
+  {
+   "label": "Industrial base",
+   "value": "Three MODON industrial cities; the first alone has 1,119 factories on 12 million m² [2]"
+  },
+  {
+   "label": "Power and water",
+   "value": "Shoaiba complex, about 120 km south, reached 5.6 GW gross power capacity [9]; Shuaibah 3 is being converted to a 600,000 m³/day reverse osmosis plant [8]"
+  },
+  {
+   "label": "Fuel logistics",
+   "value": "The 77,000 b/d Jeddah refinery stopped processing in 2017 and became a products distribution hub [4]"
+  }
+ ],
+ "industries": [
+  "Power generation",
+  "Desalination",
+  "Ports and marine",
+  "Fuel storage and distribution",
+  "Metals and fabrication",
+  "Manufacturing"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "What makes Jeddah's NDT market different",
+   "paragraphs": [
+    "Most NDT content about Saudi Arabia focuses on the Eastern Province's oil and gas plants. Jeddah's market looks different. It is the Kingdom's main Red Sea gateway and second-largest city, with the largest port in the country [1]. Inspection spend here follows the assets that keep a fast-growing city supplied with power, water, fuel and goods: thermal and reverse osmosis desalination plants, power stations, tank farms and pipelines, port cranes and marine structures, and the factories in Jeddah's industrial cities.",
+    "That mix changes what buyers need from a provider. Power and desalination clients want specialists in boiler tubes, turbine components, heat exchangers and large-diameter pipe, plus corrosion assessment in aggressive seawater service. Port operators need structural steel and weld inspection on cranes, quay structures and hoppers. Manufacturers need code inspection of fabricated products before they ship. A provider that is excellent at pipeline girth welds in the desert may not be the best fit for a desalination plant's evaporator or a crane's slewing ring.",
+    "Jeddah also hosts frequent inspection demand linked to construction. Major urban, transport and port expansion projects, such as DP World's development of Jeddah South Container Terminal [10], require weld inspection on structural steel, pipe supports and building services, often under tight programmes."
+   ]
+  },
+  {
+   "id": "industries",
+   "h2": "Industries and facilities that drive inspection demand",
+   "paragraphs": [
+    "Jeddah Governorate has three industrial cities supervised by MODON, the Saudi Authority for Industrial Cities and Technology Zones [2]. The first, opened in the early 1970s south of the city, covers about 12 million m² and contains 1,119 factories [2]. The second opened in 2009 about 30 km further south, covers 8 million m² and holds an estimated 296 factories [2], with metals and food among its main industries [3]. Together they represent a large base of fabrication, metal processing and equipment manufacturing that needs routine NDT.",
+    "Energy and water infrastructure is the other pillar. The Shoaiba power and desalination complex lies on the Red Sea coast about 120 km south of Jeddah, and additions of three 400 MW blocks raised its gross capacity to 5.6 GW [9]. The Shuaibah 3 independent water and power project produced 900 MW and 880,000 m³/day of water, and is being reconfigured into a 600,000 m³/day seawater reverse osmosis plant serving Jeddah and Makkah [8]. ACWA Power's Shuaibah 2 plant adds 250,000 m³/day of reverse osmosis capacity on the same complex [7]."
+   ],
+   "table": {
+    "caption": "Jeddah-area assets and their typical inspection scopes",
+    "head": [
+     "Asset",
+     "Typical inspection need",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Thermal power units",
+      "Boiler tube thinning and failures, header and steam line welds, turbine and generator components",
+      "UT thickness, EMAT, RT, PAUT, MT, PT, replication"
+     ],
+     [
+      "Thermal and RO desalination plants",
+      "Seawater corrosion of pipe and vessels, evaporator and brine heater tubes, duplex and super-duplex welds",
+      "UT, ECT, IRIS, RT, PT, PMI, ferrite measurement"
+     ],
+     [
+      "Fuel terminals and tank farms",
+      "Tank floor and shell corrosion, product pipelines, loading arms",
+      "MFL, UT, guided wave, vacuum box, MT"
+     ],
+     [
+      "Port cranes and marine structures",
+      "Fatigue cracking in welded structures, corrosion of steel piles and fenders",
+      "MT, UT, PAUT, ACFM, visual and drone inspection"
+     ],
+     [
+      "Factories in MODON industrial cities",
+      "Inspection of fabricated vessels, structural steel, castings and forgings",
+      "RT, UT, MT, PT, VT"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "methods",
+   "h2": "Which NDT methods Jeddah buyers order, and why",
+   "paragraphs": [
+    "**Ultrasonic thickness and corrosion mapping** is the most-ordered service in power, water and fuel storage, because wall loss is the main threat to pipe, vessels and tanks in seawater and humid coastal service. For boiler tubes, many owners use **EMAT** or rapid UT scanning during outages to cover long lengths of tube quickly, with RT or PAUT on suspect welds and dissimilar-metal joints.",
+    "Desalination brings its own requirements. Brine heaters, condensers and heat exchangers use thousands of tubes, so **eddy current testing** (for non-ferrous tubes) and **IRIS** (for ferrous tubes) are core outage services. Duplex and super-duplex stainless steels are common in seawater piping, and their welds need inspection for both flaws and phase balance, which is why **PMI** and **ferrite measurement** often accompany RT or PAUT on these jobs.",
+    "**Magnetic particle testing** and **ACFM** are standard for fatigue cracks on port cranes, lifting equipment and marine structures; ACFM is useful where coatings cannot be removed. Tank owners use **MFL floor scanning** to screen tank floors during out-of-service inspections, followed by UT to size indications. Fabricators in the industrial cities rely on RT, UT, MT and PT to meet ASME, AWS and client acceptance criteria before products ship.",
+    "If your scope is a fuel terminal or pipeline operated by or for Saudi Aramco, the Aramco qualification rules described on our Al Khobar page apply here too: contractor NDT personnel qualify under SAEP-1142 [6]."
+   ]
+  },
+  {
+   "id": "codes",
+   "h2": "Codes, client specifications and certification",
+   "paragraphs": [
+    "The governing documents in Jeddah depend on the asset. Power and desalination plants generally follow ASME Section I for boilers, ASME Section VIII for pressure vessels, ASME B31.1 for power piping and the original equipment manufacturer's guidance for turbines. Water and power utilities and private developers usually add their own inspection specifications on top. Fuel storage follows API 653 for tank inspection and API 570 for piping, and Aramco-operated facilities apply Aramco engineering standards and SAEP-1142 for contractor NDT personnel [6]. Structural steel for ports and buildings typically uses AWS D1.1 acceptance criteria.",
+    "Technician certification follows the same patterns as elsewhere in the Kingdom: employer-based ASNT SNT-TC-1A or CP-189 schemes are most common, with ISO 9712 (for example PCN) increasingly requested by European-led EPC contractors and power OEMs. Advanced methods such as PAUT, TOFD, IRIS and EMAT require specific training and practical examinations; ask for method-specific certificates rather than a generic \"UT\" certificate."
+   ],
+   "bullets": [
+    "Power and water: confirm whether the plant owner, the OEM or the operations and maintenance contractor sets the inspection specification.",
+    "Fuel facilities: check whether Aramco standards and SAEP-1142 qualification apply [6].",
+    "Ports and structures: agree the acceptance code (usually AWS D1.1) and whether coatings may be removed for MT."
+   ]
+  },
+  {
+   "id": "environment",
+   "h2": "Climate and damage mechanisms on the Red Sea coast",
+   "paragraphs": [
+    "Jeddah's coastal climate is hot and humid for much of the year, and its industrial assets operate in direct contact with seawater or in salt-laden air. This drives three damage mechanisms that inspection plans should target. **Seawater and brine corrosion** affects intake structures, pumps, piping and heat exchangers at desalination and power plants, including localised pitting and crevice corrosion on stainless steels. **Atmospheric corrosion and corrosion under insulation** affect carbon steel piping, structures and tank shells, accelerated by humidity and airborne chlorides. **Erosion-corrosion** affects pipe bends, pump casings and tubes where flow velocities are high.",
+    "High-temperature components in power plants add creep and thermal fatigue to the list, which is why boiler header and steam line welds are often inspected with PAUT or TOFD and checked with metallographic replication during major outages. Heat also affects the inspection itself: summer surface temperatures require high-temperature couplants and probes, and crews work shorter outdoor shifts.",
+    "Desalination plants converting from thermal to reverse osmosis technology, such as Shuaibah 3 [8], change the inspection profile too: fewer large evaporators and brine heaters, more high-pressure duplex piping, pressure vessels and pumps."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Jeddah",
+   "paragraphs": [
+    "Jeddah's NDT work is largely **outage-driven** (power and water plants), **campaign-driven** (tank inspections, port structures) or **production-driven** (fabrication shops). Outage work is usually priced as a day rate per technician or crew with equipment charged by item, often with a minimum duration. Tank inspections are commonly lump sum per tank. Fabrication shop inspection is often priced per weld or per film, or as a monthly retainer for a resident technician.",
+    "The main cost drivers are the specialist equipment (IRIS and ECT systems, EMAT, MFL floor scanners, PAUT), the outage window (short windows mean larger crews and night shifts), travel to remote sites such as Shuaibah, and any client-specific approval or site induction. Ask bidders to separate labour, equipment, mobilisation, accommodation and reporting so quotes can be compared on the same basis.",
+    "Through NDT-Connect, a buyer can post one scope and receive quotes from certified providers that serve Jeddah and western Saudi Arabia, and providers can respond using the free NDT ERP's quotation module."
+   ]
+  },
+  {
+   "id": "training",
+   "h2": "Training and NDT careers in Jeddah",
+   "paragraphs": [
+    "Jeddah offers a steady NDT job market centred on power, water and manufacturing rather than the oilfield. Typical roles include UT and RT Level II technicians for outages, ECT and IRIS technicians for tube inspection, welding inspectors for construction and fabrication, and QA/QC inspectors for the industrial cities. Experience with duplex stainless steels, boiler tube inspection and ASME Section I is particularly valued.",
+    "Training is available through private NDT training centres in the city and through technical colleges. Technicians who want to work across both the western and eastern regions should combine ASNT-based employer certification with ISO 9712 certification and, if they plan to work on Aramco facilities, prepare for SAEP-1142 requirements [6].",
+    "Employers in Jeddah typically screen candidates on three points: logged hours in the specific method (outage work rewards technicians who have already inspected boiler tubes or exchanger bundles), familiarity with the reporting software and data formats the client uses, and the ability to work safely in confined spaces and at height. Building a record in one specialist niche, such as IRIS tube inspection or duplex weld inspection, is often the fastest route to steady outage work on the Red Sea coast."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Jeddah",
+   "paragraphs": [
+    "Match the provider to the asset first, then check documents. Use this checklist when you pre-qualify bidders."
+   ],
+   "bullets": [
+    "Relevant experience: boiler tubes and power piping, desalination tubes and duplex welds, tanks, or structural steel, depending on your scope.",
+    "Method-specific certificates for every technician (for example IRIS, EMAT, PAUT), plus the employer's written practice.",
+    "Calibration records for all instruments and reference standards, including tube standards for ECT and IRIS.",
+    "Radiation safety licences and procedures for any radiography, and site induction records.",
+    "Sample reports with full data files for advanced methods.",
+    "A named Level III for procedure approval and technical support during the outage."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "What are the main NDT industries in Jeddah?",
+   "a": "Power generation and desalination, fuel storage and distribution, ports and marine structures, and manufacturing in the three MODON industrial cities [2]. Oil production is concentrated in the Eastern Province, not Jeddah."
+  },
+  {
+   "q": "Is the Jeddah refinery still operating?",
+   "a": "No. Aramco stopped crude processing at its 77,000 b/d Jeddah refinery in 2017 and converted the complex into a petroleum products distribution centre [4]; its tanks continue to supply south Jeddah through the terminal [5]. Tank, pipeline and terminal inspection continues there."
+  },
+  {
+   "q": "Which NDT methods are used in desalination plants?",
+   "a": "UT thickness surveys and corrosion mapping, eddy current and IRIS for heat exchanger and brine heater tubes, RT or PAUT for welds, and PMI and ferrite measurement for duplex and super-duplex stainless steel welds."
+  },
+  {
+   "q": "Do I need Aramco-qualified technicians in Jeddah?",
+   "a": "Only for work on Aramco facilities or projects, such as fuel terminals and pipelines operated by Aramco, where contractor NDT personnel must meet SAEP-1142 [6]. Power, water, port and manufacturing clients set their own requirements, usually based on ASNT or ISO 9712 certification."
+  },
+  {
+   "q": "How long does a boiler or desalination outage inspection take?",
+   "a": "It depends on the unit and scope, but outage windows are usually fixed in advance, so providers size the crew to the window. Share the outage dates and scope early so bidders can plan equipment and personnel."
+  },
+  {
+   "q": "How do I get NDT quotes in Jeddah?",
+   "a": "Post your scope on NDT-Connect with the asset type, governing code, defect types of concern, access and outage dates. Certified providers serving western Saudi Arabia can then quote on the same basis."
+  }
+ ],
+ "references": [
+  {
+   "title": "Oxford Business Group — Jeddah's economy, port and industrial cities",
+   "url": "https://oxfordbusinessgroup.com/reports/saudi-arabia/2015-report/economy/a-wealth-of-developments-from-infrastructure-to-housing-the-projects-in-the-pipeline-should-help-to-raise-the-citys-profile-2"
+  },
+  {
+   "title": "Saudipedia — List of industrial cities in Jeddah",
+   "url": "https://saudipedia.com/en/list-of-industrial-cities-in-jeddah"
+  },
+  {
+   "title": "MEED — Saudi Industrial Property Authority industrial cities",
+   "url": "https://www.meed.com/saudi-industrial-property-authority-industrial-cities/"
+  },
+  {
+   "title": "Oil & Gas Journal — Aramco shutters, plans to convert Jiddah refinery into terminal",
+   "url": "https://www.ogj.com/refining-processing/article/17288685/aramco-shutters-plans-to-convert-jiddah-refinery-into-terminal"
+  },
+  {
+   "title": "Gulf Business (Reuters) — Saudi Aramco converts Jeddah refinery to distribution hub",
+   "url": "https://gulfbusiness.com/?p=114095"
+  },
+  {
+   "title": "Saudi Aramco SAEP-1142, Qualification of Non-Saudi Aramco NDT Personnel (copy)",
+   "url": "https://www.scribd.com/document/552222316/SAEP-1142"
+  },
+  {
+   "title": "ACWA Power — Shuaibah 2 IWP",
+   "url": "https://acwapower.com/en/what-we-do/projects/shuaibah-2-iwp-stpc/"
+  },
+  {
+   "title": "Zawya — Shuaibah 3 IWPP conversion to reverse osmosis",
+   "url": "https://www.zawya.com/en/projects/utilities/saudi-mega-conversion-project-shuaibah-3-iwpp-to-transform-into-energy-efficient-reverse-osmosis-plant-in-800mln-deal-ju0l27eh"
+  },
+  {
+   "title": "Power Technology — Shoaiba power and desalination plant",
+   "url": "https://www.power-technology.com/projects/shoaiba/"
+  },
+  {
+   "title": "Gulf Construction — Jeddah transformation, port and industrial projects",
+   "url": "https://gulfconstructiononline.com/Article/387124/Transformation_under_way"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Rabigh",
+   "href": "/ndt-services/rabigh-sa"
+  },
+  {
+   "name": "Yanbu",
+   "href": "/ndt-services/yanbu-sa"
+  },
+  {
+   "name": "Jazan",
+   "href": "/ndt-services/jazan-sa"
+  },
+  {
+   "name": "Riyadh",
+   "href": "/ndt-services/riyadh-sa"
+  }
+ ],
+ "related": [
+  {
+   "label": "NDT inspection cost guide",
+   "href": "/blog/ndt-inspection-cost-guide"
+  },
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  }
+ ]
+}

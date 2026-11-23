@@ -1,0 +1,104 @@
+1 al-khobar-sa Al Khobar|Eastern Province|Saudi Arabia
+1 jeddah-sa Jeddah|Makkah Province|Saudi Arabia
+1 abqaiq-sa Abqaiq|Eastern Province|Saudi Arabia
+1 ras-al-khair-sa Ras Al-Khair|Eastern Province|Saudi Arabia
+1 sharjah-ae Sharjah|Emirate of Sharjah|United Arab Emirates
+1 mesaieed-qa Mesaieed|Al Wakrah|Qatar
+1 sur-om Sur|South Ash Sharqiyah|Oman
+1 ahmadi-kw Ahmadi|Ahmadi Governorate|Kuwait
+1 basra-iq Basra|Basra Governorate|Iraq
+1 erbil-iq Erbil|Kurdistan Region|Iraq
+1 cairo-eg Cairo|Cairo Governorate|Egypt
+1 alexandria-eg Alexandria|Alexandria Governorate|Egypt
+1 suez-eg Suez|Suez Governorate|Egypt
+1 istanbul-tr Istanbul|Marmara Region|Turkey
+1 kocaeli-tr Kocaeli|Marmara Region|Turkey
+2 freeport-tx Freeport|Texas|United States
+2 martinez-ca Martinez|California|United States
+2 palmdale-ca Palmdale|California|United States
+2 baytown-tx Baytown|Texas|United States
+2 anacortes-wa Anacortes|Washington|United States
+2 baltimore-md Baltimore|Maryland|United States
+2 louisville-ky Louisville|Kentucky|United States
+2 joliet-il Joliet|Illinois|United States
+2 cushing-ok Cushing|Oklahoma|United States
+2 omaha-ne Omaha|Nebraska|United States
+2 wilmington-de Wilmington|Delaware|United States
+2 deadhorse-ak Deadhorse|Alaska|United States
+3 maracaibo-ve Maracaibo|Zulia|Venezuela
+3 puerto-la-cruz-ve Puerto La Cruz|Anzoátegui|Venezuela
+3 punto-fijo-ve Punto Fijo|Falcón|Venezuela
+3 monterrey-mx Monterrey|Nuevo León|Mexico
+3 coatzacoalcos-mx Coatzacoalcos|Veracruz|Mexico
+3 ciudad-del-carmen-mx Ciudad del Carmen|Campeche|Mexico
+3 tampico-mx Tampico|Tamaulipas|Mexico
+3 barrancabermeja-co Barrancabermeja|Santander|Colombia
+3 cartagena-co Cartagena|Bolívar|Colombia
+3 sao-paulo-br São Paulo|São Paulo|Brazil
+3 neuquen-ar Neuquén|Neuquén Province|Argentina
+3 antofagasta-cl Antofagasta|Antofagasta Region|Chile
+3 georgetown-gy Georgetown|Demerara-Mahaica|Guyana
+3 point-lisas-tt Point Lisas|Couva-Tabaquite-Talparo|Trinidad and Tobago
+4 barmer-in Barmer|Rajasthan|India
+4 dahej-in Dahej|Gujarat|India
+4 tiruchirappalli-in Tiruchirappalli|Tamil Nadu|India
+4 jamshedpur-in Jamshedpur|Jharkhand|India
+4 bhilai-in Bhilai|Chhattisgarh|India
+4 coimbatore-in Coimbatore|Tamil Nadu|India
+4 pengerang-my Pengerang|Johor|Malaysia
+4 bintulu-my Bintulu|Sarawak|Malaysia
+4 kerteh-my Kerteh|Terengganu|Malaysia
+4 miri-my Miri|Sarawak|Malaysia
+4 jakarta-id Jakarta|Jakarta|Indonesia
+4 batam-id Batam|Riau Islands|Indonesia
+4 balikpapan-id Balikpapan|East Kalimantan|Indonesia
+4 cilegon-id Cilegon|Banten|Indonesia
+4 rayong-th Rayong|Rayong Province|Thailand
+4 bangkok-th Bangkok|Bangkok|Thailand
+4 vung-tau-vn Vung Tau|Ba Ria-Vung Tau|Vietnam
+4 ho-chi-minh-city-vn Ho Chi Minh City|Southern Vietnam|Vietnam
+4 batangas-ph Batangas|Calabarzon|Philippines
+4 manila-ph Manila|Metro Manila|Philippines
+4 seria-bn Seria|Belait District|Brunei
+5 grande-prairie-ab Grande Prairie|Alberta|Canada
+5 lloydminster-ab Lloydminster|Alberta|Canada
+5 hamilton-on Hamilton|Ontario|Canada
+5 regina-sk Regina|Saskatchewan|Canada
+5 saskatoon-sk Saskatoon|Saskatchewan|Canada
+5 st-johns-nl St. John's|Newfoundland and Labrador|Canada
+5 halifax-ns Halifax|Nova Scotia|Canada
+5 saint-john-nb Saint John|New Brunswick|Canada
+5 kitimat-bc Kitimat|British Columbia|Canada
+5 fort-st-john-bc Fort St. John|British Columbia|Canada
+5 red-deer-ab Red Deer|Alberta|Canada
+5 adelaide-au Adelaide|South Australia|Australia
+5 townsville-au Townsville|Queensland|Australia
+5 mackay-au Mackay|Queensland|Australia
+5 port-hedland-au Port Hedland|Western Australia|Australia
+5 wollongong-au Wollongong|New South Wales|Australia
+5 auckland-nz Auckland|Auckland|New Zealand
+5 new-plymouth-nz New Plymouth|Taranaki|New Zealand
+5 christchurch-nz Christchurch|Canterbury|New Zealand
+5 wellington-nz Wellington|Wellington|New Zealand
+6 antwerp-be Antwerp|Flanders|Belgium
+6 le-havre-fr Le Havre|Normandy|France
+6 milan-it Milan|Lombardy|Italy
+6 tarragona-es Tarragona|Catalonia|Spain
+6 gdansk-pl Gdańsk|Pomerania|Poland
+6 esbjerg-dk Esbjerg|Southern Denmark|Denmark
+6 gothenburg-se Gothenburg|Västra Götaland|Sweden
+6 bergen-no Bergen|Vestland|Norway
+6 dublin-ie Dublin|Leinster|Ireland
+6 lagos-ng Lagos|Lagos State|Nigeria
+6 port-harcourt-ng Port Harcourt|Rivers State|Nigeria
+6 warri-ng Warri|Delta State|Nigeria
+6 luanda-ao Luanda|Luanda Province|Angola
+6 takoradi-gh Takoradi|Western Region|Ghana
+6 hassi-messaoud-dz Hassi Messaoud|Ouargla Province|Algeria
+6 atyrau-kz Atyrau|Atyrau Region|Kazakhstan
+6 baku-az Baku|Absheron|Azerbaijan
+6 tokyo-jp Tokyo|Kanto|Japan
+6 yokohama-jp Yokohama|Kanagawa|Japan
+6 kobe-jp Kobe|Hyogo|Japan
+6 busan-kr Busan|Yeongnam|South Korea
+6 geoje-kr Geoje|South Gyeongsang|South Korea
