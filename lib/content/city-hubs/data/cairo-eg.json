@@ -1,0 +1,308 @@
+{
+ "slug": "cairo-eg",
+ "city": "Cairo",
+ "region": "Greater Cairo",
+ "country": "Egypt",
+ "countrySlug": "egypt",
+ "wave": 1,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Cairo: Inspection for Refineries, Power Plants and Industrial Cities",
+ "metaTitle": "NDT Services in Cairo, Egypt | Refinery, Power & Factory Inspection",
+ "description": "NDT in Cairo, Egypt: inspection for the Mostorod refineries, the New Capital power plant and factories in 10th of Ramadan and 6th of October. ENRRA rules.",
+ "quickAnswer": "Greater Cairo is Egypt's largest industrial market and the base for most of the country's NDT companies. Its main inspection clients are the **Mostorod refining complex**, where Cairo Oil Refining Company's refinery and the Egyptian Refining Company's $4.3 billion upgrade sit side by side [1][2]; the **New Capital combined-cycle power plant**, one of three 4.8 GW Siemens plants that were the largest of their kind ever built [5][6]; and thousands of factories in industrial cities such as **10th of Ramadan**, which alone has 5,083 factories [8]. All industrial radiography in Egypt is licensed by the Egyptian Nuclear and Radiological Regulatory Authority (ENRRA) under Law No. 7 of 2010 [10][11].",
+ "keyFacts": [
+  {
+   "label": "Refining",
+   "value": "CORC Mostorod refinery, operational since 1969 [3], plus ERC's 4.7 Mtpa conversion refinery inaugurated in 2020 [2]"
+  },
+  {
+   "label": "Power",
+   "value": "New Capital CCPP: 4.8 GW, eight H-class gas turbines, four steam turbines and eight HRSGs [7]"
+  },
+  {
+   "label": "Industry",
+   "value": "10th of Ramadan: 5,083 factories providing over 350,000 jobs [8]; 6th of October and other new-city industrial zones [9]"
+  },
+  {
+   "label": "Radiation regulator",
+   "value": "ENRRA, established by Law No. 7 of 2010 [10], amended by Law No. 10 of 2026 [12]"
+  }
+ ],
+ "industries": [
+  "Oil refining",
+  "Power generation",
+  "Steel and metal fabrication",
+  "Manufacturing",
+  "Construction and infrastructure",
+  "Pipelines and distribution"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Why Cairo is the centre of Egypt's NDT industry",
+   "paragraphs": [
+    "Egypt's NDT market is national, but its headquarters is Cairo. Most inspection companies, training centres, equipment distributors and third-party inspection agencies are based in Greater Cairo and send crews to refineries, power plants, pipelines and fabrication yards across the country, from Alexandria and the Suez Canal zone to the Western Desert oilfields. Cairo also hosts the head offices of the Egyptian General Petroleum Corporation (EGPC), the Egyptian Electricity Holding Company (EEHC) and many of the EPC contractors that build Egypt's infrastructure.",
+    "Within Greater Cairo itself, three groups of assets drive inspection demand. The **Mostorod refining complex** north of the city is one of Egypt's largest refining sites. The **New Capital power plant** east of Cairo is part of the Siemens megaproject that added 14.4 GW to Egypt's grid [5]. And the **industrial cities** ringing the capital, including 10th of Ramadan, 6th of October, Badr, Obour and others [9], house thousands of factories making steel structures, pipes, tanks, pressure vessels and machinery that need inspection.",
+    "For NDT buyers this means good provider choice and competitive pricing in the capital, with the option to use the same Cairo-based provider for work elsewhere in Egypt. For providers it means a large, varied market where shop inspection, plant outages and construction projects all run in parallel."
+   ]
+  },
+  {
+   "id": "assets",
+   "h2": "Refineries, power plants and factories that drive inspection demand",
+   "paragraphs": [
+    "**Mostorod refining complex.** The Cairo Oil Refining Company (CORC) refinery at Mostorod, about 10 km north of Cairo, has operated since 1969 with throughput of about 142,000 barrels a day [3]. Next to it, the Egyptian Refining Company (ERC), a public-private partnership operated by Qalaa Holdings, built a $4.3 billion refinery that converts heavy residue from CORC into diesel and other light products [1][4]. ERC reached full commercial operation in August 2019 with a processing capacity of 4.7 million tonnes a year and was inaugurated in September 2020 [2]. Its units include a 40,000 b/d hydrocracker and an 80,000 b/d vacuum distillation unit that share facilities with the CORC refinery [3].",
+    "**New Capital power plant.** Siemens, with local partners Orascom Construction and Elsewedy Electric, built three 4.8 GW gas-fired combined-cycle plants at Beni Suef, Burullus and New Capital, which Siemens described as the largest such plants ever built and operated [6]. Each plant has eight H-class gas turbines, four steam turbines, 12 generators and eight heat recovery steam generators [7]. The New Capital plant powers Egypt's new administrative capital east of Cairo [5].",
+    "**Industrial cities.** 10th of Ramadan has industrial zones with a total of 5,083 factories providing more than 350,000 jobs [8], and private developers continue to build large industrial parks there and in 6th of October City [13]. These zones produce fabricated steel, pipes, tanks, vessels, electrical equipment and machinery, all of which need weld and material inspection."
+   ],
+   "table": {
+    "caption": "Greater Cairo assets and their typical NDT scopes",
+    "head": [
+     "Asset",
+     "Main inspection concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Refinery process units (CORC, ERC)",
+      "Corrosion in crude and vacuum units, hydrocracker reactors and high-pressure hydrogen service, heater tubes",
+      "UT, PAUT, TOFD, ECT/IRIS, PMI, hardness"
+     ],
+     [
+      "Combined-cycle power plant",
+      "HRSG tube thinning and cracking, steam piping welds, turbine and generator components",
+      "UT, EMAT, PAUT, MT, PT, replication"
+     ],
+     [
+      "Fabrication shops in industrial cities",
+      "Weld quality in vessels, tanks, pipes and structures",
+      "RT, UT, PAUT, MT, PT, VT"
+     ],
+     [
+      "Pipe and steel mills",
+      "Weld seams and plate defects in pipe and plate",
+      "Automated UT, RT, MT"
+     ],
+     [
+      "Storage terminals and distribution",
+      "Tank floors and shells, product pipelines",
+      "MFL, UT, guided wave"
+     ],
+     [
+      "Infrastructure and buildings",
+      "Structural steel welds, bridges, transit systems",
+      "UT, MT, VT"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "refinery",
+   "h2": "Refinery inspection at Mostorod",
+   "paragraphs": [
+    "The Mostorod site combines an older crude refinery with a modern conversion refinery, so inspection plans cover a wide range of equipment ages and damage mechanisms. Older crude and vacuum units face naphthenic acid and sulfidation corrosion at high temperatures, corrosion in overhead systems from chlorides and acids, and corrosion under insulation on piping that has been in service for decades. UT thickness surveys, corrosion mapping and profile radiography identify wall loss, while PAUT and TOFD assess welds.",
+    "ERC's hydrocracker, vacuum unit and associated hydrogen and sulfur recovery units operate at high pressure and temperature in hydrogen service. Heavy-wall reactors and high-pressure piping need PAUT and TOFD on welds, and equipment in hot hydrogen service may need advanced UT screening for high-temperature hydrogen attack. Sour water and amine systems call for wet fluorescent MT and PAUT to detect cracking. Exchanger bundles across both refineries are inspected with eddy current or IRIS during turnarounds.",
+    "Because the two refineries share facilities [3], turnaround coordination matters. Providers serving Mostorod should expect integrated planning, strict permit-to-work systems and detailed data delivery to each owner's inspection database."
+   ]
+  },
+  {
+   "id": "power",
+   "h2": "Power plant inspection: HRSGs, steam piping and turbines",
+   "paragraphs": [
+    "Combined-cycle plants are inspection-intensive during outages. Heat recovery steam generators contain thousands of tubes and headers where flow-accelerated corrosion, thermal fatigue and creep can develop. EMAT and rapid UT scanning cover long tube lengths, UT thickness surveys target known flow-accelerated corrosion locations, and PAUT and TOFD assess header and piping welds. Metallographic replication and hardness testing evaluate creep damage in high-temperature components.",
+    "Gas and steam turbines are inspected according to the manufacturer's programme, typically with MT, PT, eddy current and UT on blades, discs, casings and rotors. Siemens operated and maintained the three megaproject plants under a long-term agreement with EEHC [14], so turbine-related NDT often follows OEM procedures, while balance-of-plant inspection is contracted to local providers.",
+    "Outage windows are short and fixed, so providers must plan crews, equipment and procedure approvals well in advance, and deliver preliminary results daily so repair decisions can be made within the outage."
+   ]
+  },
+  {
+   "id": "fabrication",
+   "h2": "Shop and fabrication NDT in Cairo's industrial cities",
+   "paragraphs": [
+    "Cairo's industrial zones are home to a large share of Egypt's steel fabrication, pipe manufacturing and equipment production. Fabricators build pressure vessels, storage tanks, piping spools, structural steel and equipment skids for projects in Egypt, the Gulf and Africa, and every item needs inspection before shipment. **Radiography** is common in shops with bunkers, while **UT and PAUT** are increasingly specified for thick sections and when clients want digital records. **MT and PT** cover fillet welds and surface examinations.",
+    "Pipe and steel mills use automated ultrasonic systems for weld seams and plate, supplemented by radiography and manual UT. Third-party inspection agencies witness tests on behalf of clients, and export orders bring client specifications from Saudi Aramco, ADNOC and other Gulf operators into Cairo's shops.",
+    "Planning shop NDT well means agreeing an inspection and test plan before fabrication, defining hold points (fit-up, after welding, after repairs, after heat treatment, before hydrotest), and tracking repair rates by welder and procedure so problems are fixed early."
+   ]
+  },
+  {
+   "id": "codes",
+   "h2": "Codes, specifications and radiation licensing in Egypt",
+   "paragraphs": [
+    "Egyptian plants apply international codes alongside owner specifications: ASME Section VIII and B31.3 for refinery equipment and piping, API 510, 570 and 653 for in-service inspection, ASME Section I and B31.1 for power plants, AWS D1.1 for structural steel and ISO 15156 for sour service. Technicians are typically certified under ASNT employer-based schemes or ISO 9712, and international EPC contractors often require ISO 9712 (PCN or equivalent) for advanced methods.",
+    "Radiation safety is governed by **Law No. 7 of 2010 on the regulation of nuclear and radiological activities**, which established ENRRA as an independent regulator of all nuclear and radiation facilities, activities and practices [11]. The law's executive regulations were issued by Prime Ministerial Decree No. 1326 of 2011 [10], and the law was amended by Law No. 211 of 2017 [11] and, most recently, Law No. 10 of 2026 [12]. ENRRA issues permits and licences under the law [15], so industrial radiography companies, their sources and their facilities must be licensed before work starts.",
+    "For buyers, the practical step is simple: ask any radiography provider for its current ENRRA licence, its radiation protection officer's details and its source transport arrangements."
+   ],
+   "bullets": [
+    "Request the provider's ENRRA licence for radiography [11].",
+    "Confirm the governing owner specification and code edition.",
+    "For refinery hydrogen and sour service, require qualified PAUT/TOFD procedures."
+   ]
+  },
+  {
+   "id": "environment",
+   "h2": "Climate and conditions",
+   "paragraphs": [
+    "Cairo has a hot desert climate with very hot summers, mild winters and little rain. Dust and sand abrade coatings and accumulate around equipment, and large daily temperature swings stress insulation and coatings. Corrosion under insulation remains a concern on refinery and power plant piping where moisture enters through damaged cladding.",
+    "Summer heat affects inspection quality and safety: surfaces exceed standard probe ratings, MT and PT consumables dry quickly and crews need heat-stress controls. Providers schedule outdoor work for cooler hours and use high-temperature couplants and probes where needed."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Cairo",
+   "paragraphs": [
+    "Cairo's competitive market prices shop NDT per film, per weld or per day for resident technicians; plant outages per technician-day with specialist equipment charged separately; and tank inspections often as lump sums. International clients and EPC projects may contract in US dollars, while local work is usually priced in Egyptian pounds.",
+    "Cost drivers include specialist equipment (PAUT, TOFD, IRIS, EMAT), ENRRA licensing and source logistics, travel to sites outside Cairo, outage timing and reporting requirements. Clear scopes and consistent pricing bases make quotes comparable.",
+    "On NDT-Connect, buyers can post a scope once and compare certified providers in Cairo, and providers can quote from the free NDT ERP."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "Training and NDT careers in Cairo",
+   "paragraphs": [
+    "Cairo has Egypt's largest concentration of NDT training centres, and many technicians who work across the Gulf trained or certified there. Roles include RT and UT technicians for fabrication shops, PAUT and TOFD specialists for refineries and power plants, tank inspectors, welding inspectors and Level IIIs.",
+    "Egyptian technicians who combine ASNT or ISO 9712 certification with advanced-method qualifications and documented plant experience are in demand both locally and in Saudi Arabia, the UAE, Kuwait and Qatar. Radiographers must also meet ENRRA's radiation safety requirements [11]."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Cairo",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers."
+   ],
+   "bullets": [
+    "Current ENRRA licence for radiography and a named radiation protection officer [11].",
+    "Experience with your asset type: refinery, power plant, fabrication or tanks.",
+    "Method-specific certificates and the employer's written practice.",
+    "Calibration records, qualified procedures and sample reports.",
+    "Capacity to support outages or production schedules.",
+    "Ability to work to export specifications (Aramco, ADNOC) where relevant."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "What drives NDT demand in Cairo?",
+   "a": "The Mostorod refining complex [1][2], the New Capital combined-cycle power plant [5], and thousands of factories in industrial cities such as 10th of Ramadan [8], plus infrastructure projects and Cairo-based crews serving the rest of Egypt."
+  },
+  {
+   "q": "Who licenses industrial radiography in Egypt?",
+   "a": "The Egyptian Nuclear and Radiological Regulatory Authority (ENRRA), established by Law No. 7 of 2010 [11]. The law's executive regulations were issued in 2011 [10] and it was amended most recently by Law No. 10 of 2026 [12]."
+  },
+  {
+   "q": "What is the Egyptian Refining Company refinery?",
+   "a": "A $4.3 billion public-private partnership refinery at Mostorod that converts heavy residue from the adjacent Cairo Oil Refining Company refinery into diesel and other higher-value products [1][4], with a processing capacity of 4.7 million tonnes a year [2]."
+  },
+  {
+   "q": "Which NDT methods are used in combined-cycle power plants?",
+   "a": "EMAT and UT for HRSG tubes, PAUT and TOFD for header and piping welds, replication and hardness for creep assessment, and MT, PT, eddy current and UT on turbine components."
+  },
+  {
+   "q": "Can Cairo-based NDT companies work elsewhere in Egypt?",
+   "a": "Yes. Most Egyptian NDT providers are based in Cairo and mobilise crews to Alexandria, the Suez Canal zone, the Red Sea and Western Desert oilfields."
+  },
+  {
+   "q": "How do I request NDT quotes in Cairo?",
+   "a": "Post the scope on NDT-Connect with the asset type, code and specification, weld volumes or equipment list, location, dates and reporting needs."
+  }
+ ],
+ "references": [
+  {
+   "title": "NS Energy — ERC inaugurates $4.3bn Mostorod refinery in Egypt",
+   "url": "https://www.nsenergybusiness.com/news/erc-inaugurates-4-3bn-mostorod-petrochem-refinery-in-egypt/"
+  },
+  {
+   "title": "NS Energy — ERC Mostorod refinery project profile",
+   "url": "https://www.nsenergybusiness.com/?p=284118"
+  },
+  {
+   "title": "MEED — Mostorod new refinery project profile",
+   "url": "https://www.meed.com/mostorod-new-refinery/"
+  },
+  {
+   "title": "Ahram Online — The facts about Mostorod",
+   "url": "https://english.ahram.org.eg/News/386227.aspx"
+  },
+  {
+   "title": "Siemens — Completion of world's largest combined cycle power plants in record time",
+   "url": "https://press.siemens.com/middleeast/en/pressrelease/completion-worlds-largest-combined-cycle-power-plants-record-time"
+  },
+  {
+   "title": "Siemens — Siemens overdelivers on promise in Egypt megaproject",
+   "url": "https://press.siemens.com/global/en/pressrelease/siemens-overdelivers-promise-egypt-megaproject"
+  },
+  {
+   "title": "Power Technology — Egypt megaproject power plants",
+   "url": "https://www.power-technology.com/?p=64199"
+  },
+  {
+   "title": "10th of Ramadan — Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/10th_of_Ramadan"
+  },
+  {
+   "title": "GAFI — Industrial zones in Egypt",
+   "url": "https://www.gafi.gov.eg/English/StartaBusiness/InvestmentZones/Pages/Industrial-Zones.aspx"
+  },
+  {
+   "title": "IAEA GNSSN — ENRRA (Egypt) regulatory infrastructure",
+   "url": "https://gnssn.iaea.org/main/Knowledge%20Base%20Articles/ENRRA%20(Egypt)%20-%20Regulatory%20Infrastructure.pdf"
+  },
+  {
+   "title": "Bayt — ENRRA company profile (Law No. 7 of 2010 and amendment No. 211 of 2017)",
+   "url": "https://bayt.com/en/company/egyptian-nuclear-radiological-regulatory-authority-enrra-2035477"
+  },
+  {
+   "title": "Egypt Today — President ratifies amendments to nuclear and radiological activities law (Law No. 10 of 2026)",
+   "url": "https://www.egypttoday.com/Article/1/147272/President-El-Sisi-ratifies-amendments-to-Egypt%E2%80%99s-nuclear-and-radiological"
+  },
+  {
+   "title": "Elsewedy Electric — Industrial development (10th of Ramadan industrial parks)",
+   "url": "https://elsewedyelectric.com/en/business-lines/infrastructure-investments/industrial-development/"
+  },
+  {
+   "title": "Siemens — Egypt selects Siemens to operate and maintain world's largest combined-cycle plants",
+   "url": "https://press.siemens.com/global/en/feature/egypt-selects-siemens-operate-and-maintain-worlds-largest-combined-cycle-power-plants"
+  },
+  {
+   "title": "Amwal Al Ghad — The role of ENRRA (permits and licences)",
+   "url": "https://en.amwalalghad.com/?p=111191"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Alexandria",
+   "href": "/ndt-services/alexandria-eg"
+  },
+  {
+   "name": "Suez",
+   "href": "/ndt-services/suez-eg"
+  },
+  {
+   "name": "Jeddah, Saudi Arabia",
+   "href": "/ndt-services/jeddah-sa"
+  },
+  {
+   "name": "Istanbul, Turkey",
+   "href": "/ndt-services/istanbul-tr"
+  }
+ ],
+ "related": [
+  {
+   "label": "RT exposure time calculator",
+   "href": "/tools/rt-exposure-time"
+  },
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Gulf Coast refinery NDT buyer's guide",
+   "href": "/buyers-guide/gulf-coast-refinery-petrochemical-ndt"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  }
+ ]
+}

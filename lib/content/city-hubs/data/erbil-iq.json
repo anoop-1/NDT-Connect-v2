@@ -1,0 +1,301 @@
+{
+ "slug": "erbil-iq",
+ "city": "Erbil",
+ "region": "Kurdistan Region",
+ "country": "Iraq",
+ "countrySlug": "iraq",
+ "wave": 1,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Erbil: Inspection for Kurdistan Oilfields, Gas Plants, Refineries and Pipelines",
+ "metaTitle": "NDT Services in Erbil, Kurdistan Region of Iraq | Oil & Gas Inspection",
+ "description": "NDT in Erbil and the Kurdistan Region: inspection for Khurmala, Taq Taq, Shaikan and Tawke oilfields, Khor Mor gas plant, KAR refinery and export pipelines.",
+ "quickAnswer": "Erbil is the capital and operations hub of the Kurdistan Region of Iraq, which produces more than 450,000 barrels per day of crude [5]. The region's main oil assets include the **Tawke, Taq Taq and Khurmala Dome** fields [1] and the **Shaikan** field about 85 km north-west of Erbil [2], and its gas comes from the **Khor Mor** plant, which supplies over 80% of the region's power [7]. Crude exports through the Iraq–Turkey pipeline to Ceyhan resumed in September 2025 after a 30-month halt [6]. NDT work in Erbil covers oilfield production facilities, gas processing, refining and pipelines, under international operators' specifications.",
+ "keyFacts": [
+  {
+   "label": "Production",
+   "value": "Kurdistan produces over 450,000 b/d of crude [5]"
+  },
+  {
+   "label": "Gas",
+   "value": "Khor Mor: KM250 expansion completed in 2025, raising capacity to 750 MMscfd [8]"
+  },
+  {
+   "label": "Refining",
+   "value": "KAR refinery in Erbil, supplied from Khurmala by a 40 km pipeline; first phase 75,000 b/d [9]"
+  },
+  {
+   "label": "Export",
+   "value": "Iraq–Turkey pipeline flows resumed 27 September 2025 at 180,000–190,000 b/d [6][10]"
+  }
+ ],
+ "industries": [
+  "Upstream oil production",
+  "Gas processing",
+  "Refining",
+  "Crude and gas pipelines",
+  "Power generation",
+  "Oilfield construction"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Erbil's role in the region's oil and gas industry",
+   "paragraphs": [
+    "The modern oil industry in the Kurdistan Region of Iraq (KRI) dates from 2005, when DNO spudded the Tawke-1 well. Tawke began production in 2007 and Taq Taq in 2008, while KAR took over the Khurmala Dome field, part of the Kirkuk complex, in 2004 with a remit to raise production toward 100,000 barrels a day [1]. These three fields became the region's dominant producers, and gas production began at new facilities at Khor Mor in 2008 [1].",
+    "Erbil, the regional capital, is where operators, service companies and inspection contractors base their offices, warehouses and staff. Gulf Keystone's Shaikan field, about 85 km north-west of Erbil, joined the list of major producing assets [2]. The KRI started exporting oil independently in 2013 through its own pipeline to Ceyhan in Turkey [5], and exports through the Iraq–Turkey pipeline resumed on 27 September 2025 under an agreement between Baghdad, the KRG and international producers [6].",
+    "For NDT buyers and providers, this means a market built around international operators, remote oilfields reached by road from Erbil, and an ongoing mix of production integrity work, gas expansion projects, refinery maintenance and pipeline inspection."
+   ]
+  },
+  {
+   "id": "assets",
+   "h2": "Fields, plants and pipelines that drive inspection demand",
+   "paragraphs": [
+    "**Khor Mor** is the region's key gas asset. Operated by Pearl Petroleum, a consortium of Dana Gas, Crescent Petroleum, OMV, MOL and RWE, it supplies more than 80% of the Kurdistan Region's power needs [7]. The $1.1 billion Khor Mor 250 (KM250) expansion was completed in 2025, eight months ahead of schedule, adding 250 MMscfd of processing capacity and raising total production to 750 MMscfd [8]. There are two major gas processing centres in the region, Khor Mor and Erbil, connected by an intraregional gas pipeline [3].",
+    "**Refining** in Erbil began when oil from Khurmala was first sent through 40 km of pipeline to the KAR refinery, described at the time as the largest private-sector refinery in the region and in Iraq, with a 75,000 b/d refinery complex commissioned [9]. **Export pipelines** carry crude to the Turkish border at Fishkhabour and on to Ceyhan [10]; before the 2023 shutdown, the region exported about 450,000 b/d to Ceyhan [10]."
+   ],
+   "table": {
+    "caption": "Kurdistan Region assets serviced from Erbil and their usual NDT scopes",
+    "head": [
+     "Asset",
+     "Main inspection concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Oilfield production facilities",
+      "Internal corrosion and erosion, sour service in some fields, weld integrity on modifications",
+      "UT, corrosion mapping, PAUT, RT, WFMT"
+     ],
+     [
+      "Gas processing (Khor Mor, Erbil)",
+      "Wet H2S and amine cracking, exchanger tubes, compressor piping",
+      "PAUT, TOFD, WFMT, ECT/IRIS"
+     ],
+     [
+      "Refineries",
+      "Turnaround inspection of columns, heaters, exchangers and piping",
+      "UT, PAUT, ECT/IRIS, RT, PMI"
+     ],
+     [
+      "Crude and gas pipelines",
+      "Girth welds, external corrosion, damage assessment after incidents",
+      "AUT/PAUT, RT, guided wave, UT"
+     ],
+     [
+      "Storage tanks",
+      "Floor and shell corrosion, repairs",
+      "MFL, UT, vacuum box"
+     ],
+     [
+      "Power plants fed by Khor Mor gas",
+      "Boiler and HRSG tubes, steam piping, turbines",
+      "UT, EMAT, PAUT, MT"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "methods",
+   "h2": "Methods buyers order in Erbil, and why",
+   "paragraphs": [
+    "**Corrosion monitoring and integrity inspection** of production facilities form the baseline work: UT thickness surveys, corrosion mapping, profile radiography and PAUT of welds. Some Kurdistan fields produce sour crude or associated gas with H2S, so wet fluorescent MT, PAUT and hardness testing are important in those facilities.",
+    "**Gas plant expansion and operation** at Khor Mor and elsewhere require construction-phase NDT (radiography and PAUT on piping and pressure vessels, PMI, hydrotest support) followed by in-service inspection of processing trains, compression and storage. **Refinery turnarounds** follow standard practice: internal inspection, PAUT and TOFD on critical welds, IRIS or eddy current on exchangers and UT surveys of piping.",
+    "**Post-incident inspection** has become a recurring need. Kurdistan's energy infrastructure has been hit by drone and rocket attacks; a July barrage on several oilfields reduced production by around 150,000 barrels per day, and the Khor Mor field was attacked shortly after its expansion was completed [11]. After such events, operators need rapid damage assessment: visual inspection, UT and PAUT of affected piping and vessels, hardness and metallurgical checks on fire-exposed equipment, and fitness-for-service evaluation before restart.",
+    "**Pipeline inspection** includes girth weld inspection on new construction and repairs, external corrosion surveys, and integrity checks on the export system, which was rehabilitated before flows resumed [12]."
+   ]
+  },
+  {
+   "id": "gas",
+   "h2": "Inspecting gas processing in the Kurdistan Region",
+   "paragraphs": [
+    "Khor Mor is more than a gas plant: production includes gas, condensate and liquefied petroleum gas, and at the end of 2022 output was around 110,000 barrels of oil equivalent per day, about 75% of it gas [4]. Its agreements cover development, processing and transport of gas from Khor Mor and Chemchemal to fuel power plants near Erbil and Sulaymaniyah [4]. That product mix means inspection crews deal with several distinct process areas in one facility.",
+    "**Inlet separation and gas treatment** handle well fluids that can carry water, CO2 and H2S, so corrosion monitoring with UT and corrosion mapping, plus crack detection with wet fluorescent MT and PAUT, are core. **Condensate stabilisation and LPG** sections include columns, exchangers and pressurised storage; LPG spheres and bullets need internal weld inspection during out-of-service periods, and exchangers need eddy current or IRIS. **Compression** brings vibration and fatigue at small-bore connections and piping supports, where MT, PT and visual inspection catch cracks early.",
+    "New processing trains, such as those added by KM250 [8], need complete construction-phase inspection before start-up and a baseline survey to anchor future corrosion monitoring. Recording baseline thicknesses at fixed locations on day one makes every later corrosion rate calculation more accurate.",
+    "Because Khor Mor supplies most of the region's electricity [7], unplanned outages carry high costs. Operators therefore value on-stream inspection that finds problems before they force a shutdown, and fast, well-organised inspection when a shutdown happens."
+   ]
+  },
+  {
+   "id": "codes",
+   "h2": "Codes, operator specifications and radiation regulation",
+   "paragraphs": [
+    "Operators in the KRI, including DNO, Gulf Keystone, KAR, Genel and Pearl Petroleum's partners, apply their own specifications on top of API 510, API 570, API 653, API 1104, ASME Section VIII, B31.3 and B31.8, and ISO 15156 for sour service. European and international operators often favour ISO 9712 (PCN) certification for advanced methods, alongside ASNT employer-based schemes.",
+    "Radiation sources in Iraq were overseen by the Iraqi Radioactive Sources Regulatory Authority (IRSRA) until 2024, when the **Iraqi Nuclear, Radiological, Chemical and Biological Regulatory Commission (I-NRC)** was established to regulate radioactive materials and their transport [13]. Radiography providers working in the Kurdistan Region should confirm the current licensing requirements that apply to their sources and operations, including any regional requirements, before mobilising.",
+    "Movement of personnel and equipment is subject to operator security procedures, and international staff need appropriate visas and permits. Erbil's international airport and road links make it the natural base for crews serving fields across the region."
+   ],
+   "bullets": [
+    "Confirm radiation licensing and source transport arrangements before mobilising radiography [13].",
+    "Ask which operator specification governs and how personnel are approved.",
+    "For post-incident work, require fitness-for-service capability and metallurgical support."
+   ]
+  },
+  {
+   "id": "environment",
+   "h2": "Climate and terrain",
+   "paragraphs": [
+    "Erbil has hot, dry summers and cool, wet winters, with greater seasonal temperature range than the Gulf coast. Fields in the foothills and mountains can be cold in winter, which affects couplant choice, equipment batteries and coating cure times, while summer heat brings the usual high-temperature UT challenges. Thermal cycling between seasons stresses coatings and insulation, and corrosion under insulation develops where moisture enters.",
+    "Terrain and access shape inspection logistics. Many fields are reached by road from Erbil over long distances, so providers plan multi-day trips, spare equipment and backup instruments, and coordinate closely with operators on security and site access."
+   ]
+  },
+  {
+   "id": "projects",
+   "h2": "Expansion projects and the inspection they create",
+   "paragraphs": [
+    "The KM250 expansion at Khor Mor was one of the largest private-sector energy projects in Iraq, completed eight months early [7], and further development is being considered at the nearby Chemchemal field [11]. Expansion projects like these generate high volumes of construction NDT: radiography and PAUT on process piping, inspection of pressure vessels and modules, tank construction inspection, PMI and pre-commissioning checks.",
+    "With exports through the Iraq–Turkey pipeline restarted [6], operators have renewed interest in sustaining and growing production, which supports work-over campaigns, facility debottlenecking and pipeline integrity programmes. Providers who can mobilise quickly from Erbil with qualified crews and equipment are best placed for this work."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Erbil",
+   "paragraphs": [
+    "Inspection in the Kurdistan Region is typically priced as day rates for technicians and crews on integrity and turnaround work, unit rates per weld on construction, and lump sums for defined campaigns. Travel, accommodation, security, international flights and visas are usually quoted separately, and remote fields add travel days.",
+    "Cost drivers include distance from Erbil, security arrangements, radiation source logistics, specialist equipment (PAUT, TOFD, AUT, IRIS, MFL), and the need for rapid mobilisation after incidents. Framework agreements with standby provisions can reduce response times and costs for operators.",
+    "To get comparable quotes, provide the field or facility, asset list, service conditions (including H2S), operator specification, access and security arrangements, schedule and reporting format."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Erbil",
+   "paragraphs": [
+    "Erbil offers work for UT, RT, PAUT and corrosion monitoring technicians, gas plant and refinery turnaround specialists, pipeline inspectors and welding inspectors. Experience with international operators' specifications and with sour service is valued, and Level IIIs who can support fitness-for-service assessments are in demand after incidents.",
+    "Local technicians who combine recognised certification (ASNT or ISO 9712) with advanced-method qualifications are increasingly sought as operators expand local content. International staff typically work rotational schedules based in Erbil.",
+    "Construction phases of gas expansion projects are a strong entry point: technicians gain experience in radiography, PAUT and PMI under close supervision, then move into in-service inspection of the same plants. Familiarity with fitness-for-service concepts and damage assessment after incidents is a distinctive skill in this region and is increasingly valued by operators."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Erbil",
+   "paragraphs": [
+    "Pre-qualify for capability, reliability and the ability to work safely in the region."
+   ],
+   "bullets": [
+    "Radiation licensing and compliant source transport [13].",
+    "Experience with the operator's specifications and sour-service inspection.",
+    "Equipment and crews based in or near Erbil for rapid mobilisation.",
+    "Fitness-for-service and metallurgical support for post-incident assessments.",
+    "Security, logistics and HSE arrangements for remote fields.",
+    "Reliable reporting and data delivery in the operator's format."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Which oilfields are served from Erbil?",
+   "a": "The main ones include Tawke, Taq Taq and Khurmala Dome [1] and Shaikan, about 85 km north-west of Erbil [2], plus gas from Khor Mor [7]."
+  },
+  {
+   "q": "What is the Khor Mor expansion?",
+   "a": "The KM250 project, completed in 2025 eight months early, added 250 MMscfd of processing capacity and raised Khor Mor's total production to 750 MMscfd [8]. The field supplies over 80% of the Kurdistan Region's power [7]."
+  },
+  {
+   "q": "Have Kurdistan oil exports through Turkey resumed?",
+   "a": "Yes. Flows through the Iraq–Turkey pipeline to Ceyhan resumed on 27 September 2025 after a 30-month halt, initially at 180,000–190,000 b/d [6][10]."
+  },
+  {
+   "q": "Who regulates industrial radiography in Iraq?",
+   "a": "The Iraqi Nuclear, Radiological, Chemical and Biological Regulatory Commission (I-NRC), established in 2024 and succeeding IRSRA [13]. Confirm current requirements for the Kurdistan Region before mobilising."
+  },
+  {
+   "q": "What NDT is needed after an attack or fire on a facility?",
+   "a": "Visual inspection, UT and PAUT of affected piping and vessels, hardness testing and metallurgical replication on fire-exposed equipment, and fitness-for-service assessment before restart."
+  },
+  {
+   "q": "How do I request NDT quotes for a Kurdistan scope?",
+   "a": "Post the scope on NDT-Connect with the field, asset list, service conditions, operator specification, access and security arrangements, and schedule. Include whether radiography is acceptable or whether PAUT is preferred, since this affects crew and licensing plans."
+  }
+ ],
+ "references": [
+  {
+   "title": "Journal of Petroleum Technology — The Kurdistan Region of Iraq: a decade of challenges and increased production",
+   "url": "https://jpt.spe.org/the-kurdistan-region-of-iraq-a-decade-of-challenges-and-increased-oil-and-gas-production"
+  },
+  {
+   "title": "MEED — Erbil forges its own path",
+   "url": "https://www.meed.com/erbil-forges-its-own-path/"
+  },
+  {
+   "title": "S&P Global — What is the key to Kurdistan's gas conundrum",
+   "url": "https://www.spglobal.com/energy/en/research-analytics/what-is-the-key-to-kurdistans-gas-conundrum"
+  },
+  {
+   "title": "Crescent Petroleum — Kurdistan Region of Iraq operations",
+   "url": "https://www.crescentpetroleum.com/expertise/operation-details/?post=1397"
+  },
+  {
+   "title": "Enerdata — Iraq announces resumption of pipeline oil exports through Kurdistan to Türkiye",
+   "url": "https://www.enerdata.net/publications/daily-energy-news/iraq-announces-resumption-pipeline-oil-exports-through-kurdistan-turkiye.html"
+  },
+  {
+   "title": "964 Media — Kurdistan Region crude exports resume after 30-month suspension",
+   "url": "https://en.964media.com/40642"
+  },
+  {
+   "title": "World Oil — Khor Mor gas capacity rises 50% as $1.1bn expansion completed early",
+   "url": "https://www.worldoil.com/news/2025/10/31/khor-mor-gas-capacity-rises-50-as-1-1-billion-kurdistan-expansion-project-completed-early"
+  },
+  {
+   "title": "Shafaq News — Kurdistan gas output surges 50% after Khor Mor expansion",
+   "url": "https://shafaq.com/en/Kurdistan/Kurdistan-gas-output-surges-50-after-1-1B-Khor-Mor-expansion"
+  },
+  {
+   "title": "KRG Ministry of Natural Resources — Khurmala Dome begins providing fuel (2009)",
+   "url": "https://archive.gov.krd/mnr/mnr.krg.org/index.php/en/press-releases/125-khurmala-dome-begins-providing-fuel-to-power-the-kurdistan-region.html"
+  },
+  {
+   "title": "Shafaq News — Oil exports from Kurdistan relaunch following KRG–Baghdad deal",
+   "url": "https://shafaq.com/en/Kurdistan/Oil-exports-from-Kurdistan-relaunch-following-KRG-Baghdad-deal"
+  },
+  {
+   "title": "OilPrice.com — Kurdistan's new gas play (attacks on oilfields and Khor Mor)",
+   "url": "https://oilprice.com/Energy/Natural-Gas/Kurdistans-New-Gas-Play-Just-Exposed-the-Real-Battle-for-Iraq.amp.html"
+  },
+  {
+   "title": "Rudaw — Restart of Kurdish oil exports through rehabilitated pipeline",
+   "url": "https://www.rudaw.net/english/business/270920251"
+  },
+  {
+   "title": "IAEA conference paper — Iraq radioactive material regulation (IRSRA and I-NRC)",
+   "url": "https://conferences.iaea.org/event/421/contributions/38005/attachments/21288/36591/Ban%20Fakhri%20Matoog_Iraq.pdf"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Basra",
+   "href": "/ndt-services/basra-iq"
+  },
+  {
+   "name": "Kocaeli, Turkey",
+   "href": "/ndt-services/kocaeli-tr"
+  },
+  {
+   "name": "Istanbul, Turkey",
+   "href": "/ndt-services/istanbul-tr"
+  },
+  {
+   "name": "Kuwait City",
+   "href": "/ndt-services/kuwait-city-kw"
+  }
+ ],
+ "related": [
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "RT exposure time calculator",
+   "href": "/tools/rt-exposure-time"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  }
+ ]
+}

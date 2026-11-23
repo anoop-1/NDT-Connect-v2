@@ -1,0 +1,308 @@
+{
+ "slug": "suez-eg",
+ "city": "Suez",
+ "region": "Suez Governorate",
+ "country": "Egypt",
+ "countrySlug": "egypt",
+ "wave": 1,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Suez and Ain Sokhna: Refinery, Terminal, Steel and Green Hydrogen Inspection",
+ "metaTitle": "NDT Services in Suez & Ain Sokhna, Egypt | Refinery & SCZONE Inspection",
+ "description": "NDT in Suez and Ain Sokhna, Egypt: inspection for the Suez refineries, SUMED terminal, SCZONE steel and pipe plants, petrochemicals and green ammonia projects.",
+ "quickAnswer": "Suez sits at the southern entrance of the Suez Canal, through which about 12% of global trade and roughly 26,000 vessels pass each year [5]. It hosts two of Egypt's oldest refineries, **Nasr Petroleum Company**, founded in 1913 as Africa's oldest refinery [1], and **Suez Oil Processing Company** [2]. To the south, **Ain Sokhna** is the industrial heart of the Suez Canal Economic Zone (SCZONE), with port facilities, steel and pipe plants, chemical projects and a growing green hydrogen and ammonia cluster [4][6][7]. Ain Sokhna is also one end of the SUMED crude pipeline [8]. All radiography is licensed by ENRRA under Law No. 7 of 2010 [10].",
+ "keyFacts": [
+  {
+   "label": "Refining",
+   "value": "NPC: 6.5 Mt/y with four crude units fed by Gulf of Suez fields [1]; SOPC: 60,000 b/d refinery [2]"
+  },
+  {
+   "label": "Economic zone",
+   "value": "SCZONE: 455 km², four industrial sub-zones and six ports, established 2015 [4]"
+  },
+  {
+   "label": "Green fuels",
+   "value": "12 framework agreements worth $64 bn aiming at 18 Mt/y of green hydrogen [5]"
+  },
+  {
+   "label": "Radiation regulator",
+   "value": "ENRRA, Law No. 7 of 2010 [10]"
+  }
+ ],
+ "industries": [
+  "Oil refining",
+  "Crude pipeline terminals",
+  "Steel and pipe manufacturing",
+  "Petrochemicals and chemicals",
+  "Green hydrogen and ammonia",
+  "Ports and ship services"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Why Suez and Ain Sokhna matter for NDT",
+   "paragraphs": [
+    "Suez governorate combines old and new industry. The city has been a refining centre for more than a century: Nasr Petroleum Company (NPC), built in 1913, is considered the oldest refinery in Africa [1], and Suez Oil Processing Company (SOPC) operates a second refinery nearby [2]. Together they refined 2.9 million tonnes of crude in fiscal year 2025/26, and upgrading and expanding them is a priority for the Ministry of Petroleum [3].",
+    "South of the city, Ain Sokhna has become Egypt's fastest-growing industrial hub. The Suez Canal Economic Zone (SCZONE), established in 2015, spans 455 km² around the canal with four industrial sub-zones and six ports [4]. Its Sokhna industrial zone and port host steel, pipe, chemical and logistics projects, and the zone has positioned itself as a centre for green hydrogen, green ammonia and green methanol [6]. SCZONE reports 400 operational facilities and 100,000 direct and indirect jobs [5].",
+    "For inspection providers, this means three overlapping markets: integrity and turnaround work at ageing refineries, construction and production inspection at new factories and process plants, and terminal, tank and pipeline integrity linked to the SUMED pipeline and the ports."
+   ]
+  },
+  {
+   "id": "assets",
+   "h2": "Refineries, terminals and industrial projects",
+   "paragraphs": [
+    "**NPC** has a capacity of 6.5 million tonnes a year, supplying LPG, kerosene, gas oil, fuel oil and bitumen, with four crude distillation units fed mainly by Gulf of Suez fields [1]. **SOPC** runs a 60,000 b/d refinery and planned to debottleneck its 40,000 b/d crude unit to raise utilisation [2]. A coking and diesel production complex is under construction at SOPC, which the petroleum minister described as a key project for reducing fuel imports [9].",
+    "At **Ain Sokhna**, Red Sea National Refining and Petrochemical Company has planned a grassroots $7.5 billion integrated refining and petrochemicals complex on 3.56 million m² within SCZONE's southern sector [11]. SCZONE approvals include a steel complex for 600,000 t/y of steel coils and a steel factory for up to 1.8 million t/y of steel products [12], and a planned seamless steel pipe factory with a target capacity of 250,000 t/y [13]. In green fuels, China Energy signed a $6.75 billion deal for a project to produce 1.2 million t/y of green ammonia and 210,000 t/y of green hydrogen in the Sokhna industrial zone [7]."
+   ],
+   "table": {
+    "caption": "Suez and Ain Sokhna assets and their typical NDT scopes",
+    "head": [
+     "Asset",
+     "Main inspection concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Ageing refinery units (NPC, SOPC)",
+      "Corrosion and cracking after decades of service, CUI, heater tubes",
+      "UT, corrosion mapping, PAUT, RT, ECT/IRIS"
+     ],
+     [
+      "New coking and diesel units",
+      "Coke drum bulging and cracking, high-pressure hydrotreating welds",
+      "PAUT, TOFD, laser profiling, UT"
+     ],
+     [
+      "SUMED terminal and tank farms",
+      "Tank floors and shells, large-diameter pipelines, jetty piping",
+      "MFL, UT, guided wave, AUT/PAUT"
+     ],
+     [
+      "Steel and seamless pipe mills",
+      "Product inspection of pipe and plate, mill equipment",
+      "Automated UT, ECT, MT"
+     ],
+     [
+      "Green ammonia and hydrogen plants",
+      "Hydrogen embrittlement risk, ammonia SCC, high-pressure welds",
+      "PAUT, TOFD, WFMT, PMI, hardness"
+     ],
+     [
+      "Ports and marine structures",
+      "Corrosion and fatigue of cranes, quays, piling",
+      "MT, UT, ACFM, visual and drone"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "refinery",
+   "h2": "Inspecting century-old refining sites",
+   "paragraphs": [
+    "Refineries that have operated for decades accumulate inspection history and unknowns. Equipment may have been modified, re-rated or repaired many times, records may be incomplete, and corrosion under insulation can hide significant wall loss. Effective programmes combine UT thickness monitoring at fixed points with corrosion mapping and screening methods such as pulsed eddy current for insulated lines, profile radiography for small-bore piping, and PAUT for welds where cracking is suspected.",
+    "New units being added, like SOPC's coking and diesel complex [9], bring different needs. Delayed coker drums cycle between high temperature and quench every day, causing bulging and cracking in shell welds and skirt attachments; laser profiling, PAUT and TOFD are used to monitor them. Hydrotreating and hydrocracking units run at high pressure in hydrogen service and need PAUT and TOFD on heavy-wall welds, plus screening for high-temperature hydrogen attack where conditions warrant.",
+    "Integrating old and new plants also means integrating data. Providers who can deliver inspection results in a consistent format, tied to equipment identifiers and monitoring locations, help refinery engineers make reliable fitness-for-service and run-length decisions."
+   ]
+  },
+  {
+   "id": "sokhna",
+   "h2": "Construction and production NDT in the Sokhna industrial zone",
+   "paragraphs": [
+    "Ain Sokhna's new factories create a wave of construction NDT: weld inspection on structural steel, process piping, pressure vessels and storage tanks, PMI on alloy materials, and pre-commissioning checks. Large projects, such as the planned refining and petrochemicals complex [11] and green ammonia plants [7], typically follow EPC contractors' quality plans and international owners' specifications, with third-party inspection agencies witnessing on the owner's behalf.",
+    "Steel and pipe mills need production NDT: automated ultrasonic inspection of pipe bodies and weld seams, eddy current for surface defects, and MT on finished products, alongside maintenance inspection of rolling mills, cranes and furnaces. Seamless pipe intended for oil and gas service must meet API 5L or API 5CT inspection requirements before shipment.",
+    "Green hydrogen and ammonia plants introduce materials and damage mechanisms that inspection teams must understand: hydrogen embrittlement of high-strength steels in hydrogen service, ammonia stress corrosion cracking in storage, and high-pressure equipment where weld quality is critical. Procedures and acceptance criteria should be agreed early with licensors and owners.",
+    "Because many Sokhna projects run at the same time, NDT capacity can become a bottleneck. Owners and EPC contractors can reduce risk by pre-qualifying several providers, agreeing radiography windows with neighbouring sites, using PAUT where radiation exclusion zones would disrupt other trades, and setting clear reporting turnaround times so weld repairs do not hold up construction."
+   ]
+  },
+  {
+   "id": "terminal",
+   "h2": "Terminal, tank and pipeline integrity",
+   "paragraphs": [
+    "Ain Sokhna and Sidi Kerir are the storage hubs at either end of the SUMED pipeline, which handles up to 2.5 million barrels a day [8]. Crude tanks and pipelines at Sokhna need regular API 653 out-of-service inspections (MFL floor scanning, UT prove-up, annular plate and shell inspection) and in-service monitoring with acoustic emission and external UT.",
+    "Large-diameter pipelines are inspected with in-line inspection tools where possible, and NDT crews verify findings at excavations with UT and PAUT. Construction or repair of pipelines and jetty piping requires girth weld inspection by radiography or automated/phased array UT, plus coating inspection and hydrotest support.",
+    "Terminal outages affect export schedules, so owners want tank inspections completed quickly. Providers who bring enough MFL scanners and crews, report indications daily and coordinate closely with repair contractors help return tanks to service sooner."
+   ]
+  },
+  {
+   "id": "codes",
+   "h2": "Codes, specifications and radiation licensing",
+   "paragraphs": [
+    "Refineries follow ASME Section VIII, B31.3 and API 510, 570 and 653 alongside owner specifications; pipelines follow API 1104 and ASME B31.4/B31.8; steel and pipe products follow API 5L, API 5CT and ASTM standards; and new process plants follow licensor and EPC specifications. Personnel are typically certified under ASNT employer-based schemes or ISO 9712, with international projects often requiring ISO 9712 for advanced methods.",
+    "Radiation work in Egypt is governed by **Law No. 7 of 2010 on the regulation of nuclear and radiological activities**, which established ENRRA as the independent regulator of all nuclear and radiation facilities, activities and practices [10]. Its executive regulations were issued in 2011, and ENRRA's role includes licensing [14]. Radioactive materials passing through the Suez Canal shipping corridor are also handled under Law No. 7 of 2010 [15].",
+    "Before awarding radiography, ask providers for their current ENRRA licence, radiation protection officer and source transport arrangements, especially for construction sites in the busy Sokhna zone where exclusion areas must be coordinated with other contractors."
+   ],
+   "bullets": [
+    "Request the provider's ENRRA licence for radiography [10].",
+    "Confirm the governing owner, licensor or EPC specification.",
+    "For hydrogen and ammonia service, require procedures qualified for the relevant damage mechanisms."
+   ]
+  },
+  {
+   "id": "environment",
+   "h2": "Climate and coastal conditions",
+   "paragraphs": [
+    "Suez and Ain Sokhna have a hot desert climate on the Gulf of Suez, with intense summer heat, strong winds and salt-laden air. Wind-blown sand abrades coatings, salt deposits accelerate atmospheric corrosion, and corrosion under insulation develops on piping where cladding is damaged. Marine structures and port cranes face corrosion and fatigue.",
+    "Heat and wind affect inspection work: surfaces exceed standard probe ratings in summer, consumables dry quickly, dust affects instrument reliability and radiography exclusion zones are harder to manage in windy, crowded construction areas. Experienced providers plan schedules and equipment accordingly."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Suez and Ain Sokhna",
+   "paragraphs": [
+    "Refinery work is commonly priced as day rates for technicians and crews, with specialist equipment charged separately; tank inspections as lump sums; pipeline and plant construction as unit rates per weld or film, or resident crews on monthly rates; and mill inspection under production contracts.",
+    "Cost drivers include crew size during turnarounds, specialist equipment (PAUT, TOFD, MFL, laser profiling, IRIS), ENRRA licensing and source logistics, travel from Cairo for providers without local bases, and documentation requirements on international projects. NDT-Connect lets buyers post one scope and compare certified providers serving the Suez region."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Suez and Ain Sokhna",
+   "paragraphs": [
+    "The Suez region offers refinery turnaround work, terminal and tank inspection, construction NDT on new factories and process plants, and production roles in steel and pipe mills. Technicians with PAUT, TOFD, MFL and automated UT experience are in demand, and the green hydrogen cluster will need inspectors familiar with hydrogen and ammonia service.",
+    "Egyptian technicians who combine ASNT or ISO 9712 certification with advanced-method qualifications and documented project experience are well placed for both local work and opportunities in the Gulf. Radiographers must meet ENRRA's radiation safety requirements [10].",
+    "A practical path for new technicians is to start in mill or construction inspection, where volumes are high and supervision is strong, then move into refinery and terminal work. Experience with automated UT systems and PAUT data analysis is especially valuable as new plants come online."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Suez",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers."
+   ],
+   "bullets": [
+    "Current ENRRA licence for radiography [10].",
+    "Experience with your asset type: refinery, terminal, mill, chemical or hydrogen plant.",
+    "Qualified procedures and method-specific certificates.",
+    "Equipment: PAUT, TOFD, MFL, automated UT, laser profiling as required.",
+    "Capacity for turnarounds and construction peaks, with a local or nearby base.",
+    "Documentation and QA suited to international EPC projects."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Which refineries operate in Suez?",
+   "a": "Nasr Petroleum Company, founded in 1913 and considered Africa's oldest refinery, with 6.5 Mt/y capacity [1], and Suez Oil Processing Company, which runs a 60,000 b/d refinery [2] and is building a coking and diesel complex [9]."
+  },
+  {
+   "q": "What is the Suez Canal Economic Zone?",
+   "a": "SCZONE, established in 2015, spans 455 km² around the canal with four industrial sub-zones and six ports [4], including the Sokhna industrial zone and port."
+  },
+  {
+   "q": "Is Ain Sokhna a green hydrogen hub?",
+   "a": "SCZONE has secured 12 framework agreements worth $64 billion aiming at 18 Mt/y of green hydrogen [5], including China Energy's planned 1.2 Mt/y green ammonia and 210,000 t/y green hydrogen project [7]."
+  },
+  {
+   "q": "Who licenses industrial radiography in Suez?",
+   "a": "The Egyptian Nuclear and Radiological Regulatory Authority (ENRRA), under Law No. 7 of 2010 [10]."
+  },
+  {
+   "q": "What NDT do steel and pipe mills need?",
+   "a": "Automated ultrasonic inspection of pipe bodies and weld seams, eddy current for surface defects, MT on finished products and maintenance inspection of mill equipment, with pipe for oil and gas meeting API 5L or 5CT."
+  },
+  {
+   "q": "How do I request NDT quotes in Suez or Ain Sokhna?",
+   "a": "Post the scope on NDT-Connect with the asset type, governing specification, equipment or weld list, location, dates and reporting requirements. Mention whether the site is inside SCZONE, since access procedures differ."
+  }
+ ],
+ "references": [
+  {
+   "title": "Egypt Oil & Gas — Economics of refineries in Egypt (NPC profile)",
+   "url": "https://egyptoil-gas.com/reports/economics-of-refineries-in-egypt-tracking-economic-contribution-of-refining-industry-fys-201617-201718"
+  },
+  {
+   "title": "Industrial Info — Suez Oil Processing Company to debottleneck Egypt refinery",
+   "url": "https://www.industrialinfo.com/iirenergy/industry-news/article/suez-oil-processing-company-to-debottleneck-egypt-refinery-an-industrial-info-market-brief--293532"
+  },
+  {
+   "title": "Zawya — Nasr Petroleum, SOPC refine 2.9mln tons of crude in FY2025/26",
+   "url": "https://www.zawya.com/en/business/egypt-nasr-petroleum-sopc-refine-2.9mln-tons-of-crude-oil-in-fy202526-465127"
+  },
+  {
+   "title": "DLA Piper — Investment considerations in the Suez Canal Economic Zone (2026)",
+   "url": "https://www.dlapiper.com/en-la/insights/publications/2026/02/investment-considerations-in-suez-canal-economic-zone"
+  },
+  {
+   "title": "ESG News — Suez Canal Economic Zone attracts $64 billion in green hydrogen investments",
+   "url": "https://esgnews.com/suez-canal-economic-zone-attracts-64-billion-in-green-hydrogen-investments"
+  },
+  {
+   "title": "Engineering News — Suez Canal Economic Zone set for rapid expansion",
+   "url": "https://www.engineeringnews.co.za/article/suez-canal-economic-zone-set-for-rapid-expansion-chairperson-2024-11-06"
+  },
+  {
+   "title": "AGBI — Suez Canal Economic Zone green energy deals (China Energy)",
+   "url": "https://www.agbi.com/energy/2023/10/suez-canal-economic-zone-green-energy-deals/"
+  },
+  {
+   "title": "Egypt Oil & Gas — Refinery expansions and upgrades power Egypt's oil sector (SUMED)",
+   "url": "https://egyptoil-gas.com/features/refinery-expansions-and-upgrades-power-egypts-oil-sector"
+  },
+  {
+   "title": "Amwal Al Ghad — Minister inspects SOPC and NPC expansion projects",
+   "url": "https://en.amwalalghad.com/?p=214317"
+  },
+  {
+   "title": "Bayt — ENRRA profile (Law No. 7 of 2010)",
+   "url": "https://bayt.com/en/company/egyptian-nuclear-radiological-regulatory-authority-enrra-2035477"
+  },
+  {
+   "title": "Oil & Gas Journal — Egypt advances plan for new refining, petrochemical complex at Ain Sokhna",
+   "url": "https://www.ogj.com/refining-processing/petrochemicals/article/14202796/egypt-advances-plan-for-new-refining-petrochemical-complex"
+  },
+  {
+   "title": "Engineering News — Suez Canal Economic Zone projects (steel complex and factory)",
+   "url": "https://engineeringnews.co.za/article/suez-canal-economic-zone-projects-egypt-2023-10-27"
+  },
+  {
+   "title": "Enterprise — Kemet and Al Qalaa Red Flag Sokhna projects (seamless pipe factory)",
+   "url": "https://enterpriseam.com/egypt/?p=674541"
+  },
+  {
+   "title": "IAEA GNSSN — ENRRA (Egypt) regulatory infrastructure",
+   "url": "https://gnssn.iaea.org/main/Knowledge%20Base%20Articles/ENRRA%20(Egypt)%20-%20Regulatory%20Infrastructure.pdf"
+  },
+  {
+   "title": "Egyptian Knowledge Bank journal — Radioactive materials and the Suez Canal under Law No. 7 of 2010",
+   "url": "https://journals.ekb.eg/article_292120_63d09f7162b14696ccf59625e14fe5e3.pdf"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Cairo",
+   "href": "/ndt-services/cairo-eg"
+  },
+  {
+   "name": "Alexandria",
+   "href": "/ndt-services/alexandria-eg"
+  },
+  {
+   "name": "Jeddah, Saudi Arabia",
+   "href": "/ndt-services/jeddah-sa"
+  },
+  {
+   "name": "Yanbu, Saudi Arabia",
+   "href": "/ndt-services/yanbu-sa"
+  }
+ ],
+ "related": [
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "RT exposure time calculator",
+   "href": "/tools/rt-exposure-time"
+  },
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  }
+ ]
+}

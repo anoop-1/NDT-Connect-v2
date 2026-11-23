@@ -1,0 +1,316 @@
+{
+ "slug": "kocaeli-tr",
+ "city": "Kocaeli",
+ "region": "Marmara Region",
+ "country": "Turkey",
+ "countrySlug": "turkey",
+ "wave": 1,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Kocaeli (İzmit): Refinery, Automotive, Chemical and Pipe Mill Inspection",
+ "metaTitle": "NDT Services in Kocaeli & İzmit, Turkey | Refinery & Automotive Inspection",
+ "description": "NDT in Kocaeli and İzmit: inspection for the Tüpraş İzmit refinery, chemical plants, LPG terminals, pipe mills, shipyards and car plants. Standards, hiring.",
+ "quickAnswer": "Kocaeli, at the eastern end of the Sea of Marmara, is called Turkey's industrial capital [1]. It hosts the **Tüpraş İzmit refinery**, with a design capacity of 11.3 million tonnes a year and supplying more than a third of Turkey's petroleum products demand [2], plus a dense base of chemical plants, LPG terminals, pipe and steel mills, shipyards and car factories. The region accounts for about 45% of Turkey's automotive production, 27% of its chemical industry and 19% of its metal industry, across 14 organised industrial zones [3]. NDT demand ranges from refinery turnarounds to automotive production inspection. Radiation sources are regulated by Turkey's Nuclear Regulatory Authority (NDK) [9].",
+ "keyFacts": [
+  {
+   "label": "Refining",
+   "value": "Tüpraş İzmit refinery in Körfez: 11.3 Mt/y design capacity [2]; Nelson complexity index 14.5 [5]"
+  },
+  {
+   "label": "Industry base",
+   "value": "Over 3,900 industrial facilities, 14 OIZs and 2 free trade zones [3]"
+  },
+  {
+   "label": "Automotive",
+   "value": "Ford Otosan (Gölcük), Hyundai (İzmit), Honda and Anadolu Isuzu (Gebze) [7]"
+  },
+  {
+   "label": "Radiation regulator",
+   "value": "NDK, the independent nuclear and radiation safety regulator [9]"
+  }
+ ],
+ "industries": [
+  "Oil refining",
+  "Chemicals and petrochemicals",
+  "LPG and fuel terminals",
+  "Pipe and steel mills",
+  "Automotive manufacturing",
+  "Shipbuilding"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Why Kocaeli is Turkey's industrial heartland for NDT",
+   "paragraphs": [
+    "The decision decades ago to locate a major oil refinery in İzmit prompted investment in the chemical and petrochemical industry and formed the basis of what is now Turkey's industrial heartland [6]. The İzmit refinery began production in 1961 with a capacity of 1 million tonnes a year [8]; today its design capacity is 11.3 million tonnes, and it supplies more than a third of Turkey's demand for petroleum products [2]. Tüpraş, Turkey's largest industrial company, is headquartered in Körfez, Kocaeli [10].",
+    "Around the refinery grew a dense industrial ecosystem. Major companies in the province include Tüpraş, Hyundai Assan, Ford Otosan, Honda, Anadolu Isuzu, Pirelli, Goodyear, Aygaz, Petrol Ofisi, Kordsa, Nuh Çimento and Mannesmann Boru [4]. The region has more than 3,900 industrial facilities, 10% of them foreign direct investments, with 14 organised industrial zones, 2 free trade zones and 139 R&D centres [3]. Kocaeli is also part of the Marmara shipbuilding cluster along with Tuzla and Yalova [11].",
+    "For NDT buyers, Kocaeli is unusual because it combines heavy process industry with high-volume manufacturing. A single provider might inspect a coker drum at the refinery in the morning and automotive castings or pipe-mill welds in the afternoon, though the best providers specialise. Being about 91 km from Istanbul [12], Kocaeli is served by local providers and by Istanbul-based crews."
+   ]
+  },
+  {
+   "id": "refinery",
+   "h2": "Refinery inspection at Tüpraş İzmit",
+   "paragraphs": [
+    "The İzmit refinery is the most complex in Turkey, with a Nelson complexity index of 14.5, the highest of Tüpraş's four refineries [5]. Its $2.9 billion Residuum Upgrade Project, completed in 2014, converts lower-value residues into diesel and other light products [13] and was described as Turkey's largest single industrial investment at the time [14]. Complex conversion units like these generate some of the most demanding inspection scopes in the industry.",
+    "Delayed coking drums cycle between high temperature and water quench, which causes bulging and cracking in shell welds and skirt attachments; laser profiling, PAUT and TOFD are used to monitor them between cycles and during turnarounds. Hydrocracking and hydrotreating units run at high pressure in hydrogen service, requiring PAUT and TOFD on heavy-wall welds and, where operating conditions warrant, advanced ultrasonic screening for high-temperature hydrogen attack. Crude and vacuum units face sulfidation and naphthenic acid corrosion, monitored with UT and corrosion mapping, while exchanger bundles are inspected with eddy current or IRIS.",
+    "The refinery also has around 3 million cubic metres of storage and its own port on the Gulf of İzmit [2], adding tank floor scanning, shell surveys and jetty piping inspection to the workload."
+   ],
+   "table": {
+    "caption": "Kocaeli assets and their typical NDT scopes",
+    "head": [
+     "Asset",
+     "Main inspection concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Refinery conversion units (coker, hydrocracker)",
+      "Coke drum bulging and cracking, high-pressure hydrogen service",
+      "Laser profiling, PAUT, TOFD, advanced UT"
+     ],
+     [
+      "Crude, vacuum and utility units",
+      "Corrosion, CUI, exchanger tube failures",
+      "UT, corrosion mapping, ECT/IRIS, RT"
+     ],
+     [
+      "Chemical and petrochemical plants",
+      "Chloride and caustic cracking, corrosion in process lines",
+      "PAUT, PT, UT, PMI"
+     ],
+     [
+      "LPG and fuel terminals",
+      "Spheres, bullets, tanks and loading lines",
+      "WFMT, AE, MFL, UT"
+     ],
+     [
+      "Pipe and steel mills",
+      "Weld seams and pipe bodies against API 5L and EN standards",
+      "Automated UT, RT, ECT, MT"
+     ],
+     [
+      "Automotive plants and suppliers",
+      "Spot welds, castings, forgings and safety parts",
+      "UT weld analysis, RT/CT, ECT, MT"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "chemical",
+   "h2": "Chemical plants, terminals and pipe mills",
+   "paragraphs": [
+    "Kocaeli is home to about 27% of Turkey's chemical industry [3][6], from fertilizers and industrial gases to tyre cord, paints and plastics. Chemical plants bring their own damage mechanisms: chloride stress corrosion cracking of stainless steels, caustic cracking, acid corrosion and erosion. Inspection relies on UT and corrosion mapping, PAUT for weld cracking, PT on stainless steels and PMI to confirm alloy materials. LPG terminals operated by companies such as Aygaz [4] require internal inspection of spheres and bullets with wet fluorescent MT, acoustic emission testing and tank floor scanning.",
+    "Pipe and steel mills, including Mannesmann Boru [4], produce line pipe and structural products that must meet API 5L, EN and customer specifications. Production NDT includes automated ultrasonic inspection of weld seams and pipe bodies, radiography of weld ends, eddy current for surface defects and magnetic particle testing. Mill NDT operators work under the mill's quality system, and third-party inspectors often witness on behalf of pipeline owners."
+   ]
+  },
+  {
+   "id": "automotive",
+   "h2": "Automotive NDT: a distinctive Kocaeli market",
+   "paragraphs": [
+    "Kocaeli's four main automotive manufacturers are Ford Otosan in Gölcük, Hyundai Assan in İzmit, and Honda Turkey and Anadolu Isuzu in Gebze, supported by hundreds of supplier companies [7]. Automotive NDT is quite different from plant inspection: it is high-volume, often automated, and focused on product quality rather than in-service integrity.",
+    "Typical applications include **ultrasonic inspection of resistance spot welds** to confirm nugget size in body structures, **radiography and computed tomography** of aluminium castings for porosity, **eddy current** testing of machined parts and heat-treated components, **magnetic particle** inspection of forgings and safety-critical steel parts, and **leak testing** of assemblies. As carmakers invest in electrification, battery enclosures, busbars and new joining methods add inspection needs, including welds in aluminium and copper.",
+    "Providers serving automotive clients need to integrate with production lines, deliver results quickly and work under automotive quality standards such as IATF 16949 at the customer's site. Many inspections are performed in-house by manufacturers, with external NDT companies supporting audits, new model launches, supplier quality issues and specialist techniques.",
+    "For NDT providers, the automotive sector offers steadier, year-round work than turnaround-driven process plants. Success depends on understanding production takt times, delivering statistically meaningful sampling and reporting results in the formats quality engineers use for process control."
+   ]
+  },
+  {
+   "id": "turnaround",
+   "h2": "Planning a refinery or chemical plant turnaround in Kocaeli",
+   "paragraphs": [
+    "Turnarounds at complex conversion refineries are short, intense and expensive, so inspection planning starts months ahead. The owner's inspection engineers set the worklist from risk-based inspection results and previous findings; NDT providers then plan methods, crew numbers and equipment, and qualify procedures for the specific damage mechanisms, such as coke drum cracking or hydrogen attack, before the shutdown begins.",
+    "On-stream inspection before shutdown helps focus the turnaround: PAUT, corrosion mapping and pulsed eddy current screening can confirm or remove items from the list. During the turnaround, preliminary results should reach the owner every shift so repair and replacement decisions are not delayed. Afterwards, a review of findings by damage mechanism feeds the next inspection cycle.",
+    "In Kocaeli's congested industrial zones, logistics matter too: coordinating radiography windows with other contractors, managing scaffolding access across many units at once, and moving equipment between plants. Providers with local bases and established site inductions at the major plants can mobilise faster and with fewer surprises.",
+    "Chemical plants follow the same logic on a smaller scale, but with more variety in materials and process conditions. Sharing process data, such as temperatures, chloride content and caustic concentration, with the NDT provider lets them choose methods that target the damage most likely in each system."
+   ]
+  },
+  {
+   "id": "codes",
+   "h2": "Standards, certification and radiation regulation",
+   "paragraphs": [
+    "Kocaeli follows European practice for NDT personnel: **EN ISO 9712** certification (TS EN ISO 9712 in Turkey) is standard, with ASNT-based certification accepted by some international clients. Refineries and chemical plants apply owner specifications over ASME, API and EN codes; pipe mills follow API 5L and EN standards; shipyards follow classification society rules; and automotive plants follow manufacturer standards and IATF 16949 quality systems.",
+    "Radiation safety in Turkey is overseen by the **Nuclear Regulatory Authority (NDK)**, established as the independent regulator for nuclear and radiation safety, with a mandate covering safety, security, safeguards and radiation protection [9]. Its powers are set out in Nuclear Regulatory Law No. 7381 [15], and importing radioactive materials and devices requires its approval [16]. Before awarding radiography, buyers should confirm the provider's current authorisations and radiation protection arrangements.",
+    "In practice, many refinery and chemical clients in Kocaeli now favour PAUT over radiography where codes allow, to avoid exclusion zones in congested plants and to obtain digital records."
+   ],
+   "bullets": [
+    "Ask for EN ISO 9712 certificates and method-specific qualifications.",
+    "Confirm radiation authorisations under NDK for any radiography [9].",
+    "For refinery hydrogen and coker service, require qualified PAUT/TOFD procedures."
+   ]
+  },
+  {
+   "id": "environment",
+   "h2": "Seismic risk, climate and conditions",
+   "paragraphs": [
+    "Kocaeli sits on the North Anatolian Fault. The August 1999 İzmit earthquake, magnitude 7.6, had its epicentre close to the Tüpraş refinery and Turkey's heavy industry [17]. Seismic risk makes structural integrity a long-term concern: tanks, pipe racks, foundations and buildings need periodic assessment, and after significant earthquakes owners commission rapid inspection of critical equipment before restarting.",
+    "The climate is temperate and humid, with warm summers and cool, wet winters. The marine atmosphere of the Gulf of İzmit and industrial emissions accelerate corrosion of structures, tanks and insulated piping, making corrosion under insulation a priority in refineries and chemical plants."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Kocaeli",
+   "paragraphs": [
+    "Refinery and chemical plant work is typically priced as day rates for technicians and crews during turnarounds, with specialist equipment such as PAUT, TOFD, laser profiling and IRIS charged separately. Terminal inspections are often lump sums per tank or sphere. Mill and automotive inspection is usually contracted as production support or project work with monthly or per-part pricing.",
+    "Cost drivers include crew size during refinery turnarounds, specialist equipment, radiation authorisations and logistics, and integration with production lines in manufacturing. NDT-Connect lets buyers post one scope and compare certified providers serving Kocaeli and Istanbul."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Kocaeli",
+   "paragraphs": [
+    "Kocaeli offers careers in refinery and chemical plant inspection, terminal and tank inspection, pipe mill NDT, shipyard work and automotive quality inspection. Technicians with PAUT, TOFD and corrosion mapping skills are in demand for turnarounds, while automotive roles reward experience with ultrasonic weld analysis, eddy current and CT.",
+    "EN ISO 9712 certification is the foundation, and documented experience on specific equipment or production lines is what moves technicians into senior and Level 3 roles. Kocaeli University and Gebze Technical University [1] supply engineering graduates to the region's industry."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Kocaeli",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers."
+   ],
+   "bullets": [
+    "EN ISO 9712 certificates and method-specific qualifications for every technician.",
+    "Radiation authorisations under NDK [9].",
+    "Experience with your asset: refinery conversion units, chemical plants, terminals, mills or automotive lines.",
+    "Equipment such as PAUT, TOFD, laser profiling, IRIS, AE or automated weld analysers.",
+    "Capacity for turnaround peaks or production schedules.",
+    "Reporting and data formats that fit your inspection or quality system."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "How large is the Tüpraş İzmit refinery?",
+   "a": "It has a design capacity of 11.3 million tonnes of crude a year and supplies more than a third of Turkey's petroleum products demand [2], with a Nelson complexity index of 14.5 [5]."
+  },
+  {
+   "q": "What industries drive NDT demand in Kocaeli?",
+   "a": "Refining, chemicals, LPG and fuel terminals, pipe and steel mills, shipbuilding and automotive manufacturing. The region accounts for about 45% of Turkey's automotive production and 27% of its chemical industry [3]."
+  },
+  {
+   "q": "What NDT is used in automotive manufacturing?",
+   "a": "Ultrasonic inspection of spot welds, radiography and CT of castings, eddy current testing of machined and heat-treated parts, magnetic particle testing of forgings and leak testing of assemblies."
+  },
+  {
+   "q": "Who regulates industrial radiography in Turkey?",
+   "a": "The Nuclear Regulatory Authority (NDK) [9], under Nuclear Regulatory Law No. 7381 [15]."
+  },
+  {
+   "q": "Does earthquake risk affect inspection in Kocaeli?",
+   "a": "Yes. The 1999 İzmit earthquake struck near the refinery and heavy industry [17], so structural integrity assessment of tanks, racks and foundations, and rapid post-earthquake inspection, are important."
+  },
+  {
+   "q": "How do I request NDT quotes in Kocaeli?",
+   "a": "Post the scope on NDT-Connect with the asset type, governing specification, equipment list or part quantities, dates and reporting needs."
+  }
+ ],
+ "references": [
+  {
+   "title": "Kocaeli Province — Wikipedia",
+   "url": "https://www.Wikipedia.com/wiki/Kocaeli_Province"
+  },
+  {
+   "title": "Tüpraş İzmit Oil Refinery — Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/T%C3%BCpra%C5%9F_%C4%B0zmit_Oil_Refinery"
+  },
+  {
+   "title": "Match4Industry 2026 — Kocaeli region industry profile",
+   "url": "https://www.b2match.com/e/match4industry2026/components/74852/MDbqntfLyKcj"
+  },
+  {
+   "title": "Kocaeli Metropolitan Municipality — Today's Kocaeli (major companies)",
+   "url": "https://komek.kocaeli.bel.tr/en/main/pages/socio-economical-structure/361"
+  },
+  {
+   "title": "Tüpraş — Wikipedia (refinery capacities and complexity)",
+   "url": "https://en.Wikipedia.com/wiki/Tupras"
+  },
+  {
+   "title": "Scoop (US cable) — Kocaeli, Turkey's industrial heartland",
+   "url": "https://m.scoop.co.nz/stories/WL0705/S00640.htm"
+  },
+  {
+   "title": "Fırat University thesis — Automotive industry in Kocaeli (plant locations)",
+   "url": "https://openaccess.firat.edu.tr/xmlui/bitstream/11508/15454/1/469721.pdf"
+  },
+  {
+   "title": "NS Energy — Izmit refinery profile",
+   "url": "https://www.nsenergybusiness.com/?p=283179"
+  },
+  {
+   "title": "Nuclear Business Platform — IAEA endorses Türkiye's nuclear regulatory practices (NDK)",
+   "url": "https://nuclearbusiness-platform.com/media/insights/iaea-endorses-turkiyes-nuclear-regulatory-practices"
+  },
+  {
+   "title": "ProTenders — Tüpraş company profile (head office Körfez)",
+   "url": "https://www.protenders.com/companies/tupras"
+  },
+  {
+   "title": "Riviera — Optimism driving resurgence in Turkish shipbuilding",
+   "url": "https://www.rivieramm.com/opinion/opinion/optimism-driving-resurgence-in-turkish-shipbuilding-24842"
+  },
+  {
+   "title": "NS Energy — Izmit refinery location and site details",
+   "url": "https://www.nsenergybusiness.com/projects/izmit-refinery/"
+  },
+  {
+   "title": "Industrial Info — Tüpraş completes $2.9bn Residuum Upgrade Project",
+   "url": "https://www.industrialinfo.com/news/article/turkeys-tupras-completes-new-refinery-unit-to-process-28-million-tonnes-per-year--246000"
+  },
+  {
+   "title": "Daily Sabah — Tüpraş opens $3bn refinery facility",
+   "url": "https://dailysabah.com/energy/2014/12/15/turkish-energy-giant-tupras-opens-3bln-refinery-facility"
+  },
+  {
+   "title": "FAOLEX — Nuclear Regulatory Law No. 7381 (Türkiye, 2022)",
+   "url": "https://faolex.fao.org/en/documents/LEX-FAOC224680/nuclear-regulatory-law-no-7381-tur-2022"
+  },
+  {
+   "title": "WTO Import Licensing — Turkey: radioactive materials and devices",
+   "url": "https://importlicensing.wto.org/content/radioactive-materials-and-devices-using-them"
+  },
+  {
+   "title": "Oxford Business Group — Turkey refining capacity (1999 İzmit earthquake)",
+   "url": "https://oxfordbusinessgroup.com/articles-interviews/turkey-refining-processing-capacity"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Istanbul",
+   "href": "/ndt-services/istanbul-tr"
+  },
+  {
+   "name": "Erbil, Iraq",
+   "href": "/ndt-services/erbil-iq"
+  },
+  {
+   "name": "Alexandria, Egypt",
+   "href": "/ndt-services/alexandria-eg"
+  },
+  {
+   "name": "Rotterdam, Netherlands",
+   "href": "/ndt-services/rotterdam-nl"
+  }
+ ],
+ "related": [
+  {
+   "label": "Gulf Coast refinery NDT buyer's guide",
+   "href": "/buyers-guide/gulf-coast-refinery-petrochemical-ndt"
+  },
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Eddy current fill factor calculator",
+   "href": "/tools/ec-fill-factor"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  }
+ ]
+}

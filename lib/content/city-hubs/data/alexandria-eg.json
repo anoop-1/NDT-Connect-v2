@@ -1,0 +1,312 @@
+{
+ "slug": "alexandria-eg",
+ "city": "Alexandria",
+ "region": "Alexandria Governorate",
+ "country": "Egypt",
+ "countrySlug": "egypt",
+ "wave": 1,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Alexandria: Refinery, Petrochemical, Pipeline Terminal and Nuclear Construction Inspection",
+ "metaTitle": "NDT Services in Alexandria, Egypt | Refinery & El Dabaa Inspection",
+ "description": "NDT in Alexandria, Egypt: inspection for MIDOR and other refineries, Sidi Kerir and SUMED terminals, petrochemical plants and El Dabaa nuclear construction.",
+ "quickAnswer": "Alexandria is Egypt's most diversified refining cluster, with **MIDOR**, **Alexandria Petroleum Company** and **Amreya Petroleum Refining Company** all in the governorate [1]. MIDOR's expansion raised its processing capacity from 100,000 to 160,000 b/d [2][3], and it reached a maximum of 170,000 b/d in 2025 [4]. Sidi Kerir hosts storage for the **SUMED pipeline**, which handles up to 2.5 million b/d [4]. About 140 km to the west, Rosatom is building **El Dabaa**, Egypt's first nuclear power plant, with four 1,200 MW reactors [6][7]. NDT demand spans refinery turnarounds, terminal and pipeline integrity, petrochemical projects and nuclear-grade construction inspection, all under ENRRA's radiation licensing [10].",
+ "keyFacts": [
+  {
+   "label": "Refining",
+   "value": "MIDOR: deep-conversion refinery on about 500 acres in the Amreya Free Zone [5], expanded to 160,000 b/d [2]"
+  },
+  {
+   "label": "Pipeline terminal",
+   "value": "Sidi Kerir and Ain Sokhna storage serve the SUMED pipeline, up to 2.5 million b/d [4]"
+  },
+  {
+   "label": "Nuclear",
+   "value": "El Dabaa: four VVER-1200 units, 4.8 GW, first unit due to operate commercially in the second half of 2028 [8]"
+  },
+  {
+   "label": "Radiation regulator",
+   "value": "ENRRA, Law No. 7 of 2010, also the regulator for El Dabaa [10][11]"
+  }
+ ],
+ "industries": [
+  "Oil refining",
+  "Petrochemicals",
+  "Crude pipeline terminals",
+  "Nuclear power construction",
+  "Ports and export",
+  "Fabrication"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Why Alexandria is a key NDT market in Egypt",
+   "paragraphs": [
+    "Alexandria governorate is home to several of Egypt's key refineries, including MIDOR, Alexandria Petroleum Company (APC) and Amreya Petroleum Refining Company (APRC), forming one of the most diversified refining clusters in the country [1]. Its location on the Mediterranean gives it export routes, refining and petrochemical integration [1]. Refined products from MIDOR are exported by pipeline to Dekheila Port [3], and Sidi Kerir is one of the two storage hubs at either end of the SUMED pipeline, which now handles up to 2.5 million barrels a day [4].",
+    "That concentration of refining, petrochemicals and crude logistics creates steady demand for in-service inspection, turnaround support and project NDT. On top of that, the El Dabaa nuclear power plant, under construction 140 km west of Alexandria [6], brings a rare category of work to the region: construction inspection to nuclear codes, with stringent qualification, documentation and quality assurance.",
+    "Many NDT providers serve Alexandria from Cairo, but the city also has local providers and resident crews at the refineries and terminals. For large turnarounds and nuclear construction, crews often come from across Egypt and abroad."
+   ]
+  },
+  {
+   "id": "assets",
+   "h2": "Refineries, terminals and plants that drive inspection demand",
+   "paragraphs": [
+    "**MIDOR** (Middle East Oil Refinery Company) is a deep-conversion refinery on about 500 acres in the Amreya Free Zone near Alexandria [5]. Its expansion and modernisation, with Technip Energies as main EPC contractor, raised crude processing capacity from 100,000 b/d to 160,000 b/d [2]. The project added a new crude distillation unit, a 60,000 b/d vacuum distillation unit and a 44,000 b/d diesel hydrotreater, and revamped the naphtha hydrotreater [9]. Technip Energies confirmed commercial production with all units online and full crude capacity reached in early 2024 [12], and MIDOR reached a maximum production capacity of 170,000 b/d in 2025 [4].",
+    "Other refining and petrochemical projects in the area include an Alexandria refinery green project at APC, a modernisation at APRC, and SIDPEC's Alexandria polypropylene plant [13]. **El Dabaa** nuclear power plant, on the Mediterranean coast in Matrouh, will comprise four VVER-1200 pressurised water reactors with a combined capacity of 4.8 GWe [7]; the reactor vessel for unit 2 was installed in July 2026, and the next major milestone is welding of the main coolant pipeline [14]."
+   ],
+   "table": {
+    "caption": "Alexandria-area assets and their usual NDT scopes",
+    "head": [
+     "Asset",
+     "Main inspection concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Refinery crude and vacuum units",
+      "High-temperature sulfidation and naphthenic acid corrosion, overhead corrosion, CUI",
+      "UT, corrosion mapping, PAUT, RT profile"
+     ],
+     [
+      "Hydrotreaters and conversion units",
+      "High-pressure hydrogen service, heavy-wall welds, HTHA risk",
+      "PAUT, TOFD, advanced UT, PMI, hardness"
+     ],
+     [
+      "Crude storage and SUMED terminal",
+      "Tank floor and shell corrosion, large-diameter pipelines, jetty piping",
+      "MFL, UT, guided wave, AUT/PAUT"
+     ],
+     [
+      "Petrochemical plants (polymers)",
+      "Reactor and exchanger welds, piping corrosion",
+      "PAUT, ECT/IRIS, UT, PT"
+     ],
+     [
+      "Nuclear construction (El Dabaa)",
+      "Primary circuit and safety-class welds, liner and structural welds",
+      "RT, PAUT, TOFD, PT, VT to nuclear codes"
+     ],
+     [
+      "Ports and product pipelines",
+      "Marine corrosion, pipeline integrity",
+      "UT, guided wave, ILI verification"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "refinery",
+   "h2": "Refinery turnaround inspection in Alexandria",
+   "paragraphs": [
+    "Alexandria's refineries range from older plants to newly expanded units, so inspection plans must cover a wide spread of equipment ages. In crude and vacuum units, high-temperature sulfidation and naphthenic acid corrosion attack carbon and low-alloy steels, while overhead systems suffer from chloride and acid corrosion. UT thickness surveys and corrosion mapping track wall loss, profile radiography covers small-bore lines, and PAUT checks critical welds.",
+    "Hydrotreaters, such as MIDOR's new diesel hydrotreater [9], operate at high pressure in hydrogen service. Heavy-wall reactors and piping need PAUT and TOFD weld inspection, and equipment operating in hot hydrogen may need advanced ultrasonic screening for high-temperature hydrogen attack. Amine and sour water systems call for wet fluorescent MT and PAUT to detect cracking. Exchanger bundles are inspected with eddy current or IRIS.",
+    "Newly built units also need a baseline inspection: recording initial thicknesses at fixed monitoring locations and documenting weld condition, so future corrosion rates and fitness-for-service assessments rest on solid data. Providers who deliver clean baseline data in the owner's inspection database add long-term value."
+   ]
+  },
+  {
+   "id": "terminal",
+   "h2": "Terminal, tank and pipeline integrity",
+   "paragraphs": [
+    "The SUMED pipeline and its Sidi Kerir storage are critical links in regional crude logistics [4], and large crude tanks and pipelines need regular inspection. API 653 out-of-service inspections combine MFL floor scanning, UT prove-up of indications, annular plate inspection, shell thickness surveys and weld inspection on repairs. In service, acoustic emission can screen tank floors, and external UT and guided wave cover connected piping.",
+    "Large-diameter pipelines are inspected with in-line inspection tools where possible, and NDT crews verify ILI findings with UT and PAUT at excavation sites. Construction or repair of pipelines and jetty piping requires girth weld inspection by radiography or automated/phased array UT, plus coating inspection and hydrotest support."
+   ]
+  },
+  {
+   "id": "nuclear",
+   "h2": "Nuclear construction NDT at El Dabaa",
+   "paragraphs": [
+    "El Dabaa is Egypt's first nuclear power plant and the first in Africa since South Africa's Koeberg [11]. Construction is proceeding at all four units, with nuclear fuel delivery for unit 1 planned for the first half of 2027 and grid connection scheduled for 2028 [7], and the four units due to be commissioned sequentially over 2028–2030 [8]. More than 20,000 people have worked on the construction site [15].",
+    "Nuclear construction NDT differs from conventional industrial work in several ways. Procedures, personnel qualifications and equipment must meet the plant's nuclear codes and quality assurance programme. Inspection of safety-class components, such as the main coolant pipeline that is the next milestone at unit 2 [14], typically requires volumetric examination (radiography and qualified ultrasonic techniques) and surface examination (PT or MT), with detailed documentation and independent review. Traceability of every weld, film or data file, and of every technician's qualification, is essential.",
+    "For Egyptian NDT providers and technicians, El Dabaa is a major opportunity to build nuclear-grade capability. It also raises the bar: providers must operate under rigorous QA systems and accept audits by the EPC contractor, the owner (the Nuclear Power Plant Authority) and the regulator, ENRRA [11].",
+    "Practical preparation for providers hoping to join the El Dabaa supply chain includes a documented quality management system, procedure qualification on representative mock-ups, a training and qualification matrix for every technician, calibration traceability for all equipment, and a document control process that can handle large volumes of reports and data files. Smaller firms often enter as subcontractors to established inspection companies, building the track record needed for direct contracts on later phases or other nuclear projects."
+   ]
+  },
+  {
+   "id": "codes",
+   "h2": "Codes, specifications and radiation licensing",
+   "paragraphs": [
+    "Refineries and petrochemical plants in Alexandria apply owner specifications over ASME Section VIII, B31.3, API 510, 570 and 653, and ISO 15156 for sour service. Pipelines follow API 1104 and ASME B31.4/B31.8. Nuclear construction at El Dabaa follows the plant's nuclear codes and quality assurance requirements defined by the vendor, owner and regulator.",
+    "All radiation work in Egypt falls under **Law No. 7 of 2010 on the regulation of nuclear and radiological activities**, which established ENRRA as the independent regulator of all nuclear and radiation facilities, activities and practices [10]. The law has been amended, most recently by Law No. 10 of 2026 [16]. ENRRA provides regulatory oversight of El Dabaa [11] and licenses industrial radiography across the country, so buyers should confirm each provider's ENRRA licence before awarding radiography.",
+    "Technicians are certified under ASNT employer-based schemes or ISO 9712; nuclear construction usually requires additional, project-specific qualification and examinations."
+   ],
+   "bullets": [
+    "Request the provider's ENRRA licence and radiation protection officer details [10].",
+    "For nuclear work, confirm QA programme acceptance and project-specific personnel qualification.",
+    "For refinery hydrogen service, require PAUT/TOFD procedures qualified for the damage mechanism."
+   ]
+  },
+  {
+   "id": "environment",
+   "h2": "Climate and coastal conditions",
+   "paragraphs": [
+    "Alexandria has a Mediterranean climate: warm, humid summers and mild, wetter winters. Coastal humidity and salt spray accelerate atmospheric corrosion of structures, tanks and piping and make corrosion under insulation a priority in refineries and terminals. Wind-driven salt deposits on equipment near the shore increase pitting risk for stainless steels.",
+    "The climate is milder than inland Egypt, which allows more outdoor inspection time, but humidity affects coating cure times, MT and PT consumables and the reliability of electronic instruments, so providers manage equipment storage and calibration carefully."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Alexandria",
+   "paragraphs": [
+    "Refinery and terminal work is commonly priced as day rates for technicians and crews, with specialist equipment (PAUT, TOFD, IRIS, MFL, AE) charged separately, and tank inspections often as lump sums. Pipeline construction uses unit rates per weld. Nuclear construction work is typically contracted through the EPC supply chain with rates reflecting the additional qualification, documentation and QA effort.",
+    "Cost drivers include crew size during turnarounds, specialist equipment, ENRRA licensing and source logistics, travel from Cairo for providers without local bases, and reporting requirements. Clear scopes and consistent pricing bases make quotes comparable. NDT-Connect lets buyers post one scope and compare certified providers serving Alexandria.",
+    "For refinery turnarounds, ask bidders to state crew numbers per shift, equipment quantities and their plan for daily preliminary reporting, since these drive both cost and how quickly repair decisions can be made."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Alexandria",
+   "paragraphs": [
+    "Alexandria offers refinery turnaround work, terminal and tank inspection, petrochemical project NDT and, increasingly, nuclear construction roles. Technicians with PAUT, TOFD, MFL and corrosion mapping skills are in demand, as are Level IIIs who can write and qualify procedures.",
+    "El Dabaa creates a pathway into nuclear-grade NDT for Egyptian technicians who can meet project qualification requirements and work within strict QA systems. That experience is valuable internationally, since nuclear construction skills are scarce worldwide.",
+    "Technicians starting out in Alexandria often build experience on tank and terminal scopes, then move into refinery turnarounds and advanced ultrasonics. Keeping a detailed log of methods, equipment types and project roles makes approval for nuclear or senior refinery work much faster."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Alexandria",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers."
+   ],
+   "bullets": [
+    "Current ENRRA licence for radiography [10].",
+    "Experience with your asset type: refinery, terminal and tanks, petrochemicals or nuclear construction.",
+    "Qualified procedures for the methods and damage mechanisms involved.",
+    "Equipment: PAUT, TOFD, MFL, IRIS, AE as required.",
+    "QA systems and documentation suited to the client (especially for nuclear work).",
+    "Local presence or reliable mobilisation from Cairo for turnarounds."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Which refineries operate in Alexandria?",
+   "a": "MIDOR, Alexandria Petroleum Company and Amreya Petroleum Refining Company, forming one of Egypt's most diversified refining clusters [1]."
+  },
+  {
+   "q": "How large is the MIDOR refinery after expansion?",
+   "a": "Its expansion raised processing capacity from 100,000 b/d to 160,000 b/d [2], and MIDOR reached a maximum production capacity of 170,000 b/d in 2025 [4]."
+  },
+  {
+   "q": "What is the El Dabaa nuclear power plant?",
+   "a": "Egypt's first nuclear power plant, being built by Rosatom about 140 km west of Alexandria [6], with four VVER-1200 reactors totalling 4.8 GWe [7]. The first unit is due to begin commercial operation in the second half of 2028 [8]."
+  },
+  {
+   "q": "Who licenses industrial radiography in Alexandria?",
+   "a": "The Egyptian Nuclear and Radiological Regulatory Authority (ENRRA), under Law No. 7 of 2010 [10]. ENRRA is also the regulator for El Dabaa [11]."
+  },
+  {
+   "q": "What NDT is used at crude terminals and tank farms?",
+   "a": "MFL floor scanning with UT prove-up, annular plate and shell inspection, weld inspection on repairs, acoustic emission screening in service, and guided wave and UT on connected piping."
+  },
+  {
+   "q": "How do I request NDT quotes in Alexandria?",
+   "a": "Post the scope on NDT-Connect with the asset type, governing code or specification, equipment list, access, dates and reporting requirements."
+  }
+ ],
+ "references": [
+  {
+   "title": "Egypt Oil & Gas — Egypt's oil refining industry: current trends and future prospects (2025)",
+   "url": "https://egyptoil-gas.com/reports/egypts-oil-refining-industry-current-trends-and-future-prospects"
+  },
+  {
+   "title": "Oil & Gas Journal — Egypt's Midor completes expansion, modernization of Alexandria refinery",
+   "url": "https://www.ogj.com/refining-processing/refining/capacities/article/55093600/egypts-midor-completes-expansion-modernization-of-alexandria-refinery"
+  },
+  {
+   "title": "Offshore Technology — Middle East Oil Refinery (Midor) expansion",
+   "url": "https://www.offshore-technology.com/?p=240900"
+  },
+  {
+   "title": "Egypt Oil & Gas — Refinery expansions and upgrades power Egypt's oil sector",
+   "url": "https://egyptoil-gas.com/features/refinery-expansions-and-upgrades-power-egypts-oil-sector"
+  },
+  {
+   "title": "NS Energy — Middle East oil refinery expansion, Egypt",
+   "url": "https://www.nsenergybusiness.com/?p=211296"
+  },
+  {
+   "title": "World Nuclear Association — Egypt: World Nuclear Performance Report",
+   "url": "https://world-nuclear.org/our-association/publications/world-nuclear-performance-report/egypt-world-nuclear-performance-report"
+  },
+  {
+   "title": "NEI Magazine — El Dabaa eyes two more reactors",
+   "url": "https://www.neimagazine.com/news/el-dabaa-eyes-two-more-reactors/"
+  },
+  {
+   "title": "MEES — Egypt installs second nuclear reactor vessel",
+   "url": "https://www.mees.com/2026/7/10/news-in-brief/egypt-installs-second-nuclear-reactor-vessel/416ee7e0-7c5d-11f1-b70d-6dc83500dfca"
+  },
+  {
+   "title": "MEES — Egypt's Midor refinery expansion (new VDU and diesel hydrotreater)",
+   "url": "https://www.mees.com/2023/3/17/refining-petrochemicals/egypts-midor-refinery-expansion-q3-completion/ba758550-c4cb-11ed-b146-4b449dceedcf"
+  },
+  {
+   "title": "Bayt — ENRRA profile (Law No. 7 of 2010 and amendment No. 211 of 2017)",
+   "url": "https://bayt.com/en/company/egyptian-nuclear-radiological-regulatory-authority-enrra-2035477"
+  },
+  {
+   "title": "bne IntelliNews — Egypt and Russia finalise key agreements for Dabaa nuclear plant (ENRRA oversight)",
+   "url": "https://new.intellinews.com/articles/egypt-and-russia-finalise-key-agreements-for-dabaa-nuclear-power-plant-412375"
+  },
+  {
+   "title": "MEES — Egypt's Midor refinery 160,000 b/d expansion complete",
+   "url": "https://www.mees.com/2024/5/17/news-in-brief/egypts-midor-refinery-160000-bd-expansion-complete/44426f20-145a-11ef-bb69-f3010fec95fa"
+  },
+  {
+   "title": "Egypt Oil & Gas — Egypt's refining and petrochemicals towards a significant expansion",
+   "url": "https://egyptoil-gas.com/reports/egypts-refining-petrochemicals-towards-a-significant-expansion"
+  },
+  {
+   "title": "NucNet — Egypt installs RPV at unit 2 of El Dabaa",
+   "url": "https://www.nucnet.org/news/egypt-installs-rpv-at-unit-2-of-el-dabaa-nuclear-station-7-5-2026"
+  },
+  {
+   "title": "Engineering News — El-Dabaa nuclear power plant update (workforce)",
+   "url": "https://www.engineeringnews.co.za/article/el-dabaanuclear-power-plant-egypt-update-2024-05-24"
+  },
+  {
+   "title": "Egypt Today — Law No. 10 of 2026 amending the nuclear and radiological activities law",
+   "url": "https://www.egypttoday.com/Article/1/147272/President-El-Sisi-ratifies-amendments-to-Egypt%E2%80%99s-nuclear-and-radiological"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Cairo",
+   "href": "/ndt-services/cairo-eg"
+  },
+  {
+   "name": "Suez",
+   "href": "/ndt-services/suez-eg"
+  },
+  {
+   "name": "Istanbul, Turkey",
+   "href": "/ndt-services/istanbul-tr"
+  },
+  {
+   "name": "Jeddah, Saudi Arabia",
+   "href": "/ndt-services/jeddah-sa"
+  }
+ ],
+ "related": [
+  {
+   "label": "RT exposure time calculator",
+   "href": "/tools/rt-exposure-time"
+  },
+  {
+   "label": "Half-value layer calculator",
+   "href": "/tools/half-value-layer"
+  },
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  }
+ ]
+}

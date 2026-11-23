@@ -1,0 +1,287 @@
+{
+ "slug": "basra-iq",
+ "city": "Basra",
+ "region": "Basra Governorate",
+ "country": "Iraq",
+ "countrySlug": "iraq",
+ "wave": 1,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Basra, Iraq: Inspection for Rumaila, West Qurna, Majnoon and Gas Projects",
+ "metaTitle": "NDT Services in Basra, Iraq | Oilfield & Gas Plant Inspection Guide",
+ "description": "NDT in Basra, Iraq: inspection for Rumaila, West Qurna, Majnoon and Zubair oilfields, Basrah Gas Company plants and terminals. Methods, regulator, hiring.",
+ "quickAnswer": "Basra is Iraq's oil capital. Most of the country's crude comes from southern supergiant fields operated under Basra Oil Company: North and South Rumaila alone produce about 1.5 million barrels per day [2], and West Qurna 1 and 2, Majnoon and Zubair add more [3][4]. **Basrah Gas Company** gathers and processes associated gas from Rumaila, West Qurna 1 and Zubair [5], and crude leaves through the **Al Basrah Oil Terminal**, which can load about 1.3 million bpd [2]. NDT work in Basra is dominated by oilfield facilities, pipelines, gas plants and terminals, much of it under international operators' specifications. Radiation sources are regulated by Iraq's national nuclear, radiological, chemical and biological regulator, I-NRC [9][10].",
+ "keyFacts": [
+  {
+   "label": "Main fields",
+   "value": "Rumaila (with BP and CNPC as technical partners), West Qurna 1 and 2, Majnoon, Zubair [1][4]"
+  },
+  {
+   "label": "Scale",
+   "value": "Iraq's production capacity grew from 2.4 million b/d in 2010 to 5 million b/d in 2019, driven by the southern fields [4]"
+  },
+  {
+   "label": "Gas",
+   "value": "Basrah Gas Company, a JV of South Gas Company (51%), Shell (44%) and Mitsubishi (5%) [5]"
+  },
+  {
+   "label": "Radiation regulator",
+   "value": "I-NRC, established by law in 2024, succeeding IRSRA [9]"
+  }
+ ],
+ "industries": [
+  "Upstream oil production",
+  "Associated gas processing",
+  "Pipelines",
+  "Export terminals",
+  "Power generation",
+  "Oilfield construction"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Why Basra is one of the world's largest NDT markets for oilfield work",
+   "paragraphs": [
+    "Few places concentrate as much oilfield infrastructure as southern Iraq. The Rumaila oil field, a supergiant discovered in 1953 about 50 km south-west of Basra city, is owned by Basra Oil Company with BP and CNPC as technical service partners through Basra Energy Company [1]. Together with West Qurna, it forms one of the world's greatest supergiant fields, with initial recoverable reserves estimated at 44.4 billion barrels of oil [6]. Iraq's overall production capacity more than doubled, from 2.4 million b/d in 2010 to 5 million b/d in 2019, largely because international oil companies developed the southern giants: Rumaila, West Qurna 1, West Qurna 2 and others [4].",
+    "Every barrel passes through degassing stations, pipelines, storage and export systems that need inspection. Water handling grows as fields mature, gas capture projects add new processing plants, and power plants built to serve the fields add their own inspection needs. Natural gas from Rumaila feeds Basrah Gas Company and a field power plant [1].",
+    "The operator landscape is changing, which shapes how inspection is bought. ExxonMobil handed operatorship of West Qurna 1 to PetroChina in early 2024 [4], Iraq approved transferring West Qurna 2 operations from Lukoil to Basra Oil Company [7], and ExxonMobil signed agreements to return to the Majnoon field, whose reserves are estimated at 38 billion barrels in place [4][7]. Each operator brings its own specifications and contracting style, so NDT providers in Basra must work to several sets of standards at once."
+   ]
+  },
+  {
+   "id": "industries",
+   "h2": "Fields, plants and terminals that drive inspection demand",
+   "paragraphs": [
+    "Basrah Gas Company (BGC) was established in 2013 as a 25-year joint venture between Iraq's South Gas Company, Shell and Mitsubishi [2][5]. It gathers, treats and processes raw gas from the Rumaila, West Qurna 1 and Zubair fields that was previously flared [5], and its assets include the Basrah NGL plant, gas pipelines and the Umm Qasr storage depot and marine export terminal [8]. Gas projects in Rumaila, Zubair and West Qurna 1 continue to expand [11].",
+    "Crude export relies on the offshore Al Basrah Oil Terminal (ABOT), which can load about 1.3 million bpd and handle very large crude carriers, and the partly operational Khor Al Amaya terminal with about 400,000 bpd of export capacity [2]. Both, along with onshore tank farms and pipelines feeding them, require integrity inspection."
+   ],
+   "table": {
+    "caption": "Basra assets and their usual NDT scopes",
+    "head": [
+     "Asset",
+     "Main inspection concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Degassing stations and production facilities",
+      "Internal corrosion from water, CO2 and H2S; erosion; weld integrity on modifications",
+      "UT, corrosion mapping, PAUT, RT"
+     ],
+     [
+      "Flowlines, trunklines and export pipelines",
+      "Internal and external corrosion, girth weld quality in new construction",
+      "AUT/PAUT, RT, guided wave, ILI verification"
+     ],
+     [
+      "Water injection and treatment",
+      "Oxygen and microbial corrosion, pitting",
+      "UT, corrosion mapping, guided wave"
+     ],
+     [
+      "Gas processing (BGC NGL plant, compression)",
+      "Wet H2S and amine cracking, exchanger tubes, compressor piping fatigue",
+      "WFMT, PAUT, TOFD, ECT/IRIS"
+     ],
+     [
+      "Tank farms and storage depots",
+      "Floor and shell corrosion, weld repairs",
+      "MFL, UT, vacuum box, MT"
+     ],
+     [
+      "Offshore terminal and marine pipelines",
+      "Marine corrosion, structural integrity",
+      "UT, ACFM, subsea inspection support"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "methods",
+   "h2": "Methods buyers order in Basra, and why",
+   "paragraphs": [
+    "**Corrosion monitoring** of production facilities and pipelines is the largest single need. Southern Iraqi crudes are produced with growing water cuts and associated gas containing CO2 and H2S, which drive internal corrosion in carbon steel lines and vessels. UT thickness surveys at condition-monitoring locations, corrosion mapping of suspect areas, and profile radiography of small-bore lines are routine. Long pipelines are screened with guided wave UT and verified against in-line inspection data where pigging is possible.",
+    "**New construction** is the second major stream. Field expansion, gas capture and water injection projects need large volumes of girth weld inspection, typically radiography or automated/phased array UT, plus inspection of fabricated spools and modules. International operators often specify AUT or PAUT for large-diameter pipelines because it is faster and avoids radiation exclusion zones on busy construction sites.",
+    "**Gas processing** brings the methods of sour-service plants: wet fluorescent MT and PAUT to detect hydrogen-induced and stress corrosion cracking, TOFD on thick-walled equipment, eddy current and IRIS on exchanger tubes, PMI on alloy materials and hardness checks on welds. Compressor stations add vibration-related fatigue cracking at small-bore connections, best found with MT and PT.",
+    "**Tank and terminal inspection** follows API 653 practice: MFL floor scanning with UT prove-up, shell surveys and weld inspection, scheduled around export commitments."
+   ]
+  },
+  {
+   "id": "codes",
+   "h2": "Codes, operator specifications and radiation regulation",
+   "paragraphs": [
+    "Inspection in Basra follows the specifications of whichever company operates or partners in the asset: Basra Oil Company, BP and CNPC on Rumaila, PetroChina on West Qurna 1, BGC with Shell's practices on gas plants, and others on newer contracts. These are layered on API 510, API 570, API 653 and API 1104, ASME Section VIII, B31.3, B31.4 and B31.8, and ISO 15156 for sour service. Personnel are typically certified under ASNT employer-based schemes or ISO 9712, and many international operators prefer ISO 9712 (PCN) for advanced methods.",
+    "Radiation sources in Iraq were overseen for many years by the **Iraqi Radioactive Sources Regulatory Authority (IRSRA)**, reorganised under Order 72 of 2004 [9]. In 2024 Iraq established the **Iraqi Nuclear, Radiological, Chemical and Biological Regulatory Commission (I-NRC)**, which now regulates radioactive materials, including the safety and security of their transport [9]. The authority monitors the use of radiation sources and identifies licensed and unlicensed sources [10]. The volume of radioactive material transport in Iraq has grown significantly, especially in the industrial and oil sector [12], so radiography providers must manage source licensing, storage and transport carefully.",
+    "Security and logistics are practical constraints in southern Iraq. Movement of personnel and equipment between Basra, the fields and terminals is subject to operator security procedures, and international staff need appropriate visas and site permits. Providers with established local operations and Iraqi technicians are often better placed to respond quickly."
+   ],
+   "bullets": [
+    "Ask for the provider's current radiation licence and source transport arrangements under I-NRC rules [9].",
+    "Confirm the governing operator specification and personnel approval process for your field.",
+    "For sour-service scopes, require procedures and technicians with HIC/SSC detection experience."
+   ]
+  },
+  {
+   "id": "environment",
+   "h2": "Climate and operating environment",
+   "paragraphs": [
+    "Basra has an extremely hot climate, with summer temperatures among the highest of any major city in the world, low humidity inland and higher humidity near the Shatt al-Arab and the Gulf coast. Heat accelerates coating degradation on above-ground pipelines and tanks, and dust and sand accumulate around supports and tank bases, promoting localised corrosion. Near the coast and terminals, chlorides add to atmospheric corrosion.",
+    "Extreme heat directly affects inspection quality and safety. Surface temperatures in summer exceed the ratings of standard UT probes and couplants, MT and PT consumables evaporate quickly, and crews need strict heat-stress management. Field work is often scheduled for early mornings, evenings and the cooler months, which concentrates inspection demand and makes crew planning important."
+   ]
+  },
+  {
+   "id": "projects",
+   "h2": "Construction and expansion projects",
+   "paragraphs": [
+    "Field development and gas capture keep southern Iraq one of the busiest construction markets for NDT. Gas projects in the Rumaila, Zubair and West Qurna 1 fields are being fast-tracked [11], and earlier BGC phases added NGL processing capacity [3]. Operator changes at West Qurna 2 and new agreements at Majnoon [7] point to further development work.",
+    "Construction NDT on these projects typically includes high-volume girth weld inspection, shop and site inspection of piping and modules, tank construction inspection, and pre-commissioning checks. Contractors usually work under the EPC contractor's quality plan and the operator's specifications, with third-party inspection agencies witnessing on behalf of the owner. Providers who can scale crews quickly and deliver digital AUT/PAUT records are well placed for this work."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Basra",
+   "paragraphs": [
+    "Inspection in southern Iraq is commonly priced as day rates for technicians and crews on integrity work, unit rates per weld or per kilometre on construction, and lump sums for defined campaigns such as tank inspections. Rates usually exclude security, accommodation in operator camps, international flights and visas, which can be significant and should be quoted separately.",
+    "Cost drivers include the security environment and movement restrictions, camp accommodation availability, radiation source licensing and transport, specialist equipment (AUT, PAUT, TOFD, MFL, guided wave), and the operator's approval process for personnel. Long-term contracts with stable crews are usually more cost-effective than repeated short mobilisations.",
+    "To get comparable quotes, provide the field and facility, asset list, service conditions, governing operator specification, security and accommodation arrangements, schedule and reporting format. NDT-Connect's request form captures these details for providers serving Iraq."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Basra",
+   "paragraphs": [
+    "Southern Iraq offers substantial work for UT, RT, PAUT and AUT technicians, corrosion monitoring specialists, tank inspectors and welding inspectors, both with international service companies and with Iraqi contractors. Experience on construction projects and in sour-service gas plants is particularly valued, as is the ability to work to multiple operator specifications.",
+    "Iraqi technicians who combine recognised certification (ASNT or ISO 9712) with advanced-method qualifications and documented field experience are increasingly in demand as operators and EPC contractors expand local content. International technicians typically work rotational schedules with camp-based accommodation.",
+    "For local technicians, the most valuable early experience is on construction projects, where volumes are high and supervision is strong, followed by sour-service gas plant work. Keeping a detailed log of methods, materials and operators speeds up approval for senior and advanced-method roles with international companies."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Basra",
+   "paragraphs": [
+    "Pre-qualification in southern Iraq should test both technical capability and the ability to operate safely and reliably in the local environment."
+   ],
+   "bullets": [
+    "Radiation licence and compliant source storage and transport under I-NRC [9].",
+    "Operator approval and experience with the relevant specifications.",
+    "Equipment for the scope: AUT/PAUT for pipelines, MFL for tanks, WFMT and TOFD for gas plants.",
+    "Established local presence, security arrangements and camp logistics.",
+    "Track record of on-time reporting and data delivery in the operator's format.",
+    "Local workforce development and HSE performance records."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Which oilfields drive NDT demand in Basra?",
+   "a": "Rumaila, West Qurna 1 and 2, Majnoon and Zubair are the main ones. North and South Rumaila alone produce about 1.5 million barrels per day [2], and the southern fields drove Iraq's capacity growth to 5 million b/d by 2019 [4]."
+  },
+  {
+   "q": "What does Basrah Gas Company do?",
+   "a": "It gathers, treats and processes associated gas from the Rumaila, West Qurna 1 and Zubair fields that was previously flared [5], with assets including the Basrah NGL plant, gas pipelines and the Umm Qasr storage depot and export terminal [8]."
+  },
+  {
+   "q": "Who regulates industrial radiography in Iraq?",
+   "a": "The Iraqi Nuclear, Radiological, Chemical and Biological Regulatory Commission (I-NRC), established in 2024 and succeeding IRSRA [9]. It monitors the use of radiation sources and licensing [10]."
+  },
+  {
+   "q": "Which NDT methods are used on Iraqi pipeline projects?",
+   "a": "Radiography and automated or phased array UT on girth welds, guided wave screening of existing lines, corrosion mapping and UT thickness surveys, plus coating inspection and hydrotest support."
+  },
+  {
+   "q": "How does the heat in Basra affect NDT?",
+   "a": "Summer surface temperatures can exceed standard probe and couplant ratings, consumables dry quickly and crews need heat-stress controls, so field work often shifts to cooler hours and months. Providers should state their summer working plan in the quote."
+  },
+  {
+   "q": "How do I request NDT quotes for a Basra scope?",
+   "a": "Post the scope on NDT-Connect with the field, asset list, service conditions, operator specification, security and accommodation arrangements, schedule and reporting needs."
+  }
+ ],
+ "references": [
+  {
+   "title": "Rumaila oil field — Wikipedia",
+   "url": "https://Www.wikipedia.org/wiki/Rumaila_Field"
+  },
+  {
+   "title": "US International Trade Administration — Iraq oil and gas equipment and services",
+   "url": "https://trade.gov/country-commercial-guides/iraq-oil-and-gas-equipment-services"
+  },
+  {
+   "title": "US EIA — Iraq country analysis",
+   "url": "https://eia.gov/international/content/analysis/countries_long/Iraq"
+  },
+  {
+   "title": "Journal of Petroleum Technology — ExxonMobil is back in Iraq with Majnoon oilfield deal",
+   "url": "https://jpt.spe.org/exxonmobil-is-back-in-iraq-with-majnoon-oilfield-deal-in-basra"
+  },
+  {
+   "title": "Shell — Investors' handbook 2013: Iraq (Basrah Gas Company)",
+   "url": "https://reports.shell.com/investors-handbook/2013/upstream/asia/iraq.html"
+  },
+  {
+   "title": "GEO ExPro — Giant oil fields of the world: Rumaila–West Qurna",
+   "url": "https://geoexpro.com/?p=47796"
+  },
+  {
+   "title": "World Oil — Iraq news (West Qurna 2 transfer, Majnoon agreements)",
+   "url": "https://www.worldoil.com/topics/middle-east/iraq/?page=1"
+  },
+  {
+   "title": "Wood Mackenzie — Basrah Gas Company asset report",
+   "url": "https://woodmac.com/reports/upstream-oil-and-gas-basrah-gas-company-11417088"
+  },
+  {
+   "title": "IAEA conference paper — Iraq radioactive material transport regulation (IRSRA and I-NRC)",
+   "url": "https://conferences.iaea.org/event/421/contributions/38005/attachments/21288/36591/Ban%20Fakhri%20Matoog_Iraq.pdf"
+  },
+  {
+   "title": "UNEP LEAP — Iraq Law No. 1 of 2024, national nuclear, radiological, chemical and biological regulation",
+   "url": "https://leap.unep.org/en/countries/iq/national-legislation/law-no1-2024-national-nuclear-radiological-chemical-and"
+  },
+  {
+   "title": "Shafaq News — Basra gas surge: Iraq fast-tracks key field development",
+   "url": "https://shafaq.com/en/Economy/Basra-gas-surge-Iraq-fast-tracks-key-field-development"
+  },
+  {
+   "title": "IAEA — Radioactive material transport operations in Iraq",
+   "url": "https://conferences.iaea.org/event/421/contributions/38005"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Ahmadi, Kuwait",
+   "href": "/ndt-services/ahmadi-kw"
+  },
+  {
+   "name": "Kuwait City",
+   "href": "/ndt-services/kuwait-city-kw"
+  },
+  {
+   "name": "Erbil",
+   "href": "/ndt-services/erbil-iq"
+  },
+  {
+   "name": "Al Khobar, Saudi Arabia",
+   "href": "/ndt-services/al-khobar-sa"
+  }
+ ],
+ "related": [
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "Permian midstream pipeline NDT buyer's guide",
+   "href": "/buyers-guide/permian-basin-midstream-pipeline-ndt"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  }
+ ]
+}

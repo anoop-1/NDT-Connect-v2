@@ -1,0 +1,312 @@
+{
+ "slug": "istanbul-tr",
+ "city": "Istanbul",
+ "region": "Marmara Region",
+ "country": "Turkey",
+ "countrySlug": "turkey",
+ "wave": 1,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Istanbul: Shipyard, Aerospace MRO and Industrial Inspection",
+ "metaTitle": "NDT Services in Istanbul, Turkey | Tuzla Shipyard & Aviation MRO Inspection",
+ "description": "NDT in Istanbul: inspection for Tuzla shipyards, Turkish Technic aircraft maintenance, fabrication and infrastructure. EN ISO 9712, EN 4179, NDK rules, hiring.",
+ "quickAnswer": "Istanbul is Turkey's largest NDT market, built on two specialist clusters. The **Tuzla shipyards** on the Sea of Marmara host dozens of shipbuilding and repair yards, part of a Marmara region (Tuzla, Yalova, İzmit) where most of Turkey's shipyards are located [1][2]. **Turkish Technic**, Turkish Airlines' maintenance arm, runs hangars at Istanbul Airport, Sabiha Gökçen and Atatürk airports, with capacity to maintain 57 aircraft at once in Istanbul [5]. The city is also the commercial base for fabrication, infrastructure and energy inspection across Turkey. Radiation sources are regulated by Turkey's Nuclear Regulatory Authority (NDK) [9][10].",
+ "keyFacts": [
+  {
+   "label": "Shipbuilding",
+   "value": "Turkey's shipyards are concentrated in the Marmara region, especially Tuzla, Yalova and İzmit [2]"
+  },
+  {
+   "label": "Aviation MRO",
+   "value": "Turkish Technic: Istanbul Airport, Atatürk and Sabiha Gökçen hangars; 57 aircraft simultaneously in Istanbul [5]"
+  },
+  {
+   "label": "Planned growth",
+   "value": "11 hangars at Istanbul Airport when complete, for 26 narrowbody and 19 widebody aircraft at once [6]"
+  },
+  {
+   "label": "Radiation regulator",
+   "value": "Nükleer Düzenleme Kurumu (NDK), the independent regulator for nuclear and radiation safety [9]"
+  }
+ ],
+ "industries": [
+  "Shipbuilding and ship repair",
+  "Aviation maintenance (MRO)",
+  "Steel fabrication",
+  "Infrastructure and bridges",
+  "Energy and power",
+  "Manufacturing"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Why Istanbul leads Turkey's NDT market",
+   "paragraphs": [
+    "Istanbul combines a huge industrial economy with two of the most NDT-intensive industries in the world: shipbuilding and aircraft maintenance. Turkish shipbuilding modernised from the early 1990s into an internationally recognised industry, and most of the nation's shipyards are located in the Marmara region, particularly Tuzla, Yalova and İzmit [2]. Shipyards moved from the Golden Horn to the Tuzla shipyards region as part of government policy to concentrate shipbuilding in an industrial zone [3][4].",
+    "Aviation is the second pillar. Turkish Technic, the maintenance, repair and overhaul (MRO) centre of Turkish Airlines, operates facilities at Istanbul Airport, Atatürk Airport and Sabiha Gökçen in Istanbul, plus Ankara and Aydın [5]. With its seventh hangar at Atatürk Airport, the company increased its maintenance capacity in Istanbul to 57 aircraft at the same time, which it describes as the highest maintenance capacity in a single city [5]. Other MROs at Sabiha Gökçen add to the market [8].",
+    "Istanbul is also the head-office city for many Turkish EPC contractors, fabricators and inspection companies, which serve refineries, power plants, pipelines and construction projects across Turkey and abroad. For buyers, this means a broad, competitive supplier base with strong European certification practices."
+   ]
+  },
+  {
+   "id": "shipyards",
+   "h2": "Shipyard NDT in Tuzla",
+   "paragraphs": [
+    "Tuzla's yards range from repair and conversion specialists to builders of tugs, offshore vessels, chemical tankers, ferries and naval ships. TK Tuzla Shipyard describes itself as the largest ship repair facility in Tuzla Bay [1]; Gisan Shipyard traces its origins to a Golden Horn workshop opened in 1960 and relocated to Tuzla in 1982 [3]; and Çeliktrans, founded in 1958, moved to Tuzla in 1984 [4]. Tersan operates a repair yard in Tuzla alongside newbuilding yards in Yalova and has delivered more than 90 new vessels [11].",
+    "Newbuilding work requires weld inspection to classification society rules (for example ABS, Bureau Veritas, DNV, Lloyd's Register, RINA or Türk Loydu): **UT and PAUT** on butt welds in plate and stiffeners, **RT** where rules or owners require it, **MT** on fillet welds and attachments, and **PT** on stainless steel and aluminium. Specialist vessels such as chemical tankers bring stainless steel cargo tanks and piping that need PT, radiography and PMI.",
+    "Repair and conversion work centres on **thickness gauging** for class renewal surveys, weld inspection of repaired structures, and crack detection on fatigue-prone areas. Thickness measurement firms usually need class approval, and gauging follows patterns set by class rules. Yards often keep resident NDT crews during busy periods because docking schedules are tight."
+   ],
+   "table": {
+    "caption": "Istanbul assets and their typical NDT scopes",
+    "head": [
+     "Asset",
+     "Main inspection concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Ship hull blocks and newbuilds",
+      "Weld quality to class rules, fatigue-critical details",
+      "UT, PAUT, RT, MT, VT"
+     ],
+     [
+      "Ship repair and conversion",
+      "Wall thinning, cracking in repaired structures",
+      "UT thickness gauging, MT, PT"
+     ],
+     [
+      "Aircraft structures (MRO)",
+      "Fatigue cracks around fasteners, corrosion, composite damage",
+      "ECT, UT, PAUT, PT, MT, bond testing"
+     ],
+     [
+      "Aircraft engines and components",
+      "Cracks in rotating parts, blades, discs",
+      "ECT, FPI, UT, MT"
+     ],
+     [
+      "Steel fabrication and bridges",
+      "Weld quality in structures and vessels",
+      "UT, PAUT, RT, MT"
+     ],
+     [
+      "Energy and power assets",
+      "Boiler tubes, piping welds, tanks",
+      "UT, EMAT, PAUT, MFL"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "gauging",
+   "h2": "Thickness gauging for class surveys: what shipowners should expect",
+   "paragraphs": [
+    "Thickness gauging is one of the most common NDT services bought in Tuzla, because every ship's periodic class surveys require measurements of plating and structural members. The classification society defines how many readings are needed and where, increasing with the vessel's age and type: older tankers and bulk carriers face the most extensive requirements. Gauging is carried out by firms approved by the class society, with the attending surveyor witnessing parts of the work.",
+    "A good gauging campaign starts with a plan agreed with the surveyor, including the areas to measure and access arrangements such as staging, ventilation of tanks and cleaning. Technicians use UT thickness gauges, often with multiple-echo modes that read through coatings, and record readings against drawings of the structure. Results are compared with original thickness and allowable wastage limits to decide where steel renewal is needed.",
+    "Because renewal decisions drive repair costs and docking time, accuracy and speed both matter. Shipowners benefit from providers who report preliminary results each day, flag substantial corrosion early so the yard can order steel, and deliver final reports in the format the class society accepts."
+   ]
+  },
+  {
+   "id": "aviation",
+   "h2": "Aviation MRO NDT",
+   "paragraphs": [
+    "Aircraft maintenance is one of the most demanding NDT environments. Turkish Technic performs base and line maintenance, engine and APU maintenance and component maintenance [7], and most engine work has moved to the Turkish Engine Center at Sabiha Gökçen [7]. At Istanbul Airport, the company's MRO complex has capacity for three widebody and six narrowbody aircraft at once in its initial hangars [12], and when all phases are complete it will have 11 hangars able to handle 26 narrowbody and 19 widebody aircraft simultaneously [6]. Sabiha Gökçen houses two Turkish Technic hangars with capacity for three widebody and 11 narrowbody aircraft [8].",
+    "Typical aerospace NDT includes **eddy current** inspection for fatigue cracks around fastener holes and in wheels, **ultrasonic** inspection of structures and composite parts, **fluorescent penetrant inspection** of engine components, **magnetic particle** inspection of steel parts such as landing gear, and **bond testing** of composite and bonded structures. Tasks follow aircraft and engine manufacturers' NDT manuals and airworthiness directives.",
+    "Aerospace NDT personnel are qualified to EN 4179 or NAS 410 under the MRO's written practice, which differs from industrial certification schemes. Base maintenance approval comes from Turkey's DGCA; Turkish Technic gained DGCA approval for base maintenance at its Istanbul Airport hangars [6]. Independent NDT providers can work in aerospace only if their personnel and procedures meet these requirements."
+   ]
+  },
+  {
+   "id": "industry",
+   "h2": "Fabrication, infrastructure and energy work",
+   "paragraphs": [
+    "Beyond ships and aircraft, Istanbul-based providers serve steel fabricators building structures, pressure vessels and tanks; infrastructure projects such as bridges, metro systems and airports; and energy facilities across Turkey, including refineries, power plants and pipelines. Istanbul Airport alone cost around $12 billion and opened in April 2019 [6], and projects of this scale require large volumes of structural weld inspection.",
+    "Fabrication shops typically use radiography in bunkers, PAUT for thick sections and MT/PT for surface examinations, working to EN, ASME or AWS standards depending on the client. Infrastructure projects apply EN 1090 and EN ISO 5817 for structural steel quality, and bridges and towers require UT and MT on critical welds.",
+    "Istanbul-based crews also mobilise to the heavy industry of neighbouring Kocaeli, including Turkey's largest refinery at İzmit, so many buyers in the region treat Istanbul and Kocaeli as one market."
+   ]
+  },
+  {
+   "id": "codes",
+   "h2": "Certification, standards and radiation regulation in Turkey",
+   "paragraphs": [
+    "Turkey follows European practice for industrial NDT personnel certification: **EN ISO 9712** (published in Turkey as TS EN ISO 9712) is the standard scheme, delivered by accredited certification bodies, and many international clients also accept ASNT-based certifications. Aerospace work requires EN 4179 or NAS 410 qualification, and shipyard work requires personnel acceptable to the relevant classification society.",
+    "Radiation safety is overseen by the **Nuclear Regulatory Authority (Nükleer Düzenleme Kurumu, NDK)**. The IAEA notes that NDK was established in 2019 as the independent regulatory body for nuclear and radiation safety [9], and its mandate covers nuclear safety, security, safeguards, radiation safety and protection [9]. Its powers were set out in Nuclear Regulatory Law No. 7381 of 2022 [10]. Before NDK, regulatory duties were performed by the Turkish Atomic Energy Authority [13]. Importing radioactive materials and devices also requires NDK approval [14].",
+    "Industrial radiographers are among the most exposed radiation workers in Turkey, and radiation protection education for industrial radiography has been a regulatory focus [15]. Buyers should confirm that radiography providers hold current authorisations and use trained radiation protection officers."
+   ],
+   "bullets": [
+    "Ask for EN ISO 9712 certificates (or EN 4179/NAS 410 for aerospace).",
+    "Confirm the provider's radiation authorisations under NDK [9].",
+    "For ship work, confirm class approval for thickness gauging and technician acceptance."
+   ]
+  },
+  {
+   "id": "environment",
+   "h2": "Climate and conditions",
+   "paragraphs": [
+    "Istanbul has a temperate climate with warm summers, cool wet winters and the marine influence of the Bosphorus, Marmara Sea and Black Sea. Marine atmospheres drive corrosion of ship structures, port equipment and coastal infrastructure, while humidity and winter cold affect coating application, couplant performance and outdoor inspection schedules.",
+    "The region is also seismically active. The 1999 İzmit earthquake, magnitude 7.6, struck close to Turkey's main refinery and heavy industry [16], and seismic risk means structural integrity inspection of buildings, bridges, tanks and industrial facilities remains important, both routinely and after significant earthquakes."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Istanbul",
+   "paragraphs": [
+    "Shipyard NDT is often priced per day for resident crews or per metre of weld or per gauging point for thickness surveys. Fabrication shop NDT is priced per film, per weld or per day. Aerospace NDT is usually performed in-house by MROs, with specialist subcontract work priced per task or per day. Infrastructure and energy projects use unit rates or day rates with specialist equipment charged separately.",
+    "Cost drivers include class or aerospace qualification requirements, specialist equipment (PAUT, phased array eddy current, automated scanners), radiation authorisations and exclusion-zone logistics in busy yards, and reporting turnaround needed to keep docking or production schedules. NDT-Connect lets buyers post one scope and compare certified providers serving Istanbul."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Istanbul",
+   "paragraphs": [
+    "Istanbul offers a wide range of NDT careers: shipyard technicians and thickness gaugers, aerospace NDT technicians at MROs, fabrication and construction inspectors, and energy-sector specialists who travel across Turkey. Aerospace roles require EN 4179 qualification and type-specific training, while shipyard and industrial roles centre on EN ISO 9712 certification.",
+    "Technicians who combine EN ISO 9712 certification in UT, RT, MT and PT with PAUT skills and documented shipyard or plant experience are in demand both in Turkey and in international projects managed from Istanbul.",
+    "A common path is to start with thickness gauging and MT in the shipyards, where volumes are high, then add UT and PAUT certification for weld inspection. Aerospace careers usually begin inside an MRO training programme, since EN 4179 qualification depends on the employer's written practice."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Istanbul",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers."
+   ],
+   "bullets": [
+    "EN ISO 9712 certification (or EN 4179/NAS 410 for aerospace) for every technician.",
+    "Class society acceptance for shipyard and thickness gauging work.",
+    "Current radiation authorisations under NDK for radiography [9].",
+    "Experience with your asset type: ships, aircraft, structures or plants.",
+    "Capacity to keep resident crews during docking or production peaks.",
+    "Fast, accurate reporting in the format your class society, MRO or client requires."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Where are Istanbul's shipyards?",
+   "a": "Mainly in the Tuzla shipyards region on the Sea of Marmara, part of a wider Marmara cluster including Yalova and İzmit where most of Turkey's shipyards are located [2]."
+  },
+  {
+   "q": "How large is aviation maintenance in Istanbul?",
+   "a": "Turkish Technic can maintain 57 aircraft simultaneously across its Istanbul hangars [5], and plans 11 hangars at Istanbul Airport handling 26 narrowbody and 19 widebody aircraft at once [6]."
+  },
+  {
+   "q": "Which certification do NDT technicians need in Turkey?",
+   "a": "Industrial work usually requires EN ISO 9712 (TS EN ISO 9712) certification; aerospace work requires EN 4179 or NAS 410 qualification under the MRO's written practice; ship work requires class acceptance."
+  },
+  {
+   "q": "Who regulates industrial radiography in Turkey?",
+   "a": "The Nuclear Regulatory Authority (NDK), established as the independent regulator for nuclear and radiation safety [9], under Nuclear Regulatory Law No. 7381 [10]."
+  },
+  {
+   "q": "Do Istanbul NDT companies work in Kocaeli?",
+   "a": "Yes. Many Istanbul-based providers serve the heavy industry of neighbouring Kocaeli, including the Tüpraş İzmit refinery, shipyards and industrial zones."
+  },
+  {
+   "q": "How do I request NDT quotes in Istanbul?",
+   "a": "Post the scope on NDT-Connect with the asset type, governing code or class rules, weld or gauging quantities, location, dates and reporting requirements."
+  }
+ ],
+ "references": [
+  {
+   "title": "MarineLink Shipyards — TK Tuzla Shipyard",
+   "url": "https://shipyards.marinelink.com/yard/tuzla-shipyard"
+  },
+  {
+   "title": "Riviera — Optimism driving resurgence in Turkish shipbuilding",
+   "url": "https://www.rivieramm.com/opinion/opinion/optimism-driving-resurgence-in-turkish-shipbuilding-24842"
+  },
+  {
+   "title": "MarineLink Shipyards — Gisan Shipyard",
+   "url": "https://shipyards.marinelink.com/yard/gisan-shipyard"
+  },
+  {
+   "title": "MarineLink Shipyards — Çeliktrans (Celik Tekne) Shipyard",
+   "url": "https://shipyards.marinelink.com/yard/celik-tekne-shipyard"
+  },
+  {
+   "title": "Hürriyet Daily News — Turkish Technic opens seventh hangar at Atatürk Airport",
+   "url": "https://www.hurriyetdailynews.com/turkish-technic-opens-seventh-hangar-at-ataturk-airport-225930"
+  },
+  {
+   "title": "Aviation Week — Turkish Technic approved for base maintenance at Istanbul Airport",
+   "url": "https://aviationweek.com/mro/turkish-technic-approved-base-maintenance-completes-first-aircraft-work"
+  },
+  {
+   "title": "Turkish Technic — Wikipedia",
+   "url": "https://Www.Wikipedia.org/wiki/Turkish_Technic"
+  },
+  {
+   "title": "Aviation Week — Gallery: Turkish Technic facility tour at Sabiha Gökçen",
+   "url": "https://aviationweek.com/mro/gallery-turkish-technic-facility-tour-sabiha-gokcen-airport"
+  },
+  {
+   "title": "Nuclear Business Platform — IAEA endorses Türkiye's nuclear regulatory practices (NDK)",
+   "url": "https://nuclearbusiness-platform.com/media/insights/iaea-endorses-turkiyes-nuclear-regulatory-practices"
+  },
+  {
+   "title": "FAOLEX — Nuclear Regulatory Law No. 7381 (Türkiye, 2022)",
+   "url": "https://faolex.fao.org/en/documents/LEX-FAOC224680/nuclear-regulatory-law-no-7381-tur-2022"
+  },
+  {
+   "title": "MarineLink Shipyards — Tersan Shipyard",
+   "url": "https://shipyards.marinelink.com/yard/tersan-shipyard"
+  },
+  {
+   "title": "Aviation Week — A closer look at Turkish Technic's new MRO facilities",
+   "url": "https://aviationweek.com/shows-events/mro-transatlantic/closer-look-turkish-technics-new-mro-facilities"
+  },
+  {
+   "title": "IAEA — COVID-19 measures by the Turkish nuclear regulator NDK (former TAEK duties)",
+   "url": "https://nucleus.iaea.org/sites/committees/CSS%20Specific%20Documents/COVID19/COVID-19responsesNDKTurkey.pdf"
+  },
+  {
+   "title": "WTO Import Licensing — Turkey: radioactive materials and devices (NRA approval)",
+   "url": "https://importlicensing.wto.org/content/radioactive-materials-and-devices-using-them"
+  },
+  {
+   "title": "TENMAK archive — Radiation protection education for industrial radiography in Turkey",
+   "url": "https://kurumsalarsiv.tenmak.gov.tr/bitstreams/1a53b3cb-f80b-4832-9969-f2fe9100ba36/download"
+  },
+  {
+   "title": "Oxford Business Group — Turkey refining capacity (1999 İzmit earthquake)",
+   "url": "https://oxfordbusinessgroup.com/articles-interviews/turkey-refining-processing-capacity"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Kocaeli",
+   "href": "/ndt-services/kocaeli-tr"
+  },
+  {
+   "name": "Alexandria, Egypt",
+   "href": "/ndt-services/alexandria-eg"
+  },
+  {
+   "name": "Erbil, Iraq",
+   "href": "/ndt-services/erbil-iq"
+  },
+  {
+   "name": "Rotterdam, Netherlands",
+   "href": "/ndt-services/rotterdam-nl"
+  }
+ ],
+ "related": [
+  {
+   "label": "Aerospace NDT buyer's guide (Seattle and Wichita)",
+   "href": "/buyers-guide/aerospace-ndt-seattle-everett-wichita"
+  },
+  {
+   "label": "Eddy current fill factor calculator",
+   "href": "/tools/ec-fill-factor"
+  },
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  }
+ ]
+}
