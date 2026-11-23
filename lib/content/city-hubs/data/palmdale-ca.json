@@ -1,0 +1,343 @@
+{
+ "slug": "palmdale-ca",
+ "city": "Palmdale",
+ "region": "California",
+ "country": "United States",
+ "countrySlug": "united-states",
+ "wave": 2,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Palmdale, CA: Aerospace and Defense Inspection at Air Force Plant 42",
+ "metaTitle": "NDT Services in Palmdale, CA | Aerospace NDT, NAS 410 & Nadcap",
+ "description": "Aerospace NDT in Palmdale, California: inspection for Air Force Plant 42 programs and suppliers. Composite UT, NAS 410, Nadcap AC7114, methods and hiring.",
+ "quickAnswer": "Palmdale, in the Antelope Valley north of Los Angeles, is home to **US Air Force Plant 42**, a government-owned, contractor-operated aircraft plant of about 5,900 acres [2] whose best-known tenants are Boeing, Lockheed Martin and Northrop Grumman [1]. Northrop Grumman builds the **B-21 Raider** there [5], and Lockheed Martin's Skunk Works is on site [3]. NDT in Palmdale is aerospace NDT: ultrasonic inspection of composite structures, eddy current, penetrant and radiography under prime contractor specifications, with personnel certified to **NAS 410** [7] and facilities often accredited by **Nadcap** under AC7114 [8].",
+ "keyFacts": [
+  {
+   "label": "Anchor site",
+   "value": "US Air Force Plant 42, about 5,900 acres, government-owned and contractor-operated since 1954 [1][2]"
+  },
+  {
+   "label": "Major tenants",
+   "value": "Boeing, Lockheed Martin (including Skunk Works) and Northrop Grumman [1][3]"
+  },
+  {
+   "label": "Flagship program",
+   "value": "Northrop Grumman builds the B-21 Raider at Plant 42 [5]"
+  },
+  {
+   "label": "Personnel standard",
+   "value": "NAS 410, the de facto aerospace NDT certification standard [7]"
+  }
+ ],
+ "industries": [
+  "Military aircraft manufacturing",
+  "Aerospace sustainment and modification",
+  "Composite structures",
+  "Flight test support",
+  "Aerospace suppliers and machine shops",
+  "Space and defense systems"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Why Palmdale is a specialist aerospace NDT market",
+   "paragraphs": [
+    "Palmdale is different from most cities in this directory. There are no refineries or petrochemical plants driving demand; instead, NDT here serves some of the most advanced military aircraft programs in the world. Air Force Plant 42, which grew from a small community airport before World War II into a center for aircraft production in the 1950s, covers about 5,900 acres and houses Northrop Grumman, Lockheed Martin, Boeing and NASA operations [2]. The plant has been government-owned and contractor-operated since 1954, and it includes eight production sites suited to advanced technology and classified programs [4].",
+    "Plant 42 has long been one of the Antelope Valley's largest employers [6]. Together with nearby Edwards Air Force Base and NASA's Armstrong Flight Research Center, it gives the region the nickname Aerospace Valley.",
+    "For NDT buyers and providers, the market rewards aerospace-specific qualifications, process discipline and security clearance. Work is done inside prime contractor facilities, at Tier 1 and Tier 2 suppliers, and in independent laboratories serving the wider Southern California aerospace supply chain."
+   ]
+  },
+  {
+   "id": "programs",
+   "h2": "Programs and facilities at Plant 42",
+   "paragraphs": [
+    "Northrop Grumman operates a large complex on the northeast end of Plant 42, including an assembly hall with a footprint close to a million square feet, the largest single structure on the base [9]. The company builds the B-21 Raider at Palmdale, in or next to facilities used to build the B-2 in the 1990s, and the Air Force has said it plans to buy at least 100 of the bombers [5]. Work has begun on a major expansion of the plant to increase B-21 production capacity [10]. Northrop's B-2 final assembly and modification facility is also at Palmdale [11].",
+    "Lockheed Martin dominates the southwest corner of the airfield. It developed the plant's master plan for the Air Force in 1951, was its first major tenant, and its Palmdale operations include eight principal structures on nearly a square mile of land [12]. The famous Skunk Works, which developed the U-2, SR-71 and F-117, operates at Site 10 [3]. Boeing also has major facilities on site [1].",
+    "Many details of these programs are classified. NDT providers working on them need appropriate clearances and must follow strict security and information-handling rules, which narrows the pool of qualified suppliers."
+   ]
+  },
+  {
+   "id": "methods",
+   "h2": "Aerospace NDT methods used in Palmdale",
+   "paragraphs": [
+    "Modern military aircraft rely heavily on carbon fiber composites, bonded structures, titanium and specialized coatings. That shapes the NDT methods used.",
+    "**Ultrasonic testing** is the backbone of composite inspection. Automated through-transmission and pulse-echo systems, often in gantry or robotic cells with water jets, scan large composite skins and spars for porosity, delaminations, disbonds and foreign material. Phased array UT speeds up inspection of laminates, radius areas and bonded joints, and portable PAUT is used for repairs and in-service inspection.",
+    "**Eddy current** detects surface and near-surface cracks around fastener holes and in metallic structures, measures conductivity of aluminum alloys and checks coating thickness. **Penetrant** and **magnetic particle** inspection cover machined metallic parts and forgings. **Radiography and computed tomography** inspect castings, complex assemblies, honeycomb structures and additive manufactured parts. **Thermography** and **shearography** provide fast, non-contact screening of composite and bonded structures for disbonds and impact damage."
+   ],
+   "table": {
+    "caption": "Typical aerospace inspection tasks and methods",
+    "head": [
+     "Component or material",
+     "Main concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Composite skins and spars",
+      "Porosity, delamination, disbonds, foreign objects",
+      "Automated UT (TTU, pulse-echo), PAUT, thermography"
+     ],
+     [
+      "Bonded and honeycomb assemblies",
+      "Disbonds, core damage, water ingress",
+      "UT, bond testers, shearography, radiography"
+     ],
+     [
+      "Machined metallic parts and forgings",
+      "Surface cracks, laps, inclusions",
+      "FPI, MT, UT, eddy current"
+     ],
+     [
+      "Fastener holes and metallic structure",
+      "Fatigue cracks, corrosion",
+      "Bolt-hole eddy current, surface ECT"
+     ],
+     [
+      "Castings and additive parts",
+      "Porosity, inclusions, internal defects",
+      "Radiography, computed tomography"
+     ],
+     [
+      "Coatings and specialty materials",
+      "Thickness, adhesion, conductivity",
+      "Eddy current, UT, specialized techniques"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "nas410",
+   "h2": "NAS 410: the personnel certification standard",
+   "paragraphs": [
+    "In aerospace, NDT personnel are certified to NAS 410, Certification and Qualification of Nondestructive Test Personnel, which industry practitioners describe as the de facto aerospace standard and the civilian successor to MIL-STD-410 [7]. The Aerospace Industries Association maintains it, but each aerospace company is responsible for establishing its own NAS 410-compliant NDT program, and training and testing are the employer's job [7]. Its European counterpart is EN 4179.",
+    "NAS 410 sets minimum training, experience and examination requirements for Levels 1, 2 and 3, including practical examinations on representative parts, vision tests and recertification at defined intervals. NAS 410 Revision 6 was released as an update aimed at improving inspection reliability and workforce development [13].",
+    "Technicians moving from oil and gas into aerospace often find NAS 410 more demanding than SNT-TC-1A, especially for practical examinations and documentation. Level 3s must be familiar with prime contractor specifications as well as NAS 410 itself."
+   ]
+  },
+  {
+   "id": "nadcap",
+   "h2": "Nadcap accreditation for NDT suppliers",
+   "paragraphs": [
+    "Prime contractors usually require NDT suppliers to hold Nadcap accreditation. SAE AS7114 sets the requirements for NDT suppliers to be accredited by the National Aerospace and Defense Contractors Accreditation Program [14], and audits use the AC7114 audit criteria, supplemented by method-specific criteria and subscriber supplemental checklists [8]. The method-specific criteria cover penetrant, magnetic particle, radiography, ultrasonic and eddy current inspection, among others [15].",
+    "Personnel certification is one of the most heavily scrutinized areas. Nadcap audit data has shown that many of the most common nonconformances relate to the personnel certification section of AC7114, and suppliers must have a formal training plan for trainees [16].",
+    "For buyers, Nadcap accreditation for the specific methods required, plus approval on the prime contractor's qualified supplier list, is usually the first filter. Accreditation scope matters: a supplier accredited for penetrant and magnetic particle is not automatically accredited for ultrasonic or radiography."
+   ]
+  },
+  {
+   "id": "specs",
+   "h2": "Specifications buyers should expect",
+   "paragraphs": [
+    "Aerospace NDT is driven by specifications rather than general codes. Common industry specifications include ASTM E1444 for magnetic particle testing, ASTM E1417 for penetrant testing, SAE AMS 2644 for penetrant materials, ASTM E2375 and AMS-STD-2154 for ultrasonic inspection of wrought metals, and ASTM E1742 for radiography. Prime contractors add their own process specifications, which often override or supplement industry standards.",
+    "Engineering drawings call out inspection requirements and acceptance criteria. Suppliers must work to the current revision of every specification, maintain written techniques approved by a Level 3, and keep detailed records traceable to each part serial number.",
+    "First-article inspection and process qualification are common before production starts. Changes to equipment, materials or techniques can require requalification, so buyers should plan time for approvals."
+   ]
+  },
+  {
+   "id": "composites",
+   "h2": "Composite inspection challenges",
+   "paragraphs": [
+    "Large composite structures present special challenges. Complex curvature, varying thickness, radius areas and co-cured or bonded joints make full ultrasonic coverage difficult. Automated systems need accurate part models, fixtures and calibration standards that represent the actual laminate, including its porosity and fiber orientation.",
+    "Reference standards with known flaws are essential for setting up UT inspections, and building them takes time. Data volumes from automated scanning are large, and analysis requires experienced Level 2 and Level 3 inspectors who understand both the material and the manufacturing process.",
+    "In-service and repair inspection adds further challenges: access is limited, paint and coatings may need to be removed or accounted for, and inspectors must distinguish manufacturing anomalies from service damage such as impact, heat damage or moisture ingress."
+   ]
+  },
+  {
+   "id": "sustainment",
+   "h2": "Sustainment, modification and depot work",
+   "paragraphs": [
+    "Palmdale is not only about new production. Aircraft come back to Plant 42 for modification, upgrades and depot maintenance. The Air Force has said B-2 sustainment experience in areas such as maintenance and materials can be carried over to the B-21 [17].",
+    "Sustainment work brings in-service inspection: eddy current for fatigue cracks around fasteners, ultrasonic inspection of composite structure for impact damage and disbonds, corrosion detection on metallic structures, and inspection of repairs. Inspections often follow aircraft-specific technical orders and NDT manuals, which define the method, technique and acceptance criteria for each location."
+   ]
+  },
+  {
+   "id": "supply",
+   "h2": "The wider Southern California aerospace supply chain",
+   "paragraphs": [
+    "Beyond Plant 42, the Antelope Valley and the greater Los Angeles area host thousands of aerospace suppliers: machine shops, composite fabricators, forging and casting houses, heat treaters and assembly shops. Many outsource NDT to independent laboratories accredited by Nadcap, while larger suppliers run in-house NDT departments.",
+    "For independent labs, the opportunity is broad, but the barrier to entry is high: Nadcap accreditation, prime contractor approvals, NAS 410 Level 3 oversight and calibrated equipment are all required. Labs that also offer clearance-capable personnel for on-site work at Plant 42 have a strong competitive advantage."
+   ]
+  },
+  {
+   "id": "radiation",
+   "h2": "Radiography and California radiation rules",
+   "paragraphs": [
+    "Aerospace radiography in Palmdale is often done in shielded bays or cabinets, and computed tomography is increasingly used for complex parts and additive manufactured components. Facilities using industrial X-ray equipment or radioactive sources must comply with California Department of Public Health requirements for registration and licensing.",
+    "California's Radiologic Health Branch regulates radioactive materials use and sets requirements for industrial radiographers and radiographer trainers [18]. Buyers should confirm that suppliers performing radiography hold the correct state registrations or licenses and that radiographers hold valid certifications."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How aerospace NDT is priced and scheduled",
+   "paragraphs": [
+    "Aerospace NDT is usually priced per part, per lot or per hour, depending on the method and the level of automation. Automated composite UT is often quoted per part number after technique development, with one-off charges for reference standards, fixtures and programming. Penetrant, magnetic particle and eddy current inspection of machined parts are commonly priced per piece or per batch, with minimum lot charges. On-site support at prime contractor facilities is billed hourly or by contract staffing rates.",
+    "Lead times depend on whether a technique already exists. New part numbers may need technique development, Level 3 approval, first-article inspection and customer sign-off before production inspection can begin. Buyers can shorten schedules by sending drawings, specifications and acceptance criteria early, confirming which Nadcap scopes and prime approvals are needed, and agreeing on certification and report formats before the first parts arrive."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Palmdale",
+   "paragraphs": [
+    "Palmdale offers some of the most interesting NDT careers in the United States. Prime contractors and suppliers hire Level 2 and Level 3 inspectors in UT, ET, PT, MT and RT, automated UT operators, composite inspection specialists and NDT engineers. Many roles require US citizenship and the ability to obtain a security clearance.",
+    "Typical career paths start with NAS 410 training and certification through an employer, often beginning in penetrant or ultrasonic inspection, and progress to Level 3 with responsibility for techniques, procedures and audits. Experience with automated composite UT and Nadcap audits is highly valued."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an aerospace NDT provider in Palmdale",
+   "paragraphs": [
+    "Use this checklist when qualifying a provider for Palmdale aerospace work. NDT-Connect lets buyers post one scope and compare providers serving Palmdale, Lancaster, the Antelope Valley and Los Angeles."
+   ],
+   "bullets": [
+    "Nadcap accreditation for every method required [8][14].",
+    "NAS 410 certified personnel with Level 3 oversight [7].",
+    "Approval on the prime contractor's qualified supplier list.",
+    "Composite UT capability, including automated systems where needed.",
+    "Security clearances and procedures for classified work, if applicable.",
+    "State radiation registration or licensing for radiography [18]."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "What is Air Force Plant 42?",
+   "a": "A government-owned, contractor-operated aircraft plant in Palmdale, about 5,900 acres, whose best-known tenants are Boeing, Lockheed Martin and Northrop Grumman [1][2]."
+  },
+  {
+   "q": "What NDT certification is required for aerospace work?",
+   "a": "NAS 410, the de facto aerospace standard for NDT personnel certification. Each company establishes its own NAS 410-compliant program [7]."
+  },
+  {
+   "q": "What is Nadcap accreditation for NDT?",
+   "a": "Accreditation under SAE AS7114 and the AC7114 audit criteria, which prime contractors commonly require of NDT suppliers [8][14]."
+  },
+  {
+   "q": "Which NDT methods are used on composite aircraft structures?",
+   "a": "Mainly automated and phased array ultrasonic testing, with thermography, shearography, bond testing and radiography for specific applications."
+  },
+  {
+   "q": "Is a security clearance needed for NDT work in Palmdale?",
+   "a": "Often, for work on classified programs inside Plant 42. Supplier work on unclassified parts may not require clearance."
+  },
+  {
+   "q": "How do I find an aerospace NDT provider in Palmdale?",
+   "a": "Post the scope on NDT-Connect with the methods, specifications, Nadcap requirements, part details, quantities and delivery dates."
+  }
+ ],
+ "references": [
+  {
+   "title": "Air Force Test Center — January 8, 1942: Palmdale Airport becomes Plant 42",
+   "url": "https://www.aftc.af.mil/News/On-This-Day-in-Test-History/Article-Display-Test-History/Article/2448740/january-8-1942-palmdale-airport-becomes-plant-42/"
+  },
+  {
+   "title": "Antelope Valley Press — Aerospace Valley home to aviation milestones",
+   "url": "https://www.pressreader.com/usa/antelope-valley-press/20190424/283253099315834"
+  },
+  {
+   "title": "Plant 42 overview — Lockheed Skunk Works at Site 10",
+   "url": "https://brookeintheairtravel.squarespace.com/blogs/blog-89-secret-installation-plant-42"
+  },
+  {
+   "title": "Air Force Test Center — Plant 42 production sites and contractors",
+   "url": "https://www.aftc.af.mil/About-Us/History/On-This-Day-in-Test-History/Article-Display-Test-History/Article/2448740/january-8-1942-palmdale-airport-becomes-plant-42/"
+  },
+  {
+   "title": "Air & Space Forces Magazine — B-21 production expansion at Plant 42",
+   "url": "https://www.airandspaceforces.com/?p=249322"
+  },
+  {
+   "title": "GlobalSecurity — Air Force Plant 42",
+   "url": "https://www.globalsecurity.org/military/facility/afp-42.htm"
+  },
+  {
+   "title": "AviationPros — NDT certification (NAS 410)",
+   "url": "https://www.aviationpros.com/home/article/10383234/ndt-certification"
+  },
+  {
+   "title": "AC7114 — Nadcap audit criteria for NDT",
+   "url": "https://www.scribd.com/document/615537083/AC7114-Rev-M-1"
+  },
+  {
+   "title": "Center for Land Use Interpretation — Northrop Grumman Palmdale",
+   "url": "https://clui.org/projects/remote-sensing/aerospace-southern-california/northrop-grumman-palmdale"
+  },
+  {
+   "title": "Manufacturing Dive — Northrop Grumman and Air Force begin Plant 42 expansion",
+   "url": "https://www.manufacturingdive.com/news/northrop-grumman-air-force-expansion-plant-42/832844/"
+  },
+  {
+   "title": "Wikipedia — United States Air Force Plant 42",
+   "url": "https://en.wikipedia.org/wiki/United_States_Air_Force_Plant_42"
+  },
+  {
+   "title": "Center for Land Use Interpretation — Lockheed Palmdale",
+   "url": "https://clui.org/projects/remote-sensing/aerospace-southern-california/lockheed-palmdale"
+  },
+  {
+   "title": "EE Journal — AIA and Accuris release NAS410 Revision 6",
+   "url": "https://www.eejournal.com/industry_news/aia-and-accuris-release-nas410-revision-6-advancing-aerospace-safety-and-workforce-development/"
+  },
+  {
+   "title": "SAE — AS7114 Nadcap requirements for nondestructive testing",
+   "url": "https://saemobilus.sae.org/standards/as7114-national-aerospace-defense-contractors-accreditation-program-requirements-nondestructive-testing"
+  },
+  {
+   "title": "Example Nadcap NDT scope of accreditation (method-specific AC7114 criteria)",
+   "url": "https://www.acuren.com/wp-content/uploads/2025/02/Certificate-Nadcap-Aerospace-NonDestructive-Testing-Exp-11-30-2025.pdf"
+  },
+  {
+   "title": "Quality Magazine — Nondestructive testing in aerospace",
+   "url": "https://www.qualitymag.com/articles/92744-nondestructive-testing-in-aerospace"
+  },
+  {
+   "title": "Air & Space Forces Magazine — Northrop Grumman expands Plant 42 as B-21 continues development",
+   "url": "https://www.airandspaceforces.com/Northrop-Grumman-Expands-Plant-42-as-B-21-Continues-Development/"
+  },
+  {
+   "title": "CDPH Radiologic Health Branch — industrial radiographer trainer application",
+   "url": "https://Www.Cdph.Ca.gov/CDPH%20Document%20Library/ControlledForms/cdph8219.pdf"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Los Angeles",
+   "href": "/ndt-services/los-angeles-ca"
+  },
+  {
+   "name": "Long Beach",
+   "href": "/ndt-services/long-beach-ca"
+  },
+  {
+   "name": "Bakersfield",
+   "href": "/ndt-services/bakersfield-ca"
+  },
+  {
+   "name": "San Diego",
+   "href": "/ndt-services/san-diego-ca"
+  },
+  {
+   "name": "Martinez",
+   "href": "/ndt-services/martinez-ca"
+  }
+ ],
+ "related": [
+  {
+   "label": "Aerospace NDT buyer's guide (Seattle, Everett, Wichita)",
+   "href": "/buyers-guide/aerospace-ndt-seattle-everett-wichita"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  },
+  {
+   "label": "All NDT locations",
+   "href": "/ndt-locations"
+  },
+  {
+   "label": "NDT Leaders",
+   "href": "/ndt-leaders"
+  }
+ ]
+}

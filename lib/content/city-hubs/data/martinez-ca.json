@@ -1,0 +1,308 @@
+{
+ "slug": "martinez-ca",
+ "city": "Martinez",
+ "region": "California",
+ "country": "United States",
+ "countrySlug": "united-states",
+ "wave": 2,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Martinez, CA: Refinery and Renewable Fuels Inspection in the San Francisco Bay Area",
+ "metaTitle": "NDT Services in Martinez, CA | Refinery & Renewable Fuels Inspection",
+ "description": "NDT in Martinez, California: inspection for the PBF Martinez refinery, Marathon's renewable fuels plant and Bay Area sites. Cal/OSHA 5189.1, CDPH rules, hiring.",
+ "quickAnswer": "Martinez, on the Carquinez Strait in Contra Costa County, is one of California's main refining hubs. The **Martinez Refinery**, bought by PBF Energy from Shell, has a capacity of 157,000 barrels per day and a Nelson Complexity Index of 16.1 [1]. Nearby, Marathon converted its former crude refinery into the **Martinez Renewable Fuels** facility, designed for 730 million gallons a year of renewable fuels at full capacity [3]. Inspection here is shaped by California's refinery-specific process safety rule, **Title 8 §5189.1**, which requires formal damage mechanism reviews [5][6]. Industrial radiography is regulated by the California Department of Public Health [8].",
+ "keyFacts": [
+  {
+   "label": "Crude refining",
+   "value": "PBF Martinez Refinery: 157,000 barrels per day, Nelson Complexity Index 16.1 [1]"
+  },
+  {
+   "label": "Renewable fuels",
+   "value": "Marathon Martinez Renewable Fuels: designed for 730 million gallons a year at full capacity [3]"
+  },
+  {
+   "label": "Process safety rule",
+   "value": "Cal/OSHA Title 8 §5189.1, Process Safety Management for Petroleum Refineries [5]"
+  },
+  {
+   "label": "Radiography regulator",
+   "value": "California Department of Public Health, Radiologic Health Branch [8]"
+  }
+ ],
+ "industries": [
+  "Oil refining",
+  "Renewable diesel and SAF",
+  "Marine terminals",
+  "Chemicals",
+  "Power and utilities",
+  "Pipelines and storage"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Why Martinez matters for NDT",
+   "paragraphs": [
+    "Martinez sits at the eastern end of the San Francisco Bay Area's refinery belt, where crude and renewable fuels plants line the Carquinez Strait and Suisun Bay. The PBF Martinez Refinery, sold by Shell to PBF Energy for about $1.2 billion, has a 157,000 barrel-per-day capacity and a Nelson Complexity Index of 16.1, which places it among the most complex refineries in the country [1]. The deal included a deep-water marine facility, product distribution terminals and about 8.8 million barrels of crude and product storage [2].",
+    "Just east of the city, at Avon, Marathon Petroleum ramped down crude processing in April 2020 and converted the site into the Martinez Renewable Fuels facility. Before the conversion, the refinery accounted for roughly 9 percent of California's crude processing capacity; the renewable plant was designed to reach 730 million gallons a year of renewable fuels at full capacity [3]. The first phase targeted about 17,000 barrels per day, or 260 million gallons a year [4].",
+    "Within a short drive are the Phillips 66 Rodeo renewable fuels conversion, Valero's Benicia refinery and the Chevron Richmond refinery. For NDT providers, this concentration means steady demand for turnaround inspection, mechanical integrity programs and conversion projects, under some of the strictest process safety rules in the United States."
+   ]
+  },
+  {
+   "id": "assets",
+   "h2": "Assets and inspection scopes around Martinez",
+   "paragraphs": [
+    "Martinez combines a highly complex crude refinery, a renewable fuels plant built largely from repurposed refinery units, large tank farms and deep-water marine terminals. Each brings different damage mechanisms and NDT needs.",
+    "Highly complex refineries mean more conversion units, such as cokers, hydrocrackers and catalytic crackers, and each of those units carries demanding inspection requirements in high-temperature, high-pressure and hydrogen service."
+   ],
+   "table": {
+    "caption": "Martinez-area assets and typical NDT scopes",
+    "head": [
+     "Asset",
+     "Main inspection concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Crude and vacuum units",
+      "Sulfidation, naphthenic acid corrosion, CUI",
+      "UT, corrosion mapping, PAUT, pulsed eddy current"
+     ],
+     [
+      "Cokers and FCC units",
+      "Coke drum bulging and cracking, refractory-lined equipment, erosion",
+      "Laser profiling, PAUT, TOFD, thermography, UT"
+     ],
+     [
+      "Hydroprocessing (crude and renewable)",
+      "HTHA, heavy-wall weld cracking, chloride and organic acid attack",
+      "Advanced UT for HTHA, PAUT, TOFD, PMI"
+     ],
+     [
+      "Renewable feedstock pretreatment",
+      "Corrosion from free fatty acids, phosphorus and contaminants",
+      "UT thickness mapping, PAUT, PMI, visual"
+     ],
+     [
+      "Tank farms",
+      "Floor and shell corrosion",
+      "MFL floor scanning, UT, AE"
+     ],
+     [
+      "Marine terminals and docks",
+      "Piping corrosion, structural deterioration",
+      "UT, guided wave, MT, visual"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "5189",
+   "h2": "California's refinery PSM rule: Title 8 §5189.1",
+   "paragraphs": [
+    "California refineries operate under a stricter process safety regime than federal OSHA PSM. Title 8 §5189.1, Process Safety Management for Petroleum Refineries, applies to processes within petroleum refineries and supersedes the general PSM rule (§5189) for those sites [5]. It defines a damage mechanism as the mechanical, chemical, physical or other process that results in equipment or material degradation [5].",
+    "The rule contains elements beyond the federal standard, including Damage Mechanism Review and Hierarchy of Hazard Controls Analysis, alongside mechanical integrity, management of change and other familiar elements [6]. A Damage Mechanism Review documents the mechanisms, such as corrosion, cracking or erosion, that could degrade process equipment [7].",
+    "For NDT buyers and providers, §5189.1 changes the conversation. Inspection plans must connect clearly to the documented damage mechanisms for each unit, methods must be capable of detecting those mechanisms, and results feed back into the review. Generic thickness surveys are not enough where cracking, HTHA or localized corrosion are credible. Expect owners to ask how a proposed technique addresses each mechanism and what its detection limits are."
+   ]
+  },
+  {
+   "id": "renewables",
+   "h2": "Renewable fuels conversions: new damage mechanisms, new inspection needs",
+   "paragraphs": [
+    "Converting crude refineries to renewable diesel and sustainable aviation fuel changes the inspection picture. Renewable feedstocks such as animal fats, used cooking oil, soybean oil and corn oil bring free fatty acids, chlorides, phosphorus and metals, and the hydrotreating process makes more water and carbon dioxide than crude processing. That can create corrosion in pretreatment units, reactor effluent systems and fractionation sections where operators had little experience under crude service.",
+    "Phillips 66's Rodeo Renewed project, a combination of new units and modifications to existing ones such as the U240 hydrocracker, illustrates how much existing equipment is repurposed in these projects [9]. Repurposed equipment needs a thorough baseline: wall thickness surveys, weld inspection, PMI to confirm materials match the new service, and assessment of any damage from previous crude service before the equipment enters new operating conditions.",
+    "After start-up, inspection programs need to monitor for new damage mechanisms closely, often with tighter thickness monitoring intervals, permanently installed sensors at high-risk locations and focused PAUT on welds in reactor effluent systems until operating data builds confidence."
+   ]
+  },
+  {
+   "id": "methods",
+   "h2": "NDT methods most used in Bay Area refineries",
+   "paragraphs": [
+    "**Ultrasonic methods** dominate: automated corrosion mapping for localized wall loss, PAUT and TOFD for weld integrity and crack sizing, and advanced UT techniques designed for early high-temperature hydrogen attack detection in hydroprocessing equipment.",
+    "**Radiography**, increasingly digital or computed, is used for small-bore piping, profile radiography of insulated lines for corrosion and some code weld examinations. In the Bay Area's dense, populated industrial setting, exclusion zones and scheduling need careful planning.",
+    "**Electromagnetic methods** cover heat exchangers (eddy current, IRIS, remote field and near-field testing) and corrosion under insulation (pulsed eddy current). **Guided wave** screens long pipe runs and road crossings, **acoustic emission** screens tanks and vessels, and **laser and 3D scanning** profile coke drums and deformed equipment."
+   ]
+  },
+  {
+   "id": "turnarounds",
+   "h2": "Turnarounds and project work",
+   "paragraphs": [
+    "Major refinery turnarounds in Northern California are tightly planned and heavily scrutinized. Inspection worklists come from risk-based inspection, the damage mechanism review and previous findings, and NDT crews must be qualified, trained on site procedures and ready to deliver daily preliminary results so repairs can begin quickly.",
+    "Renewable conversion projects add construction NDT: weld inspection to ASME B31.3 and Section VIII, PMI on alloy materials, hardness testing and baseline thickness surveys. Buyers should define acceptance criteria and reporting format before mobilization, and look for providers that can handle both construction and in-service inspection on the same project.",
+    "Because qualified technicians in the Bay Area are limited and costs are high, many providers bring in traveling crews for large turnarounds. Booking early and sharing clear scopes helps secure experienced personnel."
+   ]
+  },
+  {
+   "id": "codes",
+   "h2": "Certification, codes and California radiation rules",
+   "paragraphs": [
+    "NDT personnel are usually certified under ASNT SNT-TC-1A or ANSI/ASNT CP-189, with API individual certifications such as API 510, 570, 653, QUTE and QUPA frequently required by refinery owners. In-service inspection follows API 510, 570 and 653, with risk-based inspection under API 580/581 and fitness-for-service assessment under API 579.",
+    "California is an NRC Agreement State. Industrial radiography and radioactive materials licensing are handled by the **California Department of Public Health, Radiologic Health Branch (RHB)** [8]. Radiographer trainers must meet requirements in Title 17, Section 30333.05, and radiographer certification cards from entities listed in Title 17, Section 30335.3(b) are recognized [8]. California has required radiographers without valid certification from another Agreement State to obtain state certification, and the California provisional radiographer card is not transferable to other states under reciprocity [10].",
+    "Before radiography begins, buyers should confirm the provider's California radioactive materials license, each radiographer's certification, and the radiation safety officer's details."
+   ],
+   "bullets": [
+    "Confirm ASNT certification and API individual certifications required by the refinery.",
+    "Check the CDPH radioactive materials license and radiographer certification cards [8].",
+    "For HTHA, coker or renewable conversion scopes, require demonstrated procedures and experienced personnel."
+   ]
+  },
+  {
+   "id": "environment",
+   "h2": "Local conditions that affect inspection",
+   "paragraphs": [
+    "The Carquinez Strait's mild Mediterranean climate is less punishing than the Gulf Coast, but marine air, fog and seasonal rain still drive corrosion under insulation, particularly on older insulated piping and equipment at moderate temperatures. Marine terminals and docks see splash-zone corrosion on piping and structural steel.",
+    "Seismic risk is a distinctive Bay Area factor. After significant earthquakes, refineries inspect tanks, piping supports, foundations and structures for damage. Equipment anchorage and piping flexibility are part of mechanical integrity reviews, and NDT providers may be called in after seismic events to inspect welds and supports quickly.",
+    "Air quality rules and community proximity also matter. Bay Area refineries operate close to residential areas, so shutdown planning, flaring minimization and leak prevention are high priorities, and timely inspection helps prevent unplanned releases."
+   ]
+  },
+  {
+   "id": "data",
+   "h2": "Data quality and documentation expectations",
+   "paragraphs": [
+    "Because §5189.1 links mechanical integrity to documented damage mechanisms, owners need inspection data they can trace and defend. NDT deliverables should include the procedure and technique used, calibration records, technician certifications, location identifiers that match the inspection database, and raw or encoded scan data for advanced methods.",
+    "Good data lets engineers calculate corrosion rates, run fitness-for-service assessments and update the damage mechanism review with real findings. Agree on file formats, naming conventions and transfer methods before the job, and make sure the provider can deliver data that loads directly into the owner's inspection data management system."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in the Bay Area",
+   "paragraphs": [
+    "Bay Area NDT pricing reflects high labor costs, strict site requirements and limited local technician supply. Most refinery work is priced on day or hourly rates per technician by method and certification level, with advanced equipment such as PAUT, TOFD, IRIS, pulsed eddy current and HTHA systems charged separately. Traveling crews add per diem and travel costs, and turnaround work often carries premium rates for nights, weekends and overtime.",
+    "Other cost drivers include site-specific training and badging, the time needed to align procedures with the refinery's damage mechanism review, radiography logistics in congested units, and the volume and format of data deliverables. To compare quotes fairly, buyers should specify the same scope, methods, coverage, acceptance criteria and reporting requirements to every bidder, and confirm what is included in mobilization and standby charges."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Martinez and the Bay Area",
+   "paragraphs": [
+    "Refineries, renewable fuels plants, inspection companies and contractors around Martinez hire UT, RT, MT, PT and VT technicians, advanced UT specialists, tube inspection technicians, API inspectors and Level IIIs. Bay Area wages are among the highest in the US for NDT, reflecting both the cost of living and the complexity of the work.",
+    "A typical path starts with ASNT Level II certification in UT and RT, California radiographer certification for radiography roles [8], and then PAUT, TOFD and API certifications. Experience with renewable fuels plants is increasingly valuable as more Californian sites convert."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Martinez",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers for refinery or renewable fuels work. NDT-Connect lets buyers post one scope and compare certified providers serving Martinez, Benicia, Rodeo, Richmond and the wider Bay Area."
+   ],
+   "bullets": [
+    "ASNT written practice and certificates, plus API certifications where required.",
+    "CDPH radioactive materials license and radiographer certifications [8].",
+    "Experience linking inspection to damage mechanism reviews under §5189.1 [5][6].",
+    "Advanced capability: PAUT, TOFD, HTHA techniques, corrosion mapping, IRIS, PEC.",
+    "Renewable fuels conversion and construction NDT experience.",
+    "Data delivery that integrates with the owner's inspection database."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Which refineries are in Martinez, California?",
+   "a": "The PBF Martinez Refinery (157,000 barrels per day, Nelson Complexity Index 16.1) [1] and Marathon's Martinez Renewable Fuels facility, converted from a crude refinery [3]."
+  },
+  {
+   "q": "What is Title 8 §5189.1?",
+   "a": "California's process safety management rule for petroleum refineries. It supersedes the general PSM rule for refineries [5] and adds elements such as Damage Mechanism Review and Hierarchy of Hazard Controls Analysis [6]."
+  },
+  {
+   "q": "Who regulates industrial radiography in California?",
+   "a": "The California Department of Public Health, Radiologic Health Branch, which licenses radioactive materials use and sets radiographer and trainer requirements [8]."
+  },
+  {
+   "q": "How do renewable fuels conversions change NDT?",
+   "a": "Renewable feedstocks introduce new corrosion mechanisms, and repurposed equipment needs baseline inspection, PMI and close monitoring after start-up."
+  },
+  {
+   "q": "Which NDT methods are most used in Bay Area refineries?",
+   "a": "Corrosion mapping, PAUT, TOFD, HTHA techniques, digital radiography, eddy current and IRIS for exchangers, pulsed eddy current for CUI, guided wave and laser profiling of coke drums."
+  },
+  {
+   "q": "How do I request NDT quotes in Martinez?",
+   "a": "Post the scope on NDT-Connect with the unit, equipment list, damage mechanisms, methods, access, dates and reporting requirements."
+  }
+ ],
+ "references": [
+  {
+   "title": "Offshore Technology — Shell completes $1.2bn sale of Martinez refinery to PBF",
+   "url": "https://www.offshore-technology.com/?p=267648"
+  },
+  {
+   "title": "Digital Refining — PBF Energy completes acquisition of Martinez refinery",
+   "url": "https://digitalrefining.com/news/1005912/pbf-energy-completes-acquisition-of-martinez-refinery"
+  },
+  {
+   "title": "California Energy Commission — Petroleum Watch, June 2022 (renewable fuels conversions)",
+   "url": "https://www.energy.ca.gov/sites/default/files/2022-06/2022-06_Petroleum_Watch_ADA.pdf"
+  },
+  {
+   "title": "Industrial Info — Martinez refinery renewable fuels project progress",
+   "url": "https://www.industrialinfo.com/news/article/pbf-works-on-renewable-diesel-project-sees-big-profits--312792"
+  },
+  {
+   "title": "Cal/OSHA — Title 8 §5189.1, Process Safety Management for Petroleum Refineries",
+   "url": "https://dir.ca.gov/Title8/5189_1.html"
+  },
+  {
+   "title": "UCLA LOSH — Cal/OSHA PSM regulation for refineries (elements)",
+   "url": "https://losh.ucla.edu/wp-content/uploads/sites/37/2020/08/PSM-Regulation-2017-.pdf"
+  },
+  {
+   "title": "Cal/OSHA Standards Board — §5189.1 rulemaking comments (Damage Mechanism Review definition)",
+   "url": "https://www.dir.ca.gov/oshsb/documents/Petroleum-Refineries-FSOR.pdf"
+  },
+  {
+   "title": "CDPH Radiologic Health Branch — Industrial radiographer trainer application (CDPH 8219)",
+   "url": "https://Www.Cdph.Ca.gov/CDPH%20Document%20Library/ControlledForms/cdph8219.pdf"
+  },
+  {
+   "title": "Oil & Gas Journal — Northern California refineries set for conversion to renewables",
+   "url": "https://www.ogj.com/refining-processing/article/14278207/northern-california-refineries-set-for-sitewide-conversion-to-renewables"
+  },
+  {
+   "title": "Quality Magazine — California revises industrial radiographer certification",
+   "url": "https://www.qualitymag.com/articles/89660-california-revises-industrial-radiographer-certification"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "San Francisco",
+   "href": "/ndt-services/san-francisco-ca"
+  },
+  {
+   "name": "Sacramento",
+   "href": "/ndt-services/sacramento-ca"
+  },
+  {
+   "name": "Bakersfield",
+   "href": "/ndt-services/bakersfield-ca"
+  },
+  {
+   "name": "Los Angeles",
+   "href": "/ndt-services/los-angeles-ca"
+  },
+  {
+   "name": "Palmdale",
+   "href": "/ndt-services/palmdale-ca"
+  }
+ ],
+ "related": [
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  },
+  {
+   "label": "All NDT locations",
+   "href": "/ndt-locations"
+  }
+ ]
+}

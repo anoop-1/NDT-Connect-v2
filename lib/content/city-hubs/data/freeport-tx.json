@@ -1,0 +1,342 @@
+{
+ "slug": "freeport-tx",
+ "city": "Freeport",
+ "region": "Texas",
+ "country": "United States",
+ "countrySlug": "united-states",
+ "wave": 2,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Freeport, TX: Chemical Plant and LNG Inspection in Brazoria County",
+ "metaTitle": "NDT Services in Freeport, TX | Dow, BASF & LNG Plant Inspection",
+ "description": "NDT in Freeport, Texas: inspection for Dow Texas Operations, BASF Freeport, Freeport LNG and Port Freeport. Methods, Texas DSHS rules, OSHA PSM and hiring.",
+ "quickAnswer": "Freeport, on the Texas Gulf Coast about 40 miles south of Houston, is one of the densest chemical manufacturing locations on Earth. **Dow Texas Operations** is Dow's largest integrated site, spanning about 7,000 acres and making 44% of Dow's products sold in the US [1]. **BASF Freeport**, founded in 1958 as BASF's first manufacturing site outside Europe, runs 26 plants [4]. On Quintana Island, **Freeport LNG** operates three liquefaction trains with a combined capacity of more than 15 million tonnes a year [6]. NDT demand covers chemical plant mechanical integrity, cryogenic LNG systems, turnarounds and major projects. Industrial radiographers in Texas must be certified by DSHS [10].",
+ "keyFacts": [
+  {
+   "label": "Dow Texas Operations",
+   "value": "About 7,000 acres; 44% of Dow products sold in the US [1]"
+  },
+  {
+   "label": "BASF Freeport",
+   "value": "Founded 1958, 26 plants, one of BASF's Verbund sites [4]"
+  },
+  {
+   "label": "Freeport LNG",
+   "value": "Three trains, more than 15 mtpa combined capacity [6]"
+  },
+  {
+   "label": "Radiography rules",
+   "value": "Texas DSHS licensing and radiographer certification under 25 TAC §289.255 [10]"
+  }
+ ],
+ "industries": [
+  "Chemicals and plastics",
+  "LNG export",
+  "Olefins",
+  "Chlor-alkali",
+  "Port and terminals",
+  "Power and cogeneration"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Why Freeport is a major NDT market",
+   "paragraphs": [
+    "Freeport is a small city with an outsized industrial footprint. Dow bought 800 acres bordering Freeport Harbor on March 7, 1940 [2], and today Dow Texas Operations is Dow's largest integrated site, covering about 7,000 acres and manufacturing 44% of Dow's products sold in the United States and more than 21% of those sold globally [1]. Dow describes it as the largest integrated chemical manufacturing facility in the Western Hemisphere [2]. The site includes Plant A, Plant B, Oyster Creek and the Stratton Ridge salt dome operations, with dozens of production plants connected by road, rail and pipeline [3].",
+    "BASF's Freeport site, founded in 1958 as the company's first manufacturing site outside Europe, employs more than 850 people and almost as many contractors and produces 26 products in 26 plants [4]. It is one of BASF's two Verbund sites in North America, alongside Geismar, Louisiana [5].",
+    "On Quintana Island, Freeport LNG's export terminal adds cryogenic processing on a world scale. Together with Port Freeport, terminals, pipelines and supporting industries, these sites create year-round demand for inspection, plus surges during turnarounds and capital projects."
+   ]
+  },
+  {
+   "id": "dow",
+   "h2": "Dow Texas Operations: scale and inspection demand",
+   "paragraphs": [
+    "Dow's Freeport complex makes chlorine and caustic soda, olefins, polyethylene, epoxy, polyols, solvents and many other chemicals. Its ethylene production expanded significantly when Dow started up a new 1.5 million tonne-per-year ethylene plant and a 400,000 tonne-per-year polyethylene plant in 2017, with plans to expand the ethylene unit to 2 million tonnes a year [7]. Dow has reported more than 4,200 employees and 3,800 contractors on site daily [8].",
+    "With this many plants, NDT needs are diverse. Chlor-alkali units bring chlorine, caustic and wet chloride corrosion and stress corrosion cracking. Crackers bring furnace coil creep and carburization, quench system cracking and cryogenic sections. Polymer plants bring reactor and high-pressure piping welds. Utilities and cogeneration add boiler and steam system inspection.",
+    "Dow and other major owners apply their own standards on top of API and ASME, and NDT providers must work to approved procedures, qualified personnel and site-specific training."
+   ]
+  },
+  {
+   "id": "lng",
+   "h2": "Freeport LNG: cryogenic inspection on Quintana Island",
+   "paragraphs": [
+    "Freeport LNG's export facility includes three liquefaction trains, three LNG storage tanks and two marine berths [9]. Train 1 began commercial operations in December 2019, with Trains 2 and 3 following in January and May 2020; combined, the trains can produce more than 15 million tonnes of LNG a year [6].",
+    "On June 8, 2022, piping at the terminal failed, causing an explosion and fire within the facility boundaries [9]. A root-cause report prepared for PHMSA attributed the incident to procedural and safeguard shortcomings [11]. The plant was shut for months, and the third storage tank stayed offline for nearly three years after piping to it was damaged [12].",
+    "LNG plants have specific NDT needs: austenitic stainless steel and nickel alloy welds in cryogenic piping, 9% nickel steel storage tanks, aluminum heat exchangers, and insulation systems that hide the steel underneath. Radiography and PAUT on stainless steel welds, PMI, cold-spot detection by thermography, and corrosion-under-insulation inspection on warm sections are common scopes. LNG facilities are regulated by PHMSA under 49 CFR Part 193, so inspection records and repair documentation must meet federal requirements."
+   ],
+   "table": {
+    "caption": "Freeport-area assets and typical NDT scopes",
+    "head": [
+     "Asset",
+     "Main concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Chlor-alkali and chlorinated chemicals",
+      "Chloride SCC, wet chlorine and caustic corrosion",
+      "PAUT, PT, UT, corrosion mapping, PMI"
+     ],
+     [
+      "Ethylene crackers",
+      "Coil creep and carburization, quench and transfer line cracking",
+      "Furnace tube inspection, UT, PAUT, ECT"
+     ],
+     [
+      "Polymer plants",
+      "Reactor welds, high-pressure piping",
+      "PAUT, TOFD, MT, PT"
+     ],
+     [
+      "LNG trains and cryogenic piping",
+      "Stainless and nickel alloy welds, cold spots, insulation damage",
+      "RT, PAUT, PMI, thermography"
+     ],
+     [
+      "LNG and chemical storage tanks",
+      "Floor, shell and roof corrosion",
+      "MFL, UT, AE, visual"
+     ],
+     [
+      "Utilities and cogeneration",
+      "Boiler tubes, steam piping welds",
+      "UT, EMAT, PAUT, MT"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "psm",
+   "h2": "Mechanical integrity under OSHA PSM",
+   "paragraphs": [
+    "Most Freeport process units fall under OSHA's Process Safety Management standard (29 CFR 1910.119), which requires mechanical integrity programs covering pressure vessels, storage tanks, piping, relief systems and other equipment, with inspection and testing following recognized and generally accepted good engineering practices [13]. BASF, for example, publishes site rules for contractors that include its Freeport Mechanical Integrity Program and Process Safety Management and Risk Management Plan documents [14].",
+    "In practice, owners use API 510, 570 and 653 for in-service inspection, risk-based inspection to set intervals, and corporate standards for specific equipment types. NDT providers support this with on-stream thickness monitoring, CUI screening, injection point and dead-leg inspection, and targeted crack detection where stress corrosion cracking is a risk.",
+    "Inspection data feeds remaining-life calculations, fitness-for-service assessments and audit evidence, so consistent, well-documented results are essential."
+   ]
+  },
+  {
+   "id": "port",
+   "h2": "Port Freeport, terminals and pipelines",
+   "paragraphs": [
+    "Port Freeport and the surrounding terminals handle chemicals, LPG, LNG, crude and containerized cargo, and a dense network of pipelines links the Freeport plants with Houston, Mont Belvieu and Gulf Coast storage hubs. Industrial Info has noted that Dow has been the city's largest employer since the 1930s and has tracked major terminal investments alongside chemical projects in Freeport [16].",
+    "Terminal and pipeline work brings its own NDT scopes: API 653 tank inspections with MFL floor scanning and shell thickness surveys, dock and loading-arm piping inspection, guided wave screening of road and rail crossings, and weld inspection on new pipeline tie-ins to API 1104. Pipelines regulated by PHMSA require qualified personnel and documented inspection records, and owners often specify in-line inspection verification digs where NDT teams confirm and size anomalies reported by smart pigs using UT, PAUT and laser profilometry.",
+    "Salt dome storage at Stratton Ridge, which Dow operates as part of Texas Operations [3], adds wellhead, piping and brine system inspection to the local mix."
+   ]
+  },
+  {
+   "id": "methods",
+   "h2": "Methods buyers order in Freeport",
+   "paragraphs": [
+    "**PAUT, TOFD and advanced UT** handle weld inspection on construction and repairs, crack detection in chloride and caustic service, and heavy-wall equipment. **Corrosion mapping** gives detailed wall-loss data on piping and vessels. **Radiography**, including digital and computed radiography, covers small-bore piping, stainless steel welds and insulated line profiles.",
+    "**Eddy current and IRIS** inspect heat exchanger tubes; **pulsed eddy current** screens for CUI; **guided wave** screens long pipe runs and road crossings; **acoustic emission** screens tanks and vessels; **furnace tube inspection** systems assess cracker coils; and **PMI** verifies alloys in critical service.",
+    "Because many chemical streams are corrosive and toxic, permit-to-work, gas testing and PPE requirements are strict, and providers must factor these into productivity and pricing."
+   ]
+  },
+  {
+   "id": "weather",
+   "h2": "Gulf Coast weather, hurricanes and corrosion",
+   "paragraphs": [
+    "Freeport's low-lying coastal location, humid subtropical climate and salt air make CUI and external corrosion major damage mechanisms. Insulated carbon steel piping in the CUI temperature range, cycling equipment and lines with damaged jacketing need regular screening.",
+    "Hurricanes and tropical storms are a recurring threat. After major storms, plants inspect tanks, structures, insulation and electrical equipment before restart, and flooding can cause soil-side corrosion and buoyancy damage. Summer heat requires high-temperature couplants and heat-stress management for crews.",
+    "Many owners schedule external CUI programs and insulation removal outside peak hurricane season, and keep a pre-qualified list of NDT providers ready for rapid post-storm damage assessment so units can restart safely and quickly."
+   ]
+  },
+  {
+   "id": "turnarounds",
+   "h2": "Turnarounds and capital projects",
+   "paragraphs": [
+    "Freeport's many plants run their own turnaround cycles, and large projects such as cracker expansions and new polymer units add construction NDT. During peak seasons, demand competes with Houston Ship Channel, Beaumont and Lake Charles turnarounds for the same experienced technicians.",
+    "Owners plan inspection worklists months ahead, using risk-based inspection results and past findings. NDT providers must qualify procedures, mobilize equipment and complete site training before shutdown, then deliver daily preliminary results so repair decisions don't delay restart.",
+    "For construction projects, providers need ASME Section V techniques with acceptance to ASME Section VIII or B31.3, PMI, hardness testing and baseline thickness surveys, plus experience with project QA documentation."
+   ]
+  },
+  {
+   "id": "codes",
+   "h2": "Certification, codes and Texas radiation rules",
+   "paragraphs": [
+    "Technicians are typically certified under ASNT SNT-TC-1A or ANSI/ASNT CP-189 with Level III oversight. API 510, 570 and 653 inspectors and API QUTE and QUPA certifications are widely requested by Gulf Coast owners.",
+    "Texas is an NRC Agreement State, so industrial radiography is regulated by the Texas Department of State Health Services under 25 TAC §289.255, which covers radiation safety, licensing and radiographer certification [10]. Certification requires classroom and on-the-job training and examinations, including a radiation safety course of at least 40 hours and documented on-the-job training under authorized trainers [15].",
+    "Before radiography starts, buyers should confirm the provider's Texas license, radiographer certification cards and radiation safety officer details."
+   ],
+   "bullets": [
+    "Confirm ASNT and API certifications required by your site.",
+    "Check the Texas DSHS license and radiographer cards [10][15].",
+    "For LNG, cryogenic or chloride SCC scopes, require demonstrated procedures and experienced technicians."
+   ]
+  },
+  {
+   "id": "data",
+   "h2": "Data and reporting",
+   "paragraphs": [
+    "Freeport owners expect inspection data to load into their inspection management systems: thickness readings tied to condition monitoring locations, encoded scan files for PAUT and TOFD, tube sheet maps for exchangers, and clear coverage and calibration records. Good data supports corrosion-rate calculations, fitness-for-service assessments under API 579 and regulatory audits.",
+    "Agree on formats, naming, file transfer and retention before work starts, especially when multiple contractors work in the same plant during one turnaround."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Freeport",
+   "paragraphs": [
+    "Gulf Coast NDT is commonly priced on hourly or day rates per technician by method and certification level, with advanced equipment billed separately and per diem for traveling crews. Large owners use master service agreements with negotiated rate sheets; turnarounds add premiums for nights, weekends and overtime.",
+    "Cost drivers include turnaround timing, advanced-method certifications, site training and badging, toxic-service PPE requirements, radiography logistics and data deliverables. NDT-Connect lets buyers post one scope and compare certified providers serving Freeport, Lake Jackson, Clute, Angleton and the wider Houston area."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Freeport and Brazoria County",
+   "paragraphs": [
+    "Brazoria County offers steady NDT work. Chemical plants, LNG operations and contractors hire UT, RT, MT, PT and VT technicians, PAUT and TOFD specialists, tube inspection technicians, API inspectors and Level IIIs.",
+    "A typical career path starts with ASNT Level II certification in UT and RT, Texas radiographer certification for radiography roles [15], then PAUT, TOFD and API certifications. Local community colleges and Houston-area training centers offer courses that meet ASNT training hour requirements."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Freeport",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers."
+   ],
+   "bullets": [
+    "ASNT written practice and certificates, plus API certifications where required.",
+    "Texas DSHS license and radiographer certifications for radiography [10].",
+    "Experience with Dow, BASF or LNG site standards and training.",
+    "Advanced capability: PAUT, TOFD, corrosion mapping, IRIS, PEC, furnace tube inspection.",
+    "Stainless steel and cryogenic weld inspection experience for LNG work.",
+    "Turnaround capacity, night-shift coverage and daily reporting."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "What is Dow Texas Operations?",
+   "a": "Dow's largest integrated manufacturing site, in Freeport, covering about 7,000 acres and producing 44% of Dow's products sold in the US [1]."
+  },
+  {
+   "q": "How big is Freeport LNG?",
+   "a": "Three liquefaction trains with a combined capacity of more than 15 million tonnes a year [6], plus three LNG storage tanks and two marine berths [9]."
+  },
+  {
+   "q": "What caused the 2022 Freeport LNG incident?",
+   "a": "Piping failed, causing an explosion and fire [9]; a report prepared for PHMSA pointed to procedural and safeguard shortcomings [11]."
+  },
+  {
+   "q": "Who certifies industrial radiographers in Texas?",
+   "a": "The Texas Department of State Health Services, under 25 TAC §289.255 [10]."
+  },
+  {
+   "q": "Which NDT methods are used in Freeport chemical plants?",
+   "a": "PAUT, TOFD, corrosion mapping, radiography, eddy current and IRIS, pulsed eddy current for CUI, guided wave, acoustic emission, furnace tube inspection and PMI."
+  },
+  {
+   "q": "How do I request NDT quotes in Freeport?",
+   "a": "Post the scope on NDT-Connect with the plant, equipment list, damage mechanisms, methods, access, dates and reporting requirements."
+  }
+ ],
+ "references": [
+  {
+   "title": "Dow — Texas Operations, Freeport",
+   "url": "https://corporate.dow.com/en-us/locations/freeport"
+  },
+  {
+   "title": "Dow — The making of Dow's largest site (history)",
+   "url": "https://corporate.dow.com/en-us/about/company/history/texas-facility.html"
+  },
+  {
+   "title": "Galveston Bay Estuary Program — Dow Texas Operations overview (2025)",
+   "url": "https://gbep.texas.gov/wp-content/uploads/2025/08/Galveston-Bay-Presentation-2025-MV.pdf"
+  },
+  {
+   "title": "BASF — Welcome to BASF in Freeport, Texas",
+   "url": "https://www.basf.com/us/en/who-we-are/organization/locations/find-out-about-basf-in---/texas/Freeport"
+  },
+  {
+   "title": "BASF — Verbund sites worldwide",
+   "url": "https://www.basf.com/be/en/who-we-are/about-us/verbund/verbund-sites"
+  },
+  {
+   "title": "IFO Group — Freeport LNG June 8, 2022 incident investigation report (via PHMSA)",
+   "url": "https://www.phmsa.dot.gov/sites/phmsa.dot.gov/files/2022-11/IFO-Group-RCFA-Report-final-redacted.pdf"
+  },
+  {
+   "title": "Industrial Info — DowDuPont Gulf Coast project milestones (ethylene and polyethylene)",
+   "url": "https://www.industrialinfo.com/news/article/dowdupont-reaches-key-gulf-coast-project-milestones-more-to-come--260072"
+  },
+  {
+   "title": "Packaging Strategies — Dow begins construction on new ethylene facility in Texas",
+   "url": "https://packagingstrategies.com/articles/98500-dow-begins-construction-on-new-world-scale-ethylene-production-facility-in-texas"
+  },
+  {
+   "title": "FERC — Freeport LNG incident, June 2022",
+   "url": "https://www.ferc.gov/industries-data/resources/project-directory/freeport-lng-incident-june-2022"
+  },
+  {
+   "title": "Texas DSHS — 25 TAC §289.255, industrial radiography rules",
+   "url": "https://www.dshs.texas.gov/sites/default/files/radiation/pdffiles/Rules/289.255%20Radiation%20Safety%20Requirements%20and%20Licensing%20and%20Registration%20Procedures%20for%20Industrial%20Radiography.pdf"
+  },
+  {
+   "title": "Oil & Gas Journal — Freeport LNG explosion pinned on procedural, safeguard shortcomings",
+   "url": "https://www.ogj.com/general-interest/article/14286690/freeport-lng-explosion-pinned-on-procedural-safeguard-shortcomings"
+  },
+  {
+   "title": "Oil & Gas Journal — Freeport LNG returns third LNG storage tank to service",
+   "url": "https://www.ogj.com/pipelines-transportation/lng/article/55291843/in-final-recovery-phase-freeport-lng-returns-third-lng-storage-tank-to-service"
+  },
+  {
+   "title": "OSHA — Process Safety Management, 29 CFR 1910.119",
+   "url": "https://www.osha.gov/laws-regs/regulations/standardnumber/1910/1910.119"
+  },
+  {
+   "title": "BASF — Freeport contracted services site rules (mechanical integrity, PSM)",
+   "url": "https://www.basf.com/us/en/pages/contracted-services/site-specific/Freeport"
+  },
+  {
+   "title": "Texas DSHS — Industrial radiographer certification requirements",
+   "url": "https://www.dshs.state.tx.us/radiation/ir.shtm"
+  },
+  {
+   "title": "Industrial Info — Small town of Freeport, Texas, home to big terminals and chemical projects",
+   "url": "https://www.industrialinfo.com/news/article/small-town-of-freeport-texas-home-to-big-terminals-and-chemical-processing-projects--253612"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Houston",
+   "href": "/ndt-services/houston-tx"
+  },
+  {
+   "name": "Baytown",
+   "href": "/ndt-services/baytown-tx"
+  },
+  {
+   "name": "Texas City",
+   "href": "/ndt-services/texas-city-tx"
+  },
+  {
+   "name": "Galveston",
+   "href": "/ndt-services/galveston-tx"
+  },
+  {
+   "name": "Corpus Christi",
+   "href": "/ndt-services/corpus-christi-tx"
+  }
+ ],
+ "related": [
+  {
+   "label": "Gulf Coast refinery and petrochemical NDT buyer's guide",
+   "href": "/buyers-guide/gulf-coast-refinery-petrochemical-ndt"
+  },
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  }
+ ]
+}

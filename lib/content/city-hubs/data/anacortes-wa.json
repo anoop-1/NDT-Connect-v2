@@ -1,0 +1,338 @@
+{
+ "slug": "anacortes-wa",
+ "city": "Anacortes",
+ "region": "Washington",
+ "country": "United States",
+ "countrySlug": "united-states",
+ "wave": 2,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Anacortes, WA: Refinery Inspection on March Point and the Puget Sound",
+ "metaTitle": "NDT Services in Anacortes, WA | Refinery Inspection & HTHA",
+ "description": "NDT in Anacortes, Washington: inspection for the Marathon and HF Sinclair refineries on March Point. HTHA, Washington's refinery PSM rule, methods and hiring.",
+ "quickAnswer": "Anacortes, about 70 miles north of Seattle, has two refineries side by side on March Point: **Marathon's Anacortes refinery**, with about 119,000 barrels per calendar day of crude capacity [1], and **HF Sinclair's Puget Sound Refinery**, with a crude capacity of 149,000 barrels per day [2]. The town is also where the 2010 Tesoro heat exchanger rupture, caused by **high temperature hydrogen attack (HTHA)**, killed seven workers [5][6]. Washington now has a refinery-specific process safety rule, **Part B of chapter 296-67 WAC**, effective December 27, 2024, which requires damage mechanism reviews [7][8].",
+ "keyFacts": [
+  {
+   "label": "Refineries",
+   "value": "Marathon Anacortes, about 119,000 bpcd [1]; HF Sinclair Puget Sound, 149,000 bpd [2]"
+  },
+  {
+   "label": "Defining incident",
+   "value": "2010 Tesoro Anacortes heat exchanger rupture caused by HTHA; seven fatalities [5]"
+  },
+  {
+   "label": "Process safety rule",
+   "value": "Chapter 296-67 WAC Part B for refineries, effective December 27, 2024 [7]"
+  },
+  {
+   "label": "Key requirement",
+   "value": "A damage mechanism review for each existing and new process where damage mechanisms exist [8]"
+  }
+ ],
+ "industries": [
+  "Oil refining",
+  "Marine terminals",
+  "Shipbuilding and repair",
+  "Tank storage",
+  "Pipelines",
+  "Pulp, paper and utilities"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Anacortes: a compact but demanding refinery market",
+   "paragraphs": [
+    "Two of Washington's five refineries sit next to each other on March Point, a finger of low-lying land in the estuary of Padilla Bay just outside Anacortes [4]. Marathon's Anacortes refinery is about 70 miles north of Seattle on Puget Sound and has a total crude capacity of 119,000 barrels per calendar day [1]. HF Sinclair's Puget Sound Refinery has a crude capacity of 149,000 barrels per day and processes mixed sweet and sour Canadian crude and Alaskan North Slope crude [2].",
+    "The Puget Sound Refinery, built by Texaco and opened in 1958 with an initial capacity of 45,000 barrels a day, was sold by Shell to HollyFrontier (now HF Sinclair) in 2021 [3]. Its units include a delayed coker, fluid catalytic cracker, polymerization unit and alkylation units [9]. Marathon's refinery has operated since 1955 [10].",
+    "With two refineries in one small community, the Anacortes NDT market is concentrated: two owners, turnaround schedules that can overlap, and a limited local technician pool. Many providers bring in crews from the Seattle area, Portland, the Gulf Coast and British Columbia for major outages."
+   ]
+  },
+  {
+   "id": "htha",
+   "h2": "The legacy of Tesoro 2010: why HTHA inspection matters here",
+   "paragraphs": [
+    "On April 2, 2010, a nearly 40-year-old carbon steel heat exchanger in the naphtha hydrotreater unit at the Tesoro Anacortes refinery (now Marathon) ruptured during start-up, releasing hydrogen and naphtha at more than 500°F that ignited and killed seven workers [5][11]. It was the largest loss of life at a US refinery since 2005 [12].",
+    "The US Chemical Safety Board found the immediate cause was long-term, undetected high temperature hydrogen attack, which severely cracked and weakened the steel [6]. HTHA occurs when carbon steel is exposed to hydrogen at high temperature, causing fissures and cracking [11]. The CSB also concluded that the industry method for judging vulnerability to HTHA, the API RP 941 Nelson curves, was inadequate: the heat exchanger had operated in a region where the curves did not predict HTHA [13].",
+    "For NDT, this history has two lessons. First, HTHA is hard to detect with conventional thickness or shear-wave UT; owners now specify advanced ultrasonic techniques, such as combinations of TOFD, PAUT, backscatter and velocity ratio methods, run by specialists with demonstrated detection capability. Second, inspection alone is not enough: the CSB emphasized using inherently safer, HTHA-resistant materials. Inspection plans in Anacortes hydroprocessing units should be informed by API RP 941, operating data and a documented damage mechanism review."
+   ]
+  },
+  {
+   "id": "rule",
+   "h2": "Washington's refinery PSM rule (WAC 296-67 Part B)",
+   "paragraphs": [
+    "Washington's Department of Labor and Industries adopted a new Part B to chapter 296-67 WAC specifically for process safety management in petroleum refineries. It was filed on December 27, 2023 and took effect on December 27, 2024, with refineries exempted from the general Part A rule [7]. L&I notes that six workers died in a PSM-related incident at an Anacortes refinery in 1998, and the rulemaking effort began in 2015 [14].",
+    "The rule is similar to Cal/OSHA's refinery PSM regulation, one of the most protective in the country [8]. It includes new sections on mechanical integrity and damage mechanism review [15], and requires a damage mechanism review for each existing and new process where a damage mechanism exists, with documented rationale where none is performed [8]. Implementation is rolling, with deadlines for individual elements after the effective date [8].",
+    "For NDT providers, this means inspection programs must connect clearly to documented damage mechanisms. Owners will expect technique selection, coverage and detection capability to be justified against each mechanism, and inspection results to feed back into the review."
+   ]
+  },
+  {
+   "id": "assets",
+   "h2": "Equipment and inspection scopes",
+   "paragraphs": [
+    "Anacortes refineries process Canadian and Alaskan crudes in complex configurations with hydroprocessing, catalytic cracking, coking and alkylation. Each unit type has its own inspection priorities."
+   ],
+   "table": {
+    "caption": "Typical Anacortes refinery inspection scopes",
+    "head": [
+     "Unit or asset",
+     "Main concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Hydrotreaters and reformers",
+      "HTHA, weld cracking, reactor effluent corrosion",
+      "Advanced UT for HTHA, PAUT, TOFD, corrosion mapping"
+     ],
+     [
+      "Crude and vacuum units",
+      "Sulfidation, naphthenic acid, CUI",
+      "UT, corrosion mapping, pulsed eddy current"
+     ],
+     [
+      "FCC and delayed coker",
+      "Erosion, refractory, coke drum cracking and bulging",
+      "UT, PAUT, laser profiling, thermography"
+     ],
+     [
+      "Alkylation units",
+      "Acid corrosion, hydrogen blistering and HIC",
+      "UT, PAUT, corrosion mapping, PMI"
+     ],
+     [
+      "Heat exchangers",
+      "Tube corrosion and cracking, shell HTHA",
+      "ECT, IRIS, RFT, NFT, advanced UT"
+     ],
+     [
+      "Tanks and marine terminals",
+      "Floor and shell corrosion, dock piping",
+      "MFL, UT, guided wave, AE"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "methods",
+   "h2": "Methods buyers use in Anacortes",
+   "paragraphs": [
+    "**Advanced ultrasonics** are central: HTHA techniques for susceptible equipment, PAUT and TOFD for weld integrity, and automated corrosion mapping for localized wall loss in hydroprocessing effluent, crude and alkylation systems.",
+    "**Electromagnetic methods** cover heat exchanger tube inspection (eddy current for non-ferrous tubes; IRIS, remote field and near-field testing for carbon steel) and corrosion-under-insulation screening with pulsed eddy current. **Digital radiography** handles small-bore piping and profile inspection of insulated lines. **Guided wave** screens long pipe runs, **acoustic emission** screens tanks and vessels, and **laser scanning** profiles coke drums.",
+    "Buyers should ask providers for performance demonstrations on representative samples, especially for HTHA and crack detection, and confirm that technicians are experienced with the specific technique rather than general UT."
+   ]
+  },
+  {
+   "id": "climate",
+   "h2": "Pacific Northwest conditions and corrosion",
+   "paragraphs": [
+    "Anacortes's cool, wet maritime climate, with frequent rain and salt-laden air off Puget Sound, makes corrosion under insulation a major concern on insulated carbon steel piping and equipment, especially lines that cycle or operate in the CUI-susceptible temperature range. Damaged jacketing lets rainwater in, and wet insulation can stay wet for long periods.",
+    "Marine terminals face splash-zone and atmospheric corrosion on piping and structures. Winter conditions are generally mild, but rain and wind affect outdoor inspection schedules, rope access work and coating repairs. Seismic risk in the Puget Sound region means post-earthquake inspection of tanks, piping supports and structures is part of emergency planning.",
+    "Practical scheduling follows the weather: owners often push external CUI surveys, rope access inspection and painting-related work into the drier summer months, while turnaround inspection inside units continues year-round. Providers should plan for rain protection of equipment, and allow for slower progress on outdoor scanning during wet, windy periods."
+   ]
+  },
+  {
+   "id": "turnarounds",
+   "h2": "Turnarounds and outage planning",
+   "paragraphs": [
+    "With two refineries close together and limited local labor, turnaround planning is critical. Owners build inspection worklists from risk-based inspection, damage mechanism reviews and previous findings, then qualify providers, procedures and personnel well before the outage.",
+    "Washington's refinery rule includes pre-startup safety review requirements for turnaround work [16], so inspection results and repair verification need to be complete and documented before units restart. NDT providers should plan for daily preliminary reporting, fast escalation of significant findings and close coordination with repair contractors.",
+    "Because crews often travel in, buyers should confirm lodging, transport and site training early. The Anacortes area has limited accommodation during large outages, and ferry and highway access can affect daily logistics."
+   ]
+  },
+  {
+   "id": "codes",
+   "h2": "Certification, codes and radiation rules",
+   "paragraphs": [
+    "Refinery NDT personnel in Washington are usually certified under ASNT SNT-TC-1A or ANSI/ASNT CP-189, with API 510, 570 and 653 inspectors and API QUTE and QUPA certifications often required. In-service inspection follows API 510, 570 and 653, with risk-based inspection under API 580/581, fitness-for-service under API 579, and HTHA assessment guided by API RP 941.",
+    "Washington is an NRC Agreement State, and industrial radiography using radioactive sources is licensed by the Washington State Department of Health's Office of Radiation Protection. Buyers should confirm that providers hold valid Washington licenses or reciprocity, that radiographers hold valid certifications, and that radiation safety officers are identified before radiography begins."
+   ],
+   "bullets": [
+    "Confirm ASNT and API certifications required by the owner.",
+    "Check the provider's Washington radioactive materials license or reciprocity.",
+    "For HTHA scopes, require demonstrated techniques and experienced specialists [6][13]."
+   ]
+  },
+  {
+   "id": "data",
+   "h2": "Data, documentation and the damage mechanism review",
+   "paragraphs": [
+    "Under Washington's rule, inspection data is evidence. NDT deliverables should include procedures, techniques, calibration records, technician certifications, coverage maps, location identifiers matching the owner's inspection database, and raw or encoded data for advanced methods.",
+    "Good data lets engineers calculate corrosion rates, run fitness-for-service assessments and update damage mechanism reviews with field results. For HTHA inspection in particular, retaining full scan data is important so that later inspections can be compared directly and any progression detected."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Anacortes",
+   "paragraphs": [
+    "Refinery NDT in Anacortes is usually priced on day or hourly rates per technician by method and certification level, with advanced equipment such as HTHA systems, PAUT, TOFD, IRIS and pulsed eddy current charged separately. Because many crews travel in, per diem, travel and lodging can make up a large share of cost, and turnaround work often carries premium rates for nights, weekends and overtime.",
+    "Specialist HTHA inspection is priced at a premium because few technicians are qualified and demonstration testing is often required. Buyers can control cost by defining scope clearly, prioritizing equipment by risk, and agreeing reporting formats in advance."
+   ]
+  },
+  {
+   "id": "marine",
+   "h2": "Beyond refining: marine, shipbuilding and terminal work",
+   "paragraphs": [
+    "Anacortes is also a working waterfront. Shipbuilding and repair yards, ferry and fishing fleet maintenance, fuel docks and marine terminals all need NDT, giving local providers work between refinery turnarounds. Typical scopes include weld inspection on new vessel construction using UT, MT and radiography to classification society and US Coast Guard requirements, ultrasonic thickness gauging of hull plating and tanks during dry-docking surveys, and inspection of dock piping, loading arms and mooring structures.",
+    "Marine work brings its own qualification expectations. Thickness gauging for class surveys usually has to be performed by firms approved by the relevant classification society, and weld inspection follows AWS D1.1, ABS rules or the shipyard's own procedures. Providers that hold both refinery credentials and marine approvals can keep crews busy year-round in Skagit County and around the northern Puget Sound."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Anacortes and the Puget Sound",
+   "paragraphs": [
+    "Refineries, inspection contractors and marine businesses in Anacortes and Skagit County hire UT, RT, MT, PT and VT technicians, advanced UT specialists, tube inspection technicians and API inspectors. The nearby Puget Sound region adds shipyards, aerospace and power generation work.",
+    "Technicians with HTHA inspection experience, PAUT and TOFD certification and API individual certifications are especially valued. Turnaround seasons offer heavy overtime, and experienced technicians can move between refinery, marine and aerospace work in the region."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Anacortes",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers. NDT-Connect lets buyers post one scope and compare certified providers serving Anacortes, Skagit County, Seattle and the wider Pacific Northwest."
+   ],
+   "bullets": [
+    "ASNT and API certifications as required by the refinery.",
+    "Demonstrated HTHA inspection capability, with experienced specialists [6].",
+    "Experience supporting damage mechanism reviews under WAC 296-67 Part B [7][8].",
+    "Advanced tube inspection, PAUT, TOFD and CUI screening capability.",
+    "Washington radiation licensing or reciprocity for radiography.",
+    "Turnaround capacity, logistics planning and daily reporting."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Which refineries are in Anacortes?",
+   "a": "Marathon's Anacortes refinery, about 119,000 barrels per calendar day [1], and HF Sinclair's Puget Sound Refinery, 149,000 barrels per day [2], both on March Point."
+  },
+  {
+   "q": "What caused the 2010 Tesoro Anacortes explosion?",
+   "a": "The CSB found that long-term, undetected high temperature hydrogen attack cracked and weakened a nearly 40-year-old carbon steel heat exchanger, which ruptured and killed seven workers [5][6]."
+  },
+  {
+   "q": "What is Washington's refinery PSM rule?",
+   "a": "Part B of chapter 296-67 WAC, effective December 27, 2024, which applies specifically to petroleum refineries [7] and requires damage mechanism reviews [8]."
+  },
+  {
+   "q": "How is HTHA detected?",
+   "a": "With advanced ultrasonic techniques such as TOFD, PAUT, backscatter and velocity ratio methods, performed by specialists with demonstrated detection capability. Conventional thickness testing is not reliable for HTHA."
+  },
+  {
+   "q": "Who regulates industrial radiography in Washington?",
+   "a": "Washington is an NRC Agreement State; the Washington State Department of Health licenses radioactive materials use, including industrial radiography."
+  },
+  {
+   "q": "How do I request NDT quotes in Anacortes?",
+   "a": "Post the scope on NDT-Connect with the unit, equipment list, damage mechanisms, methods, access, dates and reporting requirements."
+  }
+ ],
+ "references": [
+  {
+   "title": "Marathon Petroleum — Anacortes Refinery",
+   "url": "https://www.marathonpetroleum.com/Operations/Refining/Anacortes-Refinery/"
+  },
+  {
+   "title": "HF Sinclair — Puget Sound Refinery, Anacortes, WA",
+   "url": "https://www.hfsinclair.com/operations/facilities/us/anacortes-wa/"
+  },
+  {
+   "title": "Wikipedia — Puget Sound Refinery",
+   "url": "https://www.wikipedia.com/wiki/Puget_Sound_Refinery"
+  },
+  {
+   "title": "Sightline Institute — The history of Northwest refineries",
+   "url": "https://www.sightline.org/2021/09/22/the-history-of-northwest-refineries/"
+  },
+  {
+   "title": "CSB — Tesoro Refinery fatal explosion and fire",
+   "url": "https://www.csb.gov/recommendations/ageing-infrastructure-of-equipment-at-chemical-facilities/"
+  },
+  {
+   "title": "CSB — Investigation finds 2010 Tesoro explosion resulted from HTHA",
+   "url": "https://www.csb.gov/csb-investigation-finds-2010-tesoro-refinery-fatal-explosion-resulted-from-high-temperature-hydrogen-attack-damage-to-heat-exchanger/"
+  },
+  {
+   "title": "Washington State Register — WSR 24-02-037, refinery PSM rule (Part B, chapter 296-67 WAC)",
+   "url": "https://lawfilesext.leg.wa.gov/law/wsr/2024/02/24-02-037.htm"
+  },
+  {
+   "title": "Reed Smith — Washington adopts new refinery PSM rule",
+   "url": "https://www.reedsmith.com/our-insights/blogs/ehs-law-insights/102k41b/washington-adopts-new-refinery-process-safety-management-psm-rule/"
+  },
+  {
+   "title": "Wikipedia — Puget Sound Refinery (units)",
+   "url": "https://en.wikipedia.org/wiki/Puget_Sound_Refinery"
+  },
+  {
+   "title": "Wikipedia — Marathon Anacortes Refinery",
+   "url": "https://wikipedia.com/wiki/Tesoro_Anacortes_Refinery"
+  },
+  {
+   "title": "AIChE — Tesoro refinery fatal fire and explosion (2023 GCPS paper)",
+   "url": "https://proceedings.aiche.org/conferences/aiche-spring-meeting-and-global-congress-on-process-safety/2023/proceeding/paper/40az-tesoro-refinery-fatal-fire-and-explosion"
+  },
+  {
+   "title": "CSB — Behind the Curve safety video on Tesoro Anacortes",
+   "url": "https://www.csb.gov/csb-releases-new-safety-video-behind-the-curve-detailing-report-findings-and-recommendations-on-fatal-2010-tesoro-anacortes-refinery-accident/"
+  },
+  {
+   "title": "CSB — Safety alert: preventing HTHA",
+   "url": "https://www.csb.gov/csb-issues-safety-alert-stemming-from-fatal-tesoro-anacortes-investigation/"
+  },
+  {
+   "title": "Washington L&I — Process Safety Management rulemaking",
+   "url": "https://lni.wa.gov/safety-health/safety-rules/rulemaking-stakeholder-information/process-safety-management-psm-rulemaking"
+  },
+  {
+   "title": "Washington L&I — Concise explanatory statement, PSM rule",
+   "url": "https://lni.wa.gov/rulemaking-activity/AO17-20/1720CES.pdf"
+  },
+  {
+   "title": "Washington State Register — WSR 23-15-089 (pre-startup safety review for turnarounds)",
+   "url": "https://lawfilesext.leg.wa.gov/law/wsr/2023/15/23-15-089.htm"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Seattle",
+   "href": "/ndt-services/seattle-wa"
+  },
+  {
+   "name": "Tacoma",
+   "href": "/ndt-services/tacoma-wa"
+  },
+  {
+   "name": "Portland",
+   "href": "/ndt-services/portland-or"
+  },
+  {
+   "name": "Vancouver",
+   "href": "/ndt-services/vancouver-bc"
+  },
+  {
+   "name": "Martinez",
+   "href": "/ndt-services/martinez-ca"
+  }
+ ],
+ "related": [
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  },
+  {
+   "label": "All NDT locations",
+   "href": "/ndt-locations"
+  }
+ ]
+}
