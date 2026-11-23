@@ -1,0 +1,336 @@
+{
+ "slug": "puerto-la-cruz-ve",
+ "city": "Puerto La Cruz",
+ "region": "Anzoátegui",
+ "country": "Venezuela",
+ "countrySlug": "venezuela",
+ "wave": 3,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Puerto La Cruz, Venezuela: Refinery, Upgrader and Jose Terminal Inspection",
+ "metaTitle": "NDT Services in Puerto La Cruz, Venezuela | Refinery & Upgrader NDT",
+ "description": "NDT in Puerto La Cruz, Venezuela: inspection for the refinery, Jose terminal and Orinoco Belt upgraders. Heavy-oil damage mechanisms, methods, radiation rules.",
+ "quickAnswer": "Puerto La Cruz, on Venezuela's eastern Caribbean coast, is the gateway to the **Orinoco Belt**, one of the world's largest heavy-oil regions. The city's refinery has a capacity of **187,000 barrels a day** and was processing about 82,000 barrels a day in early 2026 [1]. Nearby, the **Jose terminal** is the main export gateway for upgraded Orinoco crude [2], and four crude upgraders can convert up to **700,000 barrels a day** of extra-heavy oil into exportable grades [3]. Chevron's Petropiar joint venture is one of them [4]. Heavy-oil processing, power instability and aging equipment create strong demand for **corrosion, erosion and crack inspection**. Radiography is overseen by the Ministry of Health and the Dirección de Energía Atómica [5].",
+ "keyFacts": [
+  {
+   "label": "Refinery",
+   "value": "Puerto La Cruz: 187,000 bpd capacity; about 82,000 bpd processed in early 2026 [1]"
+  },
+  {
+   "label": "Export terminal",
+   "value": "Jose, the principal export gateway for upgraded Orinoco barrels [2]"
+  },
+  {
+   "label": "Upgraders",
+   "value": "Four Orinoco upgraders with combined capacity of about 700,000 bpd [3]"
+  },
+  {
+   "label": "Radiation oversight",
+   "value": "Ministry of Health (radiological protection) and Dirección de Energía Atómica (equipment import) [5]"
+  }
+ ],
+ "industries": [
+  "Oil refining",
+  "Heavy-oil upgrading",
+  "Crude export terminals",
+  "Petrochemicals",
+  "Power generation",
+  "Pipelines and storage"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Why Puerto La Cruz matters for NDT",
+   "paragraphs": [
+    "Puerto La Cruz and the nearby Jose industrial complex in Anzoátegui state form the processing and export hub for eastern Venezuela. Extra-heavy oil from the Orinoco Belt must be either upgraded or blended with lighter grades at facilities near the Jose terminal before export [4]. Venezuela depends on the upgraders, mostly operated by joint ventures with foreign companies, to make Orinoco crude usable in overseas refineries [3].",
+    "The 187,000 barrel-per-day Puerto La Cruz refinery was processing about 82,000 barrels a day at two distillation units in early 2026 [1]. Workers have described local contractors repairing poorly performing catalytic cracking and feed systems year after year at the Puerto La Cruz and El Palito refineries [6]. In June 2026, the Puerto La Cruz refinery and the Jose terminal kept operating after strong earthquakes struck the country [2].",
+    "As Venezuelan production recovers, the condition of upgraders, terminals, refineries and pipelines will determine how much oil can be processed and exported. That creates sustained demand for inspection."
+   ]
+  },
+  {
+   "id": "upgraders",
+   "h2": "Orinoco upgraders: heavy-oil processing and inspection",
+   "paragraphs": [
+    "The Orinoco upgraders convert extra-heavy oil into synthetic crude using coking, hydrotreating and related processes. Petropiar, Chevron's joint venture with PDVSA, once made up to 210,000 barrels a day of upgraded Hamaca crude [4], and the other upgraders include Petromonagas, Petrocedeño and Petrosanfélix [3]. Chevron increased its stake in another Orinoco joint venture, Petroindependencia, to 49% in 2026 through an asset swap with PDVSA [7].",
+    "Heavy-oil upgrading brings demanding damage mechanisms. Delayed cokers suffer thermal fatigue, bulging and cracking of coke drums. High-sulfur, high-acid feeds drive sulfidation and naphthenic acid corrosion. Hydrotreaters face high-temperature hydrogen attack and reactor effluent corrosion, and solids in heavy oil cause erosion in piping, valves and pumps.",
+    "Power blackouts have repeatedly halted the upgraders and the Jose terminal [9]. Abrupt shutdowns can cause coking and plugging, and restarting equipment that has cooled with heavy oil inside brings its own risks, so post-outage inspection is important."
+   ],
+   "table": {
+    "caption": "Jose and Puerto La Cruz assets and typical NDT scopes",
+    "head": [
+     "Asset",
+     "Main concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Delayed coker drums",
+      "Thermal fatigue, bulging, weld cracking",
+      "Laser profiling, PAUT, TOFD, AE"
+     ],
+     [
+      "Hydrotreaters",
+      "HTHA, reactor effluent corrosion",
+      "Advanced UT for HTHA, PAUT, corrosion mapping"
+     ],
+     [
+      "Crude and vacuum units",
+      "Sulfidation, naphthenic acid corrosion",
+      "UT, corrosion mapping, PEC"
+     ],
+     [
+      "Heavy-oil piping and pumps",
+      "Erosion, corrosion, plugging damage",
+      "UT, corrosion mapping, RT"
+     ],
+     [
+      "Jose terminal tanks and lines",
+      "Floor and shell corrosion, pipeline corrosion",
+      "MFL, UT, guided wave"
+     ],
+     [
+      "Marine loading facilities",
+      "Splash-zone corrosion, fatigue",
+      "UT, MT, visual, rope access"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "refinery",
+   "h2": "Puerto La Cruz refinery",
+   "paragraphs": [
+    "The Puerto La Cruz refinery supplies fuel to eastern Venezuela. Running well below its 187,000 barrel-per-day capacity [1], it faces the same challenges as other PDVSA refineries: aging equipment, repeated repairs to catalytic cracking and feed systems [6], power interruptions and limited investment. Nationally, PDVSA's refineries processed about 399,000 barrels a day in April 2026, roughly 31% of installed capacity [8].",
+    "Refinery inspection priorities include crude and vacuum unit corrosion, FCC erosion and refractory condition, heat exchanger tube integrity, tank farm condition and the integrity of crude and product pipelines connecting the refinery with terminals."
+   ]
+  },
+  {
+   "id": "jose",
+   "h2": "Jose terminal and export infrastructure",
+   "paragraphs": [
+    "Jose is Venezuela's main oil export port, handling much of the upgraded Orinoco crude [2]. Its tank farms, blending facilities, pipelines and marine loading arms move large volumes, and outages there directly affect exports [9].",
+    "Terminal NDT includes API 653 tank inspections with MFL floor scanning and shell thickness surveys, pipeline and manifold thickness surveys, guided wave screening of long lines, inspection of loading arms, hoses and marine structures, and weld inspection on repairs. Hot, humid coastal conditions accelerate external corrosion, so coating and CUI assessments are also important."
+   ]
+  },
+  {
+   "id": "methods",
+   "h2": "NDT methods for heavy-oil facilities",
+   "paragraphs": [
+    "**Corrosion mapping and UT thickness testing** quantify wall loss in heavy-oil piping, tanks and vessels. **PAUT and TOFD** detect and size cracks in coke drums, reactor welds and high-stress piping. **Advanced UT techniques** screen hydrotreaters for HTHA.",
+    "**Laser scanning** maps coke drum bulging, and **acoustic emission** monitors drums and tanks. **Radiography**, including digital methods, inspects repair welds and small-bore piping, while **profile radiography** and **pulsed eddy current** detect corrosion under insulation. **Eddy current and IRIS** inspect exchanger tubes, and **PMI** verifies alloys during repairs."
+   ]
+  },
+  {
+   "id": "pipelines",
+   "h2": "Pipelines between the Orinoco Belt and the coast",
+   "paragraphs": [
+    "Extra-heavy crude, diluent and upgraded oil move between the Orinoco Belt fields, the upgraders at Jose and the export terminal through a network of large-diameter pipelines, many of them decades old. Diluent such as naphtha is shipped inland to thin the extra-heavy oil, and blended or upgraded crude flows back to the coast. Since early 2026, Venezuela has imported US naphtha under new licenses, both to dilute Orinoco oil and to make gasoline [1].",
+    "Pipeline integrity work includes thickness surveys at road and river crossings, guided wave screening of long sections, in-line inspection where lines can be pigged, and verification digs to confirm and size anomalies. Heavy, viscous crude complicates pigging and cleaning, so external NDT is often the main source of condition data. Pump stations along the route need inspection of piping, pumps, tanks and heaters.",
+    "Weld inspection to API 1104 is needed for repairs, reroutes and new tie-ins, and coating surveys help locate external corrosion on buried sections."
+   ]
+  },
+  {
+   "id": "power",
+   "h2": "Power outages and restart inspections",
+   "paragraphs": [
+    "Blackouts have halted the upgraders and paralyzed the Jose terminal in the past [3][9]. Heavy oil that cools in piping and vessels can solidify, and restarting equipment under these conditions risks mechanical damage, overheating and leaks.",
+    "Restart inspection plans should cover fired heaters, coker drums, reactors, high-temperature piping, pumps and heat exchangers. Thermography helps identify hot spots and blockages, while targeted UT and PAUT check for damage in critical locations."
+   ]
+  },
+  {
+   "id": "radiation",
+   "h2": "Radiography rules in Venezuela",
+   "paragraphs": [
+    "Venezuela's Ministry of Health is the national competent authority for radiological protection, and the Dirección de Energía Atómica controls the legal import of radiation equipment [5]. A Dirección General de Energía Atómica paper reported 62 authorized industrial gammagraphy companies with 388 cameras in use [10].",
+    "Buyers should confirm provider authorizations, source documentation and operator training, and coordinate exclusion zones carefully in congested upgrader and terminal areas."
+   ],
+   "bullets": [
+    "Verify radiography authorizations and source documentation [5][10].",
+    "Check operator radiation protection training.",
+    "Plan radiography around operations to minimize disruption."
+   ]
+  },
+  {
+   "id": "standards",
+   "h2": "Standards and joint venture requirements",
+   "paragraphs": [
+    "Inspection in Venezuelan refineries and upgraders follows API standards (510, 570, 653, 580/581, 579 and RP 941 for HTHA), ASME codes and PDVSA engineering standards. Joint ventures with international partners often apply their own corporate standards and expect ASNT or ISO 9712 certified personnel and reporting compatible with their integrity systems.",
+    "Buyers should verify certification validity and recent experience, particularly for specialist techniques such as HTHA inspection and coke drum assessment."
+   ]
+  },
+  {
+   "id": "turnarounds",
+   "h2": "Turnaround planning for upgraders and the refinery",
+   "paragraphs": [
+    "Upgraders and refineries need periodic turnarounds to inspect and repair equipment that cannot be accessed in operation, such as reactor internals, coke drum interiors, heater tubes and exchanger bundles. After years of deferred maintenance, the first turnarounds are likely to uncover significant damage, so worklists should allow for scope growth.",
+    "Good turnaround inspection planning starts with a review of available records, damage mechanisms and previous findings, followed by risk-based selection of inspection locations and methods. Providers should mobilize qualified procedures, calibrated equipment and experienced technicians before the shutdown, and deliver daily preliminary results so repair decisions can be made quickly. Spare probes, scanners and consumables should be in country before work starts, because import delays can stall a turnaround."
+   ]
+  },
+  {
+   "id": "climate",
+   "h2": "Climate and corrosion",
+   "paragraphs": [
+    "Puerto La Cruz has a hot, humid tropical climate with salt-laden sea air. Atmospheric corrosion of structures and piping is severe, and corrosion under insulation develops wherever insulation is damaged. Marine structures face splash-zone corrosion.",
+    "Inspection programs should include external corrosion surveys, CUI screening, coating condition assessments and marine structure inspections.",
+    "Rainy-season downpours can also flood low-lying areas and soak damaged insulation, so post-rain CUI checks on susceptible lines are worthwhile. Heat stress is a constant concern for crews working in protective clothing, and work schedules should allow for hydration and rest breaks."
+   ]
+  },
+  {
+   "id": "data",
+   "h2": "Data, records and baselining",
+   "paragraphs": [
+    "Years of reduced maintenance mean inspection records may be incomplete. Baseline inspections give owners a clear picture of current condition, support fitness-for-service decisions and let future inspections calculate corrosion rates. NDT reports should use consistent location identifiers, include photographs and coverage maps, and deliver raw data for advanced methods.",
+    "Joint ventures often require reporting compatible with partners' integrity management systems, so agreeing on formats before work starts saves time."
+   ]
+  },
+  {
+   "id": "opportunity",
+   "h2": "Opportunities for NDT providers",
+   "paragraphs": [
+    "Rising Venezuelan production and partner investment create opportunities across the Jose complex: upgrader turnarounds, terminal tank and pipeline inspections, refinery rehabilitation and construction NDT on repairs and replacements. Providers with heavy-oil experience, advanced UT capability and reliable logistics are best positioned.",
+    "International firms can partner with local providers that hold authorizations and know the region, while local firms can grow by adding advanced methods and building strong reporting systems.",
+    "Equipment refurbishment is another opportunity: pumps, compressors, valves and lifting equipment returning to service after long idle periods need inspection and recertification, and workshops in Puerto La Cruz and Barcelona can benefit from NDT support for repair welding, machining and testing."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Puerto La Cruz",
+   "paragraphs": [
+    "NDT is usually priced on day rates per technician and method, with advanced equipment billed separately. Joint ventures often use long-term service agreements. Imported equipment, logistics, security and power backup add costs.",
+    "NDT-Connect lets buyers post one scope and compare providers serving Puerto La Cruz, Barcelona, Jose and eastern Venezuela.",
+    "Clear, well-defined scopes help keep quotes comparable."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Puerto La Cruz",
+   "paragraphs": [
+    "The region needs UT, RT, MT and PT technicians, PAUT and TOFD specialists, coke drum and HTHA inspection experts, tank inspectors and Level IIIs. Heavy-oil experience is especially valuable.",
+    "A typical path starts with Level II certification in UT and RT, radiation protection training, then PAUT, TOFD and API certifications.",
+    "Training is a major need. Many experienced technicians left Venezuela during the downturn, and returning professionals and new trainees both need structured programs combining classroom training, supervised field hours and practical examinations. Providers that invest in training, mentoring and certification can build loyal, capable teams for long-term contracts."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Puerto La Cruz",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers."
+   ],
+   "bullets": [
+    "Verified ASNT or ISO 9712 certifications and heavy-oil experience.",
+    "Authorized radiography with documented sources [5][10].",
+    "Coke drum, HTHA, PAUT and TOFD capability.",
+    "Tank and terminal inspection capability.",
+    "Reliable logistics, spares and power backup.",
+    "Reporting compatible with joint venture integrity systems."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "How big is the Puerto La Cruz refinery?",
+   "a": "It has a capacity of 187,000 bpd and was processing about 82,000 bpd in early 2026 [1]."
+  },
+  {
+   "q": "What is the Jose terminal?",
+   "a": "Venezuela's principal export gateway for upgraded Orinoco barrels [2]."
+  },
+  {
+   "q": "How much heavy oil can the Orinoco upgraders process?",
+   "a": "Together, the four upgraders can convert up to about 700,000 bpd of extra-heavy oil [3]."
+  },
+  {
+   "q": "What damage mechanisms affect heavy-oil upgraders?",
+   "a": "Coke drum fatigue and cracking, sulfidation and naphthenic acid corrosion, HTHA in hydrotreaters and erosion from solids."
+  },
+  {
+   "q": "Who regulates radiography in Venezuela?",
+   "a": "The Ministry of Health oversees radiological protection and the Dirección de Energía Atómica controls equipment import [5]."
+  },
+  {
+   "q": "How do I request NDT quotes in Puerto La Cruz?",
+   "a": "Post the scope on NDT-Connect with the facility, equipment, methods, access, dates and reporting requirements."
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Maracaibo",
+   "href": "/ndt-services/maracaibo-ve"
+  },
+  {
+   "name": "Punto Fijo",
+   "href": "/ndt-services/punto-fijo-ve"
+  },
+  {
+   "name": "Point Lisas",
+   "href": "/ndt-services/point-lisas-tt"
+  },
+  {
+   "name": "Georgetown",
+   "href": "/ndt-services/georgetown-gy"
+  }
+ ],
+ "related": [
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  },
+  {
+   "label": "All NDT locations",
+   "href": "/ndt-locations"
+  }
+ ],
+ "references": [
+  {
+   "title": "Tank Terminals / Reuters — Venezuela's refineries boost processing to 35% of capacity",
+   "url": "https://tankterminals.com/news/venezuelas-refineries-boost-processing-to-35-of-capacity-sources-say/"
+  },
+  {
+   "title": "S&P Global — Venezuela's oil production and refining unharmed by June 24 earthquakes",
+   "url": "https://www.spglobal.com/energy/en/news-research/latest-news/shipping/062526-venezuelas-oil-production-refining-unharmed-by-june-24-earthquakes"
+  },
+  {
+   "title": "Oil & Gas 360 / Reuters — PDVSA braces for low output from crucial crude upgraders",
+   "url": "https://www.oilandgas360.com/venezuelas-pdvsa-braces-for-low-output-from-crucial-crude-upgraders/"
+  },
+  {
+   "title": "Oil & Gas 360 / Reuters — PDVSA and Chevron to turn Petropiar back into an upgrader",
+   "url": "https://www.oilandgas360.com/pdvsa-chevron-to-turn-venezuela-crude-blending-plant-back-into-upgrader-sources/"
+  },
+  {
+   "title": "La Patilla — Radiological protection authorities in Venezuela",
+   "url": "https://lapatilla.com/2026/03/19/especialista-dijo-que-medidas-de-proteccion-radiologica-en-venezuela-no-pueden-ser-tratadas-como-un-tramite-burocratico/"
+  },
+  {
+   "title": "Mezha / Reuters — Contractors repair catalytic cracking at Puerto La Cruz and El Palito",
+   "url": "https://mezha.net/ch/bukvy/faff0ab1_venezuela-s_refineries_struggle/"
+  },
+  {
+   "title": "S&P Global — Chevron sees 50% growth in Venezuela production (Petroindependencia stake)",
+   "url": "https://spglobal.com/energy/en/news-research/latest-news/crude-oil/073126-chevron-sees-50-growth-in-venezuela-oil-production-by-end-of-2028-cfo"
+  },
+  {
+   "title": "Rio Times — PDVSA refining runs at a third of capacity",
+   "url": "https://riotimesonline.com/pdvsa-refining-runs-at-a-third-of-capacity-even-as-venezuelas-crude-output-recovers"
+  },
+  {
+   "title": "Oil & Gas 360 / Reuters — Jose port and upgraders unable to resume after blackout",
+   "url": "https://www.oilandgas360.com/?p=838587"
+  },
+  {
+   "title": "IAEA INIS — Safety culture in industrial gammagraphy in Venezuela",
+   "url": "https://inis.iaea.org/records/17392-5wt94"
+  }
+ ]
+}

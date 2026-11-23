@@ -1,0 +1,328 @@
+{
+ "slug": "sao-paulo-br",
+ "city": "São Paulo",
+ "region": "São Paulo",
+ "country": "Brazil",
+ "countrySlug": "brazil",
+ "wave": 3,
+ "updated": "2026-11-23",
+ "title": "NDT Services in São Paulo, Brazil: Refinery, Industrial and Aerospace Inspection",
+ "metaTitle": "NDT Services in São Paulo, Brazil | Refinery & Industrial NDT, NR-13",
+ "description": "NDT in São Paulo state, Brazil: inspection for REPLAN, RPBC, REVAP and RECAP refineries, industry and aerospace. NR-13, CNEN and ABENDI certification, hiring.",
+ "quickAnswer": "São Paulo state is Brazil's industrial heartland and home to four Petrobras refineries, including **REPLAN**, Brazil's largest at **434,000 barrels a day** [1]. São Paulo's refineries account for **50% of Petrobras's refined products** [2], and Petrobras plans to invest **R$37 billion** in the state in 2026–2030, with R$17 billion for expanding REPLAN [3][4]. Add a vast manufacturing base, chemical plants in Cubatão and the ABC region, and aerospace in São José dos Campos, and the state is one of Latin America's largest NDT markets. Inspection of boilers, pressure vessels, piping and tanks is mandatory under **NR-13** [5][6].",
+ "keyFacts": [
+  {
+   "label": "Refineries",
+   "value": "REPLAN 434,000 bpd; REVAP 252,000 bpd; RPBC 170,000 bpd; RECAP 57,000 bpd [1][7]"
+  },
+  {
+   "label": "Share of output",
+   "value": "São Paulo refineries produce 50% of Petrobras's refined products [2]"
+  },
+  {
+   "label": "Investment",
+   "value": "R$37 billion planned in São Paulo for 2026–2030; R$17 billion for REPLAN [3][4]"
+  },
+  {
+   "label": "Pressure equipment rule",
+   "value": "NR-13: structural integrity management of boilers, pressure vessels, piping and tanks [6]"
+  }
+ ],
+ "industries": [
+  "Oil refining",
+  "Chemicals and petrochemicals",
+  "Automotive and machinery",
+  "Aerospace",
+  "Pulp, paper and sugar-ethanol",
+  "Power and utilities"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Why São Paulo is one of Latin America's largest NDT markets",
+   "paragraphs": [
+    "São Paulo state concentrates a huge share of Brazil's industrial output: refineries and petrochemical plants, automotive and machinery manufacturers, aerospace, steel, pulp and paper, sugar and ethanol mills, food processing and a dense network of suppliers and fabricators. Its ports, especially Santos, and its road and pipeline networks connect this industry with the rest of Brazil and the world.",
+    "Petrobras's presence alone makes São Paulo a major NDT market. The company has said that its São Paulo refineries are responsible for half of its refined product output, and that four cities hosting those refineries are among the ten largest recipients of Petrobras taxes [2]. REPLAN, the largest, supplies more than 30% of Brazilian territory and, by annual revenue, represents roughly 1% of Brazil's GDP [2].",
+    "For NDT providers, the combination of refinery turnarounds, NR-13 compliance inspections across thousands of industrial sites, fabrication QA and aerospace inspection creates a large, diverse and year-round market."
+   ]
+  },
+  {
+   "id": "refineries",
+   "h2": "São Paulo's four Petrobras refineries",
+   "paragraphs": [
+    "REPLAN in Paulínia is Brazil's largest refinery, with 434,000 barrels a day of capacity [1]. REVAP in São José dos Campos has 252,000 barrels a day, RPBC in Cubatão 170,000 barrels a day, and RECAP in Mauá 57,000 barrels a day [7]. RECAP began operations in 1954 and sells around 30% of the fuel consumed in Greater São Paulo [8].",
+    "Petrobras is investing to raise diesel output and produce new fuels. REPLAN's new diesel hydrotreater was designed to increase S-10 diesel production and add 12,500 barrels a day of jet fuel [1], and the company plans to raise REPLAN's diesel capacity by a further 5% [3]. RPBC is set to produce S-10 diesel and sustainable aviation fuel by co-processing, REVAP will increase S-10 diesel, and RECAP will process pre-salt crude more efficiently [3]. Under its 2026–2030 plan, REPLAN expansion alone accounts for R$17 billion [4].",
+    "Each refinery runs regular turnarounds and continuous mechanical integrity programs, and new units bring construction NDT."
+   ],
+   "table": {
+    "caption": "São Paulo assets and typical NDT scopes",
+    "head": [
+     "Asset",
+     "Main concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Refinery crude and coker units",
+      "Sulfidation, naphthenic acid, coke drum cracking",
+      "UT, corrosion mapping, PAUT, laser profiling"
+     ],
+     [
+      "Hydrotreaters (diesel, SAF)",
+      "HTHA, weld cracking",
+      "Advanced UT for HTHA, PAUT, TOFD"
+     ],
+     [
+      "Chemical plants (Cubatão, ABC)",
+      "Corrosion, SCC, weld integrity",
+      "PAUT, UT, PT, PMI"
+     ],
+     [
+      "Boilers and pressure vessels (NR-13)",
+      "Wall loss, cracking, weld defects",
+      "UT, MT, PT, RT, hardness"
+     ],
+     [
+      "Aerospace parts and structures",
+      "Fatigue cracks, composite defects",
+      "UT, ECT, PT, MT, RT (NAS 410)"
+     ],
+     [
+      "Pipelines and terminals",
+      "Corrosion, weld integrity",
+      "UT, guided wave, MFL, RT"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "nr13",
+   "h2": "NR-13: Brazil's mandatory inspection rule",
+   "paragraphs": [
+    "Brazil's Regulatory Standard NR-13, issued by the Ministry of Labor and Employment, sets minimum requirements for managing the structural integrity of boilers, pressure vessels, interconnecting piping and metal storage tanks, covering installation, inspection, operation and maintenance [6]. It is legally binding and applies across industry, from refineries to food plants and hospitals.",
+    "NR-13 treats delays in the periodic safety inspection of boilers as a serious and imminent risk, alongside blocked safety devices [5]. Postponing a periodic inspection requires a formal risk analysis by a qualified professional and is limited to a maximum of six months [5]. Large plants can operate a certified Own Equipment Inspection Service (SPIE) under the standard's annexes [9], and the rule aligns with ASME and API codes in practice [10].",
+    "For NDT providers, NR-13 creates a steady stream of work: thickness surveys, weld inspections, hydrostatic test support and specialist examinations requested by the qualified professional responsible for each equipment item's inspection."
+   ]
+  },
+  {
+   "id": "chemicals",
+   "h2": "Chemical and industrial hubs: Cubatão, ABC and Paulínia",
+   "paragraphs": [
+    "Cubatão, at the foot of the Serra do Mar near Santos, hosts RPBC alongside steel, fertilizer and chemical plants. The ABC region southeast of São Paulo city and the Paulínia area near REPLAN have petrochemical, chemical and manufacturing clusters that share pipelines and utilities.",
+    "These plants need corrosion monitoring, crack detection in stainless and alloy equipment, exchanger tube inspection, tank inspections and turnaround support. Many operate older equipment that has been modified over decades, so baseline inspections and PMI are common. NR-13 compliance drives scheduled inspections of all pressure equipment, piping and tanks.",
+    "The state's steel mills and heavy fabricators add further demand: mill maintenance inspection of cranes, rolls and gas systems, and shop-based NDT on pressure vessels, heat exchangers and structural modules built for Brazilian and export customers to ASME, AWS and Petrobras specifications."
+   ]
+  },
+  {
+   "id": "aerospace",
+   "h2": "Aerospace and advanced manufacturing",
+   "paragraphs": [
+    "São José dos Campos is the center of Brazil's aerospace industry, with aircraft manufacturing, defense and a network of suppliers producing machined parts, composites and assemblies. Aerospace NDT follows NAS 410 personnel certification and customer specifications, with Nadcap accreditation commonly required for NDT suppliers.",
+    "Typical methods include ultrasonic inspection of composite structures, eddy current for cracks and conductivity, penetrant and magnetic particle inspection of machined parts and forgings, and radiography of castings. The automotive industry around São Paulo adds high-volume QA: weld and bond inspection, casting radiography and eddy current testing of components.",
+    "Electric vehicle, battery and electronics investments in the state are adding new QA needs, from weld and bond inspection on battery enclosures to computed tomography of components."
+   ]
+  },
+  {
+   "id": "agro",
+   "h2": "Sugar, ethanol, pulp and paper",
+   "paragraphs": [
+    "São Paulo is Brazil's largest sugar and ethanol producer, and mills across the interior run high-pressure boilers, turbines, evaporators, tanks and piping. The harvest season concentrates operations, so inspections and repairs are scheduled during the inter-harvest period, creating seasonal peaks in NDT demand.",
+    "Boiler inspection under NR-13 is the core scope: UT thickness surveys of tubes and drums, inspection of welds and attachments, and examination of pressure parts after repairs. Pulp and paper mills add recovery boilers, digesters and bleach plant equipment with demanding corrosion and cracking mechanisms."
+   ]
+  },
+  {
+   "id": "methods",
+   "h2": "NDT methods used in São Paulo",
+   "paragraphs": [
+    "**UT thickness testing and corrosion mapping** are used throughout refineries, plants and mills. **PAUT and TOFD** inspect welds on new construction, repairs and in-service equipment. **Advanced UT techniques** screen hydroprocessing equipment for HTHA, and **laser profiling and PAUT** assess coke drums.",
+    "**Radiography** remains common for piping and boiler welds. **MT and PT** detect surface cracks, **eddy current and IRIS** inspect exchanger tubes, **MFL** scans tank floors, **pulsed eddy current** screens for CUI, and **PMI** verifies alloys. Aerospace and automotive work adds **automated UT**, **ECT** and **computed tomography**."
+   ]
+  },
+  {
+   "id": "certification",
+   "h2": "Personnel certification and radiation rules",
+   "paragraphs": [
+    "In Brazil, NDT personnel are commonly certified through ABENDI's national qualification and certification system, which follows ISO 9712 principles, while export and international projects may also require ASNT or other schemes. Aerospace work requires NAS 410 programs.",
+    "Industrial radiography is regulated by Brazil's National Nuclear Energy Commission (CNEN), which licenses radioactive installations and requires radiation protection supervisors and qualified operators. Buyers should confirm CNEN licensing, source documentation and operator qualifications before radiography begins, and plan exclusion zones carefully in busy plants."
+   ],
+   "bullets": [
+    "Check ABENDI (ISO 9712-based) or equivalent certification for each technician.",
+    "Confirm CNEN licensing for radiography services.",
+    "For aerospace, require NAS 410 certification and Nadcap where specified."
+   ]
+  },
+  {
+   "id": "pipelines",
+   "h2": "Pipelines, terminals and the Port of Santos",
+   "paragraphs": [
+    "Pipelines link São Paulo's refineries with the coast, terminals and consumers. Petrobras plans to build the OBAPI (Barueri–Pilões) pipeline, which will pass through 13 municipalities to strengthen product logistics and reduce socio-environmental risks [11]. Pipeline construction and integrity programs need API 1104 weld inspection, in-line inspection verification digs, guided wave screening and inspection at crossings.",
+    "The Port of Santos and coastal terminals add tank inspections under NR-13 and API 653 practice, loading arm and pipeline surveys, and inspection of marine structures."
+   ]
+  },
+  {
+   "id": "turnarounds",
+   "h2": "Turnarounds and outage planning",
+   "paragraphs": [
+    "Refinery turnarounds in São Paulo are large, tightly planned events. Petrobras plans worklists from risk-based inspection, previous findings and NR-13 requirements, and contracts NDT through framework agreements and tenders. Providers must qualify procedures and personnel in advance, coordinate with scaffolding and insulation contractors, and deliver daily preliminary results.",
+    "With four refineries and many chemical plants in the state, turnaround seasons can overlap, so booking experienced PAUT, TOFD, HTHA and tube inspection crews early is important."
+   ]
+  },
+  {
+   "id": "data",
+   "h2": "Documentation and reporting",
+   "paragraphs": [
+    "NR-13 requires each equipment item to have documentation, including inspection records and the qualified professional's reports. NDT reports should clearly state the method, procedure, coverage, results, calibration and technician certification so they can be incorporated into equipment records and safety inspection reports.",
+    "For refineries and large plants, data should load into risk-based inspection and integrity management systems, with consistent location identifiers and encoded data for advanced methods.",
+    "Consistent documentation also helps when equipment changes owner or operator, a common situation in São Paulo's diverse industrial base, because new owners need reliable inspection histories."
+   ]
+  },
+  {
+   "id": "climate",
+   "h2": "Climate and working conditions",
+   "paragraphs": [
+    "São Paulo's climate ranges from humid subtropical on the plateau to hot and humid on the coast at Cubatão and Santos. Coastal plants face severe corrosion and corrosion under insulation, while interior plants deal with summer rains and heat. Heavy rains can affect outdoor work and access, and heat stress is a concern during turnarounds.",
+    "Urban traffic and logistics in the metropolitan region affect mobilization times, so providers with bases near major industrial hubs can respond faster.",
+    "Summer storms between December and March can cause flooding and power interruptions, so outdoor inspections are often scheduled for the drier months."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in São Paulo",
+   "paragraphs": [
+    "Plant and refinery NDT is usually priced on day rates per technician and method, with advanced equipment billed separately. NR-13 inspections for smaller industries may be priced per equipment item or per inspection package. Aerospace and automotive QA may be priced per part or per shift.",
+    "NDT-Connect lets buyers post one scope and compare certified providers serving São Paulo state, from Paulínia and Campinas to Cubatão, Santos and São José dos Campos."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in São Paulo",
+   "paragraphs": [
+    "São Paulo offers some of the broadest NDT career opportunities in Latin America, across refining, chemicals, manufacturing, aerospace, agribusiness and construction. Employers hire UT, RT, MT, PT and ET technicians, PAUT and TOFD specialists, NR-13 inspection support staff, aerospace NDT inspectors and Level IIIs.",
+    "A typical path starts with ABENDI Level 1 and 2 certifications, CNEN-recognized radiation protection training for radiography roles, and then advanced UT and sector-specific qualifications such as NAS 410 for aerospace."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in São Paulo",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers."
+   ],
+   "bullets": [
+    "ABENDI (ISO 9712-based) or equivalent certified personnel with Level 3 oversight.",
+    "CNEN licensing for radiography.",
+    "Experience supporting NR-13 inspections and qualified professionals [5][6].",
+    "Refinery capability: PAUT, TOFD, HTHA techniques, coke drum inspection.",
+    "Sector experience: chemicals, aerospace, sugar-ethanol or pulp and paper.",
+    "Reporting suited to NR-13 records and integrity systems."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "What is Brazil's largest refinery?",
+   "a": "REPLAN in Paulínia, São Paulo, with 434,000 bpd of capacity [1]."
+  },
+  {
+   "q": "What does NR-13 require?",
+   "a": "Minimum requirements for managing the structural integrity of boilers, pressure vessels, piping and metal storage tanks, including inspection [6]; periodic inspection postponements are limited to six months with a formal risk analysis [5]."
+  },
+  {
+   "q": "How much is Petrobras investing in São Paulo?",
+   "a": "R$37 billion in 2026–2030 [3], including R$17 billion to expand REPLAN [4]."
+  },
+  {
+   "q": "Who certifies NDT personnel in Brazil?",
+   "a": "ABENDI operates the national NDT qualification and certification system, based on ISO 9712 principles."
+  },
+  {
+   "q": "Who regulates industrial radiography in Brazil?",
+   "a": "CNEN, Brazil's National Nuclear Energy Commission, licenses radioactive installations including industrial radiography services."
+  },
+  {
+   "q": "How do I request NDT quotes in São Paulo?",
+   "a": "Post the scope on NDT-Connect with the facility, equipment, NR-13 category, methods, dates and reporting requirements."
+  }
+ ],
+ "references": [
+  {
+   "title": "Oil & Gas Journal — Petrobras reveals new details on refining investments (REPLAN, REVAP)",
+   "url": "https://www.ogj.com/refining-processing/article/55233423/petrobras-reveals-new-details-on-refining-investments"
+  },
+  {
+   "title": "Hydrocarbon Engineering — Petrobras announces investment of R$37 billion in São Paulo",
+   "url": "https://www.hydrocarbonengineering.com/refining/26052026/petrobras-announces-investment-of-r37-billion-in-so-paulo/amp/"
+  },
+  {
+   "title": "Bloomberg Línea — Petrobras plans R$37 billion in São Paulo (refinery projects)",
+   "url": "https://www.bloomberglinea.com.br/negocios/de-refinarias-a-nova-descoberta-de-petroleo-petrobras-preve-investir-r-37-bi-em-sp/"
+  },
+  {
+   "title": "Bloomberg Línea — REPLAN to receive R$17 billion in 2026–2030",
+   "url": "https://www.bloomberglinea.com.br/negocios/de-refinarias-a-nova-descoberta-de-petroleo-petrobras-preve-investir-r-37-bi-em-sp/?outputType=amp"
+  },
+  {
+   "title": "Ministério do Trabalho e Emprego — NR-13 text (serious and imminent risk, postponement)",
+   "url": "https://www.gov.br/trabalho-e-emprego/pt-br/acesso-a-informacao/participacao-social/conselhos-e-orgaos-colegiados/comissao-tripartite-partitaria-permanente/arquivos/normas-regulamentadoras/nr-13.pdf"
+  },
+  {
+   "title": "Governo de São Paulo — NR-13 boilers, pressure vessels, piping and metal storage tanks",
+   "url": "https://saude.sp.gov.br/resources/crh/qualidade-de-vida/saude-e-seguranca/normas-regulamentadoras/nr13-caldeiras_vasos_de_pressao_tubulacoes_e_tanques_metalicos_de_armazenamento.pdf"
+  },
+  {
+   "title": "Oil & Gas Journal — Petrobras positioning refining business (refinery capacities)",
+   "url": "https://www.ogj.com/refining-processing/article/14301341/petrobras-positioning-refining-business-for-sustainable-future"
+  },
+  {
+   "title": "Petrobras — Refining (Capuava Refinery)",
+   "url": "https://petrobras.com.br/en/web/f3a44542-113e-11ee-be56-0242ac120002/quem-somos/refino"
+  },
+  {
+   "title": "Participa + Brasil — NR-13 revision (structure and SPIE annex)",
+   "url": "https://www.gov.br/participamaisbrasil/nr-13-norma-regulamentadora-de-seguranca-e-saude-no-trabalho-em-caldeiras-vasos-de-pressao-tubulacoes-e-tanques-metalicos-de-armazenamento"
+  },
+  {
+   "title": "LinkedIn — NR-13 and alignment with ASME/API",
+   "url": "https://mx.linkedin.com/in/alexandro-neto-oliveira"
+  },
+  {
+   "title": "Hydrocarbon Engineering — OBAPI pipeline and other São Paulo investments",
+   "url": "https://www.hydrocarbonengineering.com/refining/26052026/petrobras-announces-investment-of-r37-billion-in-so-paulo/"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Rio de Janeiro",
+   "href": "/ndt-services/rio-de-janeiro-br"
+  },
+  {
+   "name": "Macaé",
+   "href": "/ndt-services/macae-br"
+  },
+  {
+   "name": "Neuquén",
+   "href": "/ndt-services/neuquen-ar"
+  },
+  {
+   "name": "Antofagasta",
+   "href": "/ndt-services/antofagasta-cl"
+  }
+ ],
+ "related": [
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  }
+ ]
+}

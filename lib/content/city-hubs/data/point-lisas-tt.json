@@ -1,0 +1,333 @@
+{
+ "slug": "point-lisas-tt",
+ "city": "Point Lisas",
+ "region": "Couva-Tabaquite-Talparo",
+ "country": "Trinidad and Tobago",
+ "countrySlug": "trinidad-and-tobago",
+ "wave": 3,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Point Lisas, Trinidad: Ammonia, Methanol and Gas Plant Inspection",
+ "metaTitle": "NDT Services in Point Lisas, Trinidad | Ammonia & Methanol Plant NDT",
+ "description": "NDT in Point Lisas, Trinidad and Tobago: inspection for ammonia, urea and methanol plants, idle-plant preservation and restarts, port and gas infrastructure.",
+ "quickAnswer": "The **Point Lisas Industrial Estate** is the center of Trinidad and Tobago's gas-based economy, producing ammonia, urea and methanol for world markets [1]. Trinidad supplied about **37% of US ammonia imports** in 2024 [2]. Gas supply constraints have reshaped the estate. **Nutrien** shut its Point Lisas nitrogen complex in October 2025 and decided in October 2026 to close it indefinitely [1][3]. Its four ammonia plants have 1.79 million tonnes a year of nameplate capacity [4]. **Methanex** is idling its Titan methanol plant [5]. Other plants keep running and some have secured new gas contracts [6]. NDT demand now covers **turnarounds at operating plants, preservation and condition monitoring of idle units, and restart inspections**.",
+ "keyFacts": [
+  {
+   "label": "Estate",
+   "value": "Point Lisas: ammonia, urea and methanol plants supplied by Trinidad's natural gas [1]"
+  },
+  {
+   "label": "Export role",
+   "value": "About 37% of US ammonia imports in 2024 [2]"
+  },
+  {
+   "label": "Nutrien",
+   "value": "Four ammonia plants, 1.79 Mtpa nameplate [4]; indefinite shutdown announced October 2026 [3]"
+  },
+  {
+   "label": "Methanol",
+   "value": "Methanex idling its Titan plant amid gas curtailment [5]"
+  }
+ ],
+ "industries": [
+  "Ammonia and urea",
+  "Methanol",
+  "Natural gas processing and pipelines",
+  "Steel (DRI)",
+  "Port and marine terminals",
+  "Power generation"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Point Lisas: a gas-based industrial estate under pressure",
+   "paragraphs": [
+    "Point Lisas, on Trinidad's west coast facing the Gulf of Paria, hosts one of the world's largest concentrations of ammonia and methanol plants, along with urea, steel and power facilities, all supplied by natural gas from offshore fields. Trinidad and Tobago is the second-largest exporter of ammonia to the United States, supplying about 37% of US imports in 2024, and is also a leading exporter of methanol and urea [2].",
+    "The estate has been hit by years of gas curtailment. Nutrien began a controlled shutdown of its Point Lisas nitrogen operations in October 2025, citing port access restrictions and a lack of reliable and economic gas supply [2]; in October 2026, after a strategic review, it said it would close the complex indefinitely [3]. Methanex, the world's largest methanol producer, decided to idle its Titan plant [5]. Ammonia output from the six plants still reporting rose 9.7% in the first quarter of 2026, recovering part of the lost volume [7], and several plants secured new gas contracts [6].",
+    "For NDT providers, the market is changing rather than disappearing. Operating plants still need turnarounds and mechanical integrity programs, idle plants need preservation and periodic condition monitoring, and any restart or sale will require thorough inspection."
+   ]
+  },
+  {
+   "id": "ammonia",
+   "h2": "Ammonia and urea plants: damage mechanisms and inspection",
+   "paragraphs": [
+    "Ammonia plants include primary and secondary reformers, high-pressure synthesis loops, ammonia converters, refrigeration systems and storage. Urea plants add high-pressure synthesis, strippers and carbamate condensers. These units have well-known damage mechanisms.",
+    "Reformer tubes suffer creep damage and need inspection with laser profiling, ultrasonic or eddy current tools. Synthesis loops face high-temperature hydrogen attack and nitriding. Ammonia storage tanks and spheres are susceptible to stress corrosion cracking, which is detected by wet fluorescent magnetic particle testing when vessels are opened. Urea equipment faces carbamate corrosion of stainless steel, monitored by thickness and ferrite measurements and specialist inspection of liners and welds."
+   ],
+   "table": {
+    "caption": "Point Lisas assets and typical NDT scopes",
+    "head": [
+     "Asset",
+     "Main concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Reformer tubes and outlet systems",
+      "Creep, carburization, weld cracking",
+      "Laser profiling, UT, ECT, PAUT"
+     ],
+     [
+      "Ammonia synthesis loops",
+      "HTHA, nitriding, weld cracking",
+      "Advanced UT, PAUT, TOFD, hardness"
+     ],
+     [
+      "Ammonia storage tanks and spheres",
+      "Stress corrosion cracking",
+      "WFMT, PAUT, AE"
+     ],
+     [
+      "Urea synthesis and strippers",
+      "Carbamate corrosion, liner defects",
+      "UT, ferrite, PT, visual"
+     ],
+     [
+      "Methanol reformers and synthesis",
+      "Creep, metal dusting, corrosion",
+      "Laser profiling, UT, PAUT"
+     ],
+     [
+      "Port, jetties and pipelines",
+      "Marine corrosion, weld integrity",
+      "UT, guided wave, MT, visual"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "methanol",
+   "h2": "Methanol plants",
+   "paragraphs": [
+    "Methanol plants use steam methane reforming or autothermal reforming followed by synthesis and distillation. Inspection priorities include reformer tube creep and carburization, metal dusting in high-temperature gas systems, synthesis converter and loop integrity, and corrosion in distillation and storage.",
+    "Methanex's Titan plant is being idled while its Atlas plant has been a long-term contributor to export earnings [8]. Idled methanol plants face the same preservation and restart challenges as idle ammonia units."
+   ]
+  },
+  {
+   "id": "idle",
+   "h2": "Idle plants: preservation and condition monitoring",
+   "paragraphs": [
+    "When a plant is shut down for months or years, equipment can deteriorate. Moisture can enter vessels and piping, causing corrosion; insulation can absorb water and accelerate corrosion under insulation; rotating equipment can suffer from lack of rotation; and catalysts and chemicals left in systems can cause damage.",
+    "Preservation programs include draining and drying equipment, nitrogen blanketing, dehumidification, corrosion inhibitors and regular rotation of machinery. NDT supports preservation through periodic condition monitoring: thickness surveys at representative locations, CUI screening, inspection of nitrogen-blanketed vessels when opened, and visual inspection of structures and coatings.",
+    "Good preservation records and condition data are also valuable if a plant is sold or restarted, because buyers and lenders will want evidence of its condition.",
+    "Mothballing decisions should be documented carefully, including which systems were preserved, how and when, so that restart teams can plan inspections efficiently and focus on equipment most at risk."
+   ]
+  },
+  {
+   "id": "steel",
+   "h2": "Steel, power and other estate industries",
+   "paragraphs": [
+    "Point Lisas is not only about fertilizers and methanol. The estate has hosted direct reduced iron and steel production, power generation, gas processing and a range of light industries and service companies. Power plants on and near the estate need boiler, turbine and high-energy piping inspection during outages, while steel and DRI facilities need inspection of reactors, gas systems, cranes and structures.",
+    "The estate's port and jetties handle exports of ammonia, urea and methanol and imports of equipment and raw materials. Jetty structures, loading arms, pipelines and refrigerated ammonia storage need regular inspection, including UT thickness surveys, guided wave screening of pipelines, MT on structural welds and specialist inspection of cold storage tanks."
+   ]
+  },
+  {
+   "id": "restart",
+   "h2": "Restart and sale inspections",
+   "paragraphs": [
+    "Restarting a plant after a long shutdown needs a comprehensive inspection campaign before equipment is pressurized. Typical scopes include vessel internal inspections, reformer and furnace tube assessments, piping thickness surveys, crack detection on high-stress welds, ammonia storage inspection, exchanger tube testing, relief valve testing and inspection of rotating equipment.",
+    "If a plant is offered for sale, potential buyers commission technical due diligence that includes NDT-based condition assessments. Clear, independent inspection reports help buyers estimate repair costs and plan restart schedules.",
+    "A phased approach works best: confirm preservation integrity first, then inspect high-consequence equipment such as reformers, synthesis loops and ammonia storage, and finish with balance-of-plant piping and utilities before commissioning."
+   ]
+  },
+  {
+   "id": "turnarounds",
+   "h2": "Turnarounds at operating plants",
+   "paragraphs": [
+    "Plants that continue operating need regular turnarounds. Ammonia and methanol plant turnarounds are intense, with reformer inspections, synthesis loop inspections, storage tank inspections and many other tasks squeezed into short windows. Contractors must mobilize experienced crews and specialized equipment, often from abroad as well as locally.",
+    "With fewer plants running, turnaround timing is less congested, but buyers should still book specialists early for reformer and HTHA inspections.",
+    "Contracts that combine turnaround support with preservation monitoring for idle units can give providers steadier workloads and owners consistent inspection teams who know the equipment."
+   ]
+  },
+  {
+   "id": "gas",
+   "h2": "Gas supply infrastructure",
+   "paragraphs": [
+    "Natural gas from offshore fields reaches Point Lisas through pipelines operated by the National Gas Company, with metering stations at each plant. Gas pipelines, receiving facilities and metering stations need integrity inspection, including UT thickness surveys, guided wave screening and weld inspection on modifications. Gas supply decisions directly affect plant operations, as shown when NGC isolated gas meter runs to the Nutrien facility [9].",
+    "Metering stations, pressure reduction skids and plant gas headers also benefit from periodic thickness surveys and inspection of welds after modifications."
+   ]
+  },
+  {
+   "id": "methods",
+   "h2": "NDT methods used at Point Lisas",
+   "paragraphs": [
+    "**Reformer tube inspection** with laser profiling, ultrasonic and eddy current tools is a core specialty. **WFMT** detects stress corrosion cracking in ammonia storage. **Advanced UT, PAUT and TOFD** inspect synthesis loops and high-pressure welds and screen for HTHA.",
+    "**UT thickness testing and corrosion mapping** monitor piping, vessels and tanks, **pulsed eddy current** screens for CUI, **ferrite measurements** check urea equipment and **acoustic emission** screens storage vessels."
+   ]
+  },
+  {
+   "id": "regional",
+   "h2": "Serving the wider region from Trinidad",
+   "paragraphs": [
+    "Trinidad has one of the Caribbean's most experienced industrial service sectors, built over decades of oil, gas and petrochemical activity. With some Point Lisas plants idle, local NDT companies increasingly look to regional opportunities: offshore gas platforms around Trinidad, refinery and terminal work, Guyana's rapidly growing oil industry, and drilling rigs and vessels brought to Trinidadian shipyards for inspection and refurbishment.",
+    "This regional role makes Trinidad a natural base for NDT providers serving the southern Caribbean. Companies that maintain certified staff, specialist equipment and class approvals can move crews between Trinidad, Guyana and other markets as demand shifts, smoothing out the ups and downs of any single estate or project."
+   ]
+  },
+  {
+   "id": "climate",
+   "h2": "Tropical climate and corrosion",
+   "paragraphs": [
+    "Point Lisas's hot, humid coastal climate and salt air make corrosion under insulation and atmospheric corrosion major concerns, especially for idle equipment where insulation can stay wet. Marine structures and jetties face splash-zone corrosion. Coating maintenance and CUI programs are essential for both operating and idle plants."
+   ]
+  },
+  {
+   "id": "standards",
+   "h2": "Standards and certification",
+   "paragraphs": [
+    "Inspection at Point Lisas follows international codes and industry guidance for ammonia, urea and methanol plants, including ASME, API and specialist practices for reformer and ammonia storage inspection. NDT personnel typically hold ISO 9712 or ASNT certifications, and operators may require specific qualifications for reformer tube inspection systems.",
+    "Radiography with sealed sources must comply with Trinidad and Tobago's radiation protection requirements, so buyers should confirm current licensing and source arrangements with providers before work."
+   ],
+   "bullets": [
+    "Confirm ISO 9712 or ASNT certifications and ammonia or methanol plant experience.",
+    "Check specialist qualifications for reformer tube inspection systems.",
+    "Verify radiation licensing and source arrangements for radiography."
+   ]
+  },
+  {
+   "id": "data",
+   "h2": "Data and documentation",
+   "paragraphs": [
+    "Owners need inspection data that supports fitness-for-service decisions, remaining-life assessments for reformer tubes, and risk-based inspection. For idle plants, consistent condition monitoring data shows how equipment is holding up over time. Reports should include locations, readings, photographs, coverage and recommendations, in formats that load into the owner's systems.",
+    "Independent, well-documented inspection histories also matter for insurers and regulators, who may ask for evidence that idle and operating plants are being maintained safely."
+   ]
+  },
+  {
+   "id": "outlook",
+   "h2": "Outlook for the estate",
+   "paragraphs": [
+    "The future of Point Lisas depends on gas supply, prices and policy. The Energy Chamber has warned that more industrial capacity could be idled if gas stays short [1], while new gas contracts for some plants [6] show that operations can continue where supply is secured. For NDT providers, flexibility matters: supporting operating plants, preserving idle assets and being ready for restarts or sales."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced at Point Lisas",
+   "paragraphs": [
+    "Turnaround and specialist work is usually priced on day rates per technician and method, with reformer inspection systems and advanced UT equipment billed separately. Preservation monitoring may be contracted as periodic campaigns. Due diligence inspections are often priced as fixed-scope projects.",
+    "NDT-Connect lets buyers post one scope and compare certified providers serving Point Lisas, Couva and Trinidad's industrial west coast."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Trinidad",
+   "paragraphs": [
+    "Trinidad's experienced NDT workforce supports petrochemical plants, offshore gas, refining and marine work, and increasingly serves Guyana's growing oil industry. Skills in reformer inspection, WFMT, advanced UT and corrosion monitoring are especially valuable.",
+    "Technicians who can work across ammonia, methanol, offshore and marine sectors, and who are willing to travel within the Caribbean, have the strongest prospects.",
+    "Mentoring programs that pair experienced Level IIIs with younger technicians help retain specialist knowledge during periods of reduced activity."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider at Point Lisas",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers."
+   ],
+   "bullets": [
+    "ISO 9712 or ASNT certified personnel with ammonia or methanol experience.",
+    "Reformer tube inspection systems and trained operators.",
+    "WFMT, PAUT, TOFD and HTHA capability.",
+    "Preservation monitoring and restart inspection experience.",
+    "Radiation licensing for radiography.",
+    "Independent, clear reporting for owners, buyers and lenders."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "What is produced at Point Lisas?",
+   "a": "Ammonia, urea and methanol from natural gas, along with steel and power [1]."
+  },
+  {
+   "q": "Why did Nutrien close its Point Lisas plants?",
+   "a": "It cited gas supply constraints and uncertainty, announcing an indefinite shutdown in October 2026 [3] after a controlled shutdown in October 2025 [2]."
+  },
+  {
+   "q": "How important is Trinidad for ammonia?",
+   "a": "It supplied about 37% of US ammonia imports in 2024 [2]."
+  },
+  {
+   "q": "What NDT is needed for idle plants?",
+   "a": "Periodic condition monitoring, including thickness surveys, CUI screening and inspection of preserved equipment, plus full restart inspections."
+  },
+  {
+   "q": "Which methods are used on ammonia plants?",
+   "a": "Reformer tube inspection, WFMT for ammonia storage SCC, advanced UT for HTHA, PAUT and TOFD, and ferrite checks for urea equipment."
+  },
+  {
+   "q": "How do I request NDT quotes at Point Lisas?",
+   "a": "Post the scope on NDT-Connect with the plant, equipment, methods, dates and reporting requirements."
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Georgetown",
+   "href": "/ndt-services/georgetown-gy"
+  },
+  {
+   "name": "Puerto La Cruz",
+   "href": "/ndt-services/puerto-la-cruz-ve"
+  },
+  {
+   "name": "Punto Fijo",
+   "href": "/ndt-services/punto-fijo-ve"
+  },
+  {
+   "name": "Houston",
+   "href": "/ndt-services/houston-tx"
+  }
+ ],
+ "related": [
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  }
+ ],
+ "references": [
+  {
+   "title": "Rio Times — Nutrien shuts 5 Trinidad nitrogen plants indefinitely",
+   "url": "https://www.riotimesonline.com/trinidad-nutrien-shutdown-2026/"
+  },
+  {
+   "title": "Caribbean National Weekly — Canadian fertilizer company to shut down operations in Trinidad",
+   "url": "https://www.caribbeannationalweekly.com/news/canadian-fertilizer-company-to-shut-down-operations-in-trinidad/"
+  },
+  {
+   "title": "BNN Bloomberg — Nutrien to indefinitely shut Trinidad nitrogen operations",
+   "url": "https://www.bnnbloomberg.ca/business/company-news/2026/10/05/nutrien-to-indefinitely-shut-trinidad-nitrogen-operations-amid-gas-supply-constraints"
+  },
+  {
+   "title": "Trinidad Guardian — Nutrien initiates planned shutdown (1.79 Mtpa ammonia capacity)",
+   "url": "https://guardian.co.tt/news/nutrien-initiates-planned-shutdown-despite-talks-with-govt-6.2.2431348.8aa40333f7"
+  },
+  {
+   "title": "Trinidad Guardian — Methanex considers idling Titan plant",
+   "url": "https://guardian.co.tt/business/methanex-considers-idling-titan-plant-at-point-lisas-6.2.2581493.a5de0eeb10"
+  },
+  {
+   "title": "Energy Now TT — Higher ammonia output offsets part of Nutrien shutdown (new gas contracts)",
+   "url": "https://energynow.tt/blog/higher-ammonia-output-from-active-plants-offsets-part-ofnbspnutriennbspshutdown"
+  },
+  {
+   "title": "Trinidad Guardian — Higher ammonia output offsets part of Nutrien shutdown",
+   "url": "https://www.guardian.co.tt/business/higher-ammonia-output-offsets-part-ofnutrienshutdown-6.2.2659346.bcd3a88011"
+  },
+  {
+   "title": "Energy Now TT — Methanex to idle Titan facility",
+   "url": "https://energynow.tt/blog/methanex-to-idle-titan-facility"
+  },
+  {
+   "title": "Trinidad Guardian — NGC isolates gas meter runs to Nutrien facility",
+   "url": "https://guardian.co.tt/news/ngc-pulls-plug-on-nutrien-state-gas-company-ends-supply-contract-to-fertiliser-giant-over-500-works-face-termination-6.2.2481674.eb16452ba8"
+  }
+ ]
+}

@@ -1,0 +1,359 @@
+{
+ "slug": "neuquen-ar",
+ "city": "Neuquén",
+ "region": "Neuquén Province",
+ "country": "Argentina",
+ "countrySlug": "argentina",
+ "wave": 3,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Neuquén, Argentina: Vaca Muerta Shale, Pipeline and Facility Inspection",
+ "metaTitle": "NDT Services in Neuquén, Argentina | Vaca Muerta & Pipeline NDT",
+ "description": "NDT in Neuquén, Argentina: inspection for Vaca Muerta shale wells, facilities and pipelines including VMOS. Methods, ARN gamma radiography rules and hiring.",
+ "quickAnswer": "Neuquén is the capital of **Vaca Muerta**, one of the world's largest shale plays. In June 2026 the province set records of **648,114 barrels of oil a day** and 118.64 million m³ of gas a day, with 97% of its oil coming from shale [1]. To move that oil, YPF and partners are building **Vaca Muerta Oil Sur (VMOS)**: a 437 km pipeline to an Atlantic terminal at Punta Colorada, a US$3 billion project due to start operating around the turn of 2026–2027 [2][3][4]. Pipeline construction, gathering systems, processing plants and well-site equipment create one of the fastest-growing NDT markets in the Americas. Gamma radiography requires an **ARN** operating license and individual operator permits [6][7].",
+ "keyFacts": [
+  {
+   "label": "Oil output",
+   "value": "648,114 bpd in June 2026, a provincial record; 97% shale [1]"
+  },
+  {
+   "label": "VMOS pipeline",
+   "value": "437 km, Allen to Punta Colorada; US$3 billion; startup late 2026 to early 2027 [2][3][4]"
+  },
+  {
+   "label": "Initial capacity",
+   "value": "180,000 bpd at start of VMOS operations [5]"
+  },
+  {
+   "label": "Radiography regulator",
+   "value": "Autoridad Regulatoria Nuclear: operating license (AR 7.9.1) and individual permits (AR 7.11.1) [6][7]"
+  }
+ ],
+ "industries": [
+  "Shale oil and gas production",
+  "Pipelines and midstream",
+  "Gas processing and treating",
+  "Fabrication and equipment manufacturing",
+  "Power and utilities",
+  "Oilfield services"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Vaca Muerta: Argentina's shale boom",
+   "paragraphs": [
+    "Neuquén province has moved from promise to industrial reality. In February 2026, the province's oil output reached 603,800 barrels a day, up 30% year on year, and Vaca Muerta accounted for 68% of Argentina's oil and 56% of its gas [8]. By June 2026, Neuquén reached record oil output of 648,114 barrels a day and gas of 118.64 million m³ a day, with 97.24% of its oil from shale [1].",
+    "Argentina's oil production closed 2025 near a historic 865,000 barrels a day, driven almost entirely by shale [9]. Existing pipeline expansions, such as Oldelval's Duplicar Plus, are already running at their operating limits, so the production jump projected for 2027 depends heavily on VMOS [10].",
+    "For NDT providers, Vaca Muerta means intense, continuous activity: pipeline construction, gathering networks, processing plants, compression stations, tank batteries and thousands of wells with their surface equipment."
+   ]
+  },
+  {
+   "id": "vmos",
+   "h2": "VMOS: a megaproject for pipeline NDT",
+   "paragraphs": [
+    "Vaca Muerta Oil Sur is the most important infrastructure project to expand oil exports from the Neuquén basin [4]. Construction crews completed the onshore pipeline in late 2025, linking the Allen pumping station with the new port of Punta Colorada [11]. The project involves US$3 billion of investment [3], plus a subsea pipeline connecting the Punta Colorada terminal with single-point mooring buoys for loading large tankers [12]. YPF said VMOS would start with initial transport capacity of 180,000 barrels a day [5], and in its final configuration it is expected to support more than US$15 billion a year of shale oil exports [13].",
+    "Pipeline construction generates the largest single block of NDT work: girth weld inspection by automated ultrasonic testing or radiography to API 1104, repair weld inspection, coating holiday detection and inspection of pump stations, terminal tanks and marine facilities. Subsea pipeline welds and risers need their own inspection programs.",
+    "Once in service, VMOS will need in-line inspection, verification digs, station inspections and terminal tank programs for decades."
+   ]
+  },
+  {
+   "id": "assets",
+   "h2": "Shale assets and inspection scopes",
+   "paragraphs": [
+    "Unconventional development involves many wells drilled from multi-well pads, each feeding surface facilities through gathering lines to central processing facilities, compression and treating plants, and then to export pipelines.",
+    "The table summarizes typical scopes across the value chain."
+   ],
+   "table": {
+    "caption": "Vaca Muerta assets and typical NDT scopes",
+    "head": [
+     "Asset",
+     "Main concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Wellheads and frac equipment",
+      "Erosion, fatigue, pressure equipment integrity",
+      "UT, MT, PT, hardness"
+     ],
+     [
+      "Gathering lines and flowlines",
+      "Internal corrosion, erosion from sand",
+      "UT, corrosion mapping, guided wave, RT"
+     ],
+     [
+      "Central processing facilities",
+      "Vessel and piping corrosion, weld integrity",
+      "UT, PAUT, RT, PMI"
+     ],
+     [
+      "Compression and gas treating",
+      "Fatigue cracking, sour service damage",
+      "PAUT, MT, PT, WFMT"
+     ],
+     [
+      "Trunk pipelines (VMOS, Duplicar)",
+      "Girth weld quality, corrosion in service",
+      "AUT, RT, ILI verification, guided wave"
+     ],
+     [
+      "Tanks and export terminal",
+      "Floor and shell corrosion, construction welds",
+      "MFL, UT, RT, vacuum box"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "frac",
+   "h2": "Pressure pumping and well-site equipment",
+   "paragraphs": [
+    "Hydraulic fracturing uses high-pressure pumps, iron, manifolds and wellheads that are cycled hard and exposed to abrasive proppant. Erosion, fatigue cracking and threaded connection wear are common, and failures can be dangerous. Operators and service companies run inspection and recertification programs for frac iron, pump components and pressure control equipment.",
+    "NDT scopes include UT thickness checks of iron and manifolds, MT on fluid ends and pump components, hardness testing and visual inspection, often in workshops between jobs. Local manufacturers supply a large share of equipment used in Vaca Muerta [14], creating fabrication QA work as well."
+   ]
+  },
+  {
+   "id": "facilities",
+   "h2": "Processing plants and gas infrastructure",
+   "paragraphs": [
+    "Growing oil and gas output requires new processing plants, compression stations and gas pipelines. YPF has launched tenders for a processing plant in Neuquén to separate oil and gas and for a 48-inch gas pipeline described as Argentina's largest [15]. Construction NDT for these projects covers piping and vessel welds, structural steel, PMI and baseline surveys.",
+    "In operation, facilities need thickness monitoring, corrosion mapping, crack detection on vibrating piping near compressors, exchanger inspection and tank inspections."
+   ]
+  },
+  {
+   "id": "gas",
+   "h2": "Gas pipelines, exports and the road to LNG",
+   "paragraphs": [
+    "Vaca Muerta is as important for gas as for oil. Gas production in Neuquén reached record levels in 2026 [1], and gas now flows to Brazil after the reversal of Argentina's Gasoducto Norte, with private proposals to connect Vaca Muerta directly to São Paulo's industrial belt through a dedicated pipeline [9]. Large-diameter gas pipelines, compressor stations and treating plants are being built or planned to move this gas to domestic markets, neighboring countries and, in future, LNG export facilities.",
+    "Gas infrastructure brings its own NDT needs. New large-diameter pipelines require automated UT of girth welds, coating inspection and hydrotest support. Compressor stations need PAUT and MT on piping welds subject to vibration, inspection of scrubbers and coolers, and integrity monitoring of station piping. Treating plants handling CO2 and H2S need corrosion monitoring and crack detection in sour service.",
+    "If LNG export projects move ahead, they will bring cryogenic equipment, stainless steel and nickel alloy welds, and very large tanks, all with demanding inspection requirements."
+   ]
+  },
+  {
+   "id": "methods",
+   "h2": "NDT methods used in Vaca Muerta",
+   "paragraphs": [
+    "**Automated UT and radiography** are the main methods for pipeline girth welds. **PAUT and TOFD** inspect facility welds and detect cracking. **UT thickness testing and corrosion mapping** monitor wall loss in gathering lines, vessels and piping, and **guided wave UT** screens long lines and crossings.",
+    "**MT and PT** detect surface cracks in pressure pumping and wellhead equipment, **MFL** scans tank floors, **WFMT** detects cracking in sour service, and **PMI** verifies alloys. In-line inspection, followed by NDT verification digs, will become increasingly important as pipelines age."
+   ]
+  },
+  {
+   "id": "radiation",
+   "h2": "Radiography rules in Argentina: ARN",
+   "paragraphs": [
+    "Industrial gamma radiography in Argentina is regulated by the Autoridad Regulatoria Nuclear (ARN). Under the National Nuclear Activity Law, anyone carrying out nuclear activities must follow ARN regulations [16]. Companies need an operating license for gamma radiography equipment under standard AR 7.9.1; in 2021 ARN extended the maximum validity of these licenses [6][17].",
+    "Each operator must hold an individual permit under standard AR 7.11.1, which sets the requirements to obtain and renew it, including supervised training in industrial gammagraphy under a preceptor [7]. Renewal requires an ARN-recognized refresher course of at least 20 hours and proof of at least six months of gammagraphy work during the last year of the permit [18].",
+    "Buyers should check the provider's ARN operating license, each operator's individual permit and source documentation before radiography starts."
+   ],
+   "bullets": [
+    "Confirm the ARN operating license for gamma radiography [6].",
+    "Check each operator's individual permit under AR 7.11.1 [7].",
+    "Review transport and storage arrangements for sources at remote sites."
+   ]
+  },
+  {
+   "id": "climate",
+   "h2": "Patagonian conditions and logistics",
+   "paragraphs": [
+    "Neuquén's semi-arid Patagonian climate brings strong winds, cold winters, hot summers and dust. Wind and cold affect field work, radiography exclusion zones and equipment, while dust and sand cause erosion and complicate surface preparation. Remote well pads and long pipeline routes require careful logistics, vehicles and communications.",
+    "Rapid growth has strained housing, roads and services in towns such as Añelo, so providers should plan accommodation and transport early.",
+    "Winter snow and frost can close roads and slow construction, so pipeline and facility projects often plan intensive work for the warmer months. Strong winds can also halt rope access work and affect radiography exclusion zones, making weather planning part of every inspection schedule."
+   ]
+  },
+  {
+   "id": "integrity",
+   "h2": "Integrity of gathering systems and produced water",
+   "paragraphs": [
+    "Shale wells produce oil, gas, water and sand at rates that change quickly over a well's life. Gathering lines and facilities therefore face shifting conditions: high initial flow with sand erosion, followed by rising water cut and the risk of internal corrosion, including microbiologically influenced corrosion in low-flow sections.",
+    "Integrity programs combine corrosion monitoring with coupons and probes, periodic thickness surveys at elbows, tees and low points, and corrosion mapping where wall loss is found. Produced water handling and disposal systems, including tanks, pumps and injection lines, need regular inspection because water is often the most corrosive fluid in the system.",
+    "Where gathering lines cross rivers, roads and irrigation channels in the Neuquén and Río Negro valleys, failures can have significant environmental consequences, so crossings deserve particular attention in inspection plans."
+   ]
+  },
+  {
+   "id": "standards",
+   "h2": "Standards and certification",
+   "paragraphs": [
+    "Pipeline welding and inspection follow API 1104 and owner specifications, facilities use ASME B31.3 and Section VIII, and tanks follow API 650 and 653. Personnel are commonly certified under ISO 9712-based national schemes or ASNT programs, with owners often requiring specific qualifications for automated UT and advanced methods.",
+    "International operators in Vaca Muerta bring their own corporate standards and reporting requirements.",
+    "Clear procedures help keep results consistent across contractors."
+   ]
+  },
+  {
+   "id": "data",
+   "h2": "Data and digital reporting",
+   "paragraphs": [
+    "Pipeline construction generates huge volumes of weld inspection data. Owners expect digital records linked to weld numbers, GPS positions and repair histories, with full AUT data archived. Facility and gathering-line inspections should feed integrity management systems with consistent location identifiers.",
+    "Good data at construction becomes the baseline for future in-line inspection and integrity assessments.",
+    "Drones, crawlers and other robotic tools are increasingly used to inspect tanks, structures and pipe racks across large, remote sites, and their data needs to be integrated with conventional NDT results."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Neuquén",
+   "paragraphs": [
+    "Pipeline NDT is often priced per weld or per kilometer, with AUT crews and equipment contracted for the project duration. Facility and maintenance work is usually priced on day rates per technician and method. High demand, remote locations and logistics push rates up during peak construction.",
+    "NDT-Connect lets buyers post one scope and compare certified providers serving Neuquén, Añelo, Río Negro and the wider Neuquén basin.",
+    "Framework agreements with operators and pipeline contractors give providers predictable work and buyers secured capacity during peak periods."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Vaca Muerta",
+   "paragraphs": [
+    "Vaca Muerta is creating strong demand for AUT and radiography technicians, UT and corrosion inspectors, PAUT and TOFD specialists, MT and PT inspectors for pressure pumping, and Level IIIs. Pipeline megaprojects offer long contracts and overtime.",
+    "A typical path starts with Level 2 certification in UT and RT and an ARN individual permit for gamma radiography roles [7], then automated UT and PAUT qualifications.",
+    "Local training capacity is growing alongside the industry, with technical schools and companies in Neuquén offering NDT courses. Employers increasingly value technicians who combine NDT with skills in data management, drones or robotic inspection."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Neuquén",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers."
+   ],
+   "bullets": [
+    "ISO 9712 or ASNT certified personnel with Level 3 oversight.",
+    "ARN operating license and individual operator permits [6][7].",
+    "Automated UT capability for pipeline girth welds.",
+    "Experience with frac equipment inspection and recertification.",
+    "Logistics for remote sites and Patagonian weather.",
+    "Digital reporting linked to weld and asset records."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "How much oil does Neuquén produce?",
+   "a": "A record 648,114 bpd in June 2026, 97% from shale [1]."
+  },
+  {
+   "q": "What is VMOS?",
+   "a": "Vaca Muerta Oil Sur, a 437 km pipeline from Allen to Punta Colorada [2], a US$3 billion project [3] expected to start operating around the turn of 2026–2027 [4]."
+  },
+  {
+   "q": "Who regulates gamma radiography in Argentina?",
+   "a": "The Autoridad Regulatoria Nuclear, through operating licenses (AR 7.9.1) and individual operator permits (AR 7.11.1) [6][7]."
+  },
+  {
+   "q": "How are pipeline welds inspected?",
+   "a": "Mainly by automated ultrasonic testing or radiography to API 1104 and owner specifications."
+  },
+  {
+   "q": "What equipment needs inspection at well sites?",
+   "a": "Wellheads, frac iron, manifolds, pumps and pressure control equipment, using UT, MT, PT and hardness testing."
+  },
+  {
+   "q": "How do I request NDT quotes in Neuquén?",
+   "a": "Post the scope on NDT-Connect with the project, methods, quantities, location, dates and reporting requirements."
+  }
+ ],
+ "references": [
+  {
+   "title": "iProfesional — Neuquén production records in June 2026",
+   "url": "https://www.iprofesional.com/energia/460878-vaca-muerta-espera-a-la-titular-del-fmi-con-otro-record-de-produccion-en-petroleo-y-gas"
+  },
+  {
+   "title": "El Economista — VMOS enters decisive stretch (437 km onshore completed)",
+   "url": "https://eleconomista.com.ar/energia/vaca-muerta-quiere-mas-barriles-afuera-vmos-entra-recta-decisiva-n97628/amp"
+  },
+  {
+   "title": "El Economista — VMOS: US$3 billion, 70% complete",
+   "url": "https://eleconomista.com.ar/energia/vmos-permitira-exportar-us-15000-millones-ano-cuando-opere-plena-capacidad-n96557/amp"
+  },
+  {
+   "title": "Ámbito — VMOS passes 70%; YPF aims to export from early 2027",
+   "url": "https://www.ambito.com/energia/vaca-muerta-oil-sur-supero-el-70-avance-ypf-apunta-exportar-principios-2027-n6304443"
+  },
+  {
+   "title": "Noticias NQN — VMOS welding begins; initial capacity 180,000 bpd",
+   "url": "https://www.noticiasnqn.com.ar/noticias/2025/05/26/314094-comenzo-la-soldadura-del-oleoducto-sur-y-ypf-proyecta-exportar-550000-barriles-diarios-desde-vaca-muerta"
+  },
+  {
+   "title": "ARN — Licencia de operación para operar equipos de gammagrafía industrial",
+   "url": "https://www.argentina.gob.ar/servicio/licencia-de-operacion-para-operar-equipos-de-gammagrafia-industrial"
+  },
+  {
+   "title": "ARN — Norma AR 7.11.1, individual permits for gammagraphy operators",
+   "url": "https://argentina.gob.ar/normativa/351293_res200_pdf/archivo"
+  },
+  {
+   "title": "Industrial Info — Vaca Muerta pushes Argentina's hydrocarbon production",
+   "url": "https://www.industrialinfo.com/iirenergy/industry-news/article/vaca-muerta-pushes-argentinas-hydrocarbon-production-new-projects-announced--355514"
+  },
+  {
+   "title": "Más Energía — 2025, the year of steel in Vaca Muerta",
+   "url": "https://mase.lmneuquen.com/2025-el-ano-del-acero-vaca-muerta-n1223466/amp"
+  },
+  {
+   "title": "Más Energía — Vaca Muerta: the fine print of the oil boom",
+   "url": "https://mase.lmneuquen.com/vaca-muerta/vaca-muerta-la-letra-chica-del-boom-petrolero-n1260197"
+  },
+  {
+   "title": "Letra P — VMOS completes 473 km of pipe",
+   "url": "https://www.letrap.com.ar/economia/los-dos-proyectos-rigi-vaca-muerta-toman-forma-vmos-ya-quiere-empezar-y-el-gnl-consigue-fondos-n5421391/amp"
+  },
+  {
+   "title": "El Economista — VMOS subsea pipeline to single-point moorings",
+   "url": "https://eleconomista.com.ar/energia/soldadura-soldadura-asi-controlan-elducto-sacarael-petroleo-devaca-muerta-n98085/amp"
+  },
+  {
+   "title": "Más Energía — VMOS turns one year and accelerates export push",
+   "url": "https://mase.lmneuquen.com/petroleo/vmos-cumple-un-ano-y-acelera-el-salto-exportador-del-petroleo-vaca-muerta-n1226139/amp"
+  },
+  {
+   "title": "LM Neuquén — Vaca Muerta Insights 2026 (local manufacturing)",
+   "url": "https://www.lmneuquen.com/neuquen/vaca-muerta-insights-2026-las-principales-definiciones-rolando-figueroa-horacio-marin-y-los-ceos-n1231853/amp"
+  },
+  {
+   "title": "Baird Maritime — New Argentina pipeline to carry shale oil to Atlantic port",
+   "url": "https://www.bairdmaritime.com/offshore/transport/new-argentina-pipeline-to-carry-shale-oil-to-atlantic-port-for-exports-in-2027"
+  },
+  {
+   "title": "Boletín Oficial — ARN resolution citing National Nuclear Activity Law 24.804",
+   "url": "https://www.boletinoficial.gob.ar/detalleAviso/primera/196035/20181116"
+  },
+  {
+   "title": "ARN — License validity extension (AR 7.9.1 point 107)",
+   "url": "https://www.argentina.gob.ar/node/269210"
+  },
+  {
+   "title": "ARN — Individual permit renewal requirements",
+   "url": "https://www.argentina.gob.ar/node/181810"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Antofagasta",
+   "href": "/ndt-services/antofagasta-cl"
+  },
+  {
+   "name": "São Paulo",
+   "href": "/ndt-services/sao-paulo-br"
+  },
+  {
+   "name": "Rio de Janeiro",
+   "href": "/ndt-services/rio-de-janeiro-br"
+  },
+  {
+   "name": "Macaé",
+   "href": "/ndt-services/macae-br"
+  }
+ ],
+ "related": [
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  }
+ ]
+}

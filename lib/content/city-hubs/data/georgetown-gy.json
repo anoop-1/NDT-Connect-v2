@@ -1,0 +1,328 @@
+{
+ "slug": "georgetown-gy",
+ "city": "Georgetown",
+ "region": "Demerara-Mahaica",
+ "country": "Guyana",
+ "countrySlug": "guyana",
+ "wave": 3,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Georgetown, Guyana: Offshore FPSO, Gas-to-Energy and Shore Base Inspection",
+ "metaTitle": "NDT Services in Georgetown, Guyana | FPSO & Gas-to-Energy NDT",
+ "description": "NDT in Georgetown, Guyana: inspection for Stabroek FPSOs, the Gas-to-Energy project at Wales, shore bases and local fabrication. Methods, local content, hiring.",
+ "quickAnswer": "Guyana has become one of the world's fastest-growing oil producers. ExxonMobil's **Stabroek Block** reached **900,000 barrels a day** in 2025 [1]. With the fifth project, Uaru, starting in November 2026, Guyana's oil capacity reached **1.1 million barrels a day** [2], and the government is targeting about **1.7 million barrels a day** by the end of the decade [3]. Onshore, the roughly **300 MW Gas-to-Energy project** at Wales will use Stabroek gas for power and gas liquids [3]. Georgetown is the base for the shore facilities, logistics, fabrication and local service companies that support this growth. NDT demand covers **FPSO and subsea support, shore base and pipeline work, and the Gas-to-Energy plant**.",
+ "keyFacts": [
+  {
+   "label": "Production",
+   "value": "Stabroek reached 900,000 bpd in 2025 [1]; capacity 1.1 million bpd after Uaru start-up in Nov 2026 [2]"
+  },
+  {
+   "label": "FPSOs",
+   "value": "Destiny, Unity, Prosperity, One Guyana, plus Uaru's FPSO [2]"
+  },
+  {
+   "label": "Gas-to-Energy",
+   "value": "About 300 MW at Wales; Phase I targeted for end-2026 [3][4]"
+  },
+  {
+   "label": "Growth target",
+   "value": "About 1.7 million bpd by the end of the decade [3]"
+  }
+ ],
+ "industries": [
+  "Offshore oil production (FPSOs)",
+  "Gas-to-Energy and power",
+  "Shore bases and logistics",
+  "Local fabrication and machining",
+  "Marine services and shipyards",
+  "Construction and infrastructure"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Guyana's oil boom and Georgetown's role",
+   "paragraphs": [
+    "In just under six years, Guyana went from first-time oil producer to producing 900,000 barrels a day, driven by sanctioned projects in the Stabroek Block, and became the world's largest oil producer per capita [1]. ExxonMobil started production at Uaru, the fifth Stabroek development, in November 2026, bringing the country's oil capacity to 1.1 million barrels a day [2]. Uaru joins projects served by the Destiny, Unity, Prosperity and One Guyana FPSOs [2].",
+    "More is planned. The sixth project, Whiptail, is due to add 250,000 barrels a day by 2027 [5], and Guyana is targeting about 1.7 million barrels a day by the end of the decade [3]. An eighth Stabroek project is expected to start in 2030, targeting gas and condensate [2].",
+    "Georgetown, the capital at the mouth of the Demerara River, hosts the shore bases, warehouses, fabrication shops, marine services and local companies that support offshore operations. As the industry grows, so does demand for in-country inspection services."
+   ]
+  },
+  {
+   "id": "fpso",
+   "h2": "FPSOs and offshore inspection",
+   "paragraphs": [
+    "Stabroek production flows through FPSOs built by SBM Offshore. The ONE GUYANA FPSO, the largest so far, has initial capacity of 250,000 barrels a day and storage for two million barrels [6]. Regulators have approved some FPSOs to produce above their original design rates, with the Environmental Protection Agency stating the units are not operating beyond safe limits [7].",
+    "FPSOs need extensive in-service inspection: topside process piping and vessels, hull structure and cargo tanks, mooring systems, risers and turret components, cranes and lifting equipment. Inspections follow class society rules and operator integrity programs, with UT thickness surveys, PAUT and MT on welds, corrosion mapping of process piping and close visual inspection by rope access teams.",
+    "Much of this work is carried out by international specialists, but local content policies and the growth of Guyanese service companies are increasing the share performed by in-country providers.",
+    "As the fleet ages, life extension, coating repair programs and risk-based inspection will become more important, increasing the volume of routine topside and hull inspection carried out each year."
+   ],
+   "table": {
+    "caption": "Guyana oil and gas assets and typical NDT scopes",
+    "head": [
+     "Asset",
+     "Main concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "FPSO topsides",
+      "Internal corrosion, erosion, weld integrity",
+      "UT, corrosion mapping, PAUT, RT"
+     ],
+     [
+      "FPSO hull and cargo tanks",
+      "Coating breakdown, corrosion, fatigue cracks",
+      "UT thickness gauging, MT, visual (class)"
+     ],
+     [
+      "Risers, moorings and subsea",
+      "Corrosion, wear, fatigue",
+      "ROV inspection, UT, specialist methods"
+     ],
+     [
+      "Gas-to-Energy plant",
+      "Weld quality, pressure equipment, NGL systems",
+      "RT, PAUT, PMI, UT"
+     ],
+     [
+      "Gas export pipeline and shore approach",
+      "Weld integrity, corrosion",
+      "AUT, UT, CP surveys"
+     ],
+     [
+      "Shore bases, cranes and structures",
+      "Fatigue cracks, corrosion",
+      "MT, UT, visual"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "gte",
+   "h2": "Gas-to-Energy at Wales",
+   "paragraphs": [
+    "The Gas-to-Energy project is Guyana's flagship domestic energy initiative. It will bring natural gas from the Stabroek Block to an integrated facility at Wales on the West Bank of Demerara, where it will be used for power generation and natural gas liquids production [8]. ExxonMobil has completed its part, including a 130-mile offshore pipeline from the Liza fields to the onshore site [9]. The power plant is about 300 MW [3], and Phase I is slated to become operational by the end of 2026 [4].",
+    "Commissioning and operating the plant creates NDT demand for gas turbine and HRSG inspection, high-energy piping welds, pressure vessels, NGL storage and processing equipment, and the onshore pipeline section. Construction close-out requires weld inspection, PMI and documentation reviews, and operations will need periodic outage inspections."
+   ]
+  },
+  {
+   "id": "shorebase",
+   "h2": "Shore bases, logistics and fabrication",
+   "paragraphs": [
+    "Georgetown and the Demerara River area host shore bases with quays, cranes, warehouses, pipe yards and workshops. These facilities need structural inspection of quays and cranes, lifting equipment inspection and certification, and inspection of tanks and fuel systems.",
+    "Local fabrication and machining shops build spools, structures, skids and repair parts for offshore operators. Fabrication QA includes RT and UT of welds, MT and PT, PMI and dimensional checks to ASME, AWS and operator specifications. Developing these capabilities is central to Guyana's local content goals.",
+    "Lifting equipment and cranes at shore bases must be inspected and certified regularly, and NDT of hooks, sheaves and structural welds supports this certification process."
+   ]
+  },
+  {
+   "id": "growth",
+   "h2": "Upcoming projects and gas development",
+   "paragraphs": [
+    "ExxonMobil is advancing gas and condensate developments in the Stabroek Block, including the Longtail project, whose development plan was submitted in March 2026 [10], and a gas-focused development in the southeast of the block [8]. These projects will bring new FPSOs, subsea systems and potentially more onshore gas infrastructure.",
+    "Each new project brings fabrication QA abroad and in Guyana, installation and commissioning inspections, and decades of in-service inspection work."
+   ]
+  },
+  {
+   "id": "marine",
+   "h2": "Marine services, supply vessels and shipyards",
+   "paragraphs": [
+    "Offshore production depends on a fleet of supply vessels, crew boats, tugs and support ships operating from Georgetown and the Demerara River. These vessels need class surveys, thickness gauging during dry-dockings, weld inspection on repairs and inspection of cranes, winches and deck equipment.",
+    "Guyana's growing marine sector is creating demand for shipyard and dry-dock services, and dozens of drilling rigs stored in Venezuela have been moved to shipyards in Trinidad and Guyana for inspection before returning to work [11]. Rig and vessel refurbishment brings substantial NDT work: structural inspection of legs, hulls and derricks, inspection of lifting equipment and certification support.",
+    "Local NDT companies that obtain class approvals for thickness measurement and build marine inspection experience can serve both Guyana's offshore fleet and regional customers."
+   ]
+  },
+  {
+   "id": "methods",
+   "h2": "NDT methods used in Guyana's oil and gas sector",
+   "paragraphs": [
+    "**UT thickness testing and corrosion mapping** dominate FPSO topside and hull inspection. **PAUT and TOFD** inspect critical welds, and **radiography** inspects piping welds in fabrication and repairs. **MT and PT** detect surface cracks on structures, cranes and equipment.",
+    "**Rope access** is widely used offshore, **ROVs** support subsea inspection, **AUT** inspects pipeline girth welds and **PMI** verifies alloys. Class-approved **thickness gauging** is required for hull surveys."
+   ]
+  },
+  {
+   "id": "regulation",
+   "h2": "Regulation, certification and local content",
+   "paragraphs": [
+    "Offshore facilities in Guyana operate under the country's petroleum and environmental regulations, with the Environmental Protection Agency involved in approving operating changes such as higher production rates [7]. FPSOs and marine assets are also subject to classification society rules, which set inspection requirements and approve thickness measurement firms.",
+    "NDT personnel are typically expected to hold ISO 9712 or ASNT certifications, often with offshore safety training and rope access qualifications. Radiography with sealed sources requires authorization under Guyana's radiation protection framework, and providers should confirm current licensing, source import and transport arrangements with the relevant national authorities before work.",
+    "Local content requirements encourage operators and contractors to use Guyanese companies and workers. Building certified local NDT capacity, through training, partnerships with international firms and investment in equipment, is a growing opportunity."
+   ],
+   "bullets": [
+    "Confirm ISO 9712 or ASNT certifications and offshore training.",
+    "Check radiation licensing and source arrangements with national authorities.",
+    "Use class-approved firms for hull thickness gauging."
+   ]
+  },
+  {
+   "id": "climate",
+   "h2": "Tropical climate and corrosion",
+   "paragraphs": [
+    "Guyana's hot, humid equatorial climate, heavy rainfall and saline coastal environment drive atmospheric and marine corrosion. Offshore, the splash zone and FPSO decks are exposed to constant salt spray. Onshore facilities on the low-lying coast face flooding risks and soil-side corrosion.",
+    "Inspection programs should include coating condition surveys, corrosion under insulation screening and marine structure assessments.",
+    "Heavy rainy seasons can delay outdoor work onshore and complicate offshore transfers, so inspection campaigns should include weather contingencies, and electrical equipment must be protected from humidity."
+   ]
+  },
+  {
+   "id": "construction",
+   "h2": "Infrastructure and construction growth",
+   "paragraphs": [
+    "Oil revenues are funding rapid infrastructure growth in Guyana, including roads, bridges, ports, power and water systems and new industrial and commercial buildings. Steel structures and pressure equipment in these projects need fabrication and erection QA: weld inspection to AWS D1.1 and ASME codes, bolting verification and inspection of tanks and piping.",
+    "The Gas-to-Energy project and associated power transmission, as well as new port and logistics facilities, increase demand for certified inspectors. Providers that can combine oil and gas experience with construction QA are well placed to serve this broad market.",
+    "Training Guyanese technicians and engineers in NDT and welding inspection is an important part of meeting this demand sustainably, and partnerships between local firms, training institutions and international providers are helping to build that capacity."
+   ]
+  },
+  {
+   "id": "logistics",
+   "h2": "Logistics and working offshore",
+   "paragraphs": [
+    "Offshore work requires helicopter or vessel transport from Georgetown, offshore safety training, medical certification and limited bed space on FPSOs. NDT crews must be productive and self-sufficient, with spare equipment and consumables. Shore-based work faces traffic, port congestion and rapid growth in demand for accommodation.",
+    "Providers should plan mobilization carefully and build relationships with operators' logistics teams.",
+    "Offshore operators require certified training such as basic offshore safety induction and emergency training, helicopter underwater escape training, and medical fitness certification for every technician, so providers should keep these current for their whole crew pool."
+   ]
+  },
+  {
+   "id": "data",
+   "h2": "Data and integrity management",
+   "paragraphs": [
+    "Operators expect inspection data tied to their integrity management systems, with consistent location identifiers, photographs and encoded data for advanced methods. Class surveys require reports in formats accepted by the classification society. Good data supports life extension and risk-based inspection as the FPSO fleet ages.",
+    "Digital inspection records, including photographs, coverage maps and encoded scan data, also make it easier to train local inspectors by sharing real examples of findings."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Guyana",
+   "paragraphs": [
+    "Offshore NDT is typically priced on day rates per technician with offshore allowances, plus equipment and mobilization. Shore and fabrication QA may be priced per weld, per shift or per project. Local providers with certified staff can be competitive by reducing travel and accommodation costs.",
+    "NDT-Connect lets buyers post one scope and compare certified providers serving Georgetown, the Demerara region and offshore Guyana.",
+    "Well-defined scopes covering asset, location, methods, coverage and reporting format make bids easier to compare and reduce costly offshore change orders."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Guyana",
+   "paragraphs": [
+    "The oil and gas boom is creating new NDT career paths for Guyanese technicians in UT, RT, MT and PT, corrosion inspection, rope access and thickness gauging. Training programs and partnerships with international companies are helping build local skills.",
+    "A typical path starts with Level 1 and 2 certifications in UT and MT, offshore safety training and rope access qualifications, followed by advanced UT and class-approved thickness gauging experience.",
+    "Women and young Guyanese are increasingly entering technical trades through training programs, broadening the local talent pool for NDT."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Georgetown",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers."
+   ],
+   "bullets": [
+    "ISO 9712 or ASNT certified personnel with offshore experience.",
+    "Rope access and class-approved thickness gauging capability.",
+    "Radiation licensing and source arrangements for radiography.",
+    "Fabrication QA capability for local content projects.",
+    "Commitment to local workforce development.",
+    "Reporting compatible with operator and class systems."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "How much oil does Guyana produce?",
+   "a": "Stabroek reached 900,000 bpd in 2025 [1], and capacity rose to 1.1 million bpd after Uaru started in November 2026 [2]."
+  },
+  {
+   "q": "What is the Gas-to-Energy project?",
+   "a": "A facility at Wales that will use Stabroek gas for about 300 MW of power and natural gas liquids [3][8], with Phase I targeted for end-2026 [4]."
+  },
+  {
+   "q": "Which NDT methods are used on FPSOs?",
+   "a": "UT thickness and corrosion mapping, PAUT, radiography, MT and PT, rope access inspection and class-approved hull thickness gauging."
+  },
+  {
+   "q": "Why does local content matter for NDT?",
+   "a": "Local content policies encourage use of Guyanese companies and workers, creating opportunities for certified local NDT providers."
+  },
+  {
+   "q": "What is Guyana's production target?",
+   "a": "About 1.7 million bpd by the end of the decade [3]."
+  },
+  {
+   "q": "How do I request NDT quotes in Guyana?",
+   "a": "Post the scope on NDT-Connect with the asset (offshore, shore base or plant), methods, logistics, dates and reporting requirements."
+  }
+ ],
+ "references": [
+  {
+   "title": "OilNOW — From Liza to ONE GUYANA: how 7 projects transformed Guyana's oil sector",
+   "url": "https://oilnow.gy/news/from-liza-to-one-guyana-how-7-projects-transformed-guyanas-oil-sector-in-6-years/"
+  },
+  {
+   "title": "S&P Global — ExxonMobil starts production at Uaru field offshore Guyana",
+   "url": "https://www.spglobal.com/energy/en/news-research/latest-news/crude-oil/111626-exxonmobil-starts-production-at-uaru-field-offshore-guyana"
+  },
+  {
+   "title": "World Oil — Guyana targets 1.7 MMbpd oil production by end of decade",
+   "url": "https://worldoil.com/news/2026/9/3/guyana-targets-1-7-mmbpd-oil-production-by-end-of-decade/"
+  },
+  {
+   "title": "Guyana Times — Gas-to-Energy Phase I slated for end of 2026",
+   "url": "https://guyanatimesgy.com/energy-push-accelerates-as-guyana-signs-new-oil-blocks-advances-gas-to-energy-plans"
+  },
+  {
+   "title": "Kaieteur News — Guyana could surpass 1 million barrels per day",
+   "url": "https://kaieteurnewsonline.com/2026/02/21/guyana-could-surpass-1m-barrels-per-day-by-year-end/"
+  },
+  {
+   "title": "Kaieteur News — Guyana's oil hits 900,000 barrels daily (ONE GUYANA FPSO)",
+   "url": "https://kaieteurnewsonline.com/2025/11/13/guyanas-oil-hits-900000-barrels-daily/"
+  },
+  {
+   "title": "Kaieteur News — EPA says increased oil production being done safely",
+   "url": "https://kaieteurnewsonline.com/2025/11/28/increased-oil-production-being-done-safely-epa/"
+  },
+  {
+   "title": "OilNOW — Halfway through the year, where does Guyana's gas push stand?",
+   "url": "https://oilnow.gy/news/halfway-through-the-year-where-does-guyanas-gas-push-stand/"
+  },
+  {
+   "title": "ExxonMobil — Guyana 2024 annual report (GTE pipeline)",
+   "url": "https://corporate.exxonmobil.com/locations/guyana/publications/2024-annual-report"
+  },
+  {
+   "title": "Industrial Info — ExxonMobil boosts Guyana's offshore oil and gas hopes (Longtail)",
+   "url": "https://www.industrialinfo.com/iirenergy/industry-news/article/exxonmobil-boosts-guyanas-offshore-oil-and-gas-hopes--363921"
+  },
+  {
+   "title": "CiberCuba — Rigs moved to shipyards in Trinidad and Guyana for inspection",
+   "url": "https://en.cibercuba.com/noticias/2026-04-27-u1-e135253-s27061-nid327365-petroleo-marcha-empresas-apuestan-otra-vez-venezuela"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Point Lisas",
+   "href": "/ndt-services/point-lisas-tt"
+  },
+  {
+   "name": "Puerto La Cruz",
+   "href": "/ndt-services/puerto-la-cruz-ve"
+  },
+  {
+   "name": "Houston",
+   "href": "/ndt-services/houston-tx"
+  }
+ ],
+ "related": [
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  }
+ ]
+}

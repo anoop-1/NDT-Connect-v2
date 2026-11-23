@@ -1,0 +1,343 @@
+{
+ "slug": "punto-fijo-ve",
+ "city": "Punto Fijo",
+ "region": "Falcón",
+ "country": "Venezuela",
+ "countrySlug": "venezuela",
+ "wave": 3,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Punto Fijo, Venezuela: Paraguaná Refining Center Inspection and Rehabilitation",
+ "metaTitle": "NDT Services in Punto Fijo, Venezuela | Paraguaná Refinery Inspection",
+ "description": "NDT in Punto Fijo, Venezuela: inspection for the Amuay and Cardón refineries of the Paraguaná Refining Center. Rehabilitation, corrosion, methods, rules.",
+ "quickAnswer": "Punto Fijo, on Venezuela's Paraguaná Peninsula, is home to the **Paraguaná Refining Center (CRP)**: the Amuay and Cardón refineries, with a combined capacity of **955,000 barrels a day** [1]. Years of underinvestment have left the complex running at a fraction of capacity [2]. In early 2026 it was processing about 287,000 barrels a day at five of its nine distillation units [1]. Experts estimate that fully restoring Venezuela's refining capacity would cost **at least $20 billion** [3], which puts **inspection-led rehabilitation** at the heart of any recovery. The 2012 Amuay explosion, which killed 48 people, remains a stark reminder of what is at stake [4][5].",
+ "keyFacts": [
+  {
+   "label": "Complex",
+   "value": "Paraguaná Refining Center: Amuay and Cardón, 955,000 bpd combined capacity [1]"
+  },
+  {
+   "label": "Amuay",
+   "value": "645,000 bpd capacity [2]"
+  },
+  {
+   "label": "Recent throughput",
+   "value": "About 287,000 bpd at five of nine distillation units (early 2026) [1]"
+  },
+  {
+   "label": "Restoration cost",
+   "value": "At least $20 billion to fully restore Venezuelan refining capacity [3]"
+  }
+ ],
+ "industries": [
+  "Oil refining",
+  "Storage terminals and ports",
+  "Petrochemicals and LPG",
+  "Power and utilities",
+  "Marine services",
+  "Industrial maintenance"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "The Paraguaná Refining Center and its inspection needs",
+   "paragraphs": [
+    "The Paraguaná Refining Center once symbolized Venezuela's oil wealth and its ambition to turn vast crude reserves into fuels and export revenue [6]. It combines the Amuay refinery, with 645,000 barrels per day of capacity [2], and the neighboring Cardón refinery into one of the largest refining complexes in the world, with 955,000 barrels a day of total capacity [1].",
+    "Today the complex runs far below capacity. Workers and contractors interviewed by Reuters described years of underinvestment, equipment failures and shortages, with open-air waste pits nearly full and residue seeping across pipelines and valve stations [2]. Amuay's flexicoking unit, which once upgraded heavy residue into better-quality fuel, sits idle and blackened [2]. Nationally, PDVSA's refineries processed about 399,000 barrels a day in April 2026, roughly 31% of installed capacity [7].",
+    "Some progress has been made. In September 2026, PDVSA restarted the fluid catalytic cracking unit at Cardón, complementing Amuay's cat cracker, after power cuts earlier in the year affected both refineries [8]. Smaller repair projects had already let Amuay recover about 20,000 barrels a day of processing capacity [9]. Each restart and repair depends on knowing the condition of equipment that has been idle or poorly maintained for years, and that is where NDT comes in."
+   ]
+  },
+  {
+   "id": "amuay2012",
+   "h2": "Lessons from the 2012 Amuay explosion",
+   "paragraphs": [
+    "On August 25, 2012, an explosion caused by the ignition of leaking gas at Amuay killed at least 48 people, mainly National Guard troops stationed at the site [4]. A vapor cloud had been detected during a routine inspection and reported as an olefin leak from a storage area [5]. The energy minister said metallurgical examination of damaged infrastructure would determine whether the leak came from a faulty valve or cracks in pipelines carrying olefins, butane and methane between storage spheres and process units [10]. Critics blamed lack of maintenance and investment [11], while an official investigation later concluded that sabotage was to blame [12].",
+    "Whatever the final cause, the disaster highlighted the risks of operating aging hydrocarbon storage and piping without rigorous mechanical integrity programs. For NDT, the lesson is that pressurized LPG and olefin systems, spheres and the piping connecting them need regular, thorough inspection, with findings acted on promptly."
+   ]
+  },
+  {
+   "id": "assets",
+   "h2": "Equipment and inspection scopes",
+   "paragraphs": [
+    "Rehabilitating a refinery that has run at low rates for years requires inspecting equipment that may have suffered corrosion during downtime, deterioration of insulation and coatings, and damage from abrupt shutdowns caused by power failures. The table summarizes typical scopes."
+   ],
+   "table": {
+    "caption": "Paraguaná refinery assets and typical NDT scopes",
+    "head": [
+     "Asset",
+     "Main concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Crude and vacuum units",
+      "Sulfidation, naphthenic acid corrosion, CUI",
+      "UT, corrosion mapping, PAUT, PEC"
+     ],
+     [
+      "FCC units",
+      "Erosion, refractory damage, cracking",
+      "UT, PAUT, thermography, visual"
+     ],
+     [
+      "Flexicoker and conversion units",
+      "Coking, cracking, erosion after long idle periods",
+      "UT, PAUT, TOFD, MT, visual"
+     ],
+     [
+      "Hydrotreaters",
+      "HTHA, weld cracking",
+      "Advanced UT for HTHA, PAUT, TOFD"
+     ],
+     [
+      "LPG spheres and olefin piping",
+      "Cracking, corrosion, flange and valve defects",
+      "PAUT, TOFD, MT, AE, UT"
+     ],
+     [
+      "Tank farms and marine terminals",
+      "Floor and shell corrosion, dock piping",
+      "MFL, UT, guided wave, visual"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "recommissioning",
+   "h2": "Recommissioning idle units: an inspection-first approach",
+   "paragraphs": [
+    "Units that have been shut down or running intermittently need a structured return-to-service inspection. Typical steps include visual inspection of all accessible equipment, thickness surveys at condition monitoring locations and areas exposed to stagnant fluids, crack detection on welds in high-stress and cyclic service, inspection under insulation where it is wet or damaged, and verification of materials with PMI where records are missing.",
+    "Heat exchangers, fired heaters and rotating equipment need dedicated inspections: tube inspection with eddy current or IRIS, furnace tube thickness and creep checks, and inspection of compressor and pump casings. Relief valves and instruments need testing or replacement.",
+    "Because many records may be lost or outdated, baseline inspections are particularly valuable. They give engineers a clear starting point for fitness-for-service assessments and future corrosion rate calculations."
+   ]
+  },
+  {
+   "id": "power",
+   "h2": "Power instability and its effect on equipment",
+   "paragraphs": [
+    "Repeated power blackouts have repeatedly disrupted Paraguaná. In early 2026, a blackout took Amuay out of service, and Cardón had to restart a key gasoline-making plant afterward [1]. Abrupt shutdowns and restarts stress equipment through thermal cycling, pressure transients and process upsets, and can cause coking, plugging and mechanical damage.",
+    "After unplanned shutdowns, targeted inspections of hot sections, fired heaters, reactors, high-temperature piping and rotating equipment help catch damage before it causes failures. Thermography and vibration analysis can support NDT by identifying hot spots and mechanical problems during restart."
+   ]
+  },
+  {
+   "id": "spheres",
+   "h2": "LPG spheres, olefin storage and pressurized systems",
+   "paragraphs": [
+    "Pressurized storage of LPG, butane and olefins is among the highest-consequence equipment in any refinery, as the 2012 Amuay disaster showed. Spheres and bullets can suffer stress corrosion cracking, wet H2S damage, weld defects and corrosion at supports and under fireproofing, and the piping, valves and flanges connecting them to process units can leak if gaskets, bolting or welds deteriorate.",
+    "A robust inspection program for pressurized storage includes external visual inspection, thickness surveys, PAUT or TOFD of shell and nozzle welds, wet fluorescent magnetic particle testing of internal welds when vessels are opened, inspection of supports and fireproofing, and checks on relief valves and fixed fire protection. Acoustic emission testing can screen spheres in service to prioritize internal inspections.",
+    "Piping that carries LPG and olefins should be inspected for corrosion and cracking, with special attention to dead legs, small-bore connections and valve stations. Leak detection, gas monitoring and prompt repair of findings are essential."
+   ]
+  },
+  {
+   "id": "methods",
+   "h2": "NDT methods for refinery rehabilitation",
+   "paragraphs": [
+    "**Ultrasonic thickness testing and corrosion mapping** quantify wall loss on piping, vessels and tanks. **PAUT and TOFD** detect and size cracks in welds, LPG spheres and high-temperature equipment, and **advanced UT techniques** screen for high-temperature hydrogen attack in hydroprocessing units.",
+    "**Radiography** inspects repair welds and small-bore piping, and **profile radiography** can show corrosion under insulation. **Pulsed eddy current** screens insulated lines without stripping insulation. **Eddy current and IRIS** inspect exchanger tubes. **Acoustic emission** screens spheres and tanks. **MFL floor scanning** inspects tank floors, and **PMI** verifies alloys where records are missing.",
+    "**Visual inspection** by experienced inspectors remains the first step in any rehabilitation, identifying obvious damage and guiding where to apply NDT."
+   ]
+  },
+  {
+   "id": "climate",
+   "h2": "Coastal climate and corrosion",
+   "paragraphs": [
+    "The Paraguaná Peninsula is hot, dry and windy, with salt-laden Caribbean air. Atmospheric corrosion of structures, piping and tanks is severe, and corrosion under insulation develops where insulation has been damaged and moisture can enter. Marine terminals and docks face splash-zone corrosion.",
+    "Inspection programs should include external corrosion surveys of structural steel and pipe racks, CUI screening on insulated lines, and coating condition assessments to plan repainting.",
+    "Wind-blown sand and dust abrade coatings and can clog equipment, so NDT crews should protect instruments and probes, and plan cleaning of surfaces before ultrasonic and magnetic particle testing."
+   ]
+  },
+  {
+   "id": "radiation",
+   "h2": "Radiography rules in Venezuela",
+   "paragraphs": [
+    "Venezuela's Ministry of Health, through the Dirección General de Salud Ambiental y Contraloría Sanitaria, is the national competent authority for radiological protection, while the Dirección de Energía Atómica controls the legal import of radiation equipment [13]. Industrial gamma radiography is widely used; a paper by the Dirección General de Energía Atómica reported 62 authorized gammagraphy companies with 388 cameras [14].",
+    "Buyers should confirm that radiography providers are authorized, that sources are legally documented and securely stored, and that operators have radiation protection training. In a busy refinery, exclusion zones must be coordinated carefully with operations and other contractors."
+   ],
+   "bullets": [
+    "Verify current radiography authorizations and source documentation [13][14].",
+    "Check operator radiation protection training.",
+    "Coordinate exclusion zones with refinery operations."
+   ]
+  },
+  {
+   "id": "standards",
+   "h2": "Standards and certification",
+   "paragraphs": [
+    "Refinery inspection in Venezuela draws on API standards (510, 570, 653, 580/581 and 579), ASME codes and PDVSA's own engineering standards. Personnel are commonly certified under ASNT-based programs or ISO 9712.",
+    "Because many experienced technicians have left the industry, buyers should check certification validity and recent experience, and use experienced Level IIIs to review procedures and results for critical equipment."
+   ]
+  },
+  {
+   "id": "turnarounds",
+   "h2": "Planning turnarounds at Paraguaná",
+   "paragraphs": [
+    "Restoring capacity at a complex the size of Paraguaná will require a long series of turnarounds across dozens of units. Each needs a worklist built from damage mechanisms, available records and condition data, with contingency for the extra damage likely after years of limited maintenance. Inspection results drive repair scope, so NDT has to happen early in each shutdown, with daily reporting to engineers.",
+    "Because spare parts, probes and specialist equipment may need to be imported, providers should stage equipment and consumables in Venezuela before shutdowns start. Clear communication between owner inspectors, NDT crews and repair contractors helps avoid delays, and final reports should give engineers the data needed for fitness-for-service decisions and future inspection planning."
+   ]
+  },
+  {
+   "id": "investment",
+   "h2": "Investment outlook and opportunities",
+   "paragraphs": [
+    "Experts estimate that fully restoring Venezuela's refining capacity would require at least $20 billion [3]. Low regulated gasoline prices have been a major obstacle to funding repairs [2], and major repair work at Paraguaná slowed in 2026 after a Chinese contractor reduced its operations there [2].",
+    "If investment increases, NDT demand will rise sharply: baseline inspections, turnaround inspections, construction NDT on repairs and replacements, and ongoing mechanical integrity programs. Providers that can mobilize advanced equipment, experienced personnel and robust reporting will be well placed.",
+    "For buyers, prioritizing by risk is essential: start with equipment whose failure could injure people or the surrounding community, such as pressurized storage, hot hydrocarbon service and critical piping, then move to equipment that limits production."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Punto Fijo",
+   "paragraphs": [
+    "Refinery NDT is usually priced on day rates per technician and method, with advanced equipment billed separately. Logistics, imported equipment, security and power backup can add significant costs. Long-term service agreements give providers stability and buyers predictable rates.",
+    "NDT-Connect lets buyers post one scope and compare providers serving Punto Fijo, the Paraguaná Peninsula and western Venezuela."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Punto Fijo",
+   "paragraphs": [
+    "Refinery rehabilitation creates demand for UT, RT, MT and PT technicians, advanced UT specialists, tube inspectors, API inspectors and Level IIIs. Technicians with refinery experience and advanced UT skills are especially valuable.",
+    "A typical path starts with Level II certification in UT and RT, radiation protection training, and then PAUT, TOFD and API inspector certifications.",
+    "Training new technicians and refreshing the skills of returning professionals is a priority. Structured programs with supervised field experience, practical examinations and mentoring by experienced Level IIIs help build capable local teams for long-term rehabilitation work."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Punto Fijo",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers."
+   ],
+   "bullets": [
+    "Verified ASNT or ISO 9712 certifications and refinery experience.",
+    "Authorized radiography with documented sources [13][14].",
+    "Advanced UT, PAUT, TOFD, PEC and AE capability.",
+    "Experience with recommissioning idle units and baseline inspections.",
+    "Reliable logistics, spares and power backup.",
+    "Reports suited to fitness-for-service assessment and repair planning."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "What is the Paraguaná Refining Center?",
+   "a": "The Amuay and Cardón refineries near Punto Fijo, with a combined capacity of 955,000 barrels a day [1]."
+  },
+  {
+   "q": "How much is the complex processing now?",
+   "a": "In early 2026 it processed about 287,000 bpd at five of its nine distillation units [1]."
+  },
+  {
+   "q": "What happened at Amuay in 2012?",
+   "a": "An explosion caused by ignition of leaking gas killed at least 48 people [4]."
+  },
+  {
+   "q": "How much would it cost to restore Venezuela's refineries?",
+   "a": "Experts estimate at least $20 billion [3]."
+  },
+  {
+   "q": "Who regulates radiography in Venezuela?",
+   "a": "The Ministry of Health is the national competent authority for radiological protection; the Dirección de Energía Atómica controls equipment import [13]."
+  },
+  {
+   "q": "How do I request NDT quotes in Punto Fijo?",
+   "a": "Post the scope on NDT-Connect with the unit, equipment, methods, access, dates and reporting requirements."
+  }
+ ],
+ "references": [
+  {
+   "title": "Hydrocarbon Processing — Venezuela's refineries boost processing to 35% of capacity",
+   "url": "https://hydrocarbonprocessing.com/news/2026/02/venezuelas-refineries-boost-processing-to-35-of-capacity/"
+  },
+  {
+   "title": "Gulf Times / Reuters — Ugly and rusty: Venezuela's refineries are relics that will be difficult to revive",
+   "url": "https://www.gulf-times.com/article/730271/opinion/ugly-and-rusty-venezuelas-refineries-are-relics-that-will-be-difficult-to-revive"
+  },
+  {
+   "title": "BOE Report / Reuters — Restoring refining capacity would require at least $20 billion",
+   "url": "https://boereport.com/2026/07/29/ugly-and-rusty-venezuelas-refineries-are-relics-that-will-be-hard-to-revive/"
+  },
+  {
+   "title": "Wikiwand — 2012 Venezuela refinery explosion (Amuay tragedy)",
+   "url": "https://www.wikiwand.com/en/articles/2012_Venezuela_Refinery_Explosion"
+  },
+  {
+   "title": "FABIG — Amuay Refinery, Falcón, Venezuela (accident summary)",
+   "url": "https://www.fabig.com/industrial-accidents/amuay-refinery-venezuela/"
+  },
+  {
+   "title": "Euronext / Reuters — Paraguaná Refining Center once symbolized oil wealth",
+   "url": "https://live.euronext.com/en/financial-news/ugly-and-rusty-venezuelas-refineries-are-relics-will-be-hard-revive"
+  },
+  {
+   "title": "Rio Times — PDVSA refining runs at a third of capacity",
+   "url": "https://riotimesonline.com/pdvsa-refining-runs-at-a-third-of-capacity-even-as-venezuelas-crude-output-recovers"
+  },
+  {
+   "title": "GBM / Reuters — PDVSA restarts Cardón FCC unit",
+   "url": "https://gbm.com/media/noticia/noticia-en-vivo-estatal-venezolana-pdvsa-reinicia-unidad-de-craqueo-catalitico-fluido-en-refineria-de-cardon-fuentes/"
+  },
+  {
+   "title": "Pipeline & Gas Journal — Venezuela's refineries crumble despite oil export rebound",
+   "url": "https://pgjonline.com/news/2026/july/venezuelas-refineries-crumble-despite-oil-export-rebound"
+  },
+  {
+   "title": "Argus — Caracas to study gas leak behind Amuay refinery blast",
+   "url": "https://www.argusmedia.com/ja/news-and-insights/latest-market-news/816023-caracas-to-study-gas-leak-behind-amuay-refinery-blast"
+  },
+  {
+   "title": "Wikiwand — Amuay tragedy (criticism of maintenance)",
+   "url": "https://wikiwand.com/en/articles/Amuay_tragedy"
+  },
+  {
+   "title": "Fox Business — Venezuela probe says sabotage caused Amuay disaster",
+   "url": "https://www.foxbusiness.com/markets/venezuela-probe-says-sabotage-caused-amuay-disaster"
+  },
+  {
+   "title": "La Patilla — Radiological protection authorities in Venezuela",
+   "url": "https://lapatilla.com/2026/03/19/especialista-dijo-que-medidas-de-proteccion-radiologica-en-venezuela-no-pueden-ser-tratadas-como-un-tramite-burocratico/"
+  },
+  {
+   "title": "IAEA INIS — Safety culture in industrial gammagraphy in Venezuela",
+   "url": "https://inis.iaea.org/records/17392-5wt94"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Maracaibo",
+   "href": "/ndt-services/maracaibo-ve"
+  },
+  {
+   "name": "Puerto La Cruz",
+   "href": "/ndt-services/puerto-la-cruz-ve"
+  },
+  {
+   "name": "Point Lisas",
+   "href": "/ndt-services/point-lisas-tt"
+  },
+  {
+   "name": "Houston",
+   "href": "/ndt-services/houston-tx"
+  }
+ ],
+ "related": [
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  },
+  {
+   "label": "All NDT locations",
+   "href": "/ndt-locations"
+  }
+ ]
+}

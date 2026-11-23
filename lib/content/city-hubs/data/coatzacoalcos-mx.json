@@ -1,0 +1,345 @@
+{
+ "slug": "coatzacoalcos-mx",
+ "city": "Coatzacoalcos",
+ "region": "Veracruz",
+ "country": "Mexico",
+ "countrySlug": "mexico",
+ "wave": 3,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Coatzacoalcos, Mexico: Petrochemical, Refinery and Terminal Inspection",
+ "metaTitle": "NDT Services in Coatzacoalcos, Mexico | Petrochemical Plant Inspection",
+ "description": "NDT in Coatzacoalcos, Mexico: inspection for Pemex petrochemical complexes, Etileno XXI, Minatitlán, Pajaritos and new terminals. CNSNS and NOM-020 rules.",
+ "quickAnswer": "Coatzacoalcos, in southern Veracruz, is Mexico's petrochemical heartland. Braskem Idesa's **Etileno XXI** complex runs a 1.05 million tonne-per-year ethane cracker [1], supplied since 2025 by a new **US$500 million ethane import terminal** [2]. Pemex is rehabilitating five plants at its **Cangrejera and Morelos** complexes under a MX$30 billion ethane-ethylene project [5], after output at Morelos fell from 1.4 Mt in 2014 to 136,000 t in 2024 [4]. Rehabilitation, turnarounds and new terminals in the **Interoceanic Corridor** drive strong NDT demand. Radiography requires a **CNSNS license** [10], and pressure equipment falls under **NOM-020-STPS-2011** [14].",
+ "keyFacts": [
+  {
+   "label": "Etileno XXI",
+   "value": "Braskem Idesa ethane cracker, 1.05 Mtpa [1]; started 2016 [3]"
+  },
+  {
+   "label": "Ethane terminal",
+   "value": "TQPM, US$500 million, opened 2025, up to 80,000 bpd of ethane imports [1][2]"
+  },
+  {
+   "label": "Pemex rehabilitation",
+   "value": "MX$30 billion to rehabilitate five plants at Cangrejera and Morelos [5]"
+  },
+  {
+   "label": "Pressure equipment rule",
+   "value": "NOM-020-STPS-2011 pressure tests or NDT for category II and III equipment [14]"
+  }
+ ],
+ "industries": [
+  "Petrochemicals and polymers",
+  "Oil refining",
+  "Fertilizers and ammonia",
+  "Marine terminals and ports",
+  "Pipelines",
+  "Power and utilities"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Why Coatzacoalcos is a major petrochemical NDT market",
+   "paragraphs": [
+    "The Coatzacoalcos–Minatitlán corridor concentrates more petrochemical capacity than anywhere else in Mexico. Pemex's Cangrejera, Morelos and Pajaritos complexes, the Minatitlán refinery, the Cosoleacaque ammonia complex, Braskem Idesa's Etileno XXI and a cluster of private chemical plants share pipelines, utilities and port infrastructure around the Coatzacoalcos River and Pajaritos Lagoon.",
+    "After years of decline, the region is seeing renewed investment. Pemex's industrial strategy is refocusing on Veracruz, with expanded production planned at Cangrejera, Morelos, Cosoleacaque, Pajaritos and other plants [8]. Braskem Idesa has secured feedstock through its new ethane terminal, which could support capacity growth of up to 25% [9]. The terminal is the first private industrial investment in the area of influence of the Interoceanic Corridor of the Isthmus of Tehuantepec [9].",
+    "For NDT providers, this means a busy mix of rehabilitation inspections on old Pemex units, turnarounds at Etileno XXI, construction NDT on new terminals and plants, and ongoing mechanical integrity work across the corridor."
+   ]
+  },
+  {
+   "id": "etileno",
+   "h2": "Etileno XXI and the ethane import terminal",
+   "paragraphs": [
+    "Etileno XXI, at Nanchital just south of Coatzacoalcos, started up in 2016 as the largest private petrochemical investment in Mexico; Braskem owns 75% and Grupo Idesa 25% [3]. Its ethane cracker has a capacity of 1.05 million tonnes per year [1], feeding polyethylene plants.",
+    "The Terminal Química Puerto México (TQPM), built with Advario, was completed in May 2025 at a cost of US$500 million [2] and is designed to import up to 80,000 barrels a day of ethane [1]. Cryogenic and refrigerated ethane storage and transfer systems, marine loading facilities and pipelines bring specific inspection needs: weld inspection on stainless and low-temperature steels, PMI, inspection of insulation systems and supports, and integrity monitoring of transfer lines.",
+    "Ethylene crackers need periodic turnarounds with furnace coil inspection for carburization and creep, quench and transfer line exchanger inspection, cold-section piping and vessel inspection, and compressor inspection."
+   ]
+  },
+  {
+   "id": "pemex",
+   "h2": "Pemex Cangrejera and Morelos: rehabilitation inspection",
+   "paragraphs": [
+    "Pemex's Cangrejera complex, built in the early 1980s south-east of Coatzacoalcos, has run far below capacity for years [6]. At Morelos, the cracker has stood idle since 2023 for lack of ethane, leaving ethylene oxide as the main product [7]. Petrochemical output at Morelos fell from 1.4 million tonnes in 2014 to 136,000 tonnes in 2024, and Cangrejera's dropped from 2.2 million to 1 million tonnes [4].",
+    "Pemex now plans to reactivate both complexes for ethane derivatives [4], with MX$30 billion earmarked to rehabilitate five plants in its ethane-ethylene project [5]. Cangrejera is expected to play a key role in ammonia and Morelos in urea, while both expand ethylene derivatives and aromatics [8].",
+    "Bringing idle and under-maintained units back to service is inspection-intensive. Baseline thickness surveys, crack detection on welds, inspection of furnaces, heat exchangers and rotating equipment, PMI where records are missing, and fitness-for-service assessments will all be needed before restart."
+   ],
+   "table": {
+    "caption": "Coatzacoalcos-area assets and typical NDT scopes",
+    "head": [
+     "Asset",
+     "Main concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Ethylene cracker furnaces",
+      "Coil carburization, creep, bulging",
+      "Furnace tube inspection, UT, ECT"
+     ],
+     [
+      "Cold sections and cryogenic piping",
+      "Weld defects, low-temperature embrittlement",
+      "RT, PAUT, PMI, visual"
+     ],
+     [
+      "Ammonia and urea plants",
+      "Stress corrosion cracking, carbamate corrosion",
+      "PAUT, WFMT, UT, ferrite"
+     ],
+     [
+      "Aromatics and refinery units",
+      "Corrosion, HTHA, cracking",
+      "UT, corrosion mapping, PAUT, TOFD"
+     ],
+     [
+      "Ethane and product terminals",
+      "Insulation damage, weld integrity, tank corrosion",
+      "RT, PAUT, MFL, UT"
+     ],
+     [
+      "Pipelines and river crossings",
+      "Internal and external corrosion",
+      "UT, guided wave, ILI verification"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "fertilizers",
+   "h2": "Ammonia, urea and fertilizer plants",
+   "paragraphs": [
+    "The Cosoleacaque complex and the planned expansion of ammonia and urea production at Cangrejera, Morelos and Escolín [8] make fertilizers an important part of the regional NDT market. Ammonia and urea plants have well-known damage mechanisms: stress corrosion cracking in ammonia storage, carbamate corrosion in urea synthesis, high-temperature hydrogen attack in synthesis loops and creep in reformer tubes.",
+    "Specialist inspections include wet fluorescent magnetic particle testing of ammonia storage vessels, ferrite and thickness checks in urea equipment, reformer tube inspection with laser profiling and ultrasonic or eddy current tools, and PAUT on high-pressure synthesis loop welds."
+   ]
+  },
+  {
+   "id": "refinery",
+   "h2": "Minatitlán refinery and Pajaritos terminal",
+   "paragraphs": [
+    "Pemex's Minatitlán refinery, upstream on the Coatzacoalcos River, and the Pajaritos marine terminal complete the corridor's oil infrastructure. Refinery inspection priorities include crude unit corrosion, FCC and coker inspection, hydrotreater HTHA screening and heat exchanger tube inspection. Pajaritos handles imports of products and ethane, and Braskem Idesa's ethane imports have also gone through Pajaritos [5].",
+    "Terminal NDT covers API 653 tank inspections, pipeline and manifold thickness surveys, loading arm inspection and marine structure assessment."
+   ]
+  },
+  {
+   "id": "corridor",
+   "h2": "Interoceanic Corridor and new construction",
+   "paragraphs": [
+    "The Interoceanic Corridor of the Isthmus of Tehuantepec aims to connect the Gulf port of Coatzacoalcos with Salina Cruz on the Pacific through rail, port and industrial development. New industrial parks, port terminals and plants in the corridor will need construction NDT: structural weld inspection, piping and pressure equipment examinations, tank construction inspection and pipeline weld inspection.",
+    "Construction QA typically follows ASME, API and AWS codes, with owner specifications for international investors.",
+    "Rail and port infrastructure in the corridor also needs steel structure inspection, from bridges and cranes to new terminal buildings, adding to construction-phase demand."
+   ]
+  },
+  {
+   "id": "methods",
+   "h2": "NDT methods used in Coatzacoalcos",
+   "paragraphs": [
+    "**Corrosion mapping and UT thickness testing** are used throughout the corridor's plants and pipelines. **PAUT and TOFD** inspect welds on new construction, repairs and high-pressure equipment. **Radiography**, including digital methods, remains common for piping welds and cryogenic systems.",
+    "**Furnace tube inspection** systems assess cracker and reformer coils. **WFMT** detects stress corrosion cracking in ammonia vessels. **Eddy current and IRIS** inspect exchangers, **MFL** scans tank floors, **guided wave** screens pipelines and **PMI** verifies alloys."
+   ]
+  },
+  {
+   "id": "turnarounds",
+   "h2": "Turnarounds and restart planning",
+   "paragraphs": [
+    "Restarting units that have been idle or running at low rates is one of the riskiest phases in a plant's life. Equipment may have corroded during downtime, insulation may be wet, instruments may be out of calibration, and records may not reflect modifications made over the years. A structured inspection plan before restart reduces the risk of leaks and failures.",
+    "For Cangrejera and Morelos, a practical approach is to rank equipment by consequence, then combine visual inspection, thickness surveys, crack detection on high-stress welds, furnace and exchanger inspection, and relief valve testing. Findings feed fitness-for-service assessments and repair plans. Daily reporting during the turnaround lets engineers decide quickly on repairs, replacements or temporary measures.",
+    "Private operators like Braskem Idesa run scheduled turnarounds on their crackers and polymer plants, which concentrate inspection demand into short windows. Booking qualified crews early and sharing worklists in advance is essential, especially when several plants in the corridor shut down in the same season."
+   ]
+  },
+  {
+   "id": "radiation",
+   "h2": "Radiography rules in Mexico: CNSNS licensing",
+   "paragraphs": [
+    "Industrial radiography with radioactive sources in Mexico is regulated by the National Commission for Nuclear Safety and Safeguards (CNSNS) under the General Radiological Safety Regulation. Companies need an operating license for their radioactive installation, supported by a radiological safety policy, detailed descriptions of their sources and devices, dose estimates and emergency plans [10]. Gamma radiography equipment must also meet a dedicated official standard covering operation, transport, storage, maintenance and requirements for occupationally exposed personnel [13].",
+    "Every licensee must have a Radiological Safety Officer (Encargado de Seguridad Radiológica, ESR) authorized by CNSNS to oversee radiation protection at the workplace [12]. For type A or B installations, the proposed ESR must show approval of a CNSNS-endorsed course at ESR level, a year of experience in radiological safety and six months in radiation protection related to the sources used [11].",
+    "Buyers should ask for the provider's CNSNS license number, the authorized ESR's name, source and equipment documentation and dosimetry records for radiographers before work starts."
+   ],
+   "bullets": [
+    "Confirm the CNSNS operating license and authorized ESR [10][11].",
+    "Check gamma camera compliance with the official equipment standard [13].",
+    "Review dosimetry and training records for every radiographer."
+   ]
+  },
+  {
+   "id": "nom020",
+   "h2": "Pressure equipment inspection under NOM-020-STPS-2011",
+   "paragraphs": [
+    "Mexico's NOM-020-STPS-2011 governs the safe operation of pressure vessels, cryogenic vessels and boilers in workplaces. It makes the employer responsible for determining and carrying out pressure tests or nondestructive examinations on equipment in categories II and III [14]. Notices that category III equipment complies with the standard must be accompanied by a conformity assessment issued by an accredited verification unit [15].",
+    "For NDT providers, NOM-020 creates steady demand for thickness surveys, weld inspection and other examinations on pressure equipment in factories, plants and refineries, often in coordination with verification units. Clear reports that state the method, procedure, coverage, results and technician qualifications make compliance straightforward."
+   ]
+  },
+  {
+   "id": "climate",
+   "h2": "Tropical climate and corrosion",
+   "paragraphs": [
+    "Coatzacoalcos is hot, humid and rainy, with heavy rains and storms during the wet season. Corrosion under insulation, atmospheric corrosion and coating breakdown are major damage mechanisms, especially on older plants. Flooding can affect access and cause soil-side corrosion on tanks.",
+    "Inspection programs should include CUI screening, coating condition assessments and external corrosion surveys of structures and pipe racks.",
+    "Seasonal heavy rain also affects scheduling of external inspection and painting, so many owners plan CUI and coating surveys for the drier months."
+   ]
+  },
+  {
+   "id": "data",
+   "h2": "Reporting, records and baselining",
+   "paragraphs": [
+    "Rehabilitation projects often start with incomplete records. Baseline inspections give engineers a clear picture of current condition and support fitness-for-service decisions. NDT reports should use consistent location identifiers, include photographs and coverage maps, and deliver raw data for advanced methods. For NOM-020 compliance, reports should clearly state methods, coverage, acceptance criteria and results.",
+    "Petrochemical owners increasingly use risk-based inspection software, so NDT results should be delivered in formats that load directly into these systems, with location identifiers that match their equipment registers."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Coatzacoalcos",
+   "paragraphs": [
+    "Plant and turnaround NDT is usually priced on day rates per technician and method, with advanced equipment billed separately. Pemex and private owners often contract through tenders and framework agreements. Construction QA may be priced per weld or per shift.",
+    "NDT-Connect lets buyers post one scope and compare certified providers serving Coatzacoalcos, Minatitlán, Cosoleacaque and southern Veracruz."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Coatzacoalcos",
+   "paragraphs": [
+    "The corridor offers steady NDT careers in petrochemicals, refining, fertilizers and construction. Employers hire RT, UT, MT and PT technicians, PAUT and TOFD specialists, furnace tube inspectors and Level IIIs.",
+    "Technicians with cracker, ammonia or urea plant experience, and with CNSNS-recognized radiation protection training, are especially valued.",
+    "Bilingual technicians and engineers are valued by international owners such as Braskem Idesa and the terminal operators, and offshore experience gained in nearby Campeche transfers well to the corridor's marine terminals."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Coatzacoalcos",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers."
+   ],
+   "bullets": [
+    "SNT-TC-1A, CP-189 or ISO 9712 certified personnel with Level III oversight.",
+    "CNSNS license and authorized ESR for radiography [10][11].",
+    "Petrochemical experience: crackers, ammonia, urea, aromatics.",
+    "Furnace tube, PAUT, TOFD and WFMT capability.",
+    "NOM-020 examination experience [14].",
+    "Turnaround capacity and daily reporting."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "What is Etileno XXI?",
+   "a": "Braskem Idesa's ethylene and polyethylene complex at Nanchital, started in 2016 [3], with a 1.05 Mtpa ethane cracker [1]."
+  },
+  {
+   "q": "Why is Pemex rehabilitating Cangrejera and Morelos?",
+   "a": "Output fell sharply over the past decade [4], and Pemex plans to reactivate both complexes, with MX$30 billion for five plants in its ethane-ethylene project [5]."
+  },
+  {
+   "q": "What is the TQPM terminal?",
+   "a": "A US$500 million ethane import terminal in Coatzacoalcos, completed in May 2025 [2], designed for up to 80,000 bpd of ethane [1]."
+  },
+  {
+   "q": "Who regulates radiography in Mexico?",
+   "a": "The CNSNS licenses radioactive installations and authorizes Radiological Safety Officers [10][12]."
+  },
+  {
+   "q": "Which NDT methods are used in petrochemical plants?",
+   "a": "Corrosion mapping, PAUT, TOFD, radiography, furnace tube inspection, WFMT, eddy current and IRIS, MFL and PMI."
+  },
+  {
+   "q": "How do I request NDT quotes in Coatzacoalcos?",
+   "a": "Post the scope on NDT-Connect with the plant, equipment, methods, access, dates and reporting requirements."
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Ciudad del Carmen",
+   "href": "/ndt-services/ciudad-del-carmen-mx"
+  },
+  {
+   "name": "Tampico",
+   "href": "/ndt-services/tampico-mx"
+  },
+  {
+   "name": "Monterrey",
+   "href": "/ndt-services/monterrey-mx"
+  },
+  {
+   "name": "Houston",
+   "href": "/ndt-services/houston-tx"
+  }
+ ],
+ "related": [
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  }
+ ],
+ "references": [
+  {
+   "title": "Portnews — Braskem Idesa launches TQPM ethane import terminal at Coatzacoalcos",
+   "url": "https://en.portnews.ru/news/377519"
+  },
+  {
+   "title": "Mexico Business News — Advario and Braskem Idesa inaugurate ethane terminal in Veracruz",
+   "url": "https://mexicobusiness.news/chemicals/news/advario-braskem-idesa-inaugurate-ethane-terminal-veracruz"
+  },
+  {
+   "title": "chemXplore — Etileno XXI (Nanchital)",
+   "url": "https://chemxplore.com/parks-clusters/etileno-xxi"
+  },
+  {
+   "title": "BNamericas — Pemex to invest US$1bn to revive petrochemical production (Morelos and Cangrejera output)",
+   "url": "https://bnamericas.com/en/news/pemex-to-invest-us1bn-to-revive-petrochemical-production"
+  },
+  {
+   "title": "El Imparcial — Pemex to invest MX$93 billion in petrochemicals and fertilizers (ethane-ethylene project)",
+   "url": "https://www.elimparcial.com/mexico/2026/06/05/pemex-invertira-93-mil-millones-de-pesos-en-petroquimica-y-fertilizantes-que-proyectos-contempla-y-por-que-busca-reducir-importaciones/"
+  },
+  {
+   "title": "chemXplore — Pemex Cangrejera Petrochemical Complex",
+   "url": "https://chemxplore.com/parks-clusters/pemex-cangrejera-petrochemical-complex"
+  },
+  {
+   "title": "chemXplore — Pemex Morelos Petrochemical Complex",
+   "url": "https://chemxplore.com/parks-clusters/pemex-morelos-petrochemical-complex"
+  },
+  {
+   "title": "OPIS — Pemex plans to boost Mexican petrochemical industry, with focus on Veracruz",
+   "url": "https://www.opis.com/?p=35802"
+  },
+  {
+   "title": "Hydrocarbon Engineering — TQPM to support Braskem Idesa growth of up to 25%",
+   "url": "https://www.hydrocarbonengineering.com/petrochemicals/08052025/advario-and-braskem-idesa-inaugurate-us500-million-ethane-storage-terminal-in-veracruz-mexico/amp/"
+  },
+  {
+   "title": "CNSNS — Licencia de operación para instalaciones radiactivas tipo B (hoja de ayuda)",
+   "url": "https://www.gob.mx/cms/uploads/attachment/file/879232/LICENCIA__DE_OPERACI_N_TIPO_B.pdf"
+  },
+  {
+   "title": "CNSNS — Autorización de adquisición y transferencia (requisitos del Encargado de Seguridad Radiológica)",
+   "url": "https://www.gob.mx/cms/uploads/attachment/file/879221/AUTORIZACI_N_DE_ADQUISICI_N_Y_TRANSFERENCIA.pdf"
+  },
+  {
+   "title": "NOM-012-STPS-2012 — Radiaciones ionizantes (definición de Encargado de Seguridad Radiológica)",
+   "url": "https://imss.gob.mx/sites/all/statics/profesionalesSalud/investigacionSalud/cbis/nom-012-stps-2012_bioseguridad_radiacion.pdf"
+  },
+  {
+   "title": "NOM-025/2-NUCL-2015 — Requisitos para equipos de radiografía industrial gamma",
+   "url": "https://platiica.economia.gob.mx/wp-content/uploads/sites/2/PDF_Normas_Publicas/025-2nucl2015.pdf"
+  },
+  {
+   "title": "DOF — NOM-020-STPS-2011 pruebas de presión y exámenes no destructivos (categorías II y III)",
+   "url": "https://sidof.segob.gob.mx/notas/docFuente/5411988"
+  },
+  {
+   "title": "DOF — NOM-020-STPS-2011 avisos de Categoría III con dictamen de unidad de verificación",
+   "url": "https://sidof.segob.gob.mx/notas/docFuente/5477515"
+  }
+ ]
+}

@@ -1,0 +1,348 @@
+{
+ "slug": "barrancabermeja-co",
+ "city": "Barrancabermeja",
+ "region": "Santander",
+ "country": "Colombia",
+ "countrySlug": "colombia",
+ "wave": 3,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Barrancabermeja, Colombia: Refinery, Pipeline and Oilfield Inspection",
+ "metaTitle": "NDT Services in Barrancabermeja, Colombia | Refinery Inspection",
+ "description": "NDT in Barrancabermeja, Colombia: inspection for Ecopetrol's century-old refinery, Magdalena Medio fields and pipelines. Methods, SGC radiation rules, hiring.",
+ "quickAnswer": "Barrancabermeja, on the Magdalena River in Santander, is home to **Ecopetrol's largest refinery**, which marked its 102nd year in 2024 [6]. It reached a record throughput of **245,000 barrels a day** in the fourth quarter of 2025 [2]. Together with Cartagena, Ecopetrol's two refineries processed **428,000 barrels a day** in the first half of 2026 [1]. The refinery is being modernized for cleaner fuels under the **LBCC project** [5], while surrounding Magdalena Medio oilfields and pipelines add upstream and midstream work. A century-old site running at record rates creates intense **mechanical integrity and turnaround** demand. Radiography is licensed by the **Servicio Geológico Colombiano** [9].",
+ "keyFacts": [
+  {
+   "label": "Refinery",
+   "value": "Barrancabermeja: record 245,000 bpd throughput in Q4 2025 [2]"
+  },
+  {
+   "label": "National refining",
+   "value": "Barrancabermeja and Cartagena processed 428,000 bpd in H1 2026 [1]"
+  },
+  {
+   "label": "Modernization",
+   "value": "LBCC project to produce cleaner, higher-quality fuels [5]"
+  },
+  {
+   "label": "Radiation regulator",
+   "value": "Servicio Geológico Colombiano licensing under Resolución 90874 de 2014 [9][10]"
+  }
+ ],
+ "industries": [
+  "Oil refining",
+  "Petrochemicals (polypropylene, paraffins)",
+  "Oil production (Magdalena Medio)",
+  "Pipelines and terminals",
+  "River transport",
+  "Power and utilities"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Barrancabermeja: Colombia's oil capital",
+   "paragraphs": [
+    "Barrancabermeja grew up around oil. Colombia's first refinery started there in the early 1920s, and today Ecopetrol's complex is the country's largest refinery and a cornerstone of its fuel supply. The city sits in the Magdalena Medio basin, among producing oilfields, pipeline stations and river terminals on the Magdalena.",
+    "Ecopetrol manages its Barrancabermeja and Cartagena refineries as an integrated system, exchanging streams between them to optimize the use of installed infrastructure [3]. Under its \"Refining with a Purpose\" strategy, the two refineries processed an average of 428,000 barrels a day in the first half of 2026, 24,000 barrels a day more than a year earlier [1]. Barrancabermeja hit a record of 245,000 barrels a day in the fourth quarter of 2025 [2] and started 2026 with higher throughput [7].",
+    "Running an old site at record rates puts heavy demands on equipment, which makes inspection central to reliability. NDT providers in Barrancabermeja support on-stream mechanical integrity programs, major turnarounds, modernization projects and nearby oilfield and pipeline operations."
+   ]
+  },
+  {
+   "id": "refinery",
+   "h2": "The refinery: units and damage mechanisms",
+   "paragraphs": [
+    "Ecopetrol earlier described Barrancabermeja as a 247,000 barrel-per-day refinery, with a long-planned second modernization phase including a new crude unit, a 54,000 barrel-per-day delayed coker, a coker naphtha hydrotreater and a hydrocracker [4]. The current LBCC (Baseline Fuel Quality) project aims to modernize the refinery to produce cleaner, higher-quality fuels that meet tighter standards [5].",
+    "Colombian crudes and imported light crudes processed at Barrancabermeja bring typical refinery damage mechanisms: sulfidation and naphthenic acid corrosion in crude and vacuum units, erosion and refractory damage in catalytic crackers, wet H2S and amine corrosion in treating units, and HTHA risk in hydroprocessing. Decades-old equipment adds fatigue and accumulated corrosion.",
+    "The table summarizes common inspection scopes."
+   ],
+   "table": {
+    "caption": "Barrancabermeja refinery assets and typical NDT scopes",
+    "head": [
+     "Asset",
+     "Main concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Crude and vacuum units",
+      "Sulfidation, naphthenic acid corrosion, CUI",
+      "UT, corrosion mapping, PAUT, PEC"
+     ],
+     [
+      "Catalytic cracking units",
+      "Erosion, refractory damage, cracking",
+      "UT, PAUT, thermography, visual"
+     ],
+     [
+      "Hydrotreaters (LBCC)",
+      "HTHA, weld cracking",
+      "Advanced UT for HTHA, PAUT, TOFD"
+     ],
+     [
+      "Amine and sour water units",
+      "Wet H2S damage, amine SCC",
+      "PAUT, WFMT, UT"
+     ],
+     [
+      "Heat exchangers",
+      "Tube corrosion and fouling damage",
+      "ECT, IRIS, RFT"
+     ],
+     [
+      "Tank farms and river terminals",
+      "Floor and shell corrosion, dock piping",
+      "MFL, UT, guided wave"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "turnarounds",
+   "h2": "Turnarounds at an integrated refinery",
+   "paragraphs": [
+    "Major maintenance at Barrancabermeja is a large undertaking; one planned turnaround was expected to last 74 days [8]. Turnarounds concentrate thousands of inspection tasks into a short period, from vessel internal inspections and exchanger tube testing to piping thickness surveys and weld inspection on repairs.",
+    "Because Barrancabermeja and Cartagena operate as one system, maintenance at one refinery affects the other. Careful planning, early mobilization of qualified NDT crews, and daily preliminary reporting help keep turnarounds on schedule and minimize lost production.",
+    "Providers should prepare procedures and qualified personnel in advance, coordinate with scaffolding and insulation contractors, and agree reporting formats with Ecopetrol's inspection engineers before shutdown."
+   ]
+  },
+  {
+   "id": "aging",
+   "h2": "Managing a century-old site",
+   "paragraphs": [
+    "Few refineries in the Americas have operated as long as Barrancabermeja. A site that has grown in stages over a century carries a complex mix of equipment ages, materials and design standards. Some piping and vessels may date back decades, with repairs, rerates and modifications layered over time, while newer units were built to modern codes.",
+    "This history makes good records and systematic inspection essential. Engineers need to know the original design and material of each item, the damage mechanisms it is exposed to, and its inspection history. Where records are incomplete, PMI can confirm materials, baseline thickness surveys can establish current condition, and engineering assessments can determine safe operating limits.",
+    "Underground and buried piping, which is common on older sites, is a particular challenge. Guided wave UT, excavation and direct inspection at selected locations, and cathodic protection surveys help assess lines that cannot be inspected easily from the surface. Dead legs, small-bore connections and injection points, all common sources of failures on mature sites, deserve focused inspection programs."
+   ]
+  },
+  {
+   "id": "modernization",
+   "h2": "Modernization and construction NDT",
+   "paragraphs": [
+    "The LBCC project and other upgrades bring construction NDT: radiography and PAUT of new piping and vessel welds, PMI on alloy materials, hardness testing, baseline thickness surveys and inspection of structural steel. New hydroprocessing equipment needs careful weld inspection and post-weld heat treatment verification.",
+    "Ecopetrol has also invested in environmental infrastructure such as a new wastewater treatment plant, opened as the refinery marked 102 years [6]. These projects add tank, piping and structural inspection scopes."
+   ]
+  },
+  {
+   "id": "petrochemicals",
+   "h2": "Petrochemicals and specialty products",
+   "paragraphs": [
+    "Barrancabermeja also produces petrochemicals and specialty products such as paraffins, and its streams feed polypropylene production elsewhere in Colombia. Specialty units have their own inspection needs, including stainless and alloy equipment, exchangers and storage, and benefit from PMI, PT and corrosion monitoring.",
+    "Integrating the refinery with downstream petrochemical operations means more interconnecting pipelines and storage, which need regular inspection."
+   ]
+  },
+  {
+   "id": "upstream",
+   "h2": "Magdalena Medio oilfields and pipelines",
+   "paragraphs": [
+    "Producing fields around Barrancabermeja, many of them mature, need inspection of wellheads, flowlines, gathering stations, tanks and compression equipment. Water production and CO2 drive internal corrosion in flowlines and facilities, and sand causes erosion.",
+    "Pipelines connecting fields, the refinery and export terminals need integrity programs with in-line inspection, verification digs, guided wave screening and inspection at river and road crossings. Weld inspection to API 1104 supports repairs and new tie-ins."
+   ]
+  },
+  {
+   "id": "methods",
+   "h2": "NDT methods used in Barrancabermeja",
+   "paragraphs": [
+    "**Corrosion mapping and UT thickness testing** quantify wall loss on refinery piping, vessels, tanks and pipelines. **PAUT and TOFD** inspect welds and detect cracking in high-stress and sour service. **Advanced UT techniques** screen hydroprocessing equipment for HTHA.",
+    "**Radiography** inspects piping welds, especially on new construction, while **pulsed eddy current** and **profile radiography** detect corrosion under insulation. **Eddy current and IRIS** inspect exchangers, **MFL** scans tank floors and **WFMT** detects cracking in amine and sour service vessels."
+   ]
+  },
+  {
+   "id": "rbi",
+   "h2": "Risk-based inspection and on-stream monitoring",
+   "paragraphs": [
+    "Running a refinery at record throughput leaves little room for unplanned shutdowns. Risk-based inspection, following API 580 and 581, helps engineers focus inspection effort on the equipment with the highest combination of likelihood and consequence of failure, and set intervals that reflect actual damage rates rather than fixed calendar schedules.",
+    "On-stream inspection is the backbone of this approach. Thickness monitoring at condition monitoring locations, corrosion mapping of high-risk circuits, PAUT on welds in cracking service, and CUI screening with pulsed eddy current let owners track condition without shutting units down. Permanently installed ultrasonic sensors can provide continuous data at critical locations, such as high-velocity bends or injection points.",
+    "The results feed back into the risk model, adjusting intervals and identifying equipment that needs repair or replacement at the next turnaround. This cycle reduces surprises during shutdowns and helps avoid failures between them."
+   ]
+  },
+  {
+   "id": "radiation",
+   "h2": "Radiography rules in Colombia: SGC licensing",
+   "paragraphs": [
+    "In Colombia, licensing and inspection of facilities using radioactive materials is carried out by the Servicio Geológico Colombiano (SGC), which received these functions under Decree 2703 of 2013. Its licensing group handles design licenses, operating licenses, registrations and import licenses, and categorizes radioactive sources by risk [9].",
+    "The Ministry of Mines and Energy's Resolution 90874 of 2014 sets the requirements and procedures for authorizations to use radioactive sources and for regulatory inspections [10]. Under Article 4, no practice involving radioactive sources may be adopted, introduced, carried out or interrupted without the corresponding authorization [11]. Separate resolutions cover import licensing, source categorization and the transport of radioactive materials [12].",
+    "Buyers should confirm that gamma radiography providers hold a current SGC operating license, that sources were imported under a valid license and are documented, that transport complies with national rules and that radiographers have radiation protection training and dosimetry."
+   ],
+   "bullets": [
+    "Check the provider's SGC operating license and source documentation [9][11].",
+    "Confirm transport arrangements meet national requirements [12].",
+    "Review radiographer training and dosimetry records."
+   ]
+  },
+  {
+   "id": "river",
+   "h2": "River logistics and terminal inspection",
+   "paragraphs": [
+    "The Magdalena River has long been a transport route for crude, products and equipment to and from Barrancabermeja. River terminals, barges, loading docks and associated pipelines and tanks need regular inspection. Tank farms at the refinery and terminals require API 653 internal and external inspections, with MFL floor scanning, shell thickness surveys and settlement monitoring.",
+    "Loading arms, hoses, dock piping and mooring structures face corrosion and mechanical damage. UT thickness surveys, guided wave screening, MT on structural welds and visual inspection keep these assets safe. Seasonal changes in river levels affect access to docks and structures, so inspection schedules often follow the dry season."
+   ]
+  },
+  {
+   "id": "standards",
+   "h2": "Standards and certification",
+   "paragraphs": [
+    "Inspection at Colombian refineries follows API standards (510, 570, 653, 580/581, 579 and RP 941), ASME codes and Ecopetrol's own technical standards. Personnel are typically certified under ASNT SNT-TC-1A-based written practices, ANSI/ASNT CP-189 or ISO 9712 schemes, and owners often require API individual certifications.",
+    "Construction projects use ASME Section V with Section VIII or B31.3 acceptance, and pipeline work follows API 1104."
+   ]
+  },
+  {
+   "id": "climate",
+   "h2": "Climate and corrosion",
+   "paragraphs": [
+    "Barrancabermeja is hot and humid, with heavy rainfall and high temperatures year-round in the Magdalena valley. Corrosion under insulation and atmospheric corrosion are major damage mechanisms, and flooding can affect tank foundations and buried lines.",
+    "Heat stress is a concern for crews during turnarounds, and high surface temperatures require high-temperature couplants and probes for on-stream inspection.",
+    "Lightning storms are frequent in the Magdalena valley, so outdoor work plans should include weather monitoring and safe stop-work rules, especially for rope access and work at height."
+   ]
+  },
+  {
+   "id": "data",
+   "h2": "Data and reporting",
+   "paragraphs": [
+    "Ecopetrol and other operators expect inspection data tied to condition monitoring locations, with encoded scans for advanced methods and clear coverage and calibration records. Good data supports risk-based inspection, corrosion rate calculations and fitness-for-service assessments.",
+    "With two refineries managed as one system [3], consistent reporting across sites helps engineers compare equipment performance and plan maintenance."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Barrancabermeja",
+   "paragraphs": [
+    "Refinery NDT is usually priced on day rates per technician and method, with advanced equipment billed separately. Ecopetrol contracts through tenders and framework agreements, and turnarounds add premium rates for extended hours.",
+    "NDT-Connect lets buyers post one scope and compare certified providers serving Barrancabermeja and the Magdalena Medio region."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Barrancabermeja",
+   "paragraphs": [
+    "The refinery, oilfields and pipelines create steady demand for UT, RT, MT and PT technicians, PAUT and TOFD specialists, tube inspectors, API inspectors and Level IIIs. Turnarounds bring peaks of high demand.",
+    "A typical path starts with Level II certification in UT and RT and radiation protection training, followed by advanced UT and API certifications."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Barrancabermeja",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers."
+   ],
+   "bullets": [
+    "Certified personnel (SNT-TC-1A, CP-189 or ISO 9712) with refinery experience.",
+    "SGC license for radiography and documented sources [9][11].",
+    "PAUT, TOFD, HTHA techniques, PEC and IRIS capability.",
+    "Turnaround capacity and daily reporting.",
+    "Experience with Ecopetrol technical standards.",
+    "Reporting compatible with risk-based inspection systems."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "How much does the Barrancabermeja refinery process?",
+   "a": "It reached a record 245,000 bpd in Q4 2025 [2]; with Cartagena, Ecopetrol processed 428,000 bpd in H1 2026 [1]."
+  },
+  {
+   "q": "What is the LBCC project?",
+   "a": "Ecopetrol's project to modernize Barrancabermeja to produce cleaner, higher-quality fuels [5]."
+  },
+  {
+   "q": "Who regulates radiography in Colombia?",
+   "a": "The Servicio Geológico Colombiano licenses facilities using radioactive materials [9], under Resolución 90874 de 2014 [10]."
+  },
+  {
+   "q": "Which NDT methods are used at the refinery?",
+   "a": "Corrosion mapping, PAUT, TOFD, HTHA techniques, radiography, PEC, eddy current and IRIS, MFL and WFMT."
+  },
+  {
+   "q": "How long do major turnarounds last?",
+   "a": "One planned Barrancabermeja maintenance was expected to last 74 days [8]."
+  },
+  {
+   "q": "How do I request NDT quotes in Barrancabermeja?",
+   "a": "Post the scope on NDT-Connect with the unit, equipment, methods, access, dates and reporting requirements."
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Cartagena",
+   "href": "/ndt-services/cartagena-co"
+  },
+  {
+   "name": "Maracaibo",
+   "href": "/ndt-services/maracaibo-ve"
+  },
+  {
+   "name": "Punto Fijo",
+   "href": "/ndt-services/punto-fijo-ve"
+  },
+  {
+   "name": "Houston",
+   "href": "/ndt-services/houston-tx"
+  }
+ ],
+ "related": [
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  }
+ ],
+ "references": [
+  {
+   "title": "Portafolio — Ecopetrol raises refinery throughput 5.9% in first half of 2026",
+   "url": "https://www.portafolio.co/energia/ecopetrol-eleva-5-9-la-carga-de-sus-refinerias-y-aumenta-produccion-de-gasolina-diesel-y-jet-a1-en-2026-este-ano-500911"
+  },
+  {
+   "title": "El Universal — Ecopetrol refineries reached record production and conversion in 2025",
+   "url": "https://www.eluniversal.com.co/economica/2026/04/07/refinerias-de-ecopetrol-alcanzaron-record-de-produccion-y-mayor-conversion/"
+  },
+  {
+   "title": "Portafolio — Ecopetrol integrates Cartagena and Barrancabermeja refining system",
+   "url": "https://www.portafolio.co/negocios/empresas/ecopetrol-le-da-un-revolcon-a-negocio-de-sus-refinerias-523502"
+  },
+  {
+   "title": "Industrial Info — Ecopetrol modernization at 247,000 bpd Barrancabermeja refinery",
+   "url": "https://www.industrialinfo.com/news/article/ecopetrol-proceeds-with-modernization-project-at-barrancabermeja-refinery--175841"
+  },
+  {
+   "title": "Industrial Info — Ecopetrol's LBCC project to modernize Barrancabermeja for cleaner fuels",
+   "url": "https://www.industrialinfo.com/iirenergy/industry-news/article/colombias-ecopetrol-modernizes-to-produce-cleaner-fuel--347903"
+  },
+  {
+   "title": "La República — Barrancabermeja refinery at 102 years opens wastewater treatment plant",
+   "url": "https://www.larepublica.co/empresas/refineria-de-barrancabermeja-inauguro-planta-para-tratamiento-de-aguas-residuales-3804359"
+  },
+  {
+   "title": "Vanguardia — Barrancabermeja refinery starts 2026 with higher throughput",
+   "url": "https://www.vanguardia.com/economia/2026/05/13/refineria-de-barrancabermeja-arranco-el-ano-con-mayor-carga-pero-aumenta-importacion-de-crudos-livianos/"
+  },
+  {
+   "title": "Portafolio — How the Barrancabermeja refinery maintenance will be carried out (74 days)",
+   "url": "https://www.portafolio.co/energia/asi-se-realizara-el-mantenimiento-de-la-refineria-de-barrancabermeja-623119"
+  },
+  {
+   "title": "Servicio Geológico Colombiano — User manual for licensing requests (design, operation, registration, import)",
+   "url": "https://www2.sgc.gov.co/Documents/Manual-de-usuario-solicitudes-GLyC-V.3.0.pdf"
+  },
+  {
+   "title": "Resolución D-083 de 2015 — SGC fees; MinEnergía delegation and Resolución 90874 de 2014",
+   "url": "https://www.icbf.gov.co/cargues/avance/compilacion/docs/resolucion_sgc_0083_2015.htm"
+  },
+  {
+   "title": "SGC — Response citing Articles 4 and 5 of Resolución 90874 de 2014",
+   "url": "https://www2.sgc.gov.co/AtencionAlCiudadano/Documents/notificaciones-por-aviso/2021/Notificacion-por-aviso-respuesta-al-radicado-no.-20211200091362.pdf"
+  },
+  {
+   "title": "SGC — Regulatory information (source categorization, transport and import resolutions)",
+   "url": "https://www2.sgc.gov.co/ProgramasDeInvestigacion/AsuntosNucleares/Documents/Informacion-TyS-en-linea.pdf"
+  }
+ ]
+}

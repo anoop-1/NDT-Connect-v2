@@ -1,0 +1,342 @@
+{
+ "slug": "ciudad-del-carmen-mx",
+ "city": "Ciudad del Carmen",
+ "region": "Campeche",
+ "country": "Mexico",
+ "countrySlug": "mexico",
+ "wave": 3,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Ciudad del Carmen, Mexico: Offshore Platform and Pipeline Inspection in the Bay of Campeche",
+ "metaTitle": "NDT Services in Ciudad del Carmen, Mexico | Offshore Platform NDT",
+ "description": "NDT in Ciudad del Carmen, Mexico: offshore inspection for Pemex's Campeche fields: platforms, pipelines, risers and topsides. CNSNS and NOM-020 rules, hiring.",
+ "quickAnswer": "Ciudad del Carmen is the onshore base for Mexico's offshore oil industry in the **Bay of Campeche**. Fields such as **Ku-Maloob-Zaap** and **Cantarell** are aging: KMZ has fallen from 875,000 to about 539,000 barrels a day, and Cantarell now yields roughly 66,000 [1]. Pemex production averaged **1.63 million barrels a day in 2025** [1]. Hundreds of platforms, risers and subsea pipelines need integrity inspection to keep mature fields producing. Pemex is also reinvesting in shallow-water fields such as Bacab, a US$1.9 billion plan [4]. Radiography requires a **CNSNS license** [8], and pressure equipment offshore falls under **NOM-020-STPS-2011** [12].",
+ "keyFacts": [
+  {
+   "label": "Key fields",
+   "value": "Ku-Maloob-Zaap about 539,000 bpd; Cantarell about 66,000 bpd [1]"
+  },
+  {
+   "label": "National output",
+   "value": "Pemex 1.63 million bpd average in 2025 [1]"
+  },
+  {
+   "label": "Reinvestment",
+   "value": "Bacab field plan: about US$1.86 billion, peak near 60,000 bpd in 2028–2029 [4]"
+  },
+  {
+   "label": "Radiography regulator",
+   "value": "CNSNS licensing and authorized Radiological Safety Officer [8][10]"
+  }
+ ],
+ "industries": [
+  "Offshore oil and gas production",
+  "Subsea pipelines and risers",
+  "Marine logistics and supply bases",
+  "Fabrication yards",
+  "Gas processing",
+  "Helicopter and aviation support"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Ciudad del Carmen: the base for Mexico's offshore fields",
+   "paragraphs": [
+    "Ciudad del Carmen, on an island between the Laguna de Términos and the Gulf of Mexico, grew from a fishing town into the operations hub for Pemex's offshore production in the Bay of Campeche. Supply boats, crew boats, helicopters, warehouses, fabrication yards and service companies support hundreds of platforms offshore.",
+    "The fields are mature. Pemex set a record of 3.3 million barrels a day in 2004, driven by Cantarell, and has declined since [2]. Following Cantarell's decline, Ku-Maloob-Zaap, the company's second-largest complex, also began its natural decline [2]. In 2025, Pemex's production fell to 1.63 million barrels a day, the lowest since 1980 [1].",
+    "Keeping mature offshore fields producing safely depends on integrity management of aging platforms, pipelines and topside equipment, which makes inspection a core activity for the Ciudad del Carmen service industry."
+   ]
+  },
+  {
+   "id": "fields",
+   "h2": "Fields and reinvestment",
+   "paragraphs": [
+    "Ku-Maloob-Zaap once produced 875,000 barrels a day and has fallen to around 539,000, a 17-year low, while Cantarell, which peaked above 2 million barrels a day two decades ago, now produces roughly 66,000 [1]. KMZ's proven reserves fell from 1,858 million barrels of oil equivalent in 2018 to 648 million in 2024 [6].",
+    "Pemex is reinvesting in shallow-water fields to slow the decline. The regulator approved a plan for the Bacab field, about 104 km offshore Campeche, with investment of about US$1.86 billion and peak production near 60,000 barrels a day in 2028–2029 [4]. The Kayab and Pit fields, 134 km northwest of Ciudad del Carmen near KMZ, are considered priority fields [5]. New platforms, pipelines and tie-ins mean construction NDT at fabrication yards and offshore.",
+    "Pemex also issues tenders for maintenance, reliability and marine logistics services [7], a steady source of work for inspection contractors."
+   ]
+  },
+  {
+   "id": "assets",
+   "h2": "Offshore assets and inspection scopes",
+   "paragraphs": [
+    "Bay of Campeche infrastructure includes drilling and production platforms, compression and processing complexes, accommodation platforms, risers, and an extensive network of subsea pipelines carrying oil and gas to shore. Much of it has been in service for decades in warm, corrosive seawater."
+   ],
+   "table": {
+    "caption": "Campeche offshore assets and typical NDT scopes",
+    "head": [
+     "Asset",
+     "Main concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Platform jackets and decks",
+      "Splash-zone corrosion, fatigue cracks at nodes",
+      "UT, ACFM, MT, visual, rope access"
+     ],
+     [
+      "Risers and caissons",
+      "External corrosion, wall loss in splash zone",
+      "UT, guided wave, PEC, visual"
+     ],
+     [
+      "Subsea pipelines",
+      "Internal and external corrosion, leaks",
+      "ILI, UT, ROV inspection, CP surveys"
+     ],
+     [
+      "Topside piping and vessels",
+      "Internal corrosion, CO2 and H2S damage, erosion",
+      "UT, corrosion mapping, PAUT, RT"
+     ],
+     [
+      "Compressors and rotating equipment",
+      "Fatigue cracking, vibration damage",
+      "PAUT, MT, PT"
+     ],
+     [
+      "Cranes and lifting equipment",
+      "Fatigue cracks, wear",
+      "MT, UT, visual"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "pipelines",
+   "h2": "Subsea pipeline integrity",
+   "paragraphs": [
+    "Subsea pipelines are among the highest-risk assets offshore. In September 2025, Pemex isolated and began repairing a pipeline about 46 nautical miles off Ciudad del Carmen after a crude release, following a pressure drop detected on a line collecting production from several platforms in the Cantarell asset [3].",
+    "Integrity programs combine in-line inspection where lines can be pigged, external inspection by ROVs and divers, cathodic protection surveys, and topside and riser inspection. NDT teams verify ILI anomalies, inspect risers and spool pieces, and support repairs with weld inspection on clamps, sleeves and replacement sections."
+   ]
+  },
+  {
+   "id": "platforms",
+   "h2": "Platform structural and topside inspection",
+   "paragraphs": [
+    "Aging jackets need inspection for fatigue cracks at tubular joints, corrosion in the splash zone and damage from vessel impacts. Above water, rope access teams use UT, MT and ACFM; underwater, divers and ROVs perform close visual inspection, cleaning and NDT such as ACFM and UT on selected nodes.",
+    "Topside process equipment suffers internal corrosion from produced water, CO2 and H2S, and erosion from sand. Thickness monitoring at condition monitoring locations, corrosion mapping, PAUT on welds and radiography of small-bore piping are standard. Pressure vessels and boilers on platforms fall under NOM-020 requirements for tests or NDT [12]."
+   ]
+  },
+  {
+   "id": "methods",
+   "h2": "NDT methods for offshore work",
+   "paragraphs": [
+    "**UT thickness testing and corrosion mapping** are the core methods for topsides, risers and structures. **ACFM** detects surface cracks through coatings on welds and nodes, above and below water. **PAUT and TOFD** inspect critical welds, and **radiography** remains common for piping welds.",
+    "**Guided wave UT** screens risers and long pipe runs, and **pulsed eddy current** detects wall loss through coatings and insulation. **Rope access** is widely used to reach structures without scaffolding, reducing cost and bed space offshore."
+   ]
+  },
+  {
+   "id": "logistics",
+   "h2": "Offshore logistics and bed space",
+   "paragraphs": [
+    "Working offshore in Campeche requires helicopter or vessel transport, offshore safety training, medical certification and accommodation on platforms or vessels. Bed space is limited and expensive, so NDT crews must be productive and well equipped. Weather, especially during the hurricane season and winter northers, can delay transport.",
+    "Providers should plan spare equipment, calibration blocks and consumables carefully, because resupply can take days. Combined rope access and NDT technicians reduce the number of people needed offshore."
+   ]
+  },
+  {
+   "id": "integrity",
+   "h2": "Integrity management for life extension",
+   "paragraphs": [
+    "Many Campeche platforms and pipelines are operating well beyond their original design lives. Life extension depends on knowing the actual condition of structures and equipment and comparing it with design assumptions. Structural integrity management programs combine underwater and above-water inspection, structural analysis, and repair or strengthening where needed.",
+    "For topside process systems, risk-based inspection helps focus limited offshore resources on the equipment most likely to fail and with the highest consequences. Corrosion monitoring with coupons, probes and periodic thickness surveys tracks trends, while fitness-for-service assessments under API 579 determine whether corroded or cracked equipment can stay in service.",
+    "Good data is essential. Inspection results should be tied to clear location identifiers, include photographs and coverage maps, and be loaded into the operator's integrity management system so that trends can be calculated and inspection intervals adjusted."
+   ]
+  },
+  {
+   "id": "fabrication",
+   "h2": "Fabrication yards and construction NDT",
+   "paragraphs": [
+    "New platforms, decks, modules and pipelines for projects like Bacab are fabricated at yards in Campeche, Tabasco, Veracruz and Tamaulipas. Fabrication NDT includes UT and RT of structural and piping welds, MT and PT on attachments, PMI on alloy materials and dimensional checks, typically to API RP 2A, AWS D1.1, ASME B31.3 and Pemex specifications.",
+    "Pipeline construction offshore uses automated UT or radiography of girth welds on lay barges, following API 1104 or DNV standards."
+   ]
+  },
+  {
+   "id": "gas",
+   "h2": "Gas handling and compression",
+   "paragraphs": [
+    "Offshore Campeche also produces large volumes of associated gas, which is compressed, treated and sent to shore or reinjected. Compression platforms and gas processing facilities have specific inspection needs: fatigue cracking in piping subject to vibration, sour gas corrosion and cracking, inspection of compressors, scrubbers and coolers, and integrity of gas export pipelines. PAUT, MT and PT on small-bore connections and welds near compressors help prevent fatigue failures, and wet H2S damage requires careful inspection of vessels and piping in sour service."
+   ]
+  },
+  {
+   "id": "radiation",
+   "h2": "Radiography rules in Mexico: CNSNS licensing",
+   "paragraphs": [
+    "Industrial radiography with radioactive sources in Mexico is regulated by the National Commission for Nuclear Safety and Safeguards (CNSNS) under the General Radiological Safety Regulation. Companies need an operating license for their radioactive installation, supported by a radiological safety policy, detailed descriptions of their sources and devices, dose estimates and emergency plans [8]. Gamma radiography equipment must also meet a dedicated official standard covering operation, transport, storage, maintenance and requirements for occupationally exposed personnel [11].",
+    "Every licensee must have a Radiological Safety Officer (Encargado de Seguridad Radiológica, ESR) authorized by CNSNS to oversee radiation protection at the workplace [10]. For type A or B installations, the proposed ESR must show approval of a CNSNS-endorsed course at ESR level, a year of experience in radiological safety and six months in radiation protection related to the sources used [9].",
+    "Buyers should ask for the provider's CNSNS license number, the authorized ESR's name, source and equipment documentation and dosimetry records for radiographers before work starts."
+   ],
+   "bullets": [
+    "Confirm the CNSNS operating license and authorized ESR [8][9].",
+    "Check gamma camera compliance with the official equipment standard [11].",
+    "Review dosimetry and training records for every radiographer."
+   ]
+  },
+  {
+   "id": "nom020",
+   "h2": "Pressure equipment inspection under NOM-020-STPS-2011",
+   "paragraphs": [
+    "Mexico's NOM-020-STPS-2011 governs the safe operation of pressure vessels, cryogenic vessels and boilers in workplaces. It makes the employer responsible for determining and carrying out pressure tests or nondestructive examinations on equipment in categories II and III [12]. Notices that category III equipment complies with the standard must be accompanied by a conformity assessment issued by an accredited verification unit [13].",
+    "For NDT providers, NOM-020 creates steady demand for thickness surveys, weld inspection and other examinations on pressure equipment in factories, plants and refineries, often in coordination with verification units. Clear reports that state the method, procedure, coverage, results and technician qualifications make compliance straightforward."
+   ]
+  },
+  {
+   "id": "climate",
+   "h2": "Climate, hurricanes and corrosion",
+   "paragraphs": [
+    "Campeche's warm seawater, high humidity and salt spray create an aggressive corrosion environment. The splash zone is the most vulnerable area of platforms and risers. Hurricanes and winter northers bring high seas that can damage structures and interrupt operations.",
+    "After major storms, owners commission inspections of structures, risers, cranes and topside equipment before resuming normal operations.",
+    "Seasonal planning matters offshore: many operators schedule external structural inspections, painting and rope access campaigns for calmer months, and keep contingency days in every offshore campaign for weather delays. Crews should be trained for heat stress, because work in the splash zone and on exposed decks is physically demanding in Campeche's climate."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How offshore NDT is priced",
+   "paragraphs": [
+    "Offshore NDT is usually priced on day rates per technician, with higher rates for offshore work, rope access certification and specialist methods such as ACFM and guided wave. Contracts often cover rotations, offshore allowances and equipment mobilization. Pemex contracts through tenders and framework agreements.",
+    "NDT-Connect lets buyers post one scope and compare certified providers serving Ciudad del Carmen and the Bay of Campeche.",
+    "Buyers can reduce costs by combining scopes into campaigns, so one mobilization covers structural, topside and riser inspection on a platform, and by using multi-skilled rope access NDT technicians to minimize bed space."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Ciudad del Carmen",
+   "paragraphs": [
+    "Ciudad del Carmen offers offshore NDT careers for UT, RT, MT and PT technicians, rope access technicians with NDT certifications, ACFM specialists, corrosion inspectors and Level IIIs. Offshore rotations and allowances make these roles attractive.",
+    "Typical requirements include Level II certifications, IRATA or SPRAT rope access certification, offshore survival training and CNSNS-recognized radiation protection training for radiographers.",
+    "Technicians who combine NDT with diving or ROV support skills are particularly valuable for subsea work."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an offshore NDT provider",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers."
+   ],
+   "bullets": [
+    "Certified technicians with offshore experience and safety training.",
+    "Rope access capability combined with NDT certifications.",
+    "ACFM, PAUT, guided wave and corrosion mapping capability.",
+    "CNSNS license and authorized ESR for radiography [8][9].",
+    "Experience with Pemex offshore specifications and tenders.",
+    "Efficient logistics and spare equipment planning."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Why is Ciudad del Carmen important for NDT?",
+   "a": "It is the onshore base for Pemex's Bay of Campeche fields, where aging platforms and pipelines need ongoing integrity inspection [1][2]."
+  },
+  {
+   "q": "How much do Ku-Maloob-Zaap and Cantarell produce now?",
+   "a": "KMZ about 539,000 bpd and Cantarell about 66,000 bpd [1]."
+  },
+  {
+   "q": "Which NDT methods are used offshore?",
+   "a": "UT and corrosion mapping, ACFM, PAUT, TOFD, radiography, guided wave and pulsed eddy current, often deployed by rope access."
+  },
+  {
+   "q": "Who regulates radiography in Mexico?",
+   "a": "The CNSNS licenses radioactive installations and authorizes Radiological Safety Officers [8][10]."
+  },
+  {
+   "q": "Are new offshore projects planned?",
+   "a": "Yes. Pemex's Bacab plan involves about US$1.86 billion of investment [4], and Kayab and Pit are priority fields [5]."
+  },
+  {
+   "q": "How do I request offshore NDT quotes?",
+   "a": "Post the scope on NDT-Connect with assets, methods, rope access or diving needs, logistics, dates and reporting requirements."
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Coatzacoalcos",
+   "href": "/ndt-services/coatzacoalcos-mx"
+  },
+  {
+   "name": "Tampico",
+   "href": "/ndt-services/tampico-mx"
+  },
+  {
+   "name": "Houston",
+   "href": "/ndt-services/houston-tx"
+  },
+  {
+   "name": "Monterrey",
+   "href": "/ndt-services/monterrey-mx"
+  }
+ ],
+ "related": [
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  }
+ ],
+ "references": [
+  {
+   "title": "Rio Times — Pemex bets on private partners to halt output slide",
+   "url": "https://www.riotimesonline.com/pemex-bets-on-private-partners-to-halt-output-slide"
+  },
+  {
+   "title": "Industrial Info — Pemex remains far from 1.8 million bpd production goal",
+   "url": "https://www.industrialinfo.com/news/article/pemex-remains-far-from-18-million-bpd-production-goal--362303"
+  },
+  {
+   "title": "OE Digital — Pemex contains oil leak from Gulf of Mexico pipeline",
+   "url": "https://www.oedigital.com/amp/news/542913-pemex-contains-oil-leak-from-gulf-of-mexico-pipeline"
+  },
+  {
+   "title": "Industrial Info — Pemex approved to invest US$1.9 billion in offshore Bacab field",
+   "url": "https://www.industrialinfo.com/news/article/pemex-recibe-aprobacin-para-invertir-1900-millones-de-dlares-en-su-campo-offshore-bacab--337944"
+  },
+  {
+   "title": "Wood Mackenzie — Kayab and Pit fields asset report",
+   "url": "https://www.woodmac.com/reports/upstream-oil-and-gas-kayab-pit-96986148/"
+  },
+  {
+   "title": "Bloomberg Línea — Ku-Maloob-Zaap reserves decline",
+   "url": "https://www.bloomberglinea.com/latinoamerica/mexico/el-principal-activo-petrolero-de-pemex-comenzo-a-secarse-con-amlo-y-sigue-encogiendose-con-sheinbaum/"
+  },
+  {
+   "title": "DOF — Pemex tender for maintenance, reliability and marine logistics (2026)",
+   "url": "https://sidof.segob.gob.mx/notas/docFuente/5798431"
+  },
+  {
+   "title": "CNSNS — Licencia de operación para instalaciones radiactivas tipo B (hoja de ayuda)",
+   "url": "https://www.gob.mx/cms/uploads/attachment/file/879232/LICENCIA__DE_OPERACI_N_TIPO_B.pdf"
+  },
+  {
+   "title": "CNSNS — Autorización de adquisición y transferencia (requisitos del Encargado de Seguridad Radiológica)",
+   "url": "https://www.gob.mx/cms/uploads/attachment/file/879221/AUTORIZACI_N_DE_ADQUISICI_N_Y_TRANSFERENCIA.pdf"
+  },
+  {
+   "title": "NOM-012-STPS-2012 — Radiaciones ionizantes (definición de Encargado de Seguridad Radiológica)",
+   "url": "https://imss.gob.mx/sites/all/statics/profesionalesSalud/investigacionSalud/cbis/nom-012-stps-2012_bioseguridad_radiacion.pdf"
+  },
+  {
+   "title": "NOM-025/2-NUCL-2015 — Requisitos para equipos de radiografía industrial gamma",
+   "url": "https://platiica.economia.gob.mx/wp-content/uploads/sites/2/PDF_Normas_Publicas/025-2nucl2015.pdf"
+  },
+  {
+   "title": "DOF — NOM-020-STPS-2011 pruebas de presión y exámenes no destructivos (categorías II y III)",
+   "url": "https://sidof.segob.gob.mx/notas/docFuente/5411988"
+  },
+  {
+   "title": "DOF — NOM-020-STPS-2011 avisos de Categoría III con dictamen de unidad de verificación",
+   "url": "https://sidof.segob.gob.mx/notas/docFuente/5477515"
+  }
+ ]
+}

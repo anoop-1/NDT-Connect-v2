@@ -1,0 +1,343 @@
+{
+ "slug": "tampico-mx",
+ "city": "Tampico",
+ "region": "Tamaulipas",
+ "country": "Mexico",
+ "countrySlug": "mexico",
+ "wave": 3,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Tampico, Mexico: Madero Refinery, Altamira Petrochemicals and LNG Inspection",
+ "metaTitle": "NDT Services in Tampico, Mexico | Refinery, Altamira & LNG NDT",
+ "description": "NDT in Tampico, Mexico: inspection for the Madero refinery, Altamira industrial port, petrochemical plants and Fast LNG. CNSNS and NOM-020 rules, hiring.",
+ "quickAnswer": "Tampico, Ciudad Madero and Altamira form one of Mexico's main industrial zones on the Gulf coast. Pemex has issued nearly **30 tenders** for maintenance and rehabilitation at the **Francisco I. Madero refinery** [1]. The **Industrial Port of Altamira** covers 9,500 hectares, hosts more than 75 companies and ranks first in Mexico for petrochemical cargo [2]. Offshore Altamira, New Fortress Energy's **Fast LNG 1** liquefies 1.4 million tonnes a year of pipeline gas [3]. Refinery rehabilitation, petrochemical turnarounds, port construction and LNG operations create diverse NDT demand. Radiography requires a **CNSNS license** [8].",
+ "keyFacts": [
+  {
+   "label": "Refinery",
+   "value": "Pemex Madero refinery: nearly 30 tenders for maintenance and rehabilitation [1]"
+  },
+  {
+   "label": "Port",
+   "value": "Industrial Port of Altamira: 9,500 ha, 75+ companies, first in petrochemical cargo [2]"
+  },
+  {
+   "label": "LNG",
+   "value": "Fast LNG 1 offshore Altamira: 1.4 Mtpa [3]"
+  },
+  {
+   "label": "Radiography regulator",
+   "value": "CNSNS licensing and authorized Radiological Safety Officer [8][10]"
+  }
+ ],
+ "industries": [
+  "Oil refining",
+  "Petrochemicals and chemicals",
+  "LNG",
+  "Port and marine terminals",
+  "Steel and heavy cargo",
+  "Offshore and shipyard services"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Tampico, Madero and Altamira: a Gulf Coast industrial hub",
+   "paragraphs": [
+    "Southern Tamaulipas has been an oil region for more than a century, and the Tampico–Ciudad Madero–Altamira metro area remains one of Mexico's key energy and industrial zones. The region combines Pemex's Madero refinery, a large petrochemical and chemical cluster around the Port of Altamira, LNG export operations, shipyards and a growing logistics sector.",
+    "Tamaulipas authorities estimate the state holds 49% of Mexico's unconventional prospective resources, mainly in the Burgos and Tampico-Misantla basins, and Altamira's industrial port, LNG infrastructure and energy projects continue to attract investment [6]. For NDT providers, this means a mix of refinery rehabilitation, petrochemical turnarounds, construction and marine work.",
+    "The area's long oil history also means many plants and pipelines are decades old. Aging assets need more frequent and more detailed inspection, and owners increasingly turn to advanced methods such as phased array ultrasonics, corrosion mapping and pulsed eddy current to get better data without unnecessary shutdowns or insulation removal."
+   ]
+  },
+  {
+   "id": "refinery",
+   "h2": "Madero refinery: rehabilitation and maintenance",
+   "paragraphs": [
+    "Pemex's Francisco I. Madero refinery is undergoing a maintenance and rehabilitation program, with nearly 30 tenders issued by its Industrial Transformation area, five of them aimed at improving crude and distillate processing [1]. Nationally, Pemex has raised crude processing from about 592,000 barrels a day in 2019–2020 to 1.09 million in the first seven months of 2025, helped by the new Dos Bocas refinery [7].",
+    "Refinery rehabilitation requires baseline and turnaround inspection: crude and vacuum unit corrosion surveys, FCC erosion and refractory checks, coker inspection, HTHA screening in hydrotreaters, heat exchanger tube inspection and tank farm assessments."
+   ],
+   "table": {
+    "caption": "Tampico-area assets and typical NDT scopes",
+    "head": [
+     "Asset",
+     "Main concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Refinery crude and conversion units",
+      "Sulfidation, naphthenic acid, erosion",
+      "UT, corrosion mapping, PAUT"
+     ],
+     [
+      "Hydrotreaters",
+      "HTHA, weld cracking",
+      "Advanced UT for HTHA, PAUT, TOFD"
+     ],
+     [
+      "Petrochemical plants",
+      "Corrosion, SCC, weld integrity",
+      "PAUT, UT, PT, PMI"
+     ],
+     [
+      "LNG liquefaction and cryogenic piping",
+      "Stainless weld quality, cold spots",
+      "RT, PAUT, PMI, thermography"
+     ],
+     [
+      "Port terminals and tanks",
+      "Floor and shell corrosion, structures",
+      "MFL, UT, MT, visual"
+     ],
+     [
+      "Offshore platforms (converted for LNG)",
+      "Structural fatigue, corrosion",
+      "UT, ACFM, MT, rope access"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "altamira",
+   "h2": "Industrial Port of Altamira and petrochemicals",
+   "paragraphs": [
+    "The Industrial Port of Altamira covers 9,500 hectares with more than 75 companies and ranks first in Mexico for petrochemical cargo [2]. Chemical and petrochemical plants in the port zone produce plastics, synthetic fibers, carbon black, pigments and other products, and rely on bulk liquid terminals, tank farms and pipelines.",
+    "The port is preparing six new terminals, with works expected to accelerate in 2026 and 2027 on a budget of more than MX$1.5 billion [5]. New terminals and plants bring construction NDT on tanks, piping, structures and marine facilities, while existing plants need turnaround inspections and mechanical integrity programs under NOM-020."
+   ]
+  },
+  {
+   "id": "lng",
+   "h2": "Fast LNG offshore Altamira",
+   "paragraphs": [
+    "New Fortress Energy commissioned Fast LNG 1, a modular offshore liquefaction terminal near Altamira, in 2024. It connects to the Sur de Texas–Tuxpan pipeline and has a production capacity of 1.4 million tonnes a year [3]. The project was designed with FLNG1 on converted oil platforms and FLNG2 on three fixed platforms [4].",
+    "Offshore LNG facilities combine cryogenic process equipment with platform structures. NDT scopes include inspection of stainless steel and low-temperature welds, PMI, insulation and cold-spot surveys, structural inspection of jackets and decks, and corrosion monitoring of topside piping in a marine environment.",
+    "Marine conditions offshore Altamira make coating and splash-zone inspection a recurring need."
+   ]
+  },
+  {
+   "id": "shipyards",
+   "h2": "Shipyards, offshore fabrication and marine work",
+   "paragraphs": [
+    "Tampico and Altamira host shipyards and fabrication yards serving offshore oil and gas, LNG and marine customers. Fabrication NDT includes UT and RT of structural and piping welds, MT and PT, and dimensional checks to AWS, API and classification society rules.",
+    "Marine NDT includes ultrasonic thickness gauging of hulls during dry-dockings, weld inspection on repairs and inspection of port structures and mooring hardware.",
+    "Converted oil platforms used for LNG, like those at Altamira [4], need structural assessment before and after conversion, including inspection of jacket nodes, deck structures and new support steel for process modules. Providers with offshore structural inspection and rope access capability can support these projects as well as conventional platform work in the Gulf."
+   ]
+  },
+  {
+   "id": "methods",
+   "h2": "NDT methods used in Tampico and Altamira",
+   "paragraphs": [
+    "**Corrosion mapping and UT thickness testing** are used across refinery, petrochemical and terminal assets. **PAUT and TOFD** inspect welds on new construction and repairs. **Radiography** remains common for piping welds and cryogenic systems. **Advanced UT techniques** screen hydrotreaters for HTHA.",
+    "**MFL floor scanning** inspects tanks, **eddy current and IRIS** inspect exchangers, **pulsed eddy current** screens for CUI, **ACFM** inspects offshore structures and **PMI** verifies alloys."
+   ]
+  },
+  {
+   "id": "pipelines",
+   "h2": "Pipelines and gas infrastructure",
+   "paragraphs": [
+    "Southern Tamaulipas is crossed by major pipelines, including gas lines connecting to the Sur de Texas–Tuxpan system that feeds Fast LNG 1 [3], along with crude, product and petrochemical lines serving the refinery and the Altamira industrial port. Pipeline integrity programs include in-line inspection, verification digs, external corrosion surveys and inspection at road, river and shore crossings.",
+    "NDT crews verify and size in-line inspection anomalies with UT, PAUT and laser profilometry, inspect welds on repairs and tie-ins to API 1104, and screen above-ground sections with guided wave. Coating and cathodic protection surveys help identify areas at risk of external corrosion, which is a particular concern in the humid, salty coastal soils around Altamira."
+   ]
+  },
+  {
+   "id": "radiation",
+   "h2": "Radiography rules in Mexico: CNSNS licensing",
+   "paragraphs": [
+    "Industrial radiography with radioactive sources in Mexico is regulated by the National Commission for Nuclear Safety and Safeguards (CNSNS) under the General Radiological Safety Regulation. Companies need an operating license for their radioactive installation, supported by a radiological safety policy, detailed descriptions of their sources and devices, dose estimates and emergency plans [8]. Gamma radiography equipment must also meet a dedicated official standard covering operation, transport, storage, maintenance and requirements for occupationally exposed personnel [11].",
+    "Every licensee must have a Radiological Safety Officer (Encargado de Seguridad Radiológica, ESR) authorized by CNSNS to oversee radiation protection at the workplace [10]. For type A or B installations, the proposed ESR must show approval of a CNSNS-endorsed course at ESR level, a year of experience in radiological safety and six months in radiation protection related to the sources used [9].",
+    "Buyers should ask for the provider's CNSNS license number, the authorized ESR's name, source and equipment documentation and dosimetry records for radiographers before work starts."
+   ],
+   "bullets": [
+    "Confirm the CNSNS operating license and authorized ESR [8][9].",
+    "Check gamma camera compliance with the official equipment standard [11].",
+    "Review dosimetry and training records for every radiographer."
+   ]
+  },
+  {
+   "id": "turnarounds",
+   "h2": "Turnarounds and outage planning",
+   "paragraphs": [
+    "Refinery and petrochemical turnarounds in the Tampico–Altamira area concentrate inspection demand into short, intense periods. Owners build worklists from risk-based inspection, previous findings and process changes, then qualify NDT procedures and personnel before shutdown.",
+    "With the Madero refinery's rehabilitation program [1] and the many plants in the Altamira port zone, several turnarounds may overlap, competing for experienced technicians. Booking providers early, sharing equipment lists and drawings, agreeing on reporting formats and setting up daily preliminary reporting help keep turnarounds on schedule.",
+    "After turnarounds, final reports should give engineers the data they need for fitness-for-service decisions and to set the next inspection intervals."
+   ]
+  },
+  {
+   "id": "nom020",
+   "h2": "Pressure equipment inspection under NOM-020-STPS-2011",
+   "paragraphs": [
+    "Mexico's NOM-020-STPS-2011 governs the safe operation of pressure vessels, cryogenic vessels and boilers in workplaces. It makes the employer responsible for determining and carrying out pressure tests or nondestructive examinations on equipment in categories II and III [12]. Notices that category III equipment complies with the standard must be accompanied by a conformity assessment issued by an accredited verification unit [13].",
+    "For NDT providers, NOM-020 creates steady demand for thickness surveys, weld inspection and other examinations on pressure equipment in factories, plants and refineries, often in coordination with verification units. Clear reports that state the method, procedure, coverage, results and technician qualifications make compliance straightforward."
+   ]
+  },
+  {
+   "id": "unconventional",
+   "h2": "Unconventional resources and upstream activity",
+   "paragraphs": [
+    "With a large share of Mexico's unconventional prospective resources in the Burgos and Tampico-Misantla basins [6], upstream activity in Tamaulipas could grow if development accelerates. Upstream work brings NDT demand for wellhead and surface equipment inspection, gathering line and pipeline weld inspection, inspection of compressor and processing stations, and inspection of drilling equipment such as drill pipe, BOPs and lifting gear. Providers based in Tampico are well placed to serve both downstream and upstream customers in the region."
+   ]
+  },
+  {
+   "id": "climate",
+   "h2": "Climate, hurricanes and corrosion",
+   "paragraphs": [
+    "Tampico's hot, humid coastal climate and salt air drive corrosion under insulation and atmospheric corrosion. Hurricanes and tropical storms affect the Tamaulipas coast, and flooding can damage tanks and infrastructure. After severe weather, owners commission inspections of structures, tanks and insulation before restart.",
+    "Many owners schedule external inspection and coating work outside the peak hurricane season, from roughly June to November, and keep pre-qualified providers ready for rapid post-storm assessments."
+   ]
+  },
+  {
+   "id": "data",
+   "h2": "Reporting and documentation",
+   "paragraphs": [
+    "Refinery and petrochemical owners expect inspection data tied to condition monitoring locations, with encoded scans for advanced methods and clear coverage and calibration records. For NOM-020 compliance and verification units, reports should state methods, coverage, acceptance criteria and results. Construction QA requires traceable weld records tied to drawings and joint numbers.",
+    "Inspection results increasingly feed risk-based inspection programs, so providers should deliver data in formats compatible with owners' software and use location identifiers that match equipment registers. Consistent baseline surveys during rehabilitation give the refinery a reliable starting point for corrosion rate calculations."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Tampico",
+   "paragraphs": [
+    "Plant and turnaround NDT is usually priced on day rates per technician and method, with advanced equipment billed separately. Pemex contracts through tenders, while private plants use framework agreements. Construction QA may be priced per weld or per shift.",
+    "NDT-Connect lets buyers post one scope and compare certified providers serving Tampico, Ciudad Madero, Altamira and southern Tamaulipas.",
+    "Clear scopes that define methods, coverage, acceptance criteria and reporting format make quotes easier to compare, and framework agreements can secure crews for planned turnarounds."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Tampico",
+   "paragraphs": [
+    "The region offers NDT careers in refining, petrochemicals, LNG, shipyards and construction. Employers hire RT, UT, MT and PT technicians, PAUT and TOFD specialists, tank inspectors and Level IIIs.",
+    "A typical path starts with Level II certification in RT and UT and CNSNS-recognized radiation protection training, followed by advanced UT and API certifications.",
+    "Bilingual technicians are in demand for work with international owners and contractors at the Altamira port and LNG facilities, and offshore experience opens additional opportunities."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Tampico",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers."
+   ],
+   "bullets": [
+    "SNT-TC-1A, CP-189 or ISO 9712 certified personnel with Level III oversight.",
+    "CNSNS license and authorized ESR for radiography [8][9].",
+    "Refinery, petrochemical and LNG experience.",
+    "PAUT, TOFD, HTHA techniques, MFL and PEC capability.",
+    "NOM-020 examination experience [12].",
+    "Construction QA capacity for port and plant projects."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "What is happening at the Madero refinery?",
+   "a": "Pemex has issued nearly 30 tenders for maintenance and rehabilitation, five aimed at improving crude and distillate processing [1]."
+  },
+  {
+   "q": "How big is the Industrial Port of Altamira?",
+   "a": "It covers 9,500 hectares with more than 75 companies and ranks first in Mexico for petrochemical cargo [2]."
+  },
+  {
+   "q": "What is Fast LNG 1?",
+   "a": "A modular offshore liquefaction terminal near Altamira, commissioned in 2024, with 1.4 Mtpa capacity [3]."
+  },
+  {
+   "q": "Who regulates radiography in Mexico?",
+   "a": "The CNSNS licenses radioactive installations and authorizes Radiological Safety Officers [8][10]."
+  },
+  {
+   "q": "What does NOM-020-STPS-2011 require?",
+   "a": "Pressure tests or NDT on category II and III pressure equipment [12], with verification unit assessments for category III notices [13]."
+  },
+  {
+   "q": "How do I request NDT quotes in Tampico?",
+   "a": "Post the scope on NDT-Connect with the facility, equipment, methods, access, dates and reporting requirements."
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Monterrey",
+   "href": "/ndt-services/monterrey-mx"
+  },
+  {
+   "name": "Coatzacoalcos",
+   "href": "/ndt-services/coatzacoalcos-mx"
+  },
+  {
+   "name": "Corpus Christi",
+   "href": "/ndt-services/corpus-christi-tx"
+  },
+  {
+   "name": "Houston",
+   "href": "/ndt-services/houston-tx"
+  }
+ ],
+ "related": [
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  }
+ ],
+ "references": [
+  {
+   "title": "Milenio — Pemex issues tenders for works at the Madero refinery",
+   "url": "https://amp.milenio.com/negocios/pemex-lanza-licitaciones-obras-refineria-madero"
+  },
+  {
+   "title": "Port of Altamira — Yearbook 2023 (industrial port complex)",
+   "url": "https://puertoaltamira.com.mx/upl/sec/YEARBOOK_2023.pdf"
+  },
+  {
+   "title": "New Fortress Energy — Altamira Fast LNG 1",
+   "url": "https://www.newfortressenergy.com/fr/node/1385"
+  },
+  {
+   "title": "Mexico News Daily — Altamira LNG hub could face setback (FLNG1 and FLNG2 design)",
+   "url": "https://mexiconewsdaily.com/news/mexicos-altamira-liquefied-natural-gas-hub-could-face-setback/"
+  },
+  {
+   "title": "Mexico Business News — Altamira prepares six terminals as port plan advances",
+   "url": "https://mexicobusiness.news/logistics/news/altamira-prepares-six-terminals-mexico-port-plan-advances"
+  },
+  {
+   "title": "Mexico Business News — Altamira: Tamaulipas' second-largest investment hub",
+   "url": "https://mexicobusiness.news/trade-and-investment/news/altamira-tamaulipas-second-largest-investment-hub"
+  },
+  {
+   "title": "Industrial Info — Pemex refining throughput and production",
+   "url": "https://www.industrialinfo.com/news/article/pemex-remains-far-from-18-million-bpd-production-goal--362303"
+  },
+  {
+   "title": "CNSNS — Licencia de operación para instalaciones radiactivas tipo B (hoja de ayuda)",
+   "url": "https://www.gob.mx/cms/uploads/attachment/file/879232/LICENCIA__DE_OPERACI_N_TIPO_B.pdf"
+  },
+  {
+   "title": "CNSNS — Autorización de adquisición y transferencia (requisitos del Encargado de Seguridad Radiológica)",
+   "url": "https://www.gob.mx/cms/uploads/attachment/file/879221/AUTORIZACI_N_DE_ADQUISICI_N_Y_TRANSFERENCIA.pdf"
+  },
+  {
+   "title": "NOM-012-STPS-2012 — Radiaciones ionizantes (definición de Encargado de Seguridad Radiológica)",
+   "url": "https://imss.gob.mx/sites/all/statics/profesionalesSalud/investigacionSalud/cbis/nom-012-stps-2012_bioseguridad_radiacion.pdf"
+  },
+  {
+   "title": "NOM-025/2-NUCL-2015 — Requisitos para equipos de radiografía industrial gamma",
+   "url": "https://platiica.economia.gob.mx/wp-content/uploads/sites/2/PDF_Normas_Publicas/025-2nucl2015.pdf"
+  },
+  {
+   "title": "DOF — NOM-020-STPS-2011 pruebas de presión y exámenes no destructivos (categorías II y III)",
+   "url": "https://sidof.segob.gob.mx/notas/docFuente/5411988"
+  },
+  {
+   "title": "DOF — NOM-020-STPS-2011 avisos de Categoría III con dictamen de unidad de verificación",
+   "url": "https://sidof.segob.gob.mx/notas/docFuente/5477515"
+  }
+ ]
+}

@@ -1,0 +1,333 @@
+{
+ "slug": "monterrey-mx",
+ "city": "Monterrey",
+ "region": "Nuevo León",
+ "country": "Mexico",
+ "countrySlug": "mexico",
+ "wave": 3,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Monterrey, Mexico: Steel, Fabrication, Automotive and Refinery Inspection",
+ "metaTitle": "NDT Services in Monterrey, Mexico | Steel, Fabrication & Plant NDT",
+ "description": "NDT in Monterrey, Mexico: inspection for steel mills, heavy fabrication, automotive suppliers, Cadereyta and nearshoring plants. CNSNS and NOM-020 rules.",
+ "quickAnswer": "Monterrey is Mexico's industrial capital and a leading nearshoring destination. Ternium's Pesquería industrial center has drawn more than **US$7.5 billion** in investment [1], and a new electric arc furnace steel shop will add **2.6 million tonnes** of steelmaking capacity from 2027 [2][3]. Around this anchor sit heavy fabricators, automotive and appliance suppliers, power and gas infrastructure, and Pemex's Cadereyta refinery. NDT demand covers **weld inspection for fabrication and construction**, mill maintenance, pressure equipment examinations under **NOM-020-STPS-2011**, and refinery integrity work. Radiography with radioactive sources requires a **CNSNS license** and an authorized Radiological Safety Officer [6][8].",
+ "keyFacts": [
+  {
+   "label": "Steel anchor",
+   "value": "Ternium Pesquería: more than US$7.5 billion invested [1]; new EAF shop of 2.6 Mt/year [3]"
+  },
+  {
+   "label": "Markets served",
+   "value": "Automotive, appliance, construction, electric motor and other industries [4]"
+  },
+  {
+   "label": "Pressure equipment rule",
+   "value": "NOM-020-STPS-2011: pressure tests or NDT for category II and III equipment [10]"
+  },
+  {
+   "label": "Radiography regulator",
+   "value": "CNSNS licensing and authorized Radiological Safety Officer [6][8]"
+  }
+ ],
+ "industries": [
+  "Steel and metals",
+  "Heavy fabrication (vessels, boilers, structures)",
+  "Automotive and appliances",
+  "Oil refining and gas",
+  "Power generation",
+  "Aerospace and electronics"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Why Monterrey is a major NDT market",
+   "paragraphs": [
+    "Monterrey and the surrounding Nuevo León metropolitan area are the heart of Mexico's heavy industry, home to steelmakers, cement and glass producers, fabricators, automotive and appliance plants and a dense network of suppliers. USMCA and the nearshoring trend have brought a new wave of investment, with companies building plants close to the US market.",
+    "Ternium's Pesquería industrial center is the clearest example. The third phase of its expansion adds US$4 billion, bringing total investment in the complex to more than US$7.5 billion [1]. Its new facilities produce cold-rolled, raw and galvanized steel for automotive, appliance, construction, electric motor, plumbing and rail equipment customers [4].",
+    "For NDT providers, Monterrey combines high-volume fabrication QA, construction inspection on new plants, maintenance inspection in steel mills and process plants, and refinery and pipeline integrity work. It is also a major base for NDT companies that serve the rest of northern Mexico and cross-border projects in Texas."
+   ]
+  },
+  {
+   "id": "steel",
+   "h2": "Steel mills: construction and maintenance inspection",
+   "paragraphs": [
+    "Ternium's newest project is an electric arc furnace steel shop with annual capacity of 2.6 million tons and a direct reduced iron module of 2.1 million tons, integrated with its hot rolling mill that began operating in mid-2021 [3]. The company says the mill will be among the most modern and sustainable in the Americas, with CO2 emissions well below the industry average [5]. The completed project will add 2.6 million tonnes of steelmaking capacity starting in 2027 [2].",
+    "Building and running steel plants generates large NDT volumes. Construction brings structural steel weld inspection, piping and pressure vessel examinations, crane runway and building inspection. In operation, mills need inspection of cranes and lifting equipment, rolls and roll chocks, gearboxes and shafts, furnace structures and cooling systems, gas and oxygen piping, and pressure vessels and boilers.",
+    "Common methods include UT and MT for welds and shafts, PT on non-ferrous parts, thickness surveys for cooling water and gas lines, and vibration and thermography to support predictive maintenance."
+   ],
+   "table": {
+    "caption": "Monterrey assets and typical NDT scopes",
+    "head": [
+     "Asset",
+     "Main concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Structural steel and crane runways",
+      "Weld defects, fatigue cracks",
+      "UT, MT, visual (AWS D1.1)"
+     ],
+     [
+      "Pressure vessels and boilers (fabrication)",
+      "Weld quality, code compliance",
+      "RT, UT, PAUT, MT, PT (ASME VIII/I)"
+     ],
+     [
+      "Mill cranes, shafts and rolls",
+      "Fatigue cracks, wear",
+      "UT, MT, PT"
+     ],
+     [
+      "Process piping and utilities",
+      "Corrosion, weld integrity",
+      "UT, RT, corrosion mapping"
+     ],
+     [
+      "Refinery units (Cadereyta)",
+      "Corrosion, cracking, HTHA",
+      "UT, PAUT, TOFD, corrosion mapping"
+     ],
+     [
+      "Automotive parts and castings",
+      "Porosity, cracks, weld defects",
+      "RT, CT, UT, ECT, PT"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "fabrication",
+   "h2": "Heavy fabrication: vessels, boilers, heat exchangers and structures",
+   "paragraphs": [
+    "Monterrey is one of Latin America's main centers for heavy fabrication. Shops in the area build pressure vessels, heat exchangers, boilers, tanks, towers and structural modules for refineries, petrochemical plants, power stations and mining projects in Mexico, the United States and beyond.",
+    "Fabrication QA is a core NDT market. Pressure equipment built to ASME Section VIII or Section I requires radiography or ultrasonic examination of welds, magnetic particle and penetrant testing, PMI on alloy materials and hardness testing. Shops that hold ASME stamps work with authorized inspectors, and their NDT procedures and personnel must meet ASME Section V and SNT-TC-1A requirements. Structural modules use AWS D1.1.",
+    "Phased array UT is replacing radiography on many projects because it improves safety, speeds production and provides digital records. Providers that offer PAUT and TOFD with code-compliant procedures have an advantage in this market."
+   ]
+  },
+  {
+   "id": "auto",
+   "h2": "Automotive, appliance and manufacturing QA",
+   "paragraphs": [
+    "Nuevo León's automotive and appliance industries depend on supplier networks producing castings, forgings, stampings, welded assemblies and electronic components. NDT supports quality control through radiography and computed tomography of castings, ultrasonic inspection of welds and bonds, eddy current testing of parts and fasteners, and leak testing.",
+    "Quality requirements usually follow customer specifications and quality systems such as IATF 16949. Providers working in this market need fast turnaround, statistical reporting and the ability to handle high part volumes."
+   ]
+  },
+  {
+   "id": "refinery",
+   "h2": "Cadereyta refinery, gas and power",
+   "paragraphs": [
+    "Pemex's Cadereyta refinery, east of Monterrey, supplies fuels to northeastern Mexico. Refinery inspection needs include crude unit corrosion, FCC and coker inspection, hydrotreater HTHA screening, heat exchanger tube inspection, tank inspections and pipeline integrity.",
+    "Natural gas pipelines from Texas and power stations around Monterrey add pipeline weld inspection, compressor station inspection and power plant outage work. Combined-cycle plants need HRSG tube inspection, high-energy piping weld inspection and turbine component checks."
+   ]
+  },
+  {
+   "id": "process",
+   "h2": "Cement, glass, chemicals and other process industries",
+   "paragraphs": [
+    "Beyond steel, Monterrey is home to large cement, glass, chemical and food and beverage producers. These plants run kilns, furnaces, dryers, boilers, compressors, pressure vessels and long runs of process and utility piping, all of which need periodic inspection.",
+    "Kiln shells and tyres are inspected for cracks and deformation, furnace structures and burners for heat damage, and boilers and pressure vessels for wall loss and weld integrity under NOM-020. Breweries and food plants use stainless steel tanks and piping that need penetrant testing, weld inspection and hygienic documentation. Rotating equipment such as fans, mills and gearboxes benefits from UT and MT of shafts and welds during planned shutdowns, combined with vibration analysis and thermography.",
+    "Planned annual shutdowns at these plants concentrate NDT demand into short windows, so buyers should book providers early and share equipment lists, drawings and previous inspection results in advance."
+   ]
+  },
+  {
+   "id": "radiation",
+   "h2": "Radiography rules in Mexico: CNSNS licensing",
+   "paragraphs": [
+    "Industrial radiography with radioactive sources in Mexico is regulated by the National Commission for Nuclear Safety and Safeguards (CNSNS) under the General Radiological Safety Regulation. Companies need an operating license for their radioactive installation, supported by a radiological safety policy, detailed descriptions of their sources and devices, dose estimates and emergency plans [6]. Gamma radiography equipment must also meet a dedicated official standard covering operation, transport, storage, maintenance and requirements for occupationally exposed personnel [9].",
+    "Every licensee must have a Radiological Safety Officer (Encargado de Seguridad Radiológica, ESR) authorized by CNSNS to oversee radiation protection at the workplace [8]. For type A or B installations, the proposed ESR must show approval of a CNSNS-endorsed course at ESR level, a year of experience in radiological safety and six months in radiation protection related to the sources used [7].",
+    "Buyers should ask for the provider's CNSNS license number, the authorized ESR's name, source and equipment documentation and dosimetry records for radiographers before work starts."
+   ],
+   "bullets": [
+    "Confirm the CNSNS operating license and authorized ESR [6][7].",
+    "Check gamma camera compliance with the official equipment standard [9].",
+    "Review dosimetry and training records for every radiographer."
+   ]
+  },
+  {
+   "id": "nom020",
+   "h2": "Pressure equipment inspection under NOM-020-STPS-2011",
+   "paragraphs": [
+    "Mexico's NOM-020-STPS-2011 governs the safe operation of pressure vessels, cryogenic vessels and boilers in workplaces. It makes the employer responsible for determining and carrying out pressure tests or nondestructive examinations on equipment in categories II and III [10]. Notices that category III equipment complies with the standard must be accompanied by a conformity assessment issued by an accredited verification unit [11].",
+    "For NDT providers, NOM-020 creates steady demand for thickness surveys, weld inspection and other examinations on pressure equipment in factories, plants and refineries, often in coordination with verification units. Clear reports that state the method, procedure, coverage, results and technician qualifications make compliance straightforward."
+   ]
+  },
+  {
+   "id": "certification",
+   "h2": "NDT personnel certification in Mexico",
+   "paragraphs": [
+    "Mexican NDT personnel are commonly certified under employer-based programs following ASNT SNT-TC-1A, under ANSI/ASNT CP-189, or under ISO 9712 schemes. Export fabricators working to ASME codes typically use SNT-TC-1A written practices with ASNT Level III oversight, and many customers require AWS CWI or CSWIP welding inspectors.",
+    "For cross-border work, buyers should confirm that certifications are recognized by the end customer and that procedures meet the governing code, whether ASME, AWS, API or a customer specification."
+   ]
+  },
+  {
+   "id": "nearshoring",
+   "h2": "Nearshoring construction and new plants",
+   "paragraphs": [
+    "New factories, warehouses and industrial parks across the Monterrey metro area need construction QA: structural steel weld inspection, bolting verification, piping and pressure equipment examinations, and inspection of utility systems. Projects often run on tight schedules, so NDT providers must mobilize quickly and report daily.",
+    "Many projects are built by US or Asian companies with their own standards, so providers that can work in English and Spanish and deliver reports to international formats are valued.",
+    "Data centers and electrical infrastructure are a newer source of demand: substations, transmission structures, backup generators and cooling systems all need fabrication and installation inspection, and owners increasingly expect digital, searchable QA records at handover."
+   ]
+  },
+  {
+   "id": "climate",
+   "h2": "Climate and working conditions",
+   "paragraphs": [
+    "Monterrey has hot summers, mild winters and occasional heavy rain from tropical systems. Summer heat affects field work and equipment, requiring heat-stress management and high-temperature couplants for hot surfaces. Dust in industrial areas can affect equipment and surface preparation.",
+    "Most NDT work is in plants and fabrication shops, so access, permits and plant safety rules are the main logistical factors.",
+    "Hurricane remnants occasionally bring flooding to the metro area, so outdoor projects should plan for weather delays and post-storm inspections of structures and equipment."
+   ]
+  },
+  {
+   "id": "data",
+   "h2": "Reporting and documentation",
+   "paragraphs": [
+    "Fabrication QA requires traceable records tied to weld maps, joint numbers and heat numbers, with procedure and technician references. Maintenance inspection reports should include locations, readings, photographs and recommendations, ideally in formats that load into the owner's maintenance management system.",
+    "For NOM-020 compliance and audits, reports should clearly state the examination performed, coverage, acceptance criteria and results."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Monterrey",
+   "paragraphs": [
+    "Fabrication QA is often priced per weld, per film, per meter of PAUT scanning or per shift. Plant maintenance and turnaround work is usually priced on day rates per technician and method, with advanced equipment billed separately. Competitive local labor costs make Monterrey attractive for both domestic and export work.",
+    "NDT-Connect lets buyers post one scope and compare certified providers serving Monterrey, Saltillo and northeastern Mexico."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Monterrey",
+   "paragraphs": [
+    "Monterrey offers strong NDT careers in fabrication, steel, automotive, energy and construction. Employers hire RT, UT, MT and PT technicians, PAUT and TOFD specialists, CWIs and Level IIIs.",
+    "A typical path starts with Level II certification in RT and UT, CNSNS-recognized radiation protection training for radiography roles, then PAUT and code-specific training for ASME and AWS work.",
+    "Monterrey's universities and technical schools supply engineering talent, and many NDT companies run in-house training programs. Bilingual technicians who can work on export projects and cross-border jobs in Texas are particularly sought after."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Monterrey",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers."
+   ],
+   "bullets": [
+    "SNT-TC-1A, CP-189 or ISO 9712 certified personnel with Level III oversight.",
+    "CNSNS license and authorized ESR for radiography [6][7].",
+    "PAUT and TOFD with ASME- and AWS-compliant procedures.",
+    "Experience with NOM-020 examinations and verification units [10].",
+    "Bilingual reporting for international customers.",
+    "Capacity for fabrication QA, plant maintenance and construction projects."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Why is NDT demand growing in Monterrey?",
+   "a": "Nearshoring investment, including Ternium's more than US$7.5 billion Pesquería complex [1], is driving new plant construction and fabrication."
+  },
+  {
+   "q": "Who regulates industrial radiography in Mexico?",
+   "a": "The CNSNS, which issues operating licenses for radioactive installations and authorizes Radiological Safety Officers [6][8]."
+  },
+  {
+   "q": "What does NOM-020-STPS-2011 require?",
+   "a": "Employers must carry out pressure tests or NDT on category II and III pressure equipment [10], and category III notices need a verification unit's conformity assessment [11]."
+  },
+  {
+   "q": "Which codes apply to fabrication NDT in Monterrey?",
+   "a": "Typically ASME Section V with Section VIII or I acceptance for pressure equipment, and AWS D1.1 for structural steel."
+  },
+  {
+   "q": "How big is Ternium's new steel shop?",
+   "a": "An EAF steel shop with 2.6 million tons of annual capacity and a 2.1 million ton DRI module [3]."
+  },
+  {
+   "q": "How do I request NDT quotes in Monterrey?",
+   "a": "Post the scope on NDT-Connect with the code, methods, quantities, location, dates and reporting requirements."
+  }
+ ],
+ "references": [
+  {
+   "title": "Mexico Industry — Ternium accelerates expansion in Nuevo León with US$7.5 billion",
+   "url": "https://mexicoindustry.com/noticia/ternium-acelera-expansion-industrial-en-nuevo-leon-con-inversion-por-7-500-mdd"
+  },
+  {
+   "title": "Mexico News Daily — Steel firms bolster investment in Mexico (Ternium Pesquería, 2.6 Mt from 2027)",
+   "url": "https://mexiconewsdaily.com/business/steel-firms-investment-mexico-chinese-competition/"
+  },
+  {
+   "title": "Ternium Investors — New steel slab mill in Pesquería (EAF and DRI)",
+   "url": "https://investors.ternium.com/?p=956"
+  },
+  {
+   "title": "Mexico News Daily — Ternium to invest additional US$4B in Nuevo León (products and markets)",
+   "url": "https://mexiconewsdaily.com/business/ternium-investment-nuevo-leon"
+  },
+  {
+   "title": "Ternium — New steel mill in Pesquería",
+   "url": "https://ternium.com/en/media/news/new-steel-mill--04707742324"
+  },
+  {
+   "title": "CNSNS — Licencia de operación para instalaciones radiactivas tipo B (hoja de ayuda)",
+   "url": "https://www.gob.mx/cms/uploads/attachment/file/879232/LICENCIA__DE_OPERACI_N_TIPO_B.pdf"
+  },
+  {
+   "title": "CNSNS — Autorización de adquisición y transferencia (requisitos del Encargado de Seguridad Radiológica)",
+   "url": "https://www.gob.mx/cms/uploads/attachment/file/879221/AUTORIZACI_N_DE_ADQUISICI_N_Y_TRANSFERENCIA.pdf"
+  },
+  {
+   "title": "NOM-012-STPS-2012 — Radiaciones ionizantes (definición de Encargado de Seguridad Radiológica)",
+   "url": "https://imss.gob.mx/sites/all/statics/profesionalesSalud/investigacionSalud/cbis/nom-012-stps-2012_bioseguridad_radiacion.pdf"
+  },
+  {
+   "title": "NOM-025/2-NUCL-2015 — Requisitos para equipos de radiografía industrial gamma",
+   "url": "https://platiica.economia.gob.mx/wp-content/uploads/sites/2/PDF_Normas_Publicas/025-2nucl2015.pdf"
+  },
+  {
+   "title": "DOF — NOM-020-STPS-2011 pruebas de presión y exámenes no destructivos (categorías II y III)",
+   "url": "https://sidof.segob.gob.mx/notas/docFuente/5411988"
+  },
+  {
+   "title": "DOF — NOM-020-STPS-2011 avisos de Categoría III con dictamen de unidad de verificación",
+   "url": "https://sidof.segob.gob.mx/notas/docFuente/5477515"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Tampico",
+   "href": "/ndt-services/tampico-mx"
+  },
+  {
+   "name": "Houston",
+   "href": "/ndt-services/houston-tx"
+  },
+  {
+   "name": "San Antonio",
+   "href": "/ndt-services/san-antonio-tx"
+  },
+  {
+   "name": "Corpus Christi",
+   "href": "/ndt-services/corpus-christi-tx"
+  },
+  {
+   "name": "Coatzacoalcos",
+   "href": "/ndt-services/coatzacoalcos-mx"
+  }
+ ],
+ "related": [
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  },
+  {
+   "label": "All NDT locations",
+   "href": "/ndt-locations"
+  }
+ ]
+}

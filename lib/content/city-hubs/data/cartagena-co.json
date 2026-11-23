@@ -1,0 +1,339 @@
+{
+ "slug": "cartagena-co",
+ "city": "Cartagena",
+ "region": "Bolívar",
+ "country": "Colombia",
+ "countrySlug": "colombia",
+ "wave": 3,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Cartagena, Colombia: Reficar Refinery, Mamonal Industrial Zone and Port Inspection",
+ "metaTitle": "NDT Services in Cartagena, Colombia | Reficar & Mamonal Inspection",
+ "description": "NDT in Cartagena, Colombia: inspection for the Reficar refinery, Mamonal petrochemical plants, ports and shipyards. Methods, SGC radiation rules and hiring.",
+ "quickAnswer": "Cartagena, on Colombia's Caribbean coast, is home to **Reficar**, Ecopetrol's most modern refinery, which has expanded its capacity from 150,000 to **210,000 barrels a day** [4]. It reached a maximum throughput of **202,000 barrels a day** in 2025 [2]. The surrounding **Mamonal industrial zone** hosts petrochemical, chemical and manufacturing plants, while the port and shipyards add marine work. Reficar is integrated with Barrancabermeja in a single refining system [3], and a marine climate makes corrosion a constant concern. NDT demand spans refinery integrity, petrochemical turnarounds, terminals and shipbuilding. Radiography is licensed by the **Servicio Geológico Colombiano** [6].",
+ "keyFacts": [
+  {
+   "label": "Refinery",
+   "value": "Reficar: capacity expanded from 150,000 to 210,000 bpd [4]; maximum throughput of 202,000 bpd in 2025 [2]"
+  },
+  {
+   "label": "System",
+   "value": "Integrated with Barrancabermeja; 428,000 bpd combined in H1 2026 [1]"
+  },
+  {
+   "label": "Industrial zone",
+   "value": "Mamonal: refining, petrochemicals, chemicals and manufacturing"
+  },
+  {
+   "label": "Radiation regulator",
+   "value": "Servicio Geológico Colombiano [6]"
+  }
+ ],
+ "industries": [
+  "Oil refining",
+  "Petrochemicals and plastics",
+  "Chemicals",
+  "Ports and terminals",
+  "Shipbuilding and repair",
+  "Power generation"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Cartagena's industrial and port economy",
+   "paragraphs": [
+    "Cartagena combines a historic port city with one of Colombia's most important industrial zones. Along the Mamonal corridor south of the city, the Reficar refinery, petrochemical and chemical plants, terminals and manufacturing facilities line Cartagena Bay. Container and bulk ports, naval and commercial shipyards and logistics companies complete the industrial picture.",
+    "Reficar is the centerpiece. Ecopetrol's president has said the refinery expanded its capacity from 150,000 to 210,000 barrels a day [4], and it reached a maximum throughput of 202,000 barrels a day in 2025 thanks to improved operational and electrical stability [2]. Ecopetrol manages Reficar and Barrancabermeja as one integrated system, also bringing the older refinery next to the modern complex back into operation [3].",
+    "For NDT providers, Cartagena offers refinery integrity work, petrochemical turnarounds, terminal and tank inspections, and marine and shipyard NDT."
+   ]
+  },
+  {
+   "id": "reficar",
+   "h2": "Reficar: a modern refinery with demanding inspection needs",
+   "paragraphs": [
+    "Reficar's modern complex includes deep conversion units such as delayed coking and hydrocracking, alongside crude distillation, hydrotreating and sulfur recovery, plus the reactivated older refinery. Higher conversion means more high-temperature, high-pressure and hydrogen service equipment, with corresponding inspection demands.",
+    "Reliability has been a focus. In 2024, failures at Reficar reduced its jet fuel deliveries, while Barrancabermeja met its commitments [5]. Improving reliability depends on strong mechanical integrity programs, of which inspection is a central part.",
+    "The table summarizes typical scopes across Cartagena's industrial assets."
+   ],
+   "table": {
+    "caption": "Cartagena assets and typical NDT scopes",
+    "head": [
+     "Asset",
+     "Main concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Delayed coker",
+      "Coke drum fatigue, bulging, cracking",
+      "Laser profiling, PAUT, TOFD, AE"
+     ],
+     [
+      "Hydrocracker and hydrotreaters",
+      "HTHA, heavy-wall weld cracking",
+      "Advanced UT for HTHA, PAUT, TOFD"
+     ],
+     [
+      "Crude and vacuum units",
+      "Sulfidation, naphthenic acid, CUI",
+      "UT, corrosion mapping, PEC"
+     ],
+     [
+      "Petrochemical and chemical plants",
+      "Corrosion, SCC, weld integrity",
+      "PAUT, UT, PT, PMI"
+     ],
+     [
+      "Terminals and tank farms",
+      "Floor and shell corrosion",
+      "MFL, UT, guided wave"
+     ],
+     [
+      "Shipyards and vessels",
+      "Weld quality, hull wall loss",
+      "UT, RT, MT, thickness gauging"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "coker",
+   "h2": "Delayed coker and hydroprocessing inspection",
+   "paragraphs": [
+    "Coke drums are among the most demanding equipment to inspect. Thermal cycling causes bulging and cracking at circumferential welds and skirt attachments. Laser scanning maps internal profiles, PAUT and TOFD size cracks, and acoustic emission and strain monitoring support condition assessment during operation.",
+    "Hydrocrackers and hydrotreaters operate at high temperature and hydrogen partial pressure. Heavy-wall reactors and piping need advanced UT for weld integrity and HTHA screening, guided by API RP 941 and operating data. Reactor effluent systems need corrosion monitoring for ammonium bisulfide and chloride damage."
+   ]
+  },
+  {
+   "id": "reliability",
+   "h2": "Reliability and power stability",
+   "paragraphs": [
+    "Ecopetrol has credited Reficar's record 2025 throughput to better operational and electrical stability [2]. Power interruptions can trip units, causing thermal shocks, pressure transients and process upsets that stress equipment. After unplanned shutdowns, targeted inspections of hot sections, fired heaters, reactors and rotating equipment help catch damage before restart.",
+    "Reliability programs combine inspection with condition monitoring, root cause analysis of failures and a disciplined approach to closing out findings. For NDT providers, this means supporting not only scheduled turnarounds but also short-notice inspections after upsets, with fast reporting so operations can decide whether to restart, repair or replace.",
+    "Integrating the reactivated older refinery with the modern complex [3] also brings a need for baseline inspections of equipment that has been idle, to confirm it is fit for service before it is brought back into operation."
+   ]
+  },
+  {
+   "id": "mamonal",
+   "h2": "Mamonal petrochemical and chemical plants",
+   "paragraphs": [
+    "The Mamonal industrial zone hosts polymer, chemical, fertilizer and manufacturing plants that share utilities, pipelines and port access with the refinery. These plants need turnaround inspections, mechanical integrity programs and construction QA for expansions.",
+    "Common scopes include corrosion mapping on piping and vessels, PAUT on welds in corrosive service, PT and PMI on stainless and alloy equipment, exchanger tube inspection and tank inspections. Many plants operate stainless steel equipment that is sensitive to chloride stress corrosion cracking in the marine environment."
+   ]
+  },
+  {
+   "id": "port",
+   "h2": "Ports, terminals and shipyards",
+   "paragraphs": [
+    "Cartagena is one of the Caribbean's busiest ports. Liquid bulk terminals serving the refinery and chemical plants need API 653 tank inspections, pipeline and manifold surveys and loading arm inspections. Container terminals need crane and structure inspection.",
+    "Shipyards in Cartagena build and repair commercial and naval vessels. Marine NDT includes UT and RT of hull and structural welds, MT and PT, ultrasonic thickness gauging for classification surveys, and inspection of propulsion and steering components. Thickness gauging for class surveys must be done by firms approved by the relevant classification society.",
+    "Offshore gas exploration in the Colombian Caribbean could add further marine and offshore NDT demand in the coming years, from fabrication of structures and pipelines to inspection of supply vessels and port facilities used to support offshore operations."
+   ]
+  },
+  {
+   "id": "chloride",
+   "h2": "Chloride stress corrosion cracking and stainless steel",
+   "paragraphs": [
+    "Cartagena's marine environment poses a specific risk to austenitic stainless steel equipment: chloride stress corrosion cracking. Chlorides from sea air can concentrate under insulation, in crevices or on hot surfaces, and combined with tensile stresses at temperatures above about 60°C can cause branching cracks that propagate quickly.",
+    "Detecting chloride SCC requires sensitive surface and near-surface methods. Penetrant testing finds open cracks on accessible surfaces, eddy current can detect cracking through thin coatings, and PAUT can find and size cracks in welds and heat-affected zones. Removing insulation at selected locations, especially at low points, supports and penetrations, allows direct inspection.",
+    "Prevention matters as much as detection: proper coatings under insulation, chloride-free insulation materials, good jacketing and drainage reduce the risk. Inspection programs should prioritize stainless steel equipment operating in the susceptible temperature range."
+   ]
+  },
+  {
+   "id": "methods",
+   "h2": "NDT methods used in Cartagena",
+   "paragraphs": [
+    "**Corrosion mapping and UT thickness testing** are used throughout refinery, plant and terminal assets. **PAUT and TOFD** inspect welds and size cracks in high-pressure equipment and coke drums. **Advanced UT techniques** screen for HTHA.",
+    "**Radiography** remains common for piping and ship welds. **Pulsed eddy current** detects CUI, **eddy current and IRIS** inspect exchangers, **MFL** scans tank floors, **acoustic emission** monitors coke drums and tanks, and **PMI** verifies alloys."
+   ]
+  },
+  {
+   "id": "radiation",
+   "h2": "Radiography rules in Colombia: SGC licensing",
+   "paragraphs": [
+    "In Colombia, licensing and inspection of facilities using radioactive materials is carried out by the Servicio Geológico Colombiano (SGC), which received these functions under Decree 2703 of 2013. Its licensing group handles design licenses, operating licenses, registrations and import licenses, and categorizes radioactive sources by risk [6].",
+    "The Ministry of Mines and Energy's Resolution 90874 of 2014 sets the requirements and procedures for authorizations to use radioactive sources and for regulatory inspections [7]. Under Article 4, no practice involving radioactive sources may be adopted, introduced, carried out or interrupted without the corresponding authorization [8]. Separate resolutions cover import licensing, source categorization and the transport of radioactive materials [9].",
+    "Buyers should confirm that gamma radiography providers hold a current SGC operating license, that sources were imported under a valid license and are documented, that transport complies with national rules and that radiographers have radiation protection training and dosimetry."
+   ],
+   "bullets": [
+    "Check the provider's SGC operating license and source documentation [6][8].",
+    "Confirm transport arrangements meet national requirements [9].",
+    "Review radiographer training and dosimetry records."
+   ]
+  },
+  {
+   "id": "construction",
+   "h2": "Construction, expansions and fabrication",
+   "paragraphs": [
+    "Expansions at Reficar, new plants in Mamonal, terminal upgrades and shipyard projects all need construction NDT. Typical scopes include radiography or PAUT of piping and vessel welds, MT and PT on structural and attachment welds, PMI on alloy materials, hardness testing after heat treatment, and baseline thickness surveys for new equipment.",
+    "Construction QA follows ASME Section V with Section VIII or B31.3 acceptance for pressure equipment and piping, AWS D1.1 for structural steel, and classification society rules for ships. Clear weld maps, traceable records and timely reporting help contractors keep projects on schedule and hand over complete documentation to owners.",
+    "Fabrication shops in the Cartagena area also build vessels, tanks and modules for projects elsewhere in Colombia and the Caribbean, creating ongoing demand for shop-based NDT."
+   ]
+  },
+  {
+   "id": "climate",
+   "h2": "Marine climate and corrosion",
+   "paragraphs": [
+    "Cartagena's hot, humid Caribbean climate and salt-laden air create severe atmospheric corrosion and corrosion under insulation. Stainless steel equipment is vulnerable to chloride stress corrosion cracking under insulation and in splash zones. The hurricane season brings storms that can damage structures and insulation.",
+    "Inspection programs should include CUI screening, coating assessments, external corrosion surveys and post-storm inspections.",
+    "Many owners schedule external CUI and coating campaigns for the drier months, from December to April, and keep inspection resources ready for rapid post-storm assessments during the hurricane season."
+   ]
+  },
+  {
+   "id": "standards",
+   "h2": "Standards and certification",
+   "paragraphs": [
+    "Refinery and petrochemical inspection follows API standards, ASME codes and owner standards such as Ecopetrol's. Personnel are commonly certified under SNT-TC-1A-based written practices, CP-189 or ISO 9712. Marine work follows classification society rules and AWS or ISO welding standards.",
+    "Owners often require API individual certifications for inspectors, and class-approved firms for thickness gauging."
+   ]
+  },
+  {
+   "id": "turnarounds",
+   "h2": "Turnaround planning",
+   "paragraphs": [
+    "Reficar and Mamonal plants run periodic turnarounds that concentrate inspection demand. Because Reficar and Barrancabermeja operate as a system [3], Ecopetrol coordinates maintenance between them. NDT providers need to mobilize qualified crews, procedures and equipment early, coordinate with scaffolding and insulation contractors and deliver daily results.",
+    "Coker and hydroprocessing inspections require specialists, so booking them well in advance is important."
+   ]
+  },
+  {
+   "id": "data",
+   "h2": "Data and reporting",
+   "paragraphs": [
+    "Owners expect inspection data tied to condition monitoring locations, with encoded scans for advanced methods and clear coverage records, ready to load into risk-based inspection systems. For coke drums and HTHA screening, retaining full scan data allows comparison over time.",
+    "Consistent reporting across Reficar and Barrancabermeja also helps Ecopetrol compare equipment performance between the two sites and share lessons learned."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Cartagena",
+   "paragraphs": [
+    "Refinery and plant NDT is usually priced on day rates per technician and method, with advanced equipment billed separately. Marine NDT may be priced per survey or per day. Large owners contract through tenders and framework agreements.",
+    "NDT-Connect lets buyers post one scope and compare certified providers serving Cartagena, Mamonal and Colombia's Caribbean coast.",
+    "Well-defined scopes make quotes easier to compare."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Cartagena",
+   "paragraphs": [
+    "Cartagena offers NDT careers in refining, petrochemicals, terminals and shipyards. Employers hire UT, RT, MT and PT technicians, PAUT and TOFD specialists, coke drum and HTHA inspection experts, thickness gauging technicians and Level IIIs.",
+    "Bilingual technicians are valued for work with international owners and contractors, and marine experience opens shipyard and class survey opportunities.",
+    "Training programs that combine classroom instruction with supervised field hours on refinery and shipyard projects help new technicians reach Level II faster."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Cartagena",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers."
+   ],
+   "bullets": [
+    "Certified personnel (SNT-TC-1A, CP-189 or ISO 9712) with refinery or marine experience.",
+    "SGC license for radiography [6][8].",
+    "Coker, HTHA, PAUT and TOFD capability.",
+    "Class approvals for marine thickness gauging where needed.",
+    "Turnaround capacity and daily reporting.",
+    "Reporting compatible with risk-based inspection systems."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "What is Reficar's capacity?",
+   "a": "Ecopetrol says Reficar expanded its capacity from 150,000 to 210,000 bpd [4]; it reached a maximum throughput of 202,000 bpd in 2025 [2]."
+  },
+  {
+   "q": "How are Reficar and Barrancabermeja connected?",
+   "a": "Ecopetrol manages them as an integrated refining system, exchanging streams between them [3]."
+  },
+  {
+   "q": "Who regulates radiography in Colombia?",
+   "a": "The Servicio Geológico Colombiano [6], under Resolución 90874 de 2014 [7]."
+  },
+  {
+   "q": "Which NDT methods are used at Reficar?",
+   "a": "Corrosion mapping, PAUT, TOFD, HTHA techniques, coke drum laser profiling and AE, radiography, PEC, eddy current and IRIS, and MFL."
+  },
+  {
+   "q": "Is marine NDT available in Cartagena?",
+   "a": "Yes. Shipyards and ports need weld inspection, thickness gauging and component inspection, often by class-approved firms."
+  },
+  {
+   "q": "How do I request NDT quotes in Cartagena?",
+   "a": "Post the scope on NDT-Connect with the facility, equipment, methods, access, dates and reporting requirements."
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Barrancabermeja",
+   "href": "/ndt-services/barrancabermeja-co"
+  },
+  {
+   "name": "Maracaibo",
+   "href": "/ndt-services/maracaibo-ve"
+  },
+  {
+   "name": "Punto Fijo",
+   "href": "/ndt-services/punto-fijo-ve"
+  },
+  {
+   "name": "Point Lisas",
+   "href": "/ndt-services/point-lisas-tt"
+  }
+ ],
+ "related": [
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  }
+ ],
+ "references": [
+  {
+   "title": "Portafolio — Ecopetrol raises refinery throughput 5.9% in first half of 2026",
+   "url": "https://www.portafolio.co/energia/ecopetrol-eleva-5-9-la-carga-de-sus-refinerias-y-aumenta-produccion-de-gasolina-diesel-y-jet-a1-en-2026-este-ano-500911"
+  },
+  {
+   "title": "El Universal — Ecopetrol refineries reached record production and conversion in 2025",
+   "url": "https://www.eluniversal.com.co/economica/2026/04/07/refinerias-de-ecopetrol-alcanzaron-record-de-produccion-y-mayor-conversion/"
+  },
+  {
+   "title": "Portafolio — Ecopetrol integrates Cartagena and Barrancabermeja refining system",
+   "url": "https://www.portafolio.co/negocios/empresas/ecopetrol-le-da-un-revolcon-a-negocio-de-sus-refinerias-523502"
+  },
+  {
+   "title": "La República — Reficar expanded capacity from 150,000 to 210,000 bpd",
+   "url": "https://www.larepublica.co/economia/no-es-que-ecopetrol-haya-sido-el-mejor-buscando-petroleo-vamos-a-sonar-con-el-reto-3633037"
+  },
+  {
+   "title": "La República — Ecopetrol changes aviation fuel deliveries after Reficar failures",
+   "url": "https://www.larepublica.co/refineria-barrancabermeja"
+  },
+  {
+   "title": "Servicio Geológico Colombiano — User manual for licensing requests (design, operation, registration, import)",
+   "url": "https://www2.sgc.gov.co/Documents/Manual-de-usuario-solicitudes-GLyC-V.3.0.pdf"
+  },
+  {
+   "title": "Resolución D-083 de 2015 — SGC fees; MinEnergía delegation and Resolución 90874 de 2014",
+   "url": "https://www.icbf.gov.co/cargues/avance/compilacion/docs/resolucion_sgc_0083_2015.htm"
+  },
+  {
+   "title": "SGC — Response citing Articles 4 and 5 of Resolución 90874 de 2014",
+   "url": "https://www2.sgc.gov.co/AtencionAlCiudadano/Documents/notificaciones-por-aviso/2021/Notificacion-por-aviso-respuesta-al-radicado-no.-20211200091362.pdf"
+  },
+  {
+   "title": "SGC — Regulatory information (source categorization, transport and import resolutions)",
+   "url": "https://www2.sgc.gov.co/ProgramasDeInvestigacion/AsuntosNucleares/Documents/Informacion-TyS-en-linea.pdf"
+  }
+ ]
+}
