@@ -1,0 +1,273 @@
+{
+ "slug": "abqaiq-sa",
+ "city": "Abqaiq",
+ "region": "Eastern Province",
+ "country": "Saudi Arabia",
+ "countrySlug": "saudi-arabia",
+ "wave": 1,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Abqaiq: Inspection at the World's Largest Crude Stabilization Plant",
+ "metaTitle": "NDT Services in Abqaiq, Saudi Arabia | Sour Service Inspection",
+ "description": "NDT in Abqaiq: sour-service inspection for Aramco's crude stabilization plant, stabilizer columns, spheroids, boilers and pipelines. Methods, codes, hiring.",
+ "quickAnswer": "Abqaiq, about 60 km south-west of Dhahran, is home to **Abqaiq Plants**, the world's largest crude oil processing and stabilization facility [1]. It stabilizes about half of Saudi Arabia's daily oil production and supplies around 5% of global oil [3]. Almost all NDT here is for Saudi Aramco and its contractors, in **sour service**: stabilization removes hydrogen sulfide from crude [2][4]. So inspection plans focus on corrosion and hydrogen-related cracking in columns, spheroids, piping, boilers and pipelines, and contractor technicians must meet Aramco's SAEP-1142 qualification rules [6].",
+ "keyFacts": [
+  {
+   "label": "Main facility",
+   "value": "Abqaiq Plants: oil processing unit, NGL facility and utilities; 18 stabilizer columns and multiple spheroids [2]"
+  },
+  {
+   "label": "Scale",
+   "value": "Capacity up to 7 million barrels of crude a day [1]; stabilizes about half of Saudi production [3]"
+  },
+  {
+   "label": "Feedstock",
+   "value": "Crude from the Ghawar field and other Eastern Province fields [2]"
+  },
+  {
+   "label": "Qualification rule",
+   "value": "Contractor NDT personnel qualify under Saudi Aramco SAEP-1142 [6]"
+  }
+ ],
+ "industries": [
+  "Crude oil stabilization",
+  "Natural gas liquids",
+  "Steam and utilities",
+  "Pipelines",
+  "Sour service",
+  "Plant turnarounds"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Why Abqaiq matters for NDT",
+   "paragraphs": [
+    "Abqaiq is a small town with an outsized role in the world's energy system. Abqaiq Plants, operated by Saudi Aramco, is described as the world's biggest oil processing and crude stabilization plant, able to process up to seven million barrels of crude oil a day [1]. Aramco says the plant stabilizes half of Saudi Arabia's daily oil production and provides around 5% of global oil supplies [3]. Every barrel of Arabian Light and Arabian Extra Light crude passes through equipment that must be inspected, maintained and kept in service with minimal downtime.",
+    "For inspection companies, Abqaiq means large, recurring scopes: corrosion monitoring on hundreds of kilometres of piping, inspection of pressure vessels and columns during turnarounds, boiler and utility inspection, and weld inspection for modifications and digital-transformation projects. It also means a very demanding client. The plant has been modernised with robotics, artificial intelligence, data analytics and industrial internet-of-things systems, and was admitted to the World Economic Forum's Global Lighthouse Network for Fourth Industrial Revolution manufacturing [3]. Inspection data increasingly feeds digital integrity and predictive maintenance systems, so data quality and format matter as much as the measurement itself.",
+    "Most NDT crews working in Abqaiq are based in Al Khobar, Dammam or Dhahran and commute or stay in camp. Abqaiq also sits on the Dammam–Riyadh railway [8], and road access is good, but plant access is tightly controlled: gate passes, site-specific safety training and approved procedures are prerequisites for any work."
+   ]
+  },
+  {
+   "id": "facility",
+   "h2": "Inside Abqaiq Plants: the equipment that needs inspection",
+   "paragraphs": [
+    "Abqaiq Plants comprises three primary processing units: an oil processing unit, a natural gas liquids (NGL) facility and a utilities unit [2]. The oil processing unit uses multiple spheroids and 18 stabilizer columns to remove hydrogen sulfide and light hydrocarbons from crude [2]. Treated crude from gas-oil separation plants still carries light and sour gases when it arrives, and stabilization separates them so the oil can be piped and shipped safely and meet customer specifications [4]. Off-gases go to the NGL facility, and steam from 14 boilers serves the processing units, turbines and compressors [2]."
+   ],
+   "table": {
+    "caption": "Major equipment at a crude stabilization complex and the usual inspection scope",
+    "head": [
+     "Equipment",
+     "Main damage concerns",
+     "Common NDT methods"
+    ],
+    "rows": [
+     [
+      "Stabilizer columns and internals",
+      "Wet H2S damage (HIC, SOHIC, blistering), general and localised corrosion, weld cracking",
+      "UT thickness, PAUT, TOFD, wet fluorescent MT, internal visual"
+     ],
+     [
+      "Spheroids (primary separation)",
+      "Shell and weld corrosion, hydrogen blistering, support and nozzle cracking",
+      "UT corrosion mapping, PAUT, MT, PT, acoustic emission"
+     ],
+     [
+      "Process piping and manifolds",
+      "Corrosion and erosion at bends and dead legs, corrosion under insulation",
+      "UT, guided wave, pulsed eddy current, RT profile"
+     ],
+     [
+      "NGL facility vessels and exchangers",
+      "Wet H2S cracking, amine-related cracking, tube corrosion",
+      "PAUT, TOFD, ECT/IRIS, MT"
+     ],
+     [
+      "Boilers and steam system",
+      "Tube thinning, overheating, weld and header cracking",
+      "UT, EMAT, RT, replication"
+     ],
+     [
+      "Inlet and export pipelines",
+      "Internal corrosion, girth weld integrity",
+      "AUT/PAUT, RT, ILI data verification"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "sour",
+   "h2": "Sour service: the damage mechanisms that shape every inspection plan",
+   "paragraphs": [
+    "Crude stabilization exists to remove hydrogen sulfide [4], which makes sour-service damage the defining inspection concern at Abqaiq. In wet H2S environments, atomic hydrogen generated by corrosion diffuses into steel. It can collect at inclusions and laminations to form blisters and stepwise **hydrogen-induced cracking (HIC)**, link up through the wall near welds as **stress-oriented HIC (SOHIC)**, or cause **sulfide stress cracking (SSC)** in hard welds and heat-affected zones.",
+    "These mechanisms are hard to find with conventional thickness gauging because they do not always cause wall loss. Effective inspection programmes use **advanced ultrasonic techniques** (PAUT, TOFD and high-resolution corrosion mapping) that can detect mid-wall laminations and stepwise cracking, and **wet fluorescent magnetic particle testing** on prepared weld surfaces to find surface-breaking cracks. Hardness testing of welds and heat-affected zones verifies that fabrication met sour-service limits.",
+    "Materials for sour service are selected to ISO 15156 (NACE MR0175), and owners typically specify HIC-resistant steels for new vessels. When older equipment is assessed, inspection findings feed fitness-for-service evaluations under API 579-1/ASME FFS-1, which is why sizing accuracy and full data records matter. Tell bidders early if equipment is in wet H2S service; it affects procedures, technician qualification and safety planning, since H2S exposure is also a personnel hazard requiring gas monitoring and escape sets."
+   ]
+  },
+  {
+   "id": "methods",
+   "h2": "Methods buyers order at Abqaiq and how they are scheduled",
+   "paragraphs": [
+    "On-stream inspection and turnaround inspection are the two main modes of work. **On-stream** work, done while the plant runs, centres on UT thickness monitoring at fixed condition-monitoring locations, corrosion mapping of suspect areas, pulsed eddy current or guided wave screening of insulated lines, and radiographic profiling of small-bore piping. Aramco's inspection department administers on-stream inspection through its own engineering procedures, so data must fit the plant's thickness monitoring system.",
+    "**Turnarounds** bring the large scopes: internal inspection of columns and spheroids, PAUT and TOFD on critical welds, wet fluorescent MT, exchanger tube inspection with ECT or IRIS, boiler tube surveys, and inspection of repairs. Turnaround crews are large and work in shifts, and approval of procedures and personnel must be completed well before the shutdown starts.",
+    "**Radiography** is used for weld inspection on modifications and repairs and for profile radiography of small-bore lines, under strict radiation protection rules. Radiographers working on Aramco property must hold an Aramco Radiation Protection Permit, and film interpreters must be certified to at least Level II and pass Aramco's qualification verification [7].",
+    "Plants that have been through major repair programmes need especially rigorous inspection. After the September 2019 attack, Aramco restored Abqaiq's stabilization towers and primary separation spheroids within weeks, with damaged equipment encased in scaffolding during repairs [5]. Repairs on that scale depend on weld inspection, material verification and post-repair integrity assessment, the core skills of NDT teams in the region."
+   ]
+  },
+  {
+   "id": "data",
+   "h2": "Inspection data in a digitalised plant",
+   "paragraphs": [
+    "Abqaiq's use of robotics, AI, analytics and IIoT [3] changes what a good inspection deliverable looks like. A thickness reading is only useful if it lands at the right condition-monitoring location, with the right identifier, nominal thickness, temperature correction and date, so trends and remaining-life calculations stay valid. Providers that hand over spreadsheets with inconsistent tags create rework for plant engineers.",
+    "Before work starts, agree the data template, location numbering, instrument and probe traceability, and the file formats for advanced methods (raw PAUT and TOFD data, corrosion maps, not just screenshots). Ask how the provider checks data before submission, for example automated range checks against previous readings, and who signs off anomalies. These details decide whether inspection results can feed the plant's predictive maintenance systems or sit unused in a report."
+   ]
+  },
+  {
+   "id": "codes",
+   "h2": "Codes, Aramco standards and technician qualification",
+   "paragraphs": [
+    "Work at Abqaiq follows Saudi Aramco engineering standards and procedures layered on top of ASME, API and NACE/ISO documents. For contractor NDT personnel, **SAEP-1142** sets minimum training, examination, qualification and certification requirements; personnel must be certified to a nationally recognised programme and the employer's written practice must be approved by Aramco's Inspection Department in Dhahran before work begins [6]. Radiography follows Aramco's radiographic examination procedure and radiation protection requirements [7].",
+    "International codes still define technique and acceptance: ASME Section V for NDT methods, ASME Section VIII and B31.3 for vessels and piping, API 510 and API 570 for in-service inspection and repair, API 579-1/ASME FFS-1 for fitness for service, and ISO 15156 for sour-service materials. Inspectors leading scopes at Abqaiq commonly hold API 510 or API 570 individual certifications alongside method-specific NDT certification."
+   ],
+   "bullets": [
+    "Submit the written practice and personnel certificates for Aramco review early; approval is a prerequisite, not a formality [6].",
+    "Confirm each radiographer's Radiation Protection Permit and each film interpreter's Level II status [7].",
+    "For sour service, require PAUT/TOFD procedures qualified on representative HIC or crack samples."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT work at Abqaiq is priced",
+   "paragraphs": [
+    "Abqaiq scopes are typically awarded under longer-term inspection service contracts, turnaround packages or project-specific purchase orders. Day rates per technician or crew are the norm for on-stream and turnaround support; unit rates per weld or per location are common on projects. Advanced equipment (PAUT, TOFD, IRIS, pulsed eddy current, acoustic emission) is usually priced separately from labour.",
+    "Cost drivers specific to Abqaiq include travel from the Khobar–Dammam area, camp accommodation during turnarounds, gate-pass and safety-training lead times, H2S safety equipment and monitoring, and the time needed for Aramco approval of procedures and personnel. Turnaround timing also matters: when several Eastern Province plants shut down in the same season, experienced Level II and III personnel are scarce and rates rise.",
+    "When requesting quotes, provide the equipment list and service conditions (including H2S), the governing Aramco standards, the inspection techniques required or the damage mechanisms to target, access arrangements, shift patterns and the data format needed for the plant's integrity system."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "Working in NDT at Abqaiq",
+   "paragraphs": [
+    "Abqaiq offers steady work for experienced technicians, especially those with PAUT, TOFD and corrosion mapping qualifications and turnaround experience. Most roles are with inspection contractors and third-party inspection agencies holding Aramco contracts, working from bases in Al Khobar and Dammam. H2S safety training, confined-space competence and familiarity with Aramco's documentation and approval processes are expected.",
+    "Technicians aiming for Abqaiq work should build employer-based ASNT Level II certification in UT and MT, add PAUT and TOFD, keep a detailed experience log, and prepare for SAEP-1142 qualification verification [6]. Level IIIs and engineers with sour-service experience and API inspector certifications are in demand to write procedures, review data and support fitness-for-service assessments."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider for Abqaiq",
+   "paragraphs": [
+    "Because the client environment is demanding, pre-qualification should focus on proof, not promises."
+   ],
+   "bullets": [
+    "Aramco-accepted written practice and SAEP-1142-compliant personnel certificates [6].",
+    "Demonstrated sour-service experience: HIC/SOHIC detection and sizing with PAUT and TOFD, wet fluorescent MT.",
+    "H2S safety training, gas detection equipment and emergency procedures for every crew member.",
+    "Radiation Protection Permits and radiation safety plans for any radiography [7].",
+    "Data management: ability to deliver results in the plant's thickness monitoring or integrity system format.",
+    "Turnaround track record: crew size, shift planning and on-time reporting on comparable shutdowns."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "What is Abqaiq Plants?",
+   "a": "It is Saudi Aramco's crude oil processing and stabilization facility in the Eastern Province, the largest of its kind in the world, with capacity to process up to seven million barrels of crude a day [1]. It comprises an oil processing unit, an NGL facility and a utilities unit [2]."
+  },
+  {
+   "q": "Why is sour-service inspection so important at Abqaiq?",
+   "a": "Stabilization removes hydrogen sulfide from crude [4], so much of the equipment operates in wet H2S service. That exposes steel to hydrogen-induced cracking, stress-oriented HIC and sulfide stress cracking, which require advanced UT and wet fluorescent MT to detect."
+  },
+  {
+   "q": "What qualifications do NDT technicians need to work at Abqaiq?",
+   "a": "Contractor personnel must meet Saudi Aramco SAEP-1142, which requires certification to a recognised programme and an employer written practice approved by Aramco's Inspection Department [6]. Radiographers need an Aramco Radiation Protection Permit [7]. PAUT and TOFD qualifications and H2S safety training are expected for most scopes."
+  },
+  {
+   "q": "Where are NDT companies serving Abqaiq based?",
+   "a": "Most are based in Al Khobar, Dammam and Dhahran, about an hour's drive away, and mobilise crews to the plant daily or house them in camps during turnarounds."
+  },
+  {
+   "q": "Which methods are used during Abqaiq turnarounds?",
+   "a": "Internal visual inspection, UT thickness and corrosion mapping, PAUT and TOFD on critical welds, wet fluorescent MT, ECT and IRIS on exchanger tubes, boiler tube surveys, hardness testing and radiography on repairs."
+  },
+  {
+   "q": "How do I request NDT quotes for an Abqaiq scope?",
+   "a": "Post the scope on NDT-Connect with the equipment list, service conditions including H2S, the governing Aramco standards, access and schedule. Certified providers serving the Eastern Province can then quote on the same basis."
+  }
+ ],
+ "references": [
+  {
+   "title": "NS Energy — Abqaiq oil processing facility profile",
+   "url": "https://www.nsenergybusiness.com/?p=233290"
+  },
+  {
+   "title": "Offshore Technology — Abqaiq Plants, Saudi Aramco",
+   "url": "https://www.offshore-technology.com/projects/abqaiq-aramco/"
+  },
+  {
+   "title": "Aramco Elements — How 70-year-old Abqaiq Plants transformed to become a 4IR leader",
+   "url": "https://www.aramco.com/en/news-media/elements-magazine/2023/how-70-year-old-abqaiq-plants-transformed-to-become-a-4ir-leader"
+  },
+  {
+   "title": "Aramco Life — Our hydrocarbon journey: stabilization",
+   "url": "https://www.aramcolife.com/en/publications/the-arabian-sun/articles/2021/week-43/hydrocarbon-journey-stabilization"
+  },
+  {
+   "title": "Gulf Business — Saudi Aramco showcases recovery from attack",
+   "url": "https://gulfbusiness.com/?p=149411"
+  },
+  {
+   "title": "Saudi Aramco SAEP-1142, Qualification of Non-Saudi Aramco NDT Personnel (copy)",
+   "url": "https://www.scribd.com/document/552222316/SAEP-1142"
+  },
+  {
+   "title": "Saudi Aramco SAEP-1143, Radiographic Examination (copy)",
+   "url": "https://www.scribd.com/document/591685288/SAEP-1143-RT"
+  },
+  {
+   "title": "Khobar — Wikipedia (Dammam–Abqaiq–Riyadh railway)",
+   "url": "https://en.wikipedia.org/wiki/Khobar"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Al Khobar",
+   "href": "/ndt-services/al-khobar-sa"
+  },
+  {
+   "name": "Dammam",
+   "href": "/ndt-services/dammam-sa"
+  },
+  {
+   "name": "Ras Tanura",
+   "href": "/ndt-services/ras-tanura-sa"
+  },
+  {
+   "name": "Jubail",
+   "href": "/ndt-services/jubail-sa"
+  },
+  {
+   "name": "Riyadh",
+   "href": "/ndt-services/riyadh-sa"
+  }
+ ],
+ "related": [
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "Gulf Coast refinery NDT buyer's guide",
+   "href": "/buyers-guide/gulf-coast-refinery-petrochemical-ndt"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  }
+ ]
+}

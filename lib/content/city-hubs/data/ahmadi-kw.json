@@ -1,0 +1,316 @@
+{
+ "slug": "ahmadi-kw",
+ "city": "Ahmadi",
+ "region": "Ahmadi Governorate",
+ "country": "Kuwait",
+ "countrySlug": "kuwait",
+ "wave": 1,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Ahmadi, Kuwait: Inspection for KOC Oilfields and KNPC Refineries",
+ "metaTitle": "NDT Services in Ahmadi, Kuwait | KOC & KNPC Inspection Guide",
+ "description": "NDT in Ahmadi, Kuwait: inspection for the Greater Burgan oilfield, KOC facilities, Mina Al-Ahmadi refinery and piers. Methods, MOH radiation licensing, hiring.",
+ "quickAnswer": "Ahmadi, about 40 km south of Kuwait City, is the headquarters of Kuwait's oil industry. It is home to **Kuwait Oil Company (KOC)** [1], which operates the **Greater Burgan field**, the world's second-largest oil field and largest sandstone oil field [2]. Kuwait National Petroleum Company (KNPC) is also headquartered there [3] and runs the **Mina Al-Ahmadi refinery**, upgraded to 346,000 bpd under the Clean Fuels Project [4]. NDT demand is concentrated on oilfield gathering centres and pipelines, tank farms, refinery turnarounds and export piers. Industrial radiography is licensed by the Ministry of Health's Radiation Protection Department [9][10].",
+ "keyFacts": [
+  {
+   "label": "Upstream",
+   "value": "Greater Burgan (Burgan, Magwa and Ahmadi subfields), discovered 1938, production from 1946 [2]; about half of Kuwait's crude [6]"
+  },
+  {
+   "label": "Refining",
+   "value": "Mina Al-Ahmadi refinery: 346,000 bpd across 39 upgraded units; integrated with Mina Abdullah for 800,000 bpd [4][5]"
+  },
+  {
+   "label": "Export",
+   "value": "Northern, Southern and New Piers at Mina Al-Ahmadi [7]"
+  },
+  {
+   "label": "Radiation regulator",
+   "value": "Ministry of Health, Radiation Protection Department, established by Amiri Decree No. 131 [10]"
+  }
+ ],
+ "industries": [
+  "Upstream oil production",
+  "Gathering centres and pipelines",
+  "Oil refining",
+  "Gas processing",
+  "Tank farms and export terminals",
+  "Oilfield services"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Why Ahmadi is the centre of Kuwait's NDT market",
+   "paragraphs": [
+    "Ahmadi grew with the Burgan oilfield. The town, named after Sheikh Ahmad Al-Jaber Al-Sabah, who ruled Kuwait from 1921 to 1950, became a large international city as the field developed, and it is home to KOC's headquarters [1]. KOC opened a new main office in Ahmadi in 1957 [8]. Today the company's upstream operations, KNPC's refining headquarters and the contractors who serve both make Ahmadi Governorate the busiest NDT market in Kuwait.",
+    "The Greater Burgan field is the anchor. It is the world's largest sandstone oil field and second-largest overall after Saudi Arabia's Ghawar, with production that began in 1946 [2]. It comprises three subfields, Burgan itself (about 500 km²), Magwa (about 180 km²) and Ahmadi (about 140 km²) [2], and accounts for roughly half of Kuwait's total crude production [6]. Wells, flowlines, gathering centres, booster stations, water injection systems and tank farms across this area need continuous inspection.",
+    "Downstream, the Mina Al-Ahmadi refinery, inaugurated in 1949, was transformed by KNPC's Clean Fuels Project and now has 346,000 bpd of capacity across 39 upgraded units [4]. Together with the nearby Mina Abdullah refinery it forms an integrated complex of 800,000 bpd [5]. A complex of this size generates large turnaround scopes and a steady stream of on-stream inspection."
+   ]
+  },
+  {
+   "id": "industries",
+   "h2": "Assets that drive inspection demand",
+   "paragraphs": [
+    "The Clean Fuels Project, completed in November 2021 [11], upgraded and integrated Mina Al-Ahmadi and Mina Abdullah, with a $4.7 billion package for Mina Al-Ahmadi alone [12]. Mina Al-Ahmadi also has a gas processing plant inaugurated in 1978 [13], an ethane recovery unit commissioned in 2008 and a flare gas recovery unit from 2013 [4]. Export runs through the Northern and Southern Piers and the New Pier at Mina Al-Ahmadi [7]."
+   ],
+   "table": {
+    "caption": "Ahmadi-area assets and their usual NDT scopes",
+    "head": [
+     "Asset",
+     "Main inspection concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Wellheads, flowlines and gathering centres",
+      "Internal corrosion from produced water, CO2 and H2S; erosion at chokes and bends",
+      "UT, corrosion mapping, RT profile, PAUT"
+     ],
+     [
+      "Water injection and disposal systems",
+      "Oxygen and microbiologically influenced corrosion, pitting",
+      "UT, guided wave, corrosion mapping"
+     ],
+     [
+      "Crude tank farms",
+      "Floor and annular plate corrosion, shell and roof corrosion, weld repairs",
+      "MFL floor scanning, UT, vacuum box, MT"
+     ],
+     [
+      "Refinery process units (Clean Fuels Project units)",
+      "Hydroprocessing reactors, heaters, exchangers, high-temperature hydrogen service",
+      "PAUT, TOFD, ECT/IRIS, PMI, hardness"
+     ],
+     [
+      "Gas processing and LPG facilities",
+      "Wet H2S and amine cracking, exchanger tubes, LPG storage",
+      "WFMT, PAUT, ECT, AE"
+     ],
+     [
+      "Export piers and jetty piping",
+      "Marine corrosion of piping, supports and structures",
+      "UT, guided wave, visual and drone inspection"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "methods",
+   "h2": "Methods buyers in Ahmadi order, and why",
+   "paragraphs": [
+    "**Upstream corrosion monitoring** is the largest single category. Produced fluids from mature fields carry increasing water cuts, and water with dissolved CO2, H2S and salts drives internal corrosion in flowlines, headers and vessels. UT thickness surveys at fixed locations, high-resolution corrosion mapping of suspect areas, and profile radiography of small-bore and insulated lines are standard. Guided wave UT screens long runs of buried or elevated pipe to target follow-up inspection.",
+    "**Tank inspection** is a major service in Kuwait's large tank farms. API 653 out-of-service inspections typically combine MFL floor scanning with UT prove-up, annular plate inspection, shell thickness surveys and weld inspection on repairs. In-service inspection uses external UT, acoustic emission screening of floors, and robotic options where available.",
+    "**Refinery turnarounds** at Mina Al-Ahmadi bring PAUT and TOFD on reactor and heavy-wall welds, eddy current and IRIS on exchanger bundles, wet fluorescent MT in sour and amine service, PMI on alloy piping, and hardness testing of welds. The Clean Fuels Project introduced new hydroprocessing units, and units in hot hydrogen service may need advanced UT screening for high-temperature hydrogen attack.",
+    "**Pipeline construction and repair** projects, common as KOC renews and expands infrastructure, require RT or AUT/PAUT on girth welds, coating inspection and hydrotest support."
+   ]
+  },
+  {
+   "id": "tanks",
+   "h2": "What a full tank inspection campaign involves",
+   "paragraphs": [
+    "Crude storage is central to Kuwait's oil system, and tank inspection is one of the most common large scopes in Ahmadi. An API 653 out-of-service inspection starts once the tank is emptied, cleaned and gas-freed. Inspectors first carry out a visual survey of the floor, shell, roof and fittings to plan detailed NDT.",
+    "The floor is the usual focus because soil-side and product-side corrosion are hidden. **MFL floor scanning** covers the plates quickly and flags areas of metal loss; each indication is then sized with **UT** to decide on repair. The **annular plate** and the shell-to-floor weld, where stresses and corrosion concentrate, get special attention with UT and MT or PAUT. Floor welds are checked with vacuum box testing, and shell courses are surveyed with UT thickness readings to calculate minimum acceptable thickness and remaining life.",
+    "Findings feed repair decisions: plate replacement, patch plates, recoating, or changes to the next inspection interval. After repairs, weld inspection and a hydrotest or other leak test may be required before return to service. Because a tank out of service affects storage capacity, owners want the inspection and repair cycle completed quickly, so providers who bring enough scanning equipment and crews, and who report preliminary findings daily, shorten the outage."
+   ]
+  },
+  {
+   "id": "codes",
+   "h2": "Codes, KOC and KNPC specifications, and radiation licensing",
+   "paragraphs": [
+    "KOC and KNPC each publish detailed engineering standards that define inspection methods, acceptance criteria and personnel qualification on their facilities, layered over international codes: API 510, API 570 and API 653 for in-service inspection, ASME Section VIII and B31.3 for process equipment and piping, API 1104 and ASME B31.4/B31.8 for pipelines, and ISO 15156 (NACE MR0175) for sour-service materials. Contractors are typically pre-qualified by the client, and technician CVs and certificates are reviewed before mobilisation.",
+    "Industrial radiography in Kuwait is regulated by the **Ministry of Health's Radiation Protection Department**, which was established by Amiri Decree No. 131 on the control of ionising radiation [10]. Entities must report and license radioactive sources and radiation apparatus through the department [9], and individuals working with ionising radiation need personal licences approved by the Radiation Protection Committee [14]. The ministry updated its framework with ministerial decisions in 2023 and 2024, including one on the security of radioactive sources [10][15], and launched a digital radiation licensing service in December 2025 [16].",
+    "Technicians are usually certified under ASNT employer-based schemes or ISO 9712, with PAUT, TOFD, MFL and AE qualifications for advanced scopes. Kuwaiti national employment requirements apply to many contracts, so providers that train and employ Kuwaiti technicians are favoured."
+   ],
+   "bullets": [
+    "Ask for the provider's MOH radiation licence and radiographers' personal licences [9][14].",
+    "Confirm whether KOC or KNPC standards govern, and which revision.",
+    "For sour service, require procedures and technicians experienced in HIC and SSC detection."
+   ]
+  },
+  {
+   "id": "environment",
+   "h2": "Climate, sand and damage mechanisms",
+   "paragraphs": [
+    "Kuwait's climate is among the hottest in the region, with long summers, dust storms and coastal humidity near the refineries and piers. Heat and sand abrasion accelerate coating breakdown on above-ground pipelines and tanks, and wind-blown sand accumulates around supports and tank bases, trapping moisture and promoting corrosion. Corrosion under insulation is common on refinery piping, and soil-side corrosion affects tank floors.",
+    "Kuwait's oilfields also carry a historical legacy: much of Burgan was damaged during the 1991 invasion, and the Kuwait Environmental Remediation Program continues to address contaminated soil in oilfields [17]. For inspection crews, remediation and redevelopment projects mean ongoing construction and integrity work in the field.",
+    "Heat affects inspection practice too. High surface temperatures require high-temperature couplants and probes, MT and PT consumables dry quickly, and summer work is often shifted to early mornings and nights, which affects radiography scheduling."
+   ]
+  },
+  {
+   "id": "turnaround",
+   "h2": "Planning inspection campaigns with KOC and KNPC",
+   "paragraphs": [
+    "Both companies plan inspection through risk-based programmes, with turnaround worklists set months in advance. For providers, success depends on early procedure approval, CV and certificate submission, security and site access clearances, and logistics for equipment and radiation sources. Late approvals are a common cause of lost time at shutdown start.",
+    "On upstream assets, campaigns are often organised by gathering centre or pipeline segment, with on-stream inspection data used to decide which equipment needs internal access during shutdowns. Sharing previous inspection data with bidders helps them plan crews and methods realistically, and asking for preliminary results each shift keeps repair decisions moving."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Ahmadi",
+   "paragraphs": [
+    "KOC and KNPC typically contract inspection through long-term service agreements with day rates and unit rates, supplemented by turnaround and project packages. Tank inspections are often lump sum per tank; pipeline projects use unit rates per weld or per kilometre; refinery turnarounds use crew day rates with specialist equipment charged separately.",
+    "Cost drivers include crew size during short shutdown windows, specialist equipment (MFL, PAUT, TOFD, IRIS, AE), radiation licensing and source logistics, security clearances, and national workforce requirements. Asking bidders to separate labour, equipment, mobilisation and reporting makes quotes comparable.",
+    "Through NDT-Connect, buyers can post a scope once and compare certified providers serving Kuwait, and providers can respond with quotations from the free NDT ERP."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Ahmadi",
+   "paragraphs": [
+    "Ahmadi offers steady work in upstream corrosion monitoring, tank inspection, refinery turnarounds and pipeline construction. Technicians with MFL tank floor scanning, PAUT and TOFD, corrosion mapping and sour-service experience are in demand, as are API 510, 570 and 653 inspectors and Level IIIs who can write procedures for client approval.",
+    "To work on Kuwaiti oil and gas facilities, technicians need recognised certification, client pre-qualification and, for radiography, a personal licence from the Ministry of Health [14]. Documented experience on KOC or KNPC facilities is a significant advantage when applying for senior roles.",
+    "Many technicians start in Kuwait on tank and pipeline scopes, where they build MFL, UT and radiography experience quickly, then move into refinery turnarounds and advanced ultrasonics. Keeping a detailed log of equipment types, methods and clients makes client approval for senior roles much faster."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Ahmadi",
+   "paragraphs": [
+    "Use this checklist when pre-qualifying providers."
+   ],
+   "bullets": [
+    "MOH radiation licence and personal licences for radiographers [9][14].",
+    "KOC or KNPC pre-qualification and experience with their standards.",
+    "Relevant equipment: MFL floor scanners, PAUT and TOFD, IRIS, guided wave, AE.",
+    "Sour-service and tank inspection track record.",
+    "Capacity for turnaround peaks and national workforce compliance.",
+    "Data delivery that fits the client's inspection database."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Which companies drive NDT demand in Ahmadi?",
+   "a": "Kuwait Oil Company, headquartered in Ahmadi [1], which operates the Greater Burgan field, and Kuwait National Petroleum Company, also headquartered there [3], which operates the Mina Al-Ahmadi refinery and export piers [4][7]."
+  },
+  {
+   "q": "How large is the Mina Al-Ahmadi refinery?",
+   "a": "KNPC reports 346,000 bpd across 39 upgraded units after the Clean Fuels Project [4]. With Mina Abdullah it forms an integrated 800,000 bpd complex [5]."
+  },
+  {
+   "q": "Who licenses industrial radiography in Kuwait?",
+   "a": "The Ministry of Health's Radiation Protection Department, established by Amiri Decree No. 131 [10]. Sources and radiation apparatus must be licensed [9], and radiation workers need personal licences approved by the Radiation Protection Committee [14]."
+  },
+  {
+   "q": "What NDT is used for oilfield flowlines and gathering centres?",
+   "a": "UT thickness monitoring, corrosion mapping, profile radiography of small-bore lines, guided wave screening of long pipe runs, and PAUT for weld inspection on repairs and modifications."
+  },
+  {
+   "q": "Which methods are used for tank inspection in Kuwait?",
+   "a": "API 653 out-of-service inspections usually combine MFL floor scanning, UT prove-up, annular plate inspection, shell thickness surveys and weld inspection; acoustic emission can screen floors in service."
+  },
+  {
+   "q": "How do I request NDT quotes in Ahmadi?",
+   "a": "Post the scope on NDT-Connect with the asset list, service conditions, governing KOC or KNPC standard, access and dates, so certified providers serving Kuwait can quote on the same basis."
+  }
+ ],
+ "references": [
+  {
+   "title": "GEO ExPro — The Great Burgan field, Kuwait (Ahmadi and KOC headquarters)",
+   "url": "https://geoexpro.com/the-great-burgan-field-kuwait/"
+  },
+  {
+   "title": "Burgan field — Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Burgan_field"
+  },
+  {
+   "title": "Kuwait National Petroleum Company — Wikipedia (headquarters in Al Ahmadi)",
+   "url": "https://wikipedia.com/wiki/Kuwait_National_Petroleum"
+  },
+  {
+   "title": "KNPC — Mina Al-Ahmadi Refinery",
+   "url": "https://www.knpc.com/en/our-business/oil-refining/mina-al-ahmadi-refinery"
+  },
+  {
+   "title": "KNPC — Clean Fuels Project",
+   "url": "https://knpc.com/en/strategic-projects/commissioned-projects/clean-fuels-project-cfp"
+  },
+  {
+   "title": "NS Energy — Greater Burgan field profile",
+   "url": "https://www.nsenergybusiness.com/?p=235229"
+  },
+  {
+   "title": "KNPC — Company overview (piers and export ports)",
+   "url": "https://knpc.com/en/about-us/overview"
+  },
+  {
+   "title": "SLB — Kuwait timeline (KOC main office, Ahmadi, 1957)",
+   "url": "https://www.slb.com/about/who-we-are/our-global-presence/slb-kuwait/kuwait-timeline"
+  },
+  {
+   "title": "Kuwait Government Online — Reporting a radioactive resource (Ministry of Health)",
+   "url": "https://e.gov.kw/sites/kgoenglish/Pages/Services/MOH/RadioactiveSourceReportingAddingDeletingUpdating.aspx"
+  },
+  {
+   "title": "Al Tamimi — Kuwait Ministerial Decision No. 454 of 2023 and Amiri Decree No. 131",
+   "url": "https://turtl.tamimi.com/story/659e8c61d7e4b85e81650b5d"
+  },
+  {
+   "title": "US International Trade Administration — Kuwait oil and gas (Clean Fuels Project completion)",
+   "url": "https://www.trade.gov/country-commercial-guides/kuwait-oil-and-gas"
+  },
+  {
+   "title": "Offshore Technology — KNPC completes $4.7bn Mina al-Ahmadi upgrade",
+   "url": "https://www.offshore-technology.com/?p=80366"
+  },
+  {
+   "title": "KNPC — Who we are (gas processing plant, 1978)",
+   "url": "https://www.knpc.com/en/about-us/who-we-are"
+  },
+  {
+   "title": "Kuwait Government Online — Issuing ionising radiation personal licences",
+   "url": "https://e.gov.kw/sites/kgoenglish/Pages/Services/MOH/PersonalLicensesIonizingRadiation.aspx"
+  },
+  {
+   "title": "Lexis Middle East — Kuwait radiation protection decisions approved (2024)",
+   "url": "https://www.lexis.ae/2024/01/31/kw-radiation-protection-decisions-approved/"
+  },
+  {
+   "title": "Arab Times — Health ministry launches online radiation licensing",
+   "url": "https://www.arabtimesonline.com/news/health-ministry-launches-online-radiation-licensing"
+  },
+  {
+   "title": "Kuwait Oil Company — Wikiwand (KERP soil remediation contracts)",
+   "url": "https://www.wikiwand.com/en/articles/Kuwait_Oil_Company"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Kuwait City",
+   "href": "/ndt-services/kuwait-city-kw"
+  },
+  {
+   "name": "Al Khobar, Saudi Arabia",
+   "href": "/ndt-services/al-khobar-sa"
+  },
+  {
+   "name": "Basra, Iraq",
+   "href": "/ndt-services/basra-iq"
+  },
+  {
+   "name": "Manama, Bahrain",
+   "href": "/ndt-services/manama-bh"
+  }
+ ],
+ "related": [
+  {
+   "label": "UT thickness calculator",
+   "href": "/tools/ut-thickness"
+  },
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "RT exposure time calculator",
+   "href": "/tools/rt-exposure-time"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  }
+ ]
+}

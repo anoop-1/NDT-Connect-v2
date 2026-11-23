@@ -1,0 +1,298 @@
+{
+ "slug": "sharjah-ae",
+ "city": "Sharjah",
+ "region": "Emirate of Sharjah",
+ "country": "United Arab Emirates",
+ "countrySlug": "united-arab-emirates",
+ "wave": 1,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Sharjah: Fabrication, Gas Plant and Marine Inspection",
+ "metaTitle": "NDT Services in Sharjah, UAE | Hamriyah Fabrication & Gas Inspection",
+ "description": "NDT in Sharjah: inspection for Hamriyah Free Zone steel fabricators, SNOC's Sajaa gas plant and LPG terminals, and marine work. FANR rules, methods, hiring.",
+ "quickAnswer": "Sharjah's NDT market is built on **fabrication** and **gas processing**. Hamriyah Free Zone, set up in 1995 on about 30 km², describes itself as home to the highest number of steel fabricators in the region and a primary hub for oil and gas companies [1][2]. Inland, Sharjah National Oil Corporation (SNOC) runs a 700 MMscfd gas processing complex at Sajaa, about 35 km from the city centre, plus LPG and condensate terminals at Hamriyah [4]. Much of the NDT bought here is shop inspection of pressure vessels, piping spools and structures for projects across the Gulf. Any radiography needs a licence from the UAE's Federal Authority for Nuclear Regulation (FANR) [7].",
+ "keyFacts": [
+  {
+   "label": "Fabrication hub",
+   "value": "Hamriyah Free Zone: over 6,500 companies, a 14 m deep port and an oil and gas zone of more than 180,000 m² [3][2]"
+  },
+  {
+   "label": "Gas processing",
+   "value": "SNOC's 700 MMscfd Sajaa gas complex, gas fields and underground gas storage [4][5]"
+  },
+  {
+   "label": "Terminals",
+   "value": "LPG terminal with 400,000 bbl propane and 300,000 bbl butane storage at Hamriyah [6]"
+  },
+  {
+   "label": "Radiation regulator",
+   "value": "FANR licenses all use of radiation sources, including industrial radiography, across the UAE [7]"
+  }
+ ],
+ "industries": [
+  "Steel fabrication",
+  "Pressure vessels and piping spools",
+  "Gas processing",
+  "LPG and condensate terminals",
+  "Marine and offshore fabrication",
+  "Manufacturing"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Why Sharjah matters for NDT buyers",
+   "paragraphs": [
+    "Sharjah is often overshadowed by Dubai and Abu Dhabi, but for inspection it plays a specific role: it is one of the Gulf's main **fabrication bases**. Hamriyah Free Zone, established by Emiri decree in 1995 [1], calls itself the region's second-largest industrial free zone, a primary hub for oil and gas companies and home to the highest number of steel fabricators in the region [2]. More than 6,500 companies operate there across oil and gas, industrial manufacturing, maritime, logistics and food sectors [3].",
+    "Fabricators in Hamriyah and in Sharjah's older industrial areas build pressure vessels, heat exchangers, piping spools, skids, structural steel and offshore modules for clients across the UAE, Saudi Arabia, Qatar, Oman and beyond. Fabrication and offshore contractor Lamprell, for example, signed a strategic partnership with the free zone authority [8], and structural fabricators continue to open new facilities there to serve oil and gas, marine and wind projects [9]. Every one of those products is inspected before it ships, which makes shop NDT the core of Sharjah's market.",
+    "The emirate also has its own upstream and midstream gas business. SNOC's Sajaa complex processes natural gas into sales gas, condensate and LPG, and the company manages underground gas storage, pipelines and export terminals at Hamriyah Port [5]. That adds plant inspection, turnaround and pipeline work to the fabrication base."
+   ]
+  },
+  {
+   "id": "industries",
+   "h2": "Facilities and assets that drive inspection demand",
+   "paragraphs": [
+    "SNOC's operations include four gas fields, the 700 MMscfd Sajaa gas processing complex about 35 km from Sharjah city centre, an LPG blending plant, and LPG and condensate storage and export terminals at Hamriyah [4]. The Sajaa plant performs separation, gas compression, condensate stabilization, solid desiccant dehydration and NGL fractionation [10]. The LPG terminal, built in 1986, has a dedicated loading jetty inside Hamriyah Port with 400,000 barrels of propane and 300,000 barrels of butane storage [6], and the Moveyeid field has been converted into underground gas storage [11]."
+   ],
+   "table": {
+    "caption": "Sharjah assets and their usual NDT scopes",
+    "head": [
+     "Asset",
+     "Typical inspection need",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Pressure vessels and heat exchangers (shop)",
+      "Code inspection of welds before hydrotest and shipment",
+      "RT, UT, PAUT, MT, PT, PMI, hardness"
+     ],
+     [
+      "Piping spools and skids",
+      "Butt and branch weld inspection, material verification",
+      "RT, PAUT, MT, PT, PMI"
+     ],
+     [
+      "Structural steel and offshore modules",
+      "Fillet and butt weld inspection to AWS D1.1 or project specs",
+      "UT, MT, VT"
+     ],
+     [
+      "Gas processing plant (Sajaa)",
+      "Corrosion monitoring, compressor and dehydration equipment, turnaround inspection",
+      "UT, PAUT, ECT/IRIS, MT"
+     ],
+     [
+      "LPG and condensate terminals",
+      "Spheres, bullets and tanks, loading lines, jetty piping",
+      "UT, WFMT, AE, MFL, guided wave"
+     ],
+     [
+      "Marine and maritime industry",
+      "Vessel repair welds, hull thickness gauging",
+      "UT thickness, MT, RT"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "methods",
+   "h2": "Methods buyers order in Sharjah, and why",
+   "paragraphs": [
+    "In fabrication shops, **radiography** remains common because many purchase orders and codes specify it, and shops have radiography bunkers that make it efficient. Shop radiography in the UAE needs a FANR licence and, in free zones, local health, safety and environment permits; free zone authorities issue radiography approvals only to companies with a proper bunker and facility, and sources must be moved in approved vehicles with lead shielding and radiation signage [12]. **Phased array UT** is increasingly specified instead of or alongside RT, especially for thick-walled vessels and for clients who want digital records and faster turnaround.",
+    "**Magnetic particle** and **liquid penetrant testing** cover fillet welds, nozzle attachments and surface examinations required after post-weld heat treatment or on stainless steels. **Positive material identification (PMI)** is routinely requested for alloy spools and vessels, and **hardness testing** for sour-service equipment destined for Saudi Arabia, Qatar or Kuwait.",
+    "For the gas plant and terminals, inspection follows the pattern of operating facilities: UT thickness monitoring and corrosion mapping, PAUT and TOFD on critical welds, wet fluorescent MT inside LPG spheres and bullets during out-of-service inspections, acoustic emission testing of pressurised storage, and eddy current or IRIS on exchanger tubes."
+   ]
+  },
+  {
+   "id": "shop-planning",
+   "h2": "Planning NDT around a fabrication schedule",
+   "paragraphs": [
+    "In a fabrication shop, NDT is a sequence of hold points, not a single event. A typical pressure vessel or spool goes through visual inspection of fit-up, weld inspection after welding, re-inspection after any repairs, surface examination after post-weld heat treatment where the code or client requires it, and final inspection before hydrotest. Missing one hold point can mean grinding open a finished weld or repeating a heat treatment, which costs far more than the NDT itself.",
+    "Good practice is to agree the inspection and test plan (ITP) with the client and the NDT provider before fabrication starts. The ITP should define which welds get which method, the percentage of inspection by joint category, the acceptance code, who witnesses each step (shop QC, third-party inspector, client) and the reporting format. Sharing weld maps and weld numbering with the NDT provider early lets them plan crew size and equipment.",
+    "Repair rates are a useful early-warning signal. If radiography or PAUT shows an unusual number of rejects on a particular welder, procedure or joint type, the shop can correct the cause before the defect repeats across the whole job. Providers who report trends, not just pass/fail results, add real value here."
+   ]
+  },
+  {
+   "id": "codes",
+   "h2": "Codes, client specifications and certification in the UAE",
+   "paragraphs": [
+    "Because Sharjah fabricators export across the Gulf, the governing specification is usually the **end client's**: Saudi Aramco, ADNOC, QatarEnergy, KOC or PDO standards, layered on ASME Section VIII, ASME B31.3, AWS D1.1 and API documents. That has a practical consequence for NDT: a shop building for Aramco may need technicians and procedures that meet Aramco requirements, while the next order for an ADNOC project follows ADNOC specifications. For Aramco-bound fabrication, contractor NDT personnel qualify under SAEP-1142 [13].",
+    "Within the UAE, the **Federal Authority for Nuclear Regulation (FANR)** regulates nuclear facilities and the use of radiation sources across all emirates, and industrial radiography is one of the licensed industrial practices [7]. FANR has published regulatory guidance specifically on radiation safety in industrial radiography [14]. Buyers should ask radiography providers for their current FANR licence and their radiation protection officer's details.",
+    "Technician certification follows employer-based ASNT schemes (SNT-TC-1A, CP-189) or ISO 9712 central certification such as PCN. Many Sharjah shops also need welding inspectors certified to CSWIP 3.1 or AWS CWI, and third-party inspectors acting for clients or certifying bodies."
+   ],
+   "bullets": [
+    "Confirm the end client and its specification before choosing technicians and procedures.",
+    "Ask for the provider's FANR licence for any radiography [7].",
+    "For Aramco-bound items, check SAEP-1142 compliance of personnel and written practice [13]."
+   ]
+  },
+  {
+   "id": "environment",
+   "h2": "Climate and damage mechanisms",
+   "paragraphs": [
+    "Sharjah's coastal desert climate brings intense summer heat, high humidity along the coast and airborne salt. For operating assets such as the Hamriyah terminals and jetty piping, that means atmospheric corrosion, corrosion under insulation and corrosion at pipe supports are recurring findings. LPG storage spheres and bullets are inspected for weld cracking and corrosion during out-of-service inspections.",
+    "Gas processing at Sajaa involves compression, dehydration and NGL fractionation [10], where inspection targets include erosion and corrosion in piping, fatigue at compressor-connected piping, and degradation in heat exchangers. In fabrication shops, the climate mainly affects working conditions and consumables: high temperatures shorten the working life of MT inks and couplants and require heat-stress controls for radiography and UT crews working outdoors."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Sharjah",
+   "paragraphs": [
+    "Shop NDT in Sharjah is commonly priced **per radiograph or film**, **per weld or joint** for UT and PAUT, or as a **daily or monthly rate** for resident technicians who stay at the fabricator's shop throughout a project. Plant work at Sajaa or the terminals is typically day-rate or lump sum for defined equipment, with specialist equipment charged separately.",
+    "Cost drivers include the volume and thickness of welds, whether radiography can be done in a bunker or needs site exposure with barricades, the specification (Aramco or ADNOC requirements can add procedure qualification and approval steps), PMI and hardness requirements, and reporting turnaround needed to release items for shipping. Competition between providers is strong in the northern emirates, so clear scope definitions produce sharper prices.",
+    "On NDT-Connect, a fabricator can post a scope once and compare quotes from providers serving Sharjah, Dubai and Ajman. Providers can use the free NDT ERP to issue quotations on their own letterhead and track jobs."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "Training and NDT careers in Sharjah",
+   "paragraphs": [
+    "Sharjah's shops create steady demand for RT technicians and film interpreters, UT and PAUT technicians, MT/PT technicians, PMI operators and welding inspectors. Experience with Aramco and ADNOC specifications is a strong advantage because so much work is exported. Plant and terminal work adds roles for corrosion and turnaround specialists.",
+    "Technicians in the UAE typically build employer-based ASNT Level II certification, then add PCN or other ISO 9712 certification and PAUT qualifications to broaden their options. Radiographers need training that satisfies FANR's radiation safety requirements and their employer's licence conditions [7]. Training centres in Sharjah and Dubai offer courses in the main methods; check that hours and examinations match your target certification scheme.",
+    "Shop-based roles reward speed and accuracy under deadline pressure: film interpreters and PAUT analysts who can turn around reliable results the same shift are especially valued, because fabricators cannot release items for shipping until reports are signed. Building familiarity with the major Gulf client specifications is one of the fastest ways to move into senior roles."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Sharjah",
+   "paragraphs": [
+    "Use this checklist to pre-qualify providers for shop or plant work."
+   ],
+   "bullets": [
+    "Current FANR licence for radiography and a named radiation protection officer [7].",
+    "Experience with your end client's specification (Aramco, ADNOC, QatarEnergy or others).",
+    "Method-specific certificates and the employer's written practice for every technician.",
+    "Capacity to provide resident technicians during peak fabrication periods.",
+    "Calibration records, PAUT procedure qualifications and sample reports.",
+    "Reporting turnaround commitments that match your shipping schedule."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "What drives NDT demand in Sharjah?",
+   "a": "Steel fabrication in Hamriyah Free Zone and other industrial areas, which builds vessels, spools and structures for projects across the Gulf [2], plus SNOC's Sajaa gas processing complex, gas storage and Hamriyah terminals [4][5]."
+  },
+  {
+   "q": "Do NDT companies in Sharjah need a licence for radiography?",
+   "a": "Yes. The Federal Authority for Nuclear Regulation regulates the use of radiation sources across the UAE, and industrial radiography is a licensed practice [7]. Free zones also apply their own health, safety and environment permits for radiography [12]."
+  },
+  {
+   "q": "Can a Sharjah fabricator meet Saudi Aramco NDT requirements?",
+   "a": "Yes, if its NDT provider uses personnel and a written practice that meet Aramco's SAEP-1142 [13] and follows the Aramco specifications in the purchase order. Many Sharjah shops regularly build to Aramco and ADNOC specifications."
+  },
+  {
+   "q": "Is radiography or phased array UT better for shop fabrication?",
+   "a": "Both are used. Radiography is efficient in a shop bunker and is often specified, while PAUT avoids radiation, gives digital records and suits thick sections. The code and client specification usually decide; ask your provider's Level III to recommend the approach."
+  },
+  {
+   "q": "Which methods are used at LPG terminals?",
+   "a": "UT thickness monitoring, wet fluorescent MT of internal welds during out-of-service inspections, acoustic emission testing of pressurised storage, MFL for tank floors and guided wave screening of lines."
+  },
+  {
+   "q": "How do I get NDT quotes in Sharjah?",
+   "a": "Post your scope on NDT-Connect with the item list, code and client specification, weld volumes and thicknesses, location (shop bunker or site) and reporting deadlines, so providers can quote on the same basis."
+  }
+ ],
+ "references": [
+  {
+   "title": "Property Finder — Overview of Hamriyah Free Zone (established 1995, about 30 km²)",
+   "url": "https://www.propertyfinder.ae/blog/?p=221284"
+  },
+  {
+   "title": "HFZA — Corporate brochure (second-largest industrial free zone, steel fabricators)",
+   "url": "https://hfza.ae/wp-content/uploads/2026/08/HFZA-Corporate-Brochure_A4_Eng_June2025.pdf"
+  },
+  {
+   "title": "Gulf News — Hamriyah Free Zone, one of the largest manufacturing and industrial hubs in MENA",
+   "url": "https://gulfnews.com/business/hamriyah-free-zone-one-of-the-largest-manufacturing-and-industrial-hubs-in-the-mena-region-1.1617188330825"
+  },
+  {
+   "title": "SNOC — Company overview (four gas fields, 700 MMscfd Sajaa complex)",
+   "url": "https://www.snoc.ae/?p=1717"
+  },
+  {
+   "title": "SNOC — Midstream operations",
+   "url": "https://www.snoc.ae/our-business/midstream/"
+  },
+  {
+   "title": "SNOC — Company profile (LPG terminal storage)",
+   "url": "https://www.snoc.ae/?p=30"
+  },
+  {
+   "title": "ARPANSA — Nuclear regulation in the UAE (FANR regulates radiation sources)",
+   "url": "https://www.arpansa.gov.au/sites/default/files/2016-licence-holder-forum-keynote-john-loy.pdf"
+  },
+  {
+   "title": "Saudi Gazette — HFZA signs strategic partnership with Lamprell",
+   "url": "https://saudigazette.com.sa/article/597860/BUSINESS/Sharjahs-HFZA-inks-strategic-partnership-deal-with-Lamprell"
+  },
+  {
+   "title": "Khaleej Times — Reliable Engineering and Fabrication opens facility at Hamriyah",
+   "url": "https://www.khaleejtimes.com/business/reliable-engineering-and-fabrication-opens-dh15-million-production-facility"
+  },
+  {
+   "title": "SNOC — 2023 greenhouse gas performance report (Sajaa plant processes)",
+   "url": "https://www.snoc.ae/wp-content/uploads/2024/12/SNOC-2023-GHG-Performance-Report_FINAL.pdf"
+  },
+  {
+   "title": "Sharjah National Oil Corporation — Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Sharjah_National_Oil_Corporation"
+  },
+  {
+   "title": "RAKEZ — HS&E NOC application for radiography (free zone requirements)",
+   "url": "https://rakez.com/Upload/ManageDocument/inventory_update_for_chemicals_noc_20220404120556.pdf"
+  },
+  {
+   "title": "Saudi Aramco SAEP-1142, Qualification of Non-Saudi Aramco NDT Personnel (copy)",
+   "url": "https://www.scribd.com/document/552222316/SAEP-1142"
+  },
+  {
+   "title": "The National — FANR draft guide on radiation safety in industrial radiography",
+   "url": "https://thenationalnews.com/uae/uae-nuclear-authority-calls-for-feedback-on-radiation-safety-rules-1.569724"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Dubai",
+   "href": "/ndt-services/dubai-ae"
+  },
+  {
+   "name": "Fujairah",
+   "href": "/ndt-services/fujairah-ae"
+  },
+  {
+   "name": "Abu Dhabi",
+   "href": "/ndt-services/abu-dhabi-ae"
+  },
+  {
+   "name": "Ruwais",
+   "href": "/ndt-services/ruwais-ae"
+  },
+  {
+   "name": "Sohar, Oman",
+   "href": "/ndt-services/sohar-om"
+  }
+ ],
+ "related": [
+  {
+   "label": "RT exposure time calculator",
+   "href": "/tools/rt-exposure-time"
+  },
+  {
+   "label": "Radiation safe distance calculator",
+   "href": "/tools/radiation-safe-distance"
+  },
+  {
+   "label": "Half-value layer calculator",
+   "href": "/tools/half-value-layer"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  }
+ ]
+}

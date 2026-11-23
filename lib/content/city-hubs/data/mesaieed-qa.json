@@ -1,0 +1,286 @@
+{
+ "slug": "mesaieed-qa",
+ "city": "Mesaieed",
+ "region": "Al Wakrah",
+ "country": "Qatar",
+ "countrySlug": "qatar",
+ "wave": 1,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Mesaieed: Inspection for Qatar's Refinery, Fertilizer, Petrochemical and Steel Plants",
+ "metaTitle": "NDT Services in Mesaieed, Qatar | Industrial City Inspection Guide",
+ "description": "NDT in Mesaieed, Qatar: inspection for QAFCO, QAPCO, Q-Chem, Qatar Steel, Qatalum and the refinery. Methods, QatarEnergy specs, MECC radiation rules, hiring.",
+ "quickAnswer": "Mesaieed, about 36 km south of Doha, is the core of Qatar's downstream industry [2]. Its industrial city hosts an oil refinery, a fertilizer complex, petrochemical complexes, a natural gas liquids plant and a steel mill, plus crude receiving and export facilities [3]. The main operators are QAFCO, QAPCO, Q-Chem, Qatar Vinyl, QAFAC, Qatar Steel and the Qatalum aluminium smelter [1]. NDT demand is mostly **turnaround and integrity inspection** at these plants, plus fabrication work at the marine fabrication yard [2]. Radiography is licensed by the Ministry of Environment and Climate Change under Qatar's radiation protection law [8][9].",
+ "keyFacts": [
+  {
+   "label": "History",
+   "value": "Established as a tanker terminal in 1949; first government industrial site created for QAFCO in 1970 [5]"
+  },
+  {
+   "label": "Main plants",
+   "value": "QP Refinery, QAFCO, QAPCO, Q-Chem, QVC, QAFAC, Qatar Steel, Qatalum, Qatar Lubricants [1][2]"
+  },
+  {
+   "label": "Ownership",
+   "value": "QAFCO, QAPCO, QAFAC and Qatar Steel are grouped under Industries Qatar; Qatalum is a QatarEnergy–Hydro joint venture [4]"
+  },
+  {
+   "label": "Radiation regulator",
+   "value": "Ministry of Environment and Climate Change, Radiation Protection Department, under Law No. 31 of 2002 [9]"
+  }
+ ],
+ "industries": [
+  "Oil refining",
+  "Fertilizers (ammonia and urea)",
+  "Petrochemicals and polymers",
+  "Steel (DRI-EAF)",
+  "Aluminium",
+  "Marine fabrication"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Mesaieed's role in Qatar's NDT market",
+   "paragraphs": [
+    "Qatar's inspection market has two industrial poles. Ras Laffan in the north is built around LNG. Mesaieed in the south is built around everything downstream of oil and gas: refining, fertilizers, petrochemicals, steel and aluminium. Mesaieed began as a crude oil tanker terminal in 1949, and the first government-prepared industrial site was created there for QAFCO in 1970 [5]. Today the industry concentrated in the area is described as the core of Qatar's industry [2].",
+    "For NDT buyers and providers, this concentration means a dense calendar of plant turnarounds, a broad mix of materials and damage mechanisms, and demanding owners with mature inspection departments. Many operators sit under Industries Qatar, which holds QAFCO, QAPCO, QAFAC and Qatar Steel, while Qatalum is a joint venture between QatarEnergy (formerly Qatar Petroleum) and Norway's Hydro [4]. Inspection contracts are often long-term framework agreements, with specialist scopes added for turnarounds.",
+    "Most providers serve Mesaieed from bases in Doha's industrial area and from Mesaieed itself. Plant access requires site inductions and permits, and contractor workforce housing and transport are planned well ahead of large shutdowns.",
+    "The marine fabrication yard and port add a second, steadier stream of work alongside plant turnarounds: shop-style weld inspection of modules and structures, and inspection of tanks, jetty piping and terminal equipment, giving local providers year-round utilisation between shutdown seasons."
+   ]
+  },
+  {
+   "id": "industries",
+   "h2": "Plants and assets that drive inspection demand",
+   "paragraphs": [
+    "The industrial area hosts the main plants of QatarEnergy, the QP Refinery, Qatar Lubricants, Qatar Fertiliser Company (QAFCO), Qatar Fuel Additives Company (QAFAC), Qatar Petrochemical Company (QAPCO), Qatar Steel, Qatar Vinyl Company (QVC), Qatar Chemical Company (Q-Chem), Qatalum, the Mesaieed port authority and container terminal, Qatar Primary Materials Company and the Qcon Marine Fabrication Yard [2]. Qatalum's aluminium smelter was launched in April 2010 [1]. Qatar Steel operates a direct reduced iron and electric arc furnace (DRI-EAF) steel plant in the industrial city [6]. QAFCO's subsidiaries include Gulf Formaldehyde Company and Qatar Melamine Company [4]."
+   ],
+   "table": {
+    "caption": "Mesaieed plants and their usual NDT focus",
+    "head": [
+     "Plant type",
+     "Key inspection concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "Refinery and NGL plant",
+      "Corrosion and cracking in process units, heater tubes, high-temperature hydrogen attack, CUI",
+      "UT, PAUT, TOFD, ECT/IRIS, RT, PMI"
+     ],
+     [
+      "Ammonia and urea plants (QAFCO)",
+      "Ammonia SCC, high-pressure synthesis loop welds, urea carbamate corrosion of stainless steels, reformer tubes",
+      "WFMT, PAUT, TOFD, ferrite and PMI, reformer tube inspection"
+     ],
+     [
+      "Petrochemical plants (QAPCO, Q-Chem, QVC, QAFAC)",
+      "Cracker furnace tubes, chloride and caustic cracking, corrosion in chlor-alkali and vinyl units",
+      "UT, PAUT, ECT, RT, PT"
+     ],
+     [
+      "Steel plant (Qatar Steel)",
+      "Furnace and DRI module structures, cranes, gas lines, rolling mill components",
+      "UT, MT, PAUT, VT"
+     ],
+     [
+      "Aluminium smelter (Qatalum)",
+      "Pot shells, cranes and anode plant in strong magnetic fields",
+      "MT, UT (field-rated instruments)"
+     ],
+     [
+      "Port, terminals and marine fabrication yard",
+      "Tanks, jetty piping, fabricated modules to class and client specs",
+      "MFL, UT, RT, PAUT, MT"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "methods",
+   "h2": "Methods and damage mechanisms specific to Mesaieed's plants",
+   "paragraphs": [
+    "**Fertilizer plants** are among the most inspection-intensive assets in the city. Ammonia plants include reformers whose catalyst tubes creep at high temperature, high-pressure synthesis loops with thick-walled vessels and piping, and ammonia storage where **ammonia stress corrosion cracking** threatens carbon steel welds. Wet fluorescent magnetic particle testing of internal welds, PAUT and TOFD on thick-wall synthesis equipment, and specialised reformer tube inspection (ultrasonic, eddy current and laser profilometry systems) are standard turnaround services. Urea plants handle ammonium carbamate, which attacks stainless steels if passivation fails, so ferrite measurement, PMI and careful UT of high-pressure equipment are typical.",
+    "**Refining and NGL processing** bring the familiar refinery list: corrosion monitoring with UT and corrosion mapping, PAUT and TOFD on critical welds, eddy current and IRIS on exchanger tubes, profile radiography of small-bore lines, and screening for corrosion under insulation. Units with hydrogen at elevated temperature may need advanced ultrasonic techniques to screen for high-temperature hydrogen attack.",
+    "**Petrochemical plants** include ethylene crackers and polyethylene plants (QAPCO, Q-Chem), vinyl chain units (QVC) and fuel additive plants (QAFAC). Cracker furnace coils are inspected for carburisation and creep, chloride-bearing units for stress corrosion cracking of stainless steels, and caustic service for caustic cracking. **Steel and aluminium** plants need structural and crane inspection, much of it with MT and UT, and in the smelter, techniques and instruments that work in strong magnetic fields."
+   ]
+  },
+  {
+   "id": "turnaround",
+   "h2": "Planning a turnaround inspection campaign in Mesaieed",
+   "paragraphs": [
+    "Mesaieed Industrial City is managed by a QatarEnergy subsidiary and was inaugurated as an industrial city scheme in 2004 [7], but most of its plants are much older, and ageing equipment means turnaround scopes grow over time. A successful campaign starts months before shutdown. The owner's inspection engineers define the worklist from risk-based inspection results and previous findings; the NDT provider then plans methods, crew numbers, equipment, procedure approvals and radiation licensing against that list.",
+    "Three planning steps make the biggest difference. First, **pre-shutdown on-stream inspection**: PAUT, corrosion mapping and pulsed eddy current screening done while the plant runs can confirm or remove items from the shutdown list, so crews focus on equipment that truly needs internal access. Second, **procedure qualification**: advanced techniques for ammonia SCC, creep damage or hydrogen attack should be demonstrated on representative samples and approved by the owner before the shutdown, not during it. Third, **reporting flow**: agree how preliminary results reach the owner each shift, so repair decisions are not delayed by paperwork.",
+    "After the turnaround, a short lessons-learned review covering findings by damage mechanism, repeat indications and inspection effectiveness feeds the next risk-based inspection cycle. Providers who contribute to that review, rather than just delivering reports, tend to keep long-term contracts."
+   ]
+  },
+  {
+   "id": "codes",
+   "h2": "Codes, owner specifications and radiation licensing",
+   "paragraphs": [
+    "Owners in Mesaieed apply their own engineering and inspection specifications on top of ASME, API and other international codes: ASME Section V for NDT technique, ASME Section VIII and B31.3 for vessels and piping, API 510, API 570 and API 653 for in-service inspection, and API 579-1/ASME FFS-1 for fitness for service. QatarEnergy-linked facilities follow QatarEnergy standards, and joint ventures often blend those with their technology partners' practices.",
+    "Radiation safety in Qatar is governed by **Law No. 31 of 2002 on radiation protection** and its executive regulations [9]. The Ministry of Environment and Climate Change's Radiation Protection Department oversees medical, industrial and research facilities that use radioactive materials and radiation-emitting devices [9], and it now processes radiation licence applications through an electronic platform [8], including personal licences for radiation work [10]. It also publishes lists of entities authorised to provide radiation protection services such as dose monitoring and training [11]. Before awarding radiography, ask for the provider's current ministry licence and the personal licences of its radiographers.",
+    "NDT personnel are usually certified under employer-based ASNT schemes or ISO 9712 (for example PCN), with PAUT, TOFD and other advanced-method qualifications specified for critical scopes. Qatar has long emphasised qualified local NDT staff; a QatarEnergy (then Qatar Petroleum) seminar on NDT covered the national radiation protection law and certification requirements for NDT personnel [12]."
+   ],
+   "bullets": [
+    "Ask for the provider's Ministry of Environment and Climate Change radiation licence and radiographers' personal licences [8][10].",
+    "Confirm whether QatarEnergy or the plant owner's specification governs your scope.",
+    "For fertilizer and petrochemical scopes, require procedures qualified for the damage mechanism (ammonia SCC, creep, HTHA)."
+   ]
+  },
+  {
+   "id": "environment",
+   "h2": "Climate and environment",
+   "paragraphs": [
+    "Mesaieed is a coastal desert site with intense summer heat, high humidity and salt-laden air. That combination drives atmospheric corrosion and corrosion under insulation on carbon steel piping and structures, and pitting and chloride stress corrosion cracking on stainless steels where insulation gets wet. Summer heat also limits outdoor working hours, so turnaround planning in Qatar typically favours the cooler months, concentrating demand for NDT technicians between autumn and spring.",
+    "Heat affects inspection technique as well. Surface temperatures in summer can exceed standard probe and couplant ratings, MT inks dry quickly, and radiography exclusion zones are harder to manage when work is shifted to night hours. Experienced providers plan high-temperature UT procedures and night radiography windows in advance."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Mesaieed",
+   "paragraphs": [
+    "Plant owners in Mesaieed typically buy inspection through multi-year service contracts with call-off rates, supplemented by turnaround packages. Day rates per technician or crew are standard for turnaround and on-call work, with advanced equipment (PAUT, TOFD, IRIS, reformer tube inspection systems, acoustic emission) priced separately. Fabrication work at the marine yard is often priced per weld or film, or with resident technicians on monthly rates.",
+    "Cost drivers include crew size and shift pattern during short turnaround windows, specialist systems such as reformer tube crawlers, mobilisation of personnel with valid Qatar work permits and site inductions, radiation licensing, and reporting requirements for owners' integrity systems. Because several Mesaieed plants often schedule turnarounds in the same cooler-season window, early booking secures experienced crews.",
+    "To get comparable quotes, share the equipment list, operating conditions, damage mechanisms of concern, governing specification, access and scaffolding arrangements, turnaround dates and data format. NDT-Connect's request form captures these fields so providers can quote on the same basis."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "Training and NDT careers in Mesaieed",
+   "paragraphs": [
+    "Mesaieed offers some of Qatar's most technically varied NDT work. Technicians with fertilizer plant experience (ammonia SCC, reformer tubes, high-pressure equipment), refinery turnaround experience, or cracker furnace inspection skills are in demand, as are PAUT and TOFD specialists and Level IIIs who can write procedures and review data for owner approval.",
+    "To work on Qatari plants, technicians typically need recognised ASNT-based or ISO 9712 certification, owner-specific site training, and, for radiography, a personal radiation licence from the Ministry of Environment and Climate Change [10]. Building documented experience on specific equipment types is the fastest route to senior roles, because owners scrutinise CVs closely before approving personnel for critical scopes."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Mesaieed",
+   "paragraphs": [
+    "Pre-qualification in Mesaieed should test experience with your specific plant type and the provider's ability to support a short, intense turnaround."
+   ],
+   "bullets": [
+    "Relevant plant experience: fertilizer, refinery, petrochemical, steel or aluminium.",
+    "Current ministry radiation licence and personal licences for radiographers [8][10].",
+    "Method-specific certificates and procedures qualified for your damage mechanisms.",
+    "Specialist systems where needed (reformer tube inspection, IRIS, PAUT/TOFD, AE).",
+    "Turnaround capacity: crew numbers, supervisors, Level III support and reporting speed.",
+    "Data delivery that fits the owner's integrity management system."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Which companies operate in Mesaieed Industrial City?",
+   "a": "The main plants include QatarEnergy facilities, the QP Refinery, Qatar Lubricants, QAFCO, QAFAC, QAPCO, Qatar Steel, Qatar Vinyl, Q-Chem, Qatalum, Qatar Primary Materials Company and the Qcon Marine Fabrication Yard [2]."
+  },
+  {
+   "q": "What NDT is needed in fertilizer plants?",
+   "a": "Reformer tube inspection, PAUT and TOFD on high-pressure synthesis equipment, wet fluorescent MT for ammonia stress corrosion cracking in storage and vessels, and ferrite measurement and PMI for urea plant stainless steels."
+  },
+  {
+   "q": "Who licenses industrial radiography in Qatar?",
+   "a": "The Ministry of Environment and Climate Change's Radiation Protection Department, under Law No. 31 of 2002 on radiation protection [9]. Companies apply for licences through the ministry's electronic platform [8], and radiation workers need personal licences [10]."
+  },
+  {
+   "q": "When do Mesaieed plants hold turnarounds?",
+   "a": "Each owner sets its own schedule, but outdoor heat in summer means many turnarounds fall in the cooler months, which concentrates demand for NDT crews. Book providers early."
+  },
+  {
+   "q": "How far is Mesaieed from Doha?",
+   "a": "About 36 km south of Doha [2], so many NDT providers serve Mesaieed from Doha's industrial area."
+  },
+  {
+   "q": "How do I request NDT quotes for a Mesaieed plant?",
+   "a": "Post the scope on NDT-Connect with the equipment list, operating conditions, damage mechanisms, governing specification, access and turnaround dates. Certified providers serving Qatar can then quote on the same basis."
+  }
+ ],
+ "references": [
+  {
+   "title": "Mesaieed Industrial Area — Wikipedia (plant list, Qatalum launch)",
+   "url": "https://Www.Wikipedia.org/wiki/Mesaieed_Industrial_City"
+  },
+  {
+   "title": "Mesaieed — Wikipedia (location, industry core of Qatar, plant list)",
+   "url": "https://wikipedia.com/wiki/Mesaieed"
+  },
+  {
+   "title": "Directors Directory — Mesaieed Industrial City overview",
+   "url": "https://directorsdirectory.com/?p=2885"
+  },
+  {
+   "title": "Oxford Business Group — Qatar industry: Industries Qatar portfolio and Qatalum",
+   "url": "https://oxfordbusinessgroup.com/reports/qatar/2017-report/economy/make-a-move-boosting-efficiency-will-be-key-to-maintaining-sector-growth"
+  },
+  {
+   "title": "Mesaieed Industrial Area — Wikipedia (history, 1949 tanker terminal, 1970 QAFCO site)",
+   "url": "https://en.wikipedia.org/wiki/Mesaieed_Industrial_Area"
+  },
+  {
+   "title": "Global Energy Monitor — Industries Qatar Steel Mesaieed plant",
+   "url": "https://www.gem.wiki/Qatar_Steel_plant"
+  },
+  {
+   "title": "MEED — Industrial cities in Qatar",
+   "url": "https://www.meed.com/industrial-cities-in-qatar/"
+  },
+  {
+   "title": "QNA — Ministry launches platform for radiation-related permit applications",
+   "url": "https://qna.org.qa/en/News-Area/News/2025-5/7/ministry-of-environment-and-climate-change-launches-platform-to-process-radiation-related-permit-applications"
+  },
+  {
+   "title": "The Peninsula — MoECC strengthens oversight of facilities using radioactive materials (Law No. 31 of 2002)",
+   "url": "https://thepeninsulaqatar.com/article/03/07/2024/moecc-strengthens-oversight-on-facilities-using-radioactive-materials"
+  },
+  {
+   "title": "QNA — Ministry launches new radiation protection e-services, including personal licences",
+   "url": "https://qna.org.qa/en/News-Area/News/2026-5/12/ministry-of-environment-and-climate-change-launches-new-e-services"
+  },
+  {
+   "title": "The Peninsula — MoECC authorises entities providing radiation protection services",
+   "url": "https://thepeninsulaqatar.com/article/20/08/2024/moecc-authorises-entities-providing-radiation-protection-services"
+  },
+  {
+   "title": "Zawya — Qatar seminar on non-destructive testing techniques",
+   "url": "https://www.zawya.com/en/business/qatar-seminar-on-non-destructive-testing-techniques-held-cr6jez28"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Doha",
+   "href": "/ndt-services/doha-qa"
+  },
+  {
+   "name": "Ras Laffan",
+   "href": "/ndt-services/ras-laffan-qa"
+  },
+  {
+   "name": "Manama, Bahrain",
+   "href": "/ndt-services/manama-bh"
+  },
+  {
+   "name": "Abu Dhabi",
+   "href": "/ndt-services/abu-dhabi-ae"
+  }
+ ],
+ "related": [
+  {
+   "label": "NDT inspection cost guide",
+   "href": "/blog/ndt-inspection-cost-guide"
+  },
+  {
+   "label": "UT temperature correction calculator",
+   "href": "/tools/ut-temperature-correction"
+  },
+  {
+   "label": "Eddy current fill factor calculator",
+   "href": "/tools/ec-fill-factor"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  }
+ ]
+}

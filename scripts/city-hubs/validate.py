@@ -1,7 +1,7 @@
 """Validate city hub JSON files: >=2000 rendered words, citations resolve, required fields, unique slugs.
 Usage: python3 scripts/city-hubs/validate.py [slug ...]"""
 import json, re, sys, glob, os
-D = os.path.join(os.path.dirname(__file__), '..', '..', 'lib', 'content', 'city-hubs', 'data')
+D = os.environ.get('CITY_DIR') or os.path.join(os.path.dirname(__file__), '..', '..', 'lib', 'content', 'city-hubs', 'data')
 REQ = ['slug','city','region','country','countrySlug','wave','updated','title','metaTitle','description','quickAnswer','keyFacts','industries','sections','faqs','references','nearby','related']
 def words(t): return len(re.findall(r"[A-Za-z0-9À-ÿ][\w'’\-./%]*", re.sub(r'\[\d+\]|\*\*', ' ', t)))
 def texts(c):

@@ -1,0 +1,299 @@
+{
+ "slug": "sur-om",
+ "city": "Sur",
+ "region": "South Ash Sharqiyah",
+ "country": "Oman",
+ "countrySlug": "oman",
+ "wave": 1,
+ "updated": "2026-11-23",
+ "title": "NDT Services in Sur, Oman: LNG, Fertilizer and Power Plant Inspection",
+ "metaTitle": "NDT Services in Sur, Oman | Qalhat LNG & Fertilizer Inspection",
+ "description": "NDT in Sur, Oman: inspection for Oman LNG's Qalhat trains, the new Sur LNG train, OMIFCO's ammonia-urea complex and the Sur power plant. Rules and hiring.",
+ "quickAnswer": "Sur, on Oman's eastern coast, is the centre of the country's LNG industry. **Oman LNG** operates three liquefaction trains at Qalhat near Sur with a nameplate capacity of 10.4 million tonnes per year [1], and a fourth train of 3.8 million t/y, Sur LNG, is planned for commissioning in 2029 [2][3]. Sur Industrial Estate also hosts **OMIFCO's** two-train ammonia-urea complex [5] and the **Sur Independent Power Plant** of at least 2,000 MW [7]. NDT demand here centres on cryogenic and high-pressure gas equipment, fertilizer plant turnarounds, power plant outages and new construction. Radiation work is licensed by Oman's Environment Authority [4][8].",
+ "keyFacts": [
+  {
+   "label": "LNG",
+   "value": "Oman LNG: three trains, 10.4 Mt/y nameplate [1], debottlenecked to about 11.4 Mt/y [2]; fourth train (3.8 Mt/y) due 2029 [2]"
+  },
+  {
+   "label": "Fertilizer",
+   "value": "OMIFCO: two ammonia and two urea trains, about 1.15 Mt/y ammonia and 1.65 Mt/y urea [6]"
+  },
+  {
+   "label": "Power",
+   "value": "Sur Independent Power Plant, at least 2,000 MW, combined cycle, operated by Phoenix Power [7]"
+  },
+  {
+   "label": "Radiation regulator",
+   "value": "Environment Authority, Radiation Protection Department; Regulation 79/2023 [8][9]"
+  }
+ ],
+ "industries": [
+  "LNG liquefaction",
+  "Ammonia and urea",
+  "Power generation",
+  "Gas pipelines",
+  "Marine terminals",
+  "New-build construction"
+ ],
+ "sections": [
+  {
+   "id": "market",
+   "h2": "Why Sur is one of the Gulf's key LNG inspection markets",
+   "paragraphs": [
+    "Sur, about 500 km by road from Muscat [11], is a historic port town that became Oman's gas export hub when Qalhat, near Sur, was chosen in 1995 as the site of the country's LNG plant [1]. The plant began production in 2000, and a third train, Qalhat LNG, was added later [10]. Oman LNG now runs three trains with a total nameplate capacity of 10.4 million tonnes per year [1], and debottlenecking has raised production capacity to about 11.4 million t/y [2]. Gas arrives from the central Oman gas fields through a 360 km, 48-inch pipeline from the Saih Rawl gas gathering plant [1].",
+    "The next wave of work is already under way. Oman announced construction of a fourth train at the Qalhat complex under a new company, Sur LNG, with capacity of 3.8 million t/y, which will raise the country's LNG capacity to 15.2 million t/y [3]. It is expected to be commissioned in 2029 [2]. That means several years of fabrication, construction and commissioning inspection on top of routine integrity work on the existing trains, including periodic turnarounds such as the one started on the 3.3 million t/y third train [12].",
+    "Sur Industrial Estate adds two more major clients: the OMIFCO fertilizer complex and the Sur Independent Power Plant. Together, these assets make Sur a concentrated, high-value inspection market, served by providers from Muscat and by contractors who station crews near the plants during turnarounds and projects."
+   ]
+  },
+  {
+   "id": "industries",
+   "h2": "Facilities and assets that drive inspection demand",
+   "paragraphs": [
+    "**OMIFCO** (Oman India Fertiliser Company), a joint venture between Oman and Indian partners, was inaugurated in 2006 at Sur Industrial Estate. The plant covers 175 hectares and includes its own utilities, product storage, power generation, seawater cooling and a jetty [5]. It operates two ammonia trains and two urea trains with annual nameplate capacity of about 1.15 million tonnes of ammonia and 1.65 million tonnes of urea [6], and a pre-feasibility study has examined doubling capacity [13]. The **Sur Independent Power Plant** is a combined-cycle station of at least 2,000 MW owned by Phoenix Power [7]."
+   ],
+   "table": {
+    "caption": "Sur assets and their typical NDT scopes",
+    "head": [
+     "Asset",
+     "Main inspection concerns",
+     "Common methods"
+    ],
+    "rows": [
+     [
+      "LNG trains: cold boxes, cryogenic piping, heat exchangers",
+      "Weld quality in stainless and low-temperature steels, fatigue at thermal cycling points, insulation damage",
+      "RT, PAUT, PT, PMI, ferrite, visual"
+     ],
+     [
+      "Gas treatment (acid gas removal, dehydration)",
+      "Amine and CO2 corrosion, cracking in amine service",
+      "UT, PAUT, WFMT, TOFD"
+     ],
+     [
+      "LNG storage tanks and loading facilities",
+      "9% nickel steel welds, tank bottom and annular plates, jetty piping",
+      "RT, PAUT, PT, UT, guided wave"
+     ],
+     [
+      "Ammonia plants (OMIFCO)",
+      "Reformer tubes, high-pressure synthesis loop, ammonia SCC in storage",
+      "Reformer tube inspection, PAUT, TOFD, WFMT"
+     ],
+     [
+      "Urea plants (OMIFCO)",
+      "Carbamate corrosion of stainless steels and high-pressure equipment",
+      "UT, ferrite, PMI, ECT on exchangers"
+     ],
+     [
+      "Combined-cycle power plant",
+      "HRSG tubes, steam piping welds, turbine components",
+      "UT, EMAT, PAUT, MT, PT, replication"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "methods",
+   "h2": "LNG-specific NDT: what buyers in Sur should know",
+   "paragraphs": [
+    "LNG plants operate at about −162 °C in the cryogenic sections, which drives material choices and inspection methods. Austenitic stainless steels, aluminium (in brazed aluminium heat exchangers) and 9% nickel steel (in many full-containment storage tanks) are common, and none of these respond to magnetic particle testing. Inspection therefore relies heavily on **radiography**, **phased array UT** with procedures qualified for austenitic and dissimilar welds, **liquid penetrant testing** for surface examination, and **PMI** and **ferrite measurement** to verify alloy and weld metal composition.",
+    "Austenitic welds are notoriously difficult for ultrasonics because coarse, oriented grains scatter and bend the beam. Effective PAUT on these welds needs dual matrix or TRL probes, modelling of beam paths, and qualification on representative samples. If your scope includes stainless or 9% nickel welds, ask bidders to show qualified procedures rather than generic UT capability.",
+    "Warmer parts of the plant, such as gas treatment, compression and utilities, follow more familiar refinery-style inspection: UT and corrosion mapping, PAUT and TOFD on critical welds, wet fluorescent MT for cracking in amine service, and eddy current or IRIS for exchanger tubes. **Corrosion under insulation** is a major concern on lines that cycle in temperature or sweat in humid coastal air, and screening with pulsed eddy current or guided wave helps target insulation removal.",
+    "For the **fourth train** under development, construction-phase NDT will include high volumes of RT and PAUT on piping and structural welds, tank weld inspection, PMI, and pre-commissioning inspection, typically under the EPC contractor's quality plan and Oman LNG's specifications [2]."
+   ]
+  },
+  {
+   "id": "fertilizer",
+   "h2": "Fertilizer and power plant inspection in Sur",
+   "paragraphs": [
+    "OMIFCO's ammonia trains include primary reformers whose catalyst tubes operate at high temperature and degrade by creep; reformer tube inspection systems combining ultrasonic, eddy current and diameter measurement are used during shutdowns to rank tubes for replacement. The high-pressure synthesis loop needs PAUT and TOFD on thick-walled welds, and ammonia storage needs wet fluorescent MT on internal welds to detect ammonia stress corrosion cracking. Urea synthesis equipment handles ammonium carbamate, which attacks stainless steel if passivation is lost, so ferrite checks, PMI and careful thickness monitoring of high-pressure equipment are standard.",
+    "At the Sur power plant, outage inspection focuses on heat recovery steam generator tubes, steam piping welds, headers and turbine components. EMAT and rapid UT scanning cover long tube lengths, while PAUT, TOFD and metallographic replication assess high-temperature welds for creep damage."
+   ]
+  },
+  {
+   "id": "codes",
+   "h2": "Codes, client specifications and radiation licensing in Oman",
+   "paragraphs": [
+    "Owners in Sur apply their own specifications on top of international codes: ASME Section VIII and B31.3 for process equipment and piping, API 620 and API 625 for low-temperature and LNG storage tanks, API 510 and API 570 for in-service inspection, ASME Section I and B31.1 for power equipment, and API 579-1/ASME FFS-1 for fitness for service. Oman LNG, OMIFCO and Phoenix Power each define technician qualification and inspection procedure requirements in their contracts.",
+    "Use of radiation sources in Oman is regulated by the **Environment Authority's Radiation Protection Department**, which issues licences and inspects licensees dealing with radioactive substances [4]. The current framework is the Regulation of Radiation Protection and the Security and Safety of Radiation Sources and Nuclear Materials, issued by Resolution 79/2023 [9], under the environmental protection law [8]. Licensed practices require a radiation protection programme naming workers and a radiation protection supervisor [14], and supervisors need at least 20 hours of accredited radiation protection training [8]. The Environment Authority has also given unlicensed operators a grace period to regularise their status and requires applications through its electronic system [15].",
+    "Technicians are typically certified under ASNT employer-based schemes or ISO 9712, with advanced-method qualifications for PAUT and TOFD. Oman has a strong national employment policy, so clients value providers that train and employ Omani technicians."
+   ],
+   "bullets": [
+    "Ask for the provider's Environment Authority radiation practice licence and named radiation protection supervisor [14].",
+    "For stainless and 9% nickel welds, require PAUT procedures qualified on representative samples.",
+    "Confirm which owner specification governs: Oman LNG, OMIFCO, Phoenix Power or the EPC contractor."
+   ]
+  },
+  {
+   "id": "environment",
+   "h2": "Climate and coastal conditions",
+   "paragraphs": [
+    "Sur sits on the Arabian Sea coast with a hot, humid climate and salt-laden air, and the region is exposed to occasional tropical cyclones; Oman LNG had to shut down briefly in 2010 because of Cyclone Phet [1]. The marine environment accelerates atmospheric corrosion of structures and piping and makes corrosion under insulation a priority. After severe weather, owners commonly commission inspection of structures, jetties, tanks and insulated piping to confirm integrity before restart.",
+    "Heat and humidity also affect inspection work. Summer conditions shorten safe working periods, dry MT and PT consumables quickly and push UT surfaces beyond standard probe ratings, so providers plan schedules and consumables accordingly."
+   ]
+  },
+  {
+   "id": "pricing",
+   "h2": "How NDT is priced in Sur",
+   "paragraphs": [
+    "Integrity work at the LNG, fertilizer and power plants is usually bought through framework contracts with day rates, plus turnaround packages that size crews to the shutdown window. Construction-phase NDT for the fourth LNG train is typically procured by the EPC contractor, often with unit rates per weld or film and resident crews for the project duration.",
+    "Cost drivers include travel and accommodation (Sur is far from Muscat's provider base [11]), specialist equipment such as reformer tube inspection systems and PAUT for austenitic welds, radiation licensing and source logistics, and the timing of shutdowns. Booking early for turnarounds secures experienced crews.",
+    "To compare quotes, provide the equipment list, materials (especially stainless, 9% nickel or aluminium), service conditions, governing specifications, access, shutdown dates and reporting requirements.",
+    "For long campaigns, ask bidders whether they will mobilise from Muscat daily, house crews locally, or use a combination; the choice affects both cost and how quickly the provider can respond to emergent findings during a shutdown."
+   ]
+  },
+  {
+   "id": "careers",
+   "h2": "NDT careers in Sur",
+   "paragraphs": [
+    "Sur offers specialised work for technicians with LNG experience: radiography and PAUT on stainless and low-temperature steels, PT, PMI and ferrite measurement. Fertilizer turnarounds reward reformer tube inspection and WFMT experience, and the power plant needs HRSG and high-temperature weld specialists. The fourth train will add several years of construction NDT demand.",
+    "Building a career here means combining recognised certification (ASNT or ISO 9712) with advanced-method qualifications, documented plant experience and, for radiographers, training that satisfies the Environment Authority's radiation protection requirements [8].",
+    "Commissioning and start-up phases of a new LNG train are an especially good learning ground: technicians see fabrication, erection, hydrotest and pre-commissioning inspection in sequence, and work alongside EPC quality teams, owner inspectors and third-party specialists. Experience gained on the fourth train at Qalhat will be directly transferable to LNG projects in Qatar, the UAE and elsewhere."
+   ]
+  },
+  {
+   "id": "hiring",
+   "h2": "How to choose an NDT provider in Sur",
+   "paragraphs": [
+    "Pre-qualify for the specific asset and materials involved."
+   ],
+   "bullets": [
+    "Environment Authority radiation licence and radiation protection supervisor [14].",
+    "Proven procedures for austenitic and 9% nickel welds, and experience in LNG plants.",
+    "Reformer tube, HRSG or other specialist inspection systems where required.",
+    "Ability to station crews in Sur for turnarounds and construction.",
+    "Data quality and reporting that meet the owner's integrity system requirements.",
+    "Commitment to training and employing Omani technicians."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "How big is the LNG industry in Sur?",
+   "a": "Oman LNG operates three trains at Qalhat near Sur with a nameplate capacity of 10.4 million tonnes per year [1], and a fourth train of 3.8 million t/y is planned for 2029, raising Oman's total to 15.2 million t/y [2][3]."
+  },
+  {
+   "q": "Why can't magnetic particle testing be used on many LNG welds?",
+   "a": "Cryogenic sections use austenitic stainless steel, aluminium and 9% nickel steel, which are non-magnetic or unsuitable for MT. Inspection relies on radiography, PAUT with qualified procedures, penetrant testing, PMI and ferrite measurement."
+  },
+  {
+   "q": "Who regulates industrial radiography in Oman?",
+   "a": "The Environment Authority's Radiation Protection Department issues licences and inspects licensees [4], under Regulation 79/2023 on radiation protection and the safety and security of radiation sources [9]."
+  },
+  {
+   "q": "What does OMIFCO produce?",
+   "a": "Ammonia and granular urea from two ammonia trains and two urea trains, with nameplate capacity of about 1.15 million t/y of ammonia and 1.65 million t/y of urea [6]."
+  },
+  {
+   "q": "Where are NDT providers serving Sur based?",
+   "a": "Many are based in Muscat, about 500 km by road [11], and station crews in Sur for turnarounds and projects. Some contractors maintain local bases near Sur Industrial Estate. Ask in your request whether the provider has crews already working in Sur, which can shorten mobilisation."
+  },
+  {
+   "q": "How do I request NDT quotes for a Sur scope?",
+   "a": "Post your scope on NDT-Connect with the equipment, materials, service conditions, governing specification, access and dates, so certified providers serving Oman can quote on the same basis."
+  }
+ ],
+ "references": [
+  {
+   "title": "Oman LNG — Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Oman_LNG"
+  },
+  {
+   "title": "MEED — Oman LNG to add fourth train at Qalhat complex",
+   "url": "https://www.meed.com/oman-lng-to-add-fourth-train-at-qalhat-complex"
+  },
+  {
+   "title": "Oman Observer — Oman announces new LNG train in Qalhat complex (Sur LNG)",
+   "url": "https://www.omanobserver.om/article/1156820/business/energy/oman-announces-new-lng-train-in-qalhat-complex"
+  },
+  {
+   "title": "Oman Environment Authority — Radiation protection mandate",
+   "url": "https://ea.gov.om/en/the-authority/authority-mandates/environment-affairs/radiation-protection/"
+  },
+  {
+   "title": "Zawya — $1bn OMIFCO plant inaugurated in Sur",
+   "url": "https://www.zawya.com/en/business/oman-1bn-omifco-plant-inaugurated-in-sur-pn053sd7"
+  },
+  {
+   "title": "Muscat Daily — OMIFCO to offer 25% stake in IPO (capacities)",
+   "url": "https://www.muscatdaily.com/2026/06/02/omifco-to-offer-25-stake-in-ipo/"
+  },
+  {
+   "title": "Global Energy Monitor — Sur Independent power plant",
+   "url": "https://gem.wiki/Sur_Independent_power_plant"
+  },
+  {
+   "title": "Oman Environment Authority — Radiation protection supervisor licence",
+   "url": "https://www.ea.gov.om/en/authority-services/service-catalogue/service-catalogue/radiation-protection-supervisor-license"
+  },
+  {
+   "title": "Oman Environment Authority — Resolution 79/2023, Regulation of Radiation Protection",
+   "url": "https://waste.ea.gov.om/media/4jwiz5ds/regulation-of-radiation-protection-and-the-security-and-safety-of-radiation-sources-and-nuclear-materials.pdf"
+  },
+  {
+   "title": "Wikiwand — Oman LNG (production start, Qalhat LNG third train)",
+   "url": "https://www.wikiwand.com/en/articles/Oman_LNG"
+  },
+  {
+   "title": "Business Gateways — OMIFCO plans expansion with third train (500 km from Muscat)",
+   "url": "https://businessgateways.com/news/2018/02/06/Omifco-plans-expansion-with-third-train"
+  },
+  {
+   "title": "MEED — Contractors line up for Oman LNG fourth train project",
+   "url": "https://guest.meed.com/?p=13242"
+  },
+  {
+   "title": "Oman Observer — Nexant tapped for OMIFCO expansion pre-feasibility study",
+   "url": "https://www.omanobserver.om/ampArticle/1191165"
+  },
+  {
+   "title": "Oman Environment Authority — Radiological practices licence (possession and use)",
+   "url": "https://www.ea.gov.om/en/authority-services/service-catalogue/service-catalogue/radiological-practices-license-possession-and-use-1/"
+  },
+  {
+   "title": "Oman Observer — Environment Authority grants six-month grace for radiation licences",
+   "url": "https://www.omanobserver.om/article/1191180/oman/ea-grants-6-month-grace-for-radiation-licences"
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Muscat",
+   "href": "/ndt-services/muscat-om"
+  },
+  {
+   "name": "Duqm",
+   "href": "/ndt-services/duqm-om"
+  },
+  {
+   "name": "Sohar",
+   "href": "/ndt-services/sohar-om"
+  },
+  {
+   "name": "Fujairah, UAE",
+   "href": "/ndt-services/fujairah-ae"
+  }
+ ],
+ "related": [
+  {
+   "label": "UT temperature correction calculator",
+   "href": "/tools/ut-temperature-correction"
+  },
+  {
+   "label": "RT exposure time calculator",
+   "href": "/tools/rt-exposure-time"
+  },
+  {
+   "label": "Corrosion rate and remaining life calculator",
+   "href": "/tools/corrosion-rate-remaining-life"
+  },
+  {
+   "label": "Free NDT ERP for providers",
+   "href": "/free-erp"
+  },
+  {
+   "label": "Request an inspection",
+   "href": "/request-service"
+  }
+ ]
+}
