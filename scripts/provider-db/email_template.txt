@@ -1,0 +1,31 @@
+SUBJECT: {{company_name}} is listed on NDT-Connect — claim your free profile to receive inspection requests
+FROM: NDT-Connect <hello@mail.ndt-connect.com>   |   REPLY-TO: info@ndt-connect.com
+
+Hello {{company_name}} team,
+
+NDT-Connect (ndt-connect.com) is a marketplace where asset owners, EPCs, shipyards and contractors find and hire inspection and NDT providers across the US.
+
+We have created a free, unclaimed listing for {{company_name}} in {{city}}, {{state}} using information you publish on your website and in public agency lists: your company name, location, phone and the services you offer ({{services_short}}). It is marked "Unclaimed — is this your company?" until you take ownership.
+
+Claim it in two minutes:
+  1. Open your private link: {{claim_url}}
+  2. Create a password.
+  3. Check your services, accreditations and service area.
+
+Once claimed:
+  - Inspection requests that match your services and location come to you, on the platform and by email at this address.
+  - Order updates and important account notices are sent by email, so you can work from your inbox.
+  - There is no cost to list or to receive requests.
+
+Not interested, or want the listing removed? Use this link and we will take it down: {{remove_url}}
+
+Questions? Just reply to this email.
+
+Regards,
+The NDT-Connect Team
+ndt-connect.com
+
+—
+You are receiving this one-time notice because {{company_name}} publicly lists this business address as a contact. We will not email again unless you claim your listing.
+Unsubscribe: {{unsubscribe_url}}
+Atlantis Engineering Consultants LLC (operator of NDT-Connect) · [STREET ADDRESS — TO BE CONFIRMED] · Houston, TX [ZIP] · USA

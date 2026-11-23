@@ -80,3 +80,4 @@ mobile/ios/Runner.xcodeproj/project.xcworkspace/xcuserdata/
 flutter-init.log
 .env.production.local
 .env.production.vps
+outreach/

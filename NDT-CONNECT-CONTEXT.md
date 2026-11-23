@@ -176,3 +176,16 @@ The mounted FS corrupts the git index during large multi-file `git add` (bad sig
 - **2026-11-23** — Launched NDT Leaders series on ndt-connect.com via side-car (`/ndt-leaders` hub with community positioning + 3 cited profiles); nginx route + monitor check added; GSC sitemap + Indexing API + IndexNow submitted.
 - **2026-11-23 (b)** — Anoop profile corrected (Kuwait Ops Manager; A Better Inspector reference removed); added Eddie Pompa + Daniel Hoke profiles (side-car release erp-v1.4-leaders5, URLs submitted to Indexing API + IndexNow); wrote content-led growth strategy doc.
 - **2026-11-23 (c)** — Full GSC/GA4 analysis (clicks flat ~1k/mo, impressions +63% 28d; tools best CTR; services pages pos ~39; 87% form drop-off; 25k Direct = bots) → upgrade plan approved. Built city-hub system + /ndt-locations; 6 Middle East cities live (2000+ words each), sur-om + ahmadi-kw written.
+
+## US INSPECTION-PROVIDER DATABASE (BATCH 1 — 2026-11-23)
+- Batch 1: 230 US providers (Gulf Coast 42, West Coast 147, others 41). By sector: oil & gas 66, maritime 24, civil 162. 85 have a public business email; 72 are outreach-eligible.
+- File: `outreach/US-Inspection-Providers-Batch1.xlsx` (git-ignored, local only). Pipeline code: `scripts/provider-db/`.
+- Decisions: Amazon SES (user creating the account); publish as unclaimed listings; footer entity = Atlantis Engineering Consultants LLC (US).
+- BLOCKERS before any send:
+  - SES credentials
+  - Sending subdomain with SPF/DKIM/DMARC
+  - Atlantis street address
+  - `/unsubscribe` page (currently 404)
+  - `/claim?token=` flow on the main app (source not in git)
+  - User approval of the draft
+- Next steps: Google Places API key → scale to thousands; more state/city agency lists (NYC DOB, Clark County, LADBS block bots); state radiography licensee lists.
