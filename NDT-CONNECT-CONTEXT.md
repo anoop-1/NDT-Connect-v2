@@ -88,6 +88,9 @@ Match the existing authored content: **1,500+ words, real citations [1][2], phys
   - [ ] Chemical plants — Gulf Coast & Kanawha/Ohio Valley stress-corrosion & HIC
   - [ ] Bakken & Rockies midstream (Williston, Denver)
 
+- [ ] **NDT Leaders series (LIVE 2026-11-23, side-car route `/ndt-leaders`)** — 2,000+ word cited introduction profiles of industry figures ("NDT Leader: …"). Model `lib/content/ndt-leaders/types.ts`, register in `index.ts`; ProfilePage+Person+Article+FAQ schema; `/ndt-leaders/sitemap.xml` submitted to GSC. Rules: only publicly published professional facts, cited; no personal/private data (no phone/address/family/hobbies); disclose relationships (Anoop = NDT-Connect founder); corrections via info@ndt-connect.com.
+  - [x] Anoop Rayavarapu (Atlantis NDT) — 2,279 words · [x] Mohammed Abufour (ex-Saudi Aramco, ASNT Philip D. Johnson Award 2025, PNDT president) — 2,087 · [x] Dr. Ajay Pasupuleti (Ooga Technologies, NanoArk) — 2,257
+
 ## 9b. SIX-MONTH ROLLING OPTIMIZATION ROADMAP (set 2026-06-24)
 > Assumption-driven (GSC lags 2-4 wk). Re-baseline monthly with `pull-gsc.py` and re-order. Theme: **finish on-page to the finest, then authority.** On-page is now ~90% done; the position ceiling on head terms is OFF-PAGE.
 - **Month 1 (Jul 2026) — settle + measure the expansion.** Watch indexation of the +48 cities & the new hubs (/equipment, /topics, case-studies). Confirm rich results (FAQ/ItemList) register. Resubmit any "discovered-not-indexed". Refresh `DEMAND_CITIES` from new GSC. KPI: new-city indexed ratio >50%, total clicks ↑.
@@ -156,3 +159,4 @@ The mounted FS corrupts the git index during large multi-file `git add` (bad sig
 - **2026-11-18 (cont.)** — Deployed ERP side-car live (v1.1) at ndt-connect.com/erp + /free-erp via nginx path routing; main release untouched; added `scripts/deploy-erp-sidecar.sh`. Signed-in smoke test still to be done by user (agent could not create test sessions).
 - **2026-11-18 (cont.)** — Launched NDT Buyer's Guide on ndt-connect.com via side-car (`/buyers-guide` hub + 3 cited 2,000+ word regional guides + sitemap); nginx route added; GSC sitemap submitted; 5 URLs to Indexing API + IndexNow. Topic queue added above.
 - **2026-11-18 (cont.)** — Installed VPS uptime monitor (13 checks / 5 min) emailing info@atlantisndt.com (+ daily status); verified DOWN/RECOVERED delivery with a simulated test. Flagged pre-existing Odoo outbound-mail rejections.
+- **2026-11-23** — Launched NDT Leaders series on ndt-connect.com via side-car (`/ndt-leaders` hub with community positioning + 3 cited profiles); nginx route + monitor check added; GSC sitemap + Indexing API + IndexNow submitted.

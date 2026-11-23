@@ -14,7 +14,7 @@ git archive HEAD | tar -x -C "$B"
 cp package-lock.json "$B/" 2>/dev/null || true
 cd "$B"
 rm -rf mobile satellites NDTConnect seo-analysis GROWTH-PLAN-* store-listing __tests__ docs scripts src/app src/pages src/middleware.ts middleware.ts
-( cd app && for x in *; do case "$x" in layout.tsx|globals.css|favicon.ico|not-found.tsx|erp|free-erp|buyers-guide|api) ;; *) rm -rf "$x";; esac; done
+( cd app && for x in *; do case "$x" in layout.tsx|globals.css|favicon.ico|not-found.tsx|erp|free-erp|buyers-guide|ndt-leaders|api) ;; *) rm -rf "$x";; esac; done
   cd api && for x in *; do [ "$x" = erp ] || rm -rf "$x"; done )
 # assets under /erp-assets so they never collide with the main app's /_next
 sed -i.bak "s#  output: 'standalone',#  output: 'standalone',\n  assetPrefix: '/erp-assets',#" next.config.js

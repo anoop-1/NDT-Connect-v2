@@ -50,6 +50,7 @@ CHECKS = [
     ("ndt-connect.com ERP (/erp)",           lambda: http("https://ndt-connect.com/erp")),
     ("ndt-connect.com ERP API",              lambda: http("https://ndt-connect.com/api/erp/summary", expect=401)),
     ("ndt-connect.com Buyer's Guide",        lambda: http("https://ndt-connect.com/buyers-guide")),
+    ("ndt-connect.com NDT Leaders",          lambda: http("https://ndt-connect.com/ndt-leaders")),
     ("atlantisndt.com",                      lambda: http("https://atlantisndt.com/")),
     ("portal.atlantisndt.com (Odoo)",        lambda: http("https://portal.atlantisndt.com/web/login")),
     ("service ndt-connect",                  lambda: unit("ndt-connect")),
