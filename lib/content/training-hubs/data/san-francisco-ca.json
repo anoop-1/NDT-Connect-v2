@@ -1,0 +1,408 @@
+{
+ "slug": "san-francisco-ca",
+ "city": "San Francisco",
+ "region": "California",
+ "country": "United States",
+ "countrySlug": "united-states",
+ "wave": 2,
+ "updated": "2026-11-23",
+ "title": "NDT Training in San Francisco Bay Area: Providers, Apprenticeships, Refinery Careers and CA Rules (2026)",
+ "metaTitle": "NDT Training in San Francisco, CA — Providers, Apprenticeships & Rules",
+ "description": "NDT training in the San Francisco Bay Area: Level III NDT, Foothill College with AATA, apprenticeships, refinery careers, costs and radiographer rules.",
+ "quickAnswer": "The Bay Area offers NDT training through **Level III NDT**, a local provider that has trained corporate clients since 1996 and offers on-site courses near SFO, SJC and OAK [1][2], and **Foothill College**, which awards an NDT Technician certificate as the education partner of the **American Aerospace Technical Academy (AATA)** [3]. AATA runs a 400-hour certification program and **California-registered apprenticeships** [5][6][7]. Bay Area refineries operate under **Cal/OSHA's §5189.1 refinery process safety rule** [9], creating steady mechanical-integrity inspection work, and California radiographers need an **accepted radiographer card** [11].",
+ "keyFacts": [
+  {
+   "label": "Local provider",
+   "value": "Level III NDT — training since 1996; on-site courses [1][2]"
+  },
+  {
+   "label": "College route",
+   "value": "Foothill College NDT Technician certificate with AATA [3]"
+  },
+  {
+   "label": "Apprenticeship",
+   "value": "AATA, registered with California's DAS [6][7]"
+  },
+  {
+   "label": "Refinery rule",
+   "value": "Cal/OSHA Title 8 §5189.1 PSM for refineries [9]"
+  }
+ ],
+ "industries": [
+  "Petroleum refining",
+  "Aerospace and aviation",
+  "Semiconductor and electronics",
+  "Bridges and infrastructure",
+  "Ports and marine",
+  "Power and utilities"
+ ],
+ "schools": [
+  {
+   "name": "Level III NDT",
+   "url": "https://marketplace.aviationweek.com/company/level-iii-ndt",
+   "location": "San Francisco Bay Area",
+   "offers": "Basic and advanced NDT training since 1996; on-site training for all courses [1][2]",
+   "type": "Private training provider"
+  },
+  {
+   "name": "Foothill College — NDT Technician (with AATA)",
+   "url": "https://catalog.foothill.edu/degrees-certificates/apprenticeship-non-destructive-testing-technician/",
+   "location": "Los Altos Hills, CA",
+   "offers": "Certificate of Achievement in NDT Technician; includes non-film radiography and radiation safety with NDT math [3][4]",
+   "type": "Community college"
+  },
+  {
+   "name": "American Aerospace Technical Academy (AATA)",
+   "url": "https://aatatraining.squarespace.com/courses-offered",
+   "location": "Los Angeles-based; online; Bay Area partners",
+   "offers": "400-hour NDT Technologies Certification Program and state-registered apprenticeships [5][6]",
+   "type": "Nonprofit training academy"
+  },
+  {
+   "name": "Hellier (Acuren) — Anaheim school",
+   "url": "https://acuren.com/inspection/inspection-training/",
+   "location": "Anaheim, CA",
+   "offers": "Scheduled NDT courses; online programs with onsite practicum [8]",
+   "type": "Private training school"
+  }
+ ],
+ "sections": [
+  {
+   "id": "overview",
+   "h2": "NDT training in the San Francisco Bay Area",
+   "paragraphs": [
+    "The Bay Area's NDT market is broader than many people realise. Refineries in the East Bay, aviation and aerospace operations at the region's airports, semiconductor and advanced manufacturing in Silicon Valley, iconic bridges and transit systems, ports and utilities all need inspection. Training options combine a long-established local provider, a community-college certificate linked to an apprenticeship program, and specialist schools further south.",
+    "For newcomers, the key is choosing a route that leads to supervised experience, because, as everywhere in the US, certification is completed through an employer's written practice."
+   ]
+  },
+  {
+   "id": "level-iii-ndt",
+   "h2": "Level III NDT: local and on-site training",
+   "paragraphs": [
+    "Level III NDT has provided basic and advanced NDT training for corporations around the world since 1996 [2]. It is located in the Bay Area, minutes from the San Francisco, San Jose and Oakland international airports, and offers on-site NDT training for all its courses at a client's facility [1].",
+    "For employers, on-site training reduces travel and downtime; for individual trainees, a local provider means intensive courses without hotel costs. Ask about the methods offered, whether courses meet SNT-TC-1A and NAS 410, and how practical hours are documented."
+   ]
+  },
+  {
+   "id": "foothill-aata",
+   "h2": "Foothill College and AATA: certificate plus apprenticeship",
+   "paragraphs": [
+    "Foothill College, serving as the local education agency for the American Aerospace Technical Academy, offers a Certificate of Achievement in Non-Destructive Testing Technician [3]. The program description notes NDT's importance to shipping and other industries and includes training in non-film radiography and radiation safety with a foundation in NDT math [4].",
+    "AATA's NDT Technologies Certification Program is a structured 400-hour curriculum covering penetrant, magnetic particle and ultrasonic testing among other methods [5]. Its apprenticeships are registered with the State of California, combining classroom instruction from a local education partner with on-the-job training from a sponsoring employer, and AATA has received a $1,000,000 California Apprenticeship Initiative grant [6]. California's Division of Apprenticeship Standards lists the AATA program with a high-school diploma or equivalent as the education prerequisite [7]."
+   ]
+  },
+  {
+   "id": "refineries",
+   "h2": "Refinery NDT under California's process safety rule",
+   "paragraphs": [
+    "Bay Area refineries are some of the most demanding NDT customers in the country. California's refinery process safety management standard, Title 8 §5189.1, sets requirements for petroleum refineries including mechanical integrity and damage mechanism reviews [9]. Mechanical integrity programs rely on NDT to monitor corrosion, cracking and other damage in piping, vessels, exchangers and tanks.",
+    "Turnarounds bring surges of work for radiography, ultrasonic thickness testing, phased array and visual inspection crews, and contractors often hire trainees and helpers during these periods. Combining NDT methods with API inspector certifications later in a career can open well-paid integrity roles."
+   ]
+  },
+  {
+   "id": "tech-aviation",
+   "h2": "Aviation, aerospace and advanced manufacturing",
+   "paragraphs": [
+    "Aviation maintenance at Bay Area airports uses eddy current, penetrant and ultrasonic inspection under aerospace standards, while aerospace and space companies in the region inspect composites, additively manufactured parts and complex assemblies. Silicon Valley's semiconductor and electronics manufacturers increasingly use X-ray, CT and ultrasonic techniques for quality control.",
+    "These sectors reward technicians who combine traditional NDT methods with digital radiography, CT or advanced ultrasonics, and who are comfortable with data and software."
+   ]
+  },
+  {
+   "id": "infrastructure",
+   "h2": "Bridges, ports and infrastructure",
+   "paragraphs": [
+    "The Bay Area's bridges, transit systems, ports and seismic retrofit projects require extensive welding and structural inspection, including visual, magnetic particle and ultrasonic testing of structural steel. Special-inspection and materials testing firms serving these projects are a common entry point for new technicians, especially those who also pursue the AWS CWI credential."
+   ]
+  },
+  {
+   "id": "cost-of-living",
+   "h2": "Training and living costs in the Bay Area",
+   "paragraphs": [
+    "The Bay Area's high cost of living affects how people approach NDT training. Paying tuition while not earning is harder here than in most regions, which makes earn-while-you-learn routes particularly attractive. AATA's apprenticeship model, in which a sponsoring employer provides paid on-the-job training while a local education partner delivers classroom instruction [6], directly addresses that problem.",
+    "Other cost-saving strategies include taking theory online, asking employers to sponsor method courses once hired as a trainee, and using on-site training — Level III NDT delivers all of its courses at client facilities [1], so an employer can train several new hires at once. Graduates who reach Level II in high-demand methods typically find wages that reflect the region's costs, especially in refinery and aerospace work."
+   ]
+  },
+  {
+   "id": "first-year-sf",
+   "h2": "A typical first year in the Bay Area",
+   "paragraphs": [
+    "A first-year Bay Area trainee might start with a special-inspection firm on construction projects or as a helper with a refinery inspection contractor. Early work includes surface preparation, visual and magnetic particle testing, ultrasonic thickness measurements and assisting radiography crews. Turnaround seasons bring long shifts and fast learning.",
+    "By the end of the year, a motivated trainee can hold Level II in two or three methods and be building ultrasonic or radiography experience, positioning themselves for higher-paying integrity and aerospace roles."
+   ]
+  },
+  {
+   "id": "ca-radiography",
+   "h2": "Radiographer certification in California",
+   "paragraphs": [
+    "California is an Agreement State whose Radiologic Health Branch (RHB), part of the California Department of Public Health, regulates industrial radiography. Since October 2009, RHB has required radiographers who do not already hold a valid radiation-safety certification card from another Agreement State or ASNT to obtain California certification to perform industrial radiography in the state; the state's provisional card is not transferable to other states, and out-of-state companies must still follow California reciprocity rules [11]. RHB's licensing guide asks licensees for copies of the ASNT card or state-issued industrial radiographer card for their radiation safety officers [12], and anyone who trains radiographers must document at least 2,000 hours of experience as a radiographer using sealed sources [10].",
+    "For Bay Area refinery and construction radiography, that means trainees start as radiographer's assistants and obtain RHB-accepted certification before working as radiographers."
+   ]
+  },
+  {
+   "id": "how-certification-works",
+   "h2": "How NDT certification actually works for San Francisco trainees",
+   "paragraphs": [
+    "The most common misunderstanding about NDT training is that a school certifies you. In the United States, the documents most employers follow are ASNT's Recommended Practice SNT-TC-1A, the ANSI/ASNT CP-189 standard and the CP-105 topical outlines [20]. Under SNT-TC-1A, certification is employer-based: a school or online course supplies the classroom hours, but your employer's written practice, its Level III and your documented on-the-job experience are what turn training into a certification. Training programs therefore combine formal classroom or online theory with on-the-job training (OJT) performed in a field or lab setting [20].",
+    "In practice, a new technician in any city follows the same ladder: complete Level I and then Level II classroom hours for a method, log supervised experience, pass the employer's general, specific and practical examinations and a vision test, and receive Level II certification in that method. Level III — the person who writes procedures, approves techniques and certifies others — requires additional experience and, for most employers, the ASNT NDT Level III examinations."
+   ]
+  },
+  {
+   "id": "training-hours",
+   "h2": "Training hours you will need by method",
+   "paragraphs": [
+    "SNT-TC-1A publishes recommended minimum classroom hours by method and level for high-school-educated candidates [13]. Employers can adopt stricter numbers in their written practice, and aerospace employers working to NAS 410 or customers with their own specifications often do. Visual testing shows the scale of supervised experience involved: SNT-TC-1A recommends 8 training hours for VT Level I and 16 more for Level II, with 70 and 140 hours of experience in the method respectively [14]."
+   ],
+   "table": {
+    "caption": "SNT-TC-1A recommended classroom training hours (high school graduate)",
+    "head": [
+     "Method",
+     "Level I hours",
+     "Additional for Level II"
+    ],
+    "rows": [
+     [
+      "Ultrasonic testing (UT)",
+      "40",
+      "40"
+     ],
+     [
+      "Radiographic testing (RT)",
+      "40",
+      "40"
+     ],
+     [
+      "Eddy current testing (ET)",
+      "40",
+      "40"
+     ],
+     [
+      "Magnetic particle testing (MT)",
+      "12",
+      "8"
+     ],
+     [
+      "Liquid penetrant testing (PT)",
+      "4",
+      "8"
+     ],
+     [
+      "Visual testing (VT)",
+      "8",
+      "16"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "radiography-rules",
+   "h2": "Industrial radiography: the extra licensing layer in San Francisco",
+   "paragraphs": [
+    "Radiography is the one method where federal and state radiation-safety law sits on top of SNT-TC-1A. Under 10 CFR 34.43, a licensee may not let anyone act as a radiographer until the person has received training in the required radiation-safety subjects, completed at least two months of on-the-job training and been certified through a radiographer certification program by a certifying entity [15][16]. ASNT's Industrial Radiography Radiation Safety Personnel (IRRSP) program is one such certifying entity; it combines a computer-based exam with an employer-conducted practical exam and vision check, and many states recognize it [17]. Online radiation-safety courses such as AWS's roughly 40-hour eLearning module can supply the classroom portion, but site-specific training from the employer is still required [18].",
+    "California's Radiologic Health Branch implements these requirements, including state certification and reciprocity rules [11][12]."
+   ]
+  },
+  {
+   "id": "costs",
+   "h2": "What NDT training costs",
+   "paragraphs": [
+    "Published industry guidance puts classroom training for a single method at roughly USD 600–2,000, with examination fees of roughly USD 200–500 on top [19]. ASNT lists the initial IRRSP combination exam for radioactive-material and X-ray radiography at USD 260 for members and USD 285 for non-members [17]. Longer certificate and associate-degree programs cost more but bundle several methods, labs and job placement support, and community-college options are often eligible for financial aid.",
+    "Before paying, ask whether the price includes the practical hours, specimens and exam fees, whether the course is written to SNT-TC-1A, CP-189 or NAS 410, and whether the provider will document your hours in a form an employer's Level III can accept."
+   ]
+  },
+  {
+   "id": "choosing",
+   "h2": "How to choose an NDT training provider",
+   "paragraphs": [
+    "Use this checklist to compare schools, online courses and employer programs."
+   ],
+   "bullets": [
+    "Training hours that meet or exceed the SNT-TC-1A table for each method and level.",
+    "Hands-on labs with real-flaw specimens, not just slides and videos.",
+    "Instructors who hold ASNT Level III in the method they teach.",
+    "Documentation of hours suitable for an employer's written practice.",
+    "A path to OJT — employer partnerships, apprenticeships or placement support.",
+    "For radiography, preparation for IRRSP or the state radiographer exam.",
+    "Transparent total cost including exams, books and specimens."
+   ]
+  },
+  {
+   "id": "workforce",
+   "h2": "Why the timing is good",
+   "paragraphs": [
+    "NDT's workforce is ageing: the PQNDT salary and benefits survey put the average NDT technician's age at 47 [21]. As experienced technicians retire, employers across energy, aerospace, infrastructure and manufacturing need trained replacements, which is why so many now sponsor training, apprenticeships and on-the-job programs for motivated newcomers."
+   ]
+  },
+  {
+   "id": "plan",
+   "h2": "A Bay Area NDT plan",
+   "paragraphs": [
+    "One route that fits the region:"
+   ],
+   "bullets": [
+    "Take introductory method courses locally with Level III NDT [1] or online.",
+    "Enrol in Foothill College's NDT Technician certificate [3] or an AATA apprenticeship [6].",
+    "Seek trainee roles with refinery turnaround and special-inspection contractors.",
+    "Add digital radiography or advanced UT for tech and aerospace roles.",
+    "For radiography, plan for California certification [11].",
+    "Keep a personal logbook of every training and experience hour.",
+    "Join the local ASNT section to meet refinery, aerospace and inspection employers."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Where can I get NDT training in the San Francisco Bay Area?",
+   "a": "Level III NDT offers local and on-site training [1][2], and Foothill College awards an NDT Technician certificate with AATA [3]."
+  },
+  {
+   "q": "Is there an NDT apprenticeship in the Bay Area?",
+   "a": "AATA's apprenticeships are registered with the State of California, with Foothill College as an education partner [3][6]."
+  },
+  {
+   "q": "How long is AATA's NDT program?",
+   "a": "AATA's NDT Technologies Certification Program is a 400-hour curriculum [5]."
+  },
+  {
+   "q": "Why do Bay Area refineries need so much NDT?",
+   "a": "California's §5189.1 refinery process safety rule requires mechanical integrity programs that rely on inspection [9]."
+  },
+  {
+   "q": "Do I need a California radiographer card?",
+   "a": "Radiographers without valid certification from another Agreement State or ASNT must obtain California certification [11]."
+  },
+  {
+   "q": "Does Foothill's program include radiography?",
+   "a": "Its description includes non-film radiography and radiation safety training with NDT math [4]."
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Sacramento",
+   "href": "/training/sacramento-ca"
+  },
+  {
+   "name": "Los Angeles",
+   "href": "/training/los-angeles-ca"
+  },
+  {
+   "name": "Reno",
+   "href": "/training/reno-nv"
+  },
+  {
+   "name": "Portland",
+   "href": "/training/portland-or"
+  }
+ ],
+ "related": [
+  {
+   "label": "NDT jobs and careers in San Francisco",
+   "href": "/careers/san-francisco-ca"
+  },
+  {
+   "label": "NDT inspection services in San Francisco",
+   "href": "/ndt-services/san-francisco-ca"
+  },
+  {
+   "label": "NDT inspector salary guide",
+   "href": "/learn/ndt-inspector-salary-guide"
+  },
+  {
+   "label": "NDT certifications explained",
+   "href": "/blog/ndt-certifications-explained"
+  },
+  {
+   "label": "NDT career guide 2026",
+   "href": "/blog/ndt-career-guide-2026"
+  },
+  {
+   "label": "NDT services in Martinez, CA",
+   "href": "/ndt-services/martinez-ca"
+  }
+ ],
+ "references": [
+  {
+   "title": "Aviation Week Marketplace — Level III NDT (San Francisco Bay Area)",
+   "url": "https://marketplace.aviationweek.com/company/level-iii-ndt"
+  },
+  {
+   "title": "Aviation Week Marketplace — Level III NDT supplier profile (training since 1996)",
+   "url": "https://marketplace.aviationweek.com/suppliers/level-iii-ndt/"
+  },
+  {
+   "title": "Foothill College — Apprenticeship: Non-Destructive Testing Technician (with AATA)",
+   "url": "https://catalog.foothill.edu/degrees-certificates/apprenticeship-non-destructive-testing-technician/"
+  },
+  {
+   "title": "Foothill College — NDT Technician program description (PDF)",
+   "url": "https://catalog.foothill.edu/degrees-certificates/apprenticeship-non-destructive-testing-technician/apprenticeship-non-destructive-testing-technician.pdf"
+  },
+  {
+   "title": "AATA — NDT Technologies Certification Program (400 hours)",
+   "url": "https://aatatraining.squarespace.com/courses-offered"
+  },
+  {
+   "title": "AATA — Apprenticeships (California Apprenticeship Initiative grant)",
+   "url": "https://aatatraining.squarespace.com/apprenticeships"
+  },
+  {
+   "title": "California DIR Division of Apprenticeship Standards — AATA apprenticeship program detail",
+   "url": "https://www.dir.ca.gov/databases/das/results_aigdetail.asp?varOccId=8438"
+  },
+  {
+   "title": "Acuren — Inspection training (Hellier schools incl. Anaheim)",
+   "url": "https://acuren.com/inspection/inspection-training/"
+  },
+  {
+   "title": "Cal/OSHA — Title 8 §5189.1, Process Safety Management for Petroleum Refineries",
+   "url": "https://dir.ca.gov/Title8/5189_1.html"
+  },
+  {
+   "title": "CDPH Radiologic Health Branch — Industrial radiographer trainer application (CDPH 8219)",
+   "url": "https://Www.Cdph.Ca.gov/CDPH%20Document%20Library/ControlledForms/cdph8219.pdf"
+  },
+  {
+   "title": "Quality Magazine — California revises industrial radiographer certification",
+   "url": "https://www.qualitymag.com/articles/89660-california-revises-industrial-radiographer-certification"
+  },
+  {
+   "title": "CDPH — Industrial radiography licensing guide",
+   "url": "https://www.cdph.ca.gov:443/Programs/CEH/DRSEM/CDPH%20Document%20Library/RHB/RML/IndustrialRadiographyGuide.pdf"
+  },
+  {
+   "title": "Open Exam Prep — SNT-TC-1A recommended training hours by method and level",
+   "url": "https://open-exam-prep.com/study-guides/asnt-ndt-iii/ndt-training/training-program-design"
+  },
+  {
+   "title": "Materials Evaluation — VT training and experience comparison (SNT-TC-1A, CP-189, ISO 9712, AWS)",
+   "url": "https://source.asnt.org/22d6m27/59"
+  },
+  {
+   "title": "eCFR — 10 CFR 34.43 Training (industrial radiography)",
+   "url": "https://www.ecfr.gov/current/title-10/chapter-I/part-34/subpart-D/section-34.43"
+  },
+  {
+   "title": "GPO — 10 CFR 34.43 text (radiographer training, OJT and certification)",
+   "url": "https://www.gpo.gov/fdsys/pkg/CFR-2010-title10-vol1/pdf/CFR-2010-title10-vol1-sec34-43.pdf"
+  },
+  {
+   "title": "ASNT — Industrial Radiography Radiation Safety Personnel (IRRSP) certification",
+   "url": "https://certification.asnt.org/certification/irrsp"
+  },
+  {
+   "title": "AWS — Radiation Safety eLearning course (40 hours toward IRRSP)",
+   "url": "https://www.aws.org/certification-and-education/education/self-paced-online-learning/radiation-safety-course"
+  },
+  {
+   "title": "Rigzone — What certifications are needed for an NDT technician role",
+   "url": "https://www.rigzone.com/insights/educational-pathways-5/what-certifications-are-needed-for-an-ndt-technician-role-674"
+  },
+  {
+   "title": "Quality Magazine — NDT training programs: components and considerations (Donald Booth)",
+   "url": "https://www.qualitymag.com/articles/97194-ndt-training-programs-components-and-considerations"
+  },
+  {
+   "title": "ASNT — Implementing a successful NDT education program (PQNDT survey: average technician age 47)",
+   "url": "https://www.asnt.org/standards-publications/blog/implementing-a-successful-ndt-education-program-planning-design-resources-curriculum-and-evaluation"
+  }
+ ]
+}

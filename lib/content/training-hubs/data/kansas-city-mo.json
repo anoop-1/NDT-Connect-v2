@@ -1,0 +1,381 @@
+{
+ "slug": "kansas-city-mo",
+ "city": "Kansas City",
+ "region": "Missouri / Kansas",
+ "country": "United States",
+ "countrySlug": "united-states",
+ "wave": 1,
+ "updated": "2026-11-23",
+ "title": "NDT Training in Kansas City: Schools, Costs, Certification and the Missouri–Kansas Radiography Split (2026)",
+ "metaTitle": "NDT Training in Kansas City — Schools, Costs & Certification",
+ "description": "NDT training for Kansas City: WSU Tech and Cowley College programs, online options, costs, SNT-TC-1A hours and Missouri (NRC) vs Kansas (KDHE) radiography.",
+ "quickAnswer": "The strongest NDT programs for Kansas City residents are in south-central Kansas. **WSU Tech** in Wichita runs NDT associate-degree and technical-certificate programs with the **National Institute for Aviation Research (NIAR)**, covering ASNT Level I and II coursework [1][2], and **Cowley College** teaches NDT at Arkansas City and Mulvane, including radiography, ultrasonic and eddy current courses [5][6]. Radiography rules differ across State Line Road: **Missouri is a non-Agreement State regulated by the NRC** [7], while **Kansas is an Agreement State** [9].",
+ "keyFacts": [
+  {
+   "label": "Main programs",
+   "value": "WSU Tech (Wichita, with NIAR); Cowley College (Arkansas City, Mulvane) [1][5]"
+  },
+  {
+   "label": "Degree option",
+   "value": "60-credit AAS in NDT at WSU Tech [3]"
+  },
+  {
+   "label": "Missouri radiography",
+   "value": "Non-Agreement State — NRC licenses radioactive materials [7]"
+  },
+  {
+   "label": "Kansas radiography",
+   "value": "Agreement State — Kansas Dept. of Health & Environment [9]"
+  }
+ ],
+ "industries": [
+  "Aerospace manufacturing (Kansas)",
+  "Rail and transportation",
+  "Manufacturing",
+  "Power generation",
+  "Pipelines and energy",
+  "Construction and structural steel"
+ ],
+ "schools": [
+  {
+   "name": "WSU Tech — Nondestructive Testing (AAS and Technical Certificate)",
+   "url": "https://wsutech.edu/wp-content/uploads/checklist/Non%20Destructive%20Testing%20%28NDT%29.pdf",
+   "location": "Wichita, KS",
+   "offers": "Programs run with NIAR covering ASNT Level I and II coursework for aerospace; PT, MT, VT, radiation safety, RT and UT courses [1][2][3]",
+   "type": "Technical college"
+  },
+  {
+   "name": "Cowley College — Nondestructive Testing",
+   "url": "https://www.cowley.edu/programs-and-degrees/agriculture-manufacturing-and-industry/nondestructive-testing.html",
+   "location": "Arkansas City and Mulvane, KS",
+   "offers": "Courses including radiation safety, RT I–III, UT I–III, ET I–II and advanced methods; Kansas Promise Act eligible [5][6]",
+   "type": "Community college"
+  },
+  {
+   "name": "American Institute of Nondestructive Testing (online)",
+   "url": "https://marketplace.aviationweek.com/suppliers/american-institute-nondestructive-testing/",
+   "location": "Online / on-site",
+   "offers": "Online, on-site and classroom training for RT, UT, ET, MT, PT, VT and CR/DDA [10]",
+   "type": "Online training provider"
+  }
+ ],
+ "sections": [
+  {
+   "id": "overview",
+   "h2": "NDT training for Kansas City: look south-west",
+   "paragraphs": [
+    "Kansas City straddles two states and a large industrial economy — manufacturing, rail, power, pipelines and construction — but its dedicated NDT programs are concentrated about three hours south-west in the Wichita area, the centre of Kansas aerospace. For Kansas City residents, that means choosing between relocating or commuting for a structured program, taking online theory, or getting hired and trained by a local employer.",
+    "The Kansas programs are well regarded because they were built with the aerospace industry, and Kansas City employers outside aerospace also value the method coverage they provide."
+   ]
+  },
+  {
+   "id": "wsu-tech",
+   "h2": "WSU Tech and NIAR",
+   "paragraphs": [
+    "WSU Tech's Nondestructive Testing program is a cooperative effort between the college and the National Institute for Aviation Research (NIAR) [1]. Kansas's workforce listing describes it as producing technicians who understand NDT's role in the aerospace industry and have mastered ASNT coursework for Level I and II certification, and notes that it is WIOA approved and delivered in person in Wichita [2].",
+    "The associate of applied science runs to 60 credits and includes courses such as Penetrant Inspection, Magnetic Particle Testing, Visual Inspection, Radiation Safety, Radiographic Testing Level I and II, Ultrasonic Testing Level II and Advanced Ultrasonic Testing Methods [3]. A shorter technical certificate is also offered, listed at 46 credits [4][2]. Graduates typically find work with aircraft manufacturers and suppliers, maintenance organizations and inspection service companies."
+   ]
+  },
+  {
+   "id": "cowley",
+   "h2": "Cowley College",
+   "paragraphs": [
+    "Cowley College offers a Nondestructive Testing program focused on safety and quality inspection, with coursework including introduction to NDT, visual inspection, precision measurements, codes and practices, magnetic particle and liquid penetrant testing, industrial materials and blueprint reading [5]. Its course list extends to radiation safety, radiographic testing I to III, ultrasonic testing I to III, eddy current testing I and II and advanced NDT methods [5].",
+    "The program is taught at the Walker Technology Building in Arkansas City and the Technical Education Center in Mulvane, near Wichita [6]. Cowley highlights the Kansas Promise Act, which can make eligible programs tuition-free for qualifying Kansas students [5] — worth checking if you live on the Kansas side of the metro."
+   ]
+  },
+  {
+   "id": "kc-work",
+   "h2": "NDT work in the Kansas City area",
+   "paragraphs": [
+    "Kansas City's NDT demand comes from manufacturing plants, rail equipment and infrastructure, power generation, pipelines and the region's construction market. Manufacturing and rail work leans on magnetic particle, penetrant and ultrasonic testing of welds, castings and forgings; power plants need boiler and piping inspection during outages; and construction projects need visual and ultrasonic inspection of structural steel.",
+    "Inspection service companies based in the metro also send crews across Missouri, Kansas and neighbouring states, so trainees who are willing to travel often find more opportunities and faster experience growth."
+   ]
+  },
+  {
+   "id": "radiography-split",
+   "h2": "Radiography across State Line Road: Missouri vs Kansas",
+   "paragraphs": [
+    "Kansas City is one of the few US metros split between an NRC-regulated state and an Agreement State. Missouri is not an Agreement State: the state has jurisdiction over X-ray equipment, naturally occurring radioactive material and certain radioactive materials not produced in a reactor, while the NRC licenses most radioactive materials [7]. The NRC's Region III office in Chicago oversees Missouri's materials licensees [8].",
+    "Kansas, by contrast, is an Agreement State, with its program run by the Kansas Department of Health and Environment and the NRC's Region IV office responsible for federal duties there [9]. In practice, a radiography company working on both sides of the metro must hold the right licences for each jurisdiction, and trainees should expect their employer's procedures to reflect both regulators."
+   ]
+  },
+  {
+   "id": "aerospace-corridor",
+   "h2": "Why Wichita's aerospace corridor matters to Kansas City trainees",
+   "paragraphs": [
+    "Wichita's aircraft manufacturers and suppliers are among the largest employers of NDT technicians in the central United States, and the training programs that serve them — WSU Tech with NIAR [1] and Cowley College [5] — were designed around aerospace requirements. Aerospace NDT typically follows NAS 410, with strict training-hour and experience requirements, heavy use of penetrant, ultrasonic and eddy current methods, and careful documentation.",
+    "Even if you plan to work in Kansas City rather than Wichita, training built to aerospace standards travels well. A technician who can meet NAS 410 expectations usually has little difficulty adapting to SNT-TC-1A employers in manufacturing, rail or power, and aerospace experience on a résumé signals discipline and attention to detail."
+   ]
+  },
+  {
+   "id": "getting-hired",
+   "h2": "Getting hired as a trainee in Kansas City",
+   "paragraphs": [
+    "Kansas City inspection companies and manufacturers hire trainees who show reliability and basic preparation. Arriving with completed classroom hours in PT, MT and VT, an OSHA safety card, a valid driver's licence and a passed near-vision exam makes you immediately useful on a crew. Willingness to travel within the region is a major advantage, because field work across Missouri and Kansas builds experience hours quickly.",
+    "Once hired, ask your employer early about its written practice, which methods it will sponsor you in and how it documents experience. Planning those conversations in your first months can shorten the path to Level II considerably."
+   ]
+  },
+  {
+   "id": "online",
+   "h2": "Online and employer training options",
+   "paragraphs": [
+    "For Kansas City residents who cannot relocate to Wichita, online providers such as the American Institute of Nondestructive Testing offer online, on-site and classroom training in RT, UT, ET, MT, PT and VT, including computed and digital radiography [10]. Combined with a trainee position at a local inspection company or manufacturer, online theory can be the fastest route into paid work.",
+    "Before enrolling online, confirm that prospective employers' written practices accept the course hours, and plan how you will get hands-on practice with real flaws."
+   ]
+  },
+  {
+   "id": "how-certification-works",
+   "h2": "How NDT certification actually works for Kansas City trainees",
+   "paragraphs": [
+    "The most common misunderstanding about NDT training is that a school certifies you. In the United States, the documents most employers follow are ASNT's Recommended Practice SNT-TC-1A, the ANSI/ASNT CP-189 standard and the CP-105 topical outlines [18]. Under SNT-TC-1A, certification is employer-based: a school or online course supplies the classroom hours, but your employer's written practice, its Level III and your documented on-the-job experience are what turn training into a certification. Training programs therefore combine formal classroom or online theory with on-the-job training (OJT) performed in a field or lab setting [18].",
+    "In practice, a new technician in any city follows the same ladder: complete Level I and then Level II classroom hours for a method, log supervised experience, pass the employer's general, specific and practical examinations and a vision test, and receive Level II certification in that method. Level III — the person who writes procedures, approves techniques and certifies others — requires additional experience and, for most employers, the ASNT NDT Level III examinations."
+   ]
+  },
+  {
+   "id": "training-hours",
+   "h2": "Training hours you will need by method",
+   "paragraphs": [
+    "SNT-TC-1A publishes recommended minimum classroom hours by method and level for high-school-educated candidates [11]. Employers can adopt stricter numbers in their written practice, and aerospace employers working to NAS 410 or customers with their own specifications often do. Visual testing shows the scale of supervised experience involved: SNT-TC-1A recommends 8 training hours for VT Level I and 16 more for Level II, with 70 and 140 hours of experience in the method respectively [12]."
+   ],
+   "table": {
+    "caption": "SNT-TC-1A recommended classroom training hours (high school graduate)",
+    "head": [
+     "Method",
+     "Level I hours",
+     "Additional for Level II"
+    ],
+    "rows": [
+     [
+      "Ultrasonic testing (UT)",
+      "40",
+      "40"
+     ],
+     [
+      "Radiographic testing (RT)",
+      "40",
+      "40"
+     ],
+     [
+      "Eddy current testing (ET)",
+      "40",
+      "40"
+     ],
+     [
+      "Magnetic particle testing (MT)",
+      "12",
+      "8"
+     ],
+     [
+      "Liquid penetrant testing (PT)",
+      "4",
+      "8"
+     ],
+     [
+      "Visual testing (VT)",
+      "8",
+      "16"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "radiography-rules",
+   "h2": "Industrial radiography: the extra licensing layer in Kansas City",
+   "paragraphs": [
+    "Radiography is the one method where federal and state radiation-safety law sits on top of SNT-TC-1A. Under 10 CFR 34.43, a licensee may not let anyone act as a radiographer until the person has received training in the required radiation-safety subjects, completed at least two months of on-the-job training and been certified through a radiographer certification program by a certifying entity [13][14]. ASNT's Industrial Radiography Radiation Safety Personnel (IRRSP) program is one such certifying entity; it combines a computer-based exam with an employer-conducted practical exam and vision check, and many states recognize it [15]. Online radiation-safety courses such as AWS's roughly 40-hour eLearning module can supply the classroom portion, but site-specific training from the employer is still required [16].",
+    "Across the metro, the licensing agency depends on which side of State Line Road the work is on: the NRC for radioactive materials in Missouri [7] and the Kansas Department of Health and Environment in Kansas [9]."
+   ]
+  },
+  {
+   "id": "costs",
+   "h2": "What NDT training costs",
+   "paragraphs": [
+    "Published industry guidance puts classroom training for a single method at roughly USD 600–2,000, with examination fees of roughly USD 200–500 on top [17]. ASNT lists the initial IRRSP combination exam for radioactive-material and X-ray radiography at USD 260 for members and USD 285 for non-members [15]. Longer certificate and associate-degree programs cost more but bundle several methods, labs and job placement support, and community-college options are often eligible for financial aid.",
+    "Before paying, ask whether the price includes the practical hours, specimens and exam fees, whether the course is written to SNT-TC-1A, CP-189 or NAS 410, and whether the provider will document your hours in a form an employer's Level III can accept."
+   ]
+  },
+  {
+   "id": "choosing",
+   "h2": "How to choose an NDT training provider",
+   "paragraphs": [
+    "Use this checklist to compare schools, online courses and employer programs."
+   ],
+   "bullets": [
+    "Training hours that meet or exceed the SNT-TC-1A table for each method and level.",
+    "Hands-on labs with real-flaw specimens, not just slides and videos.",
+    "Instructors who hold ASNT Level III in the method they teach.",
+    "Documentation of hours suitable for an employer's written practice.",
+    "A path to OJT — employer partnerships, apprenticeships or placement support.",
+    "For radiography, preparation for IRRSP or the state radiographer exam.",
+    "Transparent total cost including exams, books and specimens."
+   ]
+  },
+  {
+   "id": "workforce",
+   "h2": "Why the timing is good",
+   "paragraphs": [
+    "NDT's workforce is ageing: the PQNDT salary and benefits survey put the average NDT technician's age at 47 [19]. As experienced technicians retire, employers across energy, aerospace, infrastructure and manufacturing need trained replacements, which is why so many now sponsor training, apprenticeships and on-the-job programs for motivated newcomers."
+   ]
+  },
+  {
+   "id": "plan",
+   "h2": "Picking a route from Kansas City",
+   "paragraphs": [
+    "Options by situation:"
+   ],
+   "bullets": [
+    "Want a degree and aerospace jobs: WSU Tech's AAS with NIAR [1][3].",
+    "Live in Kansas and want low-cost training: check Kansas Promise Act eligibility at Cowley [5].",
+    "Need to keep working in KC: online theory [10] plus a local trainee job.",
+    "Planning radiography: learn the Missouri (NRC) vs Kansas (KDHE) licensing difference [7][9].",
+    "Willing to travel: inspection contractors based in KC offer faster experience growth.",
+    "Unsure where to begin: call two or three local inspection companies and ask which training they accept before you pay for any course."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Where can I get NDT training near Kansas City?",
+   "a": "The main programs are WSU Tech in Wichita, run with NIAR [1], and Cowley College in Arkansas City and Mulvane [6]; online options are also available [10]."
+  },
+  {
+   "q": "How long is WSU Tech's NDT degree?",
+   "a": "The AAS in Nondestructive Testing is a 60-credit program [3]."
+  },
+  {
+   "q": "Is Missouri an Agreement State for radiography?",
+   "a": "No. Missouri is a non-Agreement State, so the NRC licenses most radioactive materials there [7]."
+  },
+  {
+   "q": "Who regulates radiography in Kansas?",
+   "a": "Kansas is an Agreement State with its program run by the Kansas Department of Health and Environment [9]."
+  },
+  {
+   "q": "Can NDT training be free in Kansas?",
+   "a": "Cowley College highlights the Kansas Promise Act, which can cover eligible programs for qualifying students [5]."
+  },
+  {
+   "q": "What methods does Cowley College teach?",
+   "a": "Including VT, MT, PT, radiation safety, RT I–III, UT I–III and ET I–II [5]."
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Wichita",
+   "href": "/training/wichita-ks"
+  },
+  {
+   "name": "St. Louis",
+   "href": "/training/st-louis-mo"
+  },
+  {
+   "name": "Oklahoma City",
+   "href": "/training/oklahoma-city-ok"
+  },
+  {
+   "name": "Tulsa",
+   "href": "/training/tulsa-ok"
+  }
+ ],
+ "related": [
+  {
+   "label": "NDT jobs and careers in Kansas City",
+   "href": "/careers/kansas-city-mo"
+  },
+  {
+   "label": "NDT inspection services in Kansas City",
+   "href": "/ndt-services/kansas-city-mo"
+  },
+  {
+   "label": "NDT inspector salary guide",
+   "href": "/learn/ndt-inspector-salary-guide"
+  },
+  {
+   "label": "NDT certifications explained",
+   "href": "/blog/ndt-certifications-explained"
+  },
+  {
+   "label": "NDT career guide 2026",
+   "href": "/blog/ndt-career-guide-2026"
+  }
+ ],
+ "references": [
+  {
+   "title": "WSU Tech — Non Destructive Testing program checklist (with NIAR)",
+   "url": "https://wsutech.edu/wp-content/uploads/checklist/Non%20Destructive%20Testing%20%28NDT%29.pdf"
+  },
+  {
+   "title": "KansasWorks — WSU Tech Nondestructive Testing Technical Certificate",
+   "url": "https://www.kansasworks.com/etp/public/institution_programs/4155"
+  },
+  {
+   "title": "WSU Tech — AAS Non Destructive Testing degree map",
+   "url": "https://wsutech.edu/wp-content/uploads/DegreeMaps/NDT%20Non%20Destructive%20Testing%20By%20Semester.pdf"
+  },
+  {
+   "title": "Build Submarines — WSU Tech Technical Certificate, Nondestructive Testing",
+   "url": "https://www.buildsubmarines.com/training/technical-certificate-nondestructive-testing"
+  },
+  {
+   "title": "Cowley College — Nondestructive Testing program",
+   "url": "https://www.cowley.edu/programs-and-degrees/agriculture-manufacturing-and-industry/nondestructive-testing.html"
+  },
+  {
+   "title": "Cowley College — NDT program locations (Arkansas City, Mulvane)",
+   "url": "https://online.cowley.edu/course/non-destructive-testing"
+  },
+  {
+   "title": "NRC — Missouri: Non-Agreement State information",
+   "url": "https://www.nrc.gov/agreement-states/missouri"
+  },
+  {
+   "title": "NRC — Missouri regional oversight (Region III materials licensees)",
+   "url": "https://publish.nrc.gov/info-finder/region-state/missouri.html"
+  },
+  {
+   "title": "NRC — Kansas: Agreement State information",
+   "url": "https://www.nrc.gov/agreement-states/kansas.html"
+  },
+  {
+   "title": "Aviation Week Marketplace — American Institute of Nondestructive Testing",
+   "url": "https://marketplace.aviationweek.com/suppliers/american-institute-nondestructive-testing/"
+  },
+  {
+   "title": "Open Exam Prep — SNT-TC-1A recommended training hours by method and level",
+   "url": "https://open-exam-prep.com/study-guides/asnt-ndt-iii/ndt-training/training-program-design"
+  },
+  {
+   "title": "Materials Evaluation — VT training and experience comparison (SNT-TC-1A, CP-189, ISO 9712, AWS)",
+   "url": "https://source.asnt.org/22d6m27/59"
+  },
+  {
+   "title": "eCFR — 10 CFR 34.43 Training (industrial radiography)",
+   "url": "https://www.ecfr.gov/current/title-10/chapter-I/part-34/subpart-D/section-34.43"
+  },
+  {
+   "title": "GPO — 10 CFR 34.43 text (radiographer training, OJT and certification)",
+   "url": "https://www.gpo.gov/fdsys/pkg/CFR-2010-title10-vol1/pdf/CFR-2010-title10-vol1-sec34-43.pdf"
+  },
+  {
+   "title": "ASNT — Industrial Radiography Radiation Safety Personnel (IRRSP) certification",
+   "url": "https://certification.asnt.org/certification/irrsp"
+  },
+  {
+   "title": "AWS — Radiation Safety eLearning course (40 hours toward IRRSP)",
+   "url": "https://www.aws.org/certification-and-education/education/self-paced-online-learning/radiation-safety-course"
+  },
+  {
+   "title": "Rigzone — What certifications are needed for an NDT technician role",
+   "url": "https://www.rigzone.com/insights/educational-pathways-5/what-certifications-are-needed-for-an-ndt-technician-role-674"
+  },
+  {
+   "title": "Quality Magazine — NDT training programs: components and considerations (Donald Booth)",
+   "url": "https://www.qualitymag.com/articles/97194-ndt-training-programs-components-and-considerations"
+  },
+  {
+   "title": "ASNT — Implementing a successful NDT education program (PQNDT survey: average technician age 47)",
+   "url": "https://www.asnt.org/standards-publications/blog/implementing-a-successful-ndt-education-program-planning-design-resources-curriculum-and-evaluation"
+  }
+ ]
+}

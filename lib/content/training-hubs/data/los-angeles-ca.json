@@ -1,0 +1,395 @@
+{
+ "slug": "los-angeles-ca",
+ "city": "Los Angeles",
+ "region": "California",
+ "country": "United States",
+ "countrySlug": "united-states",
+ "wave": 1,
+ "updated": "2026-11-23",
+ "title": "NDT Training in Los Angeles, CA: Schools, Apprenticeships, Costs and Certification (2026)",
+ "metaTitle": "NDT Training in Los Angeles, CA — Schools, Costs & Certification",
+ "description": "NDT training in Los Angeles: AATA apprenticeships, ASNT-GLAS classes at Don Bosco, Hellier Anaheim, Antelope Valley College, costs and radiographer rules.",
+ "quickAnswer": "Los Angeles has one of the deepest NDT training ecosystems in the country. The nonprofit **American Aerospace Technical Academy (AATA)** runs a 400-hour NDT certification program and state-registered apprenticeships [1][2][4]; the **ASNT Greater Los Angeles Section** has taught NDT classes at Don Bosco Technical Institute in Rosemead since the early 1960s [6]; **Hellier (Acuren)** runs a scheduled school in Anaheim [7]; and **Antelope Valley College** teaches aeronautical NDI [8]. Radiographers working in California need an accepted ASNT or California radiographer card [11][12].",
+ "keyFacts": [
+  {
+   "label": "Apprenticeship",
+   "value": "AATA programs registered with California's Division of Apprenticeship Standards [3][4]"
+  },
+  {
+   "label": "Longest-running classes",
+   "value": "ASNT-GLAS at Don Bosco Technical Institute since the early 1960s [6]"
+  },
+  {
+   "label": "Scheduled school",
+   "value": "Hellier/Acuren Anaheim [7]"
+  },
+  {
+   "label": "Radiography regulator",
+   "value": "CDPH Radiologic Health Branch — California or accepted certification card [11]"
+  }
+ ],
+ "industries": [
+  "Aerospace and defense manufacturing",
+  "Aircraft MRO",
+  "Ports and marine",
+  "Refining and petrochemicals",
+  "Entertainment and structural steel",
+  "Power and utilities"
+ ],
+ "schools": [
+  {
+   "name": "American Aerospace Technical Academy (AATA)",
+   "url": "https://aatatraining.squarespace.com/courses-offered",
+   "location": "Los Angeles, CA (plus online)",
+   "offers": "400-hour NDT Technologies Certification Program (PT and MT Level I & II, UT Level I & II and more); registered apprenticeships; online training [1][2][3]",
+   "type": "Nonprofit training academy"
+  },
+  {
+   "name": "ASNT Greater Los Angeles Section — classes at Don Bosco Technical Institute",
+   "url": "https://sections.aws.org/longbeach-orangecounty/?p=355",
+   "location": "Rosemead, CA",
+   "offers": "Evening NDT method courses offered continuously since the early 1960s [6]",
+   "type": "Professional society courses"
+  },
+  {
+   "name": "Hellier (Acuren) — Anaheim school",
+   "url": "https://acuren.com/inspection/inspection-training/",
+   "location": "Anaheim, CA",
+   "offers": "Scheduled NDT training and certification courses; online programs with onsite practicum [7]",
+   "type": "Private training school"
+  },
+  {
+   "name": "Antelope Valley College — Aeronautical NDI",
+   "url": "https://www.avc.edu/sites/default/files/catalog/Aeronautical%20%20Non-Destructive%20Inspection.pdf",
+   "location": "Lancaster, CA",
+   "offers": "Courses introducing nondestructive inspection principles for the aerospace industry [8]",
+   "type": "Community college"
+  },
+  {
+   "name": "Orange Coast Testing",
+   "url": "https://orangecoasttesting.squarespace.com/classroom-training",
+   "location": "Orange County, CA",
+   "offers": "Classroom courses meeting NAS 410 and SNT-TC-1A, e.g. radiography Level 1 and 2 at 40 hours each [9]",
+   "type": "Private training provider"
+  },
+  {
+   "name": "Foothill College (AATA partner)",
+   "url": "https://catalog.foothill.edu/degrees-certificates/apprenticeship-non-destructive-testing-technician/",
+   "location": "Los Altos Hills, CA / AATA sites",
+   "offers": "Certificate of Achievement in NDT Technician as AATA's local education agency [5]",
+   "type": "Community college"
+  }
+ ],
+ "sections": [
+  {
+   "id": "overview",
+   "h2": "Why Los Angeles is one of the best places to learn NDT",
+   "paragraphs": [
+    "Few US metros combine as much NDT demand with as many ways to learn it. Southern California's aerospace and defense manufacturers, aircraft maintenance shops, ports, refineries and construction projects employ thousands of inspectors, and the region has supported NDT education for more than six decades. For someone starting out, that means a choice of nonprofit academies, apprenticeships, professional-society courses, community colleges and private schools — often within an hour's drive.",
+    "The right choice depends on whether you want an earn-while-you-learn apprenticeship, short method courses to add certifications, or a college-based route into aerospace."
+   ]
+  },
+  {
+   "id": "aata",
+   "h2": "AATA: a 400-hour program and registered apprenticeships",
+   "paragraphs": [
+    "The American Aerospace Technical Academy is a Los Angeles-based 501(c)(3) nonprofit that also offers online training for people who cannot travel [1]. Its NDT Technologies Certification Program is a structured 400-hour curriculum: penetrant testing Level I and II and magnetic particle testing Level I and II take a week each at 40 hours, and ultrasonic testing Level I and II takes two weeks at 80 hours, with additional methods following [2]. The program is open to people aged 18 and over, including high-school students and working adults [2].",
+    "AATA also runs apprenticeships. As a training program registered with the State of California and delivered with a local education partner, apprentices receive classroom instruction while a sponsoring employer trains them on the job; apprentices earn a recognized credential, and AATA was awarded a $1,000,000 grant from the California Apprenticeship Initiative for new and innovative programs [3]. California's Division of Apprenticeship Standards lists the AATA apprenticeship program with a high-school diploma or equivalent as the education prerequisite [4], and Foothill College serves as a local education agency for AATA's NDT Technician certificate [5].",
+    "For many newcomers, an apprenticeship solves the hardest part of NDT certification: finding an employer willing to provide supervised experience hours."
+   ]
+  },
+  {
+   "id": "don-bosco",
+   "h2": "ASNT-GLAS classes at Don Bosco Technical Institute",
+   "paragraphs": [
+    "The ASNT Greater Los Angeles Section, chartered in 1944, has offered NDT courses at Don Bosco Technical Institute in Rosemead continuously since the early 1960s [6]. That longevity matters: the courses are taught by working practitioners and are widely known to local employers, and section-run classes are typically scheduled for people who already have day jobs.",
+    "Joining the local ASNT section is also one of the best networking moves a Los Angeles trainee can make. Section meetings connect students with Level IIIs, hiring managers and inspection companies that rarely advertise entry-level roles publicly. Volunteering at section events or student nights is an easy way to get noticed by people who hire."
+   ]
+  },
+  {
+   "id": "hellier-and-colleges",
+   "h2": "Hellier Anaheim, Antelope Valley College and private providers",
+   "paragraphs": [
+    "Hellier, now part of Acuren, runs scheduled NDT schools in New London, Connecticut, Houston and Anaheim, and offers online programs whose practicum hours can be completed onsite [7]. For Los Angeles and Orange County residents, the Anaheim school is a convenient option for intensive method courses.",
+    "In the Antelope Valley — home to major aerospace flight-test and manufacturing sites — Antelope Valley College teaches courses introducing nondestructive inspection and testing principles used by the aerospace industry [8]. Private providers such as Orange Coast Testing offer classroom courses written to meet NAS 410 and SNT-TC-1A, for example 40-hour radiography Level 1 and Level 2 courses for entry-level personnel and refresher students [9]."
+   ]
+  },
+  {
+   "id": "aerospace",
+   "h2": "Aerospace NDT in Southern California",
+   "paragraphs": [
+    "Aerospace is the defining NDT employer in Los Angeles County and its neighbours. Manufacturing of airframes, engines, satellites and launch vehicles, plus maintenance of commercial and military aircraft, demands penetrant, magnetic particle, ultrasonic, eddy current and radiographic inspection — and increasingly phased array, computed tomography and digital radiography.",
+    "Most aerospace employers certify personnel to NAS 410, which generally requires more training and experience hours than SNT-TC-1A for the same method. When choosing a course, ask whether it is written to NAS 410; providers like Orange Coast Testing specifically state that their courses meet NAS 410 training requirements [9]."
+   ]
+  },
+  {
+   "id": "ca-radiography",
+   "h2": "Radiographer certification in California",
+   "paragraphs": [
+    "California is an Agreement State whose Radiologic Health Branch (RHB), part of the California Department of Public Health, regulates industrial radiography. Since October 2009, RHB has required radiographers who do not already hold a valid radiation-safety certification card from another Agreement State or ASNT to obtain California certification to perform industrial radiography in the state; the state's provisional card is not transferable to other states, and out-of-state companies must still follow California reciprocity rules [11]. RHB's licensing guide asks licensees for copies of the ASNT card or state-issued industrial radiographer card for their radiation safety officers [12], and anyone who trains radiographers must document at least 2,000 hours of experience as a radiographer using sealed sources [10].",
+    "For trainees, this means radiography in California follows a defined path: radiation-safety training, supervised work as a radiographer's assistant and then certification accepted by RHB. Because California's card is not transferable under reciprocity [11], technicians who expect to travel should consider certifications recognized in multiple states as well."
+   ]
+  },
+  {
+   "id": "how-certification-works",
+   "h2": "How NDT certification actually works for Los Angeles trainees",
+   "paragraphs": [
+    "The most common misunderstanding about NDT training is that a school certifies you. In the United States, the documents most employers follow are ASNT's Recommended Practice SNT-TC-1A, the ANSI/ASNT CP-189 standard and the CP-105 topical outlines [20]. Under SNT-TC-1A, certification is employer-based: a school or online course supplies the classroom hours, but your employer's written practice, its Level III and your documented on-the-job experience are what turn training into a certification. Training programs therefore combine formal classroom or online theory with on-the-job training (OJT) performed in a field or lab setting [20].",
+    "In practice, a new technician in any city follows the same ladder: complete Level I and then Level II classroom hours for a method, log supervised experience, pass the employer's general, specific and practical examinations and a vision test, and receive Level II certification in that method. Level III — the person who writes procedures, approves techniques and certifies others — requires additional experience and, for most employers, the ASNT NDT Level III examinations."
+   ]
+  },
+  {
+   "id": "training-hours",
+   "h2": "Training hours you will need by method",
+   "paragraphs": [
+    "SNT-TC-1A publishes recommended minimum classroom hours by method and level for high-school-educated candidates [13]. Employers can adopt stricter numbers in their written practice, and aerospace employers working to NAS 410 or customers with their own specifications often do. Visual testing shows the scale of supervised experience involved: SNT-TC-1A recommends 8 training hours for VT Level I and 16 more for Level II, with 70 and 140 hours of experience in the method respectively [14]."
+   ],
+   "table": {
+    "caption": "SNT-TC-1A recommended classroom training hours (high school graduate)",
+    "head": [
+     "Method",
+     "Level I hours",
+     "Additional for Level II"
+    ],
+    "rows": [
+     [
+      "Ultrasonic testing (UT)",
+      "40",
+      "40"
+     ],
+     [
+      "Radiographic testing (RT)",
+      "40",
+      "40"
+     ],
+     [
+      "Eddy current testing (ET)",
+      "40",
+      "40"
+     ],
+     [
+      "Magnetic particle testing (MT)",
+      "12",
+      "8"
+     ],
+     [
+      "Liquid penetrant testing (PT)",
+      "4",
+      "8"
+     ],
+     [
+      "Visual testing (VT)",
+      "8",
+      "16"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "radiography-rules",
+   "h2": "Industrial radiography: the extra licensing layer in Los Angeles",
+   "paragraphs": [
+    "Radiography is the one method where federal and state radiation-safety law sits on top of SNT-TC-1A. Under 10 CFR 34.43, a licensee may not let anyone act as a radiographer until the person has received training in the required radiation-safety subjects, completed at least two months of on-the-job training and been certified through a radiographer certification program by a certifying entity [15][16]. ASNT's Industrial Radiography Radiation Safety Personnel (IRRSP) program is one such certifying entity; it combines a computer-based exam with an employer-conducted practical exam and vision check, and many states recognize it [17]. Online radiation-safety courses such as AWS's roughly 40-hour eLearning module can supply the classroom portion, but site-specific training from the employer is still required [18].",
+    "California implements those federal requirements through CDPH's Radiologic Health Branch rules described above, including its own radiographer certification and reciprocity requirements [11][12]. Check with your employer which card it expects before you book an exam."
+   ]
+  },
+  {
+   "id": "costs",
+   "h2": "What NDT training costs",
+   "paragraphs": [
+    "Published industry guidance puts classroom training for a single method at roughly USD 600–2,000, with examination fees of roughly USD 200–500 on top [19]. ASNT lists the initial IRRSP combination exam for radioactive-material and X-ray radiography at USD 260 for members and USD 285 for non-members [17]. Longer certificate and associate-degree programs cost more but bundle several methods, labs and job placement support, and community-college options are often eligible for financial aid.",
+    "Before paying, ask whether the price includes the practical hours, specimens and exam fees, whether the course is written to SNT-TC-1A, CP-189 or NAS 410, and whether the provider will document your hours in a form an employer's Level III can accept."
+   ]
+  },
+  {
+   "id": "choosing",
+   "h2": "How to choose an NDT training provider",
+   "paragraphs": [
+    "Use this checklist to compare schools, online courses and employer programs."
+   ],
+   "bullets": [
+    "Training hours that meet or exceed the SNT-TC-1A table for each method and level.",
+    "Hands-on labs with real-flaw specimens, not just slides and videos.",
+    "Instructors who hold ASNT Level III in the method they teach.",
+    "Documentation of hours suitable for an employer's written practice.",
+    "A path to OJT — employer partnerships, apprenticeships or placement support.",
+    "For radiography, preparation for IRRSP or the state radiographer exam.",
+    "Transparent total cost including exams, books and specimens."
+   ]
+  },
+  {
+   "id": "workforce",
+   "h2": "Why the timing is good",
+   "paragraphs": [
+    "NDT's workforce is ageing: the PQNDT salary and benefits survey put the average NDT technician's age at 47 [21]. As experienced technicians retire, employers across energy, aerospace, infrastructure and manufacturing need trained replacements, which is why so many now sponsor training, apprenticeships and on-the-job programs for motivated newcomers."
+   ]
+  },
+  {
+   "id": "routes",
+   "h2": "Which Los Angeles route fits you?",
+   "paragraphs": [
+    "A quick guide to matching the options to your goals:"
+   ],
+   "bullets": [
+    "No experience and need income while training: AATA apprenticeship with an employer sponsor [3][4].",
+    "Want intensive multi-method training: AATA's 400-hour program [2] or Hellier Anaheim courses [7].",
+    "Working full time and adding methods: ASNT-GLAS evening classes at Don Bosco [6].",
+    "Targeting aerospace manufacturing: NAS 410-aligned courses [9] and Antelope Valley College [8].",
+    "Planning radiography work: budget time for California or accepted certification [11].",
+    "Unsure where to start: attend an ASNT-GLAS section meeting and ask local Level IIIs which courses their employers accept [6]."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Where can I take NDT classes in Los Angeles?",
+   "a": "Options include AATA in Los Angeles [1], ASNT-GLAS classes at Don Bosco Technical Institute in Rosemead [6], Hellier's Anaheim school [7] and Antelope Valley College [8]."
+  },
+  {
+   "q": "Is there an NDT apprenticeship in California?",
+   "a": "Yes. AATA runs apprenticeships registered with California's Division of Apprenticeship Standards [3][4]."
+  },
+  {
+   "q": "How long is AATA's NDT program?",
+   "a": "AATA's NDT Technologies Certification Program is a structured 400-hour curriculum [2]."
+  },
+  {
+   "q": "Do I need a California radiographer card?",
+   "a": "Radiographers without valid certification from another Agreement State or ASNT must obtain California certification, and California's card is not transferable to other states [11]."
+  },
+  {
+   "q": "What is NAS 410 and why does it matter in LA?",
+   "a": "NAS 410 is the aerospace standard for NDT personnel certification used by many Southern California employers; some local courses are written to meet it [9]."
+  },
+  {
+   "q": "How much does NDT training cost in Los Angeles?",
+   "a": "Single-method courses commonly cost about USD 600–2,000 plus exams [19]; apprenticeships can reduce out-of-pocket cost because the employer provides on-the-job training."
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Long Beach",
+   "href": "/training/long-beach-ca"
+  },
+  {
+   "name": "San Diego",
+   "href": "/training/san-diego-ca"
+  },
+  {
+   "name": "San Francisco",
+   "href": "/training/san-francisco-ca"
+  },
+  {
+   "name": "Phoenix",
+   "href": "/training/phoenix-az"
+  }
+ ],
+ "related": [
+  {
+   "label": "NDT jobs and careers in Los Angeles",
+   "href": "/careers/los-angeles-ca"
+  },
+  {
+   "label": "NDT inspection services in Los Angeles",
+   "href": "/ndt-services/los-angeles-ca"
+  },
+  {
+   "label": "NDT inspector salary guide",
+   "href": "/learn/ndt-inspector-salary-guide"
+  },
+  {
+   "label": "NDT certifications explained",
+   "href": "/blog/ndt-certifications-explained"
+  },
+  {
+   "label": "NDT career guide 2026",
+   "href": "/blog/ndt-career-guide-2026"
+  }
+ ],
+ "references": [
+  {
+   "title": "Evident — Training members: American Aerospace Technical Academy (Los Angeles)",
+   "url": "https://ims.evidentscientific.com/en/training-members/american-aerospace-technical-academy"
+  },
+  {
+   "title": "AATA — NDT Technologies Certification Program (400 hours)",
+   "url": "https://aatatraining.squarespace.com/courses-offered"
+  },
+  {
+   "title": "AATA — Apprenticeships (California Apprenticeship Initiative grant)",
+   "url": "https://aatatraining.squarespace.com/apprenticeships"
+  },
+  {
+   "title": "California DIR Division of Apprenticeship Standards — AATA apprenticeship program detail",
+   "url": "https://www.dir.ca.gov/databases/das/results_aigdetail.asp?varOccId=8438"
+  },
+  {
+   "title": "Foothill College — Apprenticeship: Non-Destructive Testing Technician (with AATA)",
+   "url": "https://catalog.foothill.edu/degrees-certificates/apprenticeship-non-destructive-testing-technician/"
+  },
+  {
+   "title": "AWS Long Beach/Orange County Section — ASNT-GLAS NDT classes at Don Bosco Technical Institute",
+   "url": "https://sections.aws.org/longbeach-orangecounty/?p=355"
+  },
+  {
+   "title": "Acuren — Inspection training (scheduled schools in New London, Houston and Anaheim)",
+   "url": "https://acuren.com/inspection/inspection-training/"
+  },
+  {
+   "title": "Antelope Valley College — Aeronautical Non-Destructive Inspection catalog",
+   "url": "https://www.avc.edu/sites/default/files/catalog/Aeronautical%20%20Non-Destructive%20Inspection.pdf"
+  },
+  {
+   "title": "Orange Coast Testing — Classroom training (NAS 410 / SNT-TC-1A)",
+   "url": "https://orangecoasttesting.squarespace.com/classroom-training"
+  },
+  {
+   "title": "CDPH Radiologic Health Branch — Industrial radiographer trainer application (CDPH 8219)",
+   "url": "https://Www.Cdph.Ca.gov/CDPH%20Document%20Library/ControlledForms/cdph8219.pdf"
+  },
+  {
+   "title": "Quality Magazine — California revises industrial radiographer certification",
+   "url": "https://www.qualitymag.com/articles/89660-california-revises-industrial-radiographer-certification"
+  },
+  {
+   "title": "CDPH — Industrial radiography licensing guide",
+   "url": "https://www.cdph.ca.gov:443/Programs/CEH/DRSEM/CDPH%20Document%20Library/RHB/RML/IndustrialRadiographyGuide.pdf"
+  },
+  {
+   "title": "Open Exam Prep — SNT-TC-1A recommended training hours by method and level",
+   "url": "https://open-exam-prep.com/study-guides/asnt-ndt-iii/ndt-training/training-program-design"
+  },
+  {
+   "title": "Materials Evaluation — VT training and experience comparison (SNT-TC-1A, CP-189, ISO 9712, AWS)",
+   "url": "https://source.asnt.org/22d6m27/59"
+  },
+  {
+   "title": "eCFR — 10 CFR 34.43 Training (industrial radiography)",
+   "url": "https://www.ecfr.gov/current/title-10/chapter-I/part-34/subpart-D/section-34.43"
+  },
+  {
+   "title": "GPO — 10 CFR 34.43 text (radiographer training, OJT and certification)",
+   "url": "https://www.gpo.gov/fdsys/pkg/CFR-2010-title10-vol1/pdf/CFR-2010-title10-vol1-sec34-43.pdf"
+  },
+  {
+   "title": "ASNT — Industrial Radiography Radiation Safety Personnel (IRRSP) certification",
+   "url": "https://certification.asnt.org/certification/irrsp"
+  },
+  {
+   "title": "AWS — Radiation Safety eLearning course (40 hours toward IRRSP)",
+   "url": "https://www.aws.org/certification-and-education/education/self-paced-online-learning/radiation-safety-course"
+  },
+  {
+   "title": "Rigzone — What certifications are needed for an NDT technician role",
+   "url": "https://www.rigzone.com/insights/educational-pathways-5/what-certifications-are-needed-for-an-ndt-technician-role-674"
+  },
+  {
+   "title": "Quality Magazine — NDT training programs: components and considerations (Donald Booth)",
+   "url": "https://www.qualitymag.com/articles/97194-ndt-training-programs-components-and-considerations"
+  },
+  {
+   "title": "ASNT — Implementing a successful NDT education program (PQNDT survey: average technician age 47)",
+   "url": "https://www.asnt.org/standards-publications/blog/implementing-a-successful-ndt-education-program-planning-design-resources-curriculum-and-evaluation"
+  }
+ ]
+}

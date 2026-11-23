@@ -1,0 +1,389 @@
+{
+ "slug": "st-louis-mo",
+ "city": "St. Louis",
+ "region": "Missouri",
+ "country": "United States",
+ "countrySlug": "united-states",
+ "wave": 2,
+ "updated": "2026-11-23",
+ "title": "NDT Training in St. Louis, MO: Lab Jobs, Training Routes, Costs and Missouri's NRC Rules (2026)",
+ "metaTitle": "NDT Training in St. Louis, MO — Training Routes, Jobs & Costs",
+ "description": "NDT training for St. Louis: local NDT labs that train staff, regional programs, online courses, costs, SNT-TC-1A hours and Missouri's NRC radiography licensing.",
+ "quickAnswer": "St. Louis has no dedicated NDT college program, but it has **NDT laboratories that hire and train technicians**. Industrial Inspection & Analysis (IIA) has recruited Level 2 and Level 3 technicians for its St. Louis lab, with Level III staff expected to **mentor and train Level 1 and 2 personnel** [1][2][3], and Reliable Testing Services lists training and development among its benefits [5]. Classroom hours come from online providers [10] or regional programs such as **Moraine Valley** near Chicago [8] and **WSU Tech** in Wichita [9]. Because **Missouri is a non-Agreement State**, the NRC licenses most radioactive materials used in radiography [6].",
+ "keyFacts": [
+  {
+   "label": "Local route",
+   "value": "Employer training at NDT labs such as IIA [1][2]"
+  },
+  {
+   "label": "Regional programs",
+   "value": "Moraine Valley (IL); WSU Tech (KS) [8][9]"
+  },
+  {
+   "label": "Radiography regulator",
+   "value": "NRC — Missouri is a non-Agreement State [6]"
+  },
+  {
+   "label": "NRC office",
+   "value": "Region III (Chicago) oversees Missouri materials licensees [7]"
+  }
+ ],
+ "industries": [
+  "Aerospace and defense",
+  "Metals service and processing",
+  "Manufacturing",
+  "Power generation",
+  "Rail and barge transportation",
+  "Construction"
+ ],
+ "schools": [
+  {
+   "name": "Employer training — St. Louis NDT laboratories",
+   "url": "https://www.tealhq.com/job/ndt-level-iii-ut-technician_7ea1ae8c89e2df022b352e93f6cf0fe9a5309",
+   "location": "St. Louis, MO",
+   "offers": "Labs such as IIA employ Level IIIs to mentor and train Level 1 and 2 personnel [2]",
+   "type": "Employer / OJT"
+  },
+  {
+   "name": "Moraine Valley Community College — NDT",
+   "url": "https://www.morainevalley.edu/news-story/moraine-valley-prepares-students-for-in-demand-careers-in-nondestructive-testing/",
+   "location": "Palos Hills, IL",
+   "offers": "Basic-level NDT program completable in as little as six weeks [8]",
+   "type": "Community college"
+  },
+  {
+   "name": "WSU Tech — NDT (with NIAR)",
+   "url": "https://wsutech.edu/wp-content/uploads/checklist/Non%20Destructive%20Testing%20%28NDT%29.pdf",
+   "location": "Wichita, KS",
+   "offers": "Aerospace-focused NDT program run with the National Institute for Aviation Research [9]",
+   "type": "Technical college"
+  },
+  {
+   "name": "American Institute of Nondestructive Testing (online)",
+   "url": "https://marketplace.aviationweek.com/suppliers/american-institute-nondestructive-testing/",
+   "location": "Online / on-site",
+   "offers": "Online, on-site and classroom training in RT, UT, ET, MT, PT, VT and CR/DDA [10]",
+   "type": "Online training provider"
+  }
+ ],
+ "sections": [
+  {
+   "id": "overview",
+   "h2": "NDT training in St. Louis: start with the employers",
+   "paragraphs": [
+    "St. Louis is a manufacturing, metals and aerospace city, and its NDT demand reflects that: laboratories testing parts and materials, aerospace and defense manufacturing, metals service centres, power plants, rail and river transportation equipment, and construction. What it lacks is a local NDT college program. As a result, many St. Louis technicians enter the field through employers that train new staff, supported by online classroom courses or regional programs.",
+    "That makes job searching part of training. Identifying employers that invest in training — and arriving with the basics they need — is the fastest route into the profession here."
+   ]
+  },
+  {
+   "id": "labs",
+   "h2": "NDT laboratories that train their people",
+   "paragraphs": [
+    "Industrial Inspection & Analysis (IIA) has repeatedly recruited NDT staff for its St. Louis laboratory, including experienced Level 2 technicians [3] and a Level III ultrasonic technician [1]. The Level III role involves performing NDT at customer sites and in the lab and providing technical guidance, mentorship and training to Level 1 and Level 2 personnel in ultrasonic testing [2], as well as leading training, certification and auditing for the NDT program [4]. IIA has also recruited Certified Welding Inspectors for the same lab [1].",
+    "Other local firms, such as Reliable Testing Services, advertise NDT technician roles and list training and development among their benefits [5]. For newcomers, labs like these are attractive because a structured quality program, a resident Level III and a mix of lab and field work give trainees broad experience quickly."
+   ]
+  },
+  {
+   "id": "regional-programs",
+   "h2": "Regional programs within driving distance",
+   "paragraphs": [
+    "For a structured classroom program, the nearest options are a few hours away. Moraine Valley Community College in the Chicago suburbs runs a basic-level NDT program that it says can be completed in as little as six weeks [8], making it feasible for St. Louis residents willing to relocate briefly. WSU Tech in Wichita runs an aerospace-focused NDT program with the National Institute for Aviation Research [9], suited to those targeting aerospace manufacturing.",
+    "Online providers such as the American Institute of Nondestructive Testing offer online, on-site and classroom training across the major methods, including computed and digital radiography [10], which lets St. Louis residents complete theory without leaving home."
+   ]
+  },
+  {
+   "id": "aerospace-stl",
+   "h2": "Aerospace and defense: aim for NAS 410 skills",
+   "paragraphs": [
+    "Aerospace and defense manufacturing is one of St. Louis's signature industries, and it employs NDT technicians to inspect machined parts, assemblies, composites and welds. These employers typically certify personnel to NAS 410, which requires documented classroom hours and experience beyond SNT-TC-1A for the same method, and they value eddy current, penetrant and ultrasonic skills.",
+    "For St. Louis trainees aiming at aerospace, aerospace-focused programs such as WSU Tech's, built with the National Institute for Aviation Research [9], are worth considering even if they require temporary relocation. Graduates who understand aerospace documentation and quality systems are well placed to compete for regional aerospace roles."
+   ]
+  },
+  {
+   "id": "stl-work",
+   "h2": "Where St. Louis NDT jobs come from",
+   "paragraphs": [
+    "Aerospace and defense manufacturing in the region uses penetrant, magnetic particle, ultrasonic, eddy current and radiographic inspection under aerospace standards. Metals service centres and processors inspect plate, bar and tube; manufacturers inspect welds, castings and forgings; power plants need outage inspections; and rail and barge equipment requires weld and fatigue-crack inspection.",
+    "Laboratory-based roles, such as those at IIA, combine work in a controlled lab with visits to customer sites [2], giving trainees exposure to both precise laboratory testing and practical field inspection."
+   ]
+  },
+  {
+   "id": "mo-radiography",
+   "h2": "Radiography in Missouri: the NRC is the regulator",
+   "paragraphs": [
+    "Missouri is not an Agreement State. The state has jurisdiction over X-ray equipment, naturally occurring radioactive material and certain radioactive materials not produced in a reactor, while the US Nuclear Regulatory Commission licenses most radioactive materials, including the sealed sources used in gamma radiography [6]. The NRC's Region III office in Chicago oversees Missouri's materials licensees [7].",
+    "For trainees, this means gamma radiography in Missouri follows the federal rules directly: 10 CFR 34.43 training, at least two months of on-the-job training and certification through a recognized certifying entity before working as a radiographer. Companies crossing into Illinois, an Agreement State with its own certification, must also meet that state's requirements."
+   ]
+  },
+  {
+   "id": "getting-hired",
+   "h2": "Getting hired as a trainee in St. Louis",
+   "paragraphs": [
+    "Because local employers do much of the training, presentation matters. Arrive with completed classroom hours in PT, MT and VT if possible, a basic understanding of ultrasonic testing, an OSHA safety card, a valid driver's licence and a passed near-vision exam. Mention willingness to travel to customer sites and to work varied shifts.",
+    "In interviews, ask how the employer's written practice works, which methods it will train you in, who the Level III is and how experience hours are documented. Employers with clear answers are usually the ones that develop technicians well."
+   ]
+  },
+  {
+   "id": "cwi",
+   "h2": "Combining NDT with welding inspection",
+   "paragraphs": [
+    "St. Louis labs also hire Certified Welding Inspectors [1], and the combination of CWI with NDT methods such as UT and MT is particularly valuable in fabrication, construction and manufacturing. Technicians who can perform visual welding inspection, ultrasonic testing and magnetic particle testing on the same project are more flexible and often better paid."
+   ]
+  },
+  {
+   "id": "how-certification-works",
+   "h2": "How NDT certification actually works for St. Louis trainees",
+   "paragraphs": [
+    "The most common misunderstanding about NDT training is that a school certifies you. In the United States, the documents most employers follow are ASNT's Recommended Practice SNT-TC-1A, the ANSI/ASNT CP-189 standard and the CP-105 topical outlines [18]. Under SNT-TC-1A, certification is employer-based: a school or online course supplies the classroom hours, but your employer's written practice, its Level III and your documented on-the-job experience are what turn training into a certification. Training programs therefore combine formal classroom or online theory with on-the-job training (OJT) performed in a field or lab setting [18].",
+    "In practice, a new technician in any city follows the same ladder: complete Level I and then Level II classroom hours for a method, log supervised experience, pass the employer's general, specific and practical examinations and a vision test, and receive Level II certification in that method. Level III — the person who writes procedures, approves techniques and certifies others — requires additional experience and, for most employers, the ASNT NDT Level III examinations."
+   ]
+  },
+  {
+   "id": "training-hours",
+   "h2": "Training hours you will need by method",
+   "paragraphs": [
+    "SNT-TC-1A publishes recommended minimum classroom hours by method and level for high-school-educated candidates [11]. Employers can adopt stricter numbers in their written practice, and aerospace employers working to NAS 410 or customers with their own specifications often do. Visual testing shows the scale of supervised experience involved: SNT-TC-1A recommends 8 training hours for VT Level I and 16 more for Level II, with 70 and 140 hours of experience in the method respectively [12]."
+   ],
+   "table": {
+    "caption": "SNT-TC-1A recommended classroom training hours (high school graduate)",
+    "head": [
+     "Method",
+     "Level I hours",
+     "Additional for Level II"
+    ],
+    "rows": [
+     [
+      "Ultrasonic testing (UT)",
+      "40",
+      "40"
+     ],
+     [
+      "Radiographic testing (RT)",
+      "40",
+      "40"
+     ],
+     [
+      "Eddy current testing (ET)",
+      "40",
+      "40"
+     ],
+     [
+      "Magnetic particle testing (MT)",
+      "12",
+      "8"
+     ],
+     [
+      "Liquid penetrant testing (PT)",
+      "4",
+      "8"
+     ],
+     [
+      "Visual testing (VT)",
+      "8",
+      "16"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "radiography-rules",
+   "h2": "Industrial radiography: the extra licensing layer in St. Louis",
+   "paragraphs": [
+    "Radiography is the one method where federal and state radiation-safety law sits on top of SNT-TC-1A. Under 10 CFR 34.43, a licensee may not let anyone act as a radiographer until the person has received training in the required radiation-safety subjects, completed at least two months of on-the-job training and been certified through a radiographer certification program by a certifying entity [13][14]. ASNT's Industrial Radiography Radiation Safety Personnel (IRRSP) program is one such certifying entity; it combines a computer-based exam with an employer-conducted practical exam and vision check, and many states recognize it [15]. Online radiation-safety courses such as AWS's roughly 40-hour eLearning module can supply the classroom portion, but site-specific training from the employer is still required [16].",
+    "In Missouri these federal rules apply directly because the NRC, not the state, licenses most radioactive materials [6][7]."
+   ]
+  },
+  {
+   "id": "costs",
+   "h2": "What NDT training costs",
+   "paragraphs": [
+    "Published industry guidance puts classroom training for a single method at roughly USD 600–2,000, with examination fees of roughly USD 200–500 on top [17]. ASNT lists the initial IRRSP combination exam for radioactive-material and X-ray radiography at USD 260 for members and USD 285 for non-members [15]. Longer certificate and associate-degree programs cost more but bundle several methods, labs and job placement support, and community-college options are often eligible for financial aid.",
+    "Before paying, ask whether the price includes the practical hours, specimens and exam fees, whether the course is written to SNT-TC-1A, CP-189 or NAS 410, and whether the provider will document your hours in a form an employer's Level III can accept."
+   ]
+  },
+  {
+   "id": "choosing",
+   "h2": "How to choose an NDT training provider",
+   "paragraphs": [
+    "Use this checklist to compare schools, online courses and employer programs."
+   ],
+   "bullets": [
+    "Training hours that meet or exceed the SNT-TC-1A table for each method and level.",
+    "Hands-on labs with real-flaw specimens, not just slides and videos.",
+    "Instructors who hold ASNT Level III in the method they teach.",
+    "Documentation of hours suitable for an employer's written practice.",
+    "A path to OJT — employer partnerships, apprenticeships or placement support.",
+    "For radiography, preparation for IRRSP or the state radiographer exam.",
+    "Transparent total cost including exams, books and specimens."
+   ]
+  },
+  {
+   "id": "workforce",
+   "h2": "Why the timing is good",
+   "paragraphs": [
+    "NDT's workforce is ageing: the PQNDT salary and benefits survey put the average NDT technician's age at 47 [19]. As experienced technicians retire, employers across energy, aerospace, infrastructure and manufacturing need trained replacements, which is why so many now sponsor training, apprenticeships and on-the-job programs for motivated newcomers."
+   ]
+  },
+  {
+   "id": "plan",
+   "h2": "A St. Louis NDT plan",
+   "paragraphs": [
+    "A practical route for St. Louis beginners:"
+   ],
+   "bullets": [
+    "Complete PT, MT and VT theory online [10] or at a regional program [8].",
+    "Target NDT labs and inspection companies that train staff [2][5].",
+    "Add UT under an experienced Level III mentor [2].",
+    "Consider the AWS CWI to pair with your NDT methods [1].",
+    "For radiography, learn the federal NRC framework that applies in Missouri [6].",
+    "Log every training and experience hour from day one.",
+    "Network through the local ASNT section and welding societies, where many lab and inspection jobs are filled by referral.",
+    "Ask each employer how its written practice works and who its Level III is before you accept an offer."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Is there an NDT school in St. Louis?",
+   "a": "There is no dedicated NDT college program locally; many technicians are trained by employers such as NDT labs [2], supported by online or regional programs [8][10]."
+  },
+  {
+   "q": "Who hires NDT technicians in St. Louis?",
+   "a": "NDT laboratories such as Industrial Inspection & Analysis and testing firms such as Reliable Testing Services [1][5], plus aerospace, metals and power employers."
+  },
+  {
+   "q": "Is Missouri an Agreement State?",
+   "a": "No. The NRC licenses most radioactive materials in Missouri, overseen by its Region III office [6][7]."
+  },
+  {
+   "q": "What do Level III technicians do at St. Louis labs?",
+   "a": "At IIA, the Level III UT role includes mentoring and training Level 1 and 2 personnel and leading training, certification and auditing [2][4]."
+  },
+  {
+   "q": "Where is the nearest NDT college program to St. Louis?",
+   "a": "Moraine Valley Community College near Chicago [8] and WSU Tech in Wichita [9] are regional options."
+  },
+  {
+   "q": "Is CWI useful alongside NDT in St. Louis?",
+   "a": "Yes — local labs recruit Certified Welding Inspectors as well as NDT technicians [1], and combining both credentials makes technicians more flexible on fabrication and construction projects."
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Kansas City",
+   "href": "/training/kansas-city-mo"
+  },
+  {
+   "name": "Chicago",
+   "href": "/training/chicago-il"
+  },
+  {
+   "name": "Indianapolis",
+   "href": "/training/indianapolis-in"
+  },
+  {
+   "name": "Cincinnati",
+   "href": "/training/cincinnati-oh"
+  }
+ ],
+ "related": [
+  {
+   "label": "NDT jobs and careers in St. Louis",
+   "href": "/careers/st-louis-mo"
+  },
+  {
+   "label": "NDT inspection services in St. Louis",
+   "href": "/ndt-services/st-louis-mo"
+  },
+  {
+   "label": "NDT inspector salary guide",
+   "href": "/learn/ndt-inspector-salary-guide"
+  },
+  {
+   "label": "NDT certifications explained",
+   "href": "/blog/ndt-certifications-explained"
+  },
+  {
+   "label": "NDT career guide 2026",
+   "href": "/blog/ndt-career-guide-2026"
+  }
+ ],
+ "references": [
+  {
+   "title": "Career.com — Industrial Inspection & Analysis: NDT Level III UT Technician, St. Louis",
+   "url": "https://www.career.com/job/industrial-inspection-analysis/ndt-level-iii-ut-technician/j202605051912321490022"
+  },
+  {
+   "title": "Teal — Industrial Inspection & Analysis NDT Level III UT Technician (lab and customer sites)",
+   "url": "https://www.tealhq.com/job/ndt-level-iii-ut-technician_7ea1ae8c89e2df022b352e93f6cf0fe9a5309"
+  },
+  {
+   "title": "Career.com — Industrial Inspection & Analysis: NDT Technician Level 3 (Level 2 openings)",
+   "url": "https://www.career.com/job/industrial-inspection-analysis/ndt-technician-level-3/j202506290638405111579"
+  },
+  {
+   "title": "Mediabistro — IIA Level III UT role (training, certification, auditing; relocation)",
+   "url": "https://www.mediabistro.com/jobs/3534991107-ndt-level-iii-ut-technician"
+  },
+  {
+   "title": "Monster — Reliable Testing Services NDT Technician, St. Louis",
+   "url": "https://www.monster.com/job-openings/non-destructive-testing-technician-saint-louis-mo--ae51f737-574f-4b38-b527-d90236385546"
+  },
+  {
+   "title": "NRC — Missouri: Non-Agreement State information",
+   "url": "https://www.nrc.gov/agreement-states/missouri"
+  },
+  {
+   "title": "NRC — Missouri regional oversight (Region III materials licensees)",
+   "url": "https://publish.nrc.gov/info-finder/region-state/missouri.html"
+  },
+  {
+   "title": "Moraine Valley Community College — NDT program (Palos Hills, IL)",
+   "url": "https://www.morainevalley.edu/news-story/moraine-valley-prepares-students-for-in-demand-careers-in-nondestructive-testing/"
+  },
+  {
+   "title": "WSU Tech — Non Destructive Testing program (Wichita, with NIAR)",
+   "url": "https://wsutech.edu/wp-content/uploads/checklist/Non%20Destructive%20Testing%20%28NDT%29.pdf"
+  },
+  {
+   "title": "Aviation Week Marketplace — American Institute of Nondestructive Testing",
+   "url": "https://marketplace.aviationweek.com/suppliers/american-institute-nondestructive-testing/"
+  },
+  {
+   "title": "Open Exam Prep — SNT-TC-1A recommended training hours by method and level",
+   "url": "https://open-exam-prep.com/study-guides/asnt-ndt-iii/ndt-training/training-program-design"
+  },
+  {
+   "title": "Materials Evaluation — VT training and experience comparison (SNT-TC-1A, CP-189, ISO 9712, AWS)",
+   "url": "https://source.asnt.org/22d6m27/59"
+  },
+  {
+   "title": "eCFR — 10 CFR 34.43 Training (industrial radiography)",
+   "url": "https://www.ecfr.gov/current/title-10/chapter-I/part-34/subpart-D/section-34.43"
+  },
+  {
+   "title": "GPO — 10 CFR 34.43 text (radiographer training, OJT and certification)",
+   "url": "https://www.gpo.gov/fdsys/pkg/CFR-2010-title10-vol1/pdf/CFR-2010-title10-vol1-sec34-43.pdf"
+  },
+  {
+   "title": "ASNT — Industrial Radiography Radiation Safety Personnel (IRRSP) certification",
+   "url": "https://certification.asnt.org/certification/irrsp"
+  },
+  {
+   "title": "AWS — Radiation Safety eLearning course (40 hours toward IRRSP)",
+   "url": "https://www.aws.org/certification-and-education/education/self-paced-online-learning/radiation-safety-course"
+  },
+  {
+   "title": "Rigzone — What certifications are needed for an NDT technician role",
+   "url": "https://www.rigzone.com/insights/educational-pathways-5/what-certifications-are-needed-for-an-ndt-technician-role-674"
+  },
+  {
+   "title": "Quality Magazine — NDT training programs: components and considerations (Donald Booth)",
+   "url": "https://www.qualitymag.com/articles/97194-ndt-training-programs-components-and-considerations"
+  },
+  {
+   "title": "ASNT — Implementing a successful NDT education program (PQNDT survey: average technician age 47)",
+   "url": "https://www.asnt.org/standards-publications/blog/implementing-a-successful-ndt-education-program-planning-design-resources-curriculum-and-evaluation"
+  }
+ ]
+}

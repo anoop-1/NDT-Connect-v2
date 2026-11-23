@@ -1,0 +1,392 @@
+{
+ "slug": "san-diego-ca",
+ "city": "San Diego",
+ "region": "California",
+ "country": "United States",
+ "countrySlug": "united-states",
+ "wave": 1,
+ "updated": "2026-11-23",
+ "title": "NDT Training in San Diego, CA: Courses, Navy and Shipyard Careers, Certification (2026)",
+ "metaTitle": "NDT Training in San Diego, CA — Courses, Shipyard Jobs & Certification",
+ "description": "NDT training for San Diego: nearby schools, online options, costs, SNT-TC-1A hours, California radiographer rules and Navy, shipyard and aerospace NDT jobs.",
+ "quickAnswer": "San Diego's NDT job market is driven by the **US Navy, ship repair and defense aerospace**. Employers advertise roles such as Navy **NDT mechanic inspectors** who must hold Level II in at least three methods [3], shipyard **QA/NDT Level II inspectors** [5] and inspectors for naval reactor plant work [6]. Dedicated NDT schools are mostly in the Los Angeles and Orange County area — **Hellier Anaheim** [10], **AATA** (also online) [8] and **ASNT-GLAS** classes [9] — so most San Diego trainees combine online theory, short courses up the coast and employer on-the-job training. California radiographers need an accepted certification card [12].",
+ "keyFacts": [
+  {
+   "label": "Main employers",
+   "value": "Navy aviation depots, ship repair contractors, defense manufacturers [3][5][6]"
+  },
+  {
+   "label": "Typical Navy requirement",
+   "value": "Level II in at least three of ET, MT, PT, UT, X-ray, temper etch [3]"
+  },
+  {
+   "label": "Nearest scheduled school",
+   "value": "Hellier (Acuren) Anaheim [10]"
+  },
+  {
+   "label": "Radiography regulator",
+   "value": "CDPH Radiologic Health Branch [12]"
+  }
+ ],
+ "industries": [
+  "Naval ship repair and modernization",
+  "Naval aviation maintenance",
+  "Defense aerospace",
+  "Shipbuilding",
+  "Biotech and manufacturing",
+  "Construction"
+ ],
+ "schools": [
+  {
+   "name": "American Aerospace Technical Academy (AATA)",
+   "url": "https://ims.evidentscientific.com/en/training-members/american-aerospace-technical-academy",
+   "location": "Los Angeles, CA and online",
+   "offers": "Nonprofit NDT academy with online training for those who cannot travel [8]",
+   "type": "Nonprofit training academy"
+  },
+  {
+   "name": "Hellier (Acuren) — Anaheim school",
+   "url": "https://acuren.com/inspection/inspection-training/",
+   "location": "Anaheim, CA (~95 miles)",
+   "offers": "Scheduled NDT courses; online programs with onsite practicum [10]",
+   "type": "Private training school"
+  },
+  {
+   "name": "ASNT Greater Los Angeles Section — Don Bosco Technical Institute",
+   "url": "https://sections.aws.org/longbeach-orangecounty/?p=355",
+   "location": "Rosemead, CA",
+   "offers": "Long-running NDT method courses run by the ASNT section [9]",
+   "type": "Professional society courses"
+  },
+  {
+   "name": "Employer training — Navy, ship repair and defense contractors",
+   "url": "https://www.clearancejobs.com/jobs/8581394/nondestructive-testing-mechanic-inspector",
+   "location": "San Diego / National City",
+   "offers": "On-the-job NDT training and certification under employer and Navy programs [3][5]",
+   "type": "Employer / OJT"
+  }
+ ],
+ "sections": [
+  {
+   "id": "overview",
+   "h2": "NDT training in San Diego: start with the job market",
+   "paragraphs": [
+    "San Diego is different from most NDT training markets because the employers are so concentrated. The Navy's surface fleet, naval aviation, the ship repair yards around National City and Naval Station San Diego, and defense aerospace companies account for much of the demand. Those employers have very specific requirements — Navy and NAVSEA technical publications, NAS 410 for aircraft, security clearances — and they shape what training is worth paying for.",
+    "Stand-alone NDT schools are mostly about 90 miles north in Los Angeles and Orange County. San Diego residents therefore usually build training in layers: online theory, short in-person method courses up the coast, and structured on-the-job training with an employer."
+   ]
+  },
+  {
+   "id": "navy-aviation",
+   "h2": "Naval aviation NDT inspectors",
+   "paragraphs": [
+    "The Department of the Navy recruits civilian Nondestructive Testing Mechanic Inspectors in San Diego. One posting at Naval Air Station San Diego describes performing traditional nondestructive inspection, calibrating and operating test equipment, and requires a current Level II certification in at least three of eddy current, magnetic particle, penetrant, ultrasonic, X-ray and temper etch [3]. Another describes traditional and advanced inspections of aircraft, aircraft parts and engine components using complex NDT systems [4].",
+    "That multi-method requirement is the key planning point for trainees aiming at naval aviation. Building Level II in ET, PT and MT — the methods most used on aircraft structures and components — makes a candidate far more competitive than holding a single certification. Many such roles also require US citizenship and the ability to obtain a security clearance."
+   ]
+  },
+  {
+   "id": "ship-repair",
+   "h2": "Ship repair and shipbuilding",
+   "paragraphs": [
+    "San Diego's ship repair industry employs QA/NDT inspectors to verify welds and repairs on Navy vessels. Continental Tide Defense Systems has advertised NDT Inspector II roles in National City requiring an ASNT NDT certification and five to ten years of experience as an NDT QA inspector [1][2]. Delphinus Engineering has recruited QA/NDT Level II inspectors at its San Diego marine services location to ensure inspections comply with customer directives, specifications and approved procedures [5].",
+    "Federal ship-repair inspection roles at Naval Station San Diego can also require coatings knowledge — one posting notes candidates may need NACE (AMPP) Coating Inspector Program Level 1 qualification within 24 months [7]. Combining NDT with coatings inspection is a strong career move in this market."
+   ]
+  },
+  {
+   "id": "nuclear-defense",
+   "h2": "Naval reactor and defense manufacturing inspection",
+   "paragraphs": [
+    "Some San Diego inspection roles support naval nuclear propulsion. Northrop Grumman has recruited inspectors in San Diego to perform required inspections and nondestructive tests — UT, MT, PT, visual, dimensional and load tests — on components and systems for naval reactor plants in support of construction, overhaul, refuelling and repair contracts [6]. These roles demand rigorous procedure compliance and documentation, and citizenship is required for positions with a government clearance [6].",
+    "For trainees, nuclear and naval work rewards precise record-keeping and a clean background as much as technical skill. It also tends to offer stable, long-term employment compared with project-based field work."
+   ]
+  },
+  {
+   "id": "background",
+   "h2": "Clearances, citizenship and background checks",
+   "paragraphs": [
+    "Because so much of San Diego's NDT work touches military ships, aircraft and nuclear systems, hiring often depends on more than certifications. Postings for cleared roles state that citizenship is required [6], and Navy inspector jobs list security-clearance requirements alongside technical qualifications [3]. Drug testing and background investigations are standard.",
+    "If you are planning a career here, keep your record clean, keep copies of every training certificate and experience log, and be ready to document your work history in detail. Candidates who arrive with organized paperwork and multi-method Level II certifications move through the hiring process much faster than those who must reconstruct their history."
+   ]
+  },
+  {
+   "id": "where-to-train",
+   "h2": "Where San Diego trainees take courses",
+   "paragraphs": [
+    "For classroom and hands-on method training, the closest scheduled school is Hellier's Anaheim location, part of Acuren's network that also includes New London and Houston, with online programs whose practicum can be completed onsite [10]. The American Aerospace Technical Academy offers online training for students who cannot travel [8], and the ASNT Greater Los Angeles Section runs long-established courses at Don Bosco Technical Institute in Rosemead [9].",
+    "A common pattern is to complete theory online during the week, attend intensive practical sessions in Orange County or Los Angeles, and then apply for trainee roles with ship repair or inspection contractors that can provide supervised experience."
+   ]
+  },
+  {
+   "id": "ca-radiography",
+   "h2": "Radiography certification in California",
+   "paragraphs": [
+    "California is an Agreement State whose Radiologic Health Branch (RHB), part of the California Department of Public Health, regulates industrial radiography. Since October 2009, RHB has required radiographers who do not already hold a valid radiation-safety certification card from another Agreement State or ASNT to obtain California certification to perform industrial radiography in the state; the state's provisional card is not transferable to other states, and out-of-state companies must still follow California reciprocity rules [12]. RHB's licensing guide asks licensees for copies of the ASNT card or state-issued industrial radiographer card for their radiation safety officers [13], and anyone who trains radiographers must document at least 2,000 hours of experience as a radiographer using sealed sources [11].",
+    "Shipyard and pipeline radiography in San Diego therefore requires both the federal-style training and on-the-job steps and an RHB-accepted certification card before a technician can work as a radiographer rather than an assistant."
+   ]
+  },
+  {
+   "id": "how-certification-works",
+   "h2": "How NDT certification actually works for San Diego trainees",
+   "paragraphs": [
+    "The most common misunderstanding about NDT training is that a school certifies you. In the United States, the documents most employers follow are ASNT's Recommended Practice SNT-TC-1A, the ANSI/ASNT CP-189 standard and the CP-105 topical outlines [21]. Under SNT-TC-1A, certification is employer-based: a school or online course supplies the classroom hours, but your employer's written practice, its Level III and your documented on-the-job experience are what turn training into a certification. Training programs therefore combine formal classroom or online theory with on-the-job training (OJT) performed in a field or lab setting [21].",
+    "In practice, a new technician in any city follows the same ladder: complete Level I and then Level II classroom hours for a method, log supervised experience, pass the employer's general, specific and practical examinations and a vision test, and receive Level II certification in that method. Level III — the person who writes procedures, approves techniques and certifies others — requires additional experience and, for most employers, the ASNT NDT Level III examinations."
+   ]
+  },
+  {
+   "id": "training-hours",
+   "h2": "Training hours you will need by method",
+   "paragraphs": [
+    "SNT-TC-1A publishes recommended minimum classroom hours by method and level for high-school-educated candidates [14]. Employers can adopt stricter numbers in their written practice, and aerospace employers working to NAS 410 or customers with their own specifications often do. Visual testing shows the scale of supervised experience involved: SNT-TC-1A recommends 8 training hours for VT Level I and 16 more for Level II, with 70 and 140 hours of experience in the method respectively [15]."
+   ],
+   "table": {
+    "caption": "SNT-TC-1A recommended classroom training hours (high school graduate)",
+    "head": [
+     "Method",
+     "Level I hours",
+     "Additional for Level II"
+    ],
+    "rows": [
+     [
+      "Ultrasonic testing (UT)",
+      "40",
+      "40"
+     ],
+     [
+      "Radiographic testing (RT)",
+      "40",
+      "40"
+     ],
+     [
+      "Eddy current testing (ET)",
+      "40",
+      "40"
+     ],
+     [
+      "Magnetic particle testing (MT)",
+      "12",
+      "8"
+     ],
+     [
+      "Liquid penetrant testing (PT)",
+      "4",
+      "8"
+     ],
+     [
+      "Visual testing (VT)",
+      "8",
+      "16"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "radiography-rules",
+   "h2": "Industrial radiography: the extra licensing layer in San Diego",
+   "paragraphs": [
+    "Radiography is the one method where federal and state radiation-safety law sits on top of SNT-TC-1A. Under 10 CFR 34.43, a licensee may not let anyone act as a radiographer until the person has received training in the required radiation-safety subjects, completed at least two months of on-the-job training and been certified through a radiographer certification program by a certifying entity [16][17]. ASNT's Industrial Radiography Radiation Safety Personnel (IRRSP) program is one such certifying entity; it combines a computer-based exam with an employer-conducted practical exam and vision check, and many states recognize it [18]. Online radiation-safety courses such as AWS's roughly 40-hour eLearning module can supply the classroom portion, but site-specific training from the employer is still required [19].",
+    "California's Radiologic Health Branch implements those requirements, including its own certification and reciprocity rules [12][13]. Navy and defense employers may layer their own technical-publication requirements on top."
+   ]
+  },
+  {
+   "id": "costs",
+   "h2": "What NDT training costs",
+   "paragraphs": [
+    "Published industry guidance puts classroom training for a single method at roughly USD 600–2,000, with examination fees of roughly USD 200–500 on top [20]. ASNT lists the initial IRRSP combination exam for radioactive-material and X-ray radiography at USD 260 for members and USD 285 for non-members [18]. Longer certificate and associate-degree programs cost more but bundle several methods, labs and job placement support, and community-college options are often eligible for financial aid.",
+    "Before paying, ask whether the price includes the practical hours, specimens and exam fees, whether the course is written to SNT-TC-1A, CP-189 or NAS 410, and whether the provider will document your hours in a form an employer's Level III can accept."
+   ]
+  },
+  {
+   "id": "choosing",
+   "h2": "How to choose an NDT training provider",
+   "paragraphs": [
+    "Use this checklist to compare schools, online courses and employer programs."
+   ],
+   "bullets": [
+    "Training hours that meet or exceed the SNT-TC-1A table for each method and level.",
+    "Hands-on labs with real-flaw specimens, not just slides and videos.",
+    "Instructors who hold ASNT Level III in the method they teach.",
+    "Documentation of hours suitable for an employer's written practice.",
+    "A path to OJT — employer partnerships, apprenticeships or placement support.",
+    "For radiography, preparation for IRRSP or the state radiographer exam.",
+    "Transparent total cost including exams, books and specimens."
+   ]
+  },
+  {
+   "id": "workforce",
+   "h2": "Why the timing is good",
+   "paragraphs": [
+    "NDT's workforce is ageing: the PQNDT salary and benefits survey put the average NDT technician's age at 47 [22]. As experienced technicians retire, employers across energy, aerospace, infrastructure and manufacturing need trained replacements, which is why so many now sponsor training, apprenticeships and on-the-job programs for motivated newcomers."
+   ]
+  },
+  {
+   "id": "plan",
+   "h2": "A practical plan for San Diego beginners",
+   "paragraphs": [
+    "One path that fits the local market:"
+   ],
+   "bullets": [
+    "Complete PT, MT and ET theory online, then a hands-on course in Orange County [10].",
+    "Apply for trainee or helper roles with ship repair and inspection contractors [1][5].",
+    "Earn Level II in at least three methods to compete for Navy inspector roles [3].",
+    "Add coatings inspection (AMPP CIP Level 1) to stand out for ship-repair QA work [7].",
+    "Keep a clean background and documentation if targeting naval nuclear or cleared roles [6].",
+    "Track every training hour and inspection in a personal logbook so your experience transfers cleanly between employers and contracts."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Are there NDT schools in San Diego?",
+   "a": "Most scheduled NDT schools are in Los Angeles and Orange County, such as Hellier Anaheim [10] and ASNT-GLAS classes [9]; AATA offers online training [8]."
+  },
+  {
+   "q": "What certifications do Navy NDT inspectors need in San Diego?",
+   "a": "One Navy posting requires current Level II certification in at least three of ET, MT, PT, UT, X-ray and temper etch [3]."
+  },
+  {
+   "q": "Who hires NDT inspectors in San Diego?",
+   "a": "Navy aviation and ship-repair activities, ship repair contractors such as Continental Tide and Delphinus Engineering, and defense manufacturers [1][3][5][6]."
+  },
+  {
+   "q": "Do shipyard NDT jobs require experience?",
+   "a": "Some do — one National City posting asked for five to ten years as an NDT QA inspector [1]."
+  },
+  {
+   "q": "Do radiographers need California certification?",
+   "a": "Radiographers without valid certification from another Agreement State or ASNT must obtain California certification [12]."
+  },
+  {
+   "q": "Is coatings inspection useful for NDT careers in San Diego?",
+   "a": "Yes — some ship repair inspection roles require AMPP/NACE Coating Inspector Program Level 1 within 24 months [7]."
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Los Angeles",
+   "href": "/training/los-angeles-ca"
+  },
+  {
+   "name": "Long Beach",
+   "href": "/training/long-beach-ca"
+  },
+  {
+   "name": "Phoenix",
+   "href": "/training/phoenix-az"
+  },
+  {
+   "name": "Tucson",
+   "href": "/training/tucson-az"
+  }
+ ],
+ "related": [
+  {
+   "label": "NDT jobs and careers in San Diego",
+   "href": "/careers/san-diego-ca"
+  },
+  {
+   "label": "NDT inspection services in San Diego",
+   "href": "/ndt-services/san-diego-ca"
+  },
+  {
+   "label": "NDT inspector salary guide",
+   "href": "/learn/ndt-inspector-salary-guide"
+  },
+  {
+   "label": "NDT certifications explained",
+   "href": "/blog/ndt-certifications-explained"
+  },
+  {
+   "label": "NDT career guide 2026",
+   "href": "/blog/ndt-career-guide-2026"
+  }
+ ],
+ "references": [
+  {
+   "title": "Continental Tide Defense Systems — NDT Inspector II (San Diego)",
+   "url": "https://jobs.buildsubmarines.com/jobs/576421717-ndt-inspector-ii-at-continental-tide-defense-system-inc"
+  },
+  {
+   "title": "Recruiter.com — Continental Tide NDT Inspector II (National City)",
+   "url": "https://jobs.recruiter.com/jobs/13764757009-ndt-inspector-ii"
+  },
+  {
+   "title": "ClearanceJobs — Navy Nondestructive Testing Mechanic Inspector, NAS San Diego",
+   "url": "https://www.clearancejobs.com/jobs/8581394/nondestructive-testing-mechanic-inspector"
+  },
+  {
+   "title": "ClearanceJobs — Navy Non-Destructive Testing Mechanic Inspector (aircraft components)",
+   "url": "https://www.clearancejobs.com/jobs/9061458/non-destructive-testing-mechanic-inspector"
+  },
+  {
+   "title": "Recruiter.com — Delphinus Engineering QA/NDT Level II inspector, San Diego",
+   "url": "https://jobs.recruiter.com/jobs/11407691714-ndt-level-2-inspector"
+  },
+  {
+   "title": "The Muse — Northrop Grumman Inspector 3, San Diego",
+   "url": "https://www.themuse.com/jobs/northropgrumman/inspector-3-20cbf4"
+  },
+  {
+   "title": "USAJOBS — Naval vessel repair inspection roles, Naval Station San Diego",
+   "url": "https://www.usajobs.gov/job/885451200"
+  },
+  {
+   "title": "Evident — Training members: American Aerospace Technical Academy",
+   "url": "https://ims.evidentscientific.com/en/training-members/american-aerospace-technical-academy"
+  },
+  {
+   "title": "AWS Long Beach/Orange County Section — ASNT-GLAS NDT classes at Don Bosco Technical Institute",
+   "url": "https://sections.aws.org/longbeach-orangecounty/?p=355"
+  },
+  {
+   "title": "Acuren — Inspection training (scheduled schools including Anaheim)",
+   "url": "https://acuren.com/inspection/inspection-training/"
+  },
+  {
+   "title": "CDPH Radiologic Health Branch — Industrial radiographer trainer application (CDPH 8219)",
+   "url": "https://Www.Cdph.Ca.gov/CDPH%20Document%20Library/ControlledForms/cdph8219.pdf"
+  },
+  {
+   "title": "Quality Magazine — California revises industrial radiographer certification",
+   "url": "https://www.qualitymag.com/articles/89660-california-revises-industrial-radiographer-certification"
+  },
+  {
+   "title": "CDPH — Industrial radiography licensing guide",
+   "url": "https://www.cdph.ca.gov:443/Programs/CEH/DRSEM/CDPH%20Document%20Library/RHB/RML/IndustrialRadiographyGuide.pdf"
+  },
+  {
+   "title": "Open Exam Prep — SNT-TC-1A recommended training hours by method and level",
+   "url": "https://open-exam-prep.com/study-guides/asnt-ndt-iii/ndt-training/training-program-design"
+  },
+  {
+   "title": "Materials Evaluation — VT training and experience comparison (SNT-TC-1A, CP-189, ISO 9712, AWS)",
+   "url": "https://source.asnt.org/22d6m27/59"
+  },
+  {
+   "title": "eCFR — 10 CFR 34.43 Training (industrial radiography)",
+   "url": "https://www.ecfr.gov/current/title-10/chapter-I/part-34/subpart-D/section-34.43"
+  },
+  {
+   "title": "GPO — 10 CFR 34.43 text (radiographer training, OJT and certification)",
+   "url": "https://www.gpo.gov/fdsys/pkg/CFR-2010-title10-vol1/pdf/CFR-2010-title10-vol1-sec34-43.pdf"
+  },
+  {
+   "title": "ASNT — Industrial Radiography Radiation Safety Personnel (IRRSP) certification",
+   "url": "https://certification.asnt.org/certification/irrsp"
+  },
+  {
+   "title": "AWS — Radiation Safety eLearning course (40 hours toward IRRSP)",
+   "url": "https://www.aws.org/certification-and-education/education/self-paced-online-learning/radiation-safety-course"
+  },
+  {
+   "title": "Rigzone — What certifications are needed for an NDT technician role",
+   "url": "https://www.rigzone.com/insights/educational-pathways-5/what-certifications-are-needed-for-an-ndt-technician-role-674"
+  },
+  {
+   "title": "Quality Magazine — NDT training programs: components and considerations (Donald Booth)",
+   "url": "https://www.qualitymag.com/articles/97194-ndt-training-programs-components-and-considerations"
+  },
+  {
+   "title": "ASNT — Implementing a successful NDT education program (PQNDT survey: average technician age 47)",
+   "url": "https://www.asnt.org/standards-publications/blog/implementing-a-successful-ndt-education-program-planning-design-resources-curriculum-and-evaluation"
+  }
+ ]
+}

@@ -11,6 +11,7 @@ def texts(c):
         yield s['h2']; yield from s['paragraphs']; yield from s.get('bullets', [])
         if s.get('table'): yield from (x for r in s['table']['rows'] for x in r)
     for f in c['faqs']: yield f['q']; yield f['a']
+    for sc in c.get('schools', []): yield sc['name']; yield sc['offers']; yield sc['location']; yield sc['type']
 files = sorted(glob.glob(D + '/*.json'))
 want = set(sys.argv[1:])
 ok = True; seen = set()

@@ -1,0 +1,380 @@
+{
+ "slug": "phoenix-az",
+ "city": "Phoenix",
+ "region": "Arizona",
+ "country": "United States",
+ "countrySlug": "united-states",
+ "wave": 1,
+ "updated": "2026-11-23",
+ "title": "NDT Training in Phoenix, AZ: Schools, Costs, Radiographer Rules and Jobs (2026 Guide)",
+ "metaTitle": "NDT Training in Phoenix, AZ — Schools, Costs & Certification",
+ "description": "NDT training for Phoenix: War2In, Pima Community College, online options, costs, SNT-TC-1A hours, Arizona radiographer certification rules and local NDT jobs.",
+ "quickAnswer": "Phoenix-area trainees have two Arizona programs to consider: **War2In**, a nondestructive examination trade school and apprenticeship in Bellemont that trains students to **Level 2 in multiple methods under ASNT CP-189** [1][2], and **Pima Community College** in Tucson, which offers an evening aviation NDT certification [3]. Online providers fill gaps for working adults [10]. Arizona requires industrial radiographers to hold certification from an independent certifying organization and to **recertify every five years** [7], and local employers such as TEAM advertise Level II radiographer roles in Phoenix [6].",
+ "keyFacts": [
+  {
+   "label": "In-state programs",
+   "value": "War2In (Bellemont); Pima Community College aviation NDT (Tucson) [1][3]"
+  },
+  {
+   "label": "War2In outcome",
+   "value": "Level 2 in multiple methods per ASNT CP-189 [1]"
+  },
+  {
+   "label": "Radiographer rule",
+   "value": "Certification required; recertify every five years [7]"
+  },
+  {
+   "label": "Sample local pay",
+   "value": "NDT technician postings at $17.75–24.25/hr in Phoenix [6]"
+  }
+ ],
+ "industries": [
+  "Aerospace and defense",
+  "Semiconductor and electronics manufacturing",
+  "Power generation",
+  "Construction and structural steel",
+  "Pipelines and utilities",
+  "Mining"
+ ],
+ "schools": [
+  {
+   "name": "War2In (Warrior-to-Inspector)",
+   "url": "http://www.war2in.org",
+   "location": "Bellemont, AZ (near Flagstaff)",
+   "offers": "Three-semester NDE trade school and apprenticeship; trains and certifies students to Level 2 in multiple methods per ASNT CP-189; WIOA approved [1][2]",
+   "type": "Trade school / apprenticeship"
+  },
+  {
+   "name": "Pima Community College — Aviation NDT Certification",
+   "url": "https://www.pima.edu/academics-programs/degrees-certificates/imc/aviation/level-i/",
+   "location": "Tucson, AZ",
+   "offers": "Evening aviation NDT program, 35 weeks; stackable with the NDT PT Level II certificate [3][4]",
+   "type": "Community college"
+  },
+  {
+   "name": "Coconino Community College (with War2In)",
+   "url": "https://cm.aws.org/magazines-and-media/inspection-trends/it-may-2023-feat-02-warriors-to-inspectors",
+   "location": "Flagstaff, AZ",
+   "offers": "45 college-transferable credits for War2In's three-semester program [2]",
+   "type": "Community college"
+  },
+  {
+   "name": "American Institute of Nondestructive Testing (online)",
+   "url": "https://marketplace.aviationweek.com/suppliers/american-institute-nondestructive-testing/",
+   "location": "Online / on-site",
+   "offers": "Online, on-site and classroom training in RT, UT, ET, MT, PT, VT and CR/DDA radiography [10]",
+   "type": "Online training provider"
+  }
+ ],
+ "sections": [
+  {
+   "id": "overview",
+   "h2": "NDT training in Phoenix: what is available",
+   "paragraphs": [
+    "Phoenix is a large and fast-growing industrial market, but its NDT training options are more spread out than in Houston or Los Angeles. Arizona residents typically choose between an intensive in-state program outside the metro, a community-college certificate in Tucson, online theory with employer-provided practical training, or direct hiring as a trainee.",
+    "The good news for Phoenix-area candidates is that Arizona's programs are unusually career-focused. One trains students all the way to Level 2 in several methods, and another is designed around evening schedules for people who already work."
+   ]
+  },
+  {
+   "id": "war2in",
+   "h2": "War2In: a trade school built for Level 2 outcomes",
+   "paragraphs": [
+    "War2In — short for Warrior-to-Inspector — is a nondestructive examination trade school and apprenticeship program in Bellemont, near Flagstaff. It offers a three-semester program open to both civilians and transitioning military students [2]. According to Arizona's eligible training provider list, students are trained, qualified and certified to Level 2 in multiple NDT methods in compliance with ASNT CP-189, and the program is WIOA approved [1].",
+    "Students can also enrol through Coconino Community College to receive 45 college-transferable credits for the three-semester program [2]. The school does not train directly for the AWS Certified Welding Inspector credential, but many of its courses complement a CWI career, and many CWIs hold NDT certifications alongside their CWI [2].",
+    "For Phoenix residents, Bellemont is about a two-and-a-half-hour drive north, so the program suits people willing to relocate temporarily in exchange for a direct route to multi-method Level 2 status — a credential that typically takes much longer to earn through employer OJT alone."
+   ]
+  },
+  {
+   "id": "pima",
+   "h2": "Pima Community College: aviation NDT in the evenings",
+   "paragraphs": [
+    "Pima Community College in Tucson offers an Aviation: Nondestructive Testing Certification delivered in person during evening hours. The program runs 35 weeks and is stackable with the college's NDT PT Level II certificate; certification itself is provided through an employer-based process or ASNT, with on-the-job hours that vary by competency module [3]. The college notes that NDT certification can widen career opportunities in aviation [4].",
+    "Tucson is roughly 110 miles from central Phoenix, so this option fits Phoenix residents who can commute part of the week or who are considering aerospace and aircraft maintenance jobs in southern Arizona."
+   ]
+  },
+  {
+   "id": "phoenix-industries",
+   "h2": "Who hires NDT technicians in Phoenix",
+   "paragraphs": [
+    "Phoenix's NDT employers span aerospace and defense manufacturing and maintenance, power generation, structural steel construction for the region's building boom, utilities and pipelines, and the large electronics and semiconductor manufacturing sector. Inspection service companies also run crews out of Phoenix to serve refinery, power and construction projects across the Southwest.",
+    "Public job postings give a sense of entry pay and demand. In one recent listing set, TEAM advertised NDT/NDE technician roles in Phoenix at $17.75–24.25 per hour and separately sought Level II radiographers [6]. Pay rises quickly with Level II certification in UT or RT, with advanced methods such as phased array, and with travel or shutdown work. Arizona State University's engineering school also promotes NDT as a pathway, noting that average NDT salaries compare well with many entry-level roles requiring traditional degrees [5]."
+   ]
+  },
+  {
+   "id": "arizona-radiography",
+   "h2": "Arizona's radiographer certification rules",
+   "paragraphs": [
+    "Arizona regulates radiation through the Department of Health Services. For industrial X-ray radiography, the state's rules require a registrant to keep proof of each radiographer's certification at the job site, to ensure a radiographer has obtained initial certification or recertification within the last five years, and to let an uncertified radiographer work only as a radiographer's assistant until certified [7]. Radiographers must recertify every five years, either by passing an approved certification exam again or by showing active practice plus continuing education [7].",
+    "For sealed-source (gamma) radiography, a license applicant must affirm that anyone acting as an industrial radiographer is certified in radiation safety by a certifying organization before being allowed to work [8]. At temporary job sites, a radiographer must be accompanied by at least one other qualified radiographer or radiographer's assistant; radiography with only one qualified person present is prohibited [9]."
+   ]
+  },
+  {
+   "id": "first-job",
+   "h2": "What a first NDT job in Phoenix looks like",
+   "paragraphs": [
+    "Most new technicians in Phoenix start as trainees or helpers on an inspection crew. Typical early tasks include preparing surfaces, running penetrant and magnetic particle tests under supervision, measuring wall thickness with ultrasonic gauges, documenting results and helping set up radiographic shots. Summer heat is a real factor on outdoor work, so crews often start very early and plan exposures and field work around the hottest hours.",
+    "Trainees who show they can follow procedures exactly, keep clean records and work safely are the ones employers invest in. Within the first year, that usually means sponsorship for Level II in PT, MT and VT, followed by UT or radiation-safety training once the employer has a role that needs it."
+   ]
+  },
+  {
+   "id": "online",
+   "h2": "Online and hybrid options for working adults",
+   "paragraphs": [
+    "Because Phoenix's in-person programs are outside the metro, online theory courses are a practical option for working adults. National providers such as the American Institute of Nondestructive Testing offer online, on-site and classroom training across RT, UT, ET, MT, PT and VT, including computed and digital radiography [10]. Online theory counts toward classroom hours only if your employer's written practice accepts it, and you will still need hands-on practice and supervised experience before certification.",
+    "A sensible hybrid is to complete PT, MT and VT theory online, find a trainee role with a Phoenix inspection company, and then add UT or RT once the employer can support practical training."
+   ]
+  },
+  {
+   "id": "how-certification-works",
+   "h2": "How NDT certification actually works for Phoenix trainees",
+   "paragraphs": [
+    "The most common misunderstanding about NDT training is that a school certifies you. In the United States, the documents most employers follow are ASNT's Recommended Practice SNT-TC-1A, the ANSI/ASNT CP-189 standard and the CP-105 topical outlines [18]. Under SNT-TC-1A, certification is employer-based: a school or online course supplies the classroom hours, but your employer's written practice, its Level III and your documented on-the-job experience are what turn training into a certification. Training programs therefore combine formal classroom or online theory with on-the-job training (OJT) performed in a field or lab setting [18].",
+    "In practice, a new technician in any city follows the same ladder: complete Level I and then Level II classroom hours for a method, log supervised experience, pass the employer's general, specific and practical examinations and a vision test, and receive Level II certification in that method. Level III — the person who writes procedures, approves techniques and certifies others — requires additional experience and, for most employers, the ASNT NDT Level III examinations."
+   ]
+  },
+  {
+   "id": "training-hours",
+   "h2": "Training hours you will need by method",
+   "paragraphs": [
+    "SNT-TC-1A publishes recommended minimum classroom hours by method and level for high-school-educated candidates [11]. Employers can adopt stricter numbers in their written practice, and aerospace employers working to NAS 410 or customers with their own specifications often do. Visual testing shows the scale of supervised experience involved: SNT-TC-1A recommends 8 training hours for VT Level I and 16 more for Level II, with 70 and 140 hours of experience in the method respectively [12]."
+   ],
+   "table": {
+    "caption": "SNT-TC-1A recommended classroom training hours (high school graduate)",
+    "head": [
+     "Method",
+     "Level I hours",
+     "Additional for Level II"
+    ],
+    "rows": [
+     [
+      "Ultrasonic testing (UT)",
+      "40",
+      "40"
+     ],
+     [
+      "Radiographic testing (RT)",
+      "40",
+      "40"
+     ],
+     [
+      "Eddy current testing (ET)",
+      "40",
+      "40"
+     ],
+     [
+      "Magnetic particle testing (MT)",
+      "12",
+      "8"
+     ],
+     [
+      "Liquid penetrant testing (PT)",
+      "4",
+      "8"
+     ],
+     [
+      "Visual testing (VT)",
+      "8",
+      "16"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "radiography-rules",
+   "h2": "Industrial radiography: the extra licensing layer in Phoenix",
+   "paragraphs": [
+    "Radiography is the one method where federal and state radiation-safety law sits on top of SNT-TC-1A. Under 10 CFR 34.43, a licensee may not let anyone act as a radiographer until the person has received training in the required radiation-safety subjects, completed at least two months of on-the-job training and been certified through a radiographer certification program by a certifying entity [13][14]. ASNT's Industrial Radiography Radiation Safety Personnel (IRRSP) program is one such certifying entity; it combines a computer-based exam with an employer-conducted practical exam and vision check, and many states recognize it [15]. Online radiation-safety courses such as AWS's roughly 40-hour eLearning module can supply the classroom portion, but site-specific training from the employer is still required [16].",
+    "In Arizona, those federal concepts are implemented through the Department of Health Services rules described above: certification by an independent certifying organization, proof of certification at the job site and five-year recertification [7][8]. Trainees who start as radiographer's assistants should confirm which certification exam their employer prefers before booking."
+   ]
+  },
+  {
+   "id": "costs",
+   "h2": "What NDT training costs",
+   "paragraphs": [
+    "Published industry guidance puts classroom training for a single method at roughly USD 600–2,000, with examination fees of roughly USD 200–500 on top [17]. ASNT lists the initial IRRSP combination exam for radioactive-material and X-ray radiography at USD 260 for members and USD 285 for non-members [15]. Longer certificate and associate-degree programs cost more but bundle several methods, labs and job placement support, and community-college options are often eligible for financial aid.",
+    "Before paying, ask whether the price includes the practical hours, specimens and exam fees, whether the course is written to SNT-TC-1A, CP-189 or NAS 410, and whether the provider will document your hours in a form an employer's Level III can accept."
+   ]
+  },
+  {
+   "id": "choosing",
+   "h2": "How to choose an NDT training provider",
+   "paragraphs": [
+    "Use this checklist to compare schools, online courses and employer programs."
+   ],
+   "bullets": [
+    "Training hours that meet or exceed the SNT-TC-1A table for each method and level.",
+    "Hands-on labs with real-flaw specimens, not just slides and videos.",
+    "Instructors who hold ASNT Level III in the method they teach.",
+    "Documentation of hours suitable for an employer's written practice.",
+    "A path to OJT — employer partnerships, apprenticeships or placement support.",
+    "For radiography, preparation for IRRSP or the state radiographer exam.",
+    "Transparent total cost including exams, books and specimens."
+   ]
+  },
+  {
+   "id": "workforce",
+   "h2": "Why the timing is good",
+   "paragraphs": [
+    "NDT's workforce is ageing: the PQNDT salary and benefits survey put the average NDT technician's age at 47 [19]. As experienced technicians retire, employers across energy, aerospace, infrastructure and manufacturing need trained replacements, which is why so many now sponsor training, apprenticeships and on-the-job programs for motivated newcomers."
+   ]
+  },
+  {
+   "id": "plan",
+   "h2": "Choosing your route from Phoenix",
+   "paragraphs": [
+    "Match the route to your situation:"
+   ],
+   "bullets": [
+    "Want multi-method Level 2 fast and can relocate: War2In's three-semester program [1][2].",
+    "Want aviation work and need evening classes: Pima Community College [3].",
+    "Need to keep earning now: online PT/MT/VT theory plus a trainee job in Phoenix [10].",
+    "Interested in radiography: plan for Arizona certification and five-year recertification [7].",
+    "Veteran or transitioning service member: ask about programs designed for military students [2]."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Where can I get NDT training near Phoenix?",
+   "a": "In Arizona, War2In in Bellemont and Pima Community College in Tucson offer NDT programs [1][3]; online providers cover theory for working adults [10]."
+  },
+  {
+   "q": "Does War2In certify students?",
+   "a": "Arizona's training provider listing says War2In trains, qualifies and certifies students to Level 2 in multiple methods in compliance with ASNT CP-189 [1]."
+  },
+  {
+   "q": "Do radiographers need certification in Arizona?",
+   "a": "Yes. Arizona requires certification by an independent certifying organization and recertification every five years; uncertified individuals work only as assistants [7]."
+  },
+  {
+   "q": "How much do NDT technicians earn in Phoenix?",
+   "a": "Entry-level postings have listed $17.75–24.25 per hour [6], with higher pay for Level II, advanced methods and travel work."
+  },
+  {
+   "q": "How long is Pima Community College's NDT program?",
+   "a": "Its aviation NDT certification runs 35 weeks in the evenings [3]."
+  },
+  {
+   "q": "Can veterans get NDT training in Arizona?",
+   "a": "War2In is open to civilians and transitioning military students [2]."
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Tucson",
+   "href": "/training/tucson-az"
+  },
+  {
+   "name": "Los Angeles",
+   "href": "/training/los-angeles-ca"
+  },
+  {
+   "name": "San Diego",
+   "href": "/training/san-diego-ca"
+  },
+  {
+   "name": "Salt Lake City",
+   "href": "/training/salt-lake-city-ut"
+  }
+ ],
+ "related": [
+  {
+   "label": "NDT jobs and careers in Phoenix",
+   "href": "/careers/phoenix-az"
+  },
+  {
+   "label": "NDT inspection services in Phoenix",
+   "href": "/ndt-services/phoenix-az"
+  },
+  {
+   "label": "NDT inspector salary guide",
+   "href": "/learn/ndt-inspector-salary-guide"
+  },
+  {
+   "label": "NDT certifications explained",
+   "href": "/blog/ndt-certifications-explained"
+  },
+  {
+   "label": "NDT career guide 2026",
+   "href": "/blog/ndt-career-guide-2026"
+  }
+ ],
+ "references": [
+  {
+   "title": "ARIZONA@WORK — War2In Nondestructive Testing & Welding Inspection Program",
+   "url": "https://www.azjobconnection.gov/etp/public/institution_programs/23569"
+  },
+  {
+   "title": "AWS Inspection Trends — From Warrior to Inspector (War2In)",
+   "url": "https://cm.aws.org/magazines-and-media/inspection-trends/it-may-2023-feat-02-warriors-to-inspectors"
+  },
+  {
+   "title": "ARIZONA@WORK — Pima Community College Aviation: Nondestructive Testing Certification",
+   "url": "https://www.azjobconnection.gov/etp/public/institution_programs/23745"
+  },
+  {
+   "title": "Pima Community College — Aviation NDT Level I",
+   "url": "https://www.pima.edu/academics-programs/degrees-certificates/imc/aviation/level-i/"
+  },
+  {
+   "title": "Arizona State University — Non-Destructive Testing career pathway",
+   "url": "https://c2d.engineering.asu.edu/home/non-destructive-testing-ndt/"
+  },
+  {
+   "title": "ZipRecruiter — NDT inspector jobs in Phoenix, AZ",
+   "url": "https://www.ziprecruiter.com/Jobs/Non-Destructive-Testing-Inspector/-in-Phoenix,AZ/3"
+  },
+  {
+   "title": "Arizona Administrative Code R9-7-1146 — Training (industrial X-ray radiography)",
+   "url": "https://www.law.cornell.edu/regulations/arizona/Ariz-Admin-Code-SS-R9-7-1146"
+  },
+  {
+   "title": "Arizona Administrative Code R9-7-502 — License requirements (sealed-source radiography)",
+   "url": "https://www.law.cornell.edu/regulations/arizona/Ariz-Admin-Code-SS-R9-7-502"
+  },
+  {
+   "title": "Arizona Administrative Code R9-7-510 — Radiographic operations",
+   "url": "https://regulations.justia.com/states/arizona/title-9/chapter-7/article-5/r9-7-510"
+  },
+  {
+   "title": "Aviation Week Marketplace — American Institute of Nondestructive Testing",
+   "url": "https://marketplace.aviationweek.com/suppliers/american-institute-nondestructive-testing/"
+  },
+  {
+   "title": "Open Exam Prep — SNT-TC-1A recommended training hours by method and level",
+   "url": "https://open-exam-prep.com/study-guides/asnt-ndt-iii/ndt-training/training-program-design"
+  },
+  {
+   "title": "Materials Evaluation — VT training and experience comparison (SNT-TC-1A, CP-189, ISO 9712, AWS)",
+   "url": "https://source.asnt.org/22d6m27/59"
+  },
+  {
+   "title": "eCFR — 10 CFR 34.43 Training (industrial radiography)",
+   "url": "https://www.ecfr.gov/current/title-10/chapter-I/part-34/subpart-D/section-34.43"
+  },
+  {
+   "title": "GPO — 10 CFR 34.43 text (radiographer training, OJT and certification)",
+   "url": "https://www.gpo.gov/fdsys/pkg/CFR-2010-title10-vol1/pdf/CFR-2010-title10-vol1-sec34-43.pdf"
+  },
+  {
+   "title": "ASNT — Industrial Radiography Radiation Safety Personnel (IRRSP) certification",
+   "url": "https://certification.asnt.org/certification/irrsp"
+  },
+  {
+   "title": "AWS — Radiation Safety eLearning course (40 hours toward IRRSP)",
+   "url": "https://www.aws.org/certification-and-education/education/self-paced-online-learning/radiation-safety-course"
+  },
+  {
+   "title": "Rigzone — What certifications are needed for an NDT technician role",
+   "url": "https://www.rigzone.com/insights/educational-pathways-5/what-certifications-are-needed-for-an-ndt-technician-role-674"
+  },
+  {
+   "title": "Quality Magazine — NDT training programs: components and considerations (Donald Booth)",
+   "url": "https://www.qualitymag.com/articles/97194-ndt-training-programs-components-and-considerations"
+  },
+  {
+   "title": "ASNT — Implementing a successful NDT education program (PQNDT survey: average technician age 47)",
+   "url": "https://www.asnt.org/standards-publications/blog/implementing-a-successful-ndt-education-program-planning-design-resources-curriculum-and-evaluation"
+  }
+ ]
+}

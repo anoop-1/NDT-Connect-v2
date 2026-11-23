@@ -1,0 +1,389 @@
+{
+ "slug": "reno-nv",
+ "city": "Reno",
+ "region": "Nevada",
+ "country": "United States",
+ "countrySlug": "united-states",
+ "wave": 1,
+ "updated": "2026-11-23",
+ "title": "NDT Training in Reno, NV: Courses, Rope Access, Costs, Certification and Jobs (2026)",
+ "metaTitle": "NDT Training in Reno, NV — Courses, Costs & Certification",
+ "description": "NDT training for Reno: MISTRAS Ropeworks, regional colleges, online options, costs, SNT-TC-1A hours, Nevada radiography rules (NAC 459) and local NDT jobs.",
+ "quickAnswer": "Reno has no dedicated NDT college program, but it is a niche hub for **rope access and wind-turbine blade inspection**: MISTRAS's Reno branch inspects utility-scale wind blades and towers and hosts **MISTRAS Ropeworks Training** for rope access and tower climbing [1]. Method courses come from online providers such as **AATA** [10] and regional colleges like **Linn-Benton** in Oregon [11]. Nevada adopts the federal industrial-radiography rules (10 CFR Part 34) by reference in **NAC 459.737** [6], and local employers advertise NDT roles requiring Level II in UT, RT, MT and PT [2].",
+ "keyFacts": [
+  {
+   "label": "Local specialty",
+   "value": "Rope access and wind blade inspection — MISTRAS Ropeworks Training [1]"
+  },
+  {
+   "label": "Method training",
+   "value": "Online (e.g. AATA) and regional colleges [10][11]"
+  },
+  {
+   "label": "Radiography rules",
+   "value": "NAC 459.737 adopts 10 CFR Part 34 [6]"
+  },
+  {
+   "label": "Senior pay example",
+   "value": "NDT project manager, Reno: $95K–115K, Level II UT/RT/MT/PT [2]"
+  }
+ ],
+ "industries": [
+  "Wind energy",
+  "Construction and structural steel",
+  "Manufacturing and data centres",
+  "Mining",
+  "Power and utilities",
+  "Aerospace and defense"
+ ],
+ "schools": [
+  {
+   "name": "MISTRAS Ropeworks Training",
+   "url": "https://www.mistrasgroup.com/about-us/branches/reno-nv-usa",
+   "location": "Reno, NV",
+   "offers": "Rope access, tower climbing and equipment training at MISTRAS's Reno branch [1]",
+   "type": "Industry training centre"
+  },
+  {
+   "name": "American Aerospace Technical Academy (online)",
+   "url": "https://ims.evidentscientific.com/en/training-members/american-aerospace-technical-academy",
+   "location": "Online (Los Angeles-based)",
+   "offers": "Nonprofit NDT academy offering online training for those who cannot travel [10]",
+   "type": "Online training provider"
+  },
+  {
+   "name": "Linn-Benton Community College — NDT and Evaluation",
+   "url": "https://linnbenton.edu/educational-options/applied-industrial-tech-and-transportation/non-destructive-testing-and-evaluation/degrees.php",
+   "location": "Albany, OR",
+   "offers": "AAS in NDT and Evaluation; graduates Level I certified to ASNT standards [11]",
+   "type": "Community college"
+  },
+  {
+   "name": "Foothill College (with AATA)",
+   "url": "https://catalog.foothill.edu/degrees-certificates/apprenticeship-non-destructive-testing-technician/",
+   "location": "California Bay Area / AATA sites",
+   "offers": "Certificate of Achievement in NDT Technician as AATA's local education agency [12]",
+   "type": "Community college"
+  }
+ ],
+ "sections": [
+  {
+   "id": "overview",
+   "h2": "NDT training in Reno: a small market with a specialty",
+   "paragraphs": [
+    "Reno's industrial economy has grown quickly, with manufacturing, logistics, data centres, construction and mining across northern Nevada. NDT demand has grown with it, but formal NDT education has not followed: there is no dedicated NDT program at a Reno college. Trainees therefore combine online method courses, regional colleges in neighbouring states and on-the-job training.",
+    "What Reno does have is unusual. It is home to a significant rope-access and wind-blade inspection operation, which makes it one of the more interesting places in the West to start a career that combines NDT with working at height."
+   ]
+  },
+  {
+   "id": "mistras",
+   "h2": "Rope access and wind blade inspection with MISTRAS",
+   "paragraphs": [
+    "MISTRAS Group's Reno branch specializes in inspection and maintenance of utility-scale wind turbine blades and towers using rope access, offering nondestructive testing inspection, blade repair and maintenance and round-the-clock condition monitoring [1]. The same location hosts MISTRAS Ropeworks Training, which provides training in rope access, tower climbing and equipment [1].",
+    "For trainees, rope access certification combined with NDT methods such as visual, ultrasonic and composite inspection opens work in wind energy, bridges, industrial plants and other places where scaffolding is impractical. Wind blades are made of composites, so composite inspection techniques are especially valuable here."
+   ]
+  },
+  {
+   "id": "local-jobs",
+   "h2": "NDT jobs in Reno and northern Nevada",
+   "paragraphs": [
+    "Local job postings show both entry and senior demand. Certerra, a national testing, inspection and certification provider, has recruited an NDT project manager in Reno with Level II certifications in UT, RT, MT and PT required, at a listed $95,000–115,000 [2][3]. Staffing firms have advertised CWI/NDT inspector roles for structural steel inspection in Reno, requiring current CWI or NDT certifications and structural steel experience [4].",
+    "Those postings illustrate a common pattern in growing construction markets: structural steel and welding inspection create steady entry-level work, while managers with multi-method Level II and business skills are scarce and well paid. Combining NDT methods with the AWS CWI credential is a strong strategy in northern Nevada, where the same inspectors are often asked to cover welding inspection, NDT and reporting on a single project."
+   ]
+  },
+  {
+   "id": "regional-training",
+   "h2": "Where Reno residents get method training",
+   "paragraphs": [
+    "For SNT-TC-1A classroom hours, many Reno residents use online providers. The American Aerospace Technical Academy, a Los Angeles-based nonprofit, offers online training for people who cannot travel [10]. Regional colleges are another option for those willing to relocate: Linn-Benton Community College in Oregon offers an associate of applied science in NDT and Evaluation whose graduates are Level I certified to ASNT standards [11], and Foothill College in California awards an NDT Technician certificate as AATA's local education agency [12].",
+    "Whichever route you choose, the employer still provides supervised experience and certifies you under its written practice, so it is worth contacting Reno inspection companies early to understand which courses they accept."
+   ]
+  },
+  {
+   "id": "composites",
+   "h2": "Composite and wind blade inspection skills",
+   "paragraphs": [
+    "Wind turbine blades are large composite structures, and inspecting them calls for different skills from weld inspection on steel. Technicians look for delamination, disbonds, cracks in the leading and trailing edges, lightning damage and erosion, using close visual inspection, tap testing, ultrasonic methods suited to composites and, increasingly, drone imagery for initial screening. Repairs require understanding of laminates, resins and cure.",
+    "Because MISTRAS's Reno branch combines blade inspection, repair and rope access [1], Reno is a natural place to build those skills. Technicians who can both inspect and repair composites while working at height are in demand across the wind industry, and the same skills transfer to aerospace and marine composites."
+   ]
+  },
+  {
+   "id": "first-year",
+   "h2": "What your first year in Reno might look like",
+   "paragraphs": [
+    "A realistic first year for a Reno trainee might begin with online PT, MT and VT theory and a helper role on a construction or structural steel inspection crew, where visual and magnetic particle work is common. Within a few months, a trainee who shows reliability is usually sponsored for Level II in those methods, and may add ultrasonic training to inspect welds and measure thickness.",
+    "Trainees interested in wind and at-height work can add rope access certification and composite inspection experience. By the end of the first year, a combination of two or three Level II methods plus rope access or a CWI path gives a strong foundation in the northern Nevada market."
+   ]
+  },
+  {
+   "id": "nv-radiography",
+   "h2": "Radiography rules in Nevada",
+   "paragraphs": [
+    "Nevada regulates radiation through the Radiation Control Program of the Division of Public and Behavioral Health. Its guidance lists NAC 459.737 and 459.738 as the provisions applicable to industrial radiography licensees [5]. NAC 459.737 adopts Part 34 of Title 10 of the Code of Federal Regulations by reference, with Nevada-specific substitutions, for licensees using sealed sources in industrial radiography [6], and a radiation safety officer for an industrial radiography licence must meet the training and experience requirements of 10 CFR 34.42 [7].",
+    "Nevada's program also notes that reciprocity does not apply to X-ray use: bringing an X-ray machine into Nevada from another jurisdiction requires registering it with the program, including shielding plans and a two-day notice [8]. The state's fee schedule lists an industrial radiography licence at $5,500 [9]. These details matter mostly to employers, but they explain why radiography roles in Reno are concentrated in established companies."
+   ]
+  },
+  {
+   "id": "how-certification-works",
+   "h2": "How NDT certification actually works for Reno trainees",
+   "paragraphs": [
+    "The most common misunderstanding about NDT training is that a school certifies you. In the United States, the documents most employers follow are ASNT's Recommended Practice SNT-TC-1A, the ANSI/ASNT CP-189 standard and the CP-105 topical outlines [20]. Under SNT-TC-1A, certification is employer-based: a school or online course supplies the classroom hours, but your employer's written practice, its Level III and your documented on-the-job experience are what turn training into a certification. Training programs therefore combine formal classroom or online theory with on-the-job training (OJT) performed in a field or lab setting [20].",
+    "In practice, a new technician in any city follows the same ladder: complete Level I and then Level II classroom hours for a method, log supervised experience, pass the employer's general, specific and practical examinations and a vision test, and receive Level II certification in that method. Level III — the person who writes procedures, approves techniques and certifies others — requires additional experience and, for most employers, the ASNT NDT Level III examinations."
+   ]
+  },
+  {
+   "id": "training-hours",
+   "h2": "Training hours you will need by method",
+   "paragraphs": [
+    "SNT-TC-1A publishes recommended minimum classroom hours by method and level for high-school-educated candidates [13]. Employers can adopt stricter numbers in their written practice, and aerospace employers working to NAS 410 or customers with their own specifications often do. Visual testing shows the scale of supervised experience involved: SNT-TC-1A recommends 8 training hours for VT Level I and 16 more for Level II, with 70 and 140 hours of experience in the method respectively [14]."
+   ],
+   "table": {
+    "caption": "SNT-TC-1A recommended classroom training hours (high school graduate)",
+    "head": [
+     "Method",
+     "Level I hours",
+     "Additional for Level II"
+    ],
+    "rows": [
+     [
+      "Ultrasonic testing (UT)",
+      "40",
+      "40"
+     ],
+     [
+      "Radiographic testing (RT)",
+      "40",
+      "40"
+     ],
+     [
+      "Eddy current testing (ET)",
+      "40",
+      "40"
+     ],
+     [
+      "Magnetic particle testing (MT)",
+      "12",
+      "8"
+     ],
+     [
+      "Liquid penetrant testing (PT)",
+      "4",
+      "8"
+     ],
+     [
+      "Visual testing (VT)",
+      "8",
+      "16"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "radiography-rules",
+   "h2": "Industrial radiography: the extra licensing layer in Reno",
+   "paragraphs": [
+    "Radiography is the one method where federal and state radiation-safety law sits on top of SNT-TC-1A. Under 10 CFR 34.43, a licensee may not let anyone act as a radiographer until the person has received training in the required radiation-safety subjects, completed at least two months of on-the-job training and been certified through a radiographer certification program by a certifying entity [15][16]. ASNT's Industrial Radiography Radiation Safety Personnel (IRRSP) program is one such certifying entity; it combines a computer-based exam with an employer-conducted practical exam and vision check, and many states recognize it [17]. Online radiation-safety courses such as AWS's roughly 40-hour eLearning module can supply the classroom portion, but site-specific training from the employer is still required [18].",
+    "In Nevada, those federal training and certification requirements apply directly because NAC 459.737 adopts 10 CFR Part 34 by reference [6]."
+   ]
+  },
+  {
+   "id": "costs",
+   "h2": "What NDT training costs",
+   "paragraphs": [
+    "Published industry guidance puts classroom training for a single method at roughly USD 600–2,000, with examination fees of roughly USD 200–500 on top [19]. ASNT lists the initial IRRSP combination exam for radioactive-material and X-ray radiography at USD 260 for members and USD 285 for non-members [17]. Longer certificate and associate-degree programs cost more but bundle several methods, labs and job placement support, and community-college options are often eligible for financial aid.",
+    "Before paying, ask whether the price includes the practical hours, specimens and exam fees, whether the course is written to SNT-TC-1A, CP-189 or NAS 410, and whether the provider will document your hours in a form an employer's Level III can accept."
+   ]
+  },
+  {
+   "id": "choosing",
+   "h2": "How to choose an NDT training provider",
+   "paragraphs": [
+    "Use this checklist to compare schools, online courses and employer programs."
+   ],
+   "bullets": [
+    "Training hours that meet or exceed the SNT-TC-1A table for each method and level.",
+    "Hands-on labs with real-flaw specimens, not just slides and videos.",
+    "Instructors who hold ASNT Level III in the method they teach.",
+    "Documentation of hours suitable for an employer's written practice.",
+    "A path to OJT — employer partnerships, apprenticeships or placement support.",
+    "For radiography, preparation for IRRSP or the state radiographer exam.",
+    "Transparent total cost including exams, books and specimens."
+   ]
+  },
+  {
+   "id": "workforce",
+   "h2": "Why the timing is good",
+   "paragraphs": [
+    "NDT's workforce is ageing: the PQNDT salary and benefits survey put the average NDT technician's age at 47 [21]. As experienced technicians retire, employers across energy, aerospace, infrastructure and manufacturing need trained replacements, which is why so many now sponsor training, apprenticeships and on-the-job programs for motivated newcomers."
+   ]
+  },
+  {
+   "id": "plan",
+   "h2": "Building an NDT career from Reno",
+   "paragraphs": [
+    "A route that fits the northern Nevada market:"
+   ],
+   "bullets": [
+    "Complete VT, PT and MT theory online [10] and seek a trainee role in structural steel inspection.",
+    "Consider rope access training at MISTRAS Ropeworks for wind and at-height work [1].",
+    "Add UT and composite inspection skills for wind blades and modern structures.",
+    "Pair NDT with the AWS CWI for construction inspection roles [4].",
+    "Aim for multi-method Level II — the requirement for senior Reno roles [2].",
+    "Keep a detailed personal logbook of every inspection and training hour, because small markets mean you may change employers more often and need to prove your experience quickly.",
+    "Network with inspection and testing firms across Reno, Sparks and Carson City; many entry roles are filled by referral before they are advertised."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Is there an NDT school in Reno?",
+   "a": "There is no dedicated NDT college program in Reno; residents use online providers such as AATA [10] and regional colleges like Linn-Benton [11]."
+  },
+  {
+   "q": "What is MISTRAS Ropeworks Training?",
+   "a": "A training centre at MISTRAS's Reno branch that provides rope access, tower climbing and equipment training [1]."
+  },
+  {
+   "q": "Which rules govern industrial radiography in Nevada?",
+   "a": "NAC 459.737, which adopts 10 CFR Part 34 by reference [6]."
+  },
+  {
+   "q": "Can I bring an X-ray unit into Nevada under reciprocity?",
+   "a": "No. Reciprocity does not apply to X-ray use; the machine must be registered with the Nevada Radiation Control Program [8]."
+  },
+  {
+   "q": "What certifications do senior NDT roles in Reno require?",
+   "a": "One Reno NDT project manager posting required Level II in UT, RT, MT and PT [2]."
+  },
+  {
+   "q": "Is combining NDT with CWI useful in Reno?",
+   "a": "Yes — structural steel inspection roles in Reno ask for CWI and/or NDT certifications [4]."
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Sacramento",
+   "href": "/training/sacramento-ca"
+  },
+  {
+   "name": "San Francisco",
+   "href": "/training/san-francisco-ca"
+  },
+  {
+   "name": "Salt Lake City",
+   "href": "/training/salt-lake-city-ut"
+  },
+  {
+   "name": "Boise",
+   "href": "/training/boise-id"
+  }
+ ],
+ "related": [
+  {
+   "label": "NDT jobs and careers in Reno",
+   "href": "/careers/reno-nv"
+  },
+  {
+   "label": "NDT inspection services in Reno",
+   "href": "/ndt-services/reno-nv"
+  },
+  {
+   "label": "NDT inspector salary guide",
+   "href": "/learn/ndt-inspector-salary-guide"
+  },
+  {
+   "label": "NDT certifications explained",
+   "href": "/blog/ndt-certifications-explained"
+  },
+  {
+   "label": "NDT career guide 2026",
+   "href": "/blog/ndt-career-guide-2026"
+  }
+ ],
+ "references": [
+  {
+   "title": "MISTRAS Group — Reno, NV branch (wind blade NDT and Ropeworks training)",
+   "url": "https://www.mistrasgroup.com/about-us/branches/reno-nv-usa"
+  },
+  {
+   "title": "Ladders — Nondestructive Testing Project Manager, Reno (Certerra)",
+   "url": "https://www.theladders.com/job/nondestructive-testing-project-manager-reno-nv-rma-companies-reno-nv_88132911"
+  },
+  {
+   "title": "Career.com — Nondestructive Testing Project Manager, Reno",
+   "url": "https://www.career.com/job/shared-services-group-inc/nondestructive-testing-project-manager-reno/j202605160222230307645"
+  },
+  {
+   "title": "WayUp — CWI / NDT Inspector, Reno (structural steel)",
+   "url": "https://www.wayup.com/i-j-CWI-NDT-INSPECTOR-MiconeStaffing-637061876277530/"
+  },
+  {
+   "title": "Nevada DPBH — Regulations applicable to radioactive material licensees",
+   "url": "https://www.dpbh.nv.gov/uploadedFiles/dpbhnvgov/content/Reg/Radiation-Machines/Docs/ApplicabletoNevadaRadioactiveMaterialLicensees(1).pdf"
+  },
+  {
+   "title": "Nevada Administrative Code 459.737 — Industrial radiography (adopts 10 CFR Part 34)",
+   "url": "https://www.law.cornell.edu/regulations/nevada/NAC-459-737"
+  },
+  {
+   "title": "Nevada Administrative Code 459.3142 — RSO training for industrial radiography",
+   "url": "https://www.law.cornell.edu/regulations/nevada/NAC-459-3142"
+  },
+  {
+   "title": "Nevada DPBH — Radioactive Material Program FAQs (temporary job sites, X-ray reciprocity)",
+   "url": "https://dpbh.nv.gov/Reg/RAM/dta/FAQs/Radioactive_Material_Program_(RAM)_-_FAQs"
+  },
+  {
+   "title": "Nevada Administrative Code 459.310 — Fees (industrial radiography licence)",
+   "url": "https://regulations.justia.com/states/nevada/chapter-459/radiation-control/licensing-of-radioactive-material/section-459-310"
+  },
+  {
+   "title": "Evident — Training members: American Aerospace Technical Academy (online)",
+   "url": "https://ims.evidentscientific.com/en/training-members/american-aerospace-technical-academy"
+  },
+  {
+   "title": "Linn-Benton Community College — Nondestructive Testing and Evaluation degrees",
+   "url": "https://linnbenton.edu/educational-options/applied-industrial-tech-and-transportation/non-destructive-testing-and-evaluation/degrees.php"
+  },
+  {
+   "title": "Foothill College — Apprenticeship: Non-Destructive Testing Technician",
+   "url": "https://catalog.foothill.edu/degrees-certificates/apprenticeship-non-destructive-testing-technician/"
+  },
+  {
+   "title": "Open Exam Prep — SNT-TC-1A recommended training hours by method and level",
+   "url": "https://open-exam-prep.com/study-guides/asnt-ndt-iii/ndt-training/training-program-design"
+  },
+  {
+   "title": "Materials Evaluation — VT training and experience comparison (SNT-TC-1A, CP-189, ISO 9712, AWS)",
+   "url": "https://source.asnt.org/22d6m27/59"
+  },
+  {
+   "title": "eCFR — 10 CFR 34.43 Training (industrial radiography)",
+   "url": "https://www.ecfr.gov/current/title-10/chapter-I/part-34/subpart-D/section-34.43"
+  },
+  {
+   "title": "GPO — 10 CFR 34.43 text (radiographer training, OJT and certification)",
+   "url": "https://www.gpo.gov/fdsys/pkg/CFR-2010-title10-vol1/pdf/CFR-2010-title10-vol1-sec34-43.pdf"
+  },
+  {
+   "title": "ASNT — Industrial Radiography Radiation Safety Personnel (IRRSP) certification",
+   "url": "https://certification.asnt.org/certification/irrsp"
+  },
+  {
+   "title": "AWS — Radiation Safety eLearning course (40 hours toward IRRSP)",
+   "url": "https://www.aws.org/certification-and-education/education/self-paced-online-learning/radiation-safety-course"
+  },
+  {
+   "title": "Rigzone — What certifications are needed for an NDT technician role",
+   "url": "https://www.rigzone.com/insights/educational-pathways-5/what-certifications-are-needed-for-an-ndt-technician-role-674"
+  },
+  {
+   "title": "Quality Magazine — NDT training programs: components and considerations (Donald Booth)",
+   "url": "https://www.qualitymag.com/articles/97194-ndt-training-programs-components-and-considerations"
+  },
+  {
+   "title": "ASNT — Implementing a successful NDT education program (PQNDT survey: average technician age 47)",
+   "url": "https://www.asnt.org/standards-publications/blog/implementing-a-successful-ndt-education-program-planning-design-resources-curriculum-and-evaluation"
+  }
+ ]
+}

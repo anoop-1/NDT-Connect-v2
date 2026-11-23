@@ -1,0 +1,402 @@
+{
+ "slug": "newark-nj",
+ "city": "Newark",
+ "region": "New Jersey",
+ "country": "United States",
+ "countrySlug": "united-states",
+ "wave": 2,
+ "updated": "2026-11-23",
+ "title": "NDT Training in Newark, NJ: Schools Nearby, Costs, Certification and New Jersey Radiography Rules (2026)",
+ "metaTitle": "NDT Training in Newark, NJ — Schools, Costs & Certification",
+ "description": "NDT training for Newark and North Jersey: metro providers, Philadelphia and Penn College programs, online courses, costs, SNT-TC-1A and NJ radiography rules.",
+ "quickAnswer": "Newark sits in one of the densest industrial and logistics corridors in the US, but New Jersey has few dedicated NDT schools. North Jersey trainees typically use **New York Metro providers such as AEIS** [1], **Fujifilm NDT Training Services** in Valhalla [3] and **Hellier's New London school** [2], or full programs at the **Community College of Philadelphia** [4] and **Pennsylvania College of Technology**, which started a two-year NDT major in 2022 [5]. New Jersey regulates industrial radiography under **N.J.A.C. 7:28**, including subchapters for X-ray radiography and sealed-source radiography [7][8].",
+ "keyFacts": [
+  {
+   "label": "Metro providers",
+   "value": "AEIS; Fujifilm NDT Training Services; Hellier New London [1][2][3]"
+  },
+  {
+   "label": "College programs nearby",
+   "value": "Community College of Philadelphia; Penn College two-year NDT major [4][5]"
+  },
+  {
+   "label": "Radiography rules",
+   "value": "N.J.A.C. 7:28 subchapters 17 (X-ray) and 63 (sealed sources) [8]"
+  },
+  {
+   "label": "Reciprocity",
+   "value": "N.J.A.C. 7:28-62 [7]"
+  }
+ ],
+ "industries": [
+  "Petroleum terminals and pipelines",
+  "Ports and logistics",
+  "Pharmaceutical and chemical plants",
+  "Power generation",
+  "Construction and infrastructure",
+  "Aviation"
+ ],
+ "schools": [
+  {
+   "name": "AEIS",
+   "url": "https://olympus-ims.com/training-members",
+   "location": "New York Metro area",
+   "offers": "NDT training with experienced instructors and real-flaw samples [1]",
+   "type": "Private training provider"
+  },
+  {
+   "name": "Fujifilm NDT Training Services",
+   "url": "https://source.asnt.org/me-2020-07/70",
+   "location": "Valhalla, NY",
+   "offers": "NDT courses listed in ASNT's training calendar [3]",
+   "type": "Manufacturer training"
+  },
+  {
+   "name": "Hellier (Acuren) — New London school",
+   "url": "https://acuren.com/inspection/inspection-training/",
+   "location": "New London, CT",
+   "offers": "Scheduled NDT schools; online programs with onsite practicum [2]",
+   "type": "Private training school"
+  },
+  {
+   "name": "Community College of Philadelphia — NDT",
+   "url": "https://www.ccp.edu/nondestructive-testing",
+   "location": "Philadelphia, PA",
+   "offers": "Full-time NDT program with FAFSA aid, scholarships and instalment payments [4]",
+   "type": "Community college"
+  },
+  {
+   "name": "Pennsylvania College of Technology — NDT major",
+   "url": "https://www.psu.edu/news/penn-college/story/penn-college-student-finds-her-calling-nondestructive-testing",
+   "location": "Williamsport, PA",
+   "offers": "Two-year NDT major (since Fall 2022) with classroom hours toward ASNT RT and UT certification [5]",
+   "type": "College (Penn State affiliate)"
+  }
+ ],
+ "sections": [
+  {
+   "id": "overview",
+   "h2": "NDT training for Newark and North Jersey",
+   "paragraphs": [
+    "Newark and the surrounding North Jersey counties host petroleum terminals and pipelines, one of the busiest port complexes in the country, chemical and pharmaceutical plants, power stations, airports and a constant stream of infrastructure and construction projects. All of them need inspection. Yet New Jersey has few stand-alone NDT schools, so local trainees borrow from the New York metro, Connecticut and Pennsylvania.",
+    "The upside is choice. Within a few hours of Newark there are private providers, a manufacturer training centre, a major private NDT school and two college programs — enough to build almost any training plan."
+   ]
+  },
+  {
+   "id": "metro-options",
+   "h2": "Metro-area providers",
+   "paragraphs": [
+    "AEIS appears in Evident's directory of training members as an NDT training provider in the New York Metro area, using interactive programs, experienced instructors and extensive real-flaw samples for hands-on practice [1]. Fujifilm NDT Training Services in Valhalla, Westchester County, has offered courses listed in ASNT's training calendar [3], which can be particularly useful for computed and digital radiography.",
+    "Hellier, now part of Acuren, runs scheduled schools in New London, Connecticut, along with Houston and Anaheim, and offers online programs whose practicum hours can be completed onsite [2]. Many North Jersey trainees attend week-long method courses in New London."
+   ]
+  },
+  {
+   "id": "pennsylvania",
+   "h2": "College programs in Pennsylvania",
+   "paragraphs": [
+    "For a structured, full-time route, two Pennsylvania options stand out. The Community College of Philadelphia runs a Nondestructive Testing program whose graduates serve construction, manufacturing and the Navy; it accepts FAFSA financial aid, offers workforce development scholarships and allows payment in four instalments [4].",
+    "Pennsylvania College of Technology in Williamsport has offered NDT courses since the mid-1980s and began a two-year NDT major in Fall 2022; graduates earn classroom hours toward ASNT certification in radiographic and ultrasonic testing, the two most common NDT methods [5]. Penn College has highlighted a New Jersey student who secured a full-time NDT job weeks before graduating [5], and it has received federal Advanced Technological Education funding to expand NDT education because of a shortage of training programs [6]."
+   ]
+  },
+  {
+   "id": "nj-work",
+   "h2": "Where NDT work comes from in North Jersey",
+   "paragraphs": [
+    "Petroleum terminals and pipelines around Newark Bay and the Arthur Kill need tank and piping inspection — ultrasonic thickness testing, magnetic particle testing of welds, visual inspection and radiography on repairs. Port and logistics infrastructure creates structural steel and crane inspection work. Chemical and pharmaceutical plants require pressure-vessel and piping inspection under mechanical integrity programs, and power plants need outage inspections.",
+    "Construction and infrastructure projects — bridges, rail, transit and large buildings — add welding inspection and ultrasonic testing of structural connections. For trainees, VT, MT and UT form a strong foundation across these sectors."
+   ]
+  },
+  {
+   "id": "terminals",
+   "h2": "Tank and terminal inspection: a North Jersey specialty",
+   "paragraphs": [
+    "The petroleum and chemical terminals along Newark Bay and the Arthur Kill store and move enormous volumes of fuel and chemicals, and their tanks, piping and docks need regular inspection under industry standards for aboveground storage tanks and piping. Typical NDT work includes ultrasonic thickness surveys of tank shells and piping, magnetic flux leakage or ultrasonic scanning of tank floors, magnetic particle testing of welds and visual inspection of structures.",
+    "For trainees, terminal work offers steady, year-round experience close to home. Inspection contractors serving these facilities often hire helpers and train them in ultrasonic thickness testing and visual inspection, then sponsor further certifications as they progress. Adding API inspector credentials later in a career can open higher-paying roles in tank and piping integrity."
+   ]
+  },
+  {
+   "id": "aviation-nj",
+   "h2": "Airport and aviation opportunities",
+   "paragraphs": [
+    "The New York–New Jersey airport system supports airline maintenance operations, cargo handling and component shops. Aviation NDT emphasises eddy current, penetrant and ultrasonic methods under aerospace standards such as NAS 410, with strict documentation. North Jersey trainees interested in aviation should choose courses aligned to NAS 410 and look for trainee roles with maintenance providers near the airports."
+   ]
+  },
+  {
+   "id": "nj-radiography",
+   "h2": "New Jersey's radiography rules",
+   "paragraphs": [
+    "New Jersey regulates radiation through the Department of Environmental Protection under N.J.A.C. 7:28, Radiation Protection Programs [7]. The chapter includes Subchapter 17 on industrial and nonmedical X-ray radiography, Subchapter 62 on reciprocity and Subchapter 63 on licences for industrial radiography using sealed sources [7][8].",
+    "Subchapter 63 incorporates the federal industrial radiography rules in 10 CFR Part 34 by reference, with New Jersey substitutions — for example, replacing references to federal parts with N.J.A.C. 7:28 provisions and directing notifications to the state's Bureau of Environmental Radiation [9]. In practice, radiographers working in New Jersey follow the same training, on-the-job and certification framework as federal rules, administered by the state."
+   ]
+  },
+  {
+   "id": "online",
+   "h2": "Online learning and employer training",
+   "paragraphs": [
+    "Online theory helps North Jersey residents avoid long commutes. AWS offers a self-paced Introduction to NDT course suitable for exploring the field [10], and online method courses can supply classroom hours if an employer's written practice accepts them. Many North Jersey inspection companies also hire trainees and provide method training in-house, particularly for VT, MT and UT used on terminals and construction projects."
+   ]
+  },
+  {
+   "id": "costs-nj",
+   "h2": "Managing the cost of training from Newark",
+   "paragraphs": [
+    "Travel and time off work can double the effective cost of NDT training for North Jersey residents. Combining online theory with short practical sessions, seeking employer sponsorship once hired as a trainee, and using financial aid at college programs such as the Community College of Philadelphia [4] are the most effective ways to control costs.",
+    "Workforce boards, unions and veterans' programs may also help fund skilled-trade training. Always confirm which courses prospective employers accept before paying."
+   ]
+  },
+  {
+   "id": "how-certification-works",
+   "h2": "How NDT certification actually works for Newark trainees",
+   "paragraphs": [
+    "The most common misunderstanding about NDT training is that a school certifies you. In the United States, the documents most employers follow are ASNT's Recommended Practice SNT-TC-1A, the ANSI/ASNT CP-189 standard and the CP-105 topical outlines [18]. Under SNT-TC-1A, certification is employer-based: a school or online course supplies the classroom hours, but your employer's written practice, its Level III and your documented on-the-job experience are what turn training into a certification. Training programs therefore combine formal classroom or online theory with on-the-job training (OJT) performed in a field or lab setting [18].",
+    "In practice, a new technician in any city follows the same ladder: complete Level I and then Level II classroom hours for a method, log supervised experience, pass the employer's general, specific and practical examinations and a vision test, and receive Level II certification in that method. Level III — the person who writes procedures, approves techniques and certifies others — requires additional experience and, for most employers, the ASNT NDT Level III examinations."
+   ]
+  },
+  {
+   "id": "training-hours",
+   "h2": "Training hours you will need by method",
+   "paragraphs": [
+    "SNT-TC-1A publishes recommended minimum classroom hours by method and level for high-school-educated candidates [11]. Employers can adopt stricter numbers in their written practice, and aerospace employers working to NAS 410 or customers with their own specifications often do. Visual testing shows the scale of supervised experience involved: SNT-TC-1A recommends 8 training hours for VT Level I and 16 more for Level II, with 70 and 140 hours of experience in the method respectively [12]."
+   ],
+   "table": {
+    "caption": "SNT-TC-1A recommended classroom training hours (high school graduate)",
+    "head": [
+     "Method",
+     "Level I hours",
+     "Additional for Level II"
+    ],
+    "rows": [
+     [
+      "Ultrasonic testing (UT)",
+      "40",
+      "40"
+     ],
+     [
+      "Radiographic testing (RT)",
+      "40",
+      "40"
+     ],
+     [
+      "Eddy current testing (ET)",
+      "40",
+      "40"
+     ],
+     [
+      "Magnetic particle testing (MT)",
+      "12",
+      "8"
+     ],
+     [
+      "Liquid penetrant testing (PT)",
+      "4",
+      "8"
+     ],
+     [
+      "Visual testing (VT)",
+      "8",
+      "16"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "radiography-rules",
+   "h2": "Industrial radiography: the extra licensing layer in Newark",
+   "paragraphs": [
+    "Radiography is the one method where federal and state radiation-safety law sits on top of SNT-TC-1A. Under 10 CFR 34.43, a licensee may not let anyone act as a radiographer until the person has received training in the required radiation-safety subjects, completed at least two months of on-the-job training and been certified through a radiographer certification program by a certifying entity [13][14]. ASNT's Industrial Radiography Radiation Safety Personnel (IRRSP) program is one such certifying entity; it combines a computer-based exam with an employer-conducted practical exam and vision check, and many states recognize it [15]. Online radiation-safety courses such as AWS's roughly 40-hour eLearning module can supply the classroom portion, but site-specific training from the employer is still required [16].",
+    "New Jersey administers these requirements through N.J.A.C. 7:28, with Subchapter 63 incorporating 10 CFR Part 34 and Subchapter 62 covering reciprocity for out-of-state licensees [7][9]."
+   ]
+  },
+  {
+   "id": "costs",
+   "h2": "What NDT training costs",
+   "paragraphs": [
+    "Published industry guidance puts classroom training for a single method at roughly USD 600–2,000, with examination fees of roughly USD 200–500 on top [17]. ASNT lists the initial IRRSP combination exam for radioactive-material and X-ray radiography at USD 260 for members and USD 285 for non-members [15]. Longer certificate and associate-degree programs cost more but bundle several methods, labs and job placement support, and community-college options are often eligible for financial aid.",
+    "Before paying, ask whether the price includes the practical hours, specimens and exam fees, whether the course is written to SNT-TC-1A, CP-189 or NAS 410, and whether the provider will document your hours in a form an employer's Level III can accept."
+   ]
+  },
+  {
+   "id": "choosing",
+   "h2": "How to choose an NDT training provider",
+   "paragraphs": [
+    "Use this checklist to compare schools, online courses and employer programs."
+   ],
+   "bullets": [
+    "Training hours that meet or exceed the SNT-TC-1A table for each method and level.",
+    "Hands-on labs with real-flaw specimens, not just slides and videos.",
+    "Instructors who hold ASNT Level III in the method they teach.",
+    "Documentation of hours suitable for an employer's written practice.",
+    "A path to OJT — employer partnerships, apprenticeships or placement support.",
+    "For radiography, preparation for IRRSP or the state radiographer exam.",
+    "Transparent total cost including exams, books and specimens."
+   ]
+  },
+  {
+   "id": "workforce",
+   "h2": "Why the timing is good",
+   "paragraphs": [
+    "NDT's workforce is ageing: the PQNDT salary and benefits survey put the average NDT technician's age at 47 [19]. As experienced technicians retire, employers across energy, aerospace, infrastructure and manufacturing need trained replacements, which is why so many now sponsor training, apprenticeships and on-the-job programs for motivated newcomers."
+   ]
+  },
+  {
+   "id": "plan",
+   "h2": "A plan for Newark beginners",
+   "paragraphs": [
+    "One practical route:"
+   ],
+   "bullets": [
+    "Explore the field with an online introduction [10].",
+    "Take VT, MT and PT with a metro provider [1] or in New London [2].",
+    "Apply for trainee roles with terminal, construction and inspection contractors.",
+    "Consider a full program in Philadelphia or Williamsport for broader training [4][5].",
+    "For radiography, learn the N.J.A.C. 7:28 requirements and reciprocity rules [7][8].",
+    "Keep a detailed logbook of every training and experience hour.",
+    "Join the local ASNT section to meet employers and Level IIIs across North Jersey."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Is there NDT training in Newark, NJ?",
+   "a": "New Jersey has few dedicated NDT schools; Newark residents use NY Metro providers such as AEIS [1], Hellier New London [2] and Pennsylvania college programs [4][5]."
+  },
+  {
+   "q": "Which colleges near New Jersey offer NDT programs?",
+   "a": "The Community College of Philadelphia [4] and Pennsylvania College of Technology, which began a two-year NDT major in 2022 [5]."
+  },
+  {
+   "q": "Who regulates industrial radiography in New Jersey?",
+   "a": "The Department of Environmental Protection under N.J.A.C. 7:28 [7]."
+  },
+  {
+   "q": "Does New Jersey follow the federal radiography rules?",
+   "a": "Subchapter 63 incorporates 10 CFR Part 34 by reference with New Jersey substitutions [9]."
+  },
+  {
+   "q": "What NDT methods are most used in North Jersey?",
+   "a": "Visual, magnetic particle, ultrasonic and radiographic testing for terminals, construction and plants."
+  },
+  {
+   "q": "Can I get financial aid for NDT training?",
+   "a": "Yes at college programs — for example, the Community College of Philadelphia accepts FAFSA aid and offers instalment payments [4]."
+  }
+ ],
+ "nearby": [
+  {
+   "name": "New York",
+   "href": "/training/new-york-ny"
+  },
+  {
+   "name": "Philadelphia",
+   "href": "/training/philadelphia-pa"
+  },
+  {
+   "name": "Hartford",
+   "href": "/training/hartford-ct"
+  },
+  {
+   "name": "Pittsburgh",
+   "href": "/training/pittsburgh-pa"
+  }
+ ],
+ "related": [
+  {
+   "label": "NDT jobs and careers in Newark",
+   "href": "/careers/newark-nj"
+  },
+  {
+   "label": "NDT inspection services in Newark",
+   "href": "/ndt-services/newark-nj"
+  },
+  {
+   "label": "NDT inspector salary guide",
+   "href": "/learn/ndt-inspector-salary-guide"
+  },
+  {
+   "label": "NDT certifications explained",
+   "href": "/blog/ndt-certifications-explained"
+  },
+  {
+   "label": "NDT career guide 2026",
+   "href": "/blog/ndt-career-guide-2026"
+  }
+ ],
+ "references": [
+  {
+   "title": "Evident — Training members directory (AEIS, New York Metro)",
+   "url": "https://olympus-ims.com/training-members"
+  },
+  {
+   "title": "Acuren — Inspection training (Hellier schools incl. New London, CT)",
+   "url": "https://acuren.com/inspection/inspection-training/"
+  },
+  {
+   "title": "Materials Evaluation — NDT training calendar (Fujifilm NDT Training Services, Valhalla, NY)",
+   "url": "https://source.asnt.org/me-2020-07/70"
+  },
+  {
+   "title": "Community College of Philadelphia — Nondestructive Testing program",
+   "url": "https://www.ccp.edu/nondestructive-testing"
+  },
+  {
+   "title": "Penn State News — Penn College student finds her calling in nondestructive testing",
+   "url": "https://www.psu.edu/news/penn-college/story/penn-college-student-finds-her-calling-nondestructive-testing"
+  },
+  {
+   "title": "Pennsylvania College of Technology — NDT education grant (ATE)",
+   "url": "https://www.pct.edu/academics/et/ndt-grant"
+  },
+  {
+   "title": "New Jersey DEP — N.J.A.C. 7:28 Radiation Protection Programs",
+   "url": "https://www.nj.gov/dep/rpp/RPRP_Rules/njac_7_28.pdf"
+  },
+  {
+   "title": "N.J. Admin. Code Title 7, Chapter 28 — subchapter index (Cornell LII)",
+   "url": "https://www.law.cornell.edu/regulations/new-jersey/title-7/chapter-28"
+  },
+  {
+   "title": "New Jersey State Library — N.J.A.C. 7:28-63 incorporation of 10 CFR 34 with NJ substitutions",
+   "url": "https://dspace.njstatelib.org/bitstreams/e2bb95a9-d546-4c16-873f-5f3f61b4e020/download"
+  },
+  {
+   "title": "AWS — Introduction to NDT online course",
+   "url": "https://www.aws.org/certification-and-education/education/ndt-classroom-course"
+  },
+  {
+   "title": "Open Exam Prep — SNT-TC-1A recommended training hours by method and level",
+   "url": "https://open-exam-prep.com/study-guides/asnt-ndt-iii/ndt-training/training-program-design"
+  },
+  {
+   "title": "Materials Evaluation — VT training and experience comparison (SNT-TC-1A, CP-189, ISO 9712, AWS)",
+   "url": "https://source.asnt.org/22d6m27/59"
+  },
+  {
+   "title": "eCFR — 10 CFR 34.43 Training (industrial radiography)",
+   "url": "https://www.ecfr.gov/current/title-10/chapter-I/part-34/subpart-D/section-34.43"
+  },
+  {
+   "title": "GPO — 10 CFR 34.43 text (radiographer training, OJT and certification)",
+   "url": "https://www.gpo.gov/fdsys/pkg/CFR-2010-title10-vol1/pdf/CFR-2010-title10-vol1-sec34-43.pdf"
+  },
+  {
+   "title": "ASNT — Industrial Radiography Radiation Safety Personnel (IRRSP) certification",
+   "url": "https://certification.asnt.org/certification/irrsp"
+  },
+  {
+   "title": "AWS — Radiation Safety eLearning course (40 hours toward IRRSP)",
+   "url": "https://www.aws.org/certification-and-education/education/self-paced-online-learning/radiation-safety-course"
+  },
+  {
+   "title": "Rigzone — What certifications are needed for an NDT technician role",
+   "url": "https://www.rigzone.com/insights/educational-pathways-5/what-certifications-are-needed-for-an-ndt-technician-role-674"
+  },
+  {
+   "title": "Quality Magazine — NDT training programs: components and considerations (Donald Booth)",
+   "url": "https://www.qualitymag.com/articles/97194-ndt-training-programs-components-and-considerations"
+  },
+  {
+   "title": "ASNT — Implementing a successful NDT education program (PQNDT survey: average technician age 47)",
+   "url": "https://www.asnt.org/standards-publications/blog/implementing-a-successful-ndt-education-program-planning-design-resources-curriculum-and-evaluation"
+  }
+ ]
+}

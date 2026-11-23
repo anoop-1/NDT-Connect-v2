@@ -1,0 +1,372 @@
+{
+ "slug": "oklahoma-city-ok",
+ "city": "Oklahoma City",
+ "region": "Oklahoma",
+ "country": "United States",
+ "countrySlug": "united-states",
+ "wave": 1,
+ "updated": "2026-11-23",
+ "title": "NDT Training in Oklahoma City, OK: Schools, Costs, Certification and Jobs (2026 Guide)",
+ "metaTitle": "NDT Training in Oklahoma City, OK — Schools, Costs & Certification",
+ "description": "NDT training near Oklahoma City: Oklahoma Technical College, Spartan College, costs, SNT-TC-1A hours, DEQ radiographer rules and jobs.",
+ "quickAnswer": "Oklahoma City has few stand-alone NDT schools inside the metro, but central Oklahoma is well served. **Oklahoma Technical College** in Tulsa runs a Non-Destructive Inspection program that qualifies graduates as trainees under ASNT SNT-TC-1A [1][2], and **Spartan College** offers a 10-month NDT Technology diploma [3]. Demand comes from aerospace maintenance — including NDI work at the **Oklahoma City Air Logistics Complex** at Tinker AFB [6] — and from oil, gas and pipeline operators. Radiographers in Oklahoma need state certification through the **Oklahoma DEQ** exam [7].",
+ "keyFacts": [
+  {
+   "label": "Closest programs",
+   "value": "Oklahoma Technical College NDI; Spartan College NDT diploma (Tulsa) [1][3]"
+  },
+  {
+   "label": "Program length",
+   "value": "10-month diploma; 15-month AAS option at Spartan [3]"
+  },
+  {
+   "label": "Big local employer of NDI",
+   "value": "Oklahoma City Air Logistics Complex, Tinker AFB [6]"
+  },
+  {
+   "label": "Radiography regulator",
+   "value": "Oklahoma DEQ — state radiographer certification exam [7][8]"
+  }
+ ],
+ "industries": [
+  "Military aircraft maintenance",
+  "Commercial aerospace MRO",
+  "Oil and gas production",
+  "Pipelines and midstream",
+  "Manufacturing",
+  "Power generation"
+ ],
+ "schools": [
+  {
+   "name": "Oklahoma Technical College — Non-Destructive Inspection",
+   "url": "https://www.otech.edu/non-destructive-inspection-testing-ndi/",
+   "location": "Tulsa, OK",
+   "offers": "NDI program qualifying graduates as SNT-TC-1A trainees; uses ASNT classroom training books; Pell, VA and scholarship eligible [1][2]",
+   "type": "Technical college"
+  },
+  {
+   "name": "Spartan College of Aeronautics and Technology — NDT Technology",
+   "url": "https://www.spartan.edu/?p=7163",
+   "location": "Tulsa, OK",
+   "offers": "10-month NDT Technology diploma; 15-month AAS in Quality Control Management [3]",
+   "type": "Private college"
+  },
+  {
+   "name": "Advanced NDT and Consulting",
+   "url": "https://olympus-ims.com/training-members",
+   "location": "Broken Arrow, OK",
+   "offers": "NDT service and training listed in Evident's training-member directory [5]",
+   "type": "Private training provider"
+  },
+  {
+   "name": "Employer-sponsored NDI programs (aerospace and pipeline contractors)",
+   "url": "https://static.e-publishing.af.mil/production/1/af_sustainment_ctr/publication/afsci20-114/afsci20-114.pdf",
+   "location": "Oklahoma City metro",
+   "offers": "On-the-job NDI training under employer written practices, including at the Oklahoma City Air Logistics Complex [6]",
+   "type": "Employer / OJT"
+  }
+ ],
+ "sections": [
+  {
+   "id": "overview",
+   "h2": "NDT training in Oklahoma City: the short version",
+   "paragraphs": [
+    "People searching for NDT training in Oklahoma City usually want three answers: where to train, how long it takes and whether there are jobs at the end. The honest answer is that the strongest full programs for central Oklahoma sit about 100 miles east in Tulsa, while Oklahoma City itself supplies a large share of the jobs — especially in aircraft maintenance, oil and gas, and pipeline work.",
+    "That geography shapes the best route. Many Oklahoma City residents complete a Tulsa-based program or a hybrid course that combines online theory with scheduled hands-on labs, then return to work for an Oklahoma City employer that provides the supervised experience needed for Level II certification. Others are hired as trainees directly and trained by their employer."
+   ]
+  },
+  {
+   "id": "tulsa-programs",
+   "h2": "Oklahoma Technical College and Spartan College",
+   "paragraphs": [
+    "Oklahoma Technical College runs a Non-Destructive Inspection program built around ASNT materials. On successful completion, students qualify as trainees under ASNT Recommended Practice SNT-TC-1A [2] — the starting point for the employer-based certification ladder used across the US oil, gas and aerospace industries. The college lists course materials such as ASNT's classroom training books for eddy current and ultrasonic testing [2], and states that the program is eligible for scholarships, VA benefits and Pell Grants [1]. For high-school students, the college estimates program costs of about $646.50, mostly for online course material [1].",
+    "Spartan College of Aeronautics and Technology offers a Nondestructive Testing Technology diploma with a program length of 10 months, and an Associate of Applied Science in Quality Control Management over 15 months [3]. Its NDT curriculum covers visual testing, core nondestructive testing and an introduction to NDT, and prepares students for work inspecting vehicles, aircraft, bridges, power stations, pipelines and refineries [4].",
+    "Oklahoma Technical College also flags a practical point worth knowing early: a felony or misdemeanor record can make it harder to get hired after training, because many NDT employers work on secure or regulated sites [2]. If that applies to you, talk to the program coordinator before enrolling."
+   ]
+  },
+  {
+   "id": "aerospace",
+   "h2": "Aerospace NDI: Tinker AFB and the Air Logistics Complex",
+   "paragraphs": [
+    "Oklahoma City is one of the most important aircraft maintenance centres in the country, and nondestructive inspection is central to that work. The US Air Force's sustainment-centre instruction on NDI programs explicitly covers personnel at the Oklahoma City Air Logistics Complex who are responsible for the technical adequacy of NDI procedures and for providing NDI technical training [6].",
+    "For trainees, aerospace NDI brings its own rules. Military and commercial aerospace employers typically certify to NAS 410 or their own written practices, which often require more classroom and experience hours than SNT-TC-1A. Eddy current, ultrasonic and penetrant testing dominate, along with fluorescent penetrant and magnetic particle inspection of engine and landing-gear parts. Civilian employers and contractors around Tinker AFB therefore value candidates who already have documented classroom hours in ET, UT and PT."
+   ]
+  },
+  {
+   "id": "energy",
+   "h2": "Oil, gas and pipeline NDT jobs",
+   "paragraphs": [
+    "Central Oklahoma's oil and gas industry — production, gathering, processing and long-distance pipelines — is the other big employer of NDT technicians. Pipeline construction and integrity work relies heavily on radiography, automated and phased array ultrasonics, magnetic particle testing and visual inspection of welds, while operating facilities need corrosion monitoring with ultrasonic thickness testing.",
+    "The Cushing crude oil hub, about an hour northeast of Oklahoma City, is one of the densest concentrations of storage tanks and pipeline connections in North America, and it generates constant tank and piping inspection work. For trainees, starting in PT, MT and VT and then adding UT or RT is a common route into this sector."
+   ]
+  },
+  {
+   "id": "oklahoma-radiography",
+   "h2": "Becoming a radiographer in Oklahoma",
+   "paragraphs": [
+    "Oklahoma regulates radiation through the Department of Environmental Quality. Its rules in OAC 252:410 cover radiation management, including industrial radiography [8]. The DEQ administers an industrial radiographer certification exam for people working in the state [7], and out-of-state companies bringing radioactive material into Oklahoma file for reciprocity using DEQ Form 410-241 [9].",
+    "For a trainee, the practical sequence is: complete radiation-safety training, work as a radiographer's assistant under a certified radiographer, accumulate the required supervised experience and then sit the DEQ or an accepted certification exam. Employers usually manage this process, but it pays to keep your own log of training and exposure-device hours."
+   ]
+  },
+  {
+   "id": "getting-hired",
+   "h2": "How Oklahoma City trainees get hired",
+   "paragraphs": [
+    "Employers in Oklahoma City generally hire in one of three ways: as an entry-level trainee with a basic course in PT, MT and VT; as a graduate of a longer program such as the Tulsa diplomas [3]; or as an experienced Level II moving from another region. Trainees who arrive with documented classroom hours in several methods are easier to place on a crew and reach Level II faster.",
+    "Useful steps before applying include getting a TWIC card if you want refinery or pipeline work, completing OSHA safety training — Oklahoma Technical College even includes a general OSHA online safety course in its materials [1] — and passing a near-vision and colour-perception exam, which every SNT-TC-1A written practice requires."
+   ]
+  },
+  {
+   "id": "how-certification-works",
+   "h2": "How NDT certification actually works for Oklahoma City trainees",
+   "paragraphs": [
+    "The most common misunderstanding about NDT training is that a school certifies you. In the United States, the documents most employers follow are ASNT's Recommended Practice SNT-TC-1A, the ANSI/ASNT CP-189 standard and the CP-105 topical outlines [17]. Under SNT-TC-1A, certification is employer-based: a school or online course supplies the classroom hours, but your employer's written practice, its Level III and your documented on-the-job experience are what turn training into a certification. Training programs therefore combine formal classroom or online theory with on-the-job training (OJT) performed in a field or lab setting [17].",
+    "In practice, a new technician in any city follows the same ladder: complete Level I and then Level II classroom hours for a method, log supervised experience, pass the employer's general, specific and practical examinations and a vision test, and receive Level II certification in that method. Level III — the person who writes procedures, approves techniques and certifies others — requires additional experience and, for most employers, the ASNT NDT Level III examinations."
+   ]
+  },
+  {
+   "id": "training-hours",
+   "h2": "Training hours you will need by method",
+   "paragraphs": [
+    "SNT-TC-1A publishes recommended minimum classroom hours by method and level for high-school-educated candidates [10]. Employers can adopt stricter numbers in their written practice, and aerospace employers working to NAS 410 or customers with their own specifications often do. Visual testing shows the scale of supervised experience involved: SNT-TC-1A recommends 8 training hours for VT Level I and 16 more for Level II, with 70 and 140 hours of experience in the method respectively [11]."
+   ],
+   "table": {
+    "caption": "SNT-TC-1A recommended classroom training hours (high school graduate)",
+    "head": [
+     "Method",
+     "Level I hours",
+     "Additional for Level II"
+    ],
+    "rows": [
+     [
+      "Ultrasonic testing (UT)",
+      "40",
+      "40"
+     ],
+     [
+      "Radiographic testing (RT)",
+      "40",
+      "40"
+     ],
+     [
+      "Eddy current testing (ET)",
+      "40",
+      "40"
+     ],
+     [
+      "Magnetic particle testing (MT)",
+      "12",
+      "8"
+     ],
+     [
+      "Liquid penetrant testing (PT)",
+      "4",
+      "8"
+     ],
+     [
+      "Visual testing (VT)",
+      "8",
+      "16"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "radiography-rules",
+   "h2": "Industrial radiography: the extra licensing layer in Oklahoma City",
+   "paragraphs": [
+    "Radiography is the one method where federal and state radiation-safety law sits on top of SNT-TC-1A. Under 10 CFR 34.43, a licensee may not let anyone act as a radiographer until the person has received training in the required radiation-safety subjects, completed at least two months of on-the-job training and been certified through a radiographer certification program by a certifying entity [12][13]. ASNT's Industrial Radiography Radiation Safety Personnel (IRRSP) program is one such certifying entity; it combines a computer-based exam with an employer-conducted practical exam and vision check, and many states recognize it [14]. Online radiation-safety courses such as AWS's roughly 40-hour eLearning module can supply the classroom portion, but site-specific training from the employer is still required [15].",
+    "In Oklahoma specifically, the DEQ's certification exam and OAC 252:410 rules apply in addition to the federal requirements [7][8]. Because Oklahoma is an Agreement State that regulates radioactive material itself, a radiographer who moves here from another state should confirm with their employer whether an existing certification card is accepted or whether the DEQ exam is required."
+   ]
+  },
+  {
+   "id": "costs",
+   "h2": "What NDT training costs",
+   "paragraphs": [
+    "Published industry guidance puts classroom training for a single method at roughly USD 600–2,000, with examination fees of roughly USD 200–500 on top [16]. ASNT lists the initial IRRSP combination exam for radioactive-material and X-ray radiography at USD 260 for members and USD 285 for non-members [14]. Longer certificate and associate-degree programs cost more but bundle several methods, labs and job placement support, and community-college options are often eligible for financial aid.",
+    "Before paying, ask whether the price includes the practical hours, specimens and exam fees, whether the course is written to SNT-TC-1A, CP-189 or NAS 410, and whether the provider will document your hours in a form an employer's Level III can accept."
+   ]
+  },
+  {
+   "id": "choosing",
+   "h2": "How to choose an NDT training provider",
+   "paragraphs": [
+    "Use this checklist to compare schools, online courses and employer programs."
+   ],
+   "bullets": [
+    "Training hours that meet or exceed the SNT-TC-1A table for each method and level.",
+    "Hands-on labs with real-flaw specimens, not just slides and videos.",
+    "Instructors who hold ASNT Level III in the method they teach.",
+    "Documentation of hours suitable for an employer's written practice.",
+    "A path to OJT — employer partnerships, apprenticeships or placement support.",
+    "For radiography, preparation for IRRSP or the state radiographer exam.",
+    "Transparent total cost including exams, books and specimens."
+   ]
+  },
+  {
+   "id": "workforce",
+   "h2": "Why the timing is good",
+   "paragraphs": [
+    "NDT's workforce is ageing: the PQNDT salary and benefits survey put the average NDT technician's age at 47 [18]. As experienced technicians retire, employers across energy, aerospace, infrastructure and manufacturing need trained replacements, which is why so many now sponsor training, apprenticeships and on-the-job programs for motivated newcomers."
+   ]
+  },
+  {
+   "id": "plan",
+   "h2": "A 12-month plan for an Oklahoma City beginner",
+   "paragraphs": [
+    "One realistic sequence for someone starting from zero:"
+   ],
+   "bullets": [
+    "Months 1–2: complete PT, MT and VT Level I/II classroom hours (online plus a hands-on lab).",
+    "Months 2–4: start as a trainee or helper with an inspection company or aerospace contractor.",
+    "Months 4–8: log supervised experience; take UT Level I/II classroom training.",
+    "Months 6–10: earn Level II in PT, MT and VT under your employer's written practice.",
+    "Months 8–12: build UT experience or begin radiation-safety training toward DEQ or IRRSP certification [5][7]."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Is there an NDT school in Oklahoma City?",
+   "a": "The main full programs for central Oklahoma are in Tulsa: Oklahoma Technical College's Non-Destructive Inspection program and Spartan College's NDT Technology diploma [1][3]. Many Oklahoma City employers also train new hires on the job."
+  },
+  {
+   "q": "How long does NDT training take in Oklahoma?",
+   "a": "Spartan College's NDT diploma takes 10 months [3]; short method courses take days to weeks, followed by months of supervised experience before Level II."
+  },
+  {
+   "q": "Does Oklahoma require a state radiographer license?",
+   "a": "Radiographers working in Oklahoma are certified through the Oklahoma DEQ industrial radiographer exam under OAC 252:410 [7][8]."
+  },
+  {
+   "q": "Who hires NDT technicians in Oklahoma City?",
+   "a": "Aerospace maintenance — including NDI at the Oklahoma City Air Logistics Complex [6] — plus oil, gas, pipeline and manufacturing employers."
+  },
+  {
+   "q": "How much does NDT training cost?",
+   "a": "Industry guidance puts single-method courses at roughly USD 600–2,000 plus exams [16]; Oklahoma Technical College estimates about $646.50 for high-school students [1]."
+  },
+  {
+   "q": "Can I get financial aid for NDT training in Oklahoma?",
+   "a": "Oklahoma Technical College lists its NDI program as eligible for scholarships, VA benefits and Pell Grants [1]."
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Tulsa",
+   "href": "/training/tulsa-ok"
+  },
+  {
+   "name": "Wichita",
+   "href": "/training/wichita-ks"
+  },
+  {
+   "name": "Fort Worth",
+   "href": "/training/fort-worth-tx"
+  },
+  {
+   "name": "Kansas City",
+   "href": "/training/kansas-city-mo"
+  }
+ ],
+ "related": [
+  {
+   "label": "NDT jobs and careers in Oklahoma City",
+   "href": "/careers/oklahoma-city-ok"
+  },
+  {
+   "label": "NDT inspection services in Oklahoma City",
+   "href": "/ndt-services/oklahoma-city-ok"
+  },
+  {
+   "label": "NDT inspector salary guide",
+   "href": "/learn/ndt-inspector-salary-guide"
+  },
+  {
+   "label": "NDT certifications explained",
+   "href": "/blog/ndt-certifications-explained"
+  },
+  {
+   "label": "NDT career guide 2026",
+   "href": "/blog/ndt-career-guide-2026"
+  },
+  {
+   "label": "NDT services in Cushing, OK",
+   "href": "/ndt-services/cushing-ok"
+  }
+ ],
+ "references": [
+  {
+   "title": "Oklahoma Technical College — Non-Destructive Inspection program",
+   "url": "https://www.otech.edu/non-destructive-inspection-testing-ndi/"
+  },
+  {
+   "title": "Oklahoma Technical College — NDI program details (trainee qualification, textbooks)",
+   "url": "https://www.otech.edu/?p=454"
+  },
+  {
+   "title": "Spartan College (Tulsa) — Nondestructive Testing Technology program brochure",
+   "url": "https://www.spartan.edu/wp-content/uploads/2021/06/NDT-Tulsa_6.16.21.pdf"
+  },
+  {
+   "title": "Spartan College — Nondestructive testing program overview",
+   "url": "https://www.spartan.edu/?p=7163"
+  },
+  {
+   "title": "Evident — Training members directory (Advanced NDT and Consulting, Broken Arrow)",
+   "url": "https://olympus-ims.com/training-members"
+  },
+  {
+   "title": "US Air Force — AFSCI 20-114 NDI program (Oklahoma City Air Logistics Complex)",
+   "url": "https://static.e-publishing.af.mil/production/1/af_sustainment_ctr/publication/afsci20-114/afsci20-114.pdf"
+  },
+  {
+   "title": "Oklahoma DEQ — Industrial radiographer certification exam",
+   "url": "https://oklahoma.gov/deq/divisions/land-protection/radiation/industrial-radiographer-certification-exam.html"
+  },
+  {
+   "title": "Oklahoma DEQ — OAC 252:410 Radiation Management rules",
+   "url": "https://deq.ok.gov/asd/rules-and-regulations/attachment/410"
+  },
+  {
+   "title": "Oklahoma DEQ — Radioactive materials reciprocity form (DEQ Form 410-241)",
+   "url": "https://oklahoma.gov/content/dam/ok/en/deq/documents/land-division/DEQ-FORM-410-241-RAM-Reciprocity-1.pdf"
+  },
+  {
+   "title": "Open Exam Prep — SNT-TC-1A recommended training hours by method and level",
+   "url": "https://open-exam-prep.com/study-guides/asnt-ndt-iii/ndt-training/training-program-design"
+  },
+  {
+   "title": "Materials Evaluation — VT training and experience comparison (SNT-TC-1A, CP-189, ISO 9712, AWS)",
+   "url": "https://source.asnt.org/22d6m27/59"
+  },
+  {
+   "title": "eCFR — 10 CFR 34.43 Training (industrial radiography)",
+   "url": "https://www.ecfr.gov/current/title-10/chapter-I/part-34/subpart-D/section-34.43"
+  },
+  {
+   "title": "GPO — 10 CFR 34.43 text (radiographer training, OJT and certification)",
+   "url": "https://www.gpo.gov/fdsys/pkg/CFR-2010-title10-vol1/pdf/CFR-2010-title10-vol1-sec34-43.pdf"
+  },
+  {
+   "title": "ASNT — Industrial Radiography Radiation Safety Personnel (IRRSP) certification",
+   "url": "https://certification.asnt.org/certification/irrsp"
+  },
+  {
+   "title": "AWS — Radiation Safety eLearning course (40 hours toward IRRSP)",
+   "url": "https://www.aws.org/certification-and-education/education/self-paced-online-learning/radiation-safety-course"
+  },
+  {
+   "title": "Rigzone — What certifications are needed for an NDT technician role",
+   "url": "https://www.rigzone.com/insights/educational-pathways-5/what-certifications-are-needed-for-an-ndt-technician-role-674"
+  },
+  {
+   "title": "Quality Magazine — NDT training programs: components and considerations (Donald Booth)",
+   "url": "https://www.qualitymag.com/articles/97194-ndt-training-programs-components-and-considerations"
+  },
+  {
+   "title": "ASNT — Implementing a successful NDT education program (PQNDT survey: average technician age 47)",
+   "url": "https://www.asnt.org/standards-publications/blog/implementing-a-successful-ndt-education-program-planning-design-resources-curriculum-and-evaluation"
+  }
+ ]
+}

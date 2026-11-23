@@ -1,0 +1,386 @@
+{
+ "slug": "new-york-ny",
+ "city": "New York",
+ "region": "New York",
+ "country": "United States",
+ "countrySlug": "united-states",
+ "wave": 1,
+ "updated": "2026-11-23",
+ "title": "NDT Training in New York City: Schools Near NYC, Costs, Certification and Radiography Rules (2026)",
+ "metaTitle": "NDT Training in New York City — Schools, Costs & Certification",
+ "description": "NDT training for New York City: AEIS, Fujifilm (Valhalla), Hellier New London, CCP Philadelphia, online courses, costs and NYC vs NYS radiography licensing.",
+ "quickAnswer": "New York City has a handful of NDT training options rather than a large college program. **AEIS** describes itself as an NDT training provider in the New York Metro area [1]; **Fujifilm NDT Training Services** has offered courses from Valhalla in Westchester [3]; **Hellier (Acuren)** runs a scheduled school in New London, Connecticut [2]; and the **Community College of Philadelphia** runs a full-time NDT program [4]. Radiography is regulated by **NYC's Department of Health and Mental Hygiene** inside the five boroughs and by **New York State DOH** elsewhere [5][6].",
+ "keyFacts": [
+  {
+   "label": "Metro providers",
+   "value": "AEIS (NY Metro); Fujifilm NDT Training Services (Valhalla) [1][3]"
+  },
+  {
+   "label": "Nearest scheduled school",
+   "value": "Hellier/Acuren New London, CT [2]"
+  },
+  {
+   "label": "Full-time college program",
+   "value": "Community College of Philadelphia NDT [4]"
+  },
+  {
+   "label": "Radiography regulators",
+   "value": "NYC DOHMH (five boroughs); NYS DOH (rest of state) [5][6]"
+  }
+ ],
+ "industries": [
+  "Bridges, tunnels and transit",
+  "High-rise structural steel",
+  "Power generation and utilities",
+  "Aerospace and aviation MRO",
+  "Petroleum terminals",
+  "Healthcare and research facilities"
+ ],
+ "schools": [
+  {
+   "name": "AEIS",
+   "url": "https://olympus-ims.com/training-members",
+   "location": "New York Metro area",
+   "offers": "NDT training with experienced instructors and real-flaw samples for hands-on practice, per Evident's training-member listing [1]",
+   "type": "Private training provider"
+  },
+  {
+   "name": "Fujifilm NDT Training Services",
+   "url": "https://source.asnt.org/me-2020-07/70",
+   "location": "Valhalla, NY",
+   "offers": "NDT training courses listed in ASNT's Materials Evaluation training calendar [3]",
+   "type": "Manufacturer training"
+  },
+  {
+   "name": "Hellier (Acuren) — New London school",
+   "url": "https://acuren.com/inspection/inspection-training/",
+   "location": "New London, CT",
+   "offers": "Scheduled NDT schools plus online programs with onsite practicum [2]",
+   "type": "Private training school"
+  },
+  {
+   "name": "Community College of Philadelphia — Nondestructive Testing",
+   "url": "https://www.ccp.edu/nondestructive-testing",
+   "location": "Philadelphia, PA",
+   "offers": "Full-time NDT program (e.g. Sept 14, 2026 – Feb 18, 2027, Mon–Thu); FAFSA aid, scholarships and payment plan [4]",
+   "type": "Community college"
+  },
+  {
+   "name": "AWS Introduction to NDT (online)",
+   "url": "https://www.aws.org/certification-and-education/education/ndt-classroom-course",
+   "location": "Online",
+   "offers": "Self-paced introduction to the major NDT methods taught by Charles Hellier [10]",
+   "type": "Online course"
+  }
+ ],
+ "sections": [
+  {
+   "id": "overview",
+   "h2": "NDT training in New York City: what to expect",
+   "paragraphs": [
+    "New York City generates a large volume of inspection work — bridges, tunnels, transit systems, high-rise steel, power plants and utilities — but it is not a classic NDT training hub like Houston or Tulsa. There is no single large community-college NDT program inside the five boroughs. Instead, New Yorkers piece together training from metro-area private providers, manufacturer courses north of the city, schools in neighbouring states and online theory, with employers supplying the supervised experience.",
+    "That makes planning more important here than in most cities. The goal is to arrive at an employer with documented classroom hours in the methods it uses, so it can put you on a crew and start logging your experience toward Level II."
+   ]
+  },
+  {
+   "id": "metro-providers",
+   "h2": "Training providers in and near the city",
+   "paragraphs": [
+    "AEIS is listed in Evident's directory of training members as an NDT training provider in the New York Metro area, using interactive training programs, experienced instructors and extensive real-flaw samples for hands-on practice [1]. Real-flaw specimens matter because they teach trainees what actual cracks, porosity and lack of fusion look like on an instrument, not just in a textbook.",
+    "North of the city, Fujifilm NDT Training Services in Valhalla, Westchester County, has appeared in ASNT's training calendar alongside national providers [3]. Manufacturer-run courses are particularly useful for digital and computed radiography, where equipment-specific knowledge is valuable."
+   ]
+  },
+  {
+   "id": "regional",
+   "h2": "Regional schools: New London and Philadelphia",
+   "paragraphs": [
+    "Hellier, now part of Acuren, runs scheduled NDT schools in New London, Connecticut, as well as Houston and Anaheim, and offers online programs where practicum hours can be completed onsite [2]. New London is roughly two to three hours from Manhattan, so many New York trainees attend week-long intensive method courses there.",
+    "For a full-time, college-based program, the Community College of Philadelphia runs a Nondestructive Testing program whose graduates serve construction, manufacturing and the Navy; one recent cohort was scheduled from 14 September 2026 to 18 February 2027, Monday through Thursday [4]. The college accepts FAFSA financial aid, offers workforce development scholarships and allows payment in four instalments [4]. Philadelphia is about 90 minutes from New York by train."
+   ]
+  },
+  {
+   "id": "nyc-work",
+   "h2": "Where NDT work comes from in New York",
+   "paragraphs": [
+    "New York's inspection demand is dominated by infrastructure and construction. Bridge and tunnel rehabilitation, transit structures and high-rise steel construction call for visual, magnetic particle, ultrasonic and radiographic inspection of welds and bolted connections, often alongside special inspection programs required by the building code. Utilities and power plants need corrosion monitoring, boiler and piping inspection during outages, and weld inspection on repairs.",
+    "Aviation maintenance at the region's airports adds eddy current, ultrasonic and penetrant work on aircraft components, while petroleum terminals around New York Harbor need tank and piping inspection. For a trainee, starting with VT, MT and UT is a practical way into structural and infrastructure work, while ET and PT open aviation doors."
+   ]
+  },
+  {
+   "id": "ny-radiography",
+   "h2": "Two radiography regulators: NYC and New York State",
+   "paragraphs": [
+    "New York has an unusual split. Inside the five boroughs, the New York City Department of Health and Mental Hygiene controls the possession and use of radioactive material on behalf of the US Nuclear Regulatory Commission, through its Office of Radiological Health [5], under Article 175 of the NYC Health Code [9]. Everywhere else in the state, the New York State Department of Health's Bureau of Environmental Radiation Protection handles radiological health [6].",
+    "The state licenses the use of sealed sources in industrial radiography under Part 38 of Title 12 NYCRR [7], and it may only issue reciprocity for work in areas where New York State has jurisdiction [8]. For radiography crews, that means work inside New York City and work upstate can fall under different agencies — something employers must plan for and trainees should understand."
+   ]
+  },
+  {
+   "id": "costs-ny",
+   "h2": "Keeping training costs down in New York",
+   "paragraphs": [
+    "Training in or around New York can be expensive once travel, hotels and time off work are added to course fees. Several strategies help. Taking theory online and travelling only for intensive practical sessions reduces hotel nights. Employer sponsorship is common once you are hired as a trainee, so it often pays to get a helper role first and let the employer fund later methods. College programs such as the Community College of Philadelphia's accept federal financial aid, offer workforce scholarships and allow payment in instalments [4].",
+    "It is also worth asking unions, workforce boards and veterans' programs about funding for skilled-trade training. Whatever route you take, keep receipts, course outlines and completion certificates — employers' Level IIIs will want to see exactly what training you have completed before crediting the hours."
+   ]
+  },
+  {
+   "id": "online",
+   "h2": "Online learning for New Yorkers",
+   "paragraphs": [
+    "Because commuting to training is expensive in New York, online theory is especially attractive. AWS offers a self-paced Introduction to NDT course taught by Charles Hellier that surveys the major methods and suits people deciding whether NDT is right for them [10]. Online method courses can then supply SNT-TC-1A classroom hours, as long as your employer's written practice accepts them, with practical work completed at a provider or on the job."
+   ]
+  },
+  {
+   "id": "how-certification-works",
+   "h2": "How NDT certification actually works for New York trainees",
+   "paragraphs": [
+    "The most common misunderstanding about NDT training is that a school certifies you. In the United States, the documents most employers follow are ASNT's Recommended Practice SNT-TC-1A, the ANSI/ASNT CP-189 standard and the CP-105 topical outlines [18]. Under SNT-TC-1A, certification is employer-based: a school or online course supplies the classroom hours, but your employer's written practice, its Level III and your documented on-the-job experience are what turn training into a certification. Training programs therefore combine formal classroom or online theory with on-the-job training (OJT) performed in a field or lab setting [18].",
+    "In practice, a new technician in any city follows the same ladder: complete Level I and then Level II classroom hours for a method, log supervised experience, pass the employer's general, specific and practical examinations and a vision test, and receive Level II certification in that method. Level III — the person who writes procedures, approves techniques and certifies others — requires additional experience and, for most employers, the ASNT NDT Level III examinations."
+   ]
+  },
+  {
+   "id": "training-hours",
+   "h2": "Training hours you will need by method",
+   "paragraphs": [
+    "SNT-TC-1A publishes recommended minimum classroom hours by method and level for high-school-educated candidates [11]. Employers can adopt stricter numbers in their written practice, and aerospace employers working to NAS 410 or customers with their own specifications often do. Visual testing shows the scale of supervised experience involved: SNT-TC-1A recommends 8 training hours for VT Level I and 16 more for Level II, with 70 and 140 hours of experience in the method respectively [12]."
+   ],
+   "table": {
+    "caption": "SNT-TC-1A recommended classroom training hours (high school graduate)",
+    "head": [
+     "Method",
+     "Level I hours",
+     "Additional for Level II"
+    ],
+    "rows": [
+     [
+      "Ultrasonic testing (UT)",
+      "40",
+      "40"
+     ],
+     [
+      "Radiographic testing (RT)",
+      "40",
+      "40"
+     ],
+     [
+      "Eddy current testing (ET)",
+      "40",
+      "40"
+     ],
+     [
+      "Magnetic particle testing (MT)",
+      "12",
+      "8"
+     ],
+     [
+      "Liquid penetrant testing (PT)",
+      "4",
+      "8"
+     ],
+     [
+      "Visual testing (VT)",
+      "8",
+      "16"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "radiography-rules",
+   "h2": "Industrial radiography: the extra licensing layer in New York",
+   "paragraphs": [
+    "Radiography is the one method where federal and state radiation-safety law sits on top of SNT-TC-1A. Under 10 CFR 34.43, a licensee may not let anyone act as a radiographer until the person has received training in the required radiation-safety subjects, completed at least two months of on-the-job training and been certified through a radiographer certification program by a certifying entity [13][14]. ASNT's Industrial Radiography Radiation Safety Personnel (IRRSP) program is one such certifying entity; it combines a computer-based exam with an employer-conducted practical exam and vision check, and many states recognize it [15]. Online radiation-safety courses such as AWS's roughly 40-hour eLearning module can supply the classroom portion, but site-specific training from the employer is still required [16].",
+    "In New York, which agency licenses the work depends on location: NYC DOHMH inside the five boroughs and NYS DOH elsewhere [5][6]. Radiographers moving between city and state jobs should confirm with their employer that their certification and the company's licence cover each site."
+   ]
+  },
+  {
+   "id": "costs",
+   "h2": "What NDT training costs",
+   "paragraphs": [
+    "Published industry guidance puts classroom training for a single method at roughly USD 600–2,000, with examination fees of roughly USD 200–500 on top [17]. ASNT lists the initial IRRSP combination exam for radioactive-material and X-ray radiography at USD 260 for members and USD 285 for non-members [15]. Longer certificate and associate-degree programs cost more but bundle several methods, labs and job placement support, and community-college options are often eligible for financial aid.",
+    "Before paying, ask whether the price includes the practical hours, specimens and exam fees, whether the course is written to SNT-TC-1A, CP-189 or NAS 410, and whether the provider will document your hours in a form an employer's Level III can accept."
+   ]
+  },
+  {
+   "id": "choosing",
+   "h2": "How to choose an NDT training provider",
+   "paragraphs": [
+    "Use this checklist to compare schools, online courses and employer programs."
+   ],
+   "bullets": [
+    "Training hours that meet or exceed the SNT-TC-1A table for each method and level.",
+    "Hands-on labs with real-flaw specimens, not just slides and videos.",
+    "Instructors who hold ASNT Level III in the method they teach.",
+    "Documentation of hours suitable for an employer's written practice.",
+    "A path to OJT — employer partnerships, apprenticeships or placement support.",
+    "For radiography, preparation for IRRSP or the state radiographer exam.",
+    "Transparent total cost including exams, books and specimens."
+   ]
+  },
+  {
+   "id": "workforce",
+   "h2": "Why the timing is good",
+   "paragraphs": [
+    "NDT's workforce is ageing: the PQNDT salary and benefits survey put the average NDT technician's age at 47 [19]. As experienced technicians retire, employers across energy, aerospace, infrastructure and manufacturing need trained replacements, which is why so many now sponsor training, apprenticeships and on-the-job programs for motivated newcomers."
+   ]
+  },
+  {
+   "id": "plan",
+   "h2": "A practical plan for New York beginners",
+   "paragraphs": [
+    "One way to build a career from New York City:"
+   ],
+   "bullets": [
+    "Take an online introduction to confirm NDT suits you [10].",
+    "Complete VT, PT and MT classroom hours with a metro provider [1] or a New London course [2].",
+    "Apply for trainee roles with inspection and special-inspection firms serving construction and infrastructure.",
+    "Add UT, or consider a full-time program such as CCP's for broader training [4].",
+    "For radiography, understand the NYC vs NYS licensing split before you start [5][6].",
+    "Join the local ASNT section to meet Level IIIs and employers who hire trainees but rarely advertise."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Where can I get NDT training in New York City?",
+   "a": "Options include AEIS in the NY Metro area [1], Fujifilm NDT Training Services in Valhalla [3], Hellier's New London school [2] and online courses [10]."
+  },
+  {
+   "q": "Is there a college NDT program near New York City?",
+   "a": "The Community College of Philadelphia runs a full-time NDT program with financial aid options [4]."
+  },
+  {
+   "q": "Who regulates industrial radiography in New York City?",
+   "a": "The NYC Department of Health and Mental Hygiene's Office of Radiological Health, on behalf of the NRC [5]."
+  },
+  {
+   "q": "Who regulates radiography outside NYC in New York State?",
+   "a": "The New York State Department of Health, which licenses industrial radiography under 12 NYCRR Part 38 [6][7]."
+  },
+  {
+   "q": "Can I learn NDT online in New York?",
+   "a": "Yes for theory — for example AWS's Introduction to NDT [10] — but hands-on practice and supervised experience are still required."
+  },
+  {
+   "q": "What NDT methods are most used in New York?",
+   "a": "Visual, magnetic particle, ultrasonic and radiographic testing for infrastructure and construction, plus eddy current and penetrant for aviation."
+  }
+ ],
+ "nearby": [
+  {
+   "name": "Newark",
+   "href": "/training/newark-nj"
+  },
+  {
+   "name": "Hartford",
+   "href": "/training/hartford-ct"
+  },
+  {
+   "name": "Philadelphia",
+   "href": "/training/philadelphia-pa"
+  },
+  {
+   "name": "Boston",
+   "href": "/training/boston-ma"
+  }
+ ],
+ "related": [
+  {
+   "label": "NDT jobs and careers in New York",
+   "href": "/careers/new-york-ny"
+  },
+  {
+   "label": "NDT inspection services in New York",
+   "href": "/ndt-services/new-york-ny"
+  },
+  {
+   "label": "NDT inspector salary guide",
+   "href": "/learn/ndt-inspector-salary-guide"
+  },
+  {
+   "label": "NDT certifications explained",
+   "href": "/blog/ndt-certifications-explained"
+  },
+  {
+   "label": "NDT career guide 2026",
+   "href": "/blog/ndt-career-guide-2026"
+  }
+ ],
+ "references": [
+  {
+   "title": "Evident — Training members directory (AEIS, New York Metro)",
+   "url": "https://olympus-ims.com/training-members"
+  },
+  {
+   "title": "Acuren — Inspection training (Hellier schools in New London, Houston and Anaheim)",
+   "url": "https://acuren.com/inspection/inspection-training/"
+  },
+  {
+   "title": "Materials Evaluation — NDT training calendar (Fujifilm NDT Training Services, Valhalla, NY)",
+   "url": "https://source.asnt.org/me-2020-07/70"
+  },
+  {
+   "title": "Community College of Philadelphia — Nondestructive Testing program",
+   "url": "https://www.ccp.edu/nondestructive-testing"
+  },
+  {
+   "title": "NYC Business — Radiological materials licensing (DOHMH Office of Radiological Health)",
+   "url": "https://nyc-business.nyc.gov/nycbusiness/description/radiological-materials-licensing/apply"
+  },
+  {
+   "title": "New York State DOH — Radiological health contacts (NYC vs rest of state)",
+   "url": "https://healthweb-back.health.ny.gov/environmental/radiological/radon/"
+  },
+  {
+   "title": "New York State DOH — Radiation Guide 1.6, sealed sources in industrial radiography",
+   "url": "https://healthweb-back.health.ny.gov/environmental/radiological/radon/radioactive_material_licensing/radiation_guide/1_6.htm"
+  },
+  {
+   "title": "New York State DOH — Reciprocity for radioactive materials licenses",
+   "url": "https://healthweb-back.health.ny.gov/environmental/radiological/radon/radioactive_material_licensing/reciprocity.htm"
+  },
+  {
+   "title": "NYC Health Code — Article 175 Radiation Control",
+   "url": "https://www.nyc.gov/assets/doh/downloads/pdf/about/healthcode/health-code-article175.pdf"
+  },
+  {
+   "title": "AWS — Introduction to NDT online course (Charles Hellier)",
+   "url": "https://www.aws.org/certification-and-education/education/ndt-classroom-course"
+  },
+  {
+   "title": "Open Exam Prep — SNT-TC-1A recommended training hours by method and level",
+   "url": "https://open-exam-prep.com/study-guides/asnt-ndt-iii/ndt-training/training-program-design"
+  },
+  {
+   "title": "Materials Evaluation — VT training and experience comparison (SNT-TC-1A, CP-189, ISO 9712, AWS)",
+   "url": "https://source.asnt.org/22d6m27/59"
+  },
+  {
+   "title": "eCFR — 10 CFR 34.43 Training (industrial radiography)",
+   "url": "https://www.ecfr.gov/current/title-10/chapter-I/part-34/subpart-D/section-34.43"
+  },
+  {
+   "title": "GPO — 10 CFR 34.43 text (radiographer training, OJT and certification)",
+   "url": "https://www.gpo.gov/fdsys/pkg/CFR-2010-title10-vol1/pdf/CFR-2010-title10-vol1-sec34-43.pdf"
+  },
+  {
+   "title": "ASNT — Industrial Radiography Radiation Safety Personnel (IRRSP) certification",
+   "url": "https://certification.asnt.org/certification/irrsp"
+  },
+  {
+   "title": "AWS — Radiation Safety eLearning course (40 hours toward IRRSP)",
+   "url": "https://www.aws.org/certification-and-education/education/self-paced-online-learning/radiation-safety-course"
+  },
+  {
+   "title": "Rigzone — What certifications are needed for an NDT technician role",
+   "url": "https://www.rigzone.com/insights/educational-pathways-5/what-certifications-are-needed-for-an-ndt-technician-role-674"
+  },
+  {
+   "title": "Quality Magazine — NDT training programs: components and considerations (Donald Booth)",
+   "url": "https://www.qualitymag.com/articles/97194-ndt-training-programs-components-and-considerations"
+  },
+  {
+   "title": "ASNT — Implementing a successful NDT education program (PQNDT survey: average technician age 47)",
+   "url": "https://www.asnt.org/standards-publications/blog/implementing-a-successful-ndt-education-program-planning-design-resources-curriculum-and-evaluation"
+  }
+ ]
+}

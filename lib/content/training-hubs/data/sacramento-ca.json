@@ -1,0 +1,409 @@
+{
+ "slug": "sacramento-ca",
+ "city": "Sacramento",
+ "region": "California",
+ "country": "United States",
+ "countrySlug": "united-states",
+ "wave": 2,
+ "updated": "2026-11-23",
+ "title": "NDT Training in Sacramento, CA: Training Routes, Apprenticeships, Costs and California Rules (2026)",
+ "metaTitle": "NDT Training in Sacramento, CA — Training Routes, Costs & Rules",
+ "description": "NDT training for Sacramento: Bay Area providers, AATA apprenticeships, online courses, CWI classes, costs, SNT-TC-1A hours and California radiographer rules.",
+ "quickAnswer": "Sacramento was home to one of the early US NDT training efforts at **Sacramento State College** [1], but today local trainees usually look elsewhere: Bay Area provider **Level III NDT**, which has delivered NDT training since 1996 and offers on-site courses [3][4]; **AATA**, a nonprofit offering online training and California-registered apprenticeships [6][7]; and **Foothill College**, which awards an NDT Technician certificate as AATA's education partner [5]. Practitioners have long noted that the nearest scheduled NDT schools are in Southern California [2]. California radiographers need an **accepted ASNT or California radiographer card** [13].",
+ "keyFacts": [
+  {
+   "label": "Closest provider",
+   "value": "Level III NDT, San Francisco Bay Area (training since 1996) [3][4]"
+  },
+  {
+   "label": "Apprenticeship",
+   "value": "AATA California-registered apprenticeships [7]"
+  },
+  {
+   "label": "College partner",
+   "value": "Foothill College NDT Technician certificate [5]"
+  },
+  {
+   "label": "Radiography regulator",
+   "value": "CDPH Radiologic Health Branch [13]"
+  }
+ ],
+ "industries": [
+  "State and federal facilities",
+  "Construction and structural steel",
+  "Water and power infrastructure",
+  "Manufacturing",
+  "Rail and transportation",
+  "Aerospace"
+ ],
+ "schools": [
+  {
+   "name": "Level III NDT",
+   "url": "https://marketplace.aviationweek.com/company/level-iii-ndt",
+   "location": "San Francisco Bay Area (on-site available)",
+   "offers": "Basic and advanced NDT training since 1996; on-site training for all courses at your facility [3][4]",
+   "type": "Private training provider"
+  },
+  {
+   "name": "American Aerospace Technical Academy (AATA)",
+   "url": "https://ims.evidentscientific.com/en/training-members/american-aerospace-technical-academy",
+   "location": "Los Angeles-based; online",
+   "offers": "Nonprofit NDT academy with online training and California-registered apprenticeships [6][7]",
+   "type": "Nonprofit training academy"
+  },
+  {
+   "name": "Foothill College — NDT Technician (with AATA)",
+   "url": "https://catalog.foothill.edu/degrees-certificates/apprenticeship-non-destructive-testing-technician/",
+   "location": "Los Altos Hills, CA",
+   "offers": "Certificate of Achievement in NDT Technician as AATA's local education agency [5]",
+   "type": "Community college"
+  },
+  {
+   "name": "Linn-Benton Community College — NDT and Evaluation",
+   "url": "https://linnbenton.edu/educational-options/applied-industrial-tech-and-transportation/non-destructive-testing-and-evaluation/degrees.php",
+   "location": "Albany, OR",
+   "offers": "AAS in NDT and Evaluation; graduates Level I certified to ASNT standards [8]",
+   "type": "Community college"
+  },
+  {
+   "name": "AWS CWI training — Sacramento",
+   "url": "https://www.aws.org/certification-and-education/locations/california-sacramento/",
+   "location": "Sacramento, CA",
+   "offers": "CWI training covering welding fundamentals, visual inspection, codes, metallurgy and NDT topics [9]",
+   "type": "Professional society course"
+  }
+ ],
+ "sections": [
+  {
+   "id": "overview",
+   "h2": "NDT training in Sacramento: history and today's reality",
+   "paragraphs": [
+    "Sacramento has a place in NDT history: Sacramento State College was among the early institutions providing NDT training in the United States [1]. Today, however, the Sacramento region does not have a dedicated NDT college program, and practitioners looking for scheduled method courses near Sacramento have been pointed to schools in Southern California such as Hellier Anaheim and providers in Brea [2].",
+    "That does not make Sacramento a bad place to start an NDT career. It means building a plan from Bay Area providers, apprenticeships, online courses and employer training — and using Sacramento's strong construction and infrastructure market to gain experience."
+   ]
+  },
+  {
+   "id": "bay-area",
+   "h2": "Bay Area training within reach",
+   "paragraphs": [
+    "Level III NDT, based in the San Francisco Bay Area, has provided basic and advanced NDT training for corporations since 1996 [4]. It is located minutes from the San Francisco, San Jose and Oakland airports and provides on-site NDT training for all its courses at a client's facility [3]. For Sacramento employers, on-site delivery can be the most efficient way to train a group of technicians; for individuals, the Bay Area is a manageable drive for intensive courses.",
+    "Foothill College in Los Altos Hills awards a Certificate of Achievement in NDT Technician as the local education agency for the American Aerospace Technical Academy [5], connecting classroom learning with AATA's apprenticeship model."
+   ]
+  },
+  {
+   "id": "apprenticeship",
+   "h2": "Apprenticeships and online training with AATA",
+   "paragraphs": [
+    "The American Aerospace Technical Academy is a Los Angeles-based nonprofit that offers online training for people who cannot travel [6]. Its apprenticeship model is registered with the State of California: a sponsoring employer trains the apprentice on the job while a local education partner provides classroom instruction, and apprentices earn a recognized credential; AATA received a $1,000,000 California Apprenticeship Initiative grant for new and innovative programs [7].",
+    "For Sacramento residents, the combination of online classroom work and an employer sponsor in the region can be the most practical way into NDT without relocating."
+   ]
+  },
+  {
+   "id": "cwi",
+   "h2": "Welding inspection as a gateway",
+   "paragraphs": [
+    "AWS offers CWI training classes in Sacramento covering welding fundamentals, visual inspection techniques, welding codes such as AWS D1.1, metallurgy, nondestructive testing, safety and exam preparation [9]. For people already working around welding, the CWI is a natural first credential, and many inspectors pair it with NDT methods such as ultrasonic and magnetic particle testing.",
+    "Sacramento's construction and infrastructure work — public buildings, bridges, water and power projects — generates steady welding and structural steel inspection, which is a good environment for building both CWI and NDT experience."
+   ]
+  },
+  {
+   "id": "sac-work",
+   "h2": "Where Sacramento NDT jobs come from",
+   "paragraphs": [
+    "Sacramento's NDT employers include special-inspection and materials testing firms serving construction, utilities maintaining water and power infrastructure, manufacturers, rail and transportation operators, and aerospace and defense facilities in the wider region. Northern California refineries in the Bay Area also draw inspection crews from Sacramento during turnarounds.",
+    "Visual, magnetic particle and ultrasonic testing dominate construction and infrastructure work, while refinery turnarounds add radiography and ultrasonic thickness testing. Trainees who can travel to Bay Area projects significantly increase their opportunities."
+   ]
+  },
+  {
+   "id": "oregon",
+   "h2": "An out-of-state college option",
+   "paragraphs": [
+    "For those willing to relocate for a full college program, Linn-Benton Community College in Oregon offers an associate of applied science in NDT and Evaluation whose graduates are Level I certified in accordance with ASNT standards [8]. A structured two-year program can be worth the move for people who want broad method coverage and a degree."
+   ]
+  },
+  {
+   "id": "first-year",
+   "h2": "What a first year looks like for a Sacramento trainee",
+   "paragraphs": [
+    "Many Sacramento technicians begin with a special-inspection or materials testing firm serving the region's construction and public-works projects. Early tasks include visual inspection of welds, magnetic particle testing of structural connections, ultrasonic testing of complete-penetration welds under supervision, and careful documentation for project records. The work is often outdoors, so summer heat and early starts are normal.",
+    "Within the first year, reliable trainees are typically sponsored for Level II in VT and MT and begin ultrasonic training. Those who want higher earnings often volunteer for Bay Area refinery turnarounds, where long shifts and intense schedules accelerate experience — and where a combination of NDT methods and a CWI credential makes a technician especially useful."
+   ]
+  },
+  {
+   "id": "ca-radiography",
+   "h2": "Radiographer certification in California",
+   "paragraphs": [
+    "California is an Agreement State whose Radiologic Health Branch (RHB), part of the California Department of Public Health, regulates industrial radiography. Since October 2009, RHB has required radiographers who do not already hold a valid radiation-safety certification card from another Agreement State or ASNT to obtain California certification to perform industrial radiography in the state; the state's provisional card is not transferable to other states, and out-of-state companies must still follow California reciprocity rules [12]. RHB's licensing guide asks licensees for copies of the ASNT card or state-issued industrial radiographer card for their radiation safety officers [13], and anyone who trains radiographers must document at least 2,000 hours of experience as a radiographer using sealed sources [11].",
+    "Because California's card is not transferable under reciprocity [12], technicians who expect to work in neighbouring states should also consider certifications recognized more widely."
+   ]
+  },
+  {
+   "id": "how-certification-works",
+   "h2": "How NDT certification actually works for Sacramento trainees",
+   "paragraphs": [
+    "The most common misunderstanding about NDT training is that a school certifies you. In the United States, the documents most employers follow are ASNT's Recommended Practice SNT-TC-1A, the ANSI/ASNT CP-189 standard and the CP-105 topical outlines [21]. Under SNT-TC-1A, certification is employer-based: a school or online course supplies the classroom hours, but your employer's written practice, its Level III and your documented on-the-job experience are what turn training into a certification. Training programs therefore combine formal classroom or online theory with on-the-job training (OJT) performed in a field or lab setting [21].",
+    "In practice, a new technician in any city follows the same ladder: complete Level I and then Level II classroom hours for a method, log supervised experience, pass the employer's general, specific and practical examinations and a vision test, and receive Level II certification in that method. Level III — the person who writes procedures, approves techniques and certifies others — requires additional experience and, for most employers, the ASNT NDT Level III examinations."
+   ]
+  },
+  {
+   "id": "training-hours",
+   "h2": "Training hours you will need by method",
+   "paragraphs": [
+    "SNT-TC-1A publishes recommended minimum classroom hours by method and level for high-school-educated candidates [14]. Employers can adopt stricter numbers in their written practice, and aerospace employers working to NAS 410 or customers with their own specifications often do. Visual testing shows the scale of supervised experience involved: SNT-TC-1A recommends 8 training hours for VT Level I and 16 more for Level II, with 70 and 140 hours of experience in the method respectively [15]."
+   ],
+   "table": {
+    "caption": "SNT-TC-1A recommended classroom training hours (high school graduate)",
+    "head": [
+     "Method",
+     "Level I hours",
+     "Additional for Level II"
+    ],
+    "rows": [
+     [
+      "Ultrasonic testing (UT)",
+      "40",
+      "40"
+     ],
+     [
+      "Radiographic testing (RT)",
+      "40",
+      "40"
+     ],
+     [
+      "Eddy current testing (ET)",
+      "40",
+      "40"
+     ],
+     [
+      "Magnetic particle testing (MT)",
+      "12",
+      "8"
+     ],
+     [
+      "Liquid penetrant testing (PT)",
+      "4",
+      "8"
+     ],
+     [
+      "Visual testing (VT)",
+      "8",
+      "16"
+     ]
+    ]
+   }
+  },
+  {
+   "id": "radiography-rules",
+   "h2": "Industrial radiography: the extra licensing layer in Sacramento",
+   "paragraphs": [
+    "Radiography is the one method where federal and state radiation-safety law sits on top of SNT-TC-1A. Under 10 CFR 34.43, a licensee may not let anyone act as a radiographer until the person has received training in the required radiation-safety subjects, completed at least two months of on-the-job training and been certified through a radiographer certification program by a certifying entity [16][17]. ASNT's Industrial Radiography Radiation Safety Personnel (IRRSP) program is one such certifying entity; it combines a computer-based exam with an employer-conducted practical exam and vision check, and many states recognize it [18]. Online radiation-safety courses such as AWS's roughly 40-hour eLearning module can supply the classroom portion, but site-specific training from the employer is still required [19].",
+    "In California, CDPH's Radiologic Health Branch implements these requirements, including its own certification and reciprocity rules [12][13]."
+   ]
+  },
+  {
+   "id": "costs",
+   "h2": "What NDT training costs",
+   "paragraphs": [
+    "Published industry guidance puts classroom training for a single method at roughly USD 600–2,000, with examination fees of roughly USD 200–500 on top [20]. ASNT lists the initial IRRSP combination exam for radioactive-material and X-ray radiography at USD 260 for members and USD 285 for non-members [18]. Longer certificate and associate-degree programs cost more but bundle several methods, labs and job placement support, and community-college options are often eligible for financial aid.",
+    "Before paying, ask whether the price includes the practical hours, specimens and exam fees, whether the course is written to SNT-TC-1A, CP-189 or NAS 410, and whether the provider will document your hours in a form an employer's Level III can accept."
+   ]
+  },
+  {
+   "id": "choosing",
+   "h2": "How to choose an NDT training provider",
+   "paragraphs": [
+    "Use this checklist to compare schools, online courses and employer programs."
+   ],
+   "bullets": [
+    "Training hours that meet or exceed the SNT-TC-1A table for each method and level.",
+    "Hands-on labs with real-flaw specimens, not just slides and videos.",
+    "Instructors who hold ASNT Level III in the method they teach.",
+    "Documentation of hours suitable for an employer's written practice.",
+    "A path to OJT — employer partnerships, apprenticeships or placement support.",
+    "For radiography, preparation for IRRSP or the state radiographer exam.",
+    "Transparent total cost including exams, books and specimens."
+   ]
+  },
+  {
+   "id": "workforce",
+   "h2": "Why the timing is good",
+   "paragraphs": [
+    "NDT's workforce is ageing: the PQNDT salary and benefits survey put the average NDT technician's age at 47 [22]. As experienced technicians retire, employers across energy, aerospace, infrastructure and manufacturing need trained replacements, which is why so many now sponsor training, apprenticeships and on-the-job programs for motivated newcomers."
+   ]
+  },
+  {
+   "id": "plan",
+   "h2": "A Sacramento NDT plan",
+   "paragraphs": [
+    "A practical route from Sacramento:"
+   ],
+   "bullets": [
+    "Start with online theory through AATA or another provider [6].",
+    "Look for an employer sponsor for an AATA apprenticeship [7].",
+    "Take intensive method courses in the Bay Area [3] or Southern California [10].",
+    "Consider the AWS CWI if you work around welding [9].",
+    "Travel to Bay Area turnarounds to build experience faster.",
+    "For radiography, plan for California certification [12].",
+    "Keep a personal logbook of every training and experience hour so it transfers between employers.",
+    "Join the local ASNT and AWS sections to meet Level IIIs and inspection firms that hire trainees.",
+    "Ask employers whether they sponsor method courses and Level II exams before you accept an offer."
+   ]
+  }
+ ],
+ "faqs": [
+  {
+   "q": "Is there NDT training in Sacramento?",
+   "a": "There is no dedicated NDT college program locally today; Sacramento residents use Bay Area providers such as Level III NDT [3], AATA online training and apprenticeships [6][7], and Southern California schools [2]."
+  },
+  {
+   "q": "Does Level III NDT offer on-site training?",
+   "a": "Yes — it provides on-site NDT training for all courses at a client's facility [3], which suits Sacramento employers training several technicians at once."
+  },
+  {
+   "q": "Is there an NDT apprenticeship in Northern California?",
+   "a": "AATA's apprenticeships are registered with the State of California and can be paired with an employer sponsor [7]; Foothill College is a partner [5]."
+  },
+  {
+   "q": "Do I need a California radiographer card?",
+   "a": "Radiographers without valid certification from another Agreement State or ASNT must obtain California certification [12]."
+  },
+  {
+   "q": "Is CWI training available in Sacramento?",
+   "a": "Yes, AWS offers CWI training classes in Sacramento, including NDT topics [9]. Many inspectors pair the CWI with ultrasonic and magnetic particle certifications."
+  },
+  {
+   "q": "Did Sacramento have early NDT training?",
+   "a": "Yes — Sacramento State College was among the early institutions offering NDT training [1], though the region no longer has a dedicated NDT college program."
+  }
+ ],
+ "nearby": [
+  {
+   "name": "San Francisco",
+   "href": "/training/san-francisco-ca"
+  },
+  {
+   "name": "Reno",
+   "href": "/training/reno-nv"
+  },
+  {
+   "name": "Los Angeles",
+   "href": "/training/los-angeles-ca"
+  },
+  {
+   "name": "Portland",
+   "href": "/training/portland-or"
+  }
+ ],
+ "related": [
+  {
+   "label": "NDT jobs and careers in Sacramento",
+   "href": "/careers/sacramento-ca"
+  },
+  {
+   "label": "NDT inspection services in Sacramento",
+   "href": "/ndt-services/sacramento-ca"
+  },
+  {
+   "label": "NDT inspector salary guide",
+   "href": "/learn/ndt-inspector-salary-guide"
+  },
+  {
+   "label": "NDT certifications explained",
+   "href": "/blog/ndt-certifications-explained"
+  },
+  {
+   "label": "NDT career guide 2026",
+   "href": "/blog/ndt-career-guide-2026"
+  }
+ ],
+ "references": [
+  {
+   "title": "Quality Magazine — The evolution of NDT training (early programs incl. Sacramento State College)",
+   "url": "https://www.qualitymag.com/articles/96311-the-evolution-of-ndt-training"
+  },
+  {
+   "title": "AWS Forum — Finding NDT training near Sacramento (TEST NDT Brea, Hellier Anaheim)",
+   "url": "https://app.aws.org/forum/topic_show.pl?pid=14231"
+  },
+  {
+   "title": "Aviation Week Marketplace — Level III NDT (San Francisco Bay Area)",
+   "url": "https://marketplace.aviationweek.com/company/level-iii-ndt"
+  },
+  {
+   "title": "Aviation Week Marketplace — Level III NDT supplier profile (training since 1996)",
+   "url": "https://marketplace.aviationweek.com/suppliers/level-iii-ndt/"
+  },
+  {
+   "title": "Foothill College — Apprenticeship: Non-Destructive Testing Technician (with AATA)",
+   "url": "https://catalog.foothill.edu/degrees-certificates/apprenticeship-non-destructive-testing-technician/"
+  },
+  {
+   "title": "Evident — Training members: American Aerospace Technical Academy (online)",
+   "url": "https://ims.evidentscientific.com/en/training-members/american-aerospace-technical-academy"
+  },
+  {
+   "title": "AATA — Apprenticeships (California Apprenticeship Initiative grant)",
+   "url": "https://aatatraining.squarespace.com/apprenticeships"
+  },
+  {
+   "title": "Linn-Benton Community College — Nondestructive Testing and Evaluation degrees",
+   "url": "https://linnbenton.edu/educational-options/applied-industrial-tech-and-transportation/non-destructive-testing-and-evaluation/degrees.php"
+  },
+  {
+   "title": "AWS — CWI training classes in Sacramento",
+   "url": "https://www.aws.org/certification-and-education/locations/california-sacramento/"
+  },
+  {
+   "title": "Acuren — Inspection training (Hellier schools incl. Anaheim)",
+   "url": "https://acuren.com/inspection/inspection-training/"
+  },
+  {
+   "title": "CDPH Radiologic Health Branch — Industrial radiographer trainer application (CDPH 8219)",
+   "url": "https://Www.Cdph.Ca.gov/CDPH%20Document%20Library/ControlledForms/cdph8219.pdf"
+  },
+  {
+   "title": "Quality Magazine — California revises industrial radiographer certification",
+   "url": "https://www.qualitymag.com/articles/89660-california-revises-industrial-radiographer-certification"
+  },
+  {
+   "title": "CDPH — Industrial radiography licensing guide",
+   "url": "https://www.cdph.ca.gov:443/Programs/CEH/DRSEM/CDPH%20Document%20Library/RHB/RML/IndustrialRadiographyGuide.pdf"
+  },
+  {
+   "title": "Open Exam Prep — SNT-TC-1A recommended training hours by method and level",
+   "url": "https://open-exam-prep.com/study-guides/asnt-ndt-iii/ndt-training/training-program-design"
+  },
+  {
+   "title": "Materials Evaluation — VT training and experience comparison (SNT-TC-1A, CP-189, ISO 9712, AWS)",
+   "url": "https://source.asnt.org/22d6m27/59"
+  },
+  {
+   "title": "eCFR — 10 CFR 34.43 Training (industrial radiography)",
+   "url": "https://www.ecfr.gov/current/title-10/chapter-I/part-34/subpart-D/section-34.43"
+  },
+  {
+   "title": "GPO — 10 CFR 34.43 text (radiographer training, OJT and certification)",
+   "url": "https://www.gpo.gov/fdsys/pkg/CFR-2010-title10-vol1/pdf/CFR-2010-title10-vol1-sec34-43.pdf"
+  },
+  {
+   "title": "ASNT — Industrial Radiography Radiation Safety Personnel (IRRSP) certification",
+   "url": "https://certification.asnt.org/certification/irrsp"
+  },
+  {
+   "title": "AWS — Radiation Safety eLearning course (40 hours toward IRRSP)",
+   "url": "https://www.aws.org/certification-and-education/education/self-paced-online-learning/radiation-safety-course"
+  },
+  {
+   "title": "Rigzone — What certifications are needed for an NDT technician role",
+   "url": "https://www.rigzone.com/insights/educational-pathways-5/what-certifications-are-needed-for-an-ndt-technician-role-674"
+  },
+  {
+   "title": "Quality Magazine — NDT training programs: components and considerations (Donald Booth)",
+   "url": "https://www.qualitymag.com/articles/97194-ndt-training-programs-components-and-considerations"
+  },
+  {
+   "title": "ASNT — Implementing a successful NDT education program (PQNDT survey: average technician age 47)",
+   "url": "https://www.asnt.org/standards-publications/blog/implementing-a-successful-ndt-education-program-planning-design-resources-curriculum-and-evaluation"
+  }
+ ]
+}
